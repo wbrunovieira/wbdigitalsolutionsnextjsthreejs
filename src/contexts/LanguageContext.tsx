@@ -13,6 +13,8 @@ type LanguageProviderProps = {
   children: ReactNode;
 };
 
+
+
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState('en');
 
@@ -22,3 +24,5 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     </LanguageContext.Provider>
   );
 };
+
+

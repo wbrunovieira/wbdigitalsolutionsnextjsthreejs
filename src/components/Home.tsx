@@ -2,6 +2,7 @@
 import React from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTranslations } from '../contexts/TranslationContext';
+import Nav from './Nav';
 
 
 
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      <Nav />
       <h1>{currentMessages.welcome}</h1>
     </div>
   );
