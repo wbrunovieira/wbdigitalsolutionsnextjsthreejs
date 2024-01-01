@@ -1,6 +1,6 @@
 // types/messages.ts
 export type MessageFormat = {
-  welcome: string;
+  [key: string]: string;
 };
 
 export type MessagesType = {

@@ -1,20 +1,38 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+
+    './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        'custom-purple': '#792990',
+        
+        primary: '#350545',
+        secondary: '#aaa6c3',
+        tertiary: '#151030',
+        
+       
       },
+
+      boxShadow: {
+        card: '0px 35px 120px -15px #211e35',
+      },
+      screens: {
+        xs: '450px',
+      },
+      backgroundImage: {
+        'hero-pattern': 'url(\'/src/img/assets/herobg5.png\')',
+      },
+    
+      
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;
