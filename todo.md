@@ -1,3 +1,7 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Ubuntu+Mono:wght@700&display=swap" rel="stylesheet">
+
 Implementando o Botão de Troca de Idioma
 Para implementar um botão de troca de idioma, você pode seguir estes passos:
 

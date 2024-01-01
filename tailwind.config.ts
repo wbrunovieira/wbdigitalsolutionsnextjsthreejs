@@ -12,12 +12,16 @@ const config: Config = {
     extend: {
       colors: {
         'custom-purple': '#792990',
-        
+
         primary: '#350545',
         secondary: '#aaa6c3',
         tertiary: '#151030',
         
        
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        mono: ['Ubuntu Mono', 'monospace'],
       },
 
       boxShadow: {
