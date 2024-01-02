@@ -1,10 +1,11 @@
 //use client
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTranslations } from '../contexts/TranslationContext';
 
 
 import Link from 'next/link';
+import SubMenu from '../components/Submenu';
 
 
 import { useRouter } from 'next/router';
@@ -17,7 +18,7 @@ import logo from '/public/svg/logo-white.svg';
 
 const Nav: React.FC = () => {
 
-  
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   const router = useRouter();
   const pathname = router.pathname;
@@ -64,7 +65,7 @@ const Nav: React.FC = () => {
 
     <div className='flex items-center flex-1 '>
         
-        <Image className='w-32 h-9 object-contain' src={logo} alt="logo" width={128} height={36} objectFit="contain" />
+        <Image className='w-32 h-9 object-contain' src={logo} alt="logo" width={128} height={36}  />
 
 
         <p className='text-white text-sm/4 tracking-wide font-bold flex flex-col'>
@@ -93,16 +94,25 @@ const Nav: React.FC = () => {
               <div className='flex flex-1 '> 
 
               {navData.map((link, index) => {
-
+                const isSubMenuActive = activeMenu === link.name;
                     return (
+                      <div
+                      className='relative'
+                      onMouseEnter={() => setActiveMenu(link.name)}
+                      onMouseLeave={() => setActiveMenu(null)}
+                      key={index}
+                    >
                       <Link
                         className=' flex p-3 text-white lowercase text-sm tracking-widest font-light cursor-pointer '
                         href={link.path}
                         key={index}
+                        legacyBehavior
                       >
+                      <a className='flex p-3'>{link.name}</a>
                       
-                      <div>{link.name}</div>
                       </Link>
+                      {isSubMenuActive && link.subItems.length > 0 && <SubMenu subItems={link.subItems} />}
+                      </div>
                     );
               })
               } 
