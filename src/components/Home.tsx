@@ -1,4 +1,4 @@
-// components/Home.tsx
+//use client
 import React from 'react';
 import { useTranslations } from '../contexts/TranslationContext';
 

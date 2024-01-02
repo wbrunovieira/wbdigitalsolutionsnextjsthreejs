@@ -1,4 +1,4 @@
-// contexts/LanguageContext.tsx
+//use client
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 const LanguageContext = createContext({
@@ -8,7 +8,7 @@ const LanguageContext = createContext({
 
 export const useLanguage = () => useContext(LanguageContext);
 
-// Definindo o tipo para as propriedades de LanguageProvider
+
 type LanguageProviderProps = {
   children: ReactNode;
 };

@@ -1,4 +1,4 @@
-// contexts/TranslationContext.tsx
+//use client
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useLanguage } from './LanguageContext';
 

@@ -2,5 +2,15 @@
     "welcome": "Benvenuto in WB Digital Solutions",
     "technology": "Tecnologia e Marketing Digitale",
     "title": "WB Digital Solutions | Soluzioni Digitali per le Imprese",
-    "description": "WB Digital Solutions è specializzata nell'offrire soluzioni digitali innovative e personalizzate per le imprese. Trasforma la tua attività e raggiungi risultati straordinari con la nostra competenza in tecnologia!"
+    "description": "WB Digital Solutions è specializzata nell'offrire soluzioni digitali innovative e personalizzate per le imprese. Trasforma la tua attività e raggiungi risultati straordinari con la nostra competenza in tecnologia!",
+
+    "home": "Home",
+    "systems": "Sistemi",
+    "services": "Servizi",
+     "websites": "Siti Web",
+    "digitalmarketing": "Marketing Digitale",
+    "blog": "Blog",
+    "contact": "Contatto"
+
+   
 }

@@ -1,4 +1,4 @@
-// pages/index.tsx
+//use client
 import LanguageRouter from '../utils/LanguageRouter';
 import Home from '../components/Home'; 
 
