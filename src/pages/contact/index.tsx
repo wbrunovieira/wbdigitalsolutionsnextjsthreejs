@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-const contact: React.FC = () => {
+const systems: React.FC = () => {
 
 
   return (
@@ -16,4 +16,4 @@ const contact: React.FC = () => {
   );
 };
 
-export default contact;
+export default systems;
