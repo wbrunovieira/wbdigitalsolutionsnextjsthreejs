@@ -5,10 +5,27 @@
     "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
 
     "home": "Home",
+    "homewho": "Quem somos",
+    "homeculture": "Cultura",
+       
     "systems": "Sistemas",
-    "services": "Serviços",
-     "websites": "Sites",
+    "wbweb": "WB Web",
+    "wbsalao": "WB Salão",
+    "wbclinica": "WB Clínica",
+    "wbfood": "WB Food",
+    "wbpet": "WB Pet",
+
+    "websites": "Sites",
+    "websitesLand": "Land Pages",
+    "websitesProjects": "Projecto",
+
     "digitalmarketing": "Marketing Digital",
+    "digitalmarketingSeo": "Seo",
+    "digitalmarketingAds": "Tráfego de Anúncios",
+    "digitalmarketingSocial": "Redes Sociais",
+
+    "automation": "Automatização",
+    
     "blog": "Blog",
     "contact": "Contacto"
    

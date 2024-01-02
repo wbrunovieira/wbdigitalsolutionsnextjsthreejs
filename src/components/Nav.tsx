@@ -21,25 +21,41 @@ const Nav: React.FC = () => {
 
   const router = useRouter();
   const pathname = router.pathname;
-  const { setLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
   const currentMessages = useTranslations();
 
 
   const navData = [
 
-    { name: currentMessages.home, path: '/', subItems: []},
+    { name: currentMessages.home, path: '/', subItems: [
+      { name: currentMessages.homewho, path: '/home/who' },
+      { name: currentMessages.homeculture, path: '/home/culture' },
+    ]},
    
-    { name: currentMessages.systems, path: '/systems',
+    ...(language === 'pt-BR' ? [{ name: currentMessages.systems, path: '/systems',
       subItems: [
-        { name: currentMessages.systemsSub1, path: '/systems/sub1' },
-        { name: currentMessages.systemsSub2, path: '/systems/sub2' },
-      ] },
-    { name: currentMessages.websites, path: '/websites', subItems: []},
-    { name: currentMessages.digitalmarketing, path: '/digitalmarketing,subItems: []'},
+        { name: currentMessages.wbweb, path: '/systems/wbweb' },
+        { name: currentMessages.wbsalao, path: '/systems/wbsalao' },
+        { name: currentMessages.wbclinica, path: '/systems/wbclinica' },
+        { name: currentMessages.wbfood, path: '/systems/wbfood' },
+        { name: currentMessages.wbpet, path: '/systems/wbpet' },
+      ] }] : []),
+    { name: currentMessages.websites, path: '/websites', subItems: [  
+      { name: currentMessages.websitesland, path: '/websites/land' },
+      { name: currentMessages.websitesProjects, path: '/websites/projects' },
+    ]},
+    { name: currentMessages.digitalmarketing, path: '/digitalmarketing',subItems: [
+      { name: currentMessages.digitalmarketingSeo, path: '/digitalmarketing/seo' },
+      { name: currentMessages.digitalmarketingAds, path: 'digitalmarketing/ads' },
+      { name: currentMessages.digitalmarketingSocial, path: 'digitalmarketing/social' },
+    ]},
+    { name: currentMessages.automation, path: '/automation',subItems: []},
     { name: currentMessages.blog, path: '/blog',subItems: []},
     { name: currentMessages.contact, path: '/contact', subItems: []},
   ];
+
+  
 
   return (
     
@@ -53,7 +69,7 @@ const Nav: React.FC = () => {
 
         <p className='text-white text-sm/4 tracking-wide font-bold flex flex-col'>
             WB Digital Solutions &nbsp;
-            <span className='sm:block hidden font-mono lowercase font-light'>{currentMessages.technology}</span>
+            <span className='sm:block hidden font-mono lowercase font-extralight text-slate-500'>{currentMessages.technology}</span>
         </p>
 
     </div>
