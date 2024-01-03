@@ -20,7 +20,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ subItems }) => {
     >
       {subItems.map((item, index) => (
         <Link href={item.path} key={index} legacyBehavior>
-          <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{item.name}</a>
+          <a className="flex whitespace-nowrap px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{item.name}</a>
         </Link>
       ))}
     </motion.div>

@@ -14,6 +14,7 @@ import Image from 'next/image';
 
 
 import logo from '/public/svg/logo-white.svg';
+import ParticlesContainer from './ParticlesContainer';
 
 
 const Nav: React.FC = () => {
@@ -69,12 +70,12 @@ const Nav: React.FC = () => {
 
   return (
     
-    <nav className='bg-primary text-secondary p-2 w-full flex  items-center py-5 fixed top-0 z-20 justify-between'>
+    <nav className=' text-secondary p-2 w-full flex  items-center py-5 fixed top-0 z-20 justify-between'>
 
 
     <div className='flex items-center flex-1 '>
-        
-        <Image className='w-32 h-9 object-contain' src={logo} alt="logo" width={128} height={36}  />
+        <ParticlesContainer />
+        <Image className='w-32 h-9 object-contain' src={logo} alt="logo" width={158} height={42}  />
 
 
         <p className='text-white text-sm/4 tracking-wide font-bold flex flex-col'>
@@ -91,7 +92,7 @@ const Nav: React.FC = () => {
 
             
 
-        <div className='flex flex-1 text text-xs'> 
+        <div className='flex flex-1 text text-xs justify-end pr-12 z-50'> 
   <button className={`btn p-2 hover:text-gray-300 ${language === 'en' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('en')}>en</button>
   <button className={`btn p-2 hover:text-gray-300 ${language === 'pt-BR' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('pt-BR')}>pt - br</button>
   <button className={`btn p-2 hover:text-gray-300 ${language === 'pt' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('pt')}>pt - pt</button>
@@ -113,14 +114,14 @@ const Nav: React.FC = () => {
                       key={index}
                     >
                       <Link
-                        className='p-3 tracking-widest  lowercase font-light cursor-pointer'
+                        className='flex p-3 tracking-widest lowercase font-light cursor-pointer '
                         href={link.path}
                         key={index}
                         legacyBehavior
 
                       >
                   <motion.a
-          className={`flex p-3 no-underline lowercase hover:text-gray-300 cursor-pointer ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
+          className={`flex p-3 text-sm font-light tracking-widest no-underline font-light  lowercase hover:text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
           initial={{ width: '0%' }}
           animate={{ width: isActive ? '100%' : '0%' }}
           transition={{ duration: 1, ease: 'easeInOut' }}

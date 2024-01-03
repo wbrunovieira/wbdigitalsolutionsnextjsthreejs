@@ -10,7 +10,7 @@ type LayoutProps = {
   const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-    <div >
+    <div className="bg-hero-pattern bg-cover bg-center h-screen w-full" >
       <Nav />
     
     
