@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useTranslations } from '../contexts/TranslationContext';
 
-
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SubMenu from '../components/Submenu';
 
@@ -33,6 +33,7 @@ const Nav: React.FC = () => {
       { name: currentMessages.homewho, path: '/home/who' },
       { name: currentMessages.homeculture, path: '/home/culture' },
     ]},
+
    
     ...(language === 'pt-BR' ? [{ name: currentMessages.systems, path: '/systems',
       subItems: [
@@ -42,16 +43,24 @@ const Nav: React.FC = () => {
         { name: currentMessages.wbfood, path: '/systems/wbfood' },
         { name: currentMessages.wbpet, path: '/systems/wbpet' },
       ] }] : []),
+
+      
+
     { name: currentMessages.websites, path: '/websites', subItems: [  
       { name: currentMessages.websitesland, path: '/websites/land' },
       { name: currentMessages.websitesProjects, path: '/websites/projects' },
     ]},
+
+    { name: currentMessages.design, path: '/design', subItems: []},
+
     { name: currentMessages.digitalmarketing, path: '/digitalmarketing',subItems: [
       { name: currentMessages.digitalmarketingSeo, path: '/digitalmarketing/seo' },
       { name: currentMessages.digitalmarketingAds, path: 'digitalmarketing/ads' },
       { name: currentMessages.digitalmarketingSocial, path: 'digitalmarketing/social' },
     ]},
     { name: currentMessages.automation, path: '/automation',subItems: []},
+  
+
     { name: currentMessages.blog, path: '/blog',subItems: []},
     { name: currentMessages.contact, path: '/contact', subItems: []},
   ];
@@ -95,9 +104,11 @@ const Nav: React.FC = () => {
 
               {navData.map((link, index) => {
                 const isSubMenuActive = activeMenu === link.name;
+                const isActive = pathname === link.path;
+
                     return (
                       <div
-                      className='relative'
+                      className='relative link' 
                       onMouseEnter={() => setActiveMenu(link.name)}
                       onMouseLeave={() => setActiveMenu(null)}
                       key={index}
@@ -108,10 +119,19 @@ const Nav: React.FC = () => {
                         key={index}
                         legacyBehavior
                       >
-                      <a className='flex p-3'>{link.name}</a>
+                     <a className={`flex p-3 no-underline lowercase ${isActive ? 'text-white underline' : 'text-slate-500'}`}>{link.name}</a>
+
                       
                       </Link>
                       {isSubMenuActive && link.subItems.length > 0 && <SubMenu subItems={link.subItems} />}
+                      {isActive && (
+                          <motion.span
+                         initial={{ width: 0 }}
+          animate={{ width: '100%' }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
+          className="underline"
+        />
+        )}
                       </div>
                     );
               })

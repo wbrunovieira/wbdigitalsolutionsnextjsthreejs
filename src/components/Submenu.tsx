@@ -11,6 +11,11 @@ const SubMenu: React.FC<SubMenuProps> = ({ subItems }) => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 1,
+        ease: 'easeInOut',
+        delay: 0.2, 
+        type: 'spring', 
+        stiffness: 100 }} 
       className="absolute bg-white shadow-lg mt-2"
     >
       {subItems.map((item, index) => (
