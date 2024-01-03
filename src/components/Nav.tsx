@@ -114,24 +114,24 @@ const Nav: React.FC = () => {
                       key={index}
                     >
                       <Link
-                        className=' flex p-3 text-white lowercase text-sm tracking-widest font-light cursor-pointer '
+                        className='p-3 tracking-widest  lowercase font-light cursor-pointer'
                         href={link.path}
                         key={index}
                         legacyBehavior
-                      >
-                     <a className={`flex p-3 no-underline lowercase ${isActive ? 'text-white underline' : 'text-slate-500'}`}>{link.name}</a>
 
+                      >
+                  <motion.a
+          className={`flex p-3 no-underline lowercase ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
+          initial={{ width: '0%' }}
+          animate={{ width: isActive ? '100%' : '0%' }}
+          transition={{ duration: 1, ease: 'easeInOut' }}
+        >
+                 {link.name}
+               </motion.a>
                       
                       </Link>
                       {isSubMenuActive && link.subItems.length > 0 && <SubMenu subItems={link.subItems} />}
-                      {isActive && (
-                          <motion.span
-                         initial={{ width: 0 }}
-          animate={{ width: '100%' }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-          className="underline"
-        />
-        )}
+                     
                       </div>
                     );
               })

@@ -34,7 +34,7 @@
   }
 }
 
-.underline {
+.underline-menu {
   position: relative;
   &:after {
     content: '';
