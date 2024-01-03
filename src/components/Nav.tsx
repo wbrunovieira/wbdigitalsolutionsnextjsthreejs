@@ -91,14 +91,13 @@ const Nav: React.FC = () => {
 
             
 
-              <div className='flex flex-1 text text-xs'> 
-
-                  <button className='btn p-2' onClick={() => setLanguage('en')}>en</button>
-                  <button className='btn p-2' onClick={() => setLanguage('pt-BR')}>pt - br</button>
-                  <button className='btn p-2' onClick={() => setLanguage('pt')}>pt - pt</button>
-                  <button className='btn p-2' onClick={() => setLanguage('it')}>it</button>
-                  <button className='btn p-2' onClick={() => setLanguage('es')}>es</button>
-              </div> 
+        <div className='flex flex-1 text text-xs'> 
+  <button className={`btn p-2 hover:text-gray-300 ${language === 'en' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('en')}>en</button>
+  <button className={`btn p-2 hover:text-gray-300 ${language === 'pt-BR' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('pt-BR')}>pt - br</button>
+  <button className={`btn p-2 hover:text-gray-300 ${language === 'pt' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('pt')}>pt - pt</button>
+  <button className={`btn p-2 hover:text-gray-300 ${language === 'it' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('it')}>it</button>
+  <button className={`btn p-2 hover:text-gray-300 ${language === 'es' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('es')}>es</button>
+</div>
 
               <div className='flex flex-1 '> 
 
@@ -121,7 +120,7 @@ const Nav: React.FC = () => {
 
                       >
                   <motion.a
-          className={`flex p-3 no-underline lowercase ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
+          className={`flex p-3 no-underline lowercase hover:text-gray-300 cursor-pointer ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
           initial={{ width: '0%' }}
           animate={{ width: isActive ? '100%' : '0%' }}
           transition={{ duration: 1, ease: 'easeInOut' }}
