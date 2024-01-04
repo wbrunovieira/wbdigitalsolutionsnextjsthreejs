@@ -94,6 +94,7 @@
 
 .radio-custom-label {
   display: inline-block;
+  position: relative;
   width: 12px;
   height: 12px;
   margin-right: 16px;
@@ -128,4 +129,31 @@
 
 .image-container {
   padding-right: 0.5rem; /* Ajuste o valor conforme necessário */
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: #350545;
+
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Posicionamento */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Metade da largura para centralizar */
+
+  /* Estilos para a animação */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.radio-custom-label:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }

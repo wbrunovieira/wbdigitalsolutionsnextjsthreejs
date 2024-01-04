@@ -100,19 +100,19 @@ const Nav: React.FC = () => {
 <div className="radio-input flex justify-center items-center z-50 pr-14">
 
     <input className="input radio-custom border-r" type="radio" name="radio" id="en" onChange={() => setLanguage('en')} checked={language === 'en'} />
-    <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "></label>
+    <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "><span className="tooltip-text">{currentMessages.english}</span></label>
    
     <input className="input radio-custom border-r" type="radio" name="radio" id="pt-BR" onChange={() => setLanguage('pt-BR')} checked={language === 'pt-BR'} />
-    <label htmlFor="pt-BR" className="radio-custom-label pt-BR btn hover:text-gray-300"></label>
+    <label htmlFor="pt-BR" className="radio-custom-label pt-BR btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.portuguesebr}</span></label>
 
     <input className="input radio-custom border-r" type="radio" name="radio" id="pt" onChange={() => setLanguage('pt')} checked={language === 'pt'} />
-    <label htmlFor="pt" className="radio-custom-label pt btn hover:text-gray-300"></label>
+    <label htmlFor="pt" className="radio-custom-label pt btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.portuguesept}</span></label>
 
     <input className="input radio-custom border-r" type="radio" name="radio" id="it" onChange={() => setLanguage('it')} checked={language === 'it'} />
-    <label htmlFor="it" className="radio-custom-label it btn hover:text-gray-300"></label>
+    <label htmlFor="it" className="radio-custom-label it btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.italian}</span></label>
 
     <input className="input radio-custom border-r" type="radio" name="radio" id="es" onChange={() => setLanguage('es')} checked={language === 'es'} />
-    <label htmlFor="es" className="radio-custom-label es btn hover:text-gray-300"></label>
+    <label htmlFor="es" className="radio-custom-label es btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.spanish}</span></label>
 </div>
 
 
