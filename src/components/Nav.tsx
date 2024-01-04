@@ -71,7 +71,7 @@ const Nav: React.FC = () => {
 
   return (
     
-    <nav className=' text-secondary p-2 w-full flex  items-center py-5 fixed top-0 z-20 justify-between'>
+    <nav className=' text-secondary p-2 w-full flex top-0 items-center py-5  z-20 justify-between'>
 
 
     <div className='flex items-center flex-1 '>
@@ -95,7 +95,7 @@ const Nav: React.FC = () => {
 
         <div className='flex flex-1 text text-xs justify-end pr-12 '> 
 
-<div className="radio-input flex justify-center items-center z-50">
+<div className="radio-input flex justify-center items-center z-50 pr-14">
 
     <input className="input radio-custom border-r" type="radio" name="radio" id="en" onChange={() => setLanguage('en')} checked={language === 'en'} />
     <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "></label>
@@ -139,7 +139,7 @@ const Nav: React.FC = () => {
 
                       >
                   <motion.a
-          className={`flex p-3 text-sm font-light tracking-widest no-underline font-light  lowercase hover:text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
+          className={`flex p-3 text-xs font-light tracking-widest no-underline font-light  lowercase hover:text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
           initial={{ width: '0%' }}
           animate={{ width: isActive ? '100%' : '0%' }}
           transition={{ duration: 1, ease: 'easeInOut' }}
