@@ -1,7 +1,7 @@
-//use client
+// @client
 import React, { useState } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { useTranslations } from '../contexts/TranslationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ import Image from 'next/image';
 
 import logo from '/public/svg/logo-white.svg';
 import ParticlesContainer from './ParticlesContainer';
+
 
 
 const Nav: React.FC = () => {
@@ -92,15 +93,32 @@ const Nav: React.FC = () => {
 
             
 
-        <div className='flex flex-1 text text-xs justify-end pr-12 z-50'> 
-  <button className={`btn p-2 hover:text-gray-300 ${language === 'en' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('en')}>en</button>
-  <button className={`btn p-2 hover:text-gray-300 ${language === 'pt-BR' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('pt-BR')}>pt - br</button>
-  <button className={`btn p-2 hover:text-gray-300 ${language === 'pt' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('pt')}>pt - pt</button>
-  <button className={`btn p-2 hover:text-gray-300 ${language === 'it' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('it')}>it</button>
-  <button className={`btn p-2 hover:text-gray-300 ${language === 'es' ? 'text-gray-300' : ''}`} onClick={() => setLanguage('es')}>es</button>
+        <div className='flex flex-1 text text-xs justify-end pr-12 '> 
+
+<div className="radio-input flex justify-center items-center z-50">
+
+    <input className="input radio-custom border-r" type="radio" name="radio" id="en" onChange={() => setLanguage('en')} checked={language === 'en'} />
+    <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "></label>
+   
+    <input className="input radio-custom border-r" type="radio" name="radio" id="pt-BR" onChange={() => setLanguage('pt-BR')} checked={language === 'pt-BR'} />
+    <label htmlFor="pt-BR" className="radio-custom-label pt-BR btn hover:text-gray-300"></label>
+
+    <input className="input radio-custom border-r" type="radio" name="radio" id="pt" onChange={() => setLanguage('pt')} checked={language === 'pt'} />
+    <label htmlFor="pt" className="radio-custom-label pt btn hover:text-gray-300"></label>
+
+    <input className="input radio-custom border-r" type="radio" name="radio" id="it" onChange={() => setLanguage('it')} checked={language === 'it'} />
+    <label htmlFor="it" className="radio-custom-label it btn hover:text-gray-300"></label>
+
+    <input className="input radio-custom border-r" type="radio" name="radio" id="es" onChange={() => setLanguage('es')} checked={language === 'es'} />
+    <label htmlFor="es" className="radio-custom-label es btn hover:text-gray-300"></label>
+</div>
+
+
+ 
 </div>
 
               <div className='flex flex-1 '> 
+             
 
               {navData.map((link, index) => {
                 const isSubMenuActive = activeMenu === link.name;

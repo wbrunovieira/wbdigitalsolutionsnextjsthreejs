@@ -48,7 +48,7 @@ const ParticlesContainer = () => {
         },
         particles: {
           color: {
-            value: '#ffb937',
+            value: '#ffb947',
           },
           links: {
             color: '#792990',
@@ -61,7 +61,8 @@ const ParticlesContainer = () => {
             enable: true,
           },
           move: {
-            directions: 'none',
+            random: true,
+            straight: false,
             enable: true,
             outModes: {
               default: 'bounce',

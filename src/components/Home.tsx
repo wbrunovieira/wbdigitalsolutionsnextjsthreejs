@@ -14,8 +14,8 @@ const Home: React.FC = () => {
 
   return (
     <div>
+      home
       
-      <h1>{currentMessages.welcome}</h1>
     </div>
   );
 };

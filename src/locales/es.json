@@ -18,5 +18,11 @@
 
     "automation": "Automatización",
     "blog": "Blog",
-    "contact": "Contacto"
+    "contact": "Contacto",
+
+    "english": "Inglés",
+    "portuguese - br": "Portugués - BR",
+    "portuguese - pt": "Portugués - PT",
+    "spanish": "Español",
+    "italian": "Italiano"
   }
