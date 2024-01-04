@@ -61,6 +61,8 @@ const Nav: React.FC = () => {
       { name: currentMessages.digitalmarketingSocial, path: 'digitalmarketing/social' },
     ]},
     { name: currentMessages.automation, path: '/automation',subItems: []},
+
+    { name: currentMessages.ai, path: '/ai',subItems: []},
   
 
     { name: currentMessages.blog, path: '/blog',subItems: []},
