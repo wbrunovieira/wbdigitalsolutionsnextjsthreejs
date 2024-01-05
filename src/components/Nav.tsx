@@ -73,7 +73,7 @@ const Nav: React.FC = () => {
 
   return (
     
-    <nav className='fixed text-secondary p-2 w-full flex top-0 items-center py-5  z-20 justify-between'>
+    <nav className='fixed text-secondary p-2 w-full flex top-0 items-center py-5  z-20 justify-between pt-10'>
 
 
     <div className='flex items-center flex-1 '>
@@ -91,35 +91,35 @@ const Nav: React.FC = () => {
 
     <div className='flex flex-1 items-center'>
 
-        <div className='flex flex-1 flex-col'>
+      <div className='flex flex-1 flex-col'>
 
             
 
-        <div className='flex flex-1 text text-xs justify-end pr-12 '> 
+          <div className='flex flex-1 text text-xs justify-end pr-12 '> 
 
-<div className="radio-input flex justify-center items-center z-50 pr-14">
+                <div className="radio-input flex justify-center items-center z-50 pr-14">
 
-    <input className="input radio-custom border-r" type="radio" name="radio" id="en" onChange={() => setLanguage('en')} checked={language === 'en'} />
-    <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "><span className="tooltip-text">{currentMessages.english}</span></label>
-   
-    <input className="input radio-custom border-r" type="radio" name="radio" id="pt-BR" onChange={() => setLanguage('pt-BR')} checked={language === 'pt-BR'} />
-    <label htmlFor="pt-BR" className="radio-custom-label pt-BR btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.portuguesebr}</span></label>
+                  <input className="input radio-custom border-r" type="radio" name="radio" id="en" onChange={() => setLanguage('en')} checked={language === 'en'} />
+                  <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "><span className="tooltip-text">{currentMessages.english}</span></label>
+                
+                  <input className="input radio-custom border-r" type="radio" name="radio" id="pt-BR" onChange={() => setLanguage('pt-BR')} checked={language === 'pt-BR'} />
+                  <label htmlFor="pt-BR" className="radio-custom-label pt-BR btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.portuguesebr}</span></label>
 
-    <input className="input radio-custom border-r" type="radio" name="radio" id="pt" onChange={() => setLanguage('pt')} checked={language === 'pt'} />
-    <label htmlFor="pt" className="radio-custom-label pt btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.portuguesept}</span></label>
+                  <input className="input radio-custom border-r" type="radio" name="radio" id="pt" onChange={() => setLanguage('pt')} checked={language === 'pt'} />
+                  <label htmlFor="pt" className="radio-custom-label pt btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.portuguesept}</span></label>
 
-    <input className="input radio-custom border-r" type="radio" name="radio" id="it" onChange={() => setLanguage('it')} checked={language === 'it'} />
-    <label htmlFor="it" className="radio-custom-label it btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.italian}</span></label>
+                  <input className="input radio-custom border-r" type="radio" name="radio" id="it" onChange={() => setLanguage('it')} checked={language === 'it'} />
+                  <label htmlFor="it" className="radio-custom-label it btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.italian}</span></label>
 
-    <input className="input radio-custom border-r" type="radio" name="radio" id="es" onChange={() => setLanguage('es')} checked={language === 'es'} />
-    <label htmlFor="es" className="radio-custom-label es btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.spanish}</span></label>
-</div>
+                  <input className="input radio-custom border-r" type="radio" name="radio" id="es" onChange={() => setLanguage('es')} checked={language === 'es'} />
+                  <label htmlFor="es" className="radio-custom-label es btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.spanish}</span></label>
+                </div>
 
 
  
-</div>
+      </div>
 
-              <div className='flex flex-1 '> 
+            <div className='flex flex-1 '> 
              
 
               {navData.map((link, index) => {
@@ -128,39 +128,39 @@ const Nav: React.FC = () => {
 
                     return (
                       <div
-                      className='relative link' 
-                      onMouseEnter={() => setActiveMenu(link.name)}
-                      onMouseLeave={() => setActiveMenu(null)}
-                      key={index}
-                    >
-                      <Link
-                        className='flex p-3 tracking-widest lowercase font-light cursor-pointer '
-                        href={link.path}
-                        key={index}
-                        legacyBehavior
+                            className='relative link' 
+                            onMouseEnter={() => setActiveMenu(link.name)}
+                            onMouseLeave={() => setActiveMenu(null)}
+                            key={index}
+                          >
+                            <Link
+                              className='flex p-3 tracking-widest lowercase font-light cursor-pointer '
+                              href={link.path}
+                              key={index}
+                              legacyBehavior
 
-                      >
-                  <motion.a
-          className={`flex p-3 text-xs font-light tracking-widest no-underline font-light  lowercase hover:link-active text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu link-active' : 'text-slate-500'}`}
-          initial={{ width: '0%' }}
-          animate={{ width: isActive ? '100%' : '0%' }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-        >
-                 {link.name}
-               </motion.a>
+                            >
+                              <motion.a
+                                className={`flex p-3 text-xs font-light tracking-widest no-underline font-light  lowercase hover:link-active text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu link-active' : 'text-slate-500'}`}
+                                initial={{ width: '0%' }}
+                                animate={{ width: isActive ? '100%' : '0%' }}
+                                transition={{ duration: 1, ease: 'easeInOut' }}
+                              >
+                            {link.name}
+                          </motion.a>
                       
-                      </Link>
-                      {isSubMenuActive && link.subItems.length > 0 && <SubMenu subItems={link.subItems} />}
+                          </Link>
+                          {isSubMenuActive && link.subItems.length > 0 && <SubMenu subItems={link.subItems} />}
                      
                       </div>
                     );
               })
               } 
 
-              </div>  
-            </div>
+          </div>  
+      </div>
 
-          </div> 
+    </div> 
           
         
       
@@ -168,6 +168,8 @@ const Nav: React.FC = () => {
 
     
   );
+
+  
 };
 
 export default Nav;

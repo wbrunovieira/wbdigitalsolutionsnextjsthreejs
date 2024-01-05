@@ -9,9 +9,9 @@ const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
-    <section className={'relative w-full h-screen mx-auto'}>
+    <section className='relative w-full h-screen mx-auto hero'>
       <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
       >
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#792990]' />
