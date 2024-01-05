@@ -73,7 +73,7 @@ const Nav: React.FC = () => {
 
   return (
     
-    <nav className=' text-secondary p-2 w-full flex top-0 items-center py-5  z-20 justify-between'>
+    <nav className='fixed text-secondary p-2 w-full flex top-0 items-center py-5  z-20 justify-between'>
 
 
     <div className='flex items-center flex-1 '>

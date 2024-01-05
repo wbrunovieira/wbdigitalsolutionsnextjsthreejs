@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import   styles   from '../styles/styles.css';
+import   { styles }   from '../styles/styles.js';
 import  ComputersCanvas  from './canvas/ComputersCanvas';
 
 const HeroSection: React.FC = () => {
@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
+        <h1 className={`${styles.heroHeadText} text-white`}>
             Bem vindo ao nosso escritório <span className='text-[#792990]'>WB Digital Solutions</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
