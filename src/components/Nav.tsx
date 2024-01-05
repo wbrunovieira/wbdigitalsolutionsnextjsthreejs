@@ -141,7 +141,7 @@ const Nav: React.FC = () => {
 
                       >
                   <motion.a
-          className={`flex p-3 text-xs font-light tracking-widest no-underline font-light  lowercase hover:text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu' : 'text-slate-500'}`}
+          className={`flex p-3 text-xs font-light tracking-widest no-underline font-light  lowercase hover:link-active text-gray-300 whitespace-nowrap cursor-pointer ${isActive ? 'text-white underline-menu link-active' : 'text-slate-500'}`}
           initial={{ width: '0%' }}
           animate={{ width: isActive ? '100%' : '0%' }}
           transition={{ duration: 1, ease: 'easeInOut' }}

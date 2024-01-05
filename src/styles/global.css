@@ -157,3 +157,31 @@
   visibility: visible;
   opacity: 1;
 }
+
+.link {
+  transition: background 0.3s ease;
+  background-image: none;
+  opacity: 0.7;
+  background-size: 25% 25%;
+  background-repeat: no-repeat;
+  background-position-x: 60%;
+  background-position-y: 90%;
+  background-image: none;
+}
+
+.link:hover,
+.link-active {
+  opacity: 0.7;
+  background-size: 25% 25%; /* Ajusta o tamanho do gradiente */
+  background-repeat: no-repeat; /* Evita a repetição do gradiente */
+  background-position-x: 50%; /* Posição horizontal (pode ser em %, px, em, etc.) */
+  background-position-y: 90%;
+
+  background-image: -webkit-radial-gradient(
+    hsla(38, 100%, 80%, 1) 0%,
+    /* Cor mais clara para o hover */ hsla(38, 100%, 65%, 1) 15%,
+    /* Cor intermediária */ hsla(38, 100%, 55%, 0.5) 28%,
+    /* Cor mais escura com transparência */ hsla(38, 100%, 35%, 0) 70%
+      /* Cor mais escura, quase transparente */
+  );
+}
