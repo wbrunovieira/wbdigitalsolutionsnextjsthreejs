@@ -1,5 +1,6 @@
 // pages/_app.tsx
 import '../styles/global.css';
+import '../styles/styles.css';
 
 import { AppProps } from 'next/app';
 import { LanguageProvider } from '../contexts/LanguageContext';

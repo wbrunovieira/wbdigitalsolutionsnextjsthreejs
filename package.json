@@ -10,12 +10,15 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
+    "@react-three/drei": "^9.93.0",
+    "@react-three/fiber": "^8.15.13",
     "framer-motion": "^10.17.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6.21.1",
     "react-tsparticles": "^2.9.3",
+    "three": "^0.160.0",
     "tsparticles": "^2.9.3"
   },
   "devDependencies": {
