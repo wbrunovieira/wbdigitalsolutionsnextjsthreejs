@@ -28,7 +28,15 @@
     "portuguesept": "Portoghese - PT",
     "spanish": "Spagnolo",
     "italian": "Italiano"  ,
-    "ai":"ai"     
+    "ai":"ai" ,
+    
+    
+
+
+
+    "welcome": "Benvenuto nel nostro ufficio",
+    "services1": "Siti Web, Sistemi, Automazioni",
+    "services2": "e Marketing Digitale."    
 
    
 }

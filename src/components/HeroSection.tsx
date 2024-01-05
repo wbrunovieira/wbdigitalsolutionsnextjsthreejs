@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 import   { styles }   from '../styles/styles.js';
 import  ComputersCanvas  from './canvas/ComputersCanvas';
 
 const HeroSection: React.FC = () => {
+
+  const currentMessages = useTranslations();
+
   return (
     <section className={'relative w-full h-screen mx-auto'}>
       <div
@@ -16,11 +20,11 @@ const HeroSection: React.FC = () => {
 
         <div>
         <h1 className={`${styles.heroHeadText} text-white`}>
-            Bem vindo ao nosso escritório <span className='text-[#792990]'>WB Digital Solutions</span>
+            {currentMessages.welcome} <span className='text-[#792990]'>WB Digital Solutions</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            Sites, Sistemas, Automações <br className='sm:block hidden' />
-            e Marketing Digital.
+          {currentMessages.services1}  <br className='sm:block hidden' />
+          {currentMessages.services2} .
           </p>
         </div>
       </div>
