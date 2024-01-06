@@ -210,3 +210,18 @@
 .high-tech-minimalist-line-light:hover .line {
   transform: scaleX(1);
 }
+
+.dock-item {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  margin: 0 10px;
+  background: var(--bg);
+  color: var(--color);
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 700ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform-origin: bottom;
+}
