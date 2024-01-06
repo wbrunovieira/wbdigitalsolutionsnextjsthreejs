@@ -2,13 +2,23 @@ import { motion } from 'framer-motion';
 import { useTranslations } from '@/contexts/TranslationContext';
 
 import   { styles }   from '../styles/styles.js';
+
+
 import  ComputersCanvas  from './canvas/ComputersCanvas';
+import HighTechMinimalistLineLight from './HighTechMinimalistLineLight';
 
 const HeroSection: React.FC = () => {
 
   const currentMessages = useTranslations();
 
+
+
+
   return (
+
+
+
+
     <section className='relative w-full h-screen mx-auto hero'>
       <div
         className={`absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
@@ -19,6 +29,9 @@ const HeroSection: React.FC = () => {
         </div>
 
         <div>
+        <div className="high-tech-minimalist-line-light">
+          <div className="line"></div>
+        </div>
         <h1 className={`${styles.heroHeadText} text-white`}>
             {currentMessages.welcome} <span className='text-[#792990]'>WB Digital Solutions</span>
           </h1>
@@ -28,6 +41,8 @@ const HeroSection: React.FC = () => {
           </p>
         </div>
       </div>
+
+     
 
       <ComputersCanvas />
 

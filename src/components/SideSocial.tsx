@@ -1,40 +1,19 @@
-// icons
-// import {
-//     HiHome,
-//     HiUser,
-//     HiViewColumns,
-//     HiRectangleGroup,
-//     HiChatBubbleBottomCenterText,
-//     HiEnvelope,
-//   } from 'react-icons/hi2';
-  
+import { PiInstagramLogo, PiFacebookLogo, PiWhatsappLogo, PiYoutubeLogo } from 'react-icons/pi';
   // nav data
   export const navData = [
-    { name: 'home', path: '/', icon: <HiHome /> },
-    { name: 'about', path: '/about', icon: <HiUser /> },
-    { name: 'services', path: '/services', icon: <HiRectangleGroup /> },
-    { name: 'work', path: '/work', icon: <HiViewColumns /> },
-    {
-      name: 'testimonials',
-      path: '/testimonials',
-      icon: <HiChatBubbleBottomCenterText />,
-    },
-    {
-      name: 'contact',
-      path: '/contact',
-      icon: <HiEnvelope />,
-    },
+    { name: 'Instagram', href: '/', icon: <PiInstagramLogo /> },
+    { name: 'Facebook', href: '/', icon: <PiFacebookLogo /> },
+    { name: 'Whatsapp', href: '/services', icon: <PiWhatsappLogo /> },
+    { name: 'Youtube', path: '/work', icon: <PiYoutubeLogo /> },
+    
   ];
+
+ 
+
   
-  // next link
-  import Link from 'next/link';
-  
-  // next router
-  import { useRouter } from 'next/router';
-  
-  const Nav = () => {
-    const router = useRouter();
-    const pathname = router.pathname;
+  const SideSocial = () => {
+    
+    
     return (
       <nav className="fixed bottom-0 top-0 z-50 mt-auto flex h-max w-full flex-col items-center gap-y-4 xl:right-[2%] xl:h-screen xl:w-16 xl:max-w-md xl:justify-center">
         {/* inner */}
@@ -44,11 +23,13 @@
         >
           {navData.map((link, index) => {
             return (
-              <Link
+              <a
                 className={`${
-                  link.path === pathname && 'text-accent'
+                  link.href 
                 } hover:text-accent group relative flex items-center transition-all duration-300`}
                 href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
                 key={index}
               >
                 {/* tooltip */}
@@ -62,8 +43,8 @@
                   </div>
                 </div>
                 {/* icon */}
-                <div>{link.icon}</div>
-              </Link>
+                <div className="text-white">{link.icon}</div>
+              </a>
             );
           })}
         </div>
@@ -71,5 +52,5 @@
     );
   };
   
-  export default Nav;
+  export default SideSocial;
   

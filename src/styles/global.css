@@ -185,3 +185,28 @@
       /* Cor mais escura, quase transparente */
   );
 }
+
+.high-tech-minimalist-line-light {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: #350545;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #792990;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 2s;
+}
+
+.line.animate {
+  transform: scaleX(1);
+}
+
+.high-tech-minimalist-line-light:hover .line {
+  transform: scaleX(1);
+}

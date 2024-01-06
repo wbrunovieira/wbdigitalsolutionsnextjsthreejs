@@ -15,6 +15,7 @@ import Image from 'next/image';
 
 import logo from '/public/svg/logo-white.svg';
 import ParticlesContainer from './ParticlesContainer';
+import SideSocial from './SideSocial';
 
 
 
@@ -162,7 +163,7 @@ const Nav: React.FC = () => {
 
     </div> 
           
-        
+     <SideSocial />   
       
     </nav>
 
