@@ -10,12 +10,13 @@ type LayoutProps = {
   const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-    <div className="bg-hero-pattern bg-cover bg-center h-screen w-full" >
-      <Nav />
+    <Nav />
+    <div className="bg-custom-gradient bg-[#350545] absolute inset-0 max-h-screen" >
+    <div className="pointer-events-none absolute inset-0 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light">
     
-    
-      <main>{children}</main>
+      </div>
     </div> 
+    <main>{children}</main>
     </>
   );
 };
