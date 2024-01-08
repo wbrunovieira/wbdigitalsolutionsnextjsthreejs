@@ -16,7 +16,10 @@ const Home: React.FC = () => {
  
 
   return (
+<>
+    
   <HeroSection />
+</>
   );
 };
 

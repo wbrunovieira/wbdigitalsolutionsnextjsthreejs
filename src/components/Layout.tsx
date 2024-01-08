@@ -11,10 +11,20 @@ type LayoutProps = {
   return (
     <>
     <Nav />
-    <div className="bg-custom-gradient bg-[#350545] absolute inset-0 max-h-screen" >
-    <div className="pointer-events-none absolute inset-0 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light">
-    
-      </div>
+   
+    <div className="lines">
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+      </div> 
+    <div className="bg-custom-gradient bg-[#350545] absolute inset-0 max-h-screen" >  
+
+   
+      <div className="pointer-events-none relative inset-0 h-full bg-[url('/noisetexture.jpg')] opacity-20 mix-blend-soft-light relative;">
+      
+     
+      
+        </div>
     </div> 
     <main>{children}</main>
     </>

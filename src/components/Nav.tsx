@@ -74,32 +74,29 @@ const Nav: React.FC = () => {
 
   return (
     
-    <nav className=' fixed text-secondary p-2 w-full flex top-0 items-center py-5  z-20 justify-between pt-10' >
-     <img className="absolute top-0 left-1/2 transform -translate-x-1/2" width={300} height={60} src="/svg/barra.svg" alt="bar" />  
+    <nav className='fixed text-secondary p-2 w-full flex top-0 justify-center items-center py-5  z-20 justify-between pt-10 mx-auto px-5' >
+
+     <img className="absolute mt-0 top-0 left-1/2 transform -translate-x-1/2" width={300} height={60} src="/svg/barra.svg" alt="bar" />  
 
 
-    <div className='flex items-center flex-1 '>
-        <ParticlesContainer />
-        <Image className='w-32 h-9 object-contain' src={logo} alt="logo" width={158} height={42}  />
+        <div className='flex items-center flex-1 mx-auto'>
+          <ParticlesContainer />
+          <Image className='w-32 h-9 object-contain' src={logo} alt="logo" width={158} height={42}  />
 
 
-        <p className='text-white text-sm/4 tracking-wide font-bold flex flex-col'>
-            WB Digital Solutions &nbsp;
-            <span className='sm:block hidden font-mono lowercase font-extralight text-slate-500'>{currentMessages.technology}</span>
-        </p>
+          <p className='text-white text-sm/4 tracking-wide font-bold flex flex-col'>
+              WB Digital Solutions &nbsp;
+              <span className='sm:block hidden font-mono lowercase font-extralight text-slate-500'>{currentMessages.technology}</span>
+          </p>
 
-    </div>
+        </div>
 
 
-    <div className='flex flex-1 items-center'>
+    
 
-      <div className='flex flex-1 flex-col'>
+        <div className='flex flex-col text text-xs justify-end items-end'> 
 
-            
-
-          <div className='flex flex-1 text text-xs justify-end pr-12 '> 
-
-                <div className="radio-input flex justify-center items-center z-50 pr-14">
+                <div className="radio-input flex  items-center z-50">
 
                   <input className="input radio-custom border-r" type="radio" name="radio" id="en" onChange={() => setLanguage('en')} checked={language === 'en'} />
                   <label htmlFor="en" className="radio-custom-label en btn hover:text-gray-300 "><span className="tooltip-text">{currentMessages.english}</span></label>
@@ -117,11 +114,7 @@ const Nav: React.FC = () => {
                   <label htmlFor="es" className="radio-custom-label es btn hover:text-gray-300"><span className="tooltip-text">{currentMessages.spanish}</span></label>
                 </div>
 
-
- 
-      </div>
-
-            <div className='flex flex-1 '> 
+                 <div className='flex flex-1 '> 
              
 
               {navData.map((link, index) => {
@@ -159,10 +152,11 @@ const Nav: React.FC = () => {
               })
               } 
 
-          </div>  
-      </div>
+                 </div>
+        </div>    
+    
 
-    </div> 
+   
           
      <SideSocial />   
       
