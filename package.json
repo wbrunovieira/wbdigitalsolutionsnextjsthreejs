@@ -10,9 +10,11 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
+    "@gsap/react": "^2.0.2",
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.13",
     "framer-motion": "^10.17.0",
+    "gsap": "^3.12.4",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

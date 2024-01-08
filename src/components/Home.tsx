@@ -2,6 +2,7 @@
 import React from 'react';
 import { useTranslations } from '../contexts/TranslationContext';
 import  HeroSection from './HeroSection';
+import SectionDaHome from './HomeSection';
 
 
 
@@ -16,10 +17,14 @@ const Home: React.FC = () => {
  
 
   return (
-<>
-    
-  <HeroSection />
-</>
+      <>
+          
+        <HeroSection />
+
+        <SectionDaHome />
+
+        
+      </>
   );
 };
 
