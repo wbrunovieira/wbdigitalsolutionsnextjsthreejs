@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import Card from './Card';
 
 
 
@@ -21,6 +22,7 @@ const SectionDaHome: React.FC = () => {
 				start: 'top center',
         end: 'bottom center', 
 				scrub: true,
+        markers: {startColor: 'white', endColor: 'white', fontSize: '18px', fontWeight: 'bold', indent: 20}
 			},
 			
 		});
@@ -32,17 +34,22 @@ const SectionDaHome: React.FC = () => {
 
 
   return (
-    <section  ref={container}>
-      	<header className="header">
+    <section  className="">
 
-          <h1  ref={container} className="title">teste</h1>
-			    <h1 className="title" data-splitting><span className="title_paralax">Parallax effect</span><span className="stroke">on
-					gsap</span></h1>
+      	<header ref={container} className="bg-home-section bg-cover bg-no-repeat w-full h-full">
+
+          
+			    <h1 className="" data-splitting><span className="title_paralax">Sistemas</span><span className="stroke">WebSites</span></h1>
 
 
-			
+          <Card 
+            index={1} 
+            name="Nome do Projeto" 
+            description="Descrição do Projeto" 
+            image="svg/bghome.svg"
+          />
 							
-		</header>
+		  </header>
     </section>
   );
 };

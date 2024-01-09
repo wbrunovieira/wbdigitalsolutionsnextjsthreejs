@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1779.6 1779.6">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11 {
+        stroke-width: 0px;
+      }
+
+      .cls-12 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-3 {
+        fill: #601c74;
+      }
+
+      .cls-4 {
+        fill: #792990;
+      }
+
+      .cls-5 {
+        fill: #460e58;
+      }
+
+      .cls-6 {
+        fill: #4f1361;
+      }
+
+      .cls-7 {
+        fill: #57176b;
+      }
+
+      .cls-8 {
+        fill: #712587;
+      }
+
+      .cls-9 {
+        fill: #350545;
+      }
+
+      .cls-10 {
+        fill: #3e0a4e;
+      }
+
+      .cls-11 {
+        fill: #68207d;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" x="199.3" y="128.5" width="1377" height="774"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <path class="cls-2" d="m1575.8,129v773H199.8V129h1376m1-1H198.8v775h1378V128h0Z"/>
+    </clipPath>
+  </defs>
+  <g class="cls-1">
+    <rect class="cls-9" x="210.8" y="129" width="1377" height="774"/>
+    <circle class="cls-9" cx="887.8" cy="515.5" r="342.11"/>
+    <g>
+      <circle class="cls-10" cx="889.8" cy="889.8" r="889.8"/>
+      <circle class="cls-5" cx="889.8" cy="889.8" r="778.58"/>
+      <circle class="cls-6" cx="889.8" cy="889.8" r="667.35"/>
+      <circle class="cls-7" cx="889.8" cy="889.8" r="556.13"/>
+      <circle class="cls-3" cx="889.8" cy="889.8" r="444.9"/>
+      <circle class="cls-11" cx="889.8" cy="889.8" r="333.68"/>
+      <circle class="cls-8" cx="889.8" cy="889.8" r="222.45"/>
+      <circle class="cls-4" cx="889.8" cy="889.8" r="111.23"/>
+    </g>
+  </g>
+  <g class="cls-12">
+    <rect class="cls-9" x="198.8" y="128" width="1378" height="775"/>
+    <circle class="cls-9" cx="887.8" cy="515.5" r="342.41"/>
+    <circle class="cls-10" cx="887.8" cy="515.5" r="304.36"/>
+    <circle class="cls-5" cx="887.8" cy="515.5" r="266.32"/>
+    <circle class="cls-6" cx="887.8" cy="515.5" r="228.27"/>
+    <circle class="cls-7" cx="887.8" cy="515.5" r="190.23"/>
+    <circle class="cls-3" cx="887.8" cy="515.5" r="152.18"/>
+    <circle class="cls-11" cx="887.8" cy="515.5" r="114.14"/>
+    <circle class="cls-8" cx="887.8" cy="515.5" r="76.09"/>
+    <circle class="cls-4" cx="887.8" cy="515.5" r="38.05"/>
+    <rect class="cls-9" x="199.8" y="129" width="1376" height="773"/>
+    <circle class="cls-9" cx="887.8" cy="515.5" r="342.41"/>
+    <circle class="cls-10" cx="887.8" cy="515.5" r="304.36"/>
+    <circle class="cls-5" cx="887.8" cy="515.5" r="266.32"/>
+    <circle class="cls-6" cx="887.8" cy="515.5" r="228.27"/>
+    <circle class="cls-7" cx="887.8" cy="515.5" r="190.23"/>
+    <circle class="cls-3" cx="887.8" cy="515.5" r="152.18"/>
+    <circle class="cls-11" cx="887.8" cy="515.5" r="114.14"/>
+    <circle class="cls-8" cx="887.8" cy="515.5" r="76.09"/>
+    <circle class="cls-4" cx="887.8" cy="515.5" r="38.05"/>
+  </g>
+</svg>

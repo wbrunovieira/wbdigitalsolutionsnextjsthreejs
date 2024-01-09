@@ -5,7 +5,7 @@
     "description": "WB Digital Solutions specializes in providing innovative and customized digital solutions for businesses. Transform your business and achieve extraordinary results with our expertise in technology!",
     
     "home": "Home",
-    "homewho": "Who We Are",
+    "homewho": "Who We Are",    
     "homeculture": "Culture",
 
     "design": "design",
@@ -35,8 +35,10 @@
 
 
     "welcome": "Welcome to our office",
-"services1": "Websites, Systems, Automations",
-"services2": "and Digital Marketing."
+    "services1": "Websites, Systems, Automations",
+    "services2": "and Digital Marketing."
+
+
     
 
 }

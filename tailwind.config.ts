@@ -15,7 +15,8 @@ const config: Config = {
 
         primary: '#350545',
         secondary: '#aaa6c3',
-        tertiary: '#151030',
+        yellow: '#ffb947',
+
         
        
       },
@@ -37,6 +38,7 @@ const config: Config = {
           hsla(222, 0%, 0%, 0) 50%,
           hsla(222, 0%, 0%, 0) 100%
         )`,
+        'home-section': 'url(\'/svg/bghome.svg\')',
       },
       
     },

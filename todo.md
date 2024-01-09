@@ -15,6 +15,8 @@
 [ ] cards
 
 
+[ ] chatbot openai
+
 
 [ ] transicao
 
