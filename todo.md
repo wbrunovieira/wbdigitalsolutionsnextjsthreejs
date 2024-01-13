@@ -11,20 +11,19 @@
 [ ] animar texto hero
 [ ] colocar quote diario
 [ ] svg de background linhas finas e animado com luz no hover
-[ ] colocar faixa de texto passando 
+[ ] colocar faixa de texto passando
 [ ] cards
 
-
 [ ] chatbot openai
-
 
 [ ] transicao
 
 ## Sistemas
 
+## Contact
 
+[ ] gsap smooth scrolling locomotive plugin
 
-
-
+## Load
 
 [ ] loader
