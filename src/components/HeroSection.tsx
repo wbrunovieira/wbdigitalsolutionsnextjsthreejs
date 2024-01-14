@@ -11,10 +11,8 @@ const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
-    <section className='relative w-full h-screen mx-auto hero'>
-      <div
-        className={`absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
+    <section className='bg-home-cards relative w-full h-screen mx-auto hero bg'>
+      <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto  flex flex-row items-start gap-5'>
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#792990]' />
           <div className='w-1 sm:h-80 h-40 bg-gradient-to-r from-custom-purple to-transparent' />

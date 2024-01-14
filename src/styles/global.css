@@ -624,3 +624,9 @@ body {
 .footer__div span {
   display: inline-block;
 }
+
+.bg-home-cards {
+  background-image: url('/svg/bghome.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
