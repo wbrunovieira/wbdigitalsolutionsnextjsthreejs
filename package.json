@@ -22,7 +22,8 @@
     "react-router-dom": "^6.21.1",
     "react-tsparticles": "^2.9.3",
     "three": "^0.160.0",
-    "tsparticles": "^2.9.3"
+    "tsparticles": "^2.9.3",
+    "web-vitals": "^3.5.1"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
