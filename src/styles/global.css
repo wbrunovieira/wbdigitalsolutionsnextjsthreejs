@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --yellowcustom: #ffb947;
+  --purplecustom: #792990;
+  --purplecustondark: #350545;
+}
 body {
   @apply bg-custom-gradient;
 }
@@ -629,4 +634,59 @@ body {
   background-image: url('/svg/bghome.svg');
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.custom-button {
+  padding: 16px 32px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 4px;
+  color: transparent;
+  border: 3px solid var(--yellowcustom);
+  font-size: 16px;
+  position: relative;
+}
+
+.custom-button:before {
+  content: 'button';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #363636;
+  color: var(--yellowcustom);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.8s;
+}
+
+.custom-button:hover:before {
+  left: 100%;
+  transform: scale(0) rotateY(360deg);
+  opacity: 0;
+}
+
+.custom-button:after {
+  content: 'button';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #363636;
+  color: var(--yellowcustom);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.8s;
+  transform: scale(0) rotateY(0deg);
+  opacity: 0;
+}
+
+.custom-button:hover:after {
+  left: 0;
+  transform: scale(1) rotateY(360deg);
+  opacity: 1;
 }

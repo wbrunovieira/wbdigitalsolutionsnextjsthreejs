@@ -15,7 +15,7 @@ const config: Config = {
 
         primary: '#350545',
         secondary: '#aaa6c3',
-        yellow: '#ffb947',
+        yellowcustom: '#ffb947',
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'sans-serif'],

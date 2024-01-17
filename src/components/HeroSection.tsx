@@ -6,6 +6,7 @@ import { styles } from '../styles/styles.js';
 import ComputersCanvas from './canvas/ComputersCanvas';
 import HighTechMinimalistLineLight from './HighTechMinimalistLineLight';
 import CanvasTextMasterclass from './CanvasTextMasterclass';
+import Button from './Button';
 
 const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
@@ -49,6 +50,7 @@ const HeroSection: React.FC = () => {
               }}
               className='w-3 h-3 rounded-full bg-secondary mb-1'
             />
+            <Button />
           </div>
         </a>
       </div>
