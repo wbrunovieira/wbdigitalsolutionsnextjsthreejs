@@ -6,7 +6,7 @@ import { styles } from '../styles/styles.js';
 import ComputersCanvas from './canvas/ComputersCanvas';
 import HighTechMinimalistLineLight from './HighTechMinimalistLineLight';
 import CanvasTextMasterclass from './CanvasTextMasterclass';
-import Button from './Button';
+import { Button } from './Button';
 
 const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
@@ -27,9 +27,10 @@ const HeroSection: React.FC = () => {
             {currentMessages.welcome}{' '}
             <span className='text-[#792990]'>WB Digital Solutions</span>
           </h1>
+          <Button href='#' text=' contate ' />
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             {currentMessages.services1} <br className='sm:block hidden' />
-            {currentMessages.services2} .
+            {currentMessages.services2}
           </p>
         </div>
       </div>
@@ -50,7 +51,6 @@ const HeroSection: React.FC = () => {
               }}
               className='w-3 h-3 rounded-full bg-secondary mb-1'
             />
-            {/* <Button /> */}
           </div>
         </a>
       </div>

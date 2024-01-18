@@ -1,7 +1,16 @@
 import React from 'react';
 
-const Button: React.FC = () => {
-  return <a className='custom-button'>Botao</a>;
-};
+interface ButtonProps {
+  text: string;
+  href: string;
+}
 
-export default Button;
+export const Button: React.FC<ButtonProps> = ({ text, href }) => {
+  const buttonStyle = {
+    '--button-text': `"${text}"`,
+  } as React.CSSProperties;
+
+  return (
+    <a href={href} className='custom-button z-50 p-2' style={buttonStyle}></a>
+  );
+};

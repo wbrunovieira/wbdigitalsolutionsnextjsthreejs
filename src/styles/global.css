@@ -637,18 +637,23 @@ body {
 }
 
 .custom-button {
-  padding: 16px 32px;
-  text-transform: uppercase;
+  padding: 10px 20px;
+
   text-decoration: none;
   letter-spacing: 4px;
   color: transparent;
   border: 3px solid var(--yellowcustom);
-  font-size: 16px;
-  position: relative;
+  font-size: 14px;
+  position: absolute;
+}
+
+.custom-button:before,
+.custom-button:after {
 }
 
 .custom-button:before {
-  content: 'button';
+  padding: 10px 20px;
+  content: var(--button-text, 'button ');
   position: absolute;
   top: 0;
   left: 0;
@@ -669,8 +674,9 @@ body {
 }
 
 .custom-button:after {
-  content: 'button';
-  position: absolute;
+  content: var(--button-text, 'button ');
+  padding: 10px 20px;
+  position: relative;
   top: 0;
   left: -100%;
   width: 100%;
