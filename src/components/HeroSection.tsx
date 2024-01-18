@@ -50,7 +50,7 @@ const HeroSection: React.FC = () => {
               }}
               className='w-3 h-3 rounded-full bg-secondary mb-1'
             />
-            <Button />
+            {/* <Button /> */}
           </div>
         </a>
       </div>

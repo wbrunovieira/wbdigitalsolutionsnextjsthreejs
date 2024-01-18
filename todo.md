@@ -47,3 +47,29 @@ break;
 default:
 color = 'white';
 }
+
+### Design
+
+# Home>
+
+computador, cards, bolas de tecnologias
+
+# sites>
+
+ambiente com telas em volta
+
+# sistemas>
+
+similar a sites
+
+# marketing digital
+
+scroll com ummodel decendo junto
+
+# automacao
+
+ambiente 3d com caminho
+
+# ia
+
+escritorio
