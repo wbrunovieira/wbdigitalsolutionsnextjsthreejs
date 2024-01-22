@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
-    <section className='bg-home-cards relative w-full h-screen mx-auto hero bg'>
+    <section className=' relative w-full h-screen mx-auto hero bg'>
       <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto  flex flex-row items-start gap-5'>
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#792990]' />
@@ -25,10 +25,10 @@ const HeroSection: React.FC = () => {
           </div>
           <h1 className={`${styles.heroHeadText} text-white`}>
             {currentMessages.welcome}{' '}
-            <span className='text-[#792990]'>WB Digital Solutions</span>
+            <p className='text-[#792990]'>WB Digital Solutions</p>
           </h1>
           <Button href='#' text=' contate ' />
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+          <p className={`${styles.heroSubText} mt-6 text-white-100`}>
             {currentMessages.services1} <br className='sm:block hidden' />
             {currentMessages.services2}
           </p>

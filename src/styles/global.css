@@ -637,7 +637,7 @@ body {
 }
 
 .custom-button {
-  padding: 10px 20px;
+  padding: 6px 10px;
 
   text-decoration: none;
   letter-spacing: 4px;
@@ -652,7 +652,7 @@ body {
 }
 
 .custom-button:before {
-  padding: 10px 20px;
+  padding: 6px 10px;
   content: var(--button-text, 'button ');
   position: absolute;
   top: 0;
@@ -675,7 +675,7 @@ body {
 
 .custom-button:after {
   content: var(--button-text, 'button ');
-  padding: 10px 20px;
+  padding: 6px 10px;
   position: relative;
   top: 0;
   left: -100%;
