@@ -634,6 +634,7 @@ body {
   background-image: url('/svg/bghome.svg');
   background-size: cover;
   background-repeat: no-repeat;
+  width: 100vh;
 }
 
 .container-bright {

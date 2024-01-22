@@ -5,15 +5,15 @@ import Card from './Card';
 
 const SectionDaHome: React.FC = () => {
   return (
-    <div className='bg-home-cards w-full'>
+    <section className='relative w-full h-screen mx-auto bg-black'>
       <h1>teste</h1>
-      {/* <Card
+      <Card
         index={1}
         name='Nome do Projeto'
         description='Descrição do Projeto'
         image='svg/bghome.svg'
-      /> */}
-    </div>
+      />
+    </section>
   );
 };
 

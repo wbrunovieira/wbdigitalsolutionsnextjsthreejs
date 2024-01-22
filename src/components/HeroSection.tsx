@@ -5,16 +5,15 @@ import Image from 'next/image';
 import { styles } from '../styles/styles.js';
 
 import ComputersCanvas from './canvas/ComputersCanvas';
-import HighTechMinimalistLineLight from './HighTechMinimalistLineLight';
-import CanvasTextMasterclass from './CanvasTextMasterclass';
+
 import { Button } from './Button';
 
 const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
-    <section className=' relative w-full h-screen mx-auto hero bg'>
-      <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto  flex flex-row items-start gap-5'>
+    <section className=' relative w-full h-screen mx-auto hero'>
+      <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5'>
         <div className='flex flex-col justify-center items-center mt-5'>
           <Image
             src='/svg/BengalaWBSIte.svg'
@@ -22,14 +21,9 @@ const HeroSection: React.FC = () => {
             width={20}
             height={80}
           />
-          {/* <div className='w-5 h-5 rounded-full bg-[#792990]' /> */}
-          {/* <div className='w-1 sm:h-80 h-40 bg-gradient-to-r from-custom-purple to-transparent' /> */}
         </div>
 
         <div>
-          <div className='high-tech-minimalist-line-light'>
-            <div className='line'></div>
-          </div>
           <h1 className={`${styles.heroHeadText} text-white`}>
             {currentMessages.welcome}{' '}
             <p className='text-[#792990]'>WB Digital Solutions</p>
