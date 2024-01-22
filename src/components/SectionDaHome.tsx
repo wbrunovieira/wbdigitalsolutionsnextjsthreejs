@@ -5,8 +5,7 @@ import Card from './Card';
 
 const SectionDaHome: React.FC = () => {
   return (
-    <section className='relative w-full h-screen mx-auto bg-black'>
-      <h1>teste</h1>
+    <section className='relative w-full h-screen mx-auto bg-[#190321]'>
       <Card
         index={1}
         name='Nome do Projeto'
