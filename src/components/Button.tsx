@@ -6,11 +6,13 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({ text, href }) => {
-  const buttonStyle = {
-    '--button-text': `"${text}"`,
-  } as React.CSSProperties;
-
   return (
-    <a href={href} className='custom-button z-50 p-2' style={buttonStyle}></a>
+    <>
+      <div className='container-bright mb-4'>
+        <div className='btn-bright'>
+          <a href={href}>{text}</a>
+        </div>
+      </div>
+    </>
   );
 };

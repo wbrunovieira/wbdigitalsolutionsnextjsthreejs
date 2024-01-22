@@ -1,65 +1,51 @@
 {
-    "welcome": "Bem-vindo à WB Digital Solutions",
-    "technology": "Tecnologia e Marketing Digital",
-    "title": "WB Digital Solutions | Soluções Digitais para Empresas",
-    "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
+  "technology": "Tecnologia e Marketing Digital",
+  "title": "WB Digital Solutions | Soluções Digitais para Empresas",
+  "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
 
-    "home": "Home",
-    "homewho": "Quem somos",
-    "homeculture": "Cultura",
-     
-    "design": "design",
+  "home": "Home",
+  "homewho": "Quem somos",
+  "homeculture": "Cultura",
 
-    "systems": "Sistemas",
-    "wbweb": "WB Web",
-    "wbsalao": "WB Salão",
-    "wbclinica": "WB Clínica",
-    "wbfood": "WB Food",
-    "wbpet": "WB Pet",
+  "design": "design",
 
-    "websites": "Sites",
-    "websitesLand": "Land Pages",
-    "websitesProjects": "Projecto",
+  "systems": "Sistemas",
+  "wbweb": "WB Web",
+  "wbsalao": "WB Salão",
+  "wbclinica": "WB Clínica",
+  "wbfood": "WB Food",
+  "wbpet": "WB Pet",
 
-    "digitalmarketing": "Marketing Digital",
-    "digitalmarketingSeo": "Seo",
-    "digitalmarketingAds": "Tráfego de Anúncios",
-    "digitalmarketingSocial": "Redes Sociais",
+  "websites": "Sites",
+  "websitesLand": "Land Pages",
+  "websitesProjects": "Projecto",
 
-    "automation": "Automatização",
-    
-    "blog": "Blog",
-    "contact": "Contacto",
+  "digitalmarketing": "Marketing Digital",
+  "digitalmarketingSeo": "Seo",
+  "digitalmarketingAds": "Tráfego de Anúncios",
+  "digitalmarketingSocial": "Redes Sociais",
 
-    "english": "Inglês",
-    "portuguesebr": "Português - BR",
-    "portuguesept": "Português - PT",
-    "spanish": "Espanhol",
-    "italian": "Italiano",
-    "ai":"ai",
+  "automation": "Automatização",
 
+  "blog": "Blog",
+  "contact": "Contacto",
 
+  "english": "Inglês",
+  "portuguesebr": "Português - BR",
+  "portuguesept": "Português - PT",
+  "spanish": "Espanhol",
+  "italian": "Italiano",
+  "ai": "ai",
 
+  "welcome": "Bem vindo ao nosso escritório",
+  "services1": "Sites, Sistemas, Automações",
+  "services2": "e Marketing Digital.",
+  "contactbutton": "contate",
 
-
-
-
-    "welcome":"Bem vindo ao nosso escritório",
-    "services1":"Sites, Sistemas, Automações",
-    "services2":"e Marketing Digital.",
-
-
-
-
-
-
-    "cardName1":"Websites",
-    "cardName2":"Sistemas",
-    "cardName3":"Automatização",
-    "cardName4":"Marketing Digital",
-    "cardName5": "Automações",
-    "Inteligence":"Inteligência Artificial"
-   
-
-
+  "cardName1": "Websites",
+  "cardName2": "Sistemas",
+  "cardName3": "Automatização",
+  "cardName4": "Marketing Digital",
+  "cardName5": "Automações",
+  "Inteligence": "Inteligência Artificial"
 }

@@ -1,47 +1,37 @@
 {
-    "welcome": "Bem-vindo à WB Digital Solutions portugal",
-    "technology": "Tecnologia e Marketing Digital",
-    "title": "WB Digital Solutions | Soluções Digitais para Empresas",
-    "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
+  "technology": "Tecnologia e Marketing Digital",
+  "title": "WB Digital Solutions | Soluções Digitais para Empresas",
+  "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
 
-    "home": "Home",
-    "homewho": "Quem somos",
-    "homeculture": "Cultura",
-       
-    "design": "design",
+  "home": "Home",
+  "homewho": "Quem somos",
+  "homeculture": "Cultura",
 
-    "websites": "Sites",
-    "websitesLand": "Land Pages",
-    "websitesProjects": "Projecto",
+  "design": "design",
 
-    "digitalmarketing": "Marketing Digital",
-    "digitalmarketingSeo": "Seo",
-    "digitalmarketingAds": "Tráfego de Anúncios",
-    "digitalmarketingSocial": "Redes Sociais",
+  "websites": "Sites",
+  "websitesLand": "Land Pages",
+  "websitesProjects": "Projecto",
 
-    "automation": "Automatização",
-    
-    "blog": "Blog",
-    "contact": "Contacto",
+  "digitalmarketing": "Marketing Digital",
+  "digitalmarketingSeo": "Seo",
+  "digitalmarketingAds": "Tráfego de Anúncios",
+  "digitalmarketingSocial": "Redes Sociais",
 
-    "english": "Inglês",
-    "portuguesebr": "Português - BR",
-    "portuguesept": "Português - PT",
-    "spanish": "Espanhol",
-    "italian": "Italiano",
-    "ai":"ai",
+  "automation": "Automatização",
 
+  "blog": "Blog",
+  "contact": "Contacto",
 
+  "english": "Inglês",
+  "portuguesebr": "Português - BR",
+  "portuguesept": "Português - PT",
+  "spanish": "Espanhol",
+  "italian": "Italiano",
+  "ai": "ai",
+  "contactbutton": "contacte",
 
-
-
-
-    "welcome": "Bem-vindo ao nosso escritório",
-    "services1": "Sites, Sistemas, Automações",
-    "services2": "e Marketing Digital."
-
-  
-  
-
-
+  "welcome": "Bem-vindo ao nosso escritório",
+  "services1": "Sites, Sistemas, Automações",
+  "services2": "e Marketing Digital."
 }

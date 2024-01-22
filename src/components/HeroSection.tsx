@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslations } from '@/contexts/TranslationContext';
+import Image from 'next/image';
 
 import { styles } from '../styles/styles.js';
 
@@ -15,8 +16,14 @@ const HeroSection: React.FC = () => {
     <section className=' relative w-full h-screen mx-auto hero bg'>
       <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto  flex flex-row items-start gap-5'>
         <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#792990]' />
-          <div className='w-1 sm:h-80 h-40 bg-gradient-to-r from-custom-purple to-transparent' />
+          <Image
+            src='/svg/BengalaWBSIte.svg'
+            alt='ilustracao'
+            width={20}
+            height={80}
+          />
+          {/* <div className='w-5 h-5 rounded-full bg-[#792990]' /> */}
+          {/* <div className='w-1 sm:h-80 h-40 bg-gradient-to-r from-custom-purple to-transparent' /> */}
         </div>
 
         <div>
@@ -27,11 +34,12 @@ const HeroSection: React.FC = () => {
             {currentMessages.welcome}{' '}
             <p className='text-[#792990]'>WB Digital Solutions</p>
           </h1>
-          <Button href='#' text=' contate ' />
-          <p className={`${styles.heroSubText} mt-6 text-white-100`}>
+
+          <p className={`${styles.heroSubText} mt-2 text-white-100 relative`}>
             {currentMessages.services1} <br className='sm:block hidden' />
             {currentMessages.services2}
           </p>
+          <Button href='#' text={currentMessages.contactbutton} />
         </div>
       </div>
 

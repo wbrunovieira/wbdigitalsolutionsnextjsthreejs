@@ -216,7 +216,7 @@ body {
 
 .link:hover,
 .link-active {
-  color: #ffb347;
+  color: var(--yellowcustom);
   font-weight: semibold;
   opacity: 0.7;
   background-size: 25% 25%; /* Ajusta o tamanho do gradiente */
@@ -636,63 +636,136 @@ body {
   background-repeat: no-repeat;
 }
 
-.custom-button {
-  padding: 6px 10px;
-
-  text-decoration: none;
-  letter-spacing: 4px;
-  color: transparent;
-  border: 3px solid var(--yellowcustom);
-  font-size: 14px;
-  position: absolute;
-}
-
-.custom-button:before,
-.custom-button:after {
-}
-
-.custom-button:before {
-  padding: 6px 10px;
-  content: var(--button-text, 'button ');
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #363636;
-  color: var(--yellowcustom);
+.container-bright {
+  width: 150px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.8s;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.custom-button:hover:before {
-  left: 100%;
-  transform: scale(0) rotateY(360deg);
-  opacity: 0;
-}
-
-.custom-button:after {
-  content: var(--button-text, 'button ');
-  padding: 6px 10px;
+.btn-bright {
   position: relative;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background-color: #363636;
-  color: var(--yellowcustom);
+  width: 155px;
+  height: 50px;
+  margin: 20px;
+}
+
+.btn-bright a {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.8s;
-  transform: scale(0) rotateY(0deg);
-  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.051);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(250, 52, 52, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: 0.5s;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
 }
 
-.custom-button:hover:after {
+.btn-bright:hover a {
+  letter-spacing: 3px;
+}
+
+.btn-bright a:before {
+  content: '';
+  position: absolute;
+  top: 0;
   left: 0;
-  transform: scale(1) rotateY(360deg);
-  opacity: 1;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.149), transparent);
+  transform: skewX(45deg);
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
+
+a:hover::before {
+  transform: skewX(45deg) translateX(200%);
+  transition-delay: 0s;
+}
+
+.btn-bright:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--yellowcustom);
+  bottom: -5px;
+  width: 30px;
+  height: 10px;
+  border-radius: 10px;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.btn-bright:hover::before {
+  bottom: 0px;
+  height: 50%;
+  width: 80%;
+  border-radius: 30px;
+  transition-delay: 0.5s;
+}
+
+.btn-bright:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--yellowcustom);
+  top: -5px;
+  width: 30px;
+  height: 10px;
+  border-radius: 10px;
+  transition: 0.5s;
+  transition-delay: 0s;
+}
+
+.btn-bright:hover::after {
+  top: 0px;
+  height: 50%;
+  width: 80%;
+  border-radius: 30px;
+  transition-delay: 0.5s;
+}
+
+.btn-bright:nth-child(1):before,
+.btn-bright:nth-child(1):after {
+  background: var(--yellowcustom);
+  box-shadow:
+    0 0 5px var(--yellowcustom),
+    0 0 15px var(--yellowcustom),
+    0 0 30px var(--yellowcustom),
+    0 0 60px var(--yellowcustom);
+}
+
+.btn-bright:nth-child(2):before,
+.btn-bright:nth-child(2):after {
+  background: var(--yellowcustom);
+  box-shadow:
+    0 0 5px var(--yellowcustom),
+    0 0 15px var(--yellowcustom),
+    0 0 30px var(--yellowcustom),
+    0 0 60px var(--yellowcustom);
+}
+
+.btn-bright:nth-child(3):before,
+.btn-bright:nth-child(3):after {
+  background: var(--yellowcustom);
+  box-shadow:
+    0 0 5px var(--yellowcustom),
+    0 0 15px var(--yellowcustom),
+    0 0 30px var(--yellowcustom),
+    0 0 60px var(--yellowcustom);
 }
