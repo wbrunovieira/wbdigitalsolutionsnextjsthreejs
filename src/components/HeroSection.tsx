@@ -36,7 +36,8 @@ const HeroSection: React.FC = () => {
           </h1>
 
           <p className={`${styles.heroSubText} mt-2 text-white-100 relative`}>
-            {currentMessages.services1} <br className='sm:block hidden' />
+            {currentMessages.services1}{' '}
+            <br className='sm:block hidden text-xs' />
             {currentMessages.services2}
           </p>
           <Button href='#' text={currentMessages.contactbutton} />
