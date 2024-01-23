@@ -28,5 +28,44 @@
   "contactbutton": "contacte",
   "welcome": "Bienvenido a nuestra oficina",
   "services1": "Sitios web, Sistemas, Automatizaciones",
-  "services2": "y Marketing Digital."
+  "services2": "y Marketing Digital.",
+
+  "cards": [
+    {
+      "name": "Sitios Web",
+      "subtitle": "Desarrollo profesional de sitios web",
+      "image": "svg/bghome.svg",
+      "link": "enlace_para_sitios_web.html"
+    },
+    {
+      "name": "Sistemas",
+      "subtitle": "Soluciones personalizadas de sistemas",
+      "image": "svg/bghome.svg",
+      "link": "enlace_para_sistemas.html"
+    },
+    {
+      "name": "Automatización",
+      "subtitle": "Automatiza procesos y aumenta la eficiencia",
+      "image": "svg/bghome.svg",
+      "link": "enlace_para_automatizacion.html"
+    },
+    {
+      "name": "Marketing Digital",
+      "subtitle": "Estrategias digitales para tu negocio",
+      "image": "svg/bghome.svg",
+      "link": "enlace_para_marketing_digital.html"
+    },
+    {
+      "name": "Automatizaciones",
+      "subtitle": "Tecnología para automatizaciones inteligentes",
+      "image": "svg/bghome.svg",
+      "link": "enlace_para_automatizaciones.html"
+    },
+    {
+      "name": "Inteligencia Artificial",
+      "subtitle": "Innovación con IA",
+      "image": "svg/bghome.svg",
+      "link": "enlace_para_inteligencia_artificial.html"
+    }
+  ]
 }

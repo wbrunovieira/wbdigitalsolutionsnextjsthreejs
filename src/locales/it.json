@@ -32,5 +32,44 @@
 
   "welcome": "Benvenuto nel nostro ufficio",
   "services1": "Siti Web, Sistemi, Automazioni",
-  "services2": "e Marketing Digitale."
+  "services2": "e Marketing Digitale.",
+
+  "cards": [
+    {
+      "name": "Siti Web",
+      "subtitle": "Sviluppo di siti web professionali",
+      "image": "svg/bghome.svg",
+      "link": "link_per_siti_web.html"
+    },
+    {
+      "name": "Sistemi",
+      "subtitle": "Soluzioni personalizzate di sistemi",
+      "image": "svg/bghome.svg",
+      "link": "link_per_sistemi.html"
+    },
+    {
+      "name": "Automazione",
+      "subtitle": "Automatizza processi e aumenta l'efficienza",
+      "image": "svg/bghome.svg",
+      "link": "link_per_automazione.html"
+    },
+    {
+      "name": "Marketing Digitale",
+      "subtitle": "Strategie digitali per la tua attività",
+      "image": "svg/bghome.svg",
+      "link": "link_per_marketing_digitale.html"
+    },
+    {
+      "name": "Automazioni",
+      "subtitle": "Tecnologia per automazioni intelligenti",
+      "image": "svg/bghome.svg",
+      "link": "link_per_automazioni.html"
+    },
+    {
+      "name": "Intelligenza Artificiale",
+      "subtitle": "Innovazione con l'IA",
+      "image": "svg/bghome.svg",
+      "link": "link_per_intelligenza_artificiale.html"
+    }
+  ]
 }

@@ -32,5 +32,44 @@
 
   "welcome": "Welcome to our office",
   "services1": "Websites, Systems, Automations",
-  "services2": "and Digital Marketing."
+  "services2": "and Digital Marketing.",
+
+  "cards": [
+    {
+      "name": "Websites",
+      "subtitle": "Professional website development",
+      "image": "svg/bghome.svg",
+      "link": "link_to_websites.html"
+    },
+    {
+      "name": "Systems",
+      "subtitle": "Customized system solutions",
+      "image": "svg/bghome.svg",
+      "link": "link_to_systems.html"
+    },
+    {
+      "name": "Automation",
+      "subtitle": "Automate processes and increase efficiency",
+      "image": "svg/bghome.svg",
+      "link": "link_to_automation.html"
+    },
+    {
+      "name": "Digital Marketing",
+      "subtitle": "Digital strategies for your business",
+      "image": "svg/bghome.svg",
+      "link": "link_to_digital_marketing.html"
+    },
+    {
+      "name": "Automations",
+      "subtitle": "Technology for smart automations",
+      "image": "svg/bghome.svg",
+      "link": "link_to_automations.html"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "subtitle": "Innovation with AI",
+      "image": "svg/bghome.svg",
+      "link": "link_to_artificial_intelligence.html"
+    }
+  ]
 }
