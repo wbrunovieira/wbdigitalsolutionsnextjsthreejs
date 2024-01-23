@@ -3,6 +3,7 @@ import React from 'react';
 import { useTranslations } from '../contexts/TranslationContext';
 import HeroSection from './HeroSection';
 import SectionDaHome from './SectionDaHome';
+import InfiniteScrollHash from './InfiniteScrollHash';
 // import SectionDaHome from './HomeSection';
 
 const Home: React.FC = () => {
@@ -10,9 +11,11 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <HeroSection />
-
-      <SectionDaHome />
+      <main className='bg-[#350545]'>
+        <HeroSection />
+        <InfiniteScrollHash />
+        <SectionDaHome />
+      </main>
     </>
   );
 };

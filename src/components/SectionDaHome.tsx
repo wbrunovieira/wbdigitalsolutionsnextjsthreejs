@@ -4,6 +4,7 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Card from './Card';
 import { useTranslations } from '@/contexts/TranslationContext';
 import { CardData } from '@/types/messages';
+import InfiniteScroll from './InfiniteScrollHash';
 
 interface MessageFormat {
   technology: string;
