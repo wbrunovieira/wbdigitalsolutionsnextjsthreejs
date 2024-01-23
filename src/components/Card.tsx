@@ -13,7 +13,7 @@ interface CardProps {
 const Card = ({ index, name, description, image }: CardProps) => {
   return (
     <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)}>
-      <div className='bg-primary p-5 rounded-2xl sm:w-[360px] w-full'>
+      <div className='bg-primary p-5 rounded-2xl sm:w-[300px] w-full mt-6 ml-6'>
         <div className='relative w-full h-[230px]'>
           <Image
             src={image}

@@ -16,7 +16,7 @@ interface MessageFormat {
 const SectionDaHome: React.FC = () => {
   const currentMessages = useTranslations();
   return (
-    <section className='relative w-full h-screen mx-auto bg-[#190321]'>
+    <section className='flex gap-3 relative w-full h-screen mx-auto bg-[#190321]'>
       {Array.isArray(currentMessages.cards) &&
         currentMessages.cards.map((card, index) => (
           <Card
