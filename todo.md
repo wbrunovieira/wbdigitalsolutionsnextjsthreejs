@@ -9,11 +9,11 @@
 [ ] links social
 [ ] responsivo
 [ ] testar otimizacao
-[ ] melhorar o desenho da bengala do lado esquerdo
+[x] melhorar o desenho da bengala do lado esquerdo
 [ ] animar texto hero
 [ ] colocar quote diario
 [ ] svg de background linhas finas e animado com luz no hover
-[ ] colocar faixa de texto passando
+[x] colocar faixa de texto passando
 [ ] cards
 [ ] cores das redes sociais no hover \*vide cores abaixo
 
