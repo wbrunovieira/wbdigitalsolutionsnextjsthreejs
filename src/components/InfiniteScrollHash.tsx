@@ -2,7 +2,7 @@ import React from 'react';
 
 const InfiniteScrollHash: React.FC = () => {
   return (
-    <section className='w-screen p-10'>
+    <section className='w-screen p-10 bg-[#350545] '>
       <div className='tag-list p-4'>
         <div className='inner'>
           <div className='tag'>

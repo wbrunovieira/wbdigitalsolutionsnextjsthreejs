@@ -2,8 +2,6 @@
 import '../styles/global.css';
 import '../styles/styles.js';
 
-import { useEffect } from 'react';
-
 import { AppProps } from 'next/app';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { TranslationProvider } from '../contexts/TranslationContext';

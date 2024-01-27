@@ -1,8 +1,7 @@
-import Button from '@/components/Button';
 import React from 'react';
 
 const automation: React.FC = () => {
-  return <Button />;
+  return <h1>automation</h1>;
 };
 
 export default automation;

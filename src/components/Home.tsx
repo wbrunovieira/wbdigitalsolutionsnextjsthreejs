@@ -5,18 +5,17 @@ import HeroSection from './HeroSection';
 import SectionDaHome from './SectionDaHome';
 import InfiniteScrollHash from './InfiniteScrollHash';
 import ToolBox from './ToolBox';
-// import SectionDaHome from './HomeSection';
 
 const Home: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
     <>
-      <main className='bg-[#350545]'>
+      <main className='bg-custom-gradient bg-[#350545]  inset-0 max-h-screen'>
         <HeroSection />
         <InfiniteScrollHash />
         <SectionDaHome />
-        <ToolBox />
+        {/* <ToolBox /> */}
       </main>
     </>
   );
