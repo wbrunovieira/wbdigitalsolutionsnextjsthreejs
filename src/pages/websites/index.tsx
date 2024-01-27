@@ -29,20 +29,40 @@ const Scene = () => {
     <>
       <OrbitControls />
       <mesh position-x={1} ref={cubeRef}>
+        <hemisphereLight intensity={2.5} groundColor='black' />
+        <spotLight
+          position={[-10, 50, 10]}
+          angle={0.12}
+          penumbra={1}
+          intensity={4}
+          castShadow
+          shadow-mapSize={1024}
+        />
+        <pointLight intensity={1} />
         <boxGeometry />
-        <meshBasicMaterial color='orange' />
+        <meshStandardMaterial color='orange' />
         <Html
           position={[-0.7, 0.5, 0.5]}
           wrapperClass='text'
           distanceFactor={5}
-          className='text-white'
+          className='text-white text-xlg'
         >
           WB Sites
         </Html>
       </mesh>
       <mesh position-x={-1}>
+        <hemisphereLight intensity={2.5} groundColor='black' />
+        <spotLight
+          position={[-10, 50, 10]}
+          angle={0.12}
+          penumbra={1}
+          intensity={4}
+          castShadow
+          shadow-mapSize={1024}
+        />
+        <pointLight intensity={1} />
         <boxGeometry />
-        <meshBasicMaterial color='purple' />
+        <meshStandardMaterial color='purple' />
       </mesh>
     </>
   );
