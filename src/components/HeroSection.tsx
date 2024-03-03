@@ -7,10 +7,17 @@ import { styles } from '../styles/styles.js';
 import ComputersCanvas from './canvas/ComputersCanvas';
 
 import { Button } from './Button';
-
-const HeroSection: React.FC = () => {
+import Quote from './Quote';
+interface Translations {
+  welcome: string;
+  services1: string;
+  services2: string;
+  contactbutton: string;
+  // Outras chaves de tradução...
+}
+const HeroSection = () => {
   const currentMessages = useTranslations();
-
+  console.log('currentMessages.welcome', currentMessages.welcome);
   return (
     <section className=' relative w-full h-screen mx-auto hero'>
       <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5'>
@@ -24,10 +31,10 @@ const HeroSection: React.FC = () => {
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            {currentMessages.welcome}{' '}
-            <p className='text-[#792990]'>WB Digital Solutions</p>
-          </h1>
+          <div className={`${styles.heroHeadText} text-white`}>
+            {currentMessages.welcome}
+            <h1 className='text-[#792990]'>WB Digital Solutions</h1>
+          </div>
 
           <p className={`${styles.heroSubText} mt-2 text-white-100 relative`}>
             {currentMessages.services1}{' '}
@@ -36,6 +43,7 @@ const HeroSection: React.FC = () => {
           </p>
           <Button href='#' text={currentMessages.contactbutton} />
         </div>
+        <Quote quote='viver e  bom demais!' author='Desconhecido' />
       </div>
 
       <ComputersCanvas />

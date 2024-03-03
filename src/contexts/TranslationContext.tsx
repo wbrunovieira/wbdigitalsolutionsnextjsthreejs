@@ -13,19 +13,20 @@ import ptbr from '../locales/ptbr.json';
 const TranslationContext = createContext<MessageFormat>(en);
 
 type TranslationProviderProps = {
-    children: React.ReactNode;
-  };
-  
+  children: React.ReactNode;
+};
 
-export const TranslationProvider: React.FC<TranslationProviderProps> = ({ children }) => {
+export const TranslationProvider: React.FC<TranslationProviderProps> = ({
+  children,
+}) => {
   const { language } = useLanguage();
   const translations: MessagesType = { en, pt, es, it, 'pt-BR': ptbr };
-  const [currentMessages, setCurrentMessages] = useState<MessageFormat>(translations.en);
+  const [currentMessages, setCurrentMessages] = useState<MessageFormat>(
+    translations.en
+  );
 
   useEffect(() => {
-
     setCurrentMessages(translations[language] || translations.en);
-
   }, [language]);
 
   return (
