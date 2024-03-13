@@ -22,6 +22,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/ParticlesContainer.js", "src/types/styles.d.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/ParticlesContainer.js",
+    "src/types/styles.d.ts",
+    "src/components/canvas/ComputersCanvas.client.tsx"
+  ],
   "exclude": ["node_modules"]
 }

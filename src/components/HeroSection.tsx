@@ -1,30 +1,23 @@
+'use client';
 import { motion } from 'framer-motion';
-import { useTranslations } from '@/contexts/TranslationContext';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { styles } from '../styles/styles.js';
-
-import ComputersCanvas from './canvas/ComputersCanvas';
-
+import ComputersCanvas from './canvas/ComputersCanvas.client';
 import { Button } from './Button';
 import Quote from './Quote';
-interface Translations {
-  welcome: string;
-  services1: string;
-  services2: string;
-  contactbutton: string;
-  // Outras chaves de tradução...
-}
+
 const HeroSection = () => {
-  const currentMessages = useTranslations();
-  console.log('currentMessages.welcome', currentMessages.welcome);
+  const t = useTranslations('Index');
+
   return (
-    <section className=' relative w-full h-screen mx-auto hero'>
+    <section className='relative w-full h-screen mx-auto hero'>
       <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5'>
         <div className='flex flex-col justify-center items-center mt-5'>
           <Image
             src='/svg/BengalaWBSIte.svg'
-            alt='ilustracao'
+            alt='ilustração'
             width={20}
             height={80}
           />
@@ -32,18 +25,17 @@ const HeroSection = () => {
 
         <div>
           <div className={`${styles.heroHeadText} text-white`}>
-            {currentMessages.welcome}
+            {t('title')}
             <h1 className='text-[#792990]'>WB Digital Solutions</h1>
           </div>
 
           <p className={`${styles.heroSubText} mt-2 text-white-100 relative`}>
-            {currentMessages.services1}{' '}
-            <br className='sm:block hidden text-xs' />
-            {currentMessages.services2}
+            {t('services1')} <br className='sm:block hidden text-xs' />
+            {t('services2')}
           </p>
-          <Button href='#' text={currentMessages.contactbutton} />
+          <Button href='#' text={t('contactbutton')} />
         </div>
-        <Quote quote='viver e  bom demais!' author='Desconhecido' />
+        <Quote quote={t('quote')} author={t('author')} />
       </div>
 
       <ComputersCanvas />
