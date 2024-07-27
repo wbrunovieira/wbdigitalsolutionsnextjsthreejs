@@ -1,75 +1,76 @@
 {
-  "technology": "Technology and Digital Marketing",
-  "title": "WB Digital Solutions | Digital Solutions for Businesses",
-  "description": "WB Digital Solutions specializes in providing innovative and customized digital solutions for businesses. Transform your business and achieve extraordinary results with our expertise in technology!",
+    "technology": "Technology and Digital Marketing",
+    "title": "WB Digital Solutions | Digital Solutions for Businesses",
+    "description": "WB Digital Solutions specializes in providing innovative and customized digital solutions for businesses. Transform your business and achieve extraordinary results with our expertise in technology!",
 
-  "home": "Home",
-  "homewho": "Who We Are",
-  "homeculture": "Culture",
+    "home": "Home",
+    "homewho": "Who We Are",
+    "homeculture": "Culture",
 
-  "design": "design",
+    "design": "design",
 
-  "websites": "Websites",
-  "websitesLand": "Landing Pages",
-  "websitesProjects": "Projects",
+    "websites": "Websites",
+    "websitesLand": "Landing Pages",
+    "websitesProjects": "Projects",
 
-  "digitalmarketing": "Digital Marketing",
-  "digitalmarketingSeo": "SEO",
-  "digitalmarketingAds": "Ad Traffic",
-  "digitalmarketingSocial": "Social Networks",
+    "digitalmarketing": "Digital Marketing",
+    "digitalmarketingSeo": "SEO",
+    "digitalmarketingAds": "Ad Traffic",
+    "digitalmarketingSocial": "Social Networks",
 
-  "automation": "Automation",
-  "blog": "Blog",
-  "contact": "Contact",
+    "automation": "Automation",
+    "blog": "Blog",
+    "contact": "Contact",
 
-  "english": "English",
-  "portuguesebr": "Portuguese - BR",
-  "portuguesept": "Portuguese - PT",
-  "spanish": "Spanish",
-  "italian": "Italian",
-  "ai": "ai",
-  "contactbutton": "contact",
+    "english": "English",
+    "portuguesebr": "Portuguese - BR",
+    "portuguesept": "Portuguese - PT",
+    "spanish": "Spanish",
+    "italian": "Italian",
+    "ai": "ai",
+    "contactbutton": "contact",
 
-  "welcome": "Welcome to our office",
-  "services1": "Websites, Systems, Automations",
-  "services2": "and Digital Marketing.",
+    "welcome": "Welcome to our office",
+    "services1": "Websites, Systems, Automations",
+    "services2": "and Digital Marketing.",
 
-  "cards": [
-    {
-      "name": "Websites",
-      "subtitle": "Professional website development",
-      "image": "svg/bghome.svg",
-      "link": "link_to_websites.html"
-    },
-    {
-      "name": "Systems",
-      "subtitle": "Customized system solutions",
-      "image": "svg/bghome.svg",
-      "link": "link_to_systems.html"
-    },
-    {
-      "name": "Automation",
-      "subtitle": "Automate processes and increase efficiency",
-      "image": "svg/bghome.svg",
-      "link": "link_to_automation.html"
-    },
-    {
-      "name": "Digital Marketing",
-      "subtitle": "Digital strategies for your business",
-      "image": "svg/bghome.svg",
-      "link": "link_to_digital_marketing.html"
-    },
-    {
-      "name": "Automations",
-      "subtitle": "Technology for smart automations",
-      "image": "svg/bghome.svg",
-      "link": "link_to_automations.html"
-    },
-    {
-      "name": "Artificial Intelligence",
-      "subtitle": "Innovation with AI",
-      "image": "svg/bghome.svg",
-      "link": "link_to_artificial_intelligence.html"
-    }
-  ]
+    "cards": [
+        {
+            "name": "Websites",
+            "subtitle": "Professional website development",
+            "image": "svg/bghome.svg",
+            "link": "link_to_websites.html"
+        },
+        {
+            "name": "Systems",
+            "subtitle": "Customized system solutions",
+            "image": "svg/bghome.svg",
+            "link": "link_to_systems.html"
+        },
+        {
+            "name": "Automation",
+            "subtitle": "Automate processes and increase efficiency",
+            "image": "svg/bghome.svg",
+            "link": "link_to_automation.html"
+        },
+        {
+            "name": "Digital Marketing",
+            "subtitle": "Digital strategies for your business",
+            "image": "svg/bghome.svg",
+            "link": "link_to_digital_marketing.html"
+        },
+        {
+            "name": "Automations",
+            "subtitle": "Technology for smart automations",
+            "image": "svg/bghome.svg",
+            "link": "link_to_automations.html"
+        },
+        {
+            "name": "Artificial Intelligence",
+            "subtitle": "Innovation with AI",
+            "image": "svg/bghome.svg",
+            "link": "link_to_artificial_intelligence.html"
+        }
+    ],
+    "tools": "Tools that Transform Ideas into Reality"
 }

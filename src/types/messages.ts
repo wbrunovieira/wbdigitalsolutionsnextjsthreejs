@@ -4,17 +4,17 @@ export type MessagesType = {
     [key: string]: string;
 };
 
-// export interface CardData {
-//   name: string;
-//   subtitle: string;
-//   image: string;
-//   link: string;
-// }
+export interface CardData {
+    name: string;
+    subtitle: string;
+    image: string;
+}
 
-// export type MessageFormat = {
-//   [key: string]: string | CardData[];
-// };
+export type MessageFormat = {
+    technology: string;
+    title: string;
+    description: string;
+    cards: CardData[];
+    [key: string]: any;
+};
 
-// export type MessagesType = {
-//   [key: string]: MessageFormat;
-// };
