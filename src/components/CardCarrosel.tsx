@@ -38,8 +38,8 @@ const DummyContent = () => {
                             business today.
                         </p>
                         <Image
-                            src="/tech/html.png"
-                            alt="Macbook mockup from Aceternity UI"
+                            src="/img/tech3d.png"
+                            alt="logo"
                             height="500"
                             width="500"
                             className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
@@ -55,37 +55,37 @@ const data = [
     {
         category: "Web Development",
         title: "Create Stunning Websites.",
-        src: "/tech/html.png",
+        src: "/img/web-site.jpg",
         content: <DummyContent />,
     },
     {
         category: "Machine Learning",
         title: "Unlock Insights with Machine Learning.",
-        src: "/tech/html.png",
+        src: "/img/machine-learning.jpg",
         content: <DummyContent />,
     },
     {
         category: "Automation",
         title: "Automate Your Business Processes.",
-        src: "/tech/html.png",
+        src: "/img/automation.jpg",
         content: <DummyContent />,
     },
     {
         category: "Bots",
         title: "Integrate Intelligent Bots.",
-        src: "/tech/html.png",
+        src: "/img/chatbot.jpg",
         content: <DummyContent />,
     },
     {
         category: "Artificial Intelligence",
         title: "Leverage AI for Smarter Decisions.",
-        src: "/tech/html.png",
+        src: "/img/ai.jpg",
         content: <DummyContent />,
     },
     {
         category: "E-commerce",
         title: "Boost Your Sales with E-commerce Solutions.",
-        src: "/tech/html.png",
+        src: "/img/e-commerce.jpg",
         content: <DummyContent />,
     },
 ];
