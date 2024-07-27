@@ -5,6 +5,7 @@ import HeroSection from "./HeroSection";
 import SectionDaHome from "./SectionDaHome";
 import InfiniteScrollHash from "./InfiniteScrollHash";
 import ToolBox from "./ToolBox";
+import { AppleCardsCarouselDemo } from "./CardCarrosel";
 
 const Home: React.FC = () => {
     const currentMessages = useTranslations();
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
                 <InfiniteScrollHash />
                 <SectionDaHome />
                 <ToolBox />
+                <AppleCardsCarouselDemo />
             </main>
         </>
     );
