@@ -46,11 +46,7 @@ const SectionDaHome: React.FC = () => {
     }, []);
 
     return (
-        <section
-            className="flex gap-3 relative w-full h-screen mx-auto bg-[#190321]"
-            overflow-x-scroll
-            overscroll-x-auto
-        >
+        <section className="flex gap-3 relative w-full h-screen mx-auto bg-[#190321] overflow-x-scroll overscroll-x-auto">
             <motion.div
                 ref={containerRef}
                 initial={{ opacity: 0 }}

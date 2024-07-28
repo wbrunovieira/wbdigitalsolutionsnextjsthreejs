@@ -37,7 +37,7 @@ hsla(222, 0%, 0%, 0) 50%,
 hsla(222, 0%, 0%, 0) 100%
 )`,
                 "modern-gradient":
-                    "linear-gradient(135deg, #792990 0%, #350545 60%, #350545 100%)",
+                    "linear-gradient(90deg, #350545 0%, #792990 50%, #350545 100%)",
             },
 
             keyframes: {

@@ -106,7 +106,7 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className="fixed text-secondary p-2 w-full flex top-0 justify-center items-center py-5  z-20 justify-between pt-10 mx-auto px-5">
+        <nav className="bg-modern-gradient fixed text-secondary p-2 w-full flex top-0 justify-center items-center py-5  z-20 justify-between pt-10 mx-auto px-10">
             <img
                 className="absolute mt-0 top-0 left-1/2 transform -translate-x-1/2"
                 width={300}
@@ -213,7 +213,7 @@ const Nav: React.FC = () => {
                     />
                     <label
                         htmlFor="es"
-                        className="radio-custom-label es btn hover:text-gray-300"
+                        className="radio-custom-label es btn hover:text-gray-300 z-50"
                     >
                         <span className="tooltip-text">
                             {currentMessages.spanish}

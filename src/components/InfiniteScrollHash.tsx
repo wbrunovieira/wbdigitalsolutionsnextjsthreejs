@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const InfiniteScrollHash: React.FC = () => {
   return (
