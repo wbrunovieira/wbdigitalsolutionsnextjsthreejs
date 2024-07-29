@@ -2,7 +2,6 @@ import Card from "./Card";
 import { useTranslations } from "@/contexts/TranslationContext";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
 
 const SectionDaHome: React.FC = () => {
     const currentMessages = useTranslations();
@@ -10,35 +9,63 @@ const SectionDaHome: React.FC = () => {
 
     useEffect(() => {
         const loadGSAP = async () => {
-            const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+            const gsap = (await import("gsap")).default;
+            const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
             gsap.registerPlugin(ScrollTrigger);
-
             const cards = gsap.utils.toArray(".card");
-            cards.forEach((card) => {
-                if (card instanceof HTMLElement) {
-                    gsap.fromTo(
-                        card,
-                        { opacity: 0, y: 50 },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 80%",
-                                end: "top 20%",
-                                scrub: true,
-                                onEnter: () =>
-                                    gsap.to(card, { opacity: 1, y: 0 }),
-                                onLeave: () =>
-                                    gsap.to(card, { opacity: 0, y: 50 }),
-                                onEnterBack: () =>
-                                    gsap.to(card, { opacity: 1, y: 0 }),
-                                onLeaveBack: () =>
-                                    gsap.to(card, { opacity: 0, y: 50 }),
-                            },
-                        }
-                    );
-                }
+
+            gsap.set(cards, { opacity: 0.3, x: -2000 });
+
+            ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: "top 60%",
+                end: "bottom top",
+                scrub: true,
+
+                onEnter: () => {
+                    gsap.to(cards, {
+                        opacity: 1,
+                        x: 0,
+                        duration: 1.5,
+                        ease: "power1.inOut",
+                        stagger: {
+                            each: 0.5,
+                        },
+                    });
+                },
+                onLeave: () => {
+                    gsap.to(cards, {
+                        opacity: 0.3,
+                        x: -1800,
+                        duration: 1.5,
+                        ease: "power1.inOut",
+                        stagger: {
+                            each: 0.5,
+                        },
+                    });
+                },
+                onEnterBack: () => {
+                    gsap.to(cards, {
+                        opacity: 1,
+                        x: 0,
+                        duration: 1.5,
+                        ease: "power1.inOut",
+                        stagger: {
+                            each: 0.5,
+                        },
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to(cards, {
+                        opacity: 0.3,
+                        x: -1800,
+                        duration: 1.5,
+                        ease: "power1.inOut",
+                        stagger: {
+                            each: 0.5,
+                        },
+                    });
+                },
             });
         };
 
@@ -46,12 +73,12 @@ const SectionDaHome: React.FC = () => {
     }, []);
 
     return (
-        <section className="flex gap-3 relative w-full h-screen mx-auto bg-[#190321] overflow-x-scroll overscroll-x-auto">
+        <section className="flex gap-3 relative w-full h-screen mx-auto pt-10 bg-[#190321] overflow-x-scroll overscroll-x-auto">
             <motion.div
                 ref={containerRef}
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0.3 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 5 }}
                 className="flex gap-6 overflow-x-auto whitespace-nowrap gap-6"
             >
                 {Array.isArray(currentMessages.cards) &&
