@@ -1,19 +1,18 @@
-//use client
-import React, { ReactNode } from 'react';
-import Nav from './Nav';
+import { ReactNode } from "react";
+import Nav from "./Nav";
 
 type LayoutProps = {
-  children: ReactNode;
+    children: ReactNode;
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  return (
-    <>
-      <Nav />
+    return (
+        <>
+            <Nav />
 
-      <main>{children}</main>
-    </>
-  );
+            <main>{children}</main>
+        </>
+    );
 };
 
 export default Layout;

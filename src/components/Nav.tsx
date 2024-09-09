@@ -1,4 +1,4 @@
-// @client
+"use client";
 import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/contexts/TranslationContext";
@@ -106,14 +106,16 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 backdrop-blur-3xl fixed text-secondary p-2 w-full flex top-0 justify-center items-center py-5  z-20 justify-between pt-10 mx-auto px-10">
-            <img
-                className="absolute mt-0 top-0 left-1/2 transform -translate-x-1/2"
-                width={300}
-                height={60}
-                src="/svg/barra.svg"
-                alt="bar"
-            />
+        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 backdrop-blur-3xl fixed text-secondary p-2 w-full flex top-0 justify-center items-center py-5  z-20 justify-between pt-10 mx-auto px-10 relative">
+           
+                <img
+                    className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
+                    width={300}
+                    height={60}
+                    src="/svg/barra.svg"
+                    alt="bar"
+                />
+            
 
             <div className="flex items-center flex-1 mx-auto">
                 <ParticlesContainer />
