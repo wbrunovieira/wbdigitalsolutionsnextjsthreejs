@@ -34,6 +34,13 @@
     "services1": "Websites, Systems, Automations",
     "services2": "and Digital Marketing.",
 
+    "InteligenciaArtificial":" ArtificialIntelligence",
+    "Automation":" Automation",
+    "digitalmarketingHash":"Digital Marketing",
+    "ecommerce":"E-commerce",
+    "socialmediaHash":"SocialMedia",
+    "langingPage":"LandingPage",
+
     "cards": [
         {
             "name": "Websites",
