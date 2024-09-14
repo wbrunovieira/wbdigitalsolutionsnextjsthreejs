@@ -1,22 +1,40 @@
 "use client";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+// import { useLanguage } from "@/contexts/LanguageContext";
+// import { useTranslations } from "@/contexts/TranslationContext";
 
-const { language, setLanguage } = useLanguage();
+// const { language, setLanguage } = useLanguage();
 
-const currentMessages = useTranslations();
+// const currentMessages = useTranslations();
 
+// const tags = [
+//     currentMessages.websites,
+//     currentMessages.InteligenciaArtificial,
+// currentMessages.Automation,
+// currentMessages.digitalmarketingHash,
+// currentMessages.ecommerce,
+// currentMessages.socialmediaHash,
+// currentMessages.landingpage,
+// currentMessages.design,
+// currentMessages.digitalmarketingSeo,
+// ...(language === "pt-BR" ? currentMessages.wbsalao : '')
+// ];
 const tags = [
-    currentMessages.websites,
-    currentMessages.InteligenciaArtificial,
-    // currentMessages.Automation,
-    // currentMessages.digitalmarketingHash,
-    // currentMessages.ecommerce,
-    // currentMessages.socialmediaHash,
-    // currentMessages.landingpage,
-    // currentMessages.design,
-    currentMessages.digitalmarketingSeo,
-    // ...(language === "pt-BR" ? currentMessages.wbsalao : '')
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
+    "WebSites",
 ];
 
 const InfiniteScrollHash: React.FC = () => {
