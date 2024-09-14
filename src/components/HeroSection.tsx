@@ -1,64 +1,49 @@
-import { motion } from 'framer-motion';
-import { useTranslations } from '@/contexts/TranslationContext';
-import Image from 'next/image';
+import { motion } from "framer-motion";
+import { useTranslations } from "@/contexts/TranslationContext";
+import Image from "next/image";
 
-import { styles } from '../styles/styles.js';
+import { styles } from "../styles/styles.js";
 
-import ComputersCanvas from './canvas/ComputersCanvas';
+import ComputersCanvas from "./canvas/ComputersCanvas";
 
-import { Button } from './Button';
+import { Button } from "./Button";
 
 const HeroSection: React.FC = () => {
-  const currentMessages = useTranslations();
+    const currentMessages = useTranslations();
 
-  return (
-    <section className=' relative w-full h-screen mx-auto hero'>
-      <div className='absolute inset-0 top-[120px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5'>
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <Image
-            src='/svg/BengalaWBSIte.svg'
-            alt='ilustracao'
-            width={20}
-            height={80}
-          />
-        </div>
+    return (
+        <section className=" relative w-full h-screen mx-auto hero">
+            <div className="absolute inset-0 top-[20px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5">
+                <div className="flex flex-col justify-center items-center">
+                    <Image
+                        src="/svg/BengalaWBSIte.svg"
+                        alt="ilustracao"
+                        width={20}
+                        height={80}
+                    />
+                </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            {currentMessages.welcome}{' '}
-            <p className='text-[#792990]'>WB Digital Solutions</p>
-          </h1>
+                <div>
+                    <h1 className={`${styles.heroHeadText} text-white title`}>
+                        {currentMessages.welcome}{" "}
+                        <p className="text-[#792990]">WB Digital Solutions</p>
+                    </h1>
 
-          <p className={`${styles.heroSubText} mt-2 text-white-100 relative`}>
-            {currentMessages.services1}{' '}
-            <br className='sm:block hidden text-xs' />
-            {currentMessages.services2}
-          </p>
-          <Button href='#' text={currentMessages.contactbutton} />
-        </div>
-      </div>
+                    <p
+                        className={`${styles.heroSubText} mt-2 text-white-100 relative`}
+                    >
+                        {currentMessages.services1}{" "}
+                        <br className="sm:block hidden text-xs" />
+                        {currentMessages.services2}
+                    </p>
+                    <Button href="#" text={currentMessages.contactbutton} />
+                </div>
+            </div>
 
-      <ComputersCanvas />
+            <ComputersCanvas />
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: 'loop',
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
-          </div>
-        </a>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default HeroSection;
