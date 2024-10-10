@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useTranslations } from "@/contexts/TranslationContext";
+import React from 'react';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 const InfiniteScrollHash: React.FC = () => {
     const currentMessages = useTranslations();
@@ -51,17 +51,17 @@ const InfiniteScrollHash: React.FC = () => {
     ];
 
     return (
-        <section className="w-screen p-10 bg-[#350545]">
-            <div className="tag-list p-4">
-                <div className="inner">
+        <section className='w-screen p-10 bg-[#350545]'>
+            <div className='tag-list p-4'>
+                <div className='inner'>
                     {tags.map((tag, index) => (
-                        <div className="tag" key={index}>
+                        <div className='tag' key={index}>
                             <span>#</span>
                             {tag}
                         </div>
                     ))}
                 </div>
-                <div className="fade"></div>
+                <div className='fade'></div>
             </div>
         </section>
     );
@@ -69,65 +69,65 @@ const InfiniteScrollHash: React.FC = () => {
 
 export default InfiniteScrollHash;
 
-// "use client";
+// 'use client';
 
 // const tags = [
-//     "WebSites",
-//     "CustomSystems",
-//     "PaidAds",
-//     "SocialMediaManagement",
-//     "OnlineStore",
-//     "Automation",
-//     "ArtificialIntelligence",
-//     "DataScience",
-//     "DigitalMarketing",
-//     "GraphicDesign",
-//     "SEOOptimization",
-//     "ResponsiveDesign",
-//     "UIUXDesign",
-//     "EcommerceDevelopment",
-//     "AppDevelopment",
-//     "ConversionOptimization",
-//     "BrandStrategy",
-//     "ContentCreation",
-//     "EmailMarketing",
-//     "PerformanceAnalytics",
-//     "SocialMediaAds",
-//     "LeadGeneration",
-//     "MarketingAutomation",
-//     "InfluencerMarketing",
-//     "CampaignManagement",
-//     "LandingPages",
-//     "ABTesting",
-//     "DataAnalytics",
-//     "Chatbots",
-//     "MachineLearning",
-//     "CloudSolutions",
-//     "CRMIntegration",
-//     "PaymentGatewayIntegration",
-//     "ProductPhotography",
-//     "VideoEditing",
-//     "Copywriting",
-//     "LogoDesign",
-//     "ConversionTracking",
-//     "MarketResearch",
-//     "VirtualReality",
-//     "AugmentedReality",
+//     'WebSites',
+//     'CustomSystems',
+//     'PaidAds',
+//     'SocialMediaManagement',
+//     'OnlineStore',
+//     'Automation',
+//     'ArtificialIntelligence',
+//     'DataScience',
+//     'DigitalMarketing',
+//     'GraphicDesign',
+//     'SEOOptimization',
+//     'ResponsiveDesign',
+//     'UIUXDesign',
+//     'EcommerceDevelopment',
+//     'AppDevelopment',
+//     'ConversionOptimization',
+//     'BrandStrategy',
+//     'ContentCreation',
+//     'EmailMarketing',
+//     'PerformanceAnalytics',
+//     'SocialMediaAds',
+//     'LeadGeneration',
+//     'MarketingAutomation',
+//     'InfluencerMarketing',
+//     'CampaignManagement',
+//     'LandingPages',
+//     'ABTesting',
+//     'DataAnalytics',
+//     'Chatbots',
+//     'MachineLearning',
+//     'CloudSolutions',
+//     'CRMIntegration',
+//     'PaymentGatewayIntegration',
+//     'ProductPhotography',
+//     'VideoEditing',
+//     'Copywriting',
+//     'LogoDesign',
+//     'ConversionTracking',
+//     'MarketResearch',
+//     'VirtualReality',
+//     'AugmentedReality',
 // ];
 
 // const InfiniteScrollHash: React.FC = () => {
 //     return (
-//         <section className="w-screen p-10 bg-[#350545]">
-//             <div className="tag-list p-4">
-//                 <div className="inner">
+//         <section className='w-screen p-10 bg-[#350545]'>
+//             <div className='tag-list p-4'>
+//                 <div className='inner'>
 //                     {tags.map((tag, index) => (
-//                         <div className="tag" key={index}>
+//                         <div className='tag' key={index}>
 //                             <span>#</span>
 //                             {tag}
 //                         </div>
 //                     ))}
 //                 </div>
-//                 <div className="fade"></div>
+//                 <div className='fade'></div>
 //             </div>
 //         </section>
 //     );

@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Scene } from './Scene';
+import Scene from './Scene';
 const Ai: React.FC = () => {
   return (
     <>

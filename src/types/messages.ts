@@ -1,7 +1,7 @@
 // types/messages.ts
 
 export type MessagesType = {
-    [key: string]: string;
+    [key: string]: MessageFormat;
 };
 
 export interface CardData {

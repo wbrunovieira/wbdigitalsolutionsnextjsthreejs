@@ -1,35 +1,35 @@
 {
-  "technology": "Tecnología y Marketing Digital",
-  "title": "WB Digital Solutions | Soluciones Digitales para Empresas",
-  "description": "WB Digital Solutions es especialista en ofrecer soluciones digitales innovadoras y personalizadas para empresas. ¡Transforma tu negocio y alcanza resultados extraordinarios con nuestra experiencia en tecnología!",
-  "home": "Home",
+    "technology": "Tecnología y Marketing Digital",
+    "title": "WB Digital Solutions | Soluciones Digitales para Empresas",
+    "description": "WB Digital Solutions es especialista en ofrecer soluciones digitales innovadoras y personalizadas para empresas. ¡Transforma tu negocio y alcanza resultados extraordinarios con nuestra experiencia en tecnología!",
+    "home": "Home",
 
-  "design": "design",
+    "design": "design",
 
-  "websites": "Sitios Web",
-  "websitesLand": "Páginas de Aterrizaje",
-  "websitesProjects": "Proyectos",
+    "websites": "Sitios Web",
+    "websitesLand": "Páginas de Aterrizaje",
+    "websitesProjects": "Proyectos",
 
-  "digitalmarketing": "Marketing Digital",
-  "digitalmarketingSeo": "SEO",
-  "digitalmarketingAds": "Tráfico de Anuncios",
-  "digitalmarketingSocial": "Redes Sociales",
+    "digitalmarketing": "Marketing Digital",
+    "digitalmarketingSeo": "SEO",
+    "digitalmarketingAds": "Tráfico de Anuncios",
+    "digitalmarketingSocial": "Redes Sociales",
 
-  "automation": "Automatización",
-  "blog": "Blog",
-  "contact": "Contacto",
+    "automation": "Automatización",
+    "blog": "Blog",
+    "contact": "Contacto",
 
-  "english": "Inglés",
-  "portuguesebr": "Portugués - BR",
-  "portuguesept": "Portugués - PT",
-  "spanish": "Español",
-  "italian": "Italiano",
-  "ai": "ai",
-  "contactbutton": "contacte",
-  "welcome": "Bienvenido a nuestra oficina",
-  "services1": "Sitios web, Sistemas, Automatizaciones",
-  "services2": "y Marketing Digital.",
-  "WebSitesKey": "SitiosWeb",
+    "english": "Inglés",
+    "portuguesebr": "Portugués - BR",
+    "portuguesept": "Portugués - PT",
+    "spanish": "Español",
+    "italian": "Italiano",
+    "ai": "ai",
+    "contactbutton": "contacte",
+    "welcome": "Bienvenido a nuestra oficina",
+    "services1": "Sitios web, Sistemas, Automatizaciones",
+    "services2": "y Marketing Digital.",
+    "WebSitesKey": "SitiosWeb",
     "CustomSystemsKey": "SistemasPersonalizados",
     "PaidAdsKey": "AnunciosPagados",
     "SocialMediaManagementKey": "GestiónDeRedesSociales",
@@ -71,43 +71,43 @@
     "VirtualRealityKey": "RealidadVirtual",
     "AugmentedRealityKey": "RealidadAumentada",
 
-  "cards": [
-    {
-      "name": "Sitios Web",
-      "subtitle": "Desarrollo profesional de sitios web",
-      "image": "svg/bghome.svg",
-      "link": "enlace_para_sitios_web.html"
-    },
-    {
-      "name": "Sistemas",
-      "subtitle": "Soluciones personalizadas de sistemas",
-      "image": "svg/bghome.svg",
-      "link": "enlace_para_sistemas.html"
-    },
-    {
-      "name": "Automatización",
-      "subtitle": "Automatiza procesos y aumenta la eficiencia",
-      "image": "svg/bghome.svg",
-      "link": "enlace_para_automatizacion.html"
-    },
-    {
-      "name": "Marketing Digital",
-      "subtitle": "Estrategias digitales para tu negocio",
-      "image": "svg/bghome.svg",
-      "link": "enlace_para_marketing_digital.html"
-    },
-    {
-      "name": "Automatizaciones",
-      "subtitle": "Tecnología para automatizaciones inteligentes",
-      "image": "svg/bghome.svg",
-      "link": "enlace_para_automatizaciones.html"
-    },
-    {
-      "name": "Inteligencia Artificial",
-      "subtitle": "Innovación con IA",
-      "image": "svg/bghome.svg",
-      "link": "enlace_para_inteligencia_artificial.html"
-    }
-  ],
-  "tools": "Herramientas que Transforman Ideas en Realidad"
+    "cards": [
+        {
+            "name": "Sitios Web",
+            "subtitle": "Desarrollo profesional de sitios web",
+            "image": "svg/bghome.svg",
+            "link": "enlace_para_sitios_web.html"
+        },
+        {
+            "name": "Sistemas",
+            "subtitle": "Soluciones personalizadas de sistemas",
+            "image": "svg/bghome.svg",
+            "link": "enlace_para_sistemas.html"
+        },
+        {
+            "name": "Automatización",
+            "subtitle": "Automatiza procesos y aumenta la eficiencia",
+            "image": "svg/bghome.svg",
+            "link": "enlace_para_automatizacion.html"
+        },
+        {
+            "name": "Marketing Digital",
+            "subtitle": "Estrategias digitales para tu negocio",
+            "image": "svg/bghome.svg",
+            "link": "enlace_para_marketing_digital.html"
+        },
+        {
+            "name": "Automatizaciones",
+            "subtitle": "Tecnología para automatizaciones inteligentes",
+            "image": "svg/bghome.svg",
+            "link": "enlace_para_automatizaciones.html"
+        },
+        {
+            "name": "Inteligencia Artificial",
+            "subtitle": "Innovación con IA",
+            "image": "svg/bghome.svg",
+            "link": "enlace_para_inteligencia_artificial.html"
+        }
+    ],
+    "tools": "Herramientas que Transforman Ideas en Realidad"
 }

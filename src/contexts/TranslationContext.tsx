@@ -1,5 +1,5 @@
 //use client
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { useLanguage } from './LanguageContext';
 
 import { MessageFormat, MessagesType } from '../types/messages';
@@ -14,25 +14,34 @@ const TranslationContext = createContext<MessageFormat>(en);
 
 type TranslationProviderProps = {
     children: React.ReactNode;
-  };
-  
+};
 
-export const TranslationProvider: React.FC<TranslationProviderProps> = ({ children }) => {
-  const { language } = useLanguage();
-  const translations: MessagesType = { en, pt, es, it, 'pt-BR': ptbr };
-  const [currentMessages, setCurrentMessages] = useState<MessageFormat>(translations.en);
 
-  useEffect(() => {
 
-    setCurrentMessages(translations[language] || translations.en);
+export const TranslationProvider: React.FC<TranslationProviderProps> = ({
+    children,
+}) => {
+    const { language } = useLanguage();
+    const translations: MessagesType = useMemo(() => ({
+        en,
+        pt,
+        es,
+        it,
+        'pt-BR': ptbr,
+    }), []);
+    const [currentMessages, setCurrentMessages] = useState<MessageFormat>(
+        translations.en
+    );
 
-  }, [language]);
+    useEffect(() => {
+        setCurrentMessages(translations[language] || translations.en);
+    }, [language,translations]);
 
-  return (
-    <TranslationContext.Provider value={currentMessages}>
-      {children}
-    </TranslationContext.Provider>
-  );
+    return (
+        <TranslationContext.Provider value={currentMessages}>
+            {children}
+        </TranslationContext.Provider>
+    );
 };
 
 export const useTranslations = () => useContext(TranslationContext);

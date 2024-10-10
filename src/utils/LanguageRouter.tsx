@@ -12,7 +12,7 @@ function LanguageRouter() {
 
     const language = queryLanguage || browserLanguage || defaultLanguage;
     setLanguage(language);
-  }, []);
+  }, [setLanguage]);
 
   return null;
 }
