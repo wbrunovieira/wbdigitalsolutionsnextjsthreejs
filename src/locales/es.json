@@ -111,5 +111,27 @@
             "link": "enlace_para_inteligencia_artificial.html"
         }
     ],
-    "tools": "Herramientas que Transforman Ideas en Realidad"
+    "tools": "Herramientas que Transforman Ideas en Realidad",
+    "subscribeNewsletter": "Suscríbete a nuestro Boletín",
+    "logoAltText": "Logotipo de la empresa",
+    "contacts": "Contactos",
+    "brazil": "Brasil",
+    "portugal": "Portugal",
+    "emailContact": "Correo de Contacto",
+    "artificialIntelligence": "Inteligencia Artificial",
+    "digitalMarketing": "Marketing Digital",
+    "recentBlogs": "Blogs Recientes",
+    "allRightsReserved": "Todos los derechos reservados",
+    "process": "Automatización de Procesos",
+    "assistant": "Asistentes Virtuales",
+    "analizy": "Análisis Predictivo",
+    "dataManagement": "Gestión Inteligente de Datos",
+    "IASupport": "Soporte Tecnológico",
+    "siteCreation": "Creación de Sitio Web",
+    "SocialMedia": "Gestión de Redes Sociales",
+    "addCampaing": "Campañas Publicitarias",
+
+    "diINeedSite": "¿Necesito un sitio web?",
+    "SistemsTransform": "Cómo los Sistemas de Gestión Transforman las Empresas",
+    "enterEmail":"Introduce tu correo electrónico"
 }

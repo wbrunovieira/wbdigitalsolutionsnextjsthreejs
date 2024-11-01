@@ -122,5 +122,26 @@
             "link": "link_to_artificial_intelligence.html"
         }
     ],
-    "tools": "Tools that Transform Ideas into Reality"
+    "subscribeNewsletter": "Subscribe to our Newsletter",
+    "logoAltText": "Company logo",
+    "contacts": "Contacts",
+    "brazil": "Brazil",
+    "portugal": "Portugal",
+    "emailContact": "Contact Email",
+    "artificialIntelligence": "Artificial Intelligence",
+    "digitalMarketing": "Digital Marketing",
+    "recentBlogs": "Recent Blogs",
+    "allRightsReserved": "All rights reserved",
+    "process": "Process Automation",
+    "assistant": "Virtual Assistants",
+    "analizy": "Predictive Analysis",
+    "dataManagement": "Smart Data Management",
+    "IASupport": "Technology Support",
+    "siteCreation": "Website Creation",
+    "SocialMedia": "Social Media Management",
+    "addCampaing": "Ad Campaigns",
+    
+    "diINeedSite": "Do I need a website?",
+    "SistemsTransform": "How Management Systems Transform Companies",
+    "enterEmail":"Enter your email"
 }

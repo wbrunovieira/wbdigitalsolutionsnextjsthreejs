@@ -1,14 +1,20 @@
-//use client
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { useLanguage } from './LanguageContext';
+"use client";
+import React, {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    useMemo,
+} from "react";
+import { useLanguage } from "./LanguageContext";
 
-import { MessageFormat, MessagesType } from '../types/messages';
+import { MessageFormat, MessagesType } from "../types/messages";
 
-import en from '../locales/en.json';
-import pt from '../locales/pt.json';
-import es from '../locales/es.json';
-import it from '../locales/it.json';
-import ptbr from '../locales/ptbr.json';
+import en from "../locales/en.json";
+import pt from "../locales/pt.json";
+import es from "../locales/es.json";
+import it from "../locales/it.json";
+import ptbr from "../locales/ptbr.json";
 
 const TranslationContext = createContext<MessageFormat>(en);
 
@@ -16,26 +22,27 @@ type TranslationProviderProps = {
     children: React.ReactNode;
 };
 
-
-
 export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     children,
 }) => {
     const { language } = useLanguage();
-    const translations: MessagesType = useMemo(() => ({
-        en,
-        pt,
-        es,
-        it,
-        'pt-BR': ptbr,
-    }), []);
+    const translations: MessagesType = useMemo(
+        () => ({
+            en,
+            pt,
+            es,
+            it,
+            "pt-BR": ptbr,
+        }),
+        []
+    );
     const [currentMessages, setCurrentMessages] = useState<MessageFormat>(
         translations.en
     );
 
     useEffect(() => {
         setCurrentMessages(translations[language] || translations.en);
-    }, [language,translations]);
+    }, [language, translations]);
 
     return (
         <TranslationContext.Provider value={currentMessages}>
@@ -44,4 +51,11 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     );
 };
 
-export const useTranslations = () => useContext(TranslationContext);
+export const useTranslations = () => {
+    const context = useContext(TranslationContext);
+    if (!context)
+        throw new Error(
+            "useTranslations deve ser usado dentro do TranslationProvider"
+        );
+    return context;
+};

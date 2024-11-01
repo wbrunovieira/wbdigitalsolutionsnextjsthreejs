@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import ButtonStandard from "./ButtonStandard";
+import { useTranslations } from "@/contexts/TranslationContext";
+
+const currentMessages = useTranslations();
 
 const EmailInput = () => {
     const [email, setEmail] = useState("");
@@ -27,7 +30,7 @@ const EmailInput = () => {
                 <input
                     type="email"
                     name="email"
-                    placeholder="Digite o seu e-mail"
+                    placeholder={currentMessages.enterEmail}
                     required
                     value={email}
                     onChange={handleChange}
