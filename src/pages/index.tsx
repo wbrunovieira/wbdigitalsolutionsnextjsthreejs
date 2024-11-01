@@ -7,6 +7,7 @@ function Index() {
     <div>
       <LanguageRouter /> 
       <Home /> 
+      
     </div>
   );
 }
