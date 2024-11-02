@@ -122,6 +122,7 @@
             "link": "link_to_artificial_intelligence.html"
         }
     ],
+    "tools": "Tools that Transform Ideas into Reality.",
     "subscribeNewsletter": "Subscribe to our Newsletter",
     "logoAltText": "Company logo",
     "contacts": "Contacts",
@@ -236,21 +237,18 @@
     "cardAppleContentECommerce7": "Expand your operations with flexibility and control.",
     "cardAppleContentECommerce8": "Our solutions allow you to easily add new payment methods and delivery options, adapting to customer preferences and keeping your operation secure and scalable.",
 
+    "cardAppleMarketing": "Digital Marketing",
+    "boostYourMarketing": "Take Your Business to the Digital World Like Never Before.",
 
-        "cardAppleMarketing": "Digital Marketing",
-        "boostYourMarketing": "Take Your Business to the Digital World Like Never Before.",
-    
-        "cardAppleContentMarketing1": "Expand your reach with digital marketing strategies.",
-        "cardAppleContentMarketing2": "We offer complete solutions to attract and engage your audience, increasing your brand's visibility and generating more business opportunities.",
-    
-        "cardAppleContentMarketing3": "Manage your social media with a comprehensive approach.",
-        "cardAppleContentMarketing4": "Our team creates a personalized strategy for your social media, with visually appealing posts, engaging text, and impactful videos to ensure your brand stands out and engages the audience.",
-    
-        "cardAppleContentMarketing5": "Boost your return with paid campaigns.",
-        "cardAppleContentMarketing6": "We create paid campaigns designed to reach the right audience and deliver quick results, helping your business grow and gain relevance.",
-    
-        "cardAppleContentMarketing7": "Appear on Google searches with ease.",
-        "cardAppleContentMarketing8": "Our solutions prepare your site to be easily found, ensuring your brand reaches the right customers and naturally attracts more visitors."
-    }
-    
+    "cardAppleContentMarketing1": "Expand your reach with digital marketing strategies.",
+    "cardAppleContentMarketing2": "We offer complete solutions to attract and engage your audience, increasing your brand's visibility and generating more business opportunities.",
 
+    "cardAppleContentMarketing3": "Manage your social media with a comprehensive approach.",
+    "cardAppleContentMarketing4": "Our team creates a personalized strategy for your social media, with visually appealing posts, engaging text, and impactful videos to ensure your brand stands out and engages the audience.",
+
+    "cardAppleContentMarketing5": "Boost your return with paid campaigns.",
+    "cardAppleContentMarketing6": "We create paid campaigns designed to reach the right audience and deliver quick results, helping your business grow and gain relevance.",
+
+    "cardAppleContentMarketing7": "Appear on Google searches with ease.",
+    "cardAppleContentMarketing8": "Our solutions prepare your site to be easily found, ensuring your brand reaches the right customers and naturally attracts more visitors."
+}

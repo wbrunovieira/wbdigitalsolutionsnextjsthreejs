@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
                     </h1>
 
                     <p
-                        className={`${styles.heroSubText} mt-2 text-white-100 relative w-96 text-[16px] tracking-wider leading-tight font-light`}
+                        className={`${styles.heroSubText} mt-2 text-white-100 relative w-96 text-[16px] tracking-wider leading-tight font-light leading-relaxed`}
                     >
                         <span>{currentMessages.services1} </span>
                         <br className="sm:block hidden " />

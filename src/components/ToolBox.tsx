@@ -1,13 +1,13 @@
 import BallCanvas from './canvas/Ball';
 import { Tooltip } from 'react-tooltip';
-import { styles } from '../styles/styles.js';
+
 
 import { technologies } from '../constants';
 import { useRef } from 'react';
 import { useTranslations } from '@/contexts/TranslationContext';
 
 const ToolBox = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
+
     const ballRefs = useRef<(HTMLDivElement | null)[]>([]);
     const currentMessages = useTranslations();
 
