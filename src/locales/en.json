@@ -86,10 +86,10 @@
 
     "cards": [
         {
-            "name": "Websites",
+            "name": "Salão Loha",
             "subtitle": "Professional website development",
-            "image": "svg/bghome.svg",
-            "link": "link_to_websites.html"
+            "image": "/img/projects/salao-loha.jpeg",
+            "link": "https://www.salaoloha.com.br/"
         },
         {
             "name": "Systems",

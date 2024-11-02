@@ -41,6 +41,7 @@ hsla(222, 0%, 0%, 0) 100%
             },
 
             keyframes: {
+
                 "accordion-down": {
                     from: { height: "0" },
                     to: { height: "var(--radix-accordion-content-height)" },
@@ -49,8 +50,19 @@ hsla(222, 0%, 0%, 0) 100%
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
+                "spin-clockwise": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(360deg)" }
+                },
+            
+                "spin-counterclockwise": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "100%": { transform: "rotate(-360deg)" }
+                },
             },
             animation: {
+                "spin-clockwise": "spin-clockwise 2s linear infinite",
+                "spin-counterclockwise": "spin-counterclockwise 2s linear infinite",
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
             },

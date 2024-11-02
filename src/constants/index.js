@@ -99,7 +99,7 @@ const technologies = [
     },
     {
         name: "PyTorch",
-        icon: "/tech/pythorch.svg",
+        icon: "/tech/pytorch.svg",
     },
     {
         name: "docker",
