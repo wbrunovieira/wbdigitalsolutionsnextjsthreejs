@@ -143,5 +143,8 @@
     
     "diINeedSite": "Do I need a website?",
     "SistemsTransform": "How Management Systems Transform Companies",
-    "enterEmail":"Enter your email"
+    "enterEmail":"Enter your email",
+    "send":"Send",
+    "validEmail":"Please enter a valid email."
+
 }

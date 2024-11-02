@@ -139,5 +139,11 @@
     "diINeedSite": "Ho bisogno di un sito web?",
     "SistemsTransform": "Come i Sistemi di Gestione Trasformano le Aziende",
 
-    "enterEmail":"Inserisci la tua email"
+    "enterEmail":"Inserisci la tua email",
+    
+    "send":"Invia",
+    "validEmail":"Per favore, inserisci un'email valida."
+    
+
+
 }

@@ -51,11 +51,4 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     );
 };
 
-export const useTranslations = () => {
-    const context = useContext(TranslationContext);
-    if (!context)
-        throw new Error(
-            "useTranslations deve ser usado dentro do TranslationProvider"
-        );
-    return context;
-};
+export const useTranslations = () => useContext(TranslationContext);

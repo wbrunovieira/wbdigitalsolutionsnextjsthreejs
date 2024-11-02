@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
                             </p>
                         </div>
 
-                        <div className="flex space-x-4 mt-4 pl-4">
+                        <div className="flex space-x-4 mt-8 pl-4">
                             <Link href="https://www.instagram.com/wb.digitalsolutions/">
                                 <FaInstagram className="text-lg hover:scale-110  transition-transform duration-300 ease-in-out" />
                             </Link>

@@ -1,16 +1,12 @@
-'use client';
-import React, { createContext, useState, useContext, ReactNode } from 'react';
-type LanguageContextType = {
-    language: string;
-    setLanguage: (language: string) => void;
-};
-const LanguageContext = createContext<LanguageContextType | null>(null);
+"use client";
+import React, { createContext, useState, useContext, ReactNode } from "react";
 
-export const useLanguage = () => {
-    const context = useContext(LanguageContext);
-    if (!context) throw new Error("useLanguage deve ser usado dentro do LanguageProvider");
-    return context;
-};
+const LanguageContext = createContext({
+    language: "en",
+    setLanguage: (language: string) => {},
+});
+
+export const useLanguage = () => useContext(LanguageContext);
 
 type LanguageProviderProps = {
     children: ReactNode;
@@ -19,7 +15,7 @@ type LanguageProviderProps = {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     children,
 }) => {
-    const [language, setLanguage] = useState('en');
+    const [language, setLanguage] = useState("en");
 
     return (
         <LanguageContext.Provider value={{ language, setLanguage }}>

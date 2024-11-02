@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import ButtonStandard from "./ButtonStandard";
 import { useTranslations } from "@/contexts/TranslationContext";
 
-const currentMessages = useTranslations();
-
 const EmailInput = () => {
+    const currentMessages = useTranslations();
     const [email, setEmail] = useState("");
     const [isEmailValid, setIsEmailValid] = useState(true);
 
@@ -43,13 +42,13 @@ const EmailInput = () => {
                             : "focus:ring-red-500"
                     } focus:border-transparent transition-colors duration-200 ease-in-out shadow-sm`}
                 />
-                <ButtonStandard buttonText="Enviar Agora" />
+                <ButtonStandard buttonText={currentMessages.send} />
             </div>
 
             <div className="min-h-[1.5rem]">
                 {!isEmailValid && (
                     <p className="text-red-500 text-sm mt-1">
-                        Por favor, insira um e-mail válido.
+                        {currentMessages.validEmail} 
                     </p>
                 )}
             </div>

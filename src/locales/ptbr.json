@@ -136,6 +136,7 @@
 
     "diINeedSite": "Eu preciso de um site?",
     "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
-    "enterEmail":"Digite o seu e-mail"
-
+    "enterEmail": "Digite o seu e-mail",
+    "send": "Enviar",
+    "validEmail":"Por favor, insira um e-mail válido"
 }
