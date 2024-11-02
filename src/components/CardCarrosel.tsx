@@ -1,91 +1,710 @@
-'use client';
-import Image from 'next/image';
-import React from 'react';
-import { Carousel, Card } from '@/components/ui/apple-cards-carousel';
+"use client";
+import Image from "next/image";
+import React from "react";
+import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslations } from "@/contexts/TranslationContext";
 
 export function AppleCardsCarouselDemo() {
+    const { language } = useLanguage();
+    const currentMessages = useTranslations();
+
+    if (language === "pt-BR") {
+        data.push({
+            category: "cardAppleSystems",
+            title: "Maximizar",
+            src: "/img/marketing.jpg",
+            content: <SystemsContent />,
+        });
+    }
+
     const cards = data.map((card, index) => (
-        <Card key={card.src} card={card} index={index} />
+        <Card
+            key={card.src}
+            card={{
+                ...card,
+                category: currentMessages[card.category],
+                title: currentMessages[card.title],
+            }}
+            index={index}
+        />
     ));
 
     return (
-        <div className='w-full h-full py-20 mt-20'>
-            <h2 className='max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white font-sans'>
-                Transform Your Business with Our Solutions
+        <div className="w-full h-full py-20 mt-20">
+            <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white font-sans">
+                {currentMessages.transformYourBusiness}
             </h2>
             <Carousel items={cards} />
         </div>
     );
 }
 
-const DummyContent = () => {
+const WebContent = () => {
+    const currentMessages = useTranslations();
+
     return (
         <>
-            {[...new Array(3).fill(1)].map((_, index) => {
-                return (
-                    <div
-                        key={'dummy-content' + index}
-                        className='bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4'
-                    >
-                        <p className='text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto'>
-                            <span className='font-bold text-neutral-700 dark:text-neutral-200'>
-                                Revolutionize your business with our
-                                cutting-edge technology.
-                            </span>{' '}
-                            Our solutions are designed to enhance productivity,
-                            streamline operations, and drive growth. Discover
-                            how our innovative approaches can transform your
-                            business today.
-                        </p>
-                        <Image
-                            src='/img/tech3d.png'
-                            alt='logo'
-                            height='500'
-                            width='500'
-                            className='md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain'
-                        />
-                    </div>
-                );
-            })}
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentWeb2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentWeb4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentWeb4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentWeb6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentWeb8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+
+const MachineContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMachine1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMachine2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMachine3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMachine4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMachine5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentWeb4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMachine6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMachine7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMachine8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+const AutomationContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAutomation1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAutomation2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAutomation3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAutomation4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAutomation5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAutomation6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAutomation7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAutomation8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMachine7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMachine8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+const BotsContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentBots1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentBots2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentBots3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentBots4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentBots5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentBots6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentBots7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentBots8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+const AIContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAI1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAI2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAI3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAI4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAI5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAI6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentAI7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentAI8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+const ECommerceContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentECommerce1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentECommerce2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentECommerce3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentECommerce4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentECommerce5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentECommerce6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentECommerce7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentECommerce8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+const MarketingContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            return (
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMarketing1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMarketing2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMarketing3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMarketing4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMarketing5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMarketing6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMarketing7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMarketing8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
+        </>
+    );
+};
+
+const SystemsContent = () => {
+    const currentMessages = useTranslations();
+
+    return (
+        <>
+            <div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentManagement1}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentManagement2}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentManagement3}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentManagement4}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentManagement5}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentManagement6}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentManagement7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentManagement8}
+                    </p>
+                    <Image
+                        src="/img/tech3d.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                </div>
+            </div>
+            );
         </>
     );
 };
 
 const data = [
     {
-        category: 'Web Development',
-        title: 'Create Stunning Websites.',
-        src: '/img/web-site.jpg',
-        content: <DummyContent />,
+        category: "cardAppleWebSite",
+        title: "createStunningWebsites",
+        src: "/img/web-site.jpg",
+        content: <WebContent />,
     },
     {
-        category: 'Machine Learning',
-        title: 'Unlock Insights with Machine Learning.',
-        src: '/img/machine-learning.jpg',
-        content: <DummyContent />,
+        category: "cardAppleMachineLearning",
+        title: "UnlockInsights",
+        src: "/img/machine-learning.jpg",
+        content: <MachineContent />,
     },
     {
-        category: 'Automation',
-        title: 'Automate Your Business Processes.',
-        src: '/img/automation.jpg',
-        content: <DummyContent />,
+        category: "cardAppleAutomation",
+        title: "AutomateYour",
+        src: "/img/automation.jpg",
+        content: <AutomationContent />,
     },
     {
-        category: 'Bots',
-        title: 'Integrate Intelligent Bots.',
-        src: '/img/chatbot.jpg',
-        content: <DummyContent />,
+        category: "cardAppleBots",
+        title: "IntegrateIntelligent",
+        src: "/img/chatbot.jpg",
+        content: <BotsContent />,
     },
     {
-        category: 'Artificial Intelligence',
-        title: 'Leverage AI for Smarter Decisions.',
-        src: '/img/ai.jpg',
-        content: <DummyContent />,
+        category: "cardAppleAI",
+        title: "LeverageAI",
+        src: "/img/ai.jpg",
+        content: <AIContent />,
     },
     {
-        category: 'E-commerce',
-        title: 'Boost Your Sales with E-commerce Solutions.',
-        src: '/img/e-commerce.jpg',
-        content: <DummyContent />,
+        category: "cardAppleECommerce",
+        title: "boostYour",
+        src: "/img/e-commerce.jpg",
+        content: <ECommerceContent />,
+    },
+    {
+        category: "cardAppleMarketing",
+        title: "boostYourMarketing",
+        src: "/img/marketing.jpg",
+        content: <MarketingContent />,
     },
 ];

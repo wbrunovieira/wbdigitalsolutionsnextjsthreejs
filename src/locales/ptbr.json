@@ -138,5 +138,125 @@
     "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
     "enterEmail": "Digite o seu e-mail",
     "send": "Enviar",
-    "validEmail":"Por favor, insira um e-mail válido"
+    "validEmail": "Por favor, insira um e-mail válido",
+    "transformYourBusiness": "Transforme o seu negócio com as nossas soluções",
+    "cardAppleWebSite": "Desenvolvimento Web",
+    "createStunningWebsites": "Crie Websites Impressionantes.",
+    "cardAppleContentWeb1": "Revolucione seu negócio com nossa tecnologia de ponta.",
+    "cardAppleContentWeb2": "Nossas soluções são projetadas para aumentar a produtividade, otimizar operações e impulsionar o crescimento. Descubra como nossas abordagens inovadoras podem transformar seu negócio hoje.",
+    "cardAppleContentWeb3": "Ofereça uma navegação rápida e sem travamentos.",
+    "cardAppleContentWeb4": "Criamos sites que carregam em poucos segundos, garantindo que seus visitantes tenham uma experiência fluida e agradável. Sites rápidos fazem com que as pessoas queiram ficar mais tempo e explorar seu conteúdo.",
+
+    "cardAppleContentWeb5": "Surpreenda com um visual moderno e adaptável.",
+    "cardAppleContentWeb6": "Desenvolvemos sites que se ajustam a qualquer tela, seja no celular, tablet ou computador. Encante seus visitantes com uma aparência atraente que reflete o estilo do seu negócio.",
+
+    "cardAppleContentWeb7": "Apareça nos primeiros resultados de busca.",
+    "cardAppleContentWeb8": "Construímos sites que são facilmente encontrados pelos seus clientes, aumentando sua presença online. Quanto mais pessoas encontram seu site, mais oportunidades de negócios você tem.",
+
+    "cardAppleMachineLearning": "Aprendizado de Máquina",
+    "UnlockInsights": "Desbloqueie Insights com Aprendizado de Máquina.",
+
+    "cardAppleContentMachine1": "Transforme dados em decisões inteligentes.",
+    "cardAppleContentMachine2": "Nossas soluções de Machine Learning ajudam a analisar grandes volumes de dados para obter insights que guiam as melhores decisões para o seu negócio.",
+
+    "cardAppleContentMachine3": "Automatize processos complexos com precisão.",
+    "cardAppleContentMachine4": "Implementamos modelos de Machine Learning que automatizam tarefas repetitivas, permitindo que sua equipe foque no que realmente importa para o crescimento da empresa.",
+
+    "cardAppleContentMachine5": "Antecipe tendências e comportamentos.",
+    "cardAppleContentMachine6": "Com Machine Learning, seu negócio pode prever padrões de consumo, necessidades do cliente e tendências do mercado, ajudando você a se antecipar às demandas.",
+
+    "cardAppleContentMachine7": "Personalize a experiência do cliente.",
+    "cardAppleContentMachine8": "Utilize dados para criar experiências únicas para cada cliente. Nossas soluções em Machine Learning permitem adaptar produtos e serviços às preferências e necessidades de cada consumidor.",
+
+    "cardAppleAutomation": "Automação",
+    "AutomateYour": "Automatize os Processos do Seu Negócio.",
+    "cardAppleContentAutomation1": "Simplifique tarefas repetitivas e ganhe eficiência.",
+    "cardAppleContentAutomation2": "Nossas soluções de automação permitem que você elimine processos manuais, liberando sua equipe para atividades mais estratégicas e aumentando a produtividade.",
+
+    "cardAppleContentAutomation3": "Reduza erros e melhore a precisão.",
+    "cardAppleContentAutomation4": "Com a automação, tarefas complexas são executadas de forma precisa e confiável, minimizando erros humanos e garantindo resultados consistentes para o seu negócio.",
+
+    "cardAppleContentAutomation5": "Agilize a tomada de decisões com dados em tempo real.",
+    "cardAppleContentAutomation6": "Automatizamos a coleta e análise de dados, permitindo que sua empresa tome decisões rápidas e informadas, baseadas nas informações mais atuais.",
+
+    "cardAppleContentAutomation7": "Escalabilidade sem esforço.",
+    "cardAppleContentAutomation8": "Com a automação, seu negócio está preparado para crescer de forma sustentável, ampliando processos e atendendo a uma demanda maior sem aumentar a carga de trabalho.",
+
+    "cardAppleBots": "Bots",
+    "IntegrateIntelligent": "Integre Bots Inteligentes.",
+
+    "cardAppleContentBots1": "Automatize o atendimento e melhore a experiência do cliente.",
+    "cardAppleContentBots2": "Nossos bots inteligentes atendem seus clientes de forma rápida e eficiente, solucionando dúvidas comuns e agilizando o suporte.",
+
+    "cardAppleContentBots3": "Disponibilidade 24/7 para o seu negócio.",
+    "cardAppleContentBots4": "Com bots, seu atendimento funciona sem pausas, garantindo que seus clientes tenham respostas a qualquer hora do dia ou da noite.",
+
+    "cardAppleContentBots5": "Reduza custos com automação inteligente.",
+    "cardAppleContentBots6": "Os bots diminuem a necessidade de equipe dedicada para tarefas repetitivas, ajudando a reduzir custos e melhorar a eficiência operacional.",
+
+    "cardAppleContentBots7": "Personalize a comunicação com seus clientes.",
+    "cardAppleContentBots8": "Nossos bots são projetados para entender e responder de forma personalizada, criando uma experiência de atendimento única e alinhada à identidade do seu negócio.",
+
+    "cardAppleAI": "Inteligência Artificial",
+    "LeverageAI": "Aproveite a Inteligência Artificial para Interações Mais Humanas",
+    "cardAppleContentAI1": "Melhore a comunicação com clientes através da Inteligência Artificial.",
+    "cardAppleContentAI2": "Nossas soluções de IA baseadas em linguagem natural ajudam sua empresa a interagir com os clientes de forma mais humana e personalizada, aumentando a satisfação e o engajamento.",
+
+    "cardAppleContentAI3": "Ofereça respostas instantâneas e precisas com assistentes inteligentes.",
+    "cardAppleContentAI4": "Integre o ChatGPT e outras ferramentas de IA para automatizar o atendimento ao cliente, respondendo perguntas comuns e ajudando sua equipe a se concentrar em questões mais complexas.",
+
+    "cardAppleContentAI5": "Análise de sentimentos para entender melhor seu público.",
+    "cardAppleContentAI6": "Com IA, sua empresa pode monitorar e interpretar o tom das interações com os clientes, ajustando a comunicação e aprimorando a experiência com base nas emoções detectadas.",
+
+    "cardAppleContentAI7": "Criação de conteúdos automáticos e personalizados.",
+    "cardAppleContentAI8": "Utilize IA para gerar textos e respostas de forma automática, mantendo a consistência da marca e personalizando as mensagens conforme o perfil de cada cliente.",
+
+    "cardAppleECommerce": "E-commerce",
+    "boostYour": "Impulsione suas Vendas com Soluções de E-commerce.",
+
+    "cardAppleContentECommerce1": "Aumente as vendas sem complicação.",
+    "cardAppleContentECommerce2": "Nossas soluções de e-commerce são projetadas para atrair mais clientes e aumentar a conversão, ajudando seu negócio a vender mais sem precisar de uma equipe extensa.",
+
+    "cardAppleContentECommerce3": "Transforme sua loja online com as melhores tecnologias e design do mercado.",
+    "cardAppleContentECommerce4": "Nosso e-commerce oferece uma plataforma poderosa, com tecnologia avançada e design moderno, garantindo uma experiência atraente e intuitiva para seus clientes. Controle tudo de forma fácil e aproveite um visual que destaca sua marca.",
+
+    "cardAppleContentECommerce5": "Simplifique pagamentos e entregas para seus clientes.",
+    "cardAppleContentECommerce6": "Oferecemos métodos de pagamento variados e seguros, além de opções de entrega confiáveis que proporcionam tranquilidade tanto para você quanto para seus clientes, garantindo uma experiência de compra completa e sem complicações.",
+
+    "cardAppleContentECommerce7": "Expanda suas operações com flexibilidade e controle.",
+    "cardAppleContentECommerce8": "Nossas soluções permitem que você adicione facilmente novos métodos de pagamento e opções de entrega, adaptando-se às preferências dos clientes e mantendo uma operação segura e escalável.",
+
+    "cardAppleMarketing": "Marketing Digital",
+    "boostYourMarketing": "Leve sua Empresa ao Mundo Digital como Você Nunca Imaginou.",
+
+    "cardAppleSystems":"Sistemas de Gestão",
+    "Maximizar":"Soluções de Gestão para Maximizar Resultados",
+
+
+    "cardAppleContentMarketing1": "Expanda seu alcance com estratégias de marketing digital.",
+    "cardAppleContentMarketing2": "Oferecemos soluções completas para atrair e engajar seu público, aumentando a visibilidade da sua marca e gerando mais oportunidades de negócio.",
+
+    "cardAppleContentMarketing3": "Gerencie suas redes sociais com uma abordagem completa.",
+    "cardAppleContentMarketing4": "Nossa equipe desenvolve uma estratégia personalizada para suas redes sociais, com posts visualmente atraentes, textos envolventes e vídeos impactantes, garantindo que sua marca se destaque e engaje o público.",
+
+    "cardAppleContentMarketing5": "Aumente seu retorno com campanhas pagas.",
+    "cardAppleContentMarketing6": "Criamos campanhas pagas feitas para alcançar o público certo e trazer resultados rápidos, ajudando seu negócio a crescer e ganhar mais relevância.",
+
+    "cardAppleContentMarketing7": "Apareça nas buscas do Google com automação.",
+    "cardAppleContentMarketing8": "Nossas soluções preparam seu site para ser encontrado facilmente, garantindo que sua marca chegue aos clientes certos e atraia mais visitantes de forma natural.",
+
+    "cardAppleManagementSystems": "Sistemas de Gestão",
+    "boostYourManagement": "Transforme a Gestão do Seu Negócio como Nunca Imaginou.",
+
+    "cardAppleContentManagement1": "Soluções de gestão personalizadas para cada setor.",
+    "cardAppleContentManagement2": "Oferecemos sistemas sob medida para o seu negócio: Gestão para Empresas (WB Web), Gestão para Salões (WB Salão), Gestão para Clínicas de Saúde (WB Clínica), Gestão para Restaurantes (WB Food) e Gestão para Pet Shops (WB Pet).",
+
+    "cardAppleContentManagement3": "Simplicidade e eficiência em uma plataforma completa.",
+    "cardAppleContentManagement4": "Nossos sistemas de gestão são fáceis de usar e oferecem uma gama completa de recursos, facilitando o dia a dia e garantindo que você tenha tudo o que precisa para o sucesso do seu negócio.",
+
+    "cardAppleContentManagement5": "Simplifique sua gestão com funcionalidades completas.",
+    "cardAppleContentManagement6": "Nossos sistemas oferecem controle de vendas eficiente, gestão financeira integrada, emissão fácil de documentos fiscais, controle de estoque inteligente e muito mais. Tudo isso em uma plataforma segura, atualizada e de fácil uso, com suporte dedicado e treinamento personalizado para o seu negócio.",
+
+    "cardAppleContentManagement7": "Acompanhe o desempenho em tempo real.",
+    "cardAppleContentManagement8": "Monitore indicadores, resultados e metas a qualquer momento, com relatórios intuitivos que ajudam você a acompanhar o progresso e identificar oportunidades de melhoria."
 }
