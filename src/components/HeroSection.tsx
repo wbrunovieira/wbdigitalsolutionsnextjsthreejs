@@ -12,8 +12,8 @@ const HeroSection: React.FC = () => {
     const currentMessages = useTranslations();
 
     return (
-        <section className=" relative w-full h-screen mx-auto hero">
-            <div className="absolute inset-0 top-[20px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5">
+        <section className="relative w-full h-screen mx-auto">
+            <div className="inset-0 top-[20px] lg:mt-10 max-w-7xl mx-auto flex flex-row items-start gap-5">
                 <div className="flex flex-col justify-center items-center">
                     <Image
                         src="/svg/BengalaWBSIte.svg"
@@ -46,7 +46,11 @@ const HeroSection: React.FC = () => {
                 </div>
             </div>
 
+            <div className="absolute inset-0">
+
             <ComputersCanvas />
+            </div>
+
         </section>
     );
 };
