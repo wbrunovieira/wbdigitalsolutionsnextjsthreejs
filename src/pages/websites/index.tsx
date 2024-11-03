@@ -1,20 +1,13 @@
-import React from "react";
-import { Canvas } from "@react-three/fiber";
-import Scene from "@/components/Scene";
+"use client";
+
+import PeriodicTable from "@/components/PeriodicTable";
 
 const Websites: React.FC = () => {
     return (
-        <section className="bg-[#350545] h-screen">
-            <Canvas
-                camera={{
-                    fov: 45,
-                    near: 0.1,
-                    far: 100,
-                    position: [1, 1, 6],
-                }}
-            >
-                <Scene />
-            </Canvas>
+        <section className="relative bg-[#350545] min-h-screen">
+            <div className="absolute inset-0" style={{ zIndex: 0 }}>
+                <PeriodicTable />
+            </div>
         </section>
     );
 };
