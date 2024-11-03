@@ -3,6 +3,7 @@ import { useTranslations } from "@/contexts/TranslationContext";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import AnimatedGearIcon from "./AnimatedGearIcon";
+import CardSmallToBig from "./CardSmallToBig";
 
 const SectionDaHome: React.FC = () => {
     const currentMessages = useTranslations();
@@ -80,6 +81,15 @@ const SectionDaHome: React.FC = () => {
                 <h2 className="font-regular text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px">
                     Projects
                 </h2>
+                <CardSmallToBig
+                    // key={index}
+                    // index={index + 1}
+                    name={"Salão Loha"}
+                    subTitle={"Site desenvolvido para um salao de beleza, no intuito de apresenta"}
+                    description={"Professional website development"}
+                    image={"/img/projects/salao-loha.jpeg"}
+                    // className="card"
+                />
             </div>
 
             <div className="flex gap-3 relative w-full h-screen mx-auto pt-10 bg-[#190321] overflow-x-scroll overscroll-x-auto">
