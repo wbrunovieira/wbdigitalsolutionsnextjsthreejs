@@ -138,11 +138,9 @@
 
     "diINeedSite": "Ho bisogno di un sito web?",
     "SistemsTransform": "Come i Sistemi di Gestione Trasformano le Aziende",
-
-    "enterEmail": "Inserisci la tua email",
-
-    "send": "Invia",
-    "validEmail": "Per favore, inserisci un'email valida.",
+    "enterEmail": "Il tuo indirizzo email",
+    "send": "Invia messaggio",
+    "validEmail": "Ops! Questa email non sembra corretta",
     "transformYourBusiness": "Trasforma il tuo business con le nostre soluzioni",
 
     "cardAppleWebSite": "Sviluppo Web",
@@ -242,5 +240,13 @@
     "cardAppleContentMarketing6": "Creiamo campagne a pagamento mirate a raggiungere il pubblico giusto e portare risultati rapidi, aiutando il tuo business a crescere e guadagnare rilevanza.",
 
     "cardAppleContentMarketing7": "Appari nelle ricerche di Google con facilità.",
-    "cardAppleContentMarketing8": "Le nostre soluzioni preparano il tuo sito per essere facilmente trovato, assicurando che il tuo marchio raggiunga i clienti giusti e attiri più visitatori in modo naturale."
+    "cardAppleContentMarketing8": "Le nostre soluzioni preparano il tuo sito per essere facilmente trovato, assicurando che il tuo marchio raggiunga i clienti giusti e attiri più visitatori in modo naturale.",
+
+    "getInTouch": "Connettiamoci",
+    "namePlaceHolder": "Come possiamo chiamarti?",
+    "nameLabel": "Nome",
+    "nameRequired": "Ops! Abbiamo bisogno del tuo nome per continuare",
+    "messageLabel": "Dicci cosa ne pensi",
+    "messagePlaceHolder": "Condividi i tuoi pensieri, idee o domande...",
+    "messageRequired": "Non dimenticare di scrivere il tuo messaggio!"
 }

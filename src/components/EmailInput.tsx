@@ -42,7 +42,7 @@ const EmailInput = () => {
                             : "focus:ring-red-500"
                     } focus:border-transparent transition-colors duration-200 ease-in-out shadow-sm`}
                 />
-                <ButtonStandard buttonText={currentMessages.send} />
+                
             </div>
 
             <div className="min-h-[1.5rem]">

@@ -136,9 +136,9 @@
 
     "diINeedSite": "Eu preciso de um site?",
     "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
-    "enterEmail": "Digite o seu e-mail",
-    "send": "Enviar",
-    "validEmail": "Por favor, insira um e-mail válido",
+    "enterEmail": "Seu endereço de email",
+    "send": "Enviar mensagem",
+    "validEmail": "Ops! Este email não parece correto",
     "transformYourBusiness": "Transforme o seu negócio com as nossas soluções",
     "cardAppleWebSite": "Desenvolvimento Web",
     "createStunningWebsites": "Crie Websites Impressionantes.",
@@ -229,9 +229,8 @@
     "cardAppleMarketing": "Marketing Digital",
     "boostYourMarketing": "Leve sua Empresa ao Mundo Digital como Você Nunca Imaginou.",
 
-    "cardAppleSystems":"Sistemas de Gestão",
-    "Maximizar":"Soluções de Gestão para Maximizar Resultados",
-
+    "cardAppleSystems": "Sistemas de Gestão",
+    "Maximizar": "Soluções de Gestão para Maximizar Resultados",
 
     "cardAppleContentMarketing1": "Expanda seu alcance com estratégias de marketing digital.",
     "cardAppleContentMarketing2": "Oferecemos soluções completas para atrair e engajar seu público, aumentando a visibilidade da sua marca e gerando mais oportunidades de negócio.",
@@ -258,5 +257,13 @@
     "cardAppleContentManagement6": "Nossos sistemas oferecem controle de vendas eficiente, gestão financeira integrada, emissão fácil de documentos fiscais, controle de estoque inteligente e muito mais. Tudo isso em uma plataforma segura, atualizada e de fácil uso, com suporte dedicado e treinamento personalizado para o seu negócio.",
 
     "cardAppleContentManagement7": "Acompanhe o desempenho em tempo real.",
-    "cardAppleContentManagement8": "Monitore indicadores, resultados e metas a qualquer momento, com relatórios intuitivos que ajudam você a acompanhar o progresso e identificar oportunidades de melhoria."
+    "cardAppleContentManagement8": "Monitore indicadores, resultados e metas a qualquer momento, com relatórios intuitivos que ajudam você a acompanhar o progresso e identificar oportunidades de melhoria.",
+
+    "getInTouch": "Vamos conversar",
+    "namePlaceHolder": "Como podemos te chamar?",
+    "nameLabel": "Nome",
+    "nameRequired": "Ops! Precisamos do seu nome para continuar",
+    "messageLabel": "Conte-nos o que você está pensando",
+    "messagePlaceHolder": "Compartilhe suas ideias, pensamentos ou dúvidas...",
+    "messageRequired": "Não se esqueça de escrever sua mensagem!"
 }

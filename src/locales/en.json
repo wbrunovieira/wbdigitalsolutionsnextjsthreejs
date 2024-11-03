@@ -144,9 +144,9 @@
 
     "diINeedSite": "Do I need a website?",
     "SistemsTransform": "How Management Systems Transform Companies",
-    "enterEmail": "Enter your email",
-    "send": "Send",
-    "validEmail": "Please enter a valid email.",
+    "enterEmail": "Your email address",
+    "send": "Send message",
+    "validEmail": "Oops! This email doesn't look quite right",
 
     "transformYourBusiness": "Transform Your Business with Our Solutions",
 
@@ -250,5 +250,13 @@
     "cardAppleContentMarketing6": "We create paid campaigns designed to reach the right audience and deliver quick results, helping your business grow and gain relevance.",
 
     "cardAppleContentMarketing7": "Appear on Google searches with ease.",
-    "cardAppleContentMarketing8": "Our solutions prepare your site to be easily found, ensuring your brand reaches the right customers and naturally attracts more visitors."
+    "cardAppleContentMarketing8": "Our solutions prepare your site to be easily found, ensuring your brand reaches the right customers and naturally attracts more visitors.",
+
+    "getInTouch": "Let's Connect",
+    "namePlaceHolder": "How should we call you?",
+    "nameLabel": "Name",
+    "nameRequired": "Oops! We need your name to continue",
+    "messageLabel": "Tell us what's on your mind",
+    "messagePlaceHolder": "Share your thoughts, ideas or questions...",
+    "messageRequired": "Don't forget to write your message!"
 }

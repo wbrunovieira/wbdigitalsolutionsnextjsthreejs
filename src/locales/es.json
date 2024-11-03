@@ -133,10 +133,10 @@
 
     "diINeedSite": "¿Necesito un sitio web?",
     "SistemsTransform": "Cómo los Sistemas de Gestión Transforman las Empresas",
-    "enterEmail":"Introduce tu correo electrónico",
-    "send":"Enviar",
-    "validEmail":"Por favor, ingrese un correo electrónico válido.",
-    "transformYourBusiness":"Transforma tu negocio con nuestras soluciones",
+    "enterEmail": "Tu dirección de correo electrónico",
+    "send": "Enviar mensaje",
+    "validEmail": "¡Ups! Este correo no parece correcto",
+    "transformYourBusiness": "Transforma tu negocio con nuestras soluciones",
     "cardAppleWebSite": "Desarrollo Web",
     "createStunningWebsites": "Crea Sitios Web Impresionantes.",
     "cardAppleContentWeb1": "Revoluciona tu negocio con nuestra tecnología de punta.",
@@ -161,90 +161,83 @@
 
     "cardAppleContentMachine7": "Personaliza la experiencia del cliente.",
     "cardAppleContentMachine8": "Utiliza datos para crear experiencias únicas para cada cliente. Nuestras soluciones de Machine Learning permiten adaptar productos y servicios a las preferencias y necesidades de cada consumidor.",
-  
-        "cardAppleContentAutomation1": "Simplifica las tareas repetitivas y aumenta la eficiencia.",
-        "cardAppleContentAutomation2": "Nuestras soluciones de automatización eliminan procesos manuales, liberando a tu equipo para actividades más estratégicas y aumentando la productividad.",
-    
-        "cardAppleContentAutomation3": "Reduce errores y mejora la precisión.",
-        "cardAppleContentAutomation4": "La automatización permite ejecutar tareas complejas con precisión, minimizando los errores humanos y asegurando resultados consistentes para tu negocio.",
-    
-        "cardAppleContentAutomation5": "Acelera la toma de decisiones con datos en tiempo real.",
-        "cardAppleContentAutomation6": "Automatizamos la recopilación y análisis de datos, permitiendo que tu empresa tome decisiones rápidas e informadas con la información más reciente.",
-    
-        "cardAppleContentAutomation7": "Escalabilidad sin esfuerzo.",
-        "cardAppleContentAutomation8": "Con la automatización, tu negocio está preparado para crecer de forma sostenible, ampliando procesos y atendiendo a una mayor demanda sin aumentar la carga de trabajo.",
 
+    "cardAppleContentAutomation1": "Simplifica las tareas repetitivas y aumenta la eficiencia.",
+    "cardAppleContentAutomation2": "Nuestras soluciones de automatización eliminan procesos manuales, liberando a tu equipo para actividades más estratégicas y aumentando la productividad.",
 
-        "cardAppleBots": "Bots",
-        "IntegrateIntelligent": "Integra Bots Inteligentes.",
-        "cardAppleContentBots1": "Automatiza la atención al cliente y mejora la experiencia del usuario.",
-        "cardAppleContentBots2": "Nuestros bots inteligentes responden rápidamente a las consultas de los clientes, resolviendo preguntas comunes y agilizando el soporte.",
-    
-        "cardAppleContentBots3": "Disponibilidad 24/7 para tu negocio.",
-        "cardAppleContentBots4": "Con los bots, tu servicio de atención al cliente está siempre activo, asegurando respuestas para tus clientes a cualquier hora, día o noche.",
-    
-        "cardAppleContentBots5": "Reduce costos con automatización inteligente.",
-        "cardAppleContentBots6": "Los bots disminuyen la necesidad de personal para tareas repetitivas, ayudando a reducir costos y mejorar la eficiencia operativa.",
-    
-        "cardAppleContentBots7": "Personaliza la comunicación con tus clientes.",
-        "cardAppleContentBots8": "Nuestros bots están diseñados para entender y responder de forma personalizada, creando una experiencia de atención única y alineada con la identidad de tu negocio.",
+    "cardAppleContentAutomation3": "Reduce errores y mejora la precisión.",
+    "cardAppleContentAutomation4": "La automatización permite ejecutar tareas complejas con precisión, minimizando los errores humanos y asegurando resultados consistentes para tu negocio.",
 
+    "cardAppleContentAutomation5": "Acelera la toma de decisiones con datos en tiempo real.",
+    "cardAppleContentAutomation6": "Automatizamos la recopilación y análisis de datos, permitiendo que tu empresa tome decisiones rápidas e informadas con la información más reciente.",
 
-        
-            "cardAppleAI": "Inteligencia Artificial",
-            "LeverageAI": "Aprovecha la Inteligencia Artificial para Interacciones Más Humanas",
-            
-            "cardAppleContentAI1": "Mejora la comunicación con clientes a través de la Inteligencia Artificial.",
-            "cardAppleContentAI2": "Nuestras soluciones de IA basadas en lenguaje natural ayudan a tu empresa a interactuar con los clientes de una forma más humana y personalizada, aumentando la satisfacción y el compromiso.",
-        
-            "cardAppleContentAI3": "Ofrece respuestas instantáneas y precisas con asistentes inteligentes.",
-            "cardAppleContentAI4": "Integra ChatGPT y otras herramientas de IA para automatizar el servicio al cliente, respondiendo a preguntas comunes y permitiendo que tu equipo se concentre en cuestiones más complejas.",
-        
-            "cardAppleContentAI5": "Análisis de sentimientos para comprender mejor a tu público.",
-            "cardAppleContentAI6": "Con IA, tu empresa puede monitorizar e interpretar el tono de las interacciones con los clientes, adaptando la comunicación y mejorando la experiencia según las emociones detectadas.",
-        
-            "cardAppleContentAI7": "Creación automática y personalizada de contenido.",
-            "cardAppleContentAI8": "Utiliza IA para generar textos y respuestas de forma automática, manteniendo la consistencia de la marca y personalizando los mensajes según el perfil de cada cliente.",
+    "cardAppleContentAutomation7": "Escalabilidad sin esfuerzo.",
+    "cardAppleContentAutomation8": "Con la automatización, tu negocio está preparado para crecer de forma sostenible, ampliando procesos y atendiendo a una mayor demanda sin aumentar la carga de trabajo.",
 
+    "cardAppleBots": "Bots",
+    "IntegrateIntelligent": "Integra Bots Inteligentes.",
+    "cardAppleContentBots1": "Automatiza la atención al cliente y mejora la experiencia del usuario.",
+    "cardAppleContentBots2": "Nuestros bots inteligentes responden rápidamente a las consultas de los clientes, resolviendo preguntas comunes y agilizando el soporte.",
 
-           
-                "cardAppleECommerce": "E-commerce",
-                "boostYour": "Impulsa tus Ventas con Soluciones de E-commerce.",
-            
-                "cardAppleContentECommerce1": "Aumenta las ventas sin complicaciones.",
-                "cardAppleContentECommerce2": "Nuestras soluciones de e-commerce están diseñadas para atraer a más clientes y aumentar la conversión, ayudando a tu negocio a vender más sin necesidad de un equipo grande.",
-            
-                "cardAppleContentECommerce3": "Transforma tu tienda online con la mejor tecnología y diseño del mercado.",
-                "cardAppleContentECommerce4": "Nuestra plataforma de e-commerce ofrece tecnología avanzada y diseño moderno, garantizando una experiencia atractiva e intuitiva para tus clientes. Gestiona todo fácilmente y destaca tu marca.",
-            
-                "cardAppleContentECommerce5": "Simplifica los pagos y las entregas para tus clientes.",
-                "cardAppleContentECommerce6": "Ofrecemos opciones de pago variadas y seguras, además de opciones de entrega confiables, proporcionando tranquilidad tanto para ti como para tus clientes y garantizando una experiencia de compra completa y sin problemas.",
-            
-                "cardAppleContentECommerce7": "Expande tus operaciones con flexibilidad y control.",
-                "cardAppleContentECommerce8": "Nuestras soluciones te permiten añadir fácilmente nuevos métodos de pago y opciones de entrega, adaptándose a las preferencias de los clientes y manteniendo una operación segura y escalable.",
+    "cardAppleContentBots3": "Disponibilidad 24/7 para tu negocio.",
+    "cardAppleContentBots4": "Con los bots, tu servicio de atención al cliente está siempre activo, asegurando respuestas para tus clientes a cualquier hora, día o noche.",
 
+    "cardAppleContentBots5": "Reduce costos con automatización inteligente.",
+    "cardAppleContentBots6": "Los bots disminuyen la necesidad de personal para tareas repetitivas, ayudando a reducir costos y mejorar la eficiencia operativa.",
 
-                    "cardAppleMarketing": "Marketing Digital",
-                    "boostYourMarketing": "Lleva tu Empresa al Mundo Digital como Nunca lo Imaginaste.",
-                
-                    "cardAppleContentMarketing1": "Expande tu alcance con estrategias de marketing digital.",
-                    "cardAppleContentMarketing2": "Ofrecemos soluciones completas para atraer y captar a tu público, aumentando la visibilidad de tu marca y generando más oportunidades de negocio.",
-                
-                    "cardAppleContentMarketing3": "Gestiona tus redes sociales con un enfoque completo.",
-                    "cardAppleContentMarketing4": "Nuestro equipo desarrolla una estrategia personalizada para tus redes sociales, con publicaciones atractivas, textos cautivadores y videos impactantes, garantizando que tu marca se destaque y conecte con el público.",
-                
-                    "cardAppleContentMarketing5": "Aumenta tu retorno con campañas pagas.",
-                    "cardAppleContentMarketing6": "Creamos campañas pagas diseñadas para llegar al público adecuado y obtener resultados rápidos, ayudando a tu negocio a crecer y ganar relevancia.",
-                
-                    "cardAppleContentMarketing7": "Aparece en las búsquedas de Google con facilidad.",
-                    "cardAppleContentMarketing8": "Nuestras soluciones preparan tu sitio para ser fácilmente encontrado, asegurando que tu marca llegue a los clientes correctos y atraiga más visitantes de forma natural."
-                }
-                
-            
-            
-      
-        
-    
-    
+    "cardAppleContentBots7": "Personaliza la comunicación con tus clientes.",
+    "cardAppleContentBots8": "Nuestros bots están diseñados para entender y responder de forma personalizada, creando una experiencia de atención única y alineada con la identidad de tu negocio.",
 
+    "cardAppleAI": "Inteligencia Artificial",
+    "LeverageAI": "Aprovecha la Inteligencia Artificial para Interacciones Más Humanas",
 
+    "cardAppleContentAI1": "Mejora la comunicación con clientes a través de la Inteligencia Artificial.",
+    "cardAppleContentAI2": "Nuestras soluciones de IA basadas en lenguaje natural ayudan a tu empresa a interactuar con los clientes de una forma más humana y personalizada, aumentando la satisfacción y el compromiso.",
+
+    "cardAppleContentAI3": "Ofrece respuestas instantáneas y precisas con asistentes inteligentes.",
+    "cardAppleContentAI4": "Integra ChatGPT y otras herramientas de IA para automatizar el servicio al cliente, respondiendo a preguntas comunes y permitiendo que tu equipo se concentre en cuestiones más complejas.",
+
+    "cardAppleContentAI5": "Análisis de sentimientos para comprender mejor a tu público.",
+    "cardAppleContentAI6": "Con IA, tu empresa puede monitorizar e interpretar el tono de las interacciones con los clientes, adaptando la comunicación y mejorando la experiencia según las emociones detectadas.",
+
+    "cardAppleContentAI7": "Creación automática y personalizada de contenido.",
+    "cardAppleContentAI8": "Utiliza IA para generar textos y respuestas de forma automática, manteniendo la consistencia de la marca y personalizando los mensajes según el perfil de cada cliente.",
+
+    "cardAppleECommerce": "E-commerce",
+    "boostYour": "Impulsa tus Ventas con Soluciones de E-commerce.",
+
+    "cardAppleContentECommerce1": "Aumenta las ventas sin complicaciones.",
+    "cardAppleContentECommerce2": "Nuestras soluciones de e-commerce están diseñadas para atraer a más clientes y aumentar la conversión, ayudando a tu negocio a vender más sin necesidad de un equipo grande.",
+
+    "cardAppleContentECommerce3": "Transforma tu tienda online con la mejor tecnología y diseño del mercado.",
+    "cardAppleContentECommerce4": "Nuestra plataforma de e-commerce ofrece tecnología avanzada y diseño moderno, garantizando una experiencia atractiva e intuitiva para tus clientes. Gestiona todo fácilmente y destaca tu marca.",
+
+    "cardAppleContentECommerce5": "Simplifica los pagos y las entregas para tus clientes.",
+    "cardAppleContentECommerce6": "Ofrecemos opciones de pago variadas y seguras, además de opciones de entrega confiables, proporcionando tranquilidad tanto para ti como para tus clientes y garantizando una experiencia de compra completa y sin problemas.",
+
+    "cardAppleContentECommerce7": "Expande tus operaciones con flexibilidad y control.",
+    "cardAppleContentECommerce8": "Nuestras soluciones te permiten añadir fácilmente nuevos métodos de pago y opciones de entrega, adaptándose a las preferencias de los clientes y manteniendo una operación segura y escalable.",
+
+    "cardAppleMarketing": "Marketing Digital",
+    "boostYourMarketing": "Lleva tu Empresa al Mundo Digital como Nunca lo Imaginaste.",
+
+    "cardAppleContentMarketing1": "Expande tu alcance con estrategias de marketing digital.",
+    "cardAppleContentMarketing2": "Ofrecemos soluciones completas para atraer y captar a tu público, aumentando la visibilidad de tu marca y generando más oportunidades de negocio.",
+
+    "cardAppleContentMarketing3": "Gestiona tus redes sociales con un enfoque completo.",
+    "cardAppleContentMarketing4": "Nuestro equipo desarrolla una estrategia personalizada para tus redes sociales, con publicaciones atractivas, textos cautivadores y videos impactantes, garantizando que tu marca se destaque y conecte con el público.",
+
+    "cardAppleContentMarketing5": "Aumenta tu retorno con campañas pagas.",
+    "cardAppleContentMarketing6": "Creamos campañas pagas diseñadas para llegar al público adecuado y obtener resultados rápidos, ayudando a tu negocio a crecer y ganar relevancia.",
+
+    "cardAppleContentMarketing7": "Aparece en las búsquedas de Google con facilidad.",
+    "cardAppleContentMarketing8": "Nuestras soluciones preparan tu sitio para ser fácilmente encontrado, asegurando que tu marca llegue a los clientes correctos y atraiga más visitantes de forma natural.",
+
+    "getInTouch": "Conectemos",
+    "namePlaceHolder": "¿Cómo debemos llamarte?",
+    "nameLabel": "Nombre",
+    "nameRequired": "¡Ups! Necesitamos tu nombre para continuar",
+    "messageLabel": "Cuéntanos lo que piensas",
+    "messagePlaceHolder": "Comparte tus ideas, pensamientos o dudas...",
+    "messageRequired": "¡No olvides escribir tu mensaje!"
+}

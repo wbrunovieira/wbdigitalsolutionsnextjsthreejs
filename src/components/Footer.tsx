@@ -11,6 +11,7 @@ import { useTranslations } from "@/contexts/TranslationContext";
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa";
 import { FiPhone, FiMail } from "react-icons/fi";
 import { SiWhatsapp } from "react-icons/si";
+import ButtonStandard from "./ButtonStandard";
 
 const Footer: React.FC = () => {
     const { language, setLanguage } = useLanguage();
@@ -38,6 +39,7 @@ const Footer: React.FC = () => {
 
                         <div className="flex items-center gap-2 w-full lg:w-auto">
                             <EmailInput />
+                            <ButtonStandard buttonText={currentMessages.send} />
 
                             <input
                                 type="hidden"

@@ -138,9 +138,9 @@
 
     "diINeedSite": "Preciso de um site?",
     "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
-    "enterEmail": "Insira o seu e-mail",
-    "send": "Enviar",
-    "validEmail": "Por favor, insira um e-mail válido.",
+    "enterEmail": "O seu endereço de email",
+    "send": "Enviar mensagem",
+    "validEmail": "Ups! Este email não parece correto",
     "transformYourBusiness": "Transforme o seu negócio com as nossas soluções",
     "cardAppleWebSite": "Desenvolvimento Web",
     "createStunningWebsites": "Crie Websites Impressionantes.",
@@ -207,40 +207,40 @@
     "cardAppleContentAI7": "Criação automática e personalizada de conteúdos.",
     "cardAppleContentAI8": "Utilize IA para gerar textos e respostas automaticamente, mantendo a consistência da marca e personalizando as mensagens conforme o perfil de cada cliente.",
 
+    "cardAppleECommerce": "E-commerce",
+    "boostYour": "Impulsione as Suas Vendas com Soluções de E-commerce.",
 
-        "cardAppleECommerce": "E-commerce",
-        "boostYour": "Impulsione as Suas Vendas com Soluções de E-commerce.",
-    
-        "cardAppleContentECommerce1": "Aumente as vendas sem complicações.",
-        "cardAppleContentECommerce2": "As nossas soluções de e-commerce são projetadas para atrair mais clientes e aumentar a conversão, ajudando o seu negócio a vender mais sem necessidade de uma equipa grande.",
-    
-        "cardAppleContentECommerce3": "Transforme a sua loja online com as melhores tecnologias e design do mercado.",
-        "cardAppleContentECommerce4": "A nossa plataforma de e-commerce oferece tecnologia avançada e design moderno, garantindo uma experiência atrativa e intuitiva para os seus clientes. Controle tudo facilmente e destaque a sua marca.",
-    
-        "cardAppleContentECommerce5": "Simplifique os pagamentos e as entregas para os seus clientes.",
-        "cardAppleContentECommerce6": "Oferecemos opções de pagamento variadas e seguras, além de escolhas de entrega confiáveis, proporcionando tranquilidade tanto para si quanto para os seus clientes, garantindo uma experiência de compra completa e sem problemas.",
-    
-        "cardAppleContentECommerce7": "Expanda as suas operações com flexibilidade e controlo.",
-        "cardAppleContentECommerce8": "As nossas soluções permitem adicionar facilmente novos métodos de pagamento e opções de entrega, adaptando-se às preferências dos clientes e mantendo uma operação segura e escalável.",
+    "cardAppleContentECommerce1": "Aumente as vendas sem complicações.",
+    "cardAppleContentECommerce2": "As nossas soluções de e-commerce são projetadas para atrair mais clientes e aumentar a conversão, ajudando o seu negócio a vender mais sem necessidade de uma equipa grande.",
 
+    "cardAppleContentECommerce3": "Transforme a sua loja online com as melhores tecnologias e design do mercado.",
+    "cardAppleContentECommerce4": "A nossa plataforma de e-commerce oferece tecnologia avançada e design moderno, garantindo uma experiência atrativa e intuitiva para os seus clientes. Controle tudo facilmente e destaque a sua marca.",
 
-       
-            "cardAppleMarketing": "Marketing Digital",
-            "boostYourMarketing": "Leve a Sua Empresa ao Mundo Digital como Nunca Imaginou.",
-        
-            "cardAppleContentMarketing1": "Expanda o seu alcance com estratégias de marketing digital.",
-            "cardAppleContentMarketing2": "Oferecemos soluções completas para atrair e envolver o seu público, aumentando a visibilidade da sua marca e gerando mais oportunidades de negócio.",
-        
-            "cardAppleContentMarketing3": "Gerencie as suas redes sociais com uma abordagem completa.",
-            "cardAppleContentMarketing4": "A nossa equipa desenvolve uma estratégia personalizada para as suas redes sociais, com posts visualmente apelativos, textos envolventes e vídeos impactantes, garantindo que a sua marca se destaque e envolva o público.",
-        
-            "cardAppleContentMarketing5": "Aumente o seu retorno com campanhas pagas.",
-            "cardAppleContentMarketing6": "Criamos campanhas pagas direcionadas para alcançar o público certo e gerar resultados rápidos, ajudando o seu negócio a crescer e ganhar mais relevância.",
-        
-            "cardAppleContentMarketing7": "Apareça nas pesquisas do Google com facilidade.",
-            "cardAppleContentMarketing8": "As nossas soluções preparam o seu site para ser facilmente encontrado, garantindo que a sua marca chegue aos clientes certos e atraia mais visitantes de forma natural."
-        }
-        
-   
-    
+    "cardAppleContentECommerce5": "Simplifique os pagamentos e as entregas para os seus clientes.",
+    "cardAppleContentECommerce6": "Oferecemos opções de pagamento variadas e seguras, além de escolhas de entrega confiáveis, proporcionando tranquilidade tanto para si quanto para os seus clientes, garantindo uma experiência de compra completa e sem problemas.",
 
+    "cardAppleContentECommerce7": "Expanda as suas operações com flexibilidade e controlo.",
+    "cardAppleContentECommerce8": "As nossas soluções permitem adicionar facilmente novos métodos de pagamento e opções de entrega, adaptando-se às preferências dos clientes e mantendo uma operação segura e escalável.",
+
+    "cardAppleMarketing": "Marketing Digital",
+    "boostYourMarketing": "Leve a Sua Empresa ao Mundo Digital como Nunca Imaginou.",
+
+    "cardAppleContentMarketing1": "Expanda o seu alcance com estratégias de marketing digital.",
+    "cardAppleContentMarketing2": "Oferecemos soluções completas para atrair e envolver o seu público, aumentando a visibilidade da sua marca e gerando mais oportunidades de negócio.",
+
+    "cardAppleContentMarketing3": "Gerencie as suas redes sociais com uma abordagem completa.",
+    "cardAppleContentMarketing4": "A nossa equipa desenvolve uma estratégia personalizada para as suas redes sociais, com posts visualmente apelativos, textos envolventes e vídeos impactantes, garantindo que a sua marca se destaque e envolva o público.",
+
+    "cardAppleContentMarketing5": "Aumente o seu retorno com campanhas pagas.",
+    "cardAppleContentMarketing6": "Criamos campanhas pagas direcionadas para alcançar o público certo e gerar resultados rápidos, ajudando o seu negócio a crescer e ganhar mais relevância.",
+
+    "cardAppleContentMarketing7": "Apareça nas pesquisas do Google com facilidade.",
+    "cardAppleContentMarketing8": "As nossas soluções preparam o seu site para ser facilmente encontrado, garantindo que a sua marca chegue aos clientes certos e atraia mais visitantes de forma natural.",
+    "getInTouch": "Vamos conversar",
+    "nameLabel": "Nome",
+    "namePlaceHolder": "Como devemos chamá-lo?",
+    "nameRequired": "Ups! Precisamos do seu nome para continuar",
+    "messageLabel": "Diga-nos o que está a pensar",
+    "messagePlaceHolder": "Partilhe as suas ideias, pensamentos ou dúvidas...",
+    "messageRequired": "Não se esqueça de escrever a sua mensagem!"
+}
