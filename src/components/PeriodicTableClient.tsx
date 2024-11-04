@@ -1,44 +1,46 @@
 "use client";
 
-import React, {  useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html, PerspectiveCamera } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
 import * as THREE from "three";
 
+type Direction = "up" | "down" | "left" | "right" | "forward" | "backward";
+
 interface BaseElementData {
-    id: string; 
-    title: string; 
-    position?: [number, number, number]; 
+    id: string;
+    title: string;
+    position?: [number, number, number];
 }
 
 interface VideoElementData extends BaseElementData {
     type: "video";
-    videoUrl: string; 
-    description?: string; 
+    videoUrl: string;
+    description?: string;
 }
 
 interface CardElementData extends BaseElementData {
     type: "card";
-    content: string; 
-    imageUrl?: string; 
+    content: string;
+    imageUrl?: string;
 }
 
 interface TextElementData extends BaseElementData {
     type: "text";
-    content: string; 
+    content: string;
 }
 
 interface ImageElementData extends BaseElementData {
     type: "image";
-    imageUrl: string; 
-    altText?: string; 
+    imageUrl: string;
+    altText?: string;
 }
 
 interface LinkElementData extends BaseElementData {
     type: "link";
-    url: string; 
-    text: string; 
+    url: string;
+    text: string;
 }
 
 type ElementData =
@@ -50,6 +52,10 @@ type ElementData =
 
 type LayoutType = "table" | "sphere" | "helix" | "grid";
 
+interface SceneProps {
+    layout: LayoutType;
+    cameraRef: React.MutableRefObject<THREE.PerspectiveCamera | null>;
+}
 
 interface ElementProps {
     data: ElementData;
@@ -58,13 +64,12 @@ interface ElementProps {
     onClick?: () => void;
 }
 
-
 const elements: ElementData[] = [
     {
         id: "home",
         title: "Home",
         type: "link",
-        url: "#home", 
+        url: "#home",
         text: "Home",
     },
     {
@@ -154,7 +159,7 @@ Tecnologia, Hospedagem e Atualizações`,
         title: "Catálogo - Download",
         type: "card",
         content: "Download\nCatálogo Sites",
-        imageUrl: "path_to_catalog_image", 
+        imageUrl: "path_to_catalog_image",
     },
     {
         id: "websites-personalizados",
@@ -225,7 +230,7 @@ Vamos trabalhar juntos para garantir que sua presença online seja notada pelos 
 
 Vamos criar uma narrativa poderosa para o seu site, garantindo o sucesso online que você deseja.`,
     },
- 
+
     {
         id: "contato",
         title: "CONTATE",
@@ -283,7 +288,6 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
     const [hovered, setHovered] = useState(false);
     const groupRef = useRef<THREE.Group>(null);
 
-    
     const { pos } = useSpring<{ pos: [number, number, number] }>({
         pos: data.position || [0, 0, 0],
         config: { mass: 1, tension: 170, friction: 26 },
@@ -326,13 +330,13 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                                     width="560"
                                     height="315"
                                     src={data.videoUrl}
-                                    frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     style={{
                                         borderRadius: "8px",
                                         boxShadow:
                                             "0px 0px 12px rgba(0,0,0,0.5)",
+                                        border: "none",
                                     }}
                                 ></iframe>
                             );
@@ -426,10 +430,10 @@ const getPosition = (
 ): [number, number, number] => {
     switch (layout) {
         case "table":
-            const columns = 5;
-            const spacing = 20;
+            const columns = 10;
+            const spacing = 4;
             const x = (index % columns) * spacing - (columns * spacing) / 2;
-            const y = -Math.floor(index / columns) * spacing + 20;
+            const y = -Math.floor(index / columns) * spacing + 10;
             const z = 0;
             return [x, y, z];
         case "sphere": {
@@ -443,14 +447,14 @@ const getPosition = (
         }
         case "helix": {
             const theta = index * 0.175 + Math.PI;
-            const y = -(index * 3) + 20;
+            const y = -(index * 2) + 20;
             return [20 * Math.cos(theta), y, 20 * Math.sin(theta)];
         }
         case "grid": {
             const columnsGrid = 5;
-            const spacingGrid = 20;
-            const xGrid = (index % columnsGrid) * spacingGrid - 20;
-            const yGrid = -Math.floor(index / columnsGrid) * spacingGrid + 20;
+            const spacingGrid = 10;
+            const xGrid = (index % columnsGrid) * spacingGrid - 2;
+            const yGrid = -Math.floor(index / columnsGrid) * spacingGrid + 2;
             const zGrid =
                 Math.floor(index / (columnsGrid * columnsGrid)) * 20 - 40;
             return [xGrid, yGrid, zGrid];
@@ -460,10 +464,15 @@ const getPosition = (
     }
 };
 
-const Scene: React.FC<{ layout: LayoutType }> = ({ layout }) => {
+const Scene: React.FC<SceneProps> = ({ layout, cameraRef }) => {
     return (
         <>
-            <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={50} />
+            <PerspectiveCamera
+                ref={cameraRef}
+                makeDefault
+                position={[0, 0, 10]}
+                fov={40}
+            />
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1.5} />
 
@@ -483,7 +492,7 @@ const Scene: React.FC<{ layout: LayoutType }> = ({ layout }) => {
             <OrbitControls
                 enableDamping
                 dampingFactor={0.05}
-                minDistance={50}
+                minDistance={5}
                 maxDistance={500}
             />
         </>
@@ -492,12 +501,41 @@ const Scene: React.FC<{ layout: LayoutType }> = ({ layout }) => {
 
 const PeriodicTableClient = () => {
     const [layout, setLayout] = useState<LayoutType>("table");
+    const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+
+    const moveCamera = (direction: Direction) => {
+        if (cameraRef.current) {
+            const step = 1; // Adjust step size for faster/slower movement
+            switch (direction) {
+                case "up":
+                    cameraRef.current.position.y += step;
+                    break;
+                case "down":
+                    cameraRef.current.position.y -= step;
+                    break;
+                case "left":
+                    cameraRef.current.position.x -= step;
+                    break;
+                case "right":
+                    cameraRef.current.position.x += step;
+                    break;
+                case "forward":
+                    cameraRef.current.position.z -= step;
+                    break;
+                case "backward":
+                    cameraRef.current.position.z += step;
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     return (
         <div className="relative w-full h-screen" style={{ zIndex: 0 }}>
             {" "}
             <div
-                className="absolute  w-full flex justify-center gap-4"
+                className="absolute w-full flex justify-center gap-4"
                 style={{ zIndex: 50 }}
             >
                 {(["table", "sphere", "helix", "grid"] as LayoutType[]).map(
@@ -537,8 +575,107 @@ const PeriodicTableClient = () => {
                     height: "100%",
                 }}
             >
-                <Scene layout={layout} />
+                <Scene layout={layout} cameraRef={cameraRef} />
             </Canvas>
+            <div
+                style={{
+                    position: "absolute",
+                    zIndex: 100,
+                    width: "100%",
+                    height: "100%",
+                }}
+            >
+                <button
+                    onClick={() => moveCamera("up")}
+                    style={{
+                        position: "absolute",
+                        top: "10%",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        borderRadius: "50%",
+                        padding: "10px",
+                        cursor: "pointer",
+                    }}
+                >
+                    ↑
+                </button>
+                <button
+                    onClick={() => moveCamera("down")}
+                    style={{
+                        position: "absolute",
+                        bottom: "10%",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        borderRadius: "50%",
+                        padding: "10px",
+                        cursor: "pointer",
+                    }}
+                >
+                    ↓
+                </button>
+                <button
+                    onClick={() => moveCamera("left")}
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "10%",
+                        transform: "translateY(-50%)",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        borderRadius: "50%",
+                        padding: "10px",
+                        cursor: "pointer",
+                    }}
+                >
+                    ←
+                </button>
+                <button
+                    onClick={() => moveCamera("right")}
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        right: "10%",
+                        transform: "translateY(-50%)",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        borderRadius: "50%",
+                        padding: "10px",
+                        cursor: "pointer",
+                    }}
+                >
+                    →
+                </button>
+                <button
+                    onClick={() => moveCamera("forward")}
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "85%",
+                        transform: "translateY(-50%)",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        borderRadius: "50%",
+                        padding: "10px",
+                        cursor: "pointer",
+                    }}
+                >
+                    +Z
+                </button>
+                <button
+                    onClick={() => moveCamera("backward")}
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "15%",
+                        transform: "translateY(-50%)",
+                        background: "rgba(255, 255, 255, 0.5)",
+                        borderRadius: "50%",
+                        padding: "10px",
+                        cursor: "pointer",
+                    }}
+                >
+                    -Z
+                </button>
+            </div>
         </div>
     );
 };
