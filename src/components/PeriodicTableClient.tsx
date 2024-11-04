@@ -55,13 +55,19 @@ type LayoutType = "table" | "sphere" | "helix" | "grid";
 interface SceneProps {
     layout: LayoutType;
     cameraRef: React.MutableRefObject<THREE.PerspectiveCamera | null>;
+    onElementClick: (data: ElementData) => void;
 }
 
 interface ElementProps {
     data: ElementData;
     layout: LayoutType;
     index: number;
-    onClick?: () => void;
+    onClick: (data: ElementData) => void;
+}
+
+interface ModalProps {
+    data: ElementData;
+    onClose: () => void;
 }
 
 const elements: ElementData[] = [
@@ -306,7 +312,7 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
         <animated.group
             ref={groupRef}
             position={pos}
-            onClick={onClick}
+            onClick={() => onClick(data)}
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
         >
@@ -320,8 +326,12 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                     opacity: 1,
                     transform: `scale(${hovered ? 1.1 : 1})`,
                     zIndex: 1,
+                    cursor: "pointer",
                 }}
             >
+                <div style={{ padding: "10px" }}>
+                    <h3>{data.title}</h3>
+                </div>
                 {(() => {
                     switch (data.type) {
                         case "video":
@@ -464,7 +474,7 @@ const getPosition = (
     }
 };
 
-const Scene: React.FC<SceneProps> = ({ layout, cameraRef }) => {
+const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
     return (
         <>
             <PerspectiveCamera
@@ -485,7 +495,7 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef }) => {
                     }}
                     layout={layout}
                     index={index}
-                    onClick={() => console.log(`Clicked ${data.title}`)}
+                    onClick={onElementClick}
                 />
             ))}
 
@@ -499,13 +509,95 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef }) => {
     );
 };
 
+const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
+    return (
+        <div
+            style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.8)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "white",
+                zIndex: 9999,
+            }}
+            onClick={onClose}
+        >
+            <div
+                style={{
+                    background: "#333",
+                    padding: "20px",
+                    borderRadius: "8px",
+                    maxWidth: "80%",
+                    maxHeight: "80%",
+                    overflowY: "auto",
+                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+                }}
+                onClick={(e) => e.stopPropagation()}
+            >
+                <button
+                    onClick={onClose}
+                    style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        background: "transparent",
+                        border: "none",
+                        color: "white",
+                        fontSize: "20px",
+                        cursor: "pointer",
+                    }}
+                >
+                    ✕
+                </button>
+
+                <h2>{data.title}</h2>
+                {data.type === "video" && (
+                    <iframe
+                        width="560"
+                        height="315"
+                        src={data.videoUrl}
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                    ></iframe>
+                )}
+                {data.type === "link" && <a href={data.url}>{data.text}</a>}
+                {data.type === "card" && <p>{data.content}</p>}
+                {data.type === "image" && (
+                    <img src={data.imageUrl} alt={data.altText || data.title} />
+                )}
+                {data.type === "text" && <p>{data.content}</p>}
+                <button onClick={onClose} style={{ marginTop: "10px" }}>
+                    Close
+                </button>
+            </div>
+        </div>
+    );
+};
+
 const PeriodicTableClient = () => {
     const [layout, setLayout] = useState<LayoutType>("table");
+    const [selectedElement, setSelectedElement] = useState<ElementData | null>(
+        null
+    );
     const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+
+    const handleElementClick = (data: ElementData) => {
+        setSelectedElement(data);
+    };
+
+    const closeModal = () => {
+        setSelectedElement(null);
+    };
 
     const moveCamera = (direction: Direction) => {
         if (cameraRef.current) {
-            const step = 1; // Adjust step size for faster/slower movement
+            const step = 1;
             switch (direction) {
                 case "up":
                     cameraRef.current.position.y += step;
@@ -573,10 +665,18 @@ const PeriodicTableClient = () => {
                     left: 0,
                     width: "100%",
                     height: "100%",
+                    zIndex: 900,
                 }}
             >
-                <Scene layout={layout} cameraRef={cameraRef} />
+                <Scene
+                    layout={layout}
+                    cameraRef={cameraRef}
+                    onElementClick={handleElementClick}
+                />
             </Canvas>
+            {selectedElement && (
+                <Modal data={selectedElement} onClose={closeModal} />
+            )}
             <div
                 style={{
                     position: "absolute",
