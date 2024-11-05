@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html, PerspectiveCamera } from "@react-three/drei";
 import { useSpring, animated as a3 } from "@react-spring/three";
 import { useSpring as useWebSpring, animated } from "@react-spring/web";
 import * as THREE from "three";
+import ParticlesWeb from "./ParticlesWeb";
 
 type Direction = "up" | "down" | "left" | "right" | "forward" | "backward";
 
@@ -76,67 +77,6 @@ interface ModalProps {
 }
 
 const elements: ElementData[] = [
-    {
-        id: "home",
-        title: "Home",
-        type: "link",
-        url: "#home",
-        text: "Home",
-    },
-    {
-        id: "sistemas",
-        title: "Sistemas",
-        type: "link",
-        url: "#sistemas",
-        text: "Sistemas",
-    },
-    {
-        id: "sites",
-        title: "Sites",
-        type: "link",
-        url: "#sites",
-        text: "Sites",
-    },
-    {
-        id: "marketing-digital",
-        title: "Marketing Digital",
-        type: "link",
-        url: "#marketing-digital",
-        text: "Marketing Digital",
-    },
-    {
-        id: "clientes",
-        title: "Clientes",
-        type: "link",
-        url: "#clientes",
-        text: "Clientes",
-    },
-    {
-        id: "blog",
-        title: "Blog",
-        type: "link",
-        url: "#blog",
-        text: "Blog",
-    },
-    {
-        id: "contato_1",
-        title: "Contato",
-        type: "link",
-        url: "#contato",
-        text: "Contato",
-    },
-    {
-        id: "ligue-para-nos",
-        title: "Ligue para nós",
-        type: "text",
-        content: "Brasil: +55 (11) 5206-4203\nPortugal: +351 30 880 8015",
-    },
-    {
-        id: "desenvolvimento-sites",
-        title: "Desenvolvimento de Websites Personalizados",
-        type: "card",
-        content: "Assista o Vídeo de Apresentação do nosso serviço de Site.",
-    },
     {
         id: "video-apresentacao",
         title: "Vídeo de Apresentação",
@@ -335,7 +275,7 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                 position={[0, 0, 0]}
                 center
                 style={{
-                    transition: "all 0.2s",
+                    transition: "transform 0.3s ease",
                     opacity: 1,
                     transform: `scale(${hovered ? 1.1 : 1})`,
                     zIndex: 1,
@@ -343,92 +283,54 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                     pointerEvents: "auto",
                 }}
             >
-                <div style={{ padding: "10px" }}>
-                    <h3>{data.title}</h3>
-                </div>
-                <div style={{ padding: "10px" }} onClick={handleClick}>
-                    {(() => {
-                        switch (data.type) {
-                            case "video":
-                                return (
-                                    <iframe
-                                        width="200"
-                                        height="150"
-                                        src={data.videoUrl}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                        style={{
-                                            borderRadius: "8px",
-                                            boxShadow:
-                                                "0px 0px 12px rgba(0,0,0,0.5)",
-                                            border: "none",
-                                        }}
-                                    />
-                                );
-                            case "image":
-                                return (
-                                    <img
-                                        src={data.imageUrl}
-                                        alt={data.altText || data.title}
-                                        style={{
-                                            width: "100%",
-                                            height: "100%",
-                                            objectFit: "cover",
-                                            borderRadius: "8px",
-                                            boxShadow:
-                                                "0px 0px 12px rgba(0,0,0,0.5)",
-                                        }}
-                                    />
-                                );
-                            case "card":
-                                return (
-                                    <div
-                                        style={{
-                                            width: "200px",
-                                            backgroundColor:
-                                                "rgba(255, 255, 255, 0.9)",
-                                            padding: "20px",
-                                            borderRadius: "8px",
-                                            boxShadow:
-                                                "0px 0px 12px rgba(0,0,0,0.5)",
-                                        }}
-                                    >
-                                        <p>{data.content}</p>
-                                    </div>
-                                );
-                            case "text":
-                                return (
-                                    <div
-                                        style={{
-                                            width: "200px",
-                                            backgroundColor:
-                                                "rgba(255, 255, 255, 0.9)",
-                                            padding: "20px",
-                                            borderRadius: "8px",
-                                            boxShadow:
-                                                "0px 0px 12px rgba(0,0,0,0.5)",
-                                        }}
-                                    >
-                                        <p>{data.content}</p>
-                                    </div>
-                                );
-                            case "link":
-                                return (
-                                    <a
-                                        href={data.url}
-                                        style={{
-                                            color: "blue",
-                                            textDecoration: "underline",
-                                            fontSize: "18px",
-                                        }}
-                                    >
-                                        {data.text}
-                                    </a>
-                                );
-                            default:
-                                return null;
-                        }
-                    })()}
+                <div
+                    className="p-2 w-60 h-60 flex flex-col justify-center items-center rounded-lg shadow-lg bg-white overflow-hidden hover:scale-110 transition duration-300 ease-in-out "
+                    onClick={handleClick}
+                >
+                    <h3 className="text-lg font-semibold text-center mb-2 truncate p-2">
+                        {data.title}
+                    </h3>
+                    <div className="w-full h-full flex items-center justify-center overflow-y-auto">
+                        {(() => {
+                            switch (data.type) {
+                                case "video":
+                                    return (
+                                        <iframe
+                                            className="w-full h-full rounded"
+                                            src={data.videoUrl}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        />
+                                    );
+                                case "image":
+                                    return (
+                                        <img
+                                            className="w-full h-full object-cover rounded"
+                                            src={data.imageUrl}
+                                            alt={data.altText || data.title}
+                                        />
+                                    );
+                                case "card":
+                                case "text":
+                                    return (
+                                        <div className="text-sm text-center overflow-hidden text-ellipsis p-2 line-clamp-5">
+                                            <p>{data.content}</p>
+                                        </div>
+                                    );
+                                case "link":
+                                    return (
+                                        <a
+                                            href={data.url}
+                                            className="text-blue-500 underline text-center truncate"
+                                        >
+                                            {data.text}
+                                        </a>
+                                    );
+                                default:
+                                    return null;
+                            }
+                        })()}
+                    </div>
                 </div>
             </Html>
         </a3.group>
@@ -444,7 +346,7 @@ const getPosition = (
             const columns = 5;
             const spacing = 4;
             const x = (index % columns) * spacing - (columns * spacing) / 2;
-            const y = -Math.floor(index / columns) * spacing + 10;
+            const y = -Math.floor(index / columns) * spacing + 5;
             const z = 0;
             return [x, y, z];
         case "sphere": {
@@ -481,8 +383,8 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
             <PerspectiveCamera
                 ref={cameraRef}
                 makeDefault
-                position={[0, 0, 10]}
-                fov={40}
+                position={[0, 0, 50]}
+                fov={80}
             />
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1.5} />
@@ -663,8 +565,8 @@ const PeriodicTableClient = () => {
     };
 
     return (
-        <div className="relative w-full h-screen" style={{ zIndex: 910 }}>
-            <div className="absolute w-full flex justify-center gap-4 z-50">
+        <div className="w-full h-screen flex flex-col items-center justify-center">
+            <div className=" w-full flex justify-center gap-4 z-50">
                 {(["table", "sphere", "helix", "grid"] as LayoutType[]).map(
                     (l) => (
                         <button
@@ -686,22 +588,26 @@ const PeriodicTableClient = () => {
                     )
                 )}
             </div>
+            <div
+                className="w-full h-screen flex items-center justify-center"
+                style={{ zIndex: 910 }}
+            >
+                <Canvas className="top-0 left-0 w-full h-full z-40">
+                    <Scene
+                        layout={layout}
+                        cameraRef={cameraRef}
+                        onElementClick={handleElementClick}
+                    />
+                </Canvas>
 
-            <Canvas className="absolute top-0 left-0 w-full h-full z-40">
-                <Scene
-                    layout={layout}
-                    cameraRef={cameraRef}
-                    onElementClick={handleElementClick}
-                />
-            </Canvas>
-
-            {selectedElement && (
-                <Modal
-                    data={selectedElement}
-                    onClose={closeModal}
-                    elementPosition={elementPosition}
-                />
-            )}
+                {selectedElement && (
+                    <Modal
+                        data={selectedElement}
+                        onClose={closeModal}
+                        elementPosition={elementPosition}
+                    />
+                )}
+            </div>
         </div>
     );
 };

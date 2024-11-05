@@ -14,8 +14,11 @@ export const metadata: Metadata = {
 
 const Websites: React.FC = () => {
     return (
-        <section className="relative bg-[#350545] min-h-screen">
-            <div className="absolute inset-0" style={{ zIndex: 200 }}>
+        <section className="relative flex items-center justify-center bg-[#350545] min-h-screen">
+            <div
+                className="absolute inset-0 flex justify-center items-center"
+                style={{ zIndex: 200 }}
+            >
                 <PeriodicTable />
             </div>
         </section>
