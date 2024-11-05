@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html, PerspectiveCamera } from "@react-three/drei";
-import { useSpring, animated } from "@react-spring/three";
+import { useSpring, animated as a3 } from "@react-spring/three";
+import { useSpring as useWebSpring, animated } from "@react-spring/web";
 import * as THREE from "three";
 
 type Direction = "up" | "down" | "left" | "right" | "forward" | "backward";
@@ -55,19 +56,23 @@ type LayoutType = "table" | "sphere" | "helix" | "grid";
 interface SceneProps {
     layout: LayoutType;
     cameraRef: React.MutableRefObject<THREE.PerspectiveCamera | null>;
-    onElementClick: (data: ElementData) => void;
+    onElementClick: (
+        data: ElementData,
+        position: { x: number; y: number }
+    ) => void;
 }
 
 interface ElementProps {
     data: ElementData;
     layout: LayoutType;
     index: number;
-    onClick: (data: ElementData) => void;
+    onClick: (data: ElementData, position: { x: number; y: number }) => void;
 }
 
 interface ModalProps {
     data: ElementData;
     onClose: () => void;
+    elementPosition: { x: number; y: number } | null;
 }
 
 const elements: ElementData[] = [
@@ -114,7 +119,7 @@ const elements: ElementData[] = [
         text: "Blog",
     },
     {
-        id: "contato",
+        id: "contato_1",
         title: "Contato",
         type: "link",
         url: "#contato",
@@ -238,7 +243,7 @@ Vamos criar uma narrativa poderosa para o seu site, garantindo o sucesso online 
     },
 
     {
-        id: "contato",
+        id: "contato_2",
         title: "CONTATE",
         type: "card",
         content: `Não perca mais tempo. Mande já uma mensagem.
@@ -294,25 +299,33 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
     const [hovered, setHovered] = useState(false);
     const groupRef = useRef<THREE.Group>(null);
 
-    const { pos } = useSpring<{ pos: [number, number, number] }>({
+    const { pos } = useSpring({
         pos: data.position || [0, 0, 0],
         config: { mass: 1, tension: 170, friction: 26 },
         delay: index * 50,
     });
 
-    useFrame(() => {
-        if (groupRef.current && (layout === "sphere" || layout === "helix")) {
-            const target = new THREE.Vector3();
-            target.copy(groupRef.current.position).multiplyScalar(2);
-            groupRef.current.lookAt(target);
+    useFrame(({ camera }) => {
+        if (groupRef.current) {
+            groupRef.current.lookAt(camera.position);
         }
     });
 
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
+        const rect = e.currentTarget.getBoundingClientRect();
+        const elementPosition = {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+        };
+        console.log("Posição do elemento clicado:", elementPosition);
+        onClick(data, elementPosition);
+    };
+
     return (
-        <animated.group
+        <a3.group
             ref={groupRef}
-            position={pos}
-            onClick={() => onClick(data)}
+            position={pos as any}
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
         >
@@ -327,110 +340,98 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                     transform: `scale(${hovered ? 1.1 : 1})`,
                     zIndex: 1,
                     cursor: "pointer",
+                    pointerEvents: "auto",
                 }}
             >
                 <div style={{ padding: "10px" }}>
                     <h3>{data.title}</h3>
                 </div>
-                {(() => {
-                    switch (data.type) {
-                        case "video":
-                            return (
-                                <iframe
-                                    width="560"
-                                    height="315"
-                                    src={data.videoUrl}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                    style={{
-                                        borderRadius: "8px",
-                                        boxShadow:
-                                            "0px 0px 12px rgba(0,0,0,0.5)",
-                                        border: "none",
-                                    }}
-                                ></iframe>
-                            );
-                        case "image":
-                            return (
-                                <img
-                                    src={data.imageUrl}
-                                    alt={data.altText || data.title}
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        borderRadius: "8px",
-                                        boxShadow:
-                                            "0px 0px 12px rgba(0,0,0,0.5)",
-                                    }}
-                                />
-                            );
-                        case "card":
-                            return (
-                                <div
-                                    style={{
-                                        width: "300px",
-                                        backgroundColor:
-                                            "rgba(255, 255, 255, 0.9)",
-                                        padding: "20px",
-                                        borderRadius: "8px",
-                                        boxShadow:
-                                            "0px 0px 12px rgba(0,0,0,0.5)",
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        alignItems: "center",
-                                    }}
-                                >
-                                    <h2>{data.title}</h2>
-                                    {"imageUrl" in data && data.imageUrl && (
-                                        <img
-                                            src={data.imageUrl}
-                                            alt={data.title}
-                                            style={{
-                                                width: "100%",
-                                                height: "auto",
-                                                marginBottom: "10px",
-                                            }}
-                                        />
-                                    )}
-                                    <p>{data.content}</p>
-                                </div>
-                            );
-                        case "text":
-                            return (
-                                <div
-                                    style={{
-                                        width: "300px",
-                                        backgroundColor:
-                                            "rgba(255, 255, 255, 0.9)",
-                                        padding: "20px",
-                                        borderRadius: "8px",
-                                        boxShadow:
-                                            "0px 0px 12px rgba(0,0,0,0.5)",
-                                    }}
-                                >
-                                    <p>{data.content}</p>
-                                </div>
-                            );
-                        case "link":
-                            return (
-                                <a
-                                    href={data.url}
-                                    style={{
-                                        color: "blue",
-                                        textDecoration: "underline",
-                                        fontSize: "18px",
-                                    }}
-                                >
-                                    {data.text}
-                                </a>
-                            );
-                        default:
-                            return null;
-                    }
-                })()}
+                <div style={{ padding: "10px" }} onClick={handleClick}>
+                    {(() => {
+                        switch (data.type) {
+                            case "video":
+                                return (
+                                    <iframe
+                                        width="200"
+                                        height="150"
+                                        src={data.videoUrl}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        style={{
+                                            borderRadius: "8px",
+                                            boxShadow:
+                                                "0px 0px 12px rgba(0,0,0,0.5)",
+                                            border: "none",
+                                        }}
+                                    />
+                                );
+                            case "image":
+                                return (
+                                    <img
+                                        src={data.imageUrl}
+                                        alt={data.altText || data.title}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "cover",
+                                            borderRadius: "8px",
+                                            boxShadow:
+                                                "0px 0px 12px rgba(0,0,0,0.5)",
+                                        }}
+                                    />
+                                );
+                            case "card":
+                                return (
+                                    <div
+                                        style={{
+                                            width: "200px",
+                                            backgroundColor:
+                                                "rgba(255, 255, 255, 0.9)",
+                                            padding: "20px",
+                                            borderRadius: "8px",
+                                            boxShadow:
+                                                "0px 0px 12px rgba(0,0,0,0.5)",
+                                        }}
+                                    >
+                                        <p>{data.content}</p>
+                                    </div>
+                                );
+                            case "text":
+                                return (
+                                    <div
+                                        style={{
+                                            width: "200px",
+                                            backgroundColor:
+                                                "rgba(255, 255, 255, 0.9)",
+                                            padding: "20px",
+                                            borderRadius: "8px",
+                                            boxShadow:
+                                                "0px 0px 12px rgba(0,0,0,0.5)",
+                                        }}
+                                    >
+                                        <p>{data.content}</p>
+                                    </div>
+                                );
+                            case "link":
+                                return (
+                                    <a
+                                        href={data.url}
+                                        style={{
+                                            color: "blue",
+                                            textDecoration: "underline",
+                                            fontSize: "18px",
+                                        }}
+                                    >
+                                        {data.text}
+                                    </a>
+                                );
+                            default:
+                                return null;
+                        }
+                    })()}
+                </div>
             </Html>
-        </animated.group>
+        </a3.group>
     );
 };
 
@@ -440,7 +441,7 @@ const getPosition = (
 ): [number, number, number] => {
     switch (layout) {
         case "table":
-            const columns = 10;
+            const columns = 5;
             const spacing = 4;
             const x = (index % columns) * spacing - (columns * spacing) / 2;
             const y = -Math.floor(index / columns) * spacing + 10;
@@ -509,53 +510,96 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
     );
 };
 
-const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
+const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
+    const overlaySpring = useWebSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { tension: 280, friction: 60 },
+    });
+
+    const modalSpring = useWebSpring({
+        from: {
+            opacity: 0,
+            transform: elementPosition
+                ? `translate(${
+                      elementPosition.x - window.innerWidth / 2 - 150
+                  }px, ${
+                      elementPosition.y - window.innerHeight / 2 - 100
+                  }px) scale(0.5)`
+                : "translate(-50%, -50%) scale(0.5)",
+        },
+        to: {
+            opacity: 1,
+            transform: "translate(-50%, -50%) scale(1)",
+        },
+        config: {
+            mass: 1,
+            tension: 200,
+            friction: 26,
+        },
+        onStart: () => {
+            if (elementPosition) {
+                const initialX =
+                    elementPosition.x - window.innerWidth / 2 - 150;
+                const initialY =
+                    elementPosition.y - window.innerHeight / 2 - 100;
+
+                console.log(
+                    "Posição inicial ajustada para a animação do modal (com offset):",
+                    {
+                        x: initialX,
+                        y: initialY,
+                    }
+                );
+            } else {
+                console.log(
+                    "Posição inicial da animação do modal não disponível"
+                );
+            }
+        },
+    });
+
     return (
-        <div
+        <animated.div
             style={{
+                ...overlaySpring,
                 position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
+                inset: 0,
                 backgroundColor: "rgba(0, 0, 0, 0.8)",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                color: "white",
-                zIndex: 9999,
+                zIndex: 1000,
             }}
             onClick={onClose}
         >
-            <div
+            <animated.div
                 style={{
-                    background: "#333",
-                    padding: "20px",
-                    borderRadius: "8px",
-                    maxWidth: "80%",
-                    maxHeight: "80%",
-                    overflowY: "auto",
-                    boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)",
+                    ...modalSpring,
+                    position: "fixed",
+                    left: "50%",
+                    top: "50%",
+                    backgroundColor: "#1a1a1a",
+                    padding: "2rem",
+                    borderRadius: "0.5rem",
+                    maxWidth: "90vw",
+                    maxHeight: "90vh",
+                    overflow: "auto",
                 }}
                 onClick={(e) => e.stopPropagation()}
+                className="bg-custom-gradient"
             >
                 <button
                     onClick={onClose}
-                    style={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        background: "transparent",
-                        border: "none",
-                        color: "white",
-                        fontSize: "20px",
-                        cursor: "pointer",
-                    }}
+                    className="absolute top-2 right-2 text-white text-2xl focus:outline-none p-2"
                 >
                     ✕
                 </button>
 
-                <h2>{data.title}</h2>
+                <h2 className="text-xl text-white font-semibold mb-4">
+                    {data.title}
+                </h2>
+
                 {data.type === "video" && (
                     <iframe
                         width="560"
@@ -564,19 +608,33 @@ const Modal: React.FC<ModalProps> = ({ data, onClose }) => {
                         frameBorder="0"
                         allow="autoplay; encrypted-media"
                         allowFullScreen
-                    ></iframe>
+                        className="rounded-lg shadow-lg"
+                    />
                 )}
-                {data.type === "link" && <a href={data.url}>{data.text}</a>}
-                {data.type === "card" && <p>{data.content}</p>}
+
+                {data.type === "link" && (
+                    <a href={data.url} className="text-blue-500 underline">
+                        {data.text}
+                    </a>
+                )}
+
+                {data.type === "card" && (
+                    <p className="text-white mt-4">{data.content}</p>
+                )}
+
                 {data.type === "image" && (
-                    <img src={data.imageUrl} alt={data.altText || data.title} />
+                    <img
+                        src={data.imageUrl}
+                        alt={data.altText || data.title}
+                        className="rounded-lg shadow-lg mt-4"
+                    />
                 )}
-                {data.type === "text" && <p>{data.content}</p>}
-                <button onClick={onClose} style={{ marginTop: "10px" }}>
-                    Close
-                </button>
-            </div>
-        </div>
+
+                {data.type === "text" && (
+                    <p className="text-white mt-4">{data.content}</p>
+                )}
+            </animated.div>
+        </animated.div>
     );
 };
 
@@ -585,197 +643,65 @@ const PeriodicTableClient = () => {
     const [selectedElement, setSelectedElement] = useState<ElementData | null>(
         null
     );
+    const [elementPosition, setElementPosition] = useState<{
+        x: number;
+        y: number;
+    } | null>(null);
     const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
 
-    const handleElementClick = (data: ElementData) => {
+    const handleElementClick = (
+        data: ElementData,
+        position: { x: number; y: number }
+    ) => {
+        setElementPosition(position);
         setSelectedElement(data);
     };
 
     const closeModal = () => {
         setSelectedElement(null);
-    };
-
-    const moveCamera = (direction: Direction) => {
-        if (cameraRef.current) {
-            const step = 1;
-            switch (direction) {
-                case "up":
-                    cameraRef.current.position.y += step;
-                    break;
-                case "down":
-                    cameraRef.current.position.y -= step;
-                    break;
-                case "left":
-                    cameraRef.current.position.x -= step;
-                    break;
-                case "right":
-                    cameraRef.current.position.x += step;
-                    break;
-                case "forward":
-                    cameraRef.current.position.z -= step;
-                    break;
-                case "backward":
-                    cameraRef.current.position.z += step;
-                    break;
-                default:
-                    break;
-            }
-        }
+        setElementPosition(null);
     };
 
     return (
-        <div className="relative w-full h-screen" style={{ zIndex: 0 }}>
-            {" "}
-            <div
-                className="absolute w-full flex justify-center gap-4"
-                style={{ zIndex: 50 }}
-            >
+        <div className="relative w-full h-screen" style={{ zIndex: 910 }}>
+            <div className="absolute w-full flex justify-center gap-4 z-50">
                 {(["table", "sphere", "helix", "grid"] as LayoutType[]).map(
                     (l) => (
                         <button
                             key={l}
                             onClick={() => setLayout(l)}
                             className={`
-                            mt-8
-                                px-4 py-2
-                                text-secondary
-                                border border-secondary
-                                rounded
-                                uppercase
-                                transition-colors
-                                hover:bg-primary
-                                relative
+                                mt-8 px-4 py-2 text-secondary border border-secondary rounded uppercase
+                                transition-colors hover:bg-primary transition duration-300 ease-in-out
+                                relative z-[1001]
                                 ${
                                     layout === l
                                         ? "bg-yellowcustom"
                                         : "bg-transparent"
                                 }
                             `}
-                            style={{ zIndex: 51 }}
                         >
                             {l}
                         </button>
                     )
                 )}
             </div>
-            <Canvas
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    zIndex: 900,
-                }}
-            >
+
+            <Canvas className="absolute top-0 left-0 w-full h-full z-40">
                 <Scene
                     layout={layout}
                     cameraRef={cameraRef}
                     onElementClick={handleElementClick}
                 />
             </Canvas>
+
             {selectedElement && (
-                <Modal data={selectedElement} onClose={closeModal} />
+                <Modal
+                    data={selectedElement}
+                    onClose={closeModal}
+                    elementPosition={elementPosition}
+                />
             )}
-            <div
-                style={{
-                    position: "absolute",
-                    zIndex: 100,
-                    width: "100%",
-                    height: "100%",
-                }}
-            >
-                <button
-                    onClick={() => moveCamera("up")}
-                    style={{
-                        position: "absolute",
-                        top: "10%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "50%",
-                        padding: "10px",
-                        cursor: "pointer",
-                    }}
-                >
-                    ↑
-                </button>
-                <button
-                    onClick={() => moveCamera("down")}
-                    style={{
-                        position: "absolute",
-                        bottom: "10%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "50%",
-                        padding: "10px",
-                        cursor: "pointer",
-                    }}
-                >
-                    ↓
-                </button>
-                <button
-                    onClick={() => moveCamera("left")}
-                    style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "10%",
-                        transform: "translateY(-50%)",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "50%",
-                        padding: "10px",
-                        cursor: "pointer",
-                    }}
-                >
-                    ←
-                </button>
-                <button
-                    onClick={() => moveCamera("right")}
-                    style={{
-                        position: "absolute",
-                        top: "50%",
-                        right: "10%",
-                        transform: "translateY(-50%)",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "50%",
-                        padding: "10px",
-                        cursor: "pointer",
-                    }}
-                >
-                    →
-                </button>
-                <button
-                    onClick={() => moveCamera("forward")}
-                    style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "85%",
-                        transform: "translateY(-50%)",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "50%",
-                        padding: "10px",
-                        cursor: "pointer",
-                    }}
-                >
-                    +Z
-                </button>
-                <button
-                    onClick={() => moveCamera("backward")}
-                    style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "15%",
-                        transform: "translateY(-50%)",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        borderRadius: "50%",
-                        padding: "10px",
-                        cursor: "pointer",
-                    }}
-                >
-                    -Z
-                </button>
-            </div>
         </div>
     );
 };
