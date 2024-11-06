@@ -52,7 +52,7 @@ type ElementData =
     | TextElementData
     | LinkElementData;
 
-type LayoutType = "table" | "sphere" | "helix" | "grid";
+type LayoutType = "tabela" | "esfera" | "hélice" | "grade";
 
 interface SceneProps {
     layout: LayoutType;
@@ -342,14 +342,14 @@ const getPosition = (
     layout: LayoutType
 ): [number, number, number] => {
     switch (layout) {
-        case "table":
+        case "tabela":
             const columns = 5;
             const spacing = 4;
             const x = (index % columns) * spacing - (columns * spacing) / 2;
             const y = -Math.floor(index / columns) * spacing + 5;
             const z = 0;
             return [x, y, z];
-        case "sphere": {
+        case "esfera": {
             const phi = Math.acos(-1 + (2 * index) / elements.length);
             const theta = Math.sqrt(elements.length * Math.PI) * phi;
             return [
@@ -358,12 +358,12 @@ const getPosition = (
                 20 * Math.cos(phi),
             ];
         }
-        case "helix": {
+        case "hélice": {
             const theta = index * 0.175 + Math.PI;
             const y = -(index * 2) + 20;
             return [20 * Math.cos(theta), y, 20 * Math.sin(theta)];
         }
-        case "grid": {
+        case "grade": {
             const columnsGrid = 5;
             const spacingGrid = 10;
             const xGrid = (index % columnsGrid) * spacingGrid - 2;
@@ -383,8 +383,8 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
             <PerspectiveCamera
                 ref={cameraRef}
                 makeDefault
-                position={[0, 0, 50]}
-                fov={80}
+                position={[0, 0, 15]}
+                fov={50}
             />
             <ambientLight intensity={0.5} />
             <pointLight position={[10, 10, 10]} intensity={1.5} />
@@ -541,7 +541,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
 };
 
 const PeriodicTableClient = () => {
-    const [layout, setLayout] = useState<LayoutType>("table");
+    const [layout, setLayout] = useState<LayoutType>("tabela");
     const [selectedElement, setSelectedElement] = useState<ElementData | null>(
         null
     );
@@ -565,15 +565,22 @@ const PeriodicTableClient = () => {
     };
 
     return (
-        <div className="w-full h-screen flex flex-col items-center justify-center">
-            <div className=" w-full flex justify-center gap-4 z-50">
-                {(["table", "sphere", "helix", "grid"] as LayoutType[]).map(
-                    (l) => (
+        <div className="w-full h-screen flex flex-col items-center justify-center ">
+            <div className="flex flex-col p-2 justify-center z-50 border-1 rounded-md ">
+                <div className="flex items-center justify-center gap-2 mt-4">
+                    <p className="text-white font-thin text-xs">
+                        Escolha a disposição dos Cartões
+                    </p>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                    {(
+                        ["tabela", "esfera", "hélice", "grade"] as LayoutType[]
+                    ).map((l) => (
                         <button
                             key={l}
                             onClick={() => setLayout(l)}
                             className={`
-                                mt-8 px-4 py-2 text-secondary border border-secondary rounded uppercase
+                                mt-2 px-2 py-1 text-white border border-secondary rounded capitalize
                                 transition-colors hover:bg-primary transition duration-300 ease-in-out
                                 relative z-[1001]
                                 ${
@@ -585,9 +592,10 @@ const PeriodicTableClient = () => {
                         >
                             {l}
                         </button>
-                    )
-                )}
+                    ))}
+                </div>
             </div>
+
             <div
                 className="w-full h-screen flex items-center justify-center"
                 style={{ zIndex: 910 }}
