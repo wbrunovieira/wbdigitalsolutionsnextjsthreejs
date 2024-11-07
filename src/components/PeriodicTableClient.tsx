@@ -79,11 +79,16 @@ interface ModalProps {
 const elements: ElementData[] = [
     {
         id: "video-apresentacao",
-        title: "Vídeo de Apresentação",
+        title: "WB Web",
+        type: "card",
+        content: "Sistema para Lojas, Industrias, Servicos em Geral.",
+    },
+    {
+        id: "video-apresentacao",
+        title: "Vídeo WB Web",
         type: "video",
-        videoUrl: "https://www.youtube.com/embed/P6t-OHgAXG8",
-        description:
-            "Vídeo de apresentação do serviço de desenvolvimento de sites.",
+        videoUrl: "https://www.youtube.com/embed/up7kmO4Ys5M",
+        description: "Vídeo de apresentação WB Web.",
     },
     {
         id: "site-topicos",
@@ -311,7 +316,6 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                                         />
                                     );
                                 case "card":
-                                case "text":
                                     return (
                                         <div className="text-sm text-center overflow-hidden text-ellipsis p-2 line-clamp-5">
                                             <p>{data.content}</p>
@@ -353,9 +357,9 @@ const getPosition = (
             const phi = Math.acos(-1 + (2 * index) / elements.length);
             const theta = Math.sqrt(elements.length * Math.PI) * phi;
             return [
-                20 * Math.cos(theta) * Math.sin(phi),
-                20 * Math.sin(theta) * Math.sin(phi),
-                20 * Math.cos(phi),
+                15 * Math.cos(theta) * Math.sin(phi),
+                15 * Math.sin(theta) * Math.sin(phi),
+                15 * Math.cos(phi),
             ];
         }
         case "hélice": {
@@ -383,7 +387,7 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
             <PerspectiveCamera
                 ref={cameraRef}
                 makeDefault
-                position={[0, 0, 15]}
+                position={[0, 0, 12]}
                 fov={50}
             />
             <ambientLight intensity={0.5} />
@@ -565,9 +569,9 @@ const PeriodicTableClient = () => {
     };
 
     return (
-        <div className="w-full h-screen flex flex-col items-center justify-center ">
-            <div className="flex flex-col p-2 justify-center z-50 border-1 rounded-md ">
-                <div className="flex items-center justify-center gap-2 mt-4">
+        <div className="w-full flex flex-col items-center justify-center ">
+            <div className="flex flex-col p-2 justify-center z-50 border rounded-md bg-black/50 w-3/4 max-w-md mx-auto">
+                <div className="flex bg-transparent items-center justify-center gap-2 mt-4 ">
                     <p className="text-white font-thin text-xs">
                         Escolha a disposição dos Cartões
                     </p>
