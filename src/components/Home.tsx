@@ -4,7 +4,7 @@ import React from "react";
 import HeroSection from "./HeroSection";
 
 import InfiniteScrollHash from "./InfiniteScrollHash";
-import ToolBox from "./ToolBox";
+// import ToolBox from "./ToolBox";
 import { AppleCardsCarouselDemo } from "./CardCarrosel";
 
 
@@ -14,7 +14,7 @@ const Home: React.FC = () => {
             <main className="flex flex-col">
                 <HeroSection />
                 <InfiniteScrollHash />
-                <ToolBox />
+                {/* <ToolBox /> */}
                 <AppleCardsCarouselDemo />
             </main>
         </div>

@@ -11,17 +11,7 @@ body {
     @apply bg-custom-gradient;
 }
 
-/* @layer base {
-    .h1 {
-        @apply text-[35px] leading-tight md:text-[60px] md:leading-[1.3] mb-8 font-semibold;
-    }
-    .h2 {
-        @apply text-[35px] leading-tight md:text-[54px] md:leading-[1.3] mb-4 font-semibold;
-    }
-    p {
-        @apply leading-[1.8] text-white/60 font-light;
-    }
-} */
+
 
 @layer utilities {
     .bg-custom-gradient {
@@ -61,7 +51,11 @@ body {
         );
         clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
         transform: translateX(-50%);
+        transition: all 0.3s ease;
     }
+
+    
+    
 }
 
 .yellow-light {
@@ -69,11 +63,12 @@ body {
         inset hsla(0, 0%, 0%, 0.5) 0 0 0 1px;
     background-color: hsla(0, 0%, 0%, 0.2);
     background-image: -webkit-radial-gradient(
+        
         hsla(38, 100%, 70%, 1) 0%,
-        /* Cor mais clara, com maior luminosidade */ hsla(38, 100%, 55%, 1) 15%,
-        /* Cor intermediária */ hsla(38, 100%, 45%, 0.3) 28%,
-        /* Cor mais escura com transparência */ hsla(38, 100%, 25%, 0) 70%
-            /* Cor mais escura, quase transparente */
+        hsla(38, 100%, 55%, 1) 15%,
+        hsla(38, 100%, 45%, 0.3) 28%,
+        hsla(38, 100%, 25%, 0) 70%
+        
     );
 }
 
@@ -93,10 +88,10 @@ body {
     background-color: hsla(0, 0%, 0%, 0.2);
     background-image: -webkit-radial-gradient(
         hsla(38, 100%, 70%, 1) 0%,
-        /* Cor mais clara, com maior luminosidade */ hsla(38, 100%, 55%, 1) 15%,
-        /* Cor intermediária */ hsla(38, 100%, 45%, 0.3) 28%,
-        /* Cor mais escura com transparência */ hsla(38, 100%, 25%, 0) 70%
-            /* Cor mais escura, quase transparente */
+         hsla(38, 100%, 55%, 1) 15%,
+       hsla(38, 100%, 45%, 0.3) 28%,
+       hsla(38, 100%, 25%, 0) 70%
+          
     );
 
     background-repeat: no-repeat;
@@ -135,9 +130,9 @@ body {
 .radio-input {
     display: flex;
 
-    justify-content: center; /* Alinha horizontalmente */
-    align-items: center; /* Alinha verticalmente */
-    /* Espaço entre os elementos */
+    justify-content: center; 
+    align-items: center; 
+   
 }
 
 .radio-custom-label {
@@ -189,14 +184,14 @@ body {
     border-radius: 6px;
     padding: 5px 0;
 
-    /* Posicionamento */
+
     position: absolute;
     z-index: 1;
     bottom: 100%;
     left: 50%;
-    margin-left: -60px; /* Metade da largura para centralizar */
+    margin-left: -60px; 
 
-    /* Estilos para a animação */
+
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -222,17 +217,17 @@ body {
     color: var(--yellowcustom);
     font-weight: semibold;
     opacity: 0.7;
-    background-size: 25% 25%; /* Ajusta o tamanho do gradiente */
-    background-repeat: no-repeat; /* Evita a repetição do gradiente */
-    background-position-x: 50%; /* Posição horizontal (pode ser em %, px, em, etc.) */
+    background-size: 25% 25%; 
+    background-repeat: no-repeat; 
+    background-position-x: 50%; 
     background-position-y: 90%;
 
     background-image: -webkit-radial-gradient(
         hsla(38, 100%, 80%, 1) 0%,
-        /* Cor mais clara para o hover */ hsla(38, 100%, 65%, 1) 15%,
-        /* Cor intermediária */ hsla(38, 100%, 55%, 0.5) 28%,
-        /* Cor mais escura com transparência */ hsla(38, 100%, 35%, 0) 70%
-            /* Cor mais escura, quase transparente */
+         hsla(38, 100%, 65%, 1) 15%,
+        hsla(38, 100%, 55%, 0.5) 28%,
+        hsla(38, 100%, 35%, 0) 70%
+           
     );
 }
 
@@ -690,8 +685,13 @@ body {
 }
 
 a:hover::before {
-    transform: skewX(45deg) translateX(200%);
-    transition-delay: 0s;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 0%; 
+    opacity: 0;
+    /* transform: skewX(45deg) translateX(100%);
+    transition-delay: 0s; */
 }
 
 .btn-bright:before {
