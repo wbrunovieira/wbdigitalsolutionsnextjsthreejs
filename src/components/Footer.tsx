@@ -38,6 +38,7 @@ const Footer: React.FC = () => {
                         </h2>
 
                         <div className="flex items-center gap-2 w-full lg:w-auto">
+
                             <EmailInput />
                             <ButtonStandard buttonText={currentMessages.send} />
 

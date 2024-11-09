@@ -6,11 +6,11 @@ const ButtonStandard: React.FC<ButtonStandardProps> = ({ buttonText }) => {
     return (
         <button
             type="submit"
-            className="flex justify-center gap-2 items-center shadow-xl text-md  text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-lg before:bg-custom-purple hover:text-secondary before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-1 overflow-hidden border-2 rounded-lg group whitespace-nowrap min-w-[180px]"
+            className="flex justify-center gap-2 items-center shadow-xl text-md  text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-lg before:bg-custom-purple hover:text-secondary before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-1 overflow-hidden border-2 rounded-lg group whitespace-nowrap min-w-[180px] h-12"
         >
             {buttonText}
             <svg
-                className="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-white ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45 whitespace-nowrap"
+                className="w-6 h-6 ml-2 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-white ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45 whitespace-nowrap"
                 viewBox="0 0 16 19"
                 xmlns="http://www.w3.org/2000/svg"
             >

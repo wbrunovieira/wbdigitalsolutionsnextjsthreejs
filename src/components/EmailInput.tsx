@@ -24,7 +24,7 @@ const EmailInput = () => {
     };
 
     return (
-        <div className="w-full flex flex-end flex-col">
+        <div className="w-full flex flex-end flex-col relative">
             <div className="flex items-center gap-2">
                 <input
                     type="email"
@@ -40,18 +40,18 @@ const EmailInput = () => {
                         isEmailValid
                             ? "focus:ring-yellowcustom"
                             : "focus:ring-red-500"
-                    } focus:border-transparent transition-colors duration-200 ease-in-out shadow-sm`}
+                    } focus:border-transparent transition-colors duration-200 ease-in-out shadow-sm h-12`}
                 />
                 
             </div>
 
-            <div className="min-h-[1.5rem]">
-                {!isEmailValid && (
-                    <p className="text-red-500 text-sm mt-1">
-                        {currentMessages.validEmail} 
-                    </p>
-                )}
-            </div>
+       
+            {!isEmailValid && (
+                <p className="absolute left-0 top-[calc(100%+4px)] text-red-500 text-sm">
+                    {currentMessages.validEmail}
+                </p>
+            )}
+             
         </div>
     );
 };
