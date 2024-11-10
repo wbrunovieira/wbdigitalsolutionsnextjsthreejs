@@ -3,7 +3,7 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const PeriodicTable = dynamic(() => import("@/components/PeriodicTable"), {
+const PathNavigator = dynamic(() => import("@/components/PathNavigator"), {
     ssr: false,
 });
 
@@ -19,7 +19,7 @@ const Websites: React.FC = () => {
                 className="absolute inset-0 flex justify-center items-center"
                 style={{ zIndex: 200 }}
             >
-                <PeriodicTable />
+                <PathNavigator />
             </div>
         </section>
     );

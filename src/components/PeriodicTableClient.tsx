@@ -427,11 +427,9 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
         from: {
             opacity: 0,
             transform: elementPosition
-                ? `translate(${
-                      elementPosition.x - window.innerWidth / 2 - 150
-                  }px, ${
-                      elementPosition.y - window.innerHeight / 2 - 100
-                  }px) scale(0.5)`
+                ? `translate(${elementPosition.x - window.innerWidth / 2 - 150
+                }px, ${elementPosition.y - window.innerHeight / 2 - 100
+                }px) scale(0.5)`
                 : "translate(-50%, -50%) scale(0.5)",
         },
         to: {
@@ -486,7 +484,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                     left: "50%",
                     top: "50%",
                     backgroundColor: "#1a1a1a",
-                    padding: "2rem",
+                    padding: "20rem",
                     borderRadius: "0.5rem",
                     maxWidth: "90vw",
                     maxHeight: "90vh",
@@ -569,8 +567,8 @@ const PeriodicTableClient = () => {
     };
 
     return (
-        <div className="w-full flex flex-col items-center justify-center ">
-            <div className="flex flex-col p-2 justify-center z-50 border rounded-md bg-black/50 w-3/4 max-w-md mx-auto">
+        <div className="bg-transparent w-full flex flex-col items-center justify-center ">
+            <div className="flex flex-col p-2 justify-center z-50 border bg-transparent rounded-md w-1/4 mx-auto">
                 <div className="flex bg-transparent items-center justify-center gap-2 mt-4 ">
                     <p className="text-white font-thin text-xs">
                         Escolha a disposição dos Cartões
@@ -586,11 +584,10 @@ const PeriodicTableClient = () => {
                             className={`
                                 mt-2 px-2 py-1 text-white border border-secondary rounded capitalize
                                 transition-colors hover:bg-primary transition duration-300 ease-in-out
-                                relative z-[1001]
-                                ${
-                                    layout === l
-                                        ? "bg-yellowcustom"
-                                        : "bg-transparent"
+                                 z-[1001]
+                                ${layout === l
+                                    ? "bg-yellowcustom"
+                                    : "bg-transparent"
                                 }
                             `}
                         >

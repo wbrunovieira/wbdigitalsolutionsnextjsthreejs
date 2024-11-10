@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     description: "3D Interactive Periodic Table visualization",
 };
 
-const Websites: React.FC = () => {
+const Systems: React.FC = () => {
     return (
-        <section className="relative flex items-center justify-center bg-[#350545] min-h-screen">
+        <section className="flex w-full items-center justify-center bg-[#350545] min-h-screen">
             <div
-                className="absolute inset-0 flex justify-center items-center"
+                className="flex  w-full justify-center items-center"
                 style={{ zIndex: 200 }}
             >
                 <PeriodicTable />
@@ -25,17 +25,10 @@ const Websites: React.FC = () => {
     );
 };
 
-export default Websites;
+export default Systems;
 
 
-// import Systems from '@/components/Systems';
-// import React from 'react';
 
-// const contact: React.FC = () => {
-//   return <Systems />;
-// };
-
-// export default contact;
 
 
 

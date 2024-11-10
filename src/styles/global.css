@@ -690,8 +690,7 @@ a:hover::before {
     transform: translateX(-50%);
     height: 0%; 
     opacity: 0;
-    /* transform: skewX(45deg) translateX(100%);
-    transition-delay: 0s; */
+ 
 }
 
 .btn-bright:before {

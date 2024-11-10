@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 
 import HeroSection from "./HeroSection";
 
@@ -10,7 +9,7 @@ import { AppleCardsCarouselDemo } from "./CardCarrosel";
 
 const Home: React.FC = () => {
     return (
-        <div className="min-h-screen bg-custom-gradient bg-[#350545]">
+        <div className="min-h-screen bg-custom-gradient bg-[#350545] px-8">
             <main className="flex flex-col">
                 <HeroSection />
                 <InfiniteScrollHash />
