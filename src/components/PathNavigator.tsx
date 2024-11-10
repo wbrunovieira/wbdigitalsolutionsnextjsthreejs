@@ -6,6 +6,7 @@ import { PerspectiveCamera, Html } from "@react-three/drei";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+
 const PathNavigator: React.FC = () => {
     const pathPoints = [
         new THREE.Vector3(0, 0, 0),
@@ -60,6 +61,8 @@ const PathNavigator: React.FC = () => {
                     <DigitalBillboard2 scrollProgress={scrollProgress} />
                     <DigitalBillboard3 scrollProgress={scrollProgress} />
                     <DigitalBillboard4 scrollProgress={scrollProgress} />
+
+                    <FloatingParticles count={50} />
                 </Canvas>
             </div>
         </div>
@@ -70,6 +73,53 @@ interface ScrollCameraProps {
     pathPoints: THREE.Vector3[];
     scrollProgress: number;
 }
+
+const FloatingParticles: React.FC<{ count?: number }> = ({ count = 100 }) => {
+
+    const mesh = useRef<THREE.Points<THREE.BufferGeometry, THREE.Material | THREE.Material[]> | null>(null);
+    const particlesPosition = new Float32Array(count * 3);
+
+
+    for (let i = 0; i < count; i++) {
+        particlesPosition[i * 3] = (Math.random() - 0.5) * 50; // X
+        particlesPosition[i * 3 + 1] = (Math.random() - 0.5) * 50; // Y
+        particlesPosition[i * 3 + 2] = (Math.random() - 0.5) * 150; // Z
+    }
+
+    useFrame(({ clock }) => {
+        const elapsedTime = clock.getElapsedTime();
+        if (mesh.current) {
+
+            for (let i = 0; i < count; i++) {
+                const baseX = particlesPosition[i * 3];
+                const baseY = particlesPosition[i * 3 + 1];
+                const baseZ = particlesPosition[i * 3 + 2];
+
+                mesh.current.geometry.attributes.position.setXYZ(
+                    i,
+                    baseX + Math.sin(elapsedTime + i) * 0.5,
+                    baseY + Math.sin(elapsedTime * 0.8 + i) * 0.5,
+                    baseZ + Math.sin(elapsedTime * 0.6 + i) * 0.5
+                );
+            }
+            mesh.current.geometry.attributes.position.needsUpdate = true;
+        }
+    });
+
+    return (
+        <points ref={mesh}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    array={particlesPosition}
+                    count={particlesPosition.length / 3}
+                    itemSize={3}
+                />
+            </bufferGeometry>
+            <pointsMaterial size={0.2} color="#ffffff" />
+        </points>
+    );
+};
 
 const ScrollCamera: React.FC<ScrollCameraProps> = ({ pathPoints, scrollProgress }) => {
     const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);

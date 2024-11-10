@@ -7,6 +7,7 @@
     --purplecustom: #792990;
     --purplecustondark: #350545;
 }
+
 body {
     @apply bg-custom-gradient;
 }
@@ -21,6 +22,7 @@ body {
 
 .underline-menu {
     position: relative;
+
     &:after {
         content: "";
         position: absolute;
@@ -44,32 +46,26 @@ body {
         top: 0;
         width: 40%;
         height: 100%;
-        background-image: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.3),
-            rgba(255, 255, 255, 0.1)
-        );
+        background-image: linear-gradient(to bottom,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.1));
         clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
         transform: translateX(-50%);
         transition: all 0.3s ease;
     }
 
-    
-    
+
+
 }
 
 .yellow-light {
     box-shadow: hsla(0, 0%, 100%, 0.15) 0 1px 1px,
         inset hsla(0, 0%, 0%, 0.5) 0 0 0 1px;
     background-color: hsla(0, 0%, 0%, 0.2);
-    background-image: -webkit-radial-gradient(
-        
-        hsla(38, 100%, 70%, 1) 0%,
-        hsla(38, 100%, 55%, 1) 15%,
-        hsla(38, 100%, 45%, 0.3) 28%,
-        hsla(38, 100%, 25%, 0) 70%
-        
-    );
+    background-image: -webkit-radial-gradient(hsla(38, 100%, 70%, 1) 0%,
+            hsla(38, 100%, 55%, 1) 15%,
+            hsla(38, 100%, 45%, 0.3) 28%,
+            hsla(38, 100%, 25%, 0) 70%);
 }
 
 .input {
@@ -86,13 +82,10 @@ body {
     box-shadow: hsla(0, 0%, 100%, 0.15) 0 1px 1px,
         inset hsla(0, 0%, 0%, 0.5) 0 0 0 1px;
     background-color: hsla(0, 0%, 0%, 0.2);
-    background-image: -webkit-radial-gradient(
-        hsla(38, 100%, 70%, 1) 0%,
-         hsla(38, 100%, 55%, 1) 15%,
-       hsla(38, 100%, 45%, 0.3) 28%,
-       hsla(38, 100%, 25%, 0) 70%
-          
-    );
+    background-image: -webkit-radial-gradient(hsla(38, 100%, 70%, 1) 0%,
+            hsla(38, 100%, 55%, 1) 15%,
+            hsla(38, 100%, 45%, 0.3) 28%,
+            hsla(38, 100%, 25%, 0) 70%);
 
     background-repeat: no-repeat;
     -webkit-transition: background-position 0.15s cubic-bezier(0.8, 0, 1, 1),
@@ -101,8 +94,7 @@ body {
 }
 
 .input:checked {
-    -webkit-transition: background-position 0.2s 0.15s
-            cubic-bezier(0, 0, 0.2, 1),
+    -webkit-transition: background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1),
         -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -122,17 +114,17 @@ body {
     background-position: 0 0;
 }
 
-.input:checked ~ .input,
-.input:checked ~ .input:active {
+.input:checked~.input,
+.input:checked~.input:active {
     background-position: 0 -24px;
 }
 
 .radio-input {
     display: flex;
 
-    justify-content: center; 
-    align-items: center; 
-   
+    justify-content: center;
+    align-items: center;
+
 }
 
 .radio-custom-label {
@@ -149,6 +141,7 @@ body {
     background: url("/svg/en.svg") no-repeat center center;
     margin-right: 16px;
 }
+
 .pt-BR {
     background: url("/svg/pt-BR.svg") no-repeat center center;
 }
@@ -165,7 +158,7 @@ body {
     background: url("/svg/es.svg") no-repeat center center;
 }
 
-.radio-custom:checked + .radio-custom-label {
+.radio-custom:checked+.radio-custom-label {
     width: 16px;
     height: 16px;
 }
@@ -189,7 +182,7 @@ body {
     z-index: 1;
     bottom: 100%;
     left: 50%;
-    margin-left: -60px; 
+    margin-left: -60px;
 
 
     opacity: 0;
@@ -217,18 +210,15 @@ body {
     color: var(--yellowcustom);
     font-weight: semibold;
     opacity: 0.7;
-    background-size: 25% 25%; 
-    background-repeat: no-repeat; 
-    background-position-x: 50%; 
+    background-size: 25% 25%;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
     background-position-y: 90%;
 
-    background-image: -webkit-radial-gradient(
-        hsla(38, 100%, 80%, 1) 0%,
-         hsla(38, 100%, 65%, 1) 15%,
-        hsla(38, 100%, 55%, 0.5) 28%,
-        hsla(38, 100%, 35%, 0) 70%
-           
-    );
+    background-image: -webkit-radial-gradient(hsla(38, 100%, 80%, 1) 0%,
+            hsla(38, 100%, 65%, 1) 15%,
+            hsla(38, 100%, 55%, 0.5) 28%,
+            hsla(38, 100%, 35%, 0) 70%);
 }
 
 .high-tech-minimalist-line-light {
@@ -308,12 +298,10 @@ body {
     width: 100%;
     top: -50%;
     left: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 0%,
-        #ffffff 75%,
-        #ffffff 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            #ffffff 75%,
+            #ffffff 100%);
     -webkit-animation: drop 7s 0s infinite;
     animation: drop 7s 0s infinite;
     -webkit-animation-fill-mode: forwards;
@@ -326,6 +314,7 @@ body {
     0% {
         top: -50%;
     }
+
     100% {
         top: 110%;
     }
@@ -639,6 +628,8 @@ body {
     margin: 20px;
 }
 
+
+
 .btn-bright a {
     display: flex;
     justify-content: center;
@@ -674,11 +665,9 @@ body {
     left: 0;
     width: 50%;
     height: 100%;
-    background: linear-gradient(
-        to left,
-        rgba(255, 255, 255, 0.149),
-        transparent
-    );
+    background: linear-gradient(to left,
+            rgba(255, 255, 255, 0.149),
+            transparent);
     transform: skewX(45deg);
     transition: 0.5s;
     transition-delay: 0.5s;
@@ -688,9 +677,9 @@ a:hover::before {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    height: 0%; 
+    height: 0%;
     opacity: 0;
- 
+
 }
 
 .btn-bright:before {
@@ -792,13 +781,11 @@ a:hover::before {
 
 .fade {
     position: absolute;
-    background: linear-gradient(
-        90deg,
-        var(--purplecustondark),
-        transparent 30%,
-        transparent 70%,
-        var(--purplecustondark)
-    );
+    background: linear-gradient(90deg,
+            var(--purplecustondark),
+            transparent 30%,
+            transparent 70%,
+            var(--purplecustondark));
     inset: 0;
     pointer-events: none;
 }
