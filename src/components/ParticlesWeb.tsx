@@ -4,7 +4,7 @@ import { useRef } from "react";
 import * as THREE from "three";
 
 const ParticlesWeb: React.FC = () => {
-    const particleIcons = ["/tech/google.svg", "/tech/instagram.webp"]; // URLs dos ícones
+    const particleIcons = ["/tech/google.svg", "/tech/instagram.webp"];
 
     const particles = useRef<THREE.Group | null>(null);
 

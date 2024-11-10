@@ -39,11 +39,22 @@ const PathNavigator: React.FC = () => {
     return (
         <div className="relative min-h-[400vh] w-full">
             s<div className={`w-full h-screen ${isFixed ? "fixed" : "relative"} top-0 left-0 pointer-events-none`}>
-                <Canvas>
+                <Canvas shadows>
                     <ScrollCamera pathPoints={pathPoints} scrollProgress={scrollProgress} />
-                    <ambientLight intensity={0.8} />
-                    <pointLight position={[10, 10, 10]} intensity={1.5} />
-                    <Road />
+                    <ambientLight intensity={0.5} />
+                    <directionalLight
+                        intensity={1}
+                        position={[5, 10, 5]}
+                        castShadow
+                        shadow-mapSize-width={1024}
+                        shadow-mapSize-height={1024}
+                        shadow-camera-far={50}
+                        shadow-camera-left={-10}
+                        shadow-camera-right={10}
+                        shadow-camera-top={10}
+                        shadow-camera-bottom={-10}
+                    />
+                    <Road scrollProgress={scrollProgress} />
                     <Billboard scrollProgress={scrollProgress} />
                     <DigitalBillboard scrollProgress={scrollProgress} />
                     <DigitalBillboard2 scrollProgress={scrollProgress} />
@@ -73,39 +84,51 @@ const ScrollCamera: React.FC<ScrollCameraProps> = ({ pathPoints, scrollProgress 
 
         if (currentPoint && nextPoint) {
             const positionWithDistance = new THREE.Vector3().lerpVectors(currentPoint, nextPoint, index % 1);
+            positionWithDistance.y += 15;
             positionWithDistance.z += 26;
-            cameraRef.current.position.copy(positionWithDistance);
-            cameraRef.current.lookAt(0, 0, 0);
+
+            const targetPosition = new THREE.Vector3(0, -1, 0);
+            cameraRef.current.lookAt(targetPosition);
         }
     });
 
-    return <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 5, 20]} fov={50} />;
+    return <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 10, 30]} fov={50} />;
 };
 
-const Road: React.FC = () => {
+const Road: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const texture = useLoader(THREE.TextureLoader, "/textures/road.png");
 
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(2, 7);
+    texture.repeat.set(3, 7);
     texture.minFilter = THREE.LinearFilter;
     texture.magFilter = THREE.LinearFilter;
     texture.generateMipmaps = false;
 
+
+    const positionY = THREE.MathUtils.lerp(-0.5, -1.5, scrollProgress * 18.6);
+    const positionZ = THREE.MathUtils.lerp(-7, -20, scrollProgress * 4.5);
+
     return (
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, -7]}>
-            <planeGeometry args={[20, 100]} />
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, positionY, positionZ]} receiveShadow>
+            <planeGeometry args={[60, 100]} />
             <meshStandardMaterial map={texture} />
         </mesh>
     );
 };
+
+
 
 const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const { scene } = useLoader(GLTFLoader, "/models/BillBoard.glb");
 
 
     const billboardRotationY = THREE.MathUtils.lerp(Math.PI * 2, 0, scrollProgress * 0.5);
+
+
+    const scale = THREE.MathUtils.lerp(1, 1.5, scrollProgress * 4);
+
     return (
-        <group position={[0, -0.15, -8]} rotation={[0, billboardRotationY, 0]}>
+        <group position={[0, 1, -20]} rotation={[0, billboardRotationY, 0]} scale={[scale, scale, scale]} castShadow>
             <group scale={3.8}>
                 <primitive object={scene} />
             </group>
@@ -113,7 +136,7 @@ const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => 
                 position={[0.50, 2.92, 0.20]}
                 transform
                 rotation={[0, Math.PI / 2, 0]}
-                scale={1}
+                scale={scale}
                 zIndexRange={[0, 1]}
                 style={{
                     backfaceVisibility: "hidden",
@@ -138,6 +161,8 @@ const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => 
     );
 };
 
+
+
 const DigitalBillboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const messages = [
         "Welcome to Our Virtual Tour!",
@@ -146,9 +171,13 @@ const DigitalBillboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress
     ];
 
     const messageIndex = Math.floor(scrollProgress * messages.length) % messages.length;
-
+    const rotationY = THREE.MathUtils.lerp(Math.PI * 2, 0, scrollProgress * 0.05);
     return (
-        <group position={[-5, 0, 5]}>
+        <group position={[-5, 0, 5]} rotation={[0, rotationY, 0]} castShadow receiveShadow>
+            <mesh position={[0, 1.5, 0.01]} receiveShadow castShadow>
+                <planeGeometry args={[6, 2]} />
+                <meshStandardMaterial color="#350545" />
+            </mesh>
             <Html
                 position={[0, 1.5, 0.01]}
                 transform
@@ -184,13 +213,18 @@ const DigitalBillboard2: React.FC<{ scrollProgress: number }> = ({ scrollProgres
     const messages = [
         "Welcome to Our Virtual Tour!",
         "Enjoy 50% Off on All Items!",
-
     ];
 
     const messageIndex = Math.floor(scrollProgress * messages.length) % messages.length;
 
+
+    const rotationY = THREE.MathUtils.lerp(Math.PI * 2, 0, scrollProgress * 0.2);
+
+
+    const positionZ = THREE.MathUtils.lerp(-5, 0, scrollProgress * 6);
+
     return (
-        <group position={[10, 0, -5]}>
+        <group position={[10, 0, positionZ]} rotation={[0, rotationY, 0]} castShadow receiveShadow>
             <Html
                 position={[0, 1.5, 0.01]}
                 transform
@@ -222,17 +256,20 @@ const DigitalBillboard2: React.FC<{ scrollProgress: number }> = ({ scrollProgres
     );
 };
 
+
 const DigitalBillboard3: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const messages = [
         "Welcome to Our Virtual Tour!",
         "Enjoy 50% Off on All Items!",
-
     ];
 
     const messageIndex = Math.floor(scrollProgress * messages.length) % messages.length;
 
+
+    const positionZ = THREE.MathUtils.lerp(-5, 0, scrollProgress * 8);
+
     return (
-        <group position={[10, 5, -5]}>
+        <group position={[10, 5, positionZ]} castShadow receiveShadow>
             <Html
                 position={[0, 1.5, 0.01]}
                 transform
@@ -268,15 +305,19 @@ const DigitalBillboard4: React.FC<{ scrollProgress: number }> = ({ scrollProgres
     const messages = [
         "Welcome to Our Virtual Tour!",
         "Enjoy 50% Off on All Items!",
-
     ];
 
-    const messageIndex = Math.floor(scrollProgress * messages.length) % messages.length;
+    const messageIndex = Math.floor(scrollProgress * messages.length * 1.5) % messages.length;
+
+
+    const rotationY = THREE.MathUtils.lerp(0, Math.PI * 2, scrollProgress * 0.08);
+    const positionZ = THREE.MathUtils.lerp(2, -10, scrollProgress * 5.5);
+    const positionX = THREE.MathUtils.lerp(-20, -30, scrollProgress * 2.5);
 
     return (
-        <group position={[-20, 3, 2]}>
+        <group position={[positionX, 3, positionZ]} rotation={[0, rotationY, 0]} castShadow receiveShadow>
             <Html
-                position={[10, 1.5, 0.01]}
+                position={[2, 1.5, 0.01]}
                 transform
                 distanceFactor={0}
                 style={{
@@ -305,6 +346,8 @@ const DigitalBillboard4: React.FC<{ scrollProgress: number }> = ({ scrollProgres
         </group>
     );
 };
+
+
 
 
 
