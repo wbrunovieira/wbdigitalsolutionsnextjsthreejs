@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const Websites: React.FC = () => {
     return (
-        <section className="relative flex items-center justify-center bg-[#350545] min-h-screen">
+        <section className="relative flex items-center justify-center bg-modern-gradient min-h-screen">
             <div
                 className="absolute inset-0 flex justify-center items-center"
                 style={{ zIndex: 200 }}
