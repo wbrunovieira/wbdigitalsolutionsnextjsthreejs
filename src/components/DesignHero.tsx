@@ -1,6 +1,6 @@
-// components/DesignHeader.tsx
+
 import React, { useRef } from 'react';
-import Link from 'next/link';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
@@ -85,7 +85,7 @@ export const DesignHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) =
 
     return (
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
-            <h1 className="text-6xl font-bold">
+            <h1 className="text-6xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
                     {config.name.split("").map((letter, index) => (
                         <span key={index} className="inline-block opacity-0">

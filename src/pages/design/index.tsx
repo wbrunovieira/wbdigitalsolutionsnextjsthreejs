@@ -1,4 +1,5 @@
 
+import AnimatedBackgroundDesingDComponent from '@/components/AnimatedBackgroundDesign';
 import { DesignHeader } from '@/components/DesignHero';
 import React from 'react';
 
@@ -13,6 +14,7 @@ const design: React.FC = () => {
 
     <div>
       <DesignHeader scrollIndicatorHidden={false} />
+      <AnimatedBackgroundDesingDComponent />
     </div>
 
 
