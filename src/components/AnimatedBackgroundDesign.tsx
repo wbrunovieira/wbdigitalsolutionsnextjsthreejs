@@ -54,22 +54,33 @@ const AnimatedInstancedMesh: React.FC = () => {
 
     function generateNonOverlappingPositions(numInstances: number, minDistance: number) {
         const positions: { position: Vector3; velocity: Vector3; attraction: number; vlimit: number }[] = [];
+        const maxAttempts = 500; // Limite de tentativas para evitar loops infinitos
 
         for (let i = 0; i < numInstances; i++) {
             let position: Vector3;
             let isOverlapping: boolean;
+            let attempt = 0;
 
             do {
+                // Tentamos colocar os objetos dentro de uma faixa maior, usando incremento para distribuir melhor
                 position = new Vector3(
-                    Math.random() * 30 - 15,
-                    Math.random() * 20 - 10,
-                    Math.random() * 10 - 5
+                    Math.random() * 60 - 30, // Alcance horizontal maior
+                    Math.random() * 40 - 20, // Alcance vertical maior
+                    Math.random() * 20 - 10  // Alcance de profundidade maior
                 );
 
-
+                // Verifica se a posição respeita a distância mínima para todos os pontos existentes
                 isOverlapping = positions.some(existingPos => position.distanceTo(existingPos.position) < minDistance);
-            } while (isOverlapping);
 
+                if (isOverlapping) {
+                    // Caso esteja sobreposto, aumenta levemente a posição em uma direção para tentar evitar sobreposição
+                    position.add(new Vector3(Math.random() * 0.5, Math.random() * 0.5, Math.random() * 0.5));
+                }
+
+                attempt++;
+            } while (isOverlapping && attempt < maxAttempts);
+
+            // Após determinar a posição, adicionamos a instância na lista final
             positions.push({
                 position,
                 velocity: new Vector3(Math.random() * 0.2 - 0.1, Math.random() * 0.2 - 0.1, Math.random() * 0.2 - 0.1),
@@ -77,8 +88,11 @@ const AnimatedInstancedMesh: React.FC = () => {
                 vlimit: 0.1,
             });
         }
+
         return positions;
     }
+
+
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
@@ -126,21 +140,44 @@ const AnimatedInstancedMesh: React.FC = () => {
                 const instance = instances[i];
                 const { position, velocity, attraction, vlimit } = instance;
 
+
                 const direction = new Vector3().copy(target.current).sub(position).normalize().multiplyScalar(attraction);
                 velocity.add(direction).clampScalar(-vlimit, vlimit);
+
+
+                for (let j = 0; j < NUM_INSTANCES; j++) {
+                    if (i !== j) {
+                        const otherInstance = instances[j];
+                        const distance = position.distanceTo(otherInstance.position);
+
+                        if (distance < MIN_DISTANCE) {
+
+                            const repulsion = new Vector3().copy(position).sub(otherInstance.position).normalize().multiplyScalar(0.05);
+                            velocity.add(repulsion);
+                        }
+                    }
+                }
+
+
                 position.add(velocity);
 
-
                 dummy.position.copy(position);
+                dummy.lookAt(new Vector3().copy(position).add(velocity));
+
+
                 dummy.rotation.x += 0.01;
                 dummy.rotation.y += 0.01;
                 dummy.updateMatrix();
 
                 meshRef.current.setMatrixAt(i, dummy.matrix);
             }
+
+
             meshRef.current.instanceMatrix.needsUpdate = true;
         }
     });
+
+
 
     return (
         <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} castShadow receiveShadow />
