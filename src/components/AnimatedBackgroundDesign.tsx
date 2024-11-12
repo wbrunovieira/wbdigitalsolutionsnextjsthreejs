@@ -1,7 +1,8 @@
 import React, { useMemo, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial } from 'three';
-import { useGLTF, useTexture, } from '@react-three/drei';
+import { useAnimations, useGLTF, useTexture, } from '@react-three/drei';
+import { animate } from 'framer-motion';
 
 const NUM_INSTANCES = 800;
 const MIN_DISTANCE = 4;
@@ -192,15 +193,11 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
 };
 
 
-
-
 const FloatingModel: React.FC = () => {
     const modelRef = useRef<Group>(null);
-    const { scene, nodes } = useGLTF("/models/macbook-pro.glb");
+    const { scene } = useGLTF("/models/macbook-pro.glb");
     const screenTexture = useTexture("/models/screen.png");
     screenTexture.flipY = false;
-
-
     scene.traverse((node) => {
         if (node instanceof Mesh) {
             if (node.name === "Screen") {
@@ -220,6 +217,26 @@ const FloatingModel: React.FC = () => {
     });
 
 
+    useEffect(() => {
+        const frameNode = scene.children.find(node => node.name === "Frame");
+
+        if (frameNode) {
+
+            frameNode.rotation.x = Math.PI / 2;
+
+
+            animate(frameNode.rotation.x, 0, {
+                type: 'spring',
+                stiffness: 80,
+                damping: 20,
+                onUpdate: (value) => {
+                    frameNode.rotation.x = value;
+                },
+            });
+        }
+    }, [scene]);
+
+
     useFrame(({ clock }) => {
         if (modelRef.current) {
             modelRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.5 - 1;
@@ -231,7 +248,7 @@ const FloatingModel: React.FC = () => {
         <primitive
             ref={modelRef}
             object={scene}
-            scale={30}
+            scale={20}
             position={[65, -1, 0]}
         />
     );
