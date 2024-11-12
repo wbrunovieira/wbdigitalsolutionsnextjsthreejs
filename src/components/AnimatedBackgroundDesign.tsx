@@ -1,15 +1,16 @@
 import React, { useMemo, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshStandardMaterial, InstancedBufferAttribute, PointLight } from 'three';
+import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhongMaterial, InstancedBufferAttribute, MeshPhysicalMaterial } from 'three';
 
 const NUM_INSTANCES = 800;
-
 const MIN_DISTANCE = 4;
-const INTERACTION_DISTANCE = 20;
-const INTENSITY_SCALE = 500;
-const MIN_INTENSITY_CLOSE = 50;
+const INTERACTION_DISTANCE = 10;
+const INTENSITY_SCALE = 3000;
+const MIN_INTENSITY_CLOSE = 1000;
 
 const AnimatedBackgroundDesignComponent: React.FC = () => {
+    const lightRef = useRef<RectAreaLight>(null);
+
     return (
         <div className="w-full h-96 bg-transparent">
             <Canvas
@@ -21,35 +22,36 @@ const AnimatedBackgroundDesignComponent: React.FC = () => {
                     position: new Vector3(0, 0, 100),
                 }}
             >
+                <primitive
+                    ref={lightRef}
+                    object={new RectAreaLight(0xffffff, 10, 15, 15)}
+                    position={[5, 5, 5]}
+                    intensity={5}
+                />
                 <ambientLight intensity={0.2} color={0xffffff} />
                 <directionalLight
                     position={[10, 10, 10]}
                     intensity={0.3}
-                    castShadow
-                    shadow-mapSize-width={1024}
-                    shadow-mapSize-height={1024}
                 />
-                {/* <pointLight position={[-30, 10, 20]} intensity={0.7} color={0xffa500} />
-                <pointLight position={[30, -10, 20]} intensity={0.7} color={0x00aaff} /> */}
-
-                <AnimatedInstancedMesh />
+                <AnimatedInstancedMesh lightRef={lightRef} />
             </Canvas>
         </div>
     );
 };
 
-const AnimatedInstancedMesh: React.FC = () => {
+interface AnimatedInstancedMeshProps {
+    lightRef: React.RefObject<RectAreaLight>;
+}
+
+const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef }) => {
     const geometry = useMemo(() => new DodecahedronGeometry(1.2), []);
-    const material = useMemo(() => new MeshStandardMaterial({
+    const material = useMemo(() => new MeshPhysicalMaterial({
         vertexColors: true,
-        metalness: 0.5,
-        roughness: 0.5,
         transparent: true,
     }), []);
-    const dummy = useMemo(() => new Object3D(), []);
-    const meshRef = React.useRef<InstancedMesh>(null);
-    const lightRef = React.useRef<PointLight>(null);
 
+    const dummy = useMemo(() => new Object3D(), []);
+    const meshRef = useRef<InstancedMesh>(null);
     const target = useRef(new Vector3());
     const instances = useMemo(() => generateNonOverlappingPositions(NUM_INSTANCES, MIN_DISTANCE), []);
 
@@ -90,7 +92,6 @@ const AnimatedInstancedMesh: React.FC = () => {
             const y = -(event.clientY / window.innerHeight) * 2 + 1;
             target.current.set(x * 50, y * 30, 0);
 
-
             if (lightRef.current) {
                 lightRef.current.position.copy(target.current);
             }
@@ -98,7 +99,7 @@ const AnimatedInstancedMesh: React.FC = () => {
 
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+    }, [lightRef]);
 
     useEffect(() => {
         if (meshRef.current) {
@@ -139,7 +140,6 @@ const AnimatedInstancedMesh: React.FC = () => {
                 velocity.add(direction).clampScalar(-vlimit, vlimit);
                 position.add(velocity);
 
-
                 for (let j = 0; j < NUM_INSTANCES; j++) {
                     if (i !== j) {
                         const otherInstance = instances[j];
@@ -152,7 +152,6 @@ const AnimatedInstancedMesh: React.FC = () => {
                     }
                 }
 
-
                 dummy.position.copy(position);
                 dummy.lookAt(new Vector3().copy(position).add(velocity));
                 dummy.rotation.x += 0.01;
@@ -161,37 +160,29 @@ const AnimatedInstancedMesh: React.FC = () => {
 
                 meshRef.current.setMatrixAt(i, dummy.matrix);
 
+                const lerp = (start: number, end: number, alpha: number): number => {
+                    return start * (1 - alpha) + end * alpha;
+                };
 
                 const distanceToMouse = position.distanceTo(target.current);
-                let intensity;
+                let targetIntensity;
 
                 if (distanceToMouse < MIN_DISTANCE) {
-
-                    intensity = Math.max(MIN_INTENSITY_CLOSE, INTENSITY_SCALE * (MIN_DISTANCE - distanceToMouse) / MIN_DISTANCE);
+                    targetIntensity = Math.max(MIN_INTENSITY_CLOSE, INTENSITY_SCALE * (MIN_DISTANCE - distanceToMouse) / MIN_DISTANCE);
                 } else if (distanceToMouse < INTERACTION_DISTANCE) {
-
-                    intensity = MIN_INTENSITY_CLOSE * (INTERACTION_DISTANCE - distanceToMouse) / INTERACTION_DISTANCE;
+                    targetIntensity = MIN_INTENSITY_CLOSE * (INTERACTION_DISTANCE - distanceToMouse) / INTERACTION_DISTANCE;
                 } else {
-
-                    intensity = 0;
+                    targetIntensity = 0;
                 }
 
-                lightRef.current.intensity = intensity;
-                console.log('distanceToMouse:', distanceToMouse, 'intensity:', lightRef.current.intensity);
+                lightRef.current.intensity = lerp(lightRef.current.intensity, targetIntensity, 0.1);
             }
 
             meshRef.current.instanceMatrix.needsUpdate = true;
         }
     });
 
-
-    return (
-        <>
-            <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} castShadow receiveShadow />
-            <pointLight ref={lightRef} intensity={0} distance={100} decay={2} color={0xffcc88} />
-
-        </>
-    );
+    return <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} />;
 };
 
 export default AnimatedBackgroundDesignComponent;
