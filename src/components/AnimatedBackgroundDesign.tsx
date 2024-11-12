@@ -249,7 +249,7 @@ const FloatingModel: React.FC = () => {
             ref={modelRef}
             object={scene}
             scale={20}
-            position={[65, -1, 0]}
+            position={[45, -1, 0]}
         />
     );
 };
