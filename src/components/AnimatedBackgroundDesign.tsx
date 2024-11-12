@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhongMaterial, InstancedBufferAttribute, MeshPhysicalMaterial } from 'three';
+import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial } from 'three';
+import { useGLTF, } from '@react-three/drei';
 
 const NUM_INSTANCES = 800;
 const MIN_DISTANCE = 4;
@@ -22,6 +23,7 @@ const AnimatedBackgroundDesignComponent: React.FC = () => {
                     position: new Vector3(0, 0, 100),
                 }}
             >
+
                 <primitive
                     ref={lightRef}
                     object={new RectAreaLight(0xffffff, 10, 15, 15)}
@@ -33,7 +35,11 @@ const AnimatedBackgroundDesignComponent: React.FC = () => {
                     position={[10, 10, 10]}
                     intensity={0.3}
                 />
+
+
                 <AnimatedInstancedMesh lightRef={lightRef} />
+
+                <FloatingModel />
             </Canvas>
         </div>
     );
@@ -184,5 +190,43 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
 
     return <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} />;
 };
+
+
+
+
+const FloatingModel: React.FC = () => {
+    const modelRef = useRef<Group>(null);
+    const { scene } = useGLTF("/models/macbook-pro.glb");
+    scene.traverse((node) => {
+        if (node instanceof Mesh) {
+            node.material = new MeshStandardMaterial({
+                color: new Color(0xA9A9A9),
+                metalness: 0.5,
+                roughness: 0.5,
+            });
+        }
+    });
+
+
+    useFrame(({ clock }) => {
+        if (modelRef.current) {
+
+            modelRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.5 - 1;
+            modelRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.5) * 0.05;
+        }
+    });
+
+    return (
+        <primitive
+            ref={modelRef}
+            object={scene}
+            scale={20}
+            position={[65, -1, 0]}
+        />
+    );
+};
+
+
+
 
 export default AnimatedBackgroundDesignComponent;
