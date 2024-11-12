@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial } from 'three';
-import { useGLTF, } from '@react-three/drei';
+import { useGLTF, useTexture, } from '@react-three/drei';
 
 const NUM_INSTANCES = 800;
 const MIN_DISTANCE = 4;
@@ -196,21 +196,32 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
 
 const FloatingModel: React.FC = () => {
     const modelRef = useRef<Group>(null);
-    const { scene } = useGLTF("/models/macbook-pro.glb");
+    const { scene, nodes } = useGLTF("/models/macbook-pro.glb");
+    const screenTexture = useTexture("/models/screen.png");
+    screenTexture.flipY = false;
+
+
     scene.traverse((node) => {
         if (node instanceof Mesh) {
-            node.material = new MeshStandardMaterial({
-                color: new Color(0xA9A9A9),
-                metalness: 0.5,
-                roughness: 0.5,
-            });
+            if (node.name === "Screen") {
+                node.material = new MeshStandardMaterial({
+                    map: screenTexture,
+                    metalness: 0.2,
+                    roughness: 0.9,
+                });
+            } else {
+                node.material = new MeshStandardMaterial({
+                    color: new Color(0xA9A9A9),
+                    metalness: 0.3,
+                    roughness: 0.5,
+                });
+            }
         }
     });
 
 
     useFrame(({ clock }) => {
         if (modelRef.current) {
-
             modelRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.5 - 1;
             modelRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.5) * 0.05;
         }
@@ -220,7 +231,7 @@ const FloatingModel: React.FC = () => {
         <primitive
             ref={modelRef}
             object={scene}
-            scale={20}
+            scale={30}
             position={[65, -1, 0]}
         />
     );
