@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const ThreeDScene: React.FC = () => {
     const [wWidth, setWWidth] = useState(0);
@@ -13,6 +14,7 @@ const ThreeDScene: React.FC = () => {
 
     const initialCubeRef = useRef<THREE.Mesh>(null);
     const gridCubesRef = useRef<THREE.Mesh[]>([]);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const conf = {
         objectWidth: 12,
@@ -20,8 +22,9 @@ const ThreeDScene: React.FC = () => {
         color: 0x792990,
     };
 
+    const { contextSafe } = useGSAP({ scope: containerRef });
 
-    const startAnim = () => {
+    const startAnim = contextSafe(() => {
         if (gridCubesRef.current.length === 0) return;
 
         gridCubesRef.current.forEach((mesh) => {
@@ -36,8 +39,7 @@ const ThreeDScene: React.FC = () => {
             const ry = Math.random() * 2 * Math.PI;
             const rz = Math.random() * 2 * Math.PI;
 
-
-            gsap.to(mesh.rotation, { x: rx, y: ry, z: rz, duration: 2, delay });
+            gsap.to(mesh.rotation, { x: rx, y: ry, z: rz, duration: 1, delay });
             gsap.to(mesh.position, { z: 80, duration: 2, delay: delay + 0.5, ease: 'power1.out' });
             gsap.to(mesh.material, {
                 opacity: 0,
@@ -54,8 +56,7 @@ const ThreeDScene: React.FC = () => {
                 },
             });
         });
-    };
-
+    });
 
     const generateCubes = () => {
         const cubes = [];
@@ -84,20 +85,16 @@ const ThreeDScene: React.FC = () => {
         return cubes;
     };
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setWWidth(window.innerWidth);
-            setWHeight(window.innerHeight);
-        }
-    }, []);
-
-    const handleStartEffect = () => {
+    const handleStartEffect = contextSafe(() => {
         setEffectStarted(true);
         setTextVisible(true);
 
-
         if (initialCubeRef.current) {
-            gsap.to(initialCubeRef.current.rotation, { x: 0, y: 0, z: 0, duration: 0.5 });
+            // Define o cubo para olhar diretamente para a câmera
+            const cameraPosition = new THREE.Vector3(0, 0, 75); // posição da câmera
+            initialCubeRef.current.lookAt(cameraPosition);
+
+            // Expande o cubo após estar voltado para a câmera
             gsap.to(initialCubeRef.current.scale, {
                 x: wWidth / 10,
                 y: wHeight / 10,
@@ -110,13 +107,18 @@ const ThreeDScene: React.FC = () => {
                 },
             });
         }
-    };
+    });
+
+    useGSAP(() => {
+        if (typeof window !== 'undefined') {
+            setWWidth(window.innerWidth);
+            setWHeight(window.innerHeight);
+        }
+    });
 
     return (
-        <div className="relative w-full h-screen bg-custom-purple">
+        <div ref={containerRef} className="relative w-full h-screen bg-custom-purple">
             <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-center z-10">
-
-
                 <div className={`absolute top-0 left-0 w-full h-full ${textVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
                     <div className="inner text-white">
                         <h3 className="masthead-brand text-white text-3xl mb-4">Reveal #1</h3>
@@ -126,7 +128,6 @@ const ThreeDScene: React.FC = () => {
                         </main>
                     </div>
                 </div>
-
 
                 {!effectStarted && (
                     <button
@@ -138,7 +139,6 @@ const ThreeDScene: React.FC = () => {
                     </button>
                 )}
 
-
                 <Canvas
                     style={{ width: '100%', height: '100%' }}
                     camera={{ position: [0, 0, 75], fov: 75 }}
@@ -146,7 +146,6 @@ const ThreeDScene: React.FC = () => {
                     <ambientLight intensity={0.5} />
                     <pointLight position={[10, 10, 10]} intensity={2} />
                     <directionalLight position={[0, 10, 0]} intensity={1} />
-
 
                     {!expandedCube ? (
                         <mesh ref={initialCubeRef}>
