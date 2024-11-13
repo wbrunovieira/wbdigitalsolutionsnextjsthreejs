@@ -12,7 +12,7 @@ const digitalmarketing: React.FC = () => {
   return (
 
 
-    <div className="flex justify-center items-center h-screen bg-primary">
+    <div className="flex justify-center items-center h-screen bg-custom-purple">
       <ThreeDRevealPage />
     </div>
 

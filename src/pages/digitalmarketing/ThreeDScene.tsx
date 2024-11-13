@@ -5,26 +5,27 @@ import * as THREE from 'three';
 import { gsap } from 'gsap';
 
 const ThreeDScene: React.FC = () => {
-    const [loaded, setLoaded] = useState(false);
     const [wWidth, setWWidth] = useState(0);
     const [wHeight, setWHeight] = useState(0);
-    const [textVisible, setTextVisible] = useState(false);
+    const [textVisible, setTextVisible] = useState(false); // Initially hidden
+    const [effectStarted, setEffectStarted] = useState(false);
 
-    const objectsRef = useRef<THREE.Mesh[]>([]);
-
+    const initialCubeRef = useRef<THREE.Mesh>(null);
+    const gridCubesRef = useRef<THREE.Mesh[]>([]); // Separate ref for the grid of cubes
 
     const conf = {
         objectWidth: 12,
         objectThickness: 3,
-        color: 0xffb947,
+        color: 0x792990,
     };
 
-
+    // Function to generate and animate the grid of cubes
     const startAnim = () => {
-        if (objectsRef.current.length === 0) return;
+        if (gridCubesRef.current.length === 0) return;
 
-        console.log('inicia anim')
-        objectsRef.current.forEach((mesh) => {
+        console.log('Starting animation...');
+
+        gridCubesRef.current.forEach((mesh) => {
             mesh.rotation.set(0, 0, 0);
             if (mesh.material instanceof THREE.MeshLambertMaterial || mesh.material instanceof THREE.MeshStandardMaterial) {
                 mesh.material.opacity = 1;
@@ -36,6 +37,7 @@ const ThreeDScene: React.FC = () => {
             const ry = Math.random() * 2 * Math.PI;
             const rz = Math.random() * 2 * Math.PI;
 
+            // Animate each cube with a delay
             gsap.to(mesh.rotation, { x: rx, y: ry, z: rz, duration: 2, delay });
             gsap.to(mesh.position, { z: 80, duration: 2, delay: delay + 0.5, ease: 'power1.out' });
             gsap.to(mesh.material, {
@@ -52,17 +54,12 @@ const ThreeDScene: React.FC = () => {
                     }
                 },
             });
-
         });
-        console.log('finaliza anim')
 
-
-        setTimeout(() => {
-            setTextVisible(true);
-        }, 4500);
+        console.log('Animation complete');
     };
 
-
+    // Function to generate the grid of cubes
     const generateCubes = () => {
         const cubes = [];
         const nx = Math.round(wWidth / conf.objectWidth) + 1;
@@ -83,7 +80,7 @@ const ThreeDScene: React.FC = () => {
                 mesh.position.set(x, y, 0);
 
                 cubes.push(mesh);
-                objectsRef.current.push(mesh);
+                gridCubesRef.current.push(mesh);
             }
         }
 
@@ -97,24 +94,21 @@ const ThreeDScene: React.FC = () => {
         }
     }, []);
 
-    useEffect(() => {
-        if (wWidth && wHeight) {
-            generateCubes();
-            startAnim();
-        }
-    }, [wWidth, wHeight]);
+    const handleStartEffect = () => {
+        setEffectStarted(true);
+        setTextVisible(true); // Make text visible as the animation starts
+        generateCubes(); // Generate the grid of cubes when the effect starts
+        startAnim(); // Trigger the animation when the effect starts
+    };
 
     return (
-        <div className={`relative w-full h-screen ${loaded ? 'bg-custom-purple' : 'bg-custom-purple'}`}>
+        <div className="relative w-full h-screen bg-custom-purple">
+            <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-center z-10">
 
-            <div className="absolute bg-custom-purple top-0 left-0 w-full h-full flex flex-col justify-center items-center text-center z-10">
-
-                <div className={`absolute bg-custom-purple top-0 left-0 w-full h-full ${textVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
+                {/* Text element placed behind the cubes and gradually revealed as cubes move */}
+                <div className={`absolute top-0 left-0 w-full h-full ${textVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}>
                     <div className="inner text-white">
                         <h3 className="masthead-brand text-white text-3xl mb-4">Reveal #1</h3>
-                        <nav className="nav nav-masthead justify-center">
-
-                        </nav>
                         <main role="main" className="inner cover text-white">
                             <h1 className="cover-heading text-4xl font-bold mb-2">Digital Marketing</h1>
                             <p className="lead mb-4">trafego pago e social media</p>
@@ -122,52 +116,42 @@ const ThreeDScene: React.FC = () => {
                     </div>
                 </div>
 
-
-                <div className="absolute w-full h-full flex justify-center items-center">
-                    <Canvas
-
-                        style={{ width: '100%', height: '100%' }}
-                        camera={{ position: [0, 0, 75], fov: 75 }}
+                {/* Start button */}
+                {!effectStarted && (
+                    <button
+                        onClick={handleStartEffect}
+                        className="absolute top-4 left-1/2 bg-primary text-white py-2 px-6 rounded-full z-20"
+                        style={{ pointerEvents: 'auto' }}
                     >
-                        {objectsRef.current.map((mesh, index) => (
-                            <primitive key={index} object={mesh} />
-                        ))}
-                        <ambientLight intensity={0.5} />
-                        <pointLight position={[10, 10, 10]} intensity={2} />
-                        <directionalLight position={[0, 10, 0]} intensity={1} />
+                        Iniciar Efeito
+                    </button>
+                )}
 
-                        <mesh>
-                            <boxGeometry args={[10, 10, 10]} />
-                            <meshStandardMaterial color={conf.color} />
-                        </mesh>
-                    </Canvas>
-                </div>
-
-
-                <button
-                    onClick={startAnim}
-                    className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-primary text-white py-2 px-6 rounded-full"
+                {/* Single Canvas handling both initial cube and animated grid */}
+                <Canvas
+                    style={{ width: '100%', height: '100%' }}
+                    camera={{ position: [0, 0, 75], fov: 75 }}
                 >
-                    Iniciar Efeito
-                </button>
+                    <ambientLight intensity={0.5} />
+                    <pointLight position={[10, 10, 10]} intensity={2} />
+                    <directionalLight position={[0, 10, 0]} intensity={1} />
+
+                    {/* Conditionally render either the initial cube or the animated grid */}
+                    {!effectStarted
+                        ? (
+                            <mesh ref={initialCubeRef}>
+                                <boxGeometry args={[10, 10, 10]} />
+                                <meshStandardMaterial color={conf.color} />
+                            </mesh>
+                        ) : (
+                            gridCubesRef.current.map((mesh, index) => (
+                                <primitive key={index} object={mesh} />
+                            ))
+                        )}
+
+                    <OrbitControls enableZoom={false} />
+                </Canvas>
             </div>
-
-
-            <Canvas
-                style={{ width: '100%', height: '100%' }}
-                camera={{ position: [0, 0, 75], fov: 75 }}
-            >
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={2} />
-                <directionalLight position={[0, 10, 0]} intensity={1} />
-
-                {generateCubes().map((mesh, index) => (
-                    <primitive key={index} object={mesh} />
-                ))}
-
-
-                <OrbitControls enableZoom={false} />
-            </Canvas>
         </div>
     );
 };
