@@ -27,7 +27,7 @@
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
-        "src/components/ParticlesContainer.js",
+        "src/components/ParticlesContainer.tsx",
         "src/types/styles.d.ts"
     ],
     "exclude": ["node_modules"]

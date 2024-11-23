@@ -29,9 +29,15 @@ importers:
       '@tabler/icons-react':
         specifier: ^3.22.0
         version: 3.22.0(react@18.3.1)
+      '@tsparticles/engine':
+        specifier: ^3.6.0
+        version: 3.6.0
       '@tsparticles/react':
         specifier: ^3.0.0
         version: 3.0.0(@tsparticles/engine@3.6.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tsparticles/slim':
+        specifier: ^3.6.0
+        version: 3.6.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
