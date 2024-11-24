@@ -18,6 +18,9 @@ const config = {
             },
         },
         extend: {
+                  boxShadow: {
+        smallEmboss: 'inset -1.25px -1.25px 1.25px rgba(255,255,255,0.2), inset 2.5px 2.5px 2.5px rgba(0,0,0,0.4)',
+      },
             colors: {
                 "custom-purple": "#792990",
 

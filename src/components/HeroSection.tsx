@@ -7,6 +7,7 @@ import { styles } from "../styles/styles.js";
 import ComputersCanvas from "./canvas/ComputersCanvas";
 
 import { Button } from "./Button";
+import SpinnerLoader from "./Spinner";
 
 const HeroSection: React.FC = () => {
     const currentMessages = useTranslations();
@@ -29,6 +30,7 @@ const HeroSection: React.FC = () => {
                         <p className="text-[#792990] opacity-25">
                             WB Digital Solutions
                         </p>
+                        <SpinnerLoader />
                     </h1>
 
                     <p
