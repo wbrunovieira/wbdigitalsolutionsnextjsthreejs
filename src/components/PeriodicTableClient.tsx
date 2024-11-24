@@ -6,7 +6,7 @@ import { OrbitControls, Html, PerspectiveCamera } from "@react-three/drei";
 import { useSpring, animated as a3 } from "@react-spring/three";
 import { useSpring as useWebSpring, animated } from "@react-spring/web";
 import * as THREE from "three";
-import ParticlesWeb from "./ParticlesWeb";
+
 
 type Direction = "up" | "down" | "left" | "right" | "forward" | "backward";
 
