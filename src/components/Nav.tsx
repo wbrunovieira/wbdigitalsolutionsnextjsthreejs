@@ -14,13 +14,16 @@ import Image from "next/image";
 import logo from "/public/svg/logo-white.svg";
 import ParticlesContainer from "./ParticlesContainer";
 import SideSocial from "./SideSocial";
+import HamburgerMenu from "./MenuAnimatedBuguer";
+import MobileMenu from "./MobileMenu";
 
 const Nav: React.FC = () => {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
-
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const router = useRouter();
     const pathname = router.pathname;
     const { language, setLanguage } = useLanguage();
+    
 
     const currentMessages = useTranslations();
 
@@ -106,34 +109,116 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 backdrop-blur-3xl fixed text-secondary p-2 w-full flex top-0 justify-center items-center py-5  z-20 justify-between pt-10 mx-auto px-10 relative">
+      <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 relative">
+     
             <Image
-                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
+               className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
+               
                 width={300}
                 height={60}
                 src="/svg/barra.svg"
                 alt="bar"
             />
 
-            <div className="flex items-center flex-1 mx-auto">
-                <ParticlesContainer />
-                <Image
-                    className="w-32 h-9 object-contain"
-                    src={logo}
-                    alt="logo"
-                    width={158}
-                    height={42}
-                />
 
-                <p className="text-white text-sm/4 tracking-wide font-bold flex flex-col">
-                    WB Digital Solutions &nbsp;
-                    <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500">
-                        {currentMessages.technology}
-                    </span>
-                </p>
+          
+
+
+            <div className="flex justify-between items-center">
+
+                
+                <ParticlesContainer />
+
+           
+                <div className="flex">
+
+                            <Image
+                                className="w-32 h-9 object-contain"
+                                src={logo}
+                                alt="logo"
+                                width={158}
+                                height={42}
+                                />
+
+                            <p className="text-white text-sm/4 tracking-wide font-bold flex flex-col">
+                                WB Digital Solutions &nbsp;
+                                <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500">
+                                    {currentMessages.technology}
+                                </span>
+                            </p>
+                </div>
+        
+
+            <div className="">
+
+
+                <MobileMenu 
+                    isOpen={isMobileMenuOpen}
+                    navData={navData}
+                    pathname={pathname}
+                    setActiveMenu={setActiveMenu}
+                    activeMenu={activeMenu}
+                />
+            
             </div>
 
-            <div className="flex flex-col text text-xs justify-end items-end">
+            <div className="">
+
+
+                <HamburgerMenu 
+                    isOpen={isMobileMenuOpen} 
+                    toggleMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                />
+
+            </div>
+
+            <div className="hidden lg:flex flex-1 ">
+                    {navData.map((link, index) => {
+                        const isSubMenuActive = activeMenu === link.name;
+                        const isActive = pathname === link.path;
+
+                        return (
+                            <div
+                                className="hidden lg:flex relative link"
+                                onMouseEnter={() => setActiveMenu(link.name)}
+                                onMouseLeave={() => setActiveMenu(null)}
+                                key={index}
+                                >
+                                <Link
+                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
+                                    href={link.path}
+                                    key={index}
+                                    legacyBehavior
+                                >
+                                    <motion.a
+                                        className={`flex p-3 text-xs mt-2 font-light tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
+                                            isActive
+                                                ? "text-white semibold underline-menu link-active"
+                                                : "text-slate-500"
+                                        }`}
+                                        initial={{ width: "0%" }}
+                                        animate={{
+                                            width: isActive ? "100%" : "0%",
+                                        }}
+                                        transition={{
+                                            duration: 1,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
+                                        {link.name}
+                                    </motion.a>
+                                </Link>
+                                {isSubMenuActive &&
+                                    link.subItems.length > 0 && (
+                                        <SubMenu subItems={link.subItems} />
+                                    )}
+                            </div>
+                        );
+                    })}
+            </div>
+            
+
+          <div className="hidden lg:flex flex-col text text-xs justify-end items-end">
                 <div className="radio-input flex  items-center z-50">
                     <input
                         className="input radio-custom border-r"
@@ -221,54 +306,18 @@ const Nav: React.FC = () => {
                     </label>
                 </div>
 
-                <div className="flex flex-1 ">
-                    {navData.map((link, index) => {
-                        const isSubMenuActive = activeMenu === link.name;
-                        const isActive = pathname === link.path;
 
-                        return (
-                            <div
-                                className="relative link"
-                                onMouseEnter={() => setActiveMenu(link.name)}
-                                onMouseLeave={() => setActiveMenu(null)}
-                                key={index}
-                            >
-                                <Link
-                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
-                                    href={link.path}
-                                    key={index}
-                                    legacyBehavior
-                                >
-                                    <motion.a
-                                        className={`flex p-3 text-xs mt-2 font-light tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
-                                            isActive
-                                                ? "text-white semibold underline-menu link-active"
-                                                : "text-slate-500"
-                                        }`}
-                                        initial={{ width: "0%" }}
-                                        animate={{
-                                            width: isActive ? "100%" : "0%",
-                                        }}
-                                        transition={{
-                                            duration: 1,
-                                            ease: "easeInOut",
-                                        }}
-                                    >
-                                        {link.name}
-                                    </motion.a>
-                                </Link>
-                                {isSubMenuActive &&
-                                    link.subItems.length > 0 && (
-                                        <SubMenu subItems={link.subItems} />
-                                    )}
-                            </div>
-                        );
-                    })}
-                </div>
+
+          </div>
+
             </div>
-            <div className="absolute right-[2%] top-[120%] ">
+
+
+
+            <div className="hidden lg:absolute right-[2%] top-[120%] ">
                 <SideSocial />
             </div>
+  
         </nav>
     );
 };
