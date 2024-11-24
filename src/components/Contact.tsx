@@ -1,13 +1,18 @@
+"use client"
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ButtonStandard from "./ButtonStandard";
 import EarthCanvas from "./canvas/Earth";
 import { slideIn } from "../utils/motion";
 import EmailInput from "./EmailInput";
+
 import { useTranslations } from "@/contexts/TranslationContext";
+import AnimatedInput from "./AnimatedInput";
+import AnimatedTextarea from "./AnimatedTextarea";
 
 const Contact: React.FC = () => {
     const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [isNameValid, setIsNameValid] = useState(true);
     const [message, setMessage] = useState("");
     const [isMessageValid, setIsMessageValid] = useState(true);
@@ -62,56 +67,36 @@ const Contact: React.FC = () => {
                             {currentMessages.getInTouch}
                         </h2>
                         <form className="w-full" onSubmit={handleSubmit}>
-                            <label className="block mb-4 w-full">
-                                {currentMessages.nameLabel}
-                                <input
-                                    type="text"
-                                    placeholder={
-                                        currentMessages.namePlaceHolder
-                                    }
+                     
+                            <div className="mb-4 w-full">
+                                  <AnimatedInput
+                                    label={currentMessages.nameLabel}
                                     value={name}
-                                    onChange={handleNameChange}
-                                    onBlur={() =>
-                                        setIsNameValid(name.trim() !== "")
-                                    }
-                                    className={inputClasses(isNameValid)}
+                                    onChange={(value) => setName(value)}
+                                    errorMessage={currentMessages.nameRequired}
+                                    required
                                 />
-                                {!isNameValid && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {currentMessages.nameRequired}
-                                    </p>
-                                )}
-                            </label>
+                            </div>
 
-                            <label className="block mb-4 w-full">
-                                {currentMessages.enterEmail}
-                                <div className="flex items-center gap-2">
-                                    <EmailInput />
-                                </div>
-                            </label>
 
-                            <label className="block mb-4 w-full">
-                                {currentMessages.messageLabel}
-                                <textarea
-                                    placeholder={
-                                        currentMessages.messagePlaceHolder
-                                    }
-                                    value={message}
-                                    onChange={handleMessageChange}
-                                    onBlur={() =>
-                                        setIsMessageValid(message.trim() !== "")
-                                    }
-                                    className={inputClasses(isMessageValid)}
-                                    rows={2}
+                              <AnimatedInput
+                            label={currentMessages.enterEmail}
+                            value={email}
+                            onChange={(value) => setEmail(value)}
+                            errorMessage={currentMessages.validEmail}
+                            required
+                              type="email"
                                 />
-                                {!isMessageValid && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {currentMessages.messageRequired}
-                                    </p>
-                                )}
-                            </label>
 
-                            {/* Botão de Enviar */}
+               
+                        <AnimatedTextarea
+                            label={currentMessages.messageLabel}
+                            value={message}
+                            onChange={(value) => setMessage(value)}
+                            errorMessage={currentMessages.messageRequired}
+                            required
+                        />
+
                             <div className="w-full flex justify-start">
                                 <ButtonStandard
                                     buttonText={currentMessages.send}
