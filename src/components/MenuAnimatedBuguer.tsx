@@ -9,7 +9,7 @@ const HamburgerMenu: React.FC<{ isOpen: boolean; toggleMenu: () => void }> = ({
   toggleMenu 
 }) => {
   return (
-    <label className="cursor-pointer hidden md:block">
+    <label className="mt-4 cursor-pointer  md:block ml-auto">
       <input 
         type="checkbox" 
         className="hidden" 
@@ -18,7 +18,7 @@ const HamburgerMenu: React.FC<{ isOpen: boolean; toggleMenu: () => void }> = ({
       />
       <svg 
         viewBox="0 0 32 32"
-        className="h-8 transition-transform duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+        className="h-8  transition-transform duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
         style={{
           transform: isOpen ? 'rotate(-45deg)' : 'none'
         }}

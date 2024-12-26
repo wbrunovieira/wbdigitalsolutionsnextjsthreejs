@@ -83,34 +83,8 @@ const Nav: React.FC = () => {
                             </p>
                 </div>
         
-
-            <div className="">
-
-
-                <MobileMenu 
-                    isOpen={isMobileMenuOpen}
-                    navData={navData}
-                    pathname={pathname}
-                    setActiveMenu={setActiveMenu}
-                    activeMenu={activeMenu}
-                />
-            
-            </div>
-
-            <div className="lg:hidden">
-
-
-                <HamburgerMenu 
-                    isOpen={isMobileMenuOpen} 
-                    toggleMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-                />
-
-            </div>
-
-       
-            
-
-          <div className="hidden lg:flex flex-col text text-xs justify-end items-end">
+         
+          <div className="lg:flex flex-col text text-xs justify-end items-end">
                 <div className="radio-input flex  items-center z-50">
                     <input
                         className="input radio-custom border-r"
@@ -183,9 +157,37 @@ const Nav: React.FC = () => {
                     </label>
                 </div>
 
+                {isMobileMenuOpen && (
+                    <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center">
+                        <MobileMenu 
+                            isOpen={isMobileMenuOpen}
+                            navData={navData}
+                            pathname={pathname}
+                            setActiveMenu={setActiveMenu}
+                            activeMenu={activeMenu}
+                        />
+                        <button
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-white mt-4"
+                        >
+                            Close
+                        </button>
+                    </div>
+                )}
+
+            <div className="flex ml-auto lg:hidden">
+
+
+                <HamburgerMenu 
+                    isOpen={isMobileMenuOpen} 
+                    toggleMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                />
+
+            </div>
+
                 <div className="hidden lg:flex flex-1 justify-center w-full mt-4">
                     {navData.map((link, index) => {
-                        const isSubMenuActive = activeMenu === link.name;
+
                         const isActive = pathname === link.path;
 
                         return (

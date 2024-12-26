@@ -7,7 +7,7 @@ const MobileMenu: React.FC<{
   pathname: string;
   setActiveMenu: (name: string | null) => void;
   activeMenu: string | null;
-}> = ({ isOpen, navData, pathname, setActiveMenu, activeMenu }) => {
+}> = ({ isOpen, navData, pathname, activeMenu }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -19,14 +19,14 @@ const MobileMenu: React.FC<{
         >
           <div className="flex flex-col p-4">
             {navData.map((link, index) => {
-              const isSubMenuActive = activeMenu === link.name;
+              
               const isActive = pathname === link.path;
 
               return (
                 <div
                   key={index}
-                  className="relative"
-                  onClick={() => setActiveMenu(isSubMenuActive ? null : link.name)}
+                  className="relative flex justify-end"
+                 
                 >
                   <Link
                     href={link.path}
@@ -37,24 +37,7 @@ const MobileMenu: React.FC<{
                     {link.name}
                   </Link>
                   <AnimatePresence>
-                    {isSubMenuActive && link.subItems.length > 0 && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="pl-6"
-                      >
-                        {link.subItems.map((subItem: any, subIndex: number) => (
-                          <Link
-                            key={subIndex}
-                            href={subItem.path}
-                            className="block py-2 text-sm text-slate-400 hover:text-white"
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
+            
                   </AnimatePresence>
                 </div>
               );
