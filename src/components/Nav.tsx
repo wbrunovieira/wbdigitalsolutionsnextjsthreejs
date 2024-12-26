@@ -37,36 +37,7 @@ const Nav: React.FC = () => {
             ],
         },
 
-        ...(language === "pt-BR"
-            ? [
-                  {
-                      name: currentMessages.systems,
-                      path: "/systems",
-                      subItems: [
-                          {
-                              name: currentMessages.wbweb,
-                              path: "/systems/wbweb",
-                          },
-                          {
-                              name: currentMessages.wbsalao,
-                              path: "/systems/wbsalao",
-                          },
-                          {
-                              name: currentMessages.wbclinica,
-                              path: "/systems/wbclinica",
-                          },
-                          {
-                              name: currentMessages.wbfood,
-                              path: "/systems/wbfood",
-                          },
-                          {
-                              name: currentMessages.wbpet,
-                              path: "/systems/wbpet",
-                          },
-                      ],
-                  },
-              ]
-            : []),
+
 
         {
             name: currentMessages.websites,
