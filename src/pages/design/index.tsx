@@ -12,7 +12,7 @@ const design: React.FC = () => {
 
   return (
 
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden mt-32">
 
       <div className="absolute inset-0 z-0">
         <AnimatedBackgroundDesignComponent />
@@ -20,7 +20,7 @@ const design: React.FC = () => {
 
 
       <div className="relative z-10">
-        <DesignHeader scrollIndicatorHidden={false} />
+        <DesignHeader scrollIndicatorHidden={true} />
       </div>
     </div>
 
