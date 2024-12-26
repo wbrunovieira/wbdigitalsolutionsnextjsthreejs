@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
     const currentMessages = useTranslations();
 
     return (
-        <footer className="bg-modern-gradient text-white py-8 px-10">
+        <footer className="bg-modern-gradient w-full text-white px-4 py-8 lg:px-10 max-w-screen-xl mx-auto">
             <div className="container mx-auto px-4">
                 <form
                     action="https://api.web3forms.com/submit"
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
             </div>
 
             <div className="container mx-auto px-4 mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div>
                         <Image
                             className="w-32 h-9 object-contain"
@@ -164,45 +164,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    <div>
-                        <h4 className="font-semibold mb-2 tracking-wider">
-                            {currentMessages.digitalMarketing}
-                        </h4>
-                        <ul>
-                            <li>
-                                <Link
-                                    href="site.html"
-                                    className="font-thin text-xs text-sm hover:underline"
-                                >
-                                    {currentMessages.siteCreation}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="social.html"
-                                    className="font-thin text-xs text-sm hover:underline"
-                                >
-                                    {currentMessages.SocialMedia}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="trafego.html"
-                                    className="font-thin text-xs text-sm hover:underline"
-                                >
-                                    {currentMessages.addCampaing}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="trafego.html"
-                                    className="font-thin text-xs text-sm hover:underline"
-                                >
-                                    {currentMessages.design}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div>
                         <h4 className="font-semibold mb-2 tracking-wider">
                             {currentMessages.recentBlogs}

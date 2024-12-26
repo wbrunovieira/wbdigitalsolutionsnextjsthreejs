@@ -14,9 +14,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="w-full max-w-[1400px]">
                 <Nav />
                 <main className="flex-1">{children}</main>
+                <Footer />
             </div>
             <div className="h-[100vh]"></div>
-            <Footer />
         </div>
     );
 };
