@@ -5,7 +5,7 @@ import { useTranslations } from "@/contexts/TranslationContext";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import SubMenu from "../components/Submenu";
+
 
 import { useRouter } from "next/router";
 
@@ -31,10 +31,7 @@ const Nav: React.FC = () => {
         {
             name: currentMessages.home,
             path: "/",
-            subItems: [
-                { name: currentMessages.homewho, path: "/home/who" },
-                { name: currentMessages.homeculture, path: "/home/culture" },
-            ],
+          
         },
 
 
@@ -42,35 +39,12 @@ const Nav: React.FC = () => {
         {
             name: currentMessages.websites,
             path: "/websites",
-            subItems: [
-                { name: currentMessages.websitesland, path: "/websites/land" },
-                {
-                    name: currentMessages.websitesProjects,
-                    path: "/websites/projects",
-                },
-            ],
+     
         },
 
-        { name: currentMessages.design, path: "/design", subItems: [] },
 
-        {
-            name: currentMessages.digitalmarketing,
-            path: "/digitalmarketing",
-            subItems: [
-                {
-                    name: currentMessages.digitalmarketingSeo,
-                    path: "/digitalmarketing/seo",
-                },
-                {
-                    name: currentMessages.digitalmarketingAds,
-                    path: "digitalmarketing/ads",
-                },
-                {
-                    name: currentMessages.digitalmarketingSocial,
-                    path: "digitalmarketing/social",
-                },
-            ],
-        },
+
+
         { name: currentMessages.automation, path: "/automation", subItems: [] },
 
         { name: currentMessages.ai, path: "/ai", subItems: [] },
@@ -179,10 +153,7 @@ const Nav: React.FC = () => {
                                         {link.name}
                                     </motion.a>
                                 </Link>
-                                {isSubMenuActive &&
-                                    link.subItems.length > 0 && (
-                                        <SubMenu subItems={link.subItems} />
-                                    )}
+
                             </div>
                         );
                     })}
