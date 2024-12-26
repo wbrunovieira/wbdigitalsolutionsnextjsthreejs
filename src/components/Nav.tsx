@@ -231,7 +231,7 @@ const Nav: React.FC = () => {
                     <label
                         htmlFor="en"
                         className="radio-custom-label en btn hover:text-gray-300 "
-                    >
+                    >en
                         <span className="tooltip-text">
                             {currentMessages.english}
                         </span>
@@ -248,28 +248,13 @@ const Nav: React.FC = () => {
                     <label
                         htmlFor="pt-BR"
                         className="radio-custom-label pt-BR btn hover:text-gray-300"
-                    >
+                    >pt
                         <span className="tooltip-text">
-                            {currentMessages.portuguesebr}
+                            {currentMessages.portuguese}
                         </span>
                     </label>
 
-                    <input
-                        className="input radio-custom border-r"
-                        type="radio"
-                        name="radio"
-                        id="pt"
-                        onChange={() => setLanguage("pt")}
-                        checked={language === "pt"}
-                    />
-                    <label
-                        htmlFor="pt"
-                        className="radio-custom-label pt btn hover:text-gray-300"
-                    >
-                        <span className="tooltip-text">
-                            {currentMessages.portuguesept}
-                        </span>
-                    </label>
+
 
                     <input
                         className="input radio-custom border-r"
@@ -282,7 +267,7 @@ const Nav: React.FC = () => {
                     <label
                         htmlFor="it"
                         className="radio-custom-label it btn hover:text-gray-300"
-                    >
+                    >it
                         <span className="tooltip-text">
                             {currentMessages.italian}
                         </span>
@@ -299,7 +284,7 @@ const Nav: React.FC = () => {
                     <label
                         htmlFor="es"
                         className="radio-custom-label es btn hover:text-gray-300 z-50"
-                    >
+                    >es
                         <span className="tooltip-text">
                             {currentMessages.spanish}
                         </span>
