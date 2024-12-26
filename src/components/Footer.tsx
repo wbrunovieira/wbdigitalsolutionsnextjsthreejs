@@ -115,56 +115,6 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    {language === "pt-BR" && (
-                        <div>
-                            <h4 className="font-semibold mb-2 tracking-wider">
-                                Sistemas de Gestão
-                            </h4>
-                            <ul>
-                                <li>
-                                    <Link
-                                        href="wbweb.html"
-                                        className="font-thin text-xs text-sm hover:underline"
-                                    >
-                                        Gestão para Empresas (WB Web)
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="wbsalao.html"
-                                        className="font-thin text-xs text-sm hover:underline"
-                                    >
-                                        Gestão para Salões (WB Salão)
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="wbclinica.html"
-                                        className="font-thin text-xs text-sm hover:underline"
-                                    >
-                                        Gestão para Clínicas de Saúde (WB
-                                        Clínica)
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="wbfood.html"
-                                        className="font-thin text-xs text-sm hover:underline"
-                                    >
-                                        Gestão para Restaurantes (WB Food)
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href="wbpet.html"
-                                        className="font-thin text-xs text-sm hover:underline"
-                                    >
-                                        Gestão para Pet Shops (WB Pet)
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    )}
 
                     <div>
                         <h4 className="font-semibold mb-2 tracking-wider">
