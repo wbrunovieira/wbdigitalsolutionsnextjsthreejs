@@ -42,9 +42,6 @@ const Nav: React.FC = () => {
      
         },
 
-
-
-
         { name: currentMessages.automation, path: "/automation", subItems: [] },
 
         { name: currentMessages.ai, path: "/ai", subItems: [] },
@@ -54,22 +51,16 @@ const Nav: React.FC = () => {
     ];
 
     return (
-<nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-screen-xl mx-auto">     
+        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-screen-xl mx-auto">     
             <Image
                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
-               
                 width={300}
                 height={60}
                 src="/svg/barra.svg"
                 alt="bar"
             />
-
-
-          
-
-
+        
             <div className="flex justify-between items-center">
-
                 
                 <ParticlesContainer />
 
@@ -106,7 +97,7 @@ const Nav: React.FC = () => {
             
             </div>
 
-            <div className="">
+            <div className="lg:hidden">
 
 
                 <HamburgerMenu 
@@ -116,47 +107,7 @@ const Nav: React.FC = () => {
 
             </div>
 
-            <div className="hidden lg:flex flex-1 ">
-                    {navData.map((link, index) => {
-                        const isSubMenuActive = activeMenu === link.name;
-                        const isActive = pathname === link.path;
-
-                        return (
-                            <div
-                                className="hidden lg:flex relative link"
-                                onMouseEnter={() => setActiveMenu(link.name)}
-                                onMouseLeave={() => setActiveMenu(null)}
-                                key={index}
-                                >
-                                <Link
-                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
-                                    href={link.path}
-                                    key={index}
-                                    legacyBehavior
-                                >
-                                    <motion.a
-                                        className={`flex p-3 text-xs mt-2 font-light tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
-                                            isActive
-                                                ? "text-white semibold underline-menu link-active"
-                                                : "text-slate-500"
-                                        }`}
-                                        initial={{ width: "0%" }}
-                                        animate={{
-                                            width: isActive ? "100%" : "0%",
-                                        }}
-                                        transition={{
-                                            duration: 1,
-                                            ease: "easeInOut",
-                                        }}
-                                    >
-                                        {link.name}
-                                    </motion.a>
-                                </Link>
-
-                            </div>
-                        );
-                    })}
-            </div>
+       
             
 
           <div className="hidden lg:flex flex-col text text-xs justify-end items-end">
@@ -231,6 +182,48 @@ const Nav: React.FC = () => {
                         </span>
                     </label>
                 </div>
+
+                <div className="hidden lg:flex flex-1 justify-center w-full mt-4">
+                    {navData.map((link, index) => {
+                        const isSubMenuActive = activeMenu === link.name;
+                        const isActive = pathname === link.path;
+
+                        return (
+                            <div
+                                className="hidden lg:flex relative link"
+                                onMouseEnter={() => setActiveMenu(link.name)}
+                                onMouseLeave={() => setActiveMenu(null)}
+                                key={index}
+                                >
+                                <Link
+                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
+                                    href={link.path}
+                                    key={index}
+                                    legacyBehavior
+                                >
+                                    <motion.a
+                                        className={`flex p-3 text-xs mt-2 font-light tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
+                                            isActive
+                                                ? "text-white semibold underline-menu link-active"
+                                                : "text-slate-500"
+                                        }`}
+                                        initial={{ width: "0%" }}
+                                        animate={{
+                                            width: isActive ? "100%" : "0%",
+                                        }}
+                                        transition={{
+                                            duration: 1,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
+                                        {link.name}
+                                    </motion.a>
+                                </Link>
+
+                            </div>
+                        );
+                    })}
+            </div>
 
 
 
