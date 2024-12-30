@@ -34,6 +34,7 @@
         "tailwind-merge": "^2.5.4",
         "tailwindcss-animate": "^1.0.7",
         "three": "^0.170.0",
+        "three-stdlib": "^2.35.2",
         "tsparticles": "^3.6.0"
     },
     "devDependencies": {
