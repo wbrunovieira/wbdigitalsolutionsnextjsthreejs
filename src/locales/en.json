@@ -1,11 +1,12 @@
 {
-    "technology": "Technology and Digital Marketing",
+    "technology": "high technology",
     "title": "WB Digital Solutions | Digital Solutions for Businesses",
     "description": "WB Digital Solutions specializes in providing innovative and customized digital solutions for businesses. Transform your business and achieve extraordinary results with our expertise in technology!",
 
     "home": "Home",
     "homewho": "Who We Are",
     "homeculture": "Culture",
+    "heroTitleHome":"Web & Beyond",
 
     "design": "design",
 
@@ -23,8 +24,8 @@
     "contact": "Contact",
 
     "english": "English",
-    "portuguesebr": "Portuguese - BR",
-    "portuguesept": "Portuguese - PT",
+    "portuguese": "Portuguese",
+
     "spanish": "Spanish",
     "italian": "Italian",
     "ai": "ai",

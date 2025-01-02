@@ -145,26 +145,7 @@ canvas {
     cursor: pointer;
 }
 
-.en {
-    background: url("/svg/en.svg") no-repeat center center;
-    margin-right: 16px;
-}
 
-.pt-BR {
-    background: url("/svg/pt-BR.svg") no-repeat center center;
-}
-
-.pt {
-    background: url("/svg/pt.svg") no-repeat center center;
-}
-
-.it {
-    background: url("/svg/it.svg") no-repeat center center;
-}
-
-.es {
-    background: url("/svg/es.svg") no-repeat center center;
-}
 
 .radio-custom:checked+.radio-custom-label {
     width: 16px;

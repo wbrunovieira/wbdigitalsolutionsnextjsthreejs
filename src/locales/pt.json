@@ -6,6 +6,7 @@
     "home": "Home",
     "homewho": "Quem somos",
     "homeculture": "Cultura",
+    "heroTitleHome":"Web e Além",
 
     "design": "design",
 
@@ -24,8 +25,7 @@
     "contact": "Contacto",
 
     "english": "Inglês",
-    "portuguesebr": "Português - BR",
-    "portuguesept": "Português - PT",
+    "portuguese": "Portuguese",
     "spanish": "Espanhol",
     "italian": "Italiano",
     "ai": "ai",

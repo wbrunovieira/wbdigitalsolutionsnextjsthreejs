@@ -53,11 +53,11 @@ const SideSocial = () => {
     };
 
     return (
-        <nav className="fixed absolute right-[2%] z-5550 flex h-max w-full flex-col items-center gap-y-4 xl:w-16 xl:max-w-md xl:justify-center">
+        <nav className="right-[2%] z-5550 w-16 border flex h-56 rounded !flex-col items-center gap-y-2 xl:w-16 xl:max-w-md xl:justify-center">
             {/* inner */}
             <div
-                className="flex h-[80px] w-full items-center justify-between gap-y-10 bg-white/10 px-4 py-8 text-3xl backdrop-blur-sm md:px-40 xl:h-max xl:flex-col
-        xl:justify-center xl:rounded-full xl:px-0 xl:text-xl dock"
+                className="flex flex-col h-full items-center justify-between gap-y-10 px-2 py-4 text-2xl backdrop-blur-sm md:px-40 xl:h-max xl:flex-col
+        xl:justify-center xl:rounded-full xl:px-0 xl:text-xl"
                 onMouseLeave={handleMouseLeave}
                 style={getContainerStyle()}
             >
@@ -73,7 +73,8 @@ const SideSocial = () => {
                         >
                             {/* tooltip */}
                             <div className="absolute right-0 hidden pr-14 xl:group-hover:flex">
-                                <div className="text-primary relative flex items-center rounded-[3px] bg-white p-[12px]">
+                              
+                                <div className="text-primary relative flex items-center rounded-[3px] bg-white p-[12px]  shadow-lg">
                                     <div className="text-[10px] font-semibold capitalize leading-none">
                                         {link.name}
                                     </div>

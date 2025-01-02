@@ -9,50 +9,32 @@ const InfiniteScrollHash: React.FC = () => {
     const tags = [
         currentMessages.WebSitesKey,
         currentMessages.CustomSystemsKey,
-        currentMessages.PaidAdsKey,
-        currentMessages.SocialMediaManagementKey,
+      
         currentMessages.OnlineStoreKey,
         currentMessages.AutomationKey,
         currentMessages.ArtificialIntelligenceKey,
         currentMessages.DataScienceKey,
-        currentMessages.DigitalMarketingKey,
-        currentMessages.GraphicDesignKey,
-        currentMessages.SEOOptimizationKey,
-        currentMessages.ResponsiveDesignKey,
-        currentMessages.UIUXDesignKey,
+
         currentMessages.EcommerceDevelopmentKey,
         currentMessages.AppDevelopmentKey,
-        currentMessages.ConversionOptimizationKey,
-        currentMessages.BrandStrategyKey,
-        currentMessages.ContentCreationKey,
-        currentMessages.EmailMarketingKey,
-        currentMessages.PerformanceAnalyticsKey,
-        currentMessages.SocialMediaAdsKey,
-        currentMessages.LeadGenerationKey,
-        currentMessages.MarketingAutomationKey,
-        currentMessages.InfluencerMarketingKey,
-        currentMessages.CampaignManagementKey,
+
+
         currentMessages.LandingPagesKey,
-        currentMessages.ABTestingKey,
+
         currentMessages.DataAnalyticsKey,
         currentMessages.ChatbotsKey,
         currentMessages.MachineLearningKey,
         currentMessages.CloudSolutionsKey,
         currentMessages.CRMIntegrationKey,
         currentMessages.PaymentGatewayIntegrationKey,
-        currentMessages.ProductPhotographyKey,
-        currentMessages.VideoEditingKey,
-        currentMessages.CopywritingKey,
-        currentMessages.LogoDesignKey,
-        currentMessages.ConversionTrackingKey,
-        currentMessages.MarketResearchKey,
+
         currentMessages.VirtualRealityKey,
         currentMessages.AugmentedRealityKey,
     ];
 
     return (
-        <section className="w-screen p-10 bg-[#350545] ">
-            <div className="tag-list p-4">
+        <section className="w-full max-w-7xl mx-auto py-10 bg-[#350545] overflow-hidden">
+            <div className="tag-list py-4">
                 <div className="inner">
                     {tags.map((tag, index) => (
                         <div className="tag" key={index}>
