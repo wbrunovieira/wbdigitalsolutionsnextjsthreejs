@@ -8,7 +8,7 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = ({ text, href }) => {
   return (
     <>
-      <div className='container-bright mb-4'>
+      <div className='container-bright mb-4 z-50'>
         <div className='btn-bright'>
           <a href={href}>{text}</a>
         </div>

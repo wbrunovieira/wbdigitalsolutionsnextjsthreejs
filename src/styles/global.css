@@ -549,3 +549,17 @@ a:hover::before {
         transform: translateX(-50%);
     }
 }
+
+.image-filter {
+    position: relative;
+    display: inline-block;
+}
+
+.image-filter img {
+    filter: sepia(1) saturate(1000%) hue-rotate(310deg) brightness(0.6);
+    transition: filter 0.3s ease;
+}
+
+.image-filter:hover img {
+    filter: none;
+}

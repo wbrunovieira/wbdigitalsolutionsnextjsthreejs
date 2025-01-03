@@ -17,7 +17,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
         <mesh>
             <hemisphereLight intensity={2.5} groundColor="black" />
             <spotLight
-                position={[-10, 50, 10]}
+                position={[-10, 20, 10]}
                 angle={0.12}
                 penumbra={1}
                 intensity={4}
@@ -29,7 +29,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
             <primitive
                 object={computer.scene}
                 scale={isMobile ? 0.50 : 0.75}
-                position={isMobile ? [-2.5, -1, -2.2] : [2, -1.25, -1.5]}
+                position={isMobile ? [-2.5, -1, -2.2] : [5, -2.25, -1.5]}
                 rotation={[-0.01, -0.2, -0.1]}
             />
         </mesh>
@@ -65,7 +65,7 @@ const ComputersCanvas = () => {
         <PreloadedCanvas
             preloadAssets={["/models/desktop/scene.gltf"]}
             shadows
-            camera={{ position: [20, 3, 10], fov: 25 }}
+            camera={{ position: [30, 1, 10], fov: 25 }}
             gl={{ preserveDrawingBuffer: true }}
             className="w-full h-screen"
         >

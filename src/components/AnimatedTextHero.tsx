@@ -39,7 +39,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
             },
         });
 
-        gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 20 });
+        gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 1 });
         gsap.set(disciplineRef.current, { opacity: 0 });
 
         timeline

@@ -35,7 +35,7 @@ const HeroSection: React.FC = () => {
                     />
 
 
-                    <Button href="#" text={currentMessages.contactbutton} />
+                    <Button href="#" text={currentMessages.contactbutton}  />
                 </div>
             </div>
 
