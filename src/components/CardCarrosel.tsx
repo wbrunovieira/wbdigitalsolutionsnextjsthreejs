@@ -282,7 +282,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation2.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -297,7 +297,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation3.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -312,7 +312,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation4.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -327,7 +327,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentMachine8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation5.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -335,7 +335,7 @@ const AutomationContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -354,7 +354,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot1.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -369,7 +369,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -384,7 +384,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -399,7 +399,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot4.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -407,7 +407,7 @@ const BotsContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -426,7 +426,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai1.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -441,7 +441,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -456,7 +456,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -471,7 +471,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai4.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -479,10 +479,11 @@ const AIContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
+
 const ECommerceContent = () => {
     const currentMessages = useTranslations();
 
@@ -498,7 +499,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce1.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -513,7 +514,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -528,7 +529,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -543,7 +544,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce4.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -551,7 +552,7 @@ const ECommerceContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -737,10 +738,5 @@ const data = [
         src: "/img/e-commerce.jpg",
         content: <ECommerceContent />,
     },
-    {
-        category: "cardAppleMarketing",
-        title: "boostYourMarketing",
-        src: "/img/marketing.jpg",
-        content: <MarketingContent />,
-    },
+
 ];
