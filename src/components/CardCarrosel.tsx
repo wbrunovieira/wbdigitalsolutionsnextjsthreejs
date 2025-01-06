@@ -41,87 +41,122 @@ const WebContent = () => {
         <>
            
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb1}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb2}
-                    </p>
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                  <div>
+
+                        <p className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                            <span className="font-bold text-primary">
+                                {currentMessages.cardAppleContentWeb1} <br />{" "}
+                            </span>{" "}
+
+                            <span className="text-primary text-2xl mt-4">
+                              {currentMessages.cardAppleContentWeb2}
+
+                            </span>
+                        </p>
+                    </div>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/tech3d2.png"
                         alt="logo"
-                        height="500"
-                        width="500"
+                        height="400"
+                        width="400"
                         className=" md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+
+
+
+               
+                <div className="flex gap-4 bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <Image
+                        src="/img/7Site2.png"
+                        alt="logo"
+                        height="800"
+                        width="800"
+                         className="md:w-2/3 md:h-auto w-full h-auto mx-auto object-contain"
+                    />
+                    <div className="flex flex-col gap-4 text-custom-purple dark:text-neutral-400 text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p>
+                            <p className="font-bold text-primary dark:text-neutral-200">
+                                {currentMessages.cardAppleContentWeb3} <br />{" "}
+                            </p>
+                            <p className="text-primary text-2xl mt-4">
+                                {currentMessages.cardAppleContentWeb4}
+                            </p>
+                        </p>
+                    </div>
+                </div>
+              
+<div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+    {/* Video de fundo */}
+    <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+    >
+        <source src="/videos/security-website2.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5.
+    </video>
+
+    {/* Conteúdo acima do vídeo */}
+    <div className="relative z-20 w-1/3">
+        <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+            <span className="font-bold mt-4 text-neutral-100  text-2xl">
+                {currentMessages.cardAppleContentWeb5} <br />
+            </span>{" "}
+             <p className="mt-4 text-xl">
+
+            {currentMessages.cardAppleContentWeb6} <br />
+            </p>
+            <p className="mt-4 text-xl">
+
+                {currentMessages.cardAppleContentWeb6_2}
+            </p>
+        </p>
+    </div>
+</div>
+
+
+                   <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb3}
+                        <span className="mt-4 font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentWeb7}
                         </span>{" "}
-                        {currentMessages.cardAppleContentWeb4}
+                        <br />
+                        <p className="mt-4">
+
+                        {currentMessages.cardAppleContentWeb8}
+                        </p>
                     </p>
                     <Image
-                        src="/img/7Site.jpg"
+                        src="/img/website-hands.png"
                         alt="logo"
                         height="500"
                         width="500"
-                        className="mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                        className="mt-4 md:w-1/2 md:h-1/2 rounded h-full w-full mx-auto object-contain"
                     />
-                </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb3}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb4}
-                    </p>
-                    <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain rounded"
-                    >
-                        <source src="/videos/websitehttps.mp4" type="video/mp4" />
-                        Seu navegador não suporta vídeos HTML5.
-                    </video>
-                </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb5}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb6}
-                    </p>
+                </div>  
+
+
+<div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+
+
                      <video
                       autoPlay
                       loop
                       muted
                       playsInline
-                      className="mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain rounded"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
                     >
                         <source src="/videos/www.mp4" type="video/mp4" />
                         Seu navegador não suporta vídeos HTML5.
                     </video>
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb7}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb8}
-                    </p>
-                    <Image
-                        src="/img/website-hands.jpeg"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
-                </div>
+
+
+
             </div>
             
         </>
