@@ -353,7 +353,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation4}
                     </p>
                     <Image
-                        src="/img/automation2.jpg"
+                        src="/img/automation2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -368,7 +368,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation6}
                     </p>
                     <Image
-                        src="/img/automation3.jpg"
+                        src="/img/automation3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -383,7 +383,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation8}
                     </p>
                     <Image
-                        src="/img/automation4.jpg"
+                        src="/img/automation5.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -398,13 +398,44 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentMachine8}
                     </p>
                     <Image
-                        src="/img/automation5.jpg"
+                        src="/img/automation5.png"
                         alt="logo"
                         height="500"
                         width="500"
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
+
+                              <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+                  {/* Video de fundo */}
+                  <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                  >
+                      <source src="/videos/automation-roxo_lowbitrate.mp4" type="video/mp4" />
+                      Seu navegador não suporta vídeos HTML5.
+                  </video>
+
+                  {/* Conteúdo acima do vídeo */}
+                  <div className="relative z-20 w-1/2 bg-primary/80 px-4 py-2 rounded">
+                      <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                          <span className="font-bold mt-4 text-neutral-100  text-2xl">
+                              {currentMessages.cardAppleContentMachine7} <br />
+                          </span>{" "}
+                          <p className="mt-4 text-xl">
+
+                          {currentMessages.cardAppleContentMachine8} <br />
+                          </p>
+                          <p className="mt-4 text-xl">
+
+                              {currentMessages.cardAppleContentMachine8}
+                          </p>
+                      </p>
+                  </div>
+              </div>
             </div>
             
         </>
