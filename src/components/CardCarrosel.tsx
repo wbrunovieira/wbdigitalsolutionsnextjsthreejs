@@ -42,6 +42,7 @@ const WebContent = () => {
            
             <div>
                 <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+
                   <div>
 
                         <p className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
@@ -76,60 +77,60 @@ const WebContent = () => {
                          className="md:w-2/3 md:h-auto w-full h-auto mx-auto object-contain"
                     />
                     <div className="flex flex-col gap-4 text-custom-purple dark:text-neutral-400 text-lg md:text-2xl font-sans max-w-3xl mx-auto">
-                        <p>
+                        <div>
                             <p className="font-bold text-primary dark:text-neutral-200">
                                 {currentMessages.cardAppleContentWeb3} <br />{" "}
                             </p>
                             <p className="text-primary text-2xl mt-4">
                                 {currentMessages.cardAppleContentWeb4}
                             </p>
-                        </p>
+                        </div>
                     </div>
                 </div>
               
-<div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
-    {/* Video de fundo */}
-    <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-    >
-        <source src="/videos/security-website2_lowbitrate.mp4" type="video/mp4" />
-        Seu navegador não suporta vídeos HTML5.
-    </video>
+              <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+                  {/* Video de fundo */}
+                  <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                  >
+                      <source src="/videos/security-website2_lowbitrate.mp4" type="video/mp4" />
+                      Seu navegador não suporta vídeos HTML5.
+                  </video>
 
-    {/* Conteúdo acima do vídeo */}
-    <div className="relative z-20 w-1/3">
-        <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
-            <span className="font-bold mt-4 text-neutral-100  text-2xl">
-                {currentMessages.cardAppleContentWeb5} <br />
-            </span>{" "}
-             <p className="mt-4 text-xl">
+                  {/* Conteúdo acima do vídeo */}
+                  <div className="relative z-20 w-1/3">
+                      <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                          <span className="font-bold mt-4 text-neutral-100  text-2xl">
+                              {currentMessages.cardAppleContentWeb5} <br />
+                          </span>{" "}
+                          <p className="mt-4 text-xl">
 
-            {currentMessages.cardAppleContentWeb6} <br />
-            </p>
-            <p className="mt-4 text-xl">
+                          {currentMessages.cardAppleContentWeb6} <br />
+                          </p>
+                          <p className="mt-4 text-xl">
 
-                {currentMessages.cardAppleContentWeb6_2}
-            </p>
-        </p>
-    </div>
-</div>
+                              {currentMessages.cardAppleContentWeb6_2}
+                          </p>
+                      </p>
+                  </div>
+              </div>
 
 
                    <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="mt-4 font-bold text-neutral-700 dark:text-neutral-200">
+                    <div className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="mt-4 font-bold text-neutral-700 dark:text-neutral-200">
                             {currentMessages.cardAppleContentWeb7}
-                        </span>{" "}
-                        <br />
-                        <p className="mt-4">
+                        </p>{" "}
+                    
+                         <p className="mt-4 text-xl">
 
                         {currentMessages.cardAppleContentWeb8}
                         </p>
-                    </p>
+                    </div>
                     <Image
                         src="/img/website-hands.png"
                         alt="logo"
@@ -170,13 +171,18 @@ const MachineContent = () => {
         <>
            
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                  <div>
+                        <p className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-primary">
                             {currentMessages.cardAppleContentMachine1}
                         </span>{" "}
+                        <span className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentMachine2}
+                        </span>
                     </p>
+                    </div>
                     <div className="relative mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto">
                         <Image
                             src="/img/machinelearning.jpeg"
@@ -191,74 +197,101 @@ const MachineContent = () => {
                         />
                     </div>
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentMachine3}
-                        </span>{" "}
+
+              <div className="flex gap-4 bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                  <Image
+                    src="/img/machinelearning2.jpg"
+                    alt="logo"
+                    height="500"
+                    width="500"
+                    className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain rounded"
+                  />
+                  <div className="flex flex-col gap-4 text-custom-purple dark:text-neutral-400 text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+
+                      <p className="text-primary text-2xl mt-4">
+                        {currentMessages.cardAppleContentMachine3}
+                      </p>
+                      <p className="text-primary text-2xl mt-4">
                         {currentMessages.cardAppleContentMachine4}
-                    </p>
-                    <Image
-                        src="/img/machinelearning2.jpg"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
-                </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentMachine5}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb4}
-                    </p>
-                    <div className="relative mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto">
-                        <video
+                      </p>
+                  </div>
+              </div>
+
+
+              <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+                           <video
                             autoPlay
                             loop
                             muted
                             playsInline
-                            className="h-full w-full object-contain rounded"
-                            style={{
-                                maskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-                                WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-                            }}
+                            
+                            className="absolute top-0 left-0 w-full h-full object-cover z-0"
                         >
                             <source src="/videos/machinelearning_optimized.mp4" type="video/mp4" />
                             Seu navegador não suporta vídeos HTML5.
                         </video>
-                    </div>
+
+                        <div className="relative z-20 w-1/2 bg-primary p-4 rounded ">
+                          <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                             <span className="font-bold mt-4 text-neutral-100  text-2xl">
+
+                                  {currentMessages.cardAppleContentMachine5}
+                            </span>
+                         </p>
+
+                          <p className="mt-4 text-xl text-neutral-100 ">
+                              {currentMessages.cardAppleContentWeb4}
+
+                         </p>
+                          <p className="mt-4 text-xl text-neutral-100 ">
+                              {currentMessages.cardAppleContentWeb4_1}
+
+                         </p>
+                      </div>
+           
                 </div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+
+                 <div className="flex flex-col gap-4 text-custom-purple dark:text-neutral-400 text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-neutral-700 dark:text-neutral-200">
                             {currentMessages.cardAppleContentWeb5}
-                        </span>{" "}
+                        </p>{" "}
+
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                    
                         {currentMessages.cardAppleContentMachine6}
                     </p>
+
+                  </div>
+                  
                     <video
                             autoPlay
                             loop
                             muted
                             playsInline
-                            className="h-full w-full object-contain rounded"
-                            style={{
-                                maskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-                                WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-                            }}
+                            className="h-full w-full object-contain rounded mt-2"
+                   
                         >
                             <source src="/videos/robohand_optimized.mp4" type="video/mp4" />
                             Seu navegador não suporta vídeos HTML5.
                         </video>
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+
+
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">                  
+                  
+                  <div>
+
+                    <div className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-neutral-700 dark:text-neutral-200">
                             {currentMessages.cardAppleContentMachine7}
-                        </span>{" "}
+                        </p>
+                        <p className=" text-neutral-700 dark:text-neutral-200 mt-4">
+
                         {currentMessages.cardAppleContentMachine8}
-                    </p>
+                        </p>
+                    </div>
+                  </div>
                     <Image
                         src="/img/machine.png"
                         alt="logo"
@@ -267,13 +300,16 @@ const MachineContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+               <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto p-4">
+                        <span className="font-bold text-primary">
                             {currentMessages.cardAppleContentMachine7}
                         </span>{" "}
+                        <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentMachine8}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/data.jpg"
                         alt="logo"
