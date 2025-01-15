@@ -235,7 +235,7 @@ const Nav: React.FC = () => {
 
 
 
-            <div className="bg-white/10  absolute right-[2%] top-[120%] ">
+            <div className="bg-white/5  absolute right-[2%] top-[120%] ">
                 <SideSocial />
             </div>
   

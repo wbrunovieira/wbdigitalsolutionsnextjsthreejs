@@ -10,14 +10,7 @@ export function AppleCardsCarouselDemo() {
     const { language } = useLanguage();
     const currentMessages = useTranslations();
 
-    if (language === "pt-BR") {
-        data.push({
-            category: "cardAppleSystems",
-            title: "Maximizar",
-            src: "/img/marketing.jpg",
-            content: <SystemsContent />,
-        });
-    }
+
 
     const cards = data.map((card, index) => (
         <Card
@@ -46,85 +39,126 @@ const WebContent = () => {
 
     return (
         <>
-            return (
+           
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb1}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb2}
-                    </p>
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                  <div>
+
+                        <p className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                            <span className="font-bold text-primary">
+                                {currentMessages.cardAppleContentWeb1} <br />{" "}
+                            </span>{" "}
+
+                            <span className="text-primary text-2xl mt-4">
+                              {currentMessages.cardAppleContentWeb2}
+
+                            </span>
+                        </p>
+                    </div>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/tech3d2.png"
                         alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                        height="400"
+                        width="400"
+                        className=" md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb3}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb4}
-                    </p>
+
+
+
+               
+                <div className="flex gap-4 bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/7Site2.png"
                         alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                        height="800"
+                        width="800"
+                         className="md:w-2/3 md:h-auto w-full h-auto mx-auto object-contain"
                     />
+                    <div className="flex flex-col gap-4 text-custom-purple dark:text-neutral-400 text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p>
+                            <p className="font-bold text-primary dark:text-neutral-200">
+                                {currentMessages.cardAppleContentWeb3} <br />{" "}
+                            </p>
+                            <p className="text-primary text-2xl mt-4">
+                                {currentMessages.cardAppleContentWeb4}
+                            </p>
+                        </p>
+                    </div>
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+              
+<div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+    {/* Video de fundo */}
+    <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+    >
+        <source src="/videos/security-website2.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeos HTML5.
+    </video>
+
+    {/* Conteúdo acima do vídeo */}
+    <div className="relative z-20 w-1/3">
+        <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+            <span className="font-bold mt-4 text-neutral-100  text-2xl">
+                {currentMessages.cardAppleContentWeb5} <br />
+            </span>{" "}
+             <p className="mt-4 text-xl">
+
+            {currentMessages.cardAppleContentWeb6} <br />
+            </p>
+            <p className="mt-4 text-xl">
+
+                {currentMessages.cardAppleContentWeb6_2}
+            </p>
+        </p>
+    </div>
+</div>
+
+
+                   <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb3}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb4}
-                    </p>
-                    <Image
-                        src="/img/tech3d.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
-                </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentWeb5}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentWeb6}
-                    </p>
-                    <Image
-                        src="/img/tech3d.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
-                </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                        <span className="mt-4 font-bold text-neutral-700 dark:text-neutral-200">
                             {currentMessages.cardAppleContentWeb7}
                         </span>{" "}
+                        <br />
+                        <p className="mt-4">
+
                         {currentMessages.cardAppleContentWeb8}
+                        </p>
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/website-hands.png"
                         alt="logo"
                         height="500"
                         width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                        className="mt-4 md:w-1/2 md:h-1/2 rounded h-full w-full mx-auto object-contain"
                     />
+                </div>  
+
+
+<div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+
+
+                     <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                    >
+                        <source src="/videos/www.mp4" type="video/mp4" />
+                        Seu navegador não suporta vídeos HTML5.
+                    </video>
                 </div>
+
+
+
             </div>
-            );
+            
         </>
     );
 };
@@ -134,7 +168,7 @@ const MachineContent = () => {
 
     return (
         <>
-            return (
+           
             <div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -143,13 +177,19 @@ const MachineContent = () => {
                         </span>{" "}
                         {currentMessages.cardAppleContentMachine2}
                     </p>
-                    <Image
-                        src="/img/tech3d.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
+                    <div className="relative mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto">
+                        <Image
+                            src="/img/machinelearning.jpeg"
+                            alt="logo"
+                            height="500"
+                            width="500"
+                            className="h-full w-full object-contain rounded-lg"
+                            style={{
+                                maskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                                WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -159,7 +199,7 @@ const MachineContent = () => {
                         {currentMessages.cardAppleContentMachine4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/machinelearning2.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -173,13 +213,22 @@ const MachineContent = () => {
                         </span>{" "}
                         {currentMessages.cardAppleContentWeb4}
                     </p>
-                    <Image
-                        src="/img/tech3d.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
+                    <div className="relative mt-4 md:w-1/2 md:h-1/2 h-full w-full mx-auto">
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="h-full w-full object-contain rounded"
+                            style={{
+                                maskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                                WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                            }}
+                        >
+                            <source src="/videos/machinelearning.mp4" type="video/mp4" />
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                    </div>
                 </div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -188,8 +237,30 @@ const MachineContent = () => {
                         </span>{" "}
                         {currentMessages.cardAppleContentMachine6}
                     </p>
+                    <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="h-full w-full object-contain rounded"
+                            style={{
+                                maskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                                WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+                            }}
+                        >
+                            <source src="/videos/robohand.mp4" type="video/mp4" />
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                </div>
+                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentMachine7}
+                        </span>{" "}
+                        {currentMessages.cardAppleContentMachine8}
+                    </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/machine.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -204,7 +275,7 @@ const MachineContent = () => {
                         {currentMessages.cardAppleContentMachine8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/data.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -212,7 +283,7 @@ const MachineContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -221,7 +292,7 @@ const AutomationContent = () => {
 
     return (
         <>
-            return (
+            
             <div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -231,7 +302,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/engrenagem.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -246,7 +317,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation2.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -261,7 +332,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation3.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -276,7 +347,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentAutomation8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation4.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -291,7 +362,7 @@ const AutomationContent = () => {
                         {currentMessages.cardAppleContentMachine8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/automation5.jpg"
                         alt="logo"
                         height="500"
                         width="500"
@@ -299,7 +370,7 @@ const AutomationContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -308,7 +379,7 @@ const BotsContent = () => {
 
     return (
         <>
-            return (
+          
             <div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -318,7 +389,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot1.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -333,7 +404,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -348,7 +419,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -363,7 +434,7 @@ const BotsContent = () => {
                         {currentMessages.cardAppleContentBots8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/bot4.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -371,7 +442,7 @@ const BotsContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -380,7 +451,7 @@ const AIContent = () => {
 
     return (
         <>
-            return (
+           
             <div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -390,7 +461,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai1.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -405,7 +476,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -420,7 +491,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -435,7 +506,7 @@ const AIContent = () => {
                         {currentMessages.cardAppleContentAI8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ai4.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -443,16 +514,17 @@ const AIContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
+
 const ECommerceContent = () => {
     const currentMessages = useTranslations();
 
     return (
         <>
-            return (
+           
             <div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
@@ -462,7 +534,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce2}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce1.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -477,7 +549,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce4}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce2.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -492,7 +564,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce6}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce3.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -507,7 +579,7 @@ const ECommerceContent = () => {
                         {currentMessages.cardAppleContentECommerce8}
                     </p>
                     <Image
-                        src="/img/tech3d.png"
+                        src="/img/ecommerce4.png"
                         alt="logo"
                         height="500"
                         width="500"
@@ -515,7 +587,7 @@ const ECommerceContent = () => {
                     />
                 </div>
             </div>
-            );
+            
         </>
     );
 };
@@ -701,10 +773,5 @@ const data = [
         src: "/img/e-commerce.jpg",
         content: <ECommerceContent />,
     },
-    {
-        category: "cardAppleMarketing",
-        title: "boostYourMarketing",
-        src: "/img/marketing.jpg",
-        content: <MarketingContent />,
-    },
+
 ];

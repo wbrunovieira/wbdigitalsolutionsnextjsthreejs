@@ -1,13 +1,12 @@
-import { motion } from "framer-motion";
+
 import { useTranslations } from "@/contexts/TranslationContext";
 import Image from "next/image";
 
-import { styles } from "../styles/styles.js";
 
 import ComputersCanvas from "./canvas/ComputersCanvas";
 
 import { Button } from "./Button";
-import SpinnerLoader from "./Spinner";
+
 import { AnimatedTextHero } from "./AnimatedTextHero";
 
 const HeroSection: React.FC = () => {
@@ -29,7 +28,7 @@ const HeroSection: React.FC = () => {
              
 
                     <AnimatedTextHero 
-                        name={currentMessages.heroTitleHome}
+                      name={currentMessages.heroTitleHome}
                     
                      disciplines={[currentMessages.services1, currentMessages.services2, currentMessages.services3, currentMessages.services4]} 
                     />
