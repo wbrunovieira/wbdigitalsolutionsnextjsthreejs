@@ -96,7 +96,7 @@ const WebContent = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
     >
-        <source src="/videos/security-website2.mp4" type="video/mp4" />
+        <source src="/videos/security-website2_lowbitrate.mp4" type="video/mp4" />
         Seu navegador não suporta vídeos HTML5.
     </video>
 
@@ -150,7 +150,7 @@ const WebContent = () => {
                       playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
                     >
-                        <source src="/videos/www.mp4" type="video/mp4" />
+                        <source src="/videos/www_optimized.mp4" type="video/mp4" />
                         Seu navegador não suporta vídeos HTML5.
                     </video>
                 </div>
@@ -225,7 +225,7 @@ const MachineContent = () => {
                                 WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
                             }}
                         >
-                            <source src="/videos/machinelearning.mp4" type="video/mp4" />
+                            <source src="/videos/machinelearning_optimized.mp4" type="video/mp4" />
                             Seu navegador não suporta vídeos HTML5.
                         </video>
                     </div>
@@ -248,7 +248,7 @@ const MachineContent = () => {
                                 WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
                             }}
                         >
-                            <source src="/videos/robohand.mp4" type="video/mp4" />
+                            <source src="/videos/robohand_optimized.mp4" type="video/mp4" />
                             Seu navegador não suporta vídeos HTML5.
                         </video>
                 </div>
