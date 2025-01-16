@@ -199,20 +199,23 @@
 ,
 
 
-    "cardAppleBots": "Bots",
-    "IntegrateIntelligent": "Integrate Intelligent Bots.",
+   "cardAppleBots": "Bots",
+    "IntegrateIntelligent": "Transform Your Business with Intelligent Bots.",
 
-    "cardAppleContentBots1": "Automate customer service and enhance the client experience.",
-    "cardAppleContentBots2": "Our intelligent bots respond to customer inquiries quickly and efficiently, solving common questions and speeding up support.",
+    "cardAppleContentBots1": "Revolutionize customer service with smart automation.",
+    "cardAppleContentBots2": "Our bots handle customer inquiries quickly and efficiently, resolving common questions while allowing your team to focus on complex issues.",
 
-    "cardAppleContentBots3": "24/7 availability for your business.",
-    "cardAppleContentBots4": "With bots, your customer service is always on, ensuring clients receive answers at any time, day or night.",
+    "cardAppleContentBots3": "24/7 support for your customers, anytime and anywhere.",
+    "cardAppleContentBots4": "With bots, your business is always available, ensuring clients receive assistance around the clock, increasing satisfaction and loyalty.",
 
-    "cardAppleContentBots5": "Cut costs with smart automation.",
-    "cardAppleContentBots6": "Bots reduce the need for dedicated staff for repetitive tasks, helping to lower costs and increase operational efficiency.",
+    "cardAppleContentBots5": "Cut operational costs without compromising quality.",
+    "cardAppleContentBots6": "By automating repetitive tasks, bots reduce staffing needs for routine operations, helping your business save money while boosting efficiency.",
 
-    "cardAppleContentBots7": "Personalize communication with your customers.",
-    "cardAppleContentBots8": "Our bots are designed to understand and respond in a personalized way, creating a unique service experience aligned with your brand.",
+    "cardAppleContentBots7": "Deliver personalized, brand-aligned interactions.",
+    "cardAppleContentBots8": "Our bots use advanced AI to tailor responses based on customer preferences and history, offering a unique and engaging experience.",
+
+    "cardAppleContentBots9": "Seamlessly integrate with your favorite platforms.",
+    "cardAppleContentBots10": "Our bots connect effortlessly with CRM systems, social media channels, and internal tools, creating a unified, multi-channel support system for your business.",
 
     "cardAppleAI": "Artificial Intelligence",
     "LeverageAI": "Leverage Artificial Intelligence for More Human Interactions",

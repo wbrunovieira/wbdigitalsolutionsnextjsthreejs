@@ -141,7 +141,7 @@ const WebContent = () => {
                 </div>  
 
 
-<div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+        <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
 
 
                      <video
@@ -367,6 +367,8 @@ const AutomationContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
+
+
                 <div className="flex gap-4 bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <div className="text-primary text-base md:text-2xl font-sans max-w-3xl mx-auto">
                         <p className="font-bold text-primary">
@@ -420,7 +422,7 @@ const AutomationContent = () => {
                     />
                 </div>
 
-                              <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+                <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
                   {/* Video de fundo */}
                   <video
                       autoPlay
@@ -459,13 +461,16 @@ const BotsContent = () => {
         <>
           
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                 <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                         <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentBots1}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentBots2}
-                    </p>
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
+                           {currentMessages.cardAppleContentBots2}
+                        </p>
+                    </div>
                     <Image
                         src="/img/bot1.png"
                         alt="logo"
@@ -474,51 +479,92 @@ const BotsContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+
+                <div className="flex gap-4 bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <Image
+                        src="/img/bot3_converted.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                     <div className="text-primary text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                  
+                        <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentBots3}
-                        </span>{" "}
+
+                          </p>
+                         <p className=" text-primary mt-4">
+
                         {currentMessages.cardAppleContentBots4}
-                    </p>
-                    <Image
-                        src="/img/bot3.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
+                        </p>
+                    </div>
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+
+               <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="text-primary text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                       <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentBots5}
-                        </span>{" "}
+                        </p>{" "}
+                         <p className=" text-primary mt-4">
+
                         {currentMessages.cardAppleContentBots6}
-                    </p>
+                        </p>
+                    </div>
                     <Image
-                        src="/img/bot2.png"
+                        src="/img/bot2_converted.png"
                         alt="logo"
                         height="500"
                         width="500"
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+
+               <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                   <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentBots7}
-                        </span>{" "}
+                        </p>{" "}
+                        <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentBots8}
-                    </p>
+                        </p>
+                    </div>
                     <Image
-                        src="/img/bot4.png"
+                        src="/img/bot4_nobackground.png"
                         alt="logo"
                         height="500"
                         width="500"
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
+                   <div className="relative bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+                  {/* Video de fundo */}
+                  <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                  >
+                      <source src="/videos/videobotcard_lowbitrate.mp4" type="video/mp4" />
+                      Seu navegador não suporta vídeos HTML5.
+                  </video>
+
+                  {/* Conteúdo acima do vídeo */}
+                  <div className="relative z-20 w-1/2 bg-primary/80 px-4 py-2 rounded">
+                      <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                          <span className="font-bold mt-4 text-neutral-100  text-2xl">
+                              {currentMessages.cardAppleContentBots9} <br />
+                          </span>{" "}
+                          <p className="mt-4 text-xl">
+
+                          {currentMessages.cardAppleContentBots10} <br />
+                          </p>
+                
+                      </p>
+                  </div>
+              </div>
             </div>
             
         </>
