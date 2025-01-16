@@ -182,17 +182,22 @@
 
     "cardAppleAutomation": "Automation",
     "AutomateYour": "Automate Your Business Processes.",
-    "cardAppleContentAutomation1": "Streamline repetitive tasks and boost efficiency.",
-    "cardAppleContentAutomation2": "Our automation solutions eliminate manual processes, freeing up your team for more strategic activities and increasing productivity.",
+       "cardAppleContentAutomation1": "Eliminate repetitive tasks and maximize operational efficiency.",
 
-    "cardAppleContentAutomation3": "Reduce errors and improve accuracy.",
-    "cardAppleContentAutomation4": "Automation allows complex tasks to be performed with precision, minimizing human errors and ensuring consistent results for your business.",
+    "cardAppleContentAutomation2": "Our advanced automation solutions replace manual workflows, enabling your team to focus on innovation and driving strategic goals.",
 
-    "cardAppleContentAutomation5": "Speed up decision-making with real-time data.",
-    "cardAppleContentAutomation6": "We automate data collection and analysis, enabling your company to make quick, informed decisions based on the latest information.",
+      "cardAppleContentAutomation3": "Enhance accuracy and reduce costly errors.",
+    "cardAppleContentAutomation4": "Automation ensures consistent precision for even the most complex processes, safeguarding the quality and reliability of your operations.",
 
-    "cardAppleContentAutomation7": "Effortless scalability.",
-    "cardAppleContentAutomation8": "With automation, your business is prepared to grow sustainably, scaling processes to meet higher demand without increasing workload.",
+    "cardAppleContentAutomation5": "Empower faster decision-making through real-time insights.",
+    "cardAppleContentAutomation6": "By automating data collection and analysis, we provide actionable intelligence, helping your business make informed decisions swiftly and confidently.",
+
+    "cardAppleContentAutomation7": "Achieve seamless scalability for sustained growth.",
+    "cardAppleContentAutomation8": "Automation equips your business to handle increased demand effortlessly, maintaining high performance without straining resources.",
+    "cardAppleContentAutomation9": "Optimize costs and drive profitability.",
+    "cardAppleContentAutomation10": "By automating workflows, your business can reduce overhead, save time, and reinvest resources into areas that directly impact growth and revenue."
+,
+
 
     "cardAppleBots": "Bots",
     "IntegrateIntelligent": "Integrate Intelligent Bots.",

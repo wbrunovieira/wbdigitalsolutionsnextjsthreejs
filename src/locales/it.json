@@ -171,17 +171,18 @@
     "cardAppleContentMachine7": "Personalizza l'esperienza del cliente.",
     "cardAppleContentMachine8": "Usa i dati per creare esperienze uniche per ogni cliente. Le nostre soluzioni di Machine Learning consentono di adattare prodotti e servizi alle preferenze e alle esigenze di ciascun consumatore.",
 
-    "cardAppleContentAutomation1": "Snellisci le attività ripetitive e aumenta l'efficienza.",
-    "cardAppleContentAutomation2": "Le nostre soluzioni di automazione eliminano i processi manuali, liberando il tuo team per attività più strategiche e aumentando la produttività.",
-
-    "cardAppleContentAutomation3": "Riduci gli errori e migliora la precisione.",
-    "cardAppleContentAutomation4": "L'automazione consente di eseguire compiti complessi con precisione, riducendo al minimo gli errori umani e garantendo risultati coerenti per la tua azienda.",
-
-    "cardAppleContentAutomation5": "Accelera le decisioni con dati in tempo reale.",
-    "cardAppleContentAutomation6": "Automatizziamo la raccolta e l'analisi dei dati, consentendo alla tua azienda di prendere decisioni rapide e informate basate sulle informazioni più aggiornate.",
-
-    "cardAppleContentAutomation7": "Scalabilità senza sforzo.",
-    "cardAppleContentAutomation8": "Con l'automazione, la tua azienda è pronta a crescere in modo sostenibile, ampliando i processi per soddisfare una domanda maggiore senza aumentare il carico di lavoro.",
+     "cardAppleAutomation": "Automazione",
+    "AutomateYour": "Automatizza i Processi della Tua Azienda.",
+    "cardAppleContentAutomation1": "Elimina le attività ripetitive e massimizza l'efficienza operativa.",
+    "cardAppleContentAutomation2": "Le nostre soluzioni avanzate di automazione sostituiscono i flussi di lavoro manuali, consentendo al tuo team di concentrarsi sull'innovazione e sul raggiungimento degli obiettivi strategici.",
+    "cardAppleContentAutomation3": "Migliora la precisione e riduci gli errori costosi.",
+    "cardAppleContentAutomation4": "L'automazione garantisce una precisione costante anche nei processi più complessi, proteggendo la qualità e l'affidabilità delle tue operazioni.",
+    "cardAppleContentAutomation5": "Facilita decisioni più rapide grazie a dati in tempo reale.",
+    "cardAppleContentAutomation6": "Automatizzando la raccolta e l'analisi dei dati, forniamo informazioni utili per aiutare la tua azienda a prendere decisioni informate in modo rapido e sicuro.",
+    "cardAppleContentAutomation7": "Ottieni scalabilità senza sforzo per una crescita sostenibile.",
+    "cardAppleContentAutomation8": "L'automazione prepara la tua azienda a gestire una domanda crescente in modo efficiente, mantenendo alte prestazioni senza sovraccaricare le risorse.",
+    "cardAppleContentAutomation9": "Ottimizza i costi e aumenta la redditività.",
+    "cardAppleContentAutomation10": "Automatizzando i flussi di lavoro, la tua azienda può ridurre le spese, risparmiare tempo e reinvestire le risorse in aree che influenzano direttamente la crescita e i ricavi.",
 
     "cardAppleBots": "Bot",
     "IntegrateIntelligent": "Integra Bot Intelligenti.",

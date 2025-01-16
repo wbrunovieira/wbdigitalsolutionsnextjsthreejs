@@ -330,13 +330,16 @@ const AutomationContent = () => {
         <>
             
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                       <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAutomation1}
-                        </span>{" "}
+                        </p>{" "}
+                       <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentAutomation2}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/engrenagem.png"
                         alt="logo"
@@ -345,13 +348,17 @@ const AutomationContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
+
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                    <div className="text-primary text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAutomation3}
-                        </span>{" "}
+                        </p>{" "}
+                        <p className=" text-primary mt-4">
+
                         {currentMessages.cardAppleContentAutomation4}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/automation2.png"
                         alt="logo"
@@ -360,13 +367,16 @@ const AutomationContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex gap-4 bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="text-primary text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAutomation5}
-                        </span>{" "}
+                        </p>{" "}
+                        <p className=" text-primary mt-4">
+
                         {currentMessages.cardAppleContentAutomation6}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/automation3.png"
                         alt="logo"
@@ -375,13 +385,17 @@ const AutomationContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="text-primary text-base md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-primary0">
                             {currentMessages.cardAppleContentAutomation7}
-                        </span>{" "}
+                        </p>
+                        <p className=" text-primary mt-4">
+
                         {currentMessages.cardAppleContentAutomation8}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/automation5.png"
                         alt="logo"
@@ -399,7 +413,7 @@ const AutomationContent = () => {
                     </p>
                     <Image
                         src="/img/automation5.png"
-                        alt="logo"
+                        alt="logo"  
                         height="500"
                         width="500"
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
@@ -423,16 +437,13 @@ const AutomationContent = () => {
                   <div className="relative z-20 w-1/2 bg-primary/80 px-4 py-2 rounded">
                       <p className="text-neutral-100  text-lg md:text-2xl font-sans max-w-3xl mx-auto">
                           <span className="font-bold mt-4 text-neutral-100  text-2xl">
-                              {currentMessages.cardAppleContentMachine7} <br />
+                              {currentMessages.cardAppleContentAutomation9} <br />
                           </span>{" "}
                           <p className="mt-4 text-xl">
 
-                          {currentMessages.cardAppleContentMachine8} <br />
+                          {currentMessages.cardAppleContentAutomation10} <br />
                           </p>
-                          <p className="mt-4 text-xl">
-
-                              {currentMessages.cardAppleContentMachine8}
-                          </p>
+                
                       </p>
                   </div>
               </div>
