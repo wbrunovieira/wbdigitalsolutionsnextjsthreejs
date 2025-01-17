@@ -218,19 +218,25 @@
     "cardAppleContentBots10": "Our bots connect effortlessly with CRM systems, social media channels, and internal tools, creating a unified, multi-channel support system for your business.",
 
     "cardAppleAI": "Artificial Intelligence",
-    "LeverageAI": "Leverage Artificial Intelligence for More Human Interactions",
+ "LeverageAI": "Comprehensive AI Solutions for Your Business Success",
 
-    "cardAppleContentAI1": "Enhance customer communication through Artificial Intelligence.",
-    "cardAppleContentAI2": "Our AI solutions based on natural language help your company interact with clients in a more human and personalized way, boosting satisfaction and engagement.",
+  "cardAppleContentAI1": "Enhance customer communication through Artificial Intelligence.",
+  "cardAppleContentAI2": "Our AI solutions help your company interact with clients in a more human and personalized way, improving satisfaction and engagement across multiple channels.",
 
-    "cardAppleContentAI3": "Provide instant and precise responses with intelligent assistants.",
-    "cardAppleContentAI4": "Integrate ChatGPT and other AI tools to automate customer service, answering common questions and allowing your team to focus on more complex issues.",
+  "cardAppleContentAI3": "Provide instant, precise, and scalable support with intelligent assistants.",
+  "cardAppleContentAI4": "Integrate ChatGPT or our custom-built AI solutions to automate customer service, answer questions, and allow your team to focus on strategic tasks.",
 
-    "cardAppleContentAI5": "Sentiment analysis to better understand your audience.",
-    "cardAppleContentAI6": "With AI, your company can monitor and interpret the tone of customer interactions, adapting communication and enhancing experiences based on detected emotions.",
+  "cardAppleContentAI5": "Sentiment analysis and emotional intelligence for smarter decisions.",
+  "cardAppleContentAI6": "Monitor and interpret the tone of customer interactions using AI, helping your company adapt communication and provide better experiences based on emotional insights.",
 
-    "cardAppleContentAI7": "Automatic and personalized content creation.",
-    "cardAppleContentAI8": "Use AI to generate texts and responses automatically, maintaining brand consistency and tailoring messages to each customer profile.",
+  "cardAppleContentAI7": "Custom and automated content creation tailored to your brand.",
+  "cardAppleContentAI8": "Use AI to generate content, automate responses, and maintain brand consistency, creating personalized messages for each client profile.",
+
+  "cardAppleContentAI9": "Transform your business with end-to-end AI solutions.",
+  "cardAppleContentAI10": "From customer service to sentiment analysis and even image and video interpretation, our AI solutions empower your company to automate, optimize, and innovate, delivering consistent and scalable results tailored to your needs.",
+
+  "cardAppleContentAI11": "AI agents designed to enhance business processes.",
+  "cardAppleContentAI12": "We develop intelligent AI agents capable of automating repetitive tasks, analyzing complex data, and making informed decisions in real time. These agents can streamline operations, improve productivity, and allow your team to focus on high-value activities.",
 
     "cardAppleECommerce": "E-commerce",
     "boostYour": "Boost Your Sales with E-commerce Solutions.",

@@ -564,7 +564,7 @@ const BotsContent = () => {
                 
                       </p>
                   </div>
-              </div>
+                    </div>
             </div>
             
         </>
@@ -577,66 +577,117 @@ const AIContent = () => {
         <>
            
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                      <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                         <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAI1}
-                        </span>{" "}
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentAI2}
-                    </p>
+                        </p>
+                    </div>
                     <Image
-                        src="/img/ai1.png"
+                        src="/img/ai1_converted.png"
                         alt="logo"
                         height="500"
                         width="500"
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <Image
+                        src="/img/ai2_converted.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                      <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                      <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAI3}
-                        </span>{" "}
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentAI4}
-                    </p>
-                    <Image
-                        src="/img/ai2.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
+                        </p>
+                    </div>
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                     <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                         <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAI5}
-                        </span>{" "}
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentAI6}
-                    </p>
+                        </p>
+                    </div>
                     <Image
-                        src="/img/ai3.png"
+                        src="/img/ai3_converted.png"
                         alt="logo"
                         height="500"
                         width="500"
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                 <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                     <Image
+                        src="/img/ai4_converted.png"
+                        alt="logo"
+                        height="500"
+                        width="500"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                    />
+                    <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                       <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentAI7}
-                        </span>{" "}
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentAI8}
-                    </p>
-                    <Image
-                        src="/img/ai4.png"
-                        alt="logo"
-                        height="500"
-                        width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-                    />
+                        </p>
+                    </div>
+    
                 </div>
+
+              <div className="flex flex-col bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4 overflow-hidden">
+               
+                <div className="relative h-64">
+                  <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="rounded top-0 left-0 w-full h-full object-cover z-0"
+                      >
+                      <source src="/videos/aicard_lowbitrate.mp4" type="video/mp4" />
+                      Seu navegador não suporta vídeos HTML5.
+                  </video>
+                </div>
+
+               
+                  <div className="w-full bg-[#F5F5F7] px-8 py-4 rounded">
+                      <div className="text-primary text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                          <span className="font-bold mt-4 text-primary  text-2xl">
+                              {currentMessages.cardAppleContentAI9} <br />
+                          </span>{" "}
+                          <p className="mt-4 text-xl">
+
+                          {currentMessages.cardAppleContentAI10} <br />
+                          </p>
+                          <p className="font-bold mt-4 text-xl">
+
+                          {currentMessages.cardAppleContentAI11} <br />
+                          </p>
+                          <p className=" mt-4 text-xl">
+
+                          {currentMessages.cardAppleContentAI12} <br />
+                          </p>
+                
+                      </div>
+                  </div>
+              </div>
             </div>
             
         </>
@@ -652,9 +703,9 @@ const ECommerceContent = () => {
             <div>
                 <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
                     <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                        <p className="font-bold text-neutral-700 dark:text-neutral-200">
                             {currentMessages.cardAppleContentECommerce1}
-                        </span>{" "}
+                        </p>{" "}
                         {currentMessages.cardAppleContentECommerce2}
                     </p>
                     <Image
