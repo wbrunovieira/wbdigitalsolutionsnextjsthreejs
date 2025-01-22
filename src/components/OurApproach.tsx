@@ -4,8 +4,11 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import dynamic from "next/dynamic"; // Importa o método dynamic
+import dynamic from "next/dynamic";
 import { FaSearch, FaPencilRuler, FaTools, FaHandHolding } from "react-icons/fa";
+
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslations } from "@/contexts/TranslationContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,8 +18,11 @@ const OurApproach: React.FC = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
 
+  const { language } = useLanguage();
+  const currentMessages = useTranslations();
+
   useGSAP(() => {
-    if (typeof window === "undefined") return; // Verifica se estamos no cliente
+    if (typeof window === "undefined") return;
 
     const stepsChildren = stepsRef.current?.children as HTMLCollection;
 
@@ -84,33 +90,35 @@ const OurApproach: React.FC = () => {
     }
   }, []);
 
-  const steps = [
-    { icon: <FaSearch className="text-primary text-3xl mb-4" />, title: "Discovery", description: "Understanding your audience." },
-    { icon: <FaPencilRuler className="text-yellowcustom text-3xl mb-4" />, title: "Exclusive Design", description: "Customized UI/UX." },
-    { icon: <FaTools className="text-primary text-3xl mb-4" />, title: "Cutting-Edge Tech", description: "Modern, secure solutions." },
-    { icon: <FaHandHolding className="text-yellowcustom text-3xl mb-4" />, title: "Support", description: "Ongoing assistance." },
+  const steps = currentMessages.steps || [];
+
+  const icons = [
+    <FaSearch className="text-primary text-3xl mb-4" />,
+    <FaPencilRuler className="text-yellowcustom text-3xl mb-4" />,
+    <FaTools className="text-primary text-3xl mb-4" />,
+    <FaHandHolding className="text-yellowcustom text-3xl mb-4" />,
   ];
 
   return (
     <section ref={sectionRef} className="bg-gray-100 px-6 py-12 lg:px-20 lg:py-24 relative">
       <div className="text-center max-w-3xl mx-auto">
         <h2 ref={titleRef} className="text-3xl lg:text-5xl font-bold text-gray-800 mb-6">
-          Each detail tailored for your business.
+          {currentMessages.approachTitle}
         </h2>
         <div className="mt-2 w-96 h-1 bg-gradient-to-r from-yellow-400 to-transparent mx-auto mb-6"></div>
         <p ref={subtitleRef} className="text-lg lg:text-xl text-gray-600 mb-12">
-          We combine creativity and cutting-edge technology to create websites that impress.
+          {currentMessages.approachSubtitle}
         </p>
       </div>
       <div ref={stepsRef} className="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
-        {steps.map((step, index) => (
+        {steps.map((step: { title: string; description: string }, index: number) => (
           <div key={index} className="flex flex-col items-center text-center bg-white shadow-lg p-6 rounded-lg relative">
-            {step.icon}
+            {icons[index]}
             <h3 className="text-xl font-semibold text-gray-800 mb-2">{step.title}</h3>
             <p className="text-gray-600 text-sm">{step.description}</p>
-               {index < steps.length - 1 && (
+            {index < steps.length - 1 && (
               <div className="timeline-line absolute top-1/2 left-full h-1 w-10 bg-gray-300 transform translate-y-1/2"></div>
-          )}
+            )}
           </div>
         ))}
       </div>
