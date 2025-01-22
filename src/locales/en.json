@@ -288,6 +288,26 @@
     "genericSolution": "Generic Solution",
     "genericDescription": "Limited websites with few customization options and compromised performance.",
     "customSolution": "Tailored Solution",
-    "customDescription": "Unique, fast, and optimized websites designed to highlight your business."
+    "customDescription": "Unique, fast, and optimized websites designed to highlight your business.",
+     "approachTitle": "Every detail designed to make your business stand out.",
+  "approachSubtitle": "We combine creativity and advanced technology to deliver impressive websites.",
+  "steps": [
+    {
+      "title": "Discovery",
+      "description": "Understanding the business and target audience."
+    },
+    {
+      "title": "Exclusive Design",
+      "description": "UI/UX focused on results and engagement."
+    },
+    {
+      "title": "Cutting-Edge Technology",
+      "description": "Modern tools to ensure speed, scalability, and security."
+    },
+    {
+      "title": "Delivery and Support",
+      "description": "A functional website ready to grow with your business."
+    }
+  ]
 
 }

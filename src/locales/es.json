@@ -263,5 +263,25 @@
     "genericSolution": "Solución Genérica",
     "genericDescription": "Sitios limitados, con pocas opciones de personalización y un rendimiento comprometido.",
     "customSolution": "Solución Personalizada",
-    "customDescription": "Sitios únicos, rápidos y optimizados diseñados para destacar tu negocio."
+    "customDescription": "Sitios únicos, rápidos y optimizados diseñados para destacar tu negocio.",
+    "approachTitle": "Cada detalle diseñado para destacar tu negocio.",
+  "approachSubtitle": "Combinamos creatividad y tecnología avanzada para ofrecer sitios web impresionantes.",
+  "steps": [
+    {
+      "title": "Descubrimiento",
+      "description": "Comprensión del negocio y del público objetivo."
+    },
+    {
+      "title": "Diseño Exclusivo",
+      "description": "UI/UX enfocado en resultados y compromiso."
+    },
+    {
+      "title": "Tecnología de Vanguardia",
+      "description": "Herramientas modernas para garantizar velocidad, escalabilidad y seguridad."
+    },
+    {
+      "title": "Entrega y Soporte",
+      "description": "Un sitio funcional listo para crecer con tu negocio."
+    }
+  ]
 }
