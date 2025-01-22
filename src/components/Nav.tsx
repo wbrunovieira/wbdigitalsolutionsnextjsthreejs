@@ -204,7 +204,7 @@ const Nav: React.FC = () => {
                                     legacyBehavior
                                 >
                                     <motion.a
-                                        className={`flex p-3 text-xs mt-2 font-light tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
+                                        className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
                                             isActive
                                                 ? "text-white semibold underline-menu link-active"
                                                 : "text-slate-500"

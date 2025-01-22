@@ -249,5 +249,11 @@
     "nameRequired": "¡Ups! Necesitamos tu nombre para continuar",
     "messageLabel": "Cuéntanos lo que piensas",
     "messagePlaceHolder": "Comparte tus ideas, pensamientos o dudas...",
-    "messageRequired": "¡No olvides escribir tu mensaje!"
+    "messageRequired": "¡No olvides escribir tu mensaje!",
+     "experienceTitle": "Experiencia e Innovación",
+    "experienceDisciplines": [
+        "Sitios que sorprenden",
+        "Sitios que convierten",
+        "Sitios que crecen contigo."
+    ]
 }

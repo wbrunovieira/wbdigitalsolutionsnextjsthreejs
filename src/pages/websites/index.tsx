@@ -5,12 +5,15 @@ import { WebsiteHeader } from "@/components/WebsiteHeader";
 import { Metadata } from "next";
 
 
+
 export const metadata: Metadata = {
     title: "Interactive Periodic Table",
     description: "3D Interactive Periodic Table visualization",
 };
 
 const Websites: React.FC = () => {
+
+
     return (
         <main className="relative flex items-center justify-center bg-modern-gradient min-h-screen">
          <div className="relative w-full h-screen overflow-hidden mt-32">
@@ -19,7 +22,7 @@ const Websites: React.FC = () => {
                 <AnimatedBackgroundDesignComponent />
               </div>
 
-              <div className="relative z-10">
+              <div className="relative z-10 px-4">
                 <WebsiteHeader scrollIndicatorHidden={true} />
               </div>
                 

@@ -1,19 +1,25 @@
-
-import React, { useRef } from 'react';
-
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useTranslations } from "@/contexts/TranslationContext";
 
 interface HeaderProps {
     scrollIndicatorHidden: boolean;
 }
 
-const config = {
-    name: 'Website',
-    disciplines: ['Impact', 'Experience', 'Accessibility'],
-};
-
 export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
+    const currentMessages = useTranslations();
+
+    // Config dinâmico baseado no idioma
+    const config = {
+        name: currentMessages.experienceTitle || "Não é só um site. É uma experiência.",
+        disciplines: currentMessages.experienceDisciplines || [
+            "Sites que surpreendem",
+            "Sites que convertem.",
+            "Sites que crescem com você.",
+        ],
+    };
+
     const disciplines = config.disciplines;
     let disciplineIndex = 0;
 
@@ -23,25 +29,22 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
     const disciplineRef = useRef<HTMLSpanElement>(null);
 
     useGSAP(() => {
-
         if (nameRef.current) {
-            const letters = nameRef.current.querySelectorAll('span');
+            const letters = nameRef.current.querySelectorAll("span");
             gsap.to(letters, {
                 opacity: 1,
                 stagger: 0.1,
                 duration: 1.3,
-                ease: 'power2.inOut',
+                ease: "power2.inOut",
             });
         }
     }, []);
 
     useGSAP(() => {
-
         const timeline = gsap.timeline({
             repeat: -1,
             repeatDelay: 1.5,
             onRepeat: () => {
-
                 disciplineIndex = (disciplineIndex + 1) % disciplines.length;
                 if (disciplineRef.current) {
                     disciplineRef.current.textContent = disciplines[disciplineIndex];
@@ -49,45 +52,31 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
             },
         });
 
-
-        gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 20 });
+        gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: "white", zIndex: 20 });
         gsap.set(disciplineRef.current, { opacity: 0 });
-
 
         timeline
             .to(overlayRef.current, {
                 scaleX: 1,
-                transformOrigin: 'left center',
+                transformOrigin: "left center",
                 duration: 1.2,
                 yoyo: true,
-                ease: 'power2.out',
+                ease: "power2.out",
             })
-            .to(
-                disciplineRef.current,
-                { opacity: 1, duration: 1 },
-                '-=1.2'
-            )
-            .to(
-                disciplineRef.current,
-                { opacity: 0, duration: 1 },
-                "+=1"
-            )
-            .to(
-                overlayRef.current,
-                { scaleX: 0, duration: 1, ease: 'power2.in' },
-                '-=0.8'
-            );
+            .to(disciplineRef.current, { opacity: 1, duration: 1 }, "-=1.2")
+            .to(disciplineRef.current, { opacity: 0, duration: 1 }, "+=1")
+            .to(overlayRef.current, { scaleX: 0, duration: 1, ease: "power2.in" }, "-=0.8");
 
         return () => {
             timeline.kill();
         };
-    }, []);
+    }, [disciplines]);
 
     return (
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
-            <h1 className="text-6xl">
+            <h1 className="text-4xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
-                    {config.name.split("").map((letter, index) => (
+                     {config.name.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">
                             {letter}
                         </span>
@@ -103,7 +92,6 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
                     <div
                         ref={overlayRef}
                         className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0"
-
                     ></div>
                 </span>
             </h2>

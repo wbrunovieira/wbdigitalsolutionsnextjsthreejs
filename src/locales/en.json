@@ -274,5 +274,11 @@
     "nameRequired": "Oops! We need your name to continue",
     "messageLabel": "Tell us what's on your mind",
     "messagePlaceHolder": "Share your thoughts, ideas or questions...",
-    "messageRequired": "Don't forget to write your message!"
+    "messageRequired": "Don't forget to write your message!",
+       "experienceTitle": "Experience and Innovation",
+    "experienceDisciplines": [
+        "Websites that amaze",
+        "Websites that convert",
+        "Websites that grow with you."
+    ]
 }
