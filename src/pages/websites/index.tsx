@@ -1,6 +1,7 @@
 "use client";
 
 import AnimatedBackgroundDesignComponent from "@/components/AnimatedBackgroundDesign";
+import CustomVsGeneric from "@/components/CustomVsGeneric";
 import { WebsiteHeader } from "@/components/WebsiteHeader";
 import { Metadata } from "next";
 
@@ -15,7 +16,7 @@ const Websites: React.FC = () => {
 
 
     return (
-        <main className="relative flex items-center justify-center bg-modern-gradient min-h-screen">
+        <main className="relative flex  flex-col items-center justify-center bg-modern-gradient min-h-screen">
          <div className="relative w-full h-screen overflow-hidden mt-32">
 
               <div className="absolute inset-0 z-0">
@@ -27,6 +28,7 @@ const Websites: React.FC = () => {
               </div>
                 
             </div>
+            <CustomVsGeneric />
         </main>
     );
 };

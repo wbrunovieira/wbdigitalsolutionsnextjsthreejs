@@ -255,5 +255,13 @@
         "Sitios que sorprenden",
         "Sitios que convierten",
         "Sitios que crecen contigo."
-    ]
+    ],
+    "experienceTitleWebsite": "No es solo un sitio web,",
+    "experienceTitleWebsite2": "es una experiencia hecha a medida.",
+    "experienceSubtitle": "Mientras las soluciones genéricas ofrecen lo básico, nosotros entregamos experiencias únicas. Imagina un sitio que refleje la esencia de tu negocio, con velocidades de carga rápidas e interacciones atractivas",
+    "experienceSubtitle2": "esto es lo que creamos para ti.",
+    "genericSolution": "Solución Genérica",
+    "genericDescription": "Sitios limitados, con pocas opciones de personalización y un rendimiento comprometido.",
+    "customSolution": "Solución Personalizada",
+    "customDescription": "Sitios únicos, rápidos y optimizados diseñados para destacar tu negocio."
 }

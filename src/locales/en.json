@@ -280,5 +280,14 @@
         "Websites that amaze",
         "Websites that convert",
         "Websites that grow with you."
-    ]
+    ],
+      "experienceTitleWebsite": "It's not just a website,",
+    "experienceTitleWebsite2": "it's a tailored experience.",
+    "experienceSubtitle": "While generic solutions offer the basics, we deliver unique experiences. Imagine a website that captures the essence of your business, with fast loading speeds and engaging interactions",
+    "experienceSubtitle2": "this is what we create for you.",
+    "genericSolution": "Generic Solution",
+    "genericDescription": "Limited websites with few customization options and compromised performance.",
+    "customSolution": "Tailored Solution",
+    "customDescription": "Unique, fast, and optimized websites designed to highlight your business."
+
 }
