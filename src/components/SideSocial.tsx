@@ -40,7 +40,7 @@ const SideSocial = () => {
     };
 
     // Links da rede social com base no idioma atual
-    const navData = socialLinks[language] || socialLinks.en;
+    const navData = socialLinks[language as keyof typeof socialLinks] || socialLinks.en;
 
     const handleMouseEnter = (index: number) => {
         setHoveredIndex(index);

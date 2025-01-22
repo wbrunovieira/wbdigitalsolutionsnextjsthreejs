@@ -1,11 +1,9 @@
 "use client";
 
+import AnimatedBackgroundDesignComponent from "@/components/AnimatedBackgroundDesign";
+import { WebsiteHeader } from "@/components/WebsiteHeader";
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
 
-const PathNavigator = dynamic(() => import("@/components/PathNavigator"), {
-    ssr: false,
-});
 
 export const metadata: Metadata = {
     title: "Interactive Periodic Table",
@@ -14,14 +12,19 @@ export const metadata: Metadata = {
 
 const Websites: React.FC = () => {
     return (
-        <section className="relative flex items-center justify-center bg-modern-gradient min-h-screen">
-            <div
-                className="absolute inset-0 flex justify-center items-center"
-                style={{ zIndex: 200 }}
-            >
-                <PathNavigator />
+        <main className="relative flex items-center justify-center bg-modern-gradient min-h-screen">
+         <div className="relative w-full h-screen overflow-hidden mt-32">
+
+              <div className="absolute inset-0 z-0">
+                <AnimatedBackgroundDesignComponent />
+              </div>
+
+              <div className="relative z-10">
+                <WebsiteHeader scrollIndicatorHidden={true} />
+              </div>
+                
             </div>
-        </section>
+        </main>
     );
 };
 
