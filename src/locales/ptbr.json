@@ -291,7 +291,7 @@
     "genericDescription":"Sites limitados, com poucas opções de personalização e desempenho comprometido.",
     "customSolution":"Solução Personalizada",
     "customDescription":"Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.",
-    
+
     "approachTitle":"Cada detalhe pensado para destacar o seu negócio.",
     "approachSubtitle":"Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
      "steps": [
@@ -311,7 +311,23 @@
             "title": "Entrega e Suporte",
             "description": "Um site funcional e pronto para crescer com o seu negócio."
           }
-        ]
+        ],
+
+        "differentiatorsSpeedTitle":"Velocidade",
+        "differentiatorsSpeedDesc":"Sites que carregam em milissegundos.",
+        "differentiatorsInteractivityTitle":"Interatividade",
+        "differentiatorsInteractivityDesc":"Animações e experiências que encantam o visitante.",
+        "differentiatorsSEOTitle":"SEO Avançado",
+        "differentiatorsSEODesc":"Melhor posicionamento nos motores de busca.",
+        "differentiatorsScalabilityTitle": "Escalabilidade",
+        "differentiatorsScalabilityDesc":"Cresça sem preocupações técnicas.",
+        "differentiatorsTitle":"Muito mais do que um site bonito.",
+        "differentiatorsSubtitle":"Funcionalidade, performance e resultados reais."
+
+
+
+
+
 
 
 

@@ -308,6 +308,17 @@
       "title": "Delivery and Support",
       "description": "A functional website ready to grow with your business."
     }
-  ]
+  ],
+    "differentiatorsSpeedTitle": "Speed",
+  "differentiatorsSpeedDesc": "Sites that load in milliseconds.",
+  "differentiatorsInteractivityTitle": "Interactivity",
+  "differentiatorsInteractivityDesc": "Animations and experiences that captivate visitors.",
+  "differentiatorsSEOTitle": "Advanced SEO",
+  "differentiatorsSEODesc": "Better positioning in search engines.",
+  "differentiatorsScalabilityTitle": "Scalability",
+  "differentiatorsScalabilityDesc": "Grow without technical concerns.",
+  "differentiatorsTitle": "Much more than a beautiful website.",
+  "differentiatorsSubtitle": "Functionality, performance, and real results."
+
 
 }

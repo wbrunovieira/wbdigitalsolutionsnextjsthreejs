@@ -283,5 +283,16 @@
       "title": "Entrega y Soporte",
       "description": "Un sitio funcional listo para crecer con tu negocio."
     }
-  ]
+  ],
+  "differentiatorsSpeedTitle": "Velocidad",
+  "differentiatorsSpeedDesc": "Sitios que cargan en milisegundos.",
+  "differentiatorsInteractivityTitle": "Interactividad",
+  "differentiatorsInteractivityDesc": "Animaciones y experiencias que cautivan a los visitantes.",
+  "differentiatorsSEOTitle": "SEO Avanzado",
+  "differentiatorsSEODesc": "Mejor posicionamiento en los motores de búsqueda.",
+  "differentiatorsScalabilityTitle": "Escalabilidad",
+  "differentiatorsScalabilityDesc": "Crece sin preocupaciones técnicas.",
+  "differentiatorsTitle": "Mucho más que un sitio web bonito.",
+  "differentiatorsSubtitle": "Funcionalidad, rendimiento y resultados reales."
+
 }

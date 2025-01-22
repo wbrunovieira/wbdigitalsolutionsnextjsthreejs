@@ -3,11 +3,14 @@
 import AnimatedBackgroundDesignComponent from "@/components/AnimatedBackgroundDesign";
 import CustomVsGeneric from "@/components/CustomVsGeneric";
 
+
 import { WebsiteHeader } from "@/components/WebsiteHeader";
+
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 const OurApproach = dynamic(() => import("../../components/OurApproach"), { ssr: false });
+const Differentiators = dynamic(() => import("../../components/Differentiators"), { ssr: false });
 
 
 
@@ -35,6 +38,7 @@ const Websites: React.FC = () => {
             </div>
             <CustomVsGeneric />
             <OurApproach />
+            <Differentiators />
         </main>
     );
 };
