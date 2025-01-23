@@ -67,22 +67,22 @@ const Differentiators: React.FC = () => {
 
   const highlights = [
     {
-      icon: <FaBolt className="text-yellow-500 text-5xl" />,
+      icon: <FaBolt className="text-yellowcustom text-5xl" />,
       title: currentMessages.differentiatorsSpeedTitle,
       description: currentMessages.differentiatorsSpeedDesc,
     },
     {
-      icon: <FaRocket className="text-blue-500 text-5xl" />,
+      icon: <FaRocket className="text-yellowcustom text-5xl" />,
       title: currentMessages.differentiatorsInteractivityTitle,
       description: currentMessages.differentiatorsInteractivityDesc,
     },
     {
-      icon: <FaChartLine className="text-green-500 text-5xl" />,
+      icon: <FaChartLine className="text-yellowcustom text-5xl" />,
       title: currentMessages.differentiatorsSEOTitle,
       description: currentMessages.differentiatorsSEODesc,
     },
     {
-      icon: <FaExpand className="text-purple-500 text-5xl" />,
+      icon: <FaExpand className="text-yellowcustom text-5xl" />,
       title: currentMessages.differentiatorsScalabilityTitle,
       description: currentMessages.differentiatorsScalabilityDesc,
     },
@@ -100,9 +100,10 @@ const Differentiators: React.FC = () => {
         >
           {currentMessages.differentiatorsTitle }
         </h2>
+        <div className="mt-2 w-96 h-1 bg-gradient-to-r from-yellow-400 to-transparent mx-auto mb-6"></div>
         <p
           ref={subtitleRef}
-          className="text-lg lg:text-xl text-yellowcustom mb-12"
+          className="text-lg lg:text-xl text-y mb-12 text-yellowcustom"
         >
           {currentMessages.differentiatorsSubtitle}
         </p>

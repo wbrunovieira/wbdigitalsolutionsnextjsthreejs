@@ -318,7 +318,28 @@
   "differentiatorsScalabilityTitle": "Scalability",
   "differentiatorsScalabilityDesc": "Grow without technical concerns.",
   "differentiatorsTitle": "Much more than a beautiful website.",
-  "differentiatorsSubtitle": "Functionality, performance, and real results."
+  "differentiatorsSubtitle": "Functionality, performance, and real results.",
+    "comparisonTitle": "Invest in a website that actually works.",
+  "comparisonSubtitle": "Your website can be your business's main asset, not a lost cost.",
+  "genericTitle": "Generic",
+  "customTitle": "Custom Made",
+  "speedLabel": "Speed",
+  "securityLabel": "Security",
+  "experienceLabel": "Experience",
+  "genericSpeed": "Slow loading",
+  "genericSecurity": "Low security",
+  "genericExperience": "Poor experience",
+  "customSpeed": "Loading in milliseconds",
+  "customSecurity": "Advanced security",
+  "customExperience": "Engaging experience",
+    "ctaTitle": "Transform your digital presence",
+    "ctaHighlight": "into real results",
+    "ctaDesc1": "Your business deserves more than a generic template.",
+    "ctaDesc2": "Schedule a free consultation and discover how we can create a unique digital experience for your brand.",
+    "ctaButton": "Talk to a Specialist",
+    "ctaContactTitle": "Choose the most convenient way to contact us:",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "E-mail"
 
 
 }

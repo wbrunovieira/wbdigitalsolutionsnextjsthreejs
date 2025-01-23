@@ -1,7 +1,9 @@
 "use client";
 
 import AnimatedBackgroundDesignComponent from "@/components/AnimatedBackgroundDesign";
+
 import CustomVsGeneric from "@/components/CustomVsGeneric";
+import CTAWebsite from "@/components/WebSiteCTA";
 
 
 import { WebsiteHeader } from "@/components/WebsiteHeader";
@@ -11,6 +13,7 @@ import dynamic from "next/dynamic";
 
 const OurApproach = dynamic(() => import("../../components/OurApproach"), { ssr: false });
 const Differentiators = dynamic(() => import("../../components/Differentiators"), { ssr: false });
+const Comparison = dynamic(() => import("../../components/Comparison"), { ssr: false });
 
 
 
@@ -25,13 +28,13 @@ const Websites: React.FC = () => {
 
     return (
         <main className="relative flex  flex-col items-center justify-center bg-modern-gradient min-h-screen">
-         <div className="relative w-full h-screen overflow-hidden mt-32">
+         <div className="relative w-full h-96 overflow-hidden mt-32">
 
-              <div className="absolute inset-0 z-0">
+              <div className="absolute inset-0 z-0 ">
                 <AnimatedBackgroundDesignComponent />
               </div>
 
-              <div className="relative z-10 px-4">
+              <div className=" z-10 px-4">
                 <WebsiteHeader scrollIndicatorHidden={true} />
               </div>
                 
@@ -39,6 +42,8 @@ const Websites: React.FC = () => {
             <CustomVsGeneric />
             <OurApproach />
             <Differentiators />
+            <Comparison  />  
+            <CTAWebsite />
         </main>
     );
 };

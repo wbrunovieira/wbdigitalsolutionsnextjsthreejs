@@ -10,14 +10,10 @@ interface HeaderProps {
 export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
     const currentMessages = useTranslations();
 
-    // Config dinâmico baseado no idioma
+
     const config = {
-        name: currentMessages.experienceTitle || "Não é só um site. É uma experiência.",
-        disciplines: currentMessages.experienceDisciplines || [
-            "Sites que surpreendem",
-            "Sites que convertem.",
-            "Sites que crescem com você.",
-        ],
+        name: currentMessages.experienceTitle ,
+        disciplines: currentMessages.experienceDisciplines 
     };
 
     const disciplines = config.disciplines;

@@ -322,7 +322,28 @@
         "differentiatorsScalabilityTitle": "Escalabilidade",
         "differentiatorsScalabilityDesc":"Cresça sem preocupações técnicas.",
         "differentiatorsTitle":"Muito mais do que um site bonito.",
-        "differentiatorsSubtitle":"Funcionalidade, performance e resultados reais."
+        "differentiatorsSubtitle":"Funcionalidade, performance e resultados reais.",
+         "comparisonTitle": "Invista em um site que realmente funcione.",
+  "comparisonSubtitle": "Seu site pode ser o principal ativo do seu negócio, não um custo perdido.",
+  "genericTitle": "Genérico",
+  "customTitle": "Sob Medida",
+  "speedLabel": "Velocidade",
+  "securityLabel": "Segurança",
+  "experienceLabel": "Experiência",
+  "genericSpeed": "Carregamento lento",
+  "genericSecurity": "Baixa segurança",
+  "genericExperience": "Experiência pobre",
+  "customSpeed": "Carregamento em milissegundos",
+  "customSecurity": "Segurança avançada",
+  "customExperience": "Experiência envolvente",
+  "ctaTitle": "Transforme sua presença digital",
+    "ctaHighlight": "em resultados reais",
+    "ctaDesc1": "Seu negócio merece mais que um template genérico.",
+    "ctaDesc2": "Agende uma consulta gratuita e descubra como podemos criar uma experiência digital única para sua marca.",
+    "ctaButton": "Fale com um Especialista",
+    "ctaContactTitle": "Escolha a forma de contato mais conveniente para você:",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "E-mail"
 
 
 

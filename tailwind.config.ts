@@ -34,11 +34,11 @@ const config = {
             },
             backgroundImage: {
                 "custom-gradient": `radial-gradient(
-circle at top center,
-hsla(286, 55%, 36%, 0.5) 0%,
-hsla(222, 0%, 0%, 0) 50%,
-hsla(222, 0%, 0%, 0) 100%
-)`,
+                    circle at top center,
+                    hsla(286, 55%, 36%, 0.5) 0%,
+                    hsla(222, 0%, 0%, 0) 50%,
+                    hsla(222, 0%, 0%, 0) 100%
+                    )`,
                 "modern-gradient":
                     "linear-gradient(90deg, #350545 0%, #792990 50%, #350545 100%)",
             },
