@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial } from 'three';
+import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
 import { useAnimations, useGLTF, useTexture, } from '@react-three/drei';
 import { animate } from 'framer-motion';
 
@@ -31,10 +31,10 @@ const AnimatedBackgroundDesignComponent: React.FC = () => {
                     position={[5, 5, 5]}
                     intensity={5}
                 />
-                <ambientLight intensity={0.2} color={0xffffff} />
+                <ambientLight intensity={0.6} color={0xffffff} />
                 <directionalLight
                     position={[10, 10, 10]}
-                    intensity={0.3}
+                    intensity={0.6}
                 />
 
 
@@ -194,6 +194,12 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
 
 
 const FloatingModel: React.FC = () => {
+
+    const keyboardLight = new PointLight(0xffffff, 0.5);
+    keyboardLight.position.set(0, -0.5, 1);
+    
+    const screenLight = new PointLight(0xffffff, 0.8);
+    screenLight.position.set(0, 0.5, 2);
     const modelRef = useRef<Group>(null);
     const { scene } = useGLTF("/models/macbook-pro.glb");
     const screenTexture = useTexture("/models/screen.png");
