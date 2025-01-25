@@ -4,7 +4,7 @@ import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Obj
 import { useAnimations, useGLTF, useTexture, } from '@react-three/drei';
 import { animate } from 'framer-motion';
 
-const NUM_INSTANCES = 800;
+const NUM_INSTANCES = 400;
 const MIN_DISTANCE = 4;
 const INTERACTION_DISTANCE = 10;
 const INTENSITY_SCALE = 3000;

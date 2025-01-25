@@ -4,9 +4,9 @@ import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Obj
 import { useAnimations, useGLTF, useTexture, } from '@react-three/drei';
 import { animate } from 'framer-motion';
 
-const NUM_INSTANCES = 800;
-const MIN_DISTANCE = 4;
-const INTERACTION_DISTANCE = 10;
+const NUM_INSTANCES = 8;
+const MIN_DISTANCE = 8;
+const INTERACTION_DISTANCE = 20;
 const INTENSITY_SCALE = 3000;
 const MIN_INTENSITY_CLOSE = 1000;
 
@@ -51,7 +51,7 @@ interface AnimatedInstancedMeshProps {
 }
 
 const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef }) => {
-    const geometry = useMemo(() => new DodecahedronGeometry(1.2), []);
+    const geometry = useMemo(() => new DodecahedronGeometry(6.2), []);
     const material = useMemo(() => new MeshPhysicalMaterial({
         vertexColors: true,
         transparent: true,

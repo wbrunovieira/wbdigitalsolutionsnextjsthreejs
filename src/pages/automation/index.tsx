@@ -4,17 +4,18 @@ import React from 'react';
 
 const automation: React.FC = () => {
   return <main>
-        <div className="relative w-full h-screen overflow-hidden mt-32">
+        <div className="relative w-full h-[300vh] mt-32">
 
-<div className="absolute inset-0 z-0">
-  <AnimatedBackgroundAutomationComponent />
-</div>
+              <div className="absolute inset-0 z-0">
+                <AnimatedBackgroundAutomationComponent />
+              </div>
 
 
-<div className="relative z-10">
-  <AutomationHeader scrollIndicatorHidden={true} />
-</div>
-</div>
+              <div className="relative z-10">
+                <AutomationHeader scrollIndicatorHidden={true} />
+              </div>
+    
+          </div>
   </main>
 };
 

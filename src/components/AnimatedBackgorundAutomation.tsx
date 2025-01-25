@@ -1,20 +1,22 @@
+
+
 import React, { useMemo, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
 import { useAnimations, useGLTF, useTexture, } from '@react-three/drei';
 import { animate } from 'framer-motion';
 
-const NUM_INSTANCES = 800;
-const MIN_DISTANCE = 4;
+const NUM_INSTANCES = 40;
+const MIN_DISTANCE = 6;
 const INTERACTION_DISTANCE = 10;
-const INTENSITY_SCALE = 3000;
-const MIN_INTENSITY_CLOSE = 1000;
+const INTENSITY_SCALE = 9000;
+const MIN_INTENSITY_CLOSE = 10000;
 
 const AnimatedBackgroundAutomationComponent: React.FC = () => {
     const lightRef = useRef<RectAreaLight>(null);
 
     return (
-        <div className="w-full h-96 bg-transparent">
+        <div className="w-full h-[100vh] bg-transparent">
             <Canvas
                 style={{ background: 'transparent' }}
                 shadows
@@ -51,7 +53,7 @@ interface AnimatedInstancedMeshProps {
 }
 
 const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef }) => {
-    const geometry = useMemo(() => new DodecahedronGeometry(1.2), []);
+    const geometry = useMemo(() => new DodecahedronGeometry(3.2), []);
     const material = useMemo(() => new MeshPhysicalMaterial({
         vertexColors: true,
         transparent: true,
@@ -201,26 +203,8 @@ const FloatingModel: React.FC = () => {
     const screenLight = new PointLight(0xffffff, 0.8);
     screenLight.position.set(0, 0.5, 2);
     const modelRef = useRef<Group>(null);
-    const { scene } = useGLTF("/models/gear/gear.glb");
-    const screenTexture = useTexture("/models/gear/metal_blue.png");
-    screenTexture.flipY = false;
-    scene.traverse((node) => {
-        if (node instanceof Mesh) {
-            if (node.name === "Screen") {
-                node.material = new MeshStandardMaterial({
-                    map: screenTexture,
-                    metalness: 0.7,
-                    roughness: 0.9,
-                });
-            } else {
-                node.material = new MeshStandardMaterial({
-                    color: new Color(0xA9A9A9),
-                    metalness: 0.3,
-                    roughness: 0.5,
-                });
-            }
-        }
-    });
+    const { scene } = useGLTF("/models/gear/automation.gltf");
+
 
 
     useEffect(() => {
@@ -245,9 +229,10 @@ const FloatingModel: React.FC = () => {
 
     useFrame(({ clock }) => {
         if (modelRef.current) {
-            modelRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.5 - 1;
+           
             modelRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.5) * 0.05;
             modelRef.current.rotation.y += 0.002;
+            
         }
     });
 
