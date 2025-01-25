@@ -1,4 +1,4 @@
-import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundDesignComponent from '@/components/AnimatedBackgroundDesign';
+import AnimatedBackgroundAutomationComponent from '../../components/AnimatedBackgorundAutomation';import AnimatedBackgroundDesignComponent from '@/components/AnimatedBackgroundDesign';
 import { AutomationHeader } from '@/components/AutomationHeader';
 import React from 'react';
 

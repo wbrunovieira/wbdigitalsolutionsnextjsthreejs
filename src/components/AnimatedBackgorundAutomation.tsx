@@ -247,6 +247,7 @@ const FloatingModel: React.FC = () => {
         if (modelRef.current) {
             modelRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.5 - 1;
             modelRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.5) * 0.05;
+            modelRef.current.rotation.y += 0.002;
         }
     });
 
