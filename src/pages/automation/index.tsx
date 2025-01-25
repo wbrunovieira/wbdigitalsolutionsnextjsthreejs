@@ -1,5 +1,5 @@
-import AnimatedBackgroundDesignComponent from '@/components/AnimatedBackgroundDesign';
-import { DesignHeader } from '@/components/DesignHero';
+import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundDesignComponent from '@/components/AnimatedBackgroundDesign';
+import { AutomationHeader } from '@/components/AutomationHeader';
 import React from 'react';
 
 const automation: React.FC = () => {
@@ -7,12 +7,12 @@ const automation: React.FC = () => {
         <div className="relative w-full h-screen overflow-hidden mt-32">
 
 <div className="absolute inset-0 z-0">
-  <AnimatedBackgroundDesignComponent />
+  <AnimatedBackgroundAutomationComponent />
 </div>
 
 
 <div className="relative z-10">
-  <DesignHeader scrollIndicatorHidden={true} />
+  <AutomationHeader scrollIndicatorHidden={true} />
 </div>
 </div>
   </main>
