@@ -701,13 +701,16 @@ const ECommerceContent = () => {
         <>
            
             <div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <p className="font-bold text-neutral-700 dark:text-neutral-200">
+                <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                    <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentECommerce1}
                         </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentECommerce2}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/ecommerce1.png"
                         alt="logo"
@@ -716,28 +719,36 @@ const ECommerceContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentECommerce3}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentECommerce4}
-                    </p>
+                  <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
                     <Image
                         src="/img/ecommerce2.png"
                         alt="logo"
                         height="500"
                         width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain mr-4"
                     />
+                     <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                        <p className="font-bold text-neutral-700 dark:text-neutral-200">
+                            {currentMessages.cardAppleContentECommerce3}
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
+                        {currentMessages.cardAppleContentECommerce4}
+                        </p>
+                    </div>
+
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                  <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
+                     <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                         <p className="font-bold text-primary">
                             {currentMessages.cardAppleContentECommerce5}
-                        </span>{" "}
+                        </p>{" "}
+
+                         <p className="text-primary text-2xl mt-4">
+
                         {currentMessages.cardAppleContentECommerce6}
-                    </p>
+                        </p>
+                    </div>
                     <Image
                         src="/img/ecommerce3.png"
                         alt="logo"
@@ -746,20 +757,24 @@ const ECommerceContent = () => {
                         className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
                     />
                 </div>
-                <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4">
-                    <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-                        <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                            {currentMessages.cardAppleContentECommerce7}
-                        </span>{" "}
-                        {currentMessages.cardAppleContentECommerce8}
-                    </p>
+                 <div className="flex bg-[#F5F5F7] p-8 md:p-14 rounded-3xl mb-4">
                     <Image
                         src="/img/ecommerce4.png"
                         alt="logo"
                         height="500"
                         width="500"
-                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+                        className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain mr-4"
                     />
+                    <div className="flex flex-col gap-4 text-custom-purple text-lg md:text-2xl font-sans max-w-3xl mx-auto">
+                          <p className="font-bold text-primary">
+                            {currentMessages.cardAppleContentECommerce7}
+                        </p>{" "}
+                         <p className="text-primary text-2xl mt-4">
+
+                        {currentMessages.cardAppleContentECommerce8}
+                        </p>
+                    </div>
+
                 </div>
             </div>
             
