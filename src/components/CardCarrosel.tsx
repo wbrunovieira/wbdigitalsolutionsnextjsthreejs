@@ -957,11 +957,5 @@ const data = [
         src: "/img/ai.jpg",
         content: <AIContent />,
     },
-    {
-        category: "cardAppleECommerce",
-        title: "boostYour",
-        src: "/img/e-commerce.jpg",
-        content: <ECommerceContent />,
-    },
 
 ];

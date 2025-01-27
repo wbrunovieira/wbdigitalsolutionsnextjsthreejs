@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
     `;
 
     return (
-        <div className="flex flex-col md:flex-row gap-2">
+        <div className="flex flex-col md:flex-row gap-2 mt-32">
             <div className="bg-custom-gradient flex-1 text-white p-8">
                 <motion.div
                     initial="hidden"

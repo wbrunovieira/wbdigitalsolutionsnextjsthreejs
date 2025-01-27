@@ -1,31 +1,21 @@
-import React from "react";
-import dynamic from "next/dynamic";
 
-// Carregar o ThreeScene dinamicamente para evitar SSR
-const ThreeScene = dynamic(() => import("@/components/ThreeScene"), { ssr: false });
+import { AIHeader } from '@/components/AIHeader';
+import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
+import { AutomationHeader } from '@/components/AutomationHeader';
+import React from 'react';
 
-const ScrollModelPage: React.FC = () => {
-  return (
-    <div className="relative min-h-screen bg-gray-50">
-      {/* Modelo 3D no topo */}
-      <ThreeScene />
+const ai: React.FC = () => {
+  return <main>
+      <div className="relative w-full h-screen overflow-hidden mt-32">
+        <div className="absolute inset-0 z-0">
 
-      {/* Conteúdo HTML */}
-      <div className="relative z-10">
-        <section className="h-screen flex items-center justify-center bg-blue-500 text-white">
-          <h1 className="text-5xl font-bold">Bem-vindo ao Blog</h1>
-        </section>
-
-        <section className="trigger-section h-screen flex items-center justify-center bg-yellow-500">
-          <h2 className="text-4xl font-bold">Aqui o modelo começa a descer</h2>
-        </section>
-
-        <section className="h-screen flex items-center justify-center bg-green-500">
-          <h2 className="text-4xl font-bold">Continue Descendo!</h2>
-        </section>
-      </div>
+              <AnimatedBackgroundAutomationComponent />
+        </div>
+        <div className="relative z-10">
+          <AutomationHeader scrollIndicatorHidden={true} />
+        </div>
     </div>
-  );
+  </main>
 };
 
-export default ScrollModelPage;
+export default ai;
