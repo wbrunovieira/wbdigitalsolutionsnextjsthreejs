@@ -274,13 +274,17 @@
     "nameRequired": "Oops! We need your name to continue",
     "messageLabel": "Tell us what's on your mind",
     "messagePlaceHolder": "Share your thoughts, ideas or questions...",
+
     "messageRequired": "Don't forget to write your message!",
-       "experienceTitle": "Experience and Innovation",
+ "experienceTitle1": "Innovation that Transforms.",
+    "experienceTitle2": "Experiences that Connect.",
     "experienceDisciplines": [
-        "Websites that amaze",
-        "Websites that convert",
-        "Websites that grow with you."
+        "Websites that impress.",
+        "Experiences that engage.",
+        "Results that boost your business."
     ],
+    "experiencesub1": "Much more than a website.",
+    "experiencesub2": "We create digital experiences that highlight the best of your brand, combining exclusive design, interactivity, and advanced technology.",
       "experienceTitleWebsite": "It's not just a website,",
     "experienceTitleWebsite2": "it's a tailored experience.",
     "experienceSubtitle": "While generic solutions offer the basics, we deliver unique experiences. Imagine a website that captures the essence of your business, with fast loading speeds and engaging interactions",

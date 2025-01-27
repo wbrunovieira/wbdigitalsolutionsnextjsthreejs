@@ -58,7 +58,7 @@ const CustomVsGeneric: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-primary relative flex flex-col items-center px-6 py-12 lg:px-20 lg:py-24 ">
+    <section ref={sectionRef} className="bg-primary relative flex flex-col items-center px-6 py-12 lg:px-20 lg:py-24 mt-32">
        <div className="relative w-full max-w-3xl mb-12 text-center">
         <FaStar className="text-yellow-400 text-4xl mx-auto mb-4" />
         <h2

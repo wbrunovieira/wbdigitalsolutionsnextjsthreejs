@@ -250,12 +250,16 @@
     "messageLabel": "Cuéntanos lo que piensas",
     "messagePlaceHolder": "Comparte tus ideas, pensamientos o dudas...",
     "messageRequired": "¡No olvides escribir tu mensaje!",
-     "experienceTitle": "Experiencia e Innovación",
+
+ "experienceTitle1": "Innovación que Transforma.",
+    "experienceTitle2": "Experiencias que Conectan.",
     "experienceDisciplines": [
-        "Sitios que sorprenden",
-        "Sitios que convierten",
-        "Sitios que crecen contigo."
+        "Sitios web que impresionan.",
+        "Experiencias que enganchan.",
+        "Resultados que impulsan tu negocio."
     ],
+    "experiencesub1": "Mucho más que un sitio web.",
+    "experiencesub2": "Creamos experiencias digitales que destacan lo mejor de tu marca, combinando diseño exclusivo, interactividad y tecnología avanzada.",
     "experienceTitleWebsite": "No es solo un sitio web,",
     "experienceTitleWebsite2": "es una experiencia hecha a medida.",
     "experienceSubtitle": "Mientras las soluciones genéricas ofrecen lo básico, nosotros entregamos experiencias únicas. Imagina un sitio que refleje la esencia de tu negocio, con velocidades de carga rápidas e interacciones atractivas",
