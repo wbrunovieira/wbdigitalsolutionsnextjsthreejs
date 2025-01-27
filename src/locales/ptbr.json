@@ -299,8 +299,7 @@
     "genericSolution":"Solução Genérica",
     "genericDescription": "Sites limitados, com poucas opções de personalização e desempenho comprometido.<br />- <strong>Velocidade:</strong> Carregamento lento, comprometendo a experiência do usuário.<br />- <strong>Interatividade:</strong> Experiência básica, sem animações ou elementos interativos.<br />- <strong>Segurança:</strong> Pouco robusta, vulnerável a ataques e falhas técnicas.<br />- <strong>Design:</strong> Templates limitados, sem exclusividade ou identidade única.<br />- <strong>Escalabilidade:</strong> Restrita, com dificuldades para acompanhar o crescimento do negócio.",
     "customSolution":"Solução Personalizada",
-"customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",    "approachTitle":"Cada detalhe pensado para destacar o seu negócio.",
-   
+"customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Tipos de Projetos:</strong> Landing pages, sites institucionais, lojas online, plataformas de ensino e projetos sob medida.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",   
 
 
 
@@ -355,7 +354,17 @@
     "ctaButton": "Fale com um Especialista",
     "ctaContactTitle": "Escolha a forma de contato mais conveniente para você:",
     "whatsappLabel": "WhatsApp",
-    "emailLabel": "E-mail"
+    "emailLabel": "E-mail",
+
+        "benefitsTitle": "Benefícios da Automação para o Seu Negócio",
+    "benefit1Title": "Eficiência Operacional",
+    "benefit1Desc": "Reduza tarefas manuais e maximize sua produtividade com fluxos de trabalho otimizados.",
+    "benefit2Title": "Economia de Tempo",
+    "benefit2Desc": "Automatize processos repetitivos para focar no crescimento do seu negócio.",
+    "benefit3Title": "Escalabilidade",
+    "benefit3Desc": "Soluções projetadas para crescer junto com sua empresa.",
+    "benefit4Title": "Melhor Experiência do Cliente",
+    "benefit4Desc": "A automação permite atender seus clientes com rapidez e eficiência."
 
 
 

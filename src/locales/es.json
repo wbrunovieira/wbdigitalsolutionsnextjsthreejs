@@ -272,8 +272,7 @@
   "genericSolution": "Solución Genérica",
   "genericDescription": "Sitios web limitados, con pocas opciones de personalización y rendimiento comprometido.<br />- <strong>Velocidad:</strong> Carga lenta, perjudicando la experiencia del usuario.<br />- <strong>Interactividad:</strong> Experiencia básica, sin animaciones ni elementos interactivos.<br />- <strong>Seguridad:</strong> Poco robusta, vulnerable a ataques y fallos técnicos.<br />- <strong>Diseño:</strong> Plantillas limitadas, sin exclusividad ni identidad única.<br />- <strong>Escalabilidad:</strong> Restringida, con dificultades para soportar el crecimiento del negocio.",
   "customSolution": "Solución Personalizada",
-  "customDescription": "Sitios web únicos, rápidos y optimizados, diseñados para destacar tu negocio.<br />- <strong>Velocidad:</strong> Carga en milisegundos, garantizando una experiencia fluida.<br />- <strong>Interactividad:</strong> Animaciones, videos y 3D inmersivos que cautivan a los visitantes.<br />- <strong>Seguridad:</strong> Tecnologías avanzadas como Kubernetes y Rust para máxima protección.<br />- <strong>Diseño:</strong> UI/UX exclusivo, enfocado en resultados y en la identidad de tu marca.<br />- <strong>Escalabilidad:</strong> Preparado para apoyar el crecimiento de tu negocio sin limitaciones técnicas.",
-
+"customDescription": "Sitios web únicos, rápidos y optimizados, diseñados para destacar tu negocio.<br />- <strong>Velocidad:</strong> Carga en milisegundos, garantizando una experiencia fluida.<br />- <strong>Interactividad:</strong> Animaciones, videos y 3D inmersivos que cautivan a los visitantes.<br />- <strong>Seguridad:</strong> Tecnologías avanzadas como Kubernetes y Rust para máxima protección.<br />- <strong>Diseño:</strong> UI/UX exclusivo, enfocado en resultados y en la identidad de tu marca.<br />- <strong>Tipos de Proyectos:</strong> Landing pages, sitios institucionales, tiendas en línea, plataformas de aprendizaje y proyectos personalizados.<br />- <strong>Escalabilidad:</strong> Preparado para apoyar el crecimiento de tu negocio sin limitaciones técnicas.",
     "approachTitle": "Cada detalle diseñado para destacar tu negocio.",
   "approachSubtitle": "Combinamos creatividad y tecnología avanzada para ofrecer sitios web impresionantes.",
   "steps": [
@@ -324,6 +323,16 @@
     "ctaButton": "Habla con un Especialista",
     "ctaContactTitle": "Elige la forma de contacto más conveniente para ti:",
     "whatsappLabel": "WhatsApp",
-    "emailLabel": "Correo"
+    "emailLabel": "Correo",
+
+      "benefitsTitle": "Beneficios de la Automatización para su Negocio",
+    "benefit1Title": "Eficiencia Operativa",
+    "benefit1Desc": "Reduzca tareas manuales y maximice la productividad con flujos de trabajo optimizados.",
+    "benefit2Title": "Ahorro de Tiempo",
+    "benefit2Desc": "Automatice procesos repetitivos para centrarse en hacer crecer su negocio.",
+    "benefit3Title": "Escalabilidad",
+    "benefit3Desc": "Soluciones diseñadas para crecer junto con su negocio.",
+    "benefit4Title": "Mejor Experiencia del Cliente",
+    "benefit4Desc": "La automatización le permite atender a sus clientes de manera rápida y eficiente."
 
 }

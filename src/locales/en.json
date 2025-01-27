@@ -283,7 +283,8 @@
         "Experiences that engage.",
         "Results that boost your business."
     ],
-
+"experiencesub1": "Much more than a website.",
+    "experiencesub2": "We create digital experiences that highlight the best of your brand, combining exclusive design, interactivity, and advanced technology.",
 
  "experienceTitleWebsite": "It's not just a website,",
   "experienceTitleWebsite2": "It's a premium experience for those who want to stand out.",
@@ -296,8 +297,7 @@
   "genericSolution": "Generic Solution",
   "genericDescription": "Limited websites with few customization options and compromised performance.<br />- <strong>Speed:</strong> Slow loading, harming the user experience.<br />- <strong>Interactivity:</strong> Basic experience without animations or interactive elements.<br />- <strong>Security:</strong> Poor robustness, vulnerable to attacks and technical failures.<br />- <strong>Design:</strong> Limited templates without exclusivity or unique identity.<br />- <strong>Scalability:</strong> Restricted, struggling to support business growth.",
   "customSolution": "Custom Solution",
-  "customDescription": "Unique, fast, and optimized websites designed to make your business stand out.<br />- <strong>Speed:</strong> Loads in milliseconds, ensuring a smooth experience.<br />- <strong>Interactivity:</strong> Animations, videos, and immersive 3D that captivate visitors.<br />- <strong>Security:</strong> Advanced technologies like Kubernetes and Rust for maximum protection.<br />- <strong>Design:</strong> Exclusive UI/UX focused on results and your brand identity.<br />- <strong>Scalability:</strong> Ready to support your business growth without technical limitations.",
-
+"customDescription": "Unique, fast, and optimized websites designed to highlight your business.<br />- <strong>Speed:</strong> Loads in milliseconds, ensuring a smooth experience.<br />- <strong>Interactivity:</strong> Animations, videos, and immersive 3D that captivate visitors.<br />- <strong>Security:</strong> Advanced technologies like Kubernetes and Rust for maximum protection.<br />- <strong>Design:</strong> Exclusive UI/UX, focused on results and your brand's identity.<br />- <strong>Project Types:</strong> Landing pages, institutional websites, online stores, e-learning platforms, and custom projects.<br />- <strong>Scalability:</strong> Ready to support your business growth without technical limitations.",
 
 
      "approachTitle": "Every detail designed to make your business stand out.",
@@ -350,7 +350,17 @@
     "ctaButton": "Talk to a Specialist",
     "ctaContactTitle": "Choose the most convenient way to contact us:",
     "whatsappLabel": "WhatsApp",
-    "emailLabel": "E-mail"
+    "emailLabel": "E-mail",
+
+     "benefitsTitle": "Benefits of Automation for Your Business",
+    "benefit1Title": "Operational Efficiency",
+    "benefit1Desc": "Reduce manual tasks and maximize productivity with optimized workflows.",
+    "benefit2Title": "Time Savings",
+    "benefit2Desc": "Automate repetitive processes to focus on growing your business.",
+    "benefit3Title": "Scalability",
+    "benefit3Desc": "Solutions designed to grow alongside your business.",
+    "benefit4Title": "Improved Customer Experience",
+    "benefit4Desc": "Automation allows you to serve your customers quickly and efficiently."
 
 
 }

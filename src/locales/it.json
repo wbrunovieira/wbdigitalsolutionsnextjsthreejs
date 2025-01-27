@@ -282,8 +282,7 @@
   "genericSolution": "Soluzione Generica",
   "genericDescription": "Siti web limitati, con poche opzioni di personalizzazione e prestazioni compromesse.<br />- <strong>Velocità:</strong> Caricamento lento, che compromette l'esperienza utente.<br />- <strong>Interattività:</strong> Esperienza di base, senza animazioni o elementi interattivi.<br />- <strong>Sicurezza:</strong> Poco robusta, vulnerabile ad attacchi e guasti tecnici.<br />- <strong>Design:</strong> Template limitati, senza esclusività o identità unica.<br />- <strong>Scalabilità:</strong> Limitata, con difficoltà nel supportare la crescita aziendale.",
   "customSolution": "Soluzione Personalizzata",
-  "customDescription": "Siti web unici, veloci e ottimizzati, progettati per mettere in risalto la tua attività.<br />- <strong>Velocità:</strong> Caricamento in millisecondi, garantendo un'esperienza fluida.<br />- <strong>Interattività:</strong> Animazioni, video e 3D coinvolgenti che catturano i visitatori.<br />- <strong>Sicurezza:</strong> Tecnologie avanzate come Kubernetes e Rust per la massima protezione.<br />- <strong>Design:</strong> UI/UX esclusiva, focalizzata sui risultati e sull'identità del tuo brand.<br />- <strong>Scalabilità:</strong> Pronta a supportare la crescita della tua attività senza limitazioni tecniche.",
-
+"customDescription": "Siti web unici, veloci e ottimizzati, progettati per mettere in risalto la tua attività.<br />- <strong>Velocità:</strong> Caricamento in millisecondi, garantendo un'esperienza fluida.<br />- <strong>Interattività:</strong> Animazioni, video e 3D immersivi che catturano i visitatori.<br />- <strong>Sicurezza:</strong> Tecnologie avanzate come Kubernetes e Rust per la massima protezione.<br />- <strong>Design:</strong> UI/UX esclusivo, focalizzato sui risultati e sull'identità del tuo brand.<br />- <strong>Tipi di Progetti:</strong> Landing page, siti istituzionali, negozi online, piattaforme di e-learning e progetti su misura.<br />- <strong>Scalabilità:</strong> Pronto a supportare la crescita della tua attività senza limitazioni tecniche.",
 
 
     "approachTitle": "Ogni dettaglio pensato per far risaltare il tuo business.",
@@ -336,6 +335,16 @@
     "ctaButton": "Parla con uno Specialista",
     "ctaContactTitle": "Scegli il modo più conveniente per contattarci:",
     "whatsappLabel": "WhatsApp",
-    "emailLabel": "Email"
+    "emailLabel": "Email",
+
+     "benefitsTitle": "Vantaggi dell'Automazione per la tua Azienda",
+    "benefit1Title": "Efficienza Operativa",
+    "benefit1Desc": "Riduci le attività manuali e massimizza la produttività con flussi di lavoro ottimizzati.",
+    "benefit2Title": "Risparmio di Tempo",
+    "benefit2Desc": "Automatizza i processi ripetitivi per concentrarti sulla crescita del tuo business.",
+    "benefit3Title": "Scalabilità",
+    "benefit3Desc": "Soluzioni progettate per crescere insieme alla tua azienda.",
+    "benefit4Title": "Migliore Esperienza del Cliente",
+    "benefit4Desc": "L'automazione ti consente di servire i tuoi clienti in modo rapido ed efficiente."
 
 }

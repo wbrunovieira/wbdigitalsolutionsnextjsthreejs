@@ -76,7 +76,7 @@ const OurApproach: React.FC = () => {
             { scaleX: 0, transformOrigin: "left center" },
             {
               scaleX: 1,
-              duration: 1,
+              duration: 0.5,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: stepsRef.current,

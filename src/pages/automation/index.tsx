@@ -1,6 +1,7 @@
 
 import { AIHeader } from '@/components/AIHeader';
 import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
+import AnimatedBenefits from '@/components/AutomationBenefits';
 import { AutomationHeader } from '@/components/AutomationHeader';
 import React from 'react';
 
@@ -15,6 +16,7 @@ const ai: React.FC = () => {
           <AutomationHeader scrollIndicatorHidden={true} />
         </div>
     </div>
+    <AnimatedBenefits />
   </main>
 };
 
