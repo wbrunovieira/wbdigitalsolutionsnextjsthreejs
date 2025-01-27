@@ -287,18 +287,25 @@
     "experiencesub1":"Muito mais que um site.", 
     "experiencesub2":"Criamos experiências digitais que destacam o melhor da sua marca, combinando design exclusivo, interatividade e tecnologia avançada.", 
 
-    
+
     "experienceTitleWebsite":"Não é só um site,",
-    "experienceTitleWebsite2":" é uma experiência sob medida.",
-    "experienceSubtitle": "Enquanto soluções genéricas oferecem o básico, nós entregamos experiências únicas. Imagine um site que traduz a essência do seu negócio, com carregamento rápido e interações envolventes",
+    "experienceTitleWebsite2":"É uma experiência premium para quem quer se destacar.",
+    "experienceSubtitle": "Enquanto soluções genéricas oferecem o básico, nós criamos sites sob medida para empresários que buscam qualidade, inovação e tecnologia de ponta.",
+    "experienceSubtitle1_1": "Imagine um site que reflete a essência do seu negócio, com interações envolventes, design exclusivo e desempenho otimizado.",
+    "experienceSubtitle1_2": "Sabemos que animações, vídeos e 3D podem impactar levemente a velocidade. ",
+    "experienceSubtitle1_3": "Mas, para o seu público — com acesso a boa internet e equipamentos modernos — esses detalhes transformam a navegação em uma experiência memorável.",
+    "experienceSubtitle1_4": " É um equilíbrio entre performance e impacto visual que valorizamos ao máximo.",
     "experienceSubtitle2":"é isso que criamos para você.",
     "genericSolution":"Solução Genérica",
-    "genericDescription":"Sites limitados, com poucas opções de personalização e desempenho comprometido.",
+    "genericDescription": "Sites limitados, com poucas opções de personalização e desempenho comprometido.<br />- <strong>Velocidade:</strong> Carregamento lento, comprometendo a experiência do usuário.<br />- <strong>Interatividade:</strong> Experiência básica, sem animações ou elementos interativos.<br />- <strong>Segurança:</strong> Pouco robusta, vulnerável a ataques e falhas técnicas.<br />- <strong>Design:</strong> Templates limitados, sem exclusividade ou identidade única.<br />- <strong>Escalabilidade:</strong> Restrita, com dificuldades para acompanhar o crescimento do negócio.",
     "customSolution":"Solução Personalizada",
-    "customDescription":"Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.",
+"customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",    "approachTitle":"Cada detalhe pensado para destacar o seu negócio.",
+   
 
-    "approachTitle":"Cada detalhe pensado para destacar o seu negócio.",
-    "approachSubtitle":"Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
+
+
+
+"approachSubtitle":"Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
      "steps": [
           {
             "title": "Descoberta",

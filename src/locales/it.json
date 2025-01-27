@@ -271,14 +271,21 @@
     "experiencesub1": "Molto più di un sito web.",
     "experiencesub2": "Creiamo esperienze digitali che valorizzano al massimo il tuo brand, combinando design esclusivo, interattività e tecnologia avanzata.",
 
-    "experienceTitleWebsite": "Non è solo un sito web,",
-    "experienceTitleWebsite2": "è un'esperienza su misura.",
-    "experienceSubtitle": "Mentre le soluzioni generiche offrono il minimo, noi offriamo esperienze uniche. Immagina un sito che cattura l'essenza della tua attività, con velocità di caricamento rapide e interazioni coinvolgenti",
-    "experienceSubtitle2": "questo è ciò che creiamo per te.",
-    "genericSolution": "Soluzione Generica",
-    "genericDescription": "Siti limitati, con poche opzioni di personalizzazione e prestazioni compromesse.",
-    "customSolution": "Soluzione Personalizzata",
-    "customDescription": "Siti unici, veloci e ottimizzati progettati per valorizzare la tua attività.",
+"experienceTitleWebsite": "Non è solo un sito web,",
+  "experienceTitleWebsite2": "È un'esperienza premium per chi vuole distinguersi.",
+  "experienceSubtitle": "Mentre le soluzioni generiche offrono solo il minimo, noi creiamo siti web personalizzati per imprenditori che cercano qualità, innovazione e tecnologia all'avanguardia.",
+  "experienceSubtitle1_1": "Immagina un sito web che rifletta l'essenza della tua attività, con interazioni coinvolgenti, design esclusivo e prestazioni ottimizzate.",
+  "experienceSubtitle1_2": "Sappiamo che animazioni, video e 3D possono avere un leggero impatto sulla velocità.",
+  "experienceSubtitle1_3": "Ma per il tuo pubblico — con accesso a una buona connessione internet e dispositivi moderni — questi dettagli trasformano la navigazione in un'esperienza memorabile.",
+  "experienceSubtitle1_4": "È un equilibrio tra prestazioni e impatto visivo che valorizziamo al massimo.",
+  "experienceSubtitle2": "Questo è ciò che creiamo per te.",
+  "genericSolution": "Soluzione Generica",
+  "genericDescription": "Siti web limitati, con poche opzioni di personalizzazione e prestazioni compromesse.<br />- <strong>Velocità:</strong> Caricamento lento, che compromette l'esperienza utente.<br />- <strong>Interattività:</strong> Esperienza di base, senza animazioni o elementi interattivi.<br />- <strong>Sicurezza:</strong> Poco robusta, vulnerabile ad attacchi e guasti tecnici.<br />- <strong>Design:</strong> Template limitati, senza esclusività o identità unica.<br />- <strong>Scalabilità:</strong> Limitata, con difficoltà nel supportare la crescita aziendale.",
+  "customSolution": "Soluzione Personalizzata",
+  "customDescription": "Siti web unici, veloci e ottimizzati, progettati per mettere in risalto la tua attività.<br />- <strong>Velocità:</strong> Caricamento in millisecondi, garantendo un'esperienza fluida.<br />- <strong>Interattività:</strong> Animazioni, video e 3D coinvolgenti che catturano i visitatori.<br />- <strong>Sicurezza:</strong> Tecnologie avanzate come Kubernetes e Rust per la massima protezione.<br />- <strong>Design:</strong> UI/UX esclusiva, focalizzata sui risultati e sull'identità del tuo brand.<br />- <strong>Scalabilità:</strong> Pronta a supportare la crescita della tua attività senza limitazioni tecniche.",
+
+
+
     "approachTitle": "Ogni dettaglio pensato per far risaltare il tuo business.",
   "approachSubtitle": "Combiniamo creatività e tecnologia avanzata per offrire siti web impressionanti.",
   "steps": [
