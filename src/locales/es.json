@@ -380,7 +380,18 @@
     "Ahorra Tiempo",
     "Aumenta tu Productividad",
     "Reduce Errores y Costos"
+  ],
+
+
+   "headerTitleIA":"Inteligencia Artificial",
+  "headerSubtitleIA": "Aprovecha el poder de la IA para transformar desafíos en oportunidades y llevar tu negocio al siguiente nivel.",
+  "disciplinesIA": [
+    "Ahorra Tiempo",
+    "Aumenta tu Productividad",
+    "Reduce Errores y Costos"
   ]
+
+
 
 
 }

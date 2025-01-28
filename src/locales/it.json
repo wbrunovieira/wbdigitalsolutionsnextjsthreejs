@@ -391,7 +391,18 @@
     "Risparmia Tempo",
     "Aumenta la Tua Produttività",
     "Riduci Errori e Costi"
+  ],
+
+
+   "headerTitleIA":"Intelligenza Artificiale",
+  "headerSubtitleIA": "Sfrutta il potere dell'IA per trasformare le sfide in opportunità e far crescere la tua azienda.",
+  "disciplinesIA": [
+    "Risparmia Tempo",
+    "Aumenta la Tua Produttività",
+    "Riduci Errori e Costi"
   ]
+
+
 
 
 }

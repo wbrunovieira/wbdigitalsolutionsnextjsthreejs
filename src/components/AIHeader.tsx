@@ -1,19 +1,19 @@
-
 import React, { useRef } from 'react';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 interface HeaderProps {
     scrollIndicatorHidden: boolean;
 }
 
-const config = {
-    name: 'Artificial Intelligence',
-    disciplines: ['Innovate', 'Learn Faster', 'Transform Data'],
-};
 export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
-    const disciplines = config.disciplines;
+    const { language } = useLanguage();
+    const currentMessages = useTranslations();
+
+    const disciplinesIA = currentMessages.disciplines;
     let disciplineIndex = 0;
 
     const headerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +22,6 @@ export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
     const disciplineRef = useRef<HTMLSpanElement>(null);
 
     useGSAP(() => {
-
         if (nameRef.current) {
             const letters = nameRef.current.querySelectorAll('span');
             gsap.to(letters, {
@@ -35,23 +34,19 @@ export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
     }, []);
 
     useGSAP(() => {
-
         const timeline = gsap.timeline({
             repeat: -1,
             repeatDelay: 1.5,
             onRepeat: () => {
-
-                disciplineIndex = (disciplineIndex + 1) % disciplines.length;
+                disciplineIndex = (disciplineIndex + 1) % disciplinesIA.length;
                 if (disciplineRef.current) {
-                    disciplineRef.current.textContent = disciplines[disciplineIndex];
+                    disciplineRef.current.textContent = disciplinesIA[disciplineIndex];
                 }
             },
         });
 
-
         gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 20 });
         gsap.set(disciplineRef.current, { opacity: 0 });
-
 
         timeline
             .to(overlayRef.current, {
@@ -86,7 +81,7 @@ export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
             <h1 className="text-6xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
-                    {config.name.split("").map((letter, index) => (
+                    {currentMessages.headerTitleIA.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">
                             {letter}
                         </span>
@@ -97,15 +92,18 @@ export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
             <h2 className="relative flex items-center text-5xl font-semibold">
                 <span className="flex flex-col">
                     <span ref={disciplineRef} className="relative text-yellowcustom overflow-hidden">
-                        <span className="relative z-30">{disciplines[disciplineIndex]}</span>
+                        <span className="relative z-30">{disciplinesIA[disciplineIndex]}</span>
                     </span>
                     <div
                         ref={overlayRef}
                         className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0"
-
                     ></div>
                 </span>
             </h2>
+
+            <p className="text-lg text-gray-300 mt-4 max-w-3xl">
+                {currentMessages.headerSubtitleIA}
+            </p>
         </header>
     );
 };
