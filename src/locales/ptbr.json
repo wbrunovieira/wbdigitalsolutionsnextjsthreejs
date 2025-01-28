@@ -418,6 +418,57 @@
     "Economize Tempo",
     "Aumente sua Produtividade",
     "Reduza Erros e Custos"
+  ],
+
+
+  "advancedLLMTitle": "Transforme seu Negócio com IA Generativa",
+  "advancedLLMSubtitle": "Integre os mais poderosos modelos de linguagem do mercado como ChatGPT, Claude e Gemini para automatizar, otimizar e inovar em todas as áreas da sua empresa.",
+  "advancedLLMExamples": [
+    {
+      "title": "Chatbots Avançados",
+      "description": "Automatize conversas e suporte ao cliente com chatbots inteligentes, 24/7, integrados a plataformas como OpenAI ou Gemini.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Análise e Geração de Documentos",
+      "description": "Transforme documentos complexos em insights acionáveis e resumos automatizados para agilizar fluxos de trabalho.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Inteligência Competitiva",
+      "description": "Monitore redes sociais, notícias e concorrentes para detectar oportunidades e tendências de mercado antes de todo mundo.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Vendas e Marketing",
+      "description": "Crie copywriting personalizado, campanhas de email e estratégias de funil otimizadas para aumentar conversão e engajamento.",
+      "icon": "FaBullhorn"
+    },
+    {
+      "title": "Gestão de Conhecimento",
+      "description": "Centralize informações e responda perguntas internas de maneira rápida, fornecendo suporte e documentação contextualizada.",
+      "icon": "FaBook"
+    },
+    {
+      "title": "Processos de RH",
+      "description": "Faça triagem inteligente de currículos, onboarding automatizado e feedback de colaboradores com análises de sentimentos.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Engenharia e Desenvolvimento",
+      "description": "Utilize assistentes de código, análise de logs e documentação técnica automatizada para acelerar seu ciclo de entrega.",
+      "icon": "FaCode"
+    },
+    {
+      "title": "Financeiro e Contábil",
+      "description": "Gere relatórios, identifique anomalias e faça projeções mais seguras, analisando grandes volumes de dados em segundos.",
+      "icon": "FaMoneyBillWave"
+    },
+    {
+      "title": "Segurança e Auditoria",
+      "description": "Detecte fraudes e comportamentos anômalos automaticamente, garantindo conformidade e protegendo dados sensíveis.",
+      "icon": "FaShieldAlt"
+    }
   ]
 
 

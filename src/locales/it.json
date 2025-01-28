@@ -400,6 +400,57 @@
     "Risparmia Tempo",
     "Aumenta la Tua Produttività",
     "Riduci Errori e Costi"
+  ],
+
+
+   "advancedLLMTitle": "Trasforma la Tua Azienda con l'IA Generativa",
+  "advancedLLMSubtitle": "Integra i modelli di linguaggio più potenti sul mercato, come ChatGPT, Claude e Gemini, per automatizzare, ottimizzare e innovare in tutta la tua organizzazione.",
+  "advancedLLMExamples": [
+    {
+      "title": "Chatbot Avanzati",
+      "description": "Automatizza conversazioni e assistenza clienti con chatbot intelligenti 24/7, integrati con piattaforme come OpenAI o Gemini.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Analisi e Generazione di Documenti",
+      "description": "Trasforma documenti complessi in insight operativi e riassunti automatizzati per semplificare i flussi di lavoro.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Intelligenza Competitiva",
+      "description": "Monitora social media, notizie e concorrenti per individuare opportunità e tendenze di mercato prima di chiunque altro.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Vendite e Marketing",
+      "description": "Crea copywriting personalizzati, campagne email e strategie di funnel ottimizzate per aumentare conversioni e coinvolgimento.",
+      "icon": "FaBullhorn"
+    },
+    {
+      "title": "Gestione della Conoscenza",
+      "description": "Centralizza le informazioni e rispondi rapidamente alle domande interne, fornendo supporto e documentazione contestualizzati.",
+      "icon": "FaBook"
+    },
+    {
+      "title": "Processi HR",
+      "description": "Filtra CV in modo intelligente, automatizza l'onboarding e analizza i feedback dei dipendenti con analisi dei sentimenti.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Ingegneria e Sviluppo",
+      "description": "Sfrutta assistenti di codice, analisi dei log e documentazione tecnica automatizzata per accelerare il tuo ciclo di consegna.",
+      "icon": "FaCode"
+    },
+    {
+      "title": "Finanza e Contabilità",
+      "description": "Genera report, rileva anomalie e fai proiezioni più sicure analizzando grandi volumi di dati in pochi secondi.",
+      "icon": "FaMoneyBillWave"
+    },
+    {
+      "title": "Sicurezza e Audit",
+      "description": "Rileva automaticamente frodi e comportamenti anomali, garantendo conformità e protezione dei dati sensibili.",
+      "icon": "FaShieldAlt"
+    }
   ]
 
 

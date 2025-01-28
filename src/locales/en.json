@@ -416,6 +416,57 @@
     "Save Time",
     "Boost Your Productivity",
     "Reduce Errors and Costs"
+  ],
+
+
+   "advancedLLMTitle": "Transform Your Business with Generative AI",
+  "advancedLLMSubtitle": "Integrate the most powerful language models on the market, like ChatGPT, Claude, and Gemini, to automate, optimize, and innovate across your entire organization.",
+  "advancedLLMExamples": [
+    {
+      "title": "Advanced Chatbots",
+      "description": "Automate conversations and customer support with intelligent 24/7 chatbots integrated with platforms like OpenAI or Gemini.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Document Analysis and Generation",
+      "description": "Turn complex documents into actionable insights and automated summaries to streamline workflows.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Competitive Intelligence",
+      "description": "Monitor social media, news, and competitors to spot market opportunities and trends before anyone else.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Sales and Marketing",
+      "description": "Create personalized copywriting, email campaigns, and funnel strategies to boost conversion and engagement.",
+      "icon": "FaBullhorn"
+    },
+    {
+      "title": "Knowledge Management",
+      "description": "Centralize information and quickly answer internal questions, providing contextualized support and documentation.",
+      "icon": "FaBook"
+    },
+    {
+      "title": "HR Processes",
+      "description": "Intelligently screen resumes, automate onboarding, and analyze employee feedback with sentiment analysis.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Engineering and Development",
+      "description": "Leverage code assistants, log analysis, and automated technical documentation to accelerate your delivery cycle.",
+      "icon": "FaCode"
+    },
+    {
+      "title": "Finance and Accounting",
+      "description": "Generate reports, detect anomalies, and make safer projections by analyzing large volumes of data in seconds.",
+      "icon": "FaMoneyBillWave"
+    },
+    {
+      "title": "Security and Auditing",
+      "description": "Automatically detect fraud and anomalous behavior, ensuring compliance and protecting sensitive data.",
+      "icon": "FaShieldAlt"
+    }
   ]
 
 
