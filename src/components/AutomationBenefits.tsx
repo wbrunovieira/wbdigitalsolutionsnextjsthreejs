@@ -85,10 +85,8 @@ const AnimatedBenefits: React.FC = () => {
       ref={containerRef}
       className="py-16 px-6 bg-primary text-white overflow-hidden"
     >
-      {/* Lottie Background */}
     
 
-      {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <div className='flex justify-center bg-white  mx-auto rounded '>
                   <Player

@@ -2,7 +2,9 @@ import dynamic from 'next/dynamic';
 
 import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
 import { AutomationHeader } from '@/components/AutomationHeader';
+
 const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false });
+const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { ssr: false });
 
 
 
@@ -18,6 +20,7 @@ const ai: React.FC = () => {
         </div>
     </div>
     <AnimatedBenefits />
+    <AutomationCases />
 
 
   </main>

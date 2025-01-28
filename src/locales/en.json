@@ -370,7 +370,26 @@
     "solution3Title": "Creative Ideas",
     "solution3Desc": "Develop tailored strategies to overcome challenges.",
     "solution4Title": "Accelerated Growth",
-    "solution4Desc": "Implement solutions that take your business to the next level."
+    "solution4Desc": "Implement solutions that take your business to the next level.",
+
+     "successCasesTitle": "Automation Success Stories",
+  "successCasesSubtitle": "Discover how your company can transform operations with automation.",
+  "stockManagementTitle": "Automated Inventory Management",
+  "stockManagementDesc": "Reduce losses and increase efficiency with intelligent demand forecasting.",
+  "chatbotSupportTitle": "Customer Support with Chatbots",
+  "chatbotSupportDesc": "Provide 24/7 support and reduce costs with virtual assistants.",
+  "financialAutomationTitle": "Financial Process Automation",
+  "financialAutomationDesc": "Simplify reporting and financial controls with greater precision.",
+  "systemIntegrationTitle": "System Integration",
+  "systemIntegrationDesc": "Connect platforms to improve workflows and reduce errors.",
+  "qualityControlTitle": "Automated Quality Control",
+  "qualityControlDesc": "Ensure consistency and reduce production errors.",
+  "marketingAutomationTitle": "Digital Marketing Automation",
+  "marketingAutomationDesc": "Monitor campaigns and optimize results with less effort.",
+  "projectManagementTitle": "Automated Project Management",
+  "projectManagementDesc": "Manage resources and deadlines more efficiently.",
+  "hrAutomationTitle": "HR Process Automation",
+  "hrAutomationDesc": "Streamline recruitment and employee management."
 
 
 }

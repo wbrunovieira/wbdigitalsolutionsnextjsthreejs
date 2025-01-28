@@ -343,6 +343,26 @@
     "solution3Title": "Ideas Creativas",
     "solution3Desc": "Desarrolle estrategias personalizadas para superar desafíos.",
     "solution4Title": "Crecimiento Acelerado",
-    "solution4Desc": "Implemente soluciones que lleven su empresa al siguiente nivel."
+    "solution4Desc": "Implemente soluciones que lleven su empresa al siguiente nivel.",
+
+
+     "successCasesTitle": "Historias de Éxito en Automatización",
+  "successCasesSubtitle": "Descubre cómo tu empresa puede transformar sus operaciones con automatización.",
+  "stockManagementTitle": "Gestión Automatizada de Inventarios",
+  "stockManagementDesc": "Reduce pérdidas y aumenta la eficiencia con predicciones inteligentes de demanda.",
+  "chatbotSupportTitle": "Atención al Cliente con Chatbots",
+  "chatbotSupportDesc": "Proporciona soporte 24/7 y reduce costos con asistentes virtuales.",
+  "financialAutomationTitle": "Automatización de Procesos Financieros",
+  "financialAutomationDesc": "Simplifica informes y controles financieros con mayor precisión.",
+  "systemIntegrationTitle": "Integración de Sistemas",
+  "systemIntegrationDesc": "Conecta plataformas para mejorar flujos de trabajo y reducir errores.",
+  "qualityControlTitle": "Control de Calidad Automatizado",
+  "qualityControlDesc": "Garantiza consistencia y reduce errores de producción.",
+  "marketingAutomationTitle": "Automatización del Marketing Digital",
+  "marketingAutomationDesc": "Monitorea campañas y optimiza resultados con menos esfuerzo.",
+  "projectManagementTitle": "Gestión de Proyectos Automatizada",
+  "projectManagementDesc": "Gestiona recursos y plazos de manera más eficiente.",
+  "hrAutomationTitle": "Automatización de Procesos de RRHH",
+  "hrAutomationDesc": "Agiliza el reclutamiento y la gestión de empleados."
 
 }

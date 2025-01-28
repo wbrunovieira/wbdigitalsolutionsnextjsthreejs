@@ -355,6 +355,25 @@
     "solution3Title": "Idee Creative",
     "solution3Desc": "Sviluppa strategie personalizzate per superare le sfide.",
     "solution4Title": "Crescita Accelerata",
-    "solution4Desc": "Implementa soluzioni che portino la tua azienda al livello successivo."
+    "solution4Desc": "Implementa soluzioni che portino la tua azienda al livello successivo.",
+
+     "successCasesTitle": "Storie di Successo nell'Automazione",
+  "successCasesSubtitle": "Scopri come la tua azienda può trasformare le operazioni con l'automazione.",
+  "stockManagementTitle": "Gestione Automatizzata degli Inventari",
+  "stockManagementDesc": "Riduci le perdite e aumenta l'efficienza con previsioni intelligenti della domanda.",
+  "chatbotSupportTitle": "Assistenza Clienti con Chatbot",
+  "chatbotSupportDesc": "Offri supporto 24/7 e riduci i costi con assistenti virtuali.",
+  "financialAutomationTitle": "Automazione dei Processi Finanziari",
+  "financialAutomationDesc": "Semplifica i report e il controllo finanziario con maggiore precisione.",
+  "systemIntegrationTitle": "Integrazione dei Sistemi",
+  "systemIntegrationDesc": "Connetti le piattaforme per migliorare i flussi di lavoro e ridurre gli errori.",
+  "qualityControlTitle": "Controllo Qualità Automatizzato",
+  "qualityControlDesc": "Garantisci coerenza e riduci gli errori di produzione.",
+  "marketingAutomationTitle": "Automazione del Marketing Digitale",
+  "marketingAutomationDesc": "Monitora le campagne e ottimizza i risultati con meno sforzo.",
+  "projectManagementTitle": "Gestione dei Progetti Automatizzata",
+  "projectManagementDesc": "Gestisci risorse e scadenze in modo più efficiente.",
+  "hrAutomationTitle": "Automazione dei Processi HR",
+  "hrAutomationDesc": "Snellisci il reclutamento e la gestione dei dipendenti."
 
 }
