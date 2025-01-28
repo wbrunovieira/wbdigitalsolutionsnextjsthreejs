@@ -48,7 +48,7 @@ const MachineLearningServices: React.FC = () => {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      // Animação do título
+
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, y: -30 },
@@ -64,7 +64,7 @@ const MachineLearningServices: React.FC = () => {
         }
       );
 
-      // Animação das cards de serviços
+
       servicesRef.current.forEach((service, index) => {
         if (!service) return;
         gsap.fromTo(
@@ -88,7 +88,7 @@ const MachineLearningServices: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  // Mapeando os dados do dicionário
+
   const mlServices: MLService[] = currentMessages.mlServices.map((service: any) => {
     return {
       title: service.title,
