@@ -1,11 +1,15 @@
 import dynamic from 'next/dynamic';
 
-import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
+import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';
+
+import CallToActionAutomation from '@/components/AutomationCTA';
 import { AutomationHeader } from '@/components/AutomationHeader';
-import Technologies from '@/components/AutomationTecs';
+
 
 const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false });
 const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { ssr: false });
+const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr: false });
+
 
 
 
@@ -23,6 +27,7 @@ const ai: React.FC = () => {
     <AnimatedBenefits />
     <AutomationCases />
     <Technologies />
+    <CallToActionAutomation />
 
 
   </main>

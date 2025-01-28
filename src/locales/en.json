@@ -392,7 +392,24 @@
   "hrAutomationDesc": "Streamline recruitment and employee management.",
 
     "technologiesTitle":"Technologies That Power Our Solutions",
-  "technologiesDescription":"We use the most modern technologies to create robust, scalable, and future-ready solutions."
+  "technologiesDescription":"We use the most modern technologies to create robust, scalable, and future-ready solutions.",
+
+
+
+  "ctaTitleAutomation": "Discover How Automation Can Transform Your Business",
+  "ctaDescription": "There are countless automation applications we can implement to optimize your processes, reduce costs, and increase efficiency. Contact our specialist to understand your needs and suggest tailored solutions.",
+  "ctaWhatsapp": "Chat via WhatsApp",
+  "ctaEmail": "Send an Email",
+  "ctaFooter": "Let's work together to discover how automation can transform your processes and boost your business.",
+
+    "headerTitle": "Smart Automation",
+  "headerSubtitle": "Automation that works for you: simplify tasks, boost productivity, and focus on what truly matters.",
+  "disciplines": [
+    "Save Time",
+    "Boost Your Productivity",
+    "Reduce Errors and Costs"
+  ]
+
 
 
 

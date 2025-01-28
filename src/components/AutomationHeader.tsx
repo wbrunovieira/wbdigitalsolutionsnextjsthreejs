@@ -1,20 +1,19 @@
-
 import React, { useRef } from 'react';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 interface HeaderProps {
     scrollIndicatorHidden: boolean;
 }
 
-const config = {
-    name: 'Automation',
-    disciplines: ['Save Time', 'Boost Productivity', 'Reduce Errors'],
-};
-
 export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
-    const disciplines = config.disciplines;
+    const { language } = useLanguage();
+    const currentMessages = useTranslations();
+
+    const disciplines = currentMessages.disciplines;
     let disciplineIndex = 0;
 
     const headerRef = useRef<HTMLDivElement>(null);
@@ -23,25 +22,22 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
     const disciplineRef = useRef<HTMLSpanElement>(null);
 
     useGSAP(() => {
-
         if (nameRef.current) {
             const letters = nameRef.current.querySelectorAll('span');
             gsap.to(letters, {
                 opacity: 1,
                 stagger: 0.1,
                 duration: 1.3,
-                ease: 'power2.inOut',
+                ease: 'power2.inOut'
             });
         }
     }, []);
 
     useGSAP(() => {
-
         const timeline = gsap.timeline({
             repeat: -1,
             repeatDelay: 1.5,
             onRepeat: () => {
-
                 disciplineIndex = (disciplineIndex + 1) % disciplines.length;
                 if (disciplineRef.current) {
                     disciplineRef.current.textContent = disciplines[disciplineIndex];
@@ -49,10 +45,8 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
             },
         });
 
-
         gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 20 });
         gsap.set(disciplineRef.current, { opacity: 0 });
-
 
         timeline
             .to(overlayRef.current, {
@@ -60,7 +54,7 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
                 transformOrigin: 'left center',
                 duration: 1.2,
                 yoyo: true,
-                ease: 'power2.out',
+                ease: 'power2.out'
             })
             .to(
                 disciplineRef.current,
@@ -87,7 +81,7 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
             <h1 className="text-6xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
-                    {config.name.split("").map((letter, index) => (
+                    {currentMessages.headerTitle.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">
                             {letter}
                         </span>
@@ -103,10 +97,13 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
                     <div
                         ref={overlayRef}
                         className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0"
-
                     ></div>
                 </span>
             </h2>
+
+            <p className="text-lg text-gray-300 mt-4 max-w-3xl">
+                {currentMessages.headerSubtitle}
+            </p>
         </header>
     );
 };

@@ -366,7 +366,21 @@
   "hrAutomationDesc": "Agiliza el reclutamiento y la gestión de empleados.",
 
   "technologiesTitle":"Tecnologías que Impulsan Nuestras Soluciones",
-  "technologiesDescription":"Utilizamos las tecnologías más modernas para crear soluciones robustas, escalables y preparadas para el futuro."
+  "technologiesDescription":"Utilizamos las tecnologías más modernas para crear soluciones robustas, escalables y preparadas para el futuro.",
+
+  "ctaTitleAutomation": "Descubre Cómo la Automatización Puede Transformar Tu Negocio",
+  "ctaDescription": "Existen innumerables aplicaciones de automatización que podemos implementar para optimizar tus procesos, reducir costos y aumentar la eficiencia. Contacta a nuestro especialista para entender tus necesidades y sugerir soluciones personalizadas.",
+  "ctaWhatsapp": "Habla por WhatsApp",
+  "ctaEmail": "Envía un Correo Electrónico",
+  "ctaFooter": "Trabajemos juntos para descubrir cómo la automatización puede transformar tus procesos y potenciar tu negocio.",
+
+  "headerTitle": "Automatización Inteligente",
+  "headerSubtitle": "Automatización que trabaja por ti: simplifica tareas, aumenta la productividad y concéntrate en lo que realmente importa.",
+  "disciplines": [
+    "Ahorra Tiempo",
+    "Aumenta tu Productividad",
+    "Reduce Errores y Costos"
+  ]
 
 
 }

@@ -377,6 +377,21 @@
   "hrAutomationDesc": "Snellisci il reclutamento e la gestione dei dipendenti.",
 
   "technologiesTitle":"Tecnologie che Potenziano le Nostre Soluzioni",
-  "technologiesDescription":"Utilizziamo le tecnologie più moderne per creare soluzioni robuste, scalabili e pronte per il futuro."
+  "technologiesDescription":"Utilizziamo le tecnologie più moderne per creare soluzioni robuste, scalabili e pronte per il futuro.",
+
+  "ctaTitleAutomation": "Scopri Come l'Automazione Può Trasformare la Tua Attività",
+  "ctaDescription": "Esistono innumerevoli applicazioni di automazione che possiamo implementare per ottimizzare i tuoi processi, ridurre i costi e aumentare l'efficienza. Contatta il nostro specialista per capire le tue esigenze e suggerire soluzioni personalizzate.",
+  "ctaWhatsapp": "Chatta su WhatsApp",
+  "ctaEmail": "Invia un'Email",
+  "ctaFooter": "Lavoriamo insieme per scoprire come l'automazione può trasformare i tuoi processi e far crescere la tua attività.",
+
+   "headerTitle": "Automazione Intelligente",
+  "headerSubtitle": "Automazione che lavora per te: semplifica le attività, aumenta la produttività e concentrati su ciò che conta davvero.",
+  "disciplines": [
+    "Risparmia Tempo",
+    "Aumenta la Tua Produttività",
+    "Riduci Errori e Costi"
+  ]
+
 
 }
