@@ -13,8 +13,8 @@ import {
   FaMoneyBillWave,
   FaShieldAlt,
 } from "react-icons/fa";
-import { useTranslations } from "@/contexts/TranslationContext";  // <- seu contexto de tradução
-import { useLanguage } from "@/contexts/LanguageContext";      // <- seu contexto de idioma
+import { useTranslations } from "@/contexts/TranslationContext";  
+import { useLanguage } from "@/contexts/LanguageContext";      
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,7 +65,7 @@ const AdvancedLLMSection: React.FC = () => {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      // Animação do título com scroll trigger mais suave
+
       gsap.fromTo(
         headingRef.current,
         { opacity: 0, y: 50 },
@@ -116,7 +116,7 @@ const AdvancedLLMSection: React.FC = () => {
       className="relative z-10 bg-gradient-to-br from-primary via-primary to-custom-purple py-20 px-6 text-white mt-32 min-h-[1200px] sm:min-h-[1000px]"
       role="region"
     >
-      {/* SHAPE DIVIDER TOP */}
+
       <div className="absolute top-0 left-0 w-full z-0 pointer-events-none">
         <svg
           className="block h-16 sm:h-32 w-full"
@@ -132,7 +132,7 @@ const AdvancedLLMSection: React.FC = () => {
         </svg>
       </div>
 
-      {/* CONTEÚDO PRINCIPAL */}
+
       <div className="max-w-6xl mx-auto h-full">
         <div className="text-center mb-16">
           <h2
@@ -147,7 +147,7 @@ const AdvancedLLMSection: React.FC = () => {
           </p>
         </div>
 
-        {/* GRID DE CARDS */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full h-full">
           {examples.map((example, index) => (
             <div
@@ -157,7 +157,7 @@ const AdvancedLLMSection: React.FC = () => {
               }}
               className="group bg-primary rounded-2xl shadow-lg transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl p-8 flex flex-col items-center text-center relative overflow-hidden"
             >
-              {/* Ícone com Tilt Effect no hover */}
+
               <div className="transform transition duration-300 group-hover:rotate-3 group-hover:scale-105">
                 {example.icon}
               </div>
@@ -166,14 +166,14 @@ const AdvancedLLMSection: React.FC = () => {
               </h3>
               <p className="text-gray-300 text-sm">{example.description}</p>
 
-              {/* Efeito gradiente no hover */}
+
               <div className="absolute inset-0 bg-gradient-to-r from-custom-purple to-transparent opacity-0 group-hover:opacity-20 transition duration-300 rounded-2xl" />
             </div>
           ))}
         </div>
       </div>
 
-      {/* SHAPE DIVIDER BOTTOM */}
+
       <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none">
         <svg
           className="block h-16 sm:h-32 w-full"

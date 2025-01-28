@@ -439,6 +439,62 @@
       "description": "Detecta fraudes y comportamientos anómalos automáticamente, garantizando cumplimiento y protegiendo datos sensibles.",
       "icon": "FaShieldAlt"
     }
+  ],
+
+
+  "mlServicesTitle": "Soluciones de Machine Learning a Medida",
+  "mlServicesSubtitle": "Descubre cómo la IA puede generar un valor real en varias áreas de tu negocio, convirtiendo datos en información procesable y procesos automatizados.",
+  "mlServices": [
+    {
+      "title": "Modelos de Predicción de Demanda",
+      "description": "Anticipa necesidades de stock, logística y producción con modelos que evitan quiebres y excedentes.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Sistemas de Recomendación",
+      "description": "Sugerencias personalizadas en e-commerce, entretenimiento o plataformas de contenido, aumentando la participación y las ventas.",
+      "icon": "FaLightbulb"
+    },
+    {
+      "title": "Clasificación y Segmentación de Clientes",
+      "description": "Comprende mejor a tu público, personaliza campañas y descubre oportunidades de upsell y cross-sell.",
+      "icon": "FaUserCheck"
+    },
+    {
+      "title": "Detección de Anomalías y Fraudes",
+      "description": "Prevén pérdidas financieras en e-commerce, bancos y seguros con análisis inteligentes.",
+      "icon": "FaShieldAlt"
+    },
+    {
+      "title": "Modelos de Precios Dinámicos",
+      "description": "Maximiza los ingresos y la competitividad definiendo los precios de productos y servicios en tiempo real.",
+      "icon": "FaMoneyBill"
+    },
+    {
+      "title": "Análisis de Sentimientos (NLP)",
+      "description": "Obtén información sobre la satisfacción del cliente y automatiza la atención con procesamiento de lenguaje natural.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Visión por Computadora",
+      "description": "Clasifica imágenes, realiza inspecciones de calidad y automatiza procesos de seguridad.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Mantenimiento Predictivo",
+      "description": "Reduce el tiempo de inactividad inesperado al predecir fallas y optimizar la vida útil de máquinas y equipos.",
+      "icon": "FaCog"
+    },
+    {
+      "title": "Detección de Churn",
+      "description": "Anticipa cancelaciones en servicios de suscripción y retén a clientes valiosos.",
+      "icon": "FaCheckCircle"
+    },
+    {
+      "title": "Optimización y Scheduling",
+      "description": "Automatiza horarios, rutas de flota y asignación de recursos para lograr la máxima productividad.",
+      "icon": "FaCalendarCheck"
+    }
   ]
 
 

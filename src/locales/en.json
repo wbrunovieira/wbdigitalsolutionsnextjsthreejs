@@ -467,6 +467,61 @@
       "description": "Automatically detect fraud and anomalous behavior, ensuring compliance and protecting sensitive data.",
       "icon": "FaShieldAlt"
     }
+  ],
+
+  "mlServicesTitle": "Tailored Machine Learning Solutions",
+  "mlServicesSubtitle": "Explore how AI can deliver real value across multiple areas of your business, turning data into insights and automated processes.",
+  "mlServices": [
+    {
+      "title": "Demand Forecasting Models",
+      "description": "Anticipate stock, logistics, and production needs with models that prevent shortages and overstocks.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Recommendation Systems",
+      "description": "Personalized suggestions for e-commerce, entertainment, or content platforms, increasing engagement and sales.",
+      "icon": "FaLightbulb"
+    },
+    {
+      "title": "Customer Classification and Segmentation",
+      "description": "Gain deeper audience insights, customize campaigns, and discover upsell and cross-sell opportunities.",
+      "icon": "FaUserCheck"
+    },
+    {
+      "title": "Anomaly and Fraud Detection",
+      "description": "Prevent financial losses in e-commerce, banking, and insurance with intelligent analytics.",
+      "icon": "FaShieldAlt"
+    },
+    {
+      "title": "Dynamic Pricing Models",
+      "description": "Maximize revenue and competitiveness by setting product and service prices in real time.",
+      "icon": "FaMoneyBill"
+    },
+    {
+      "title": "Sentiment Analysis (NLP)",
+      "description": "Gain customer satisfaction insights and automate support with natural language processing.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Computer Vision",
+      "description": "Classify images, conduct quality inspections, and automate security processes.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Predictive Maintenance",
+      "description": "Reduce unexpected downtime by predicting failures and optimizing the lifespan of machines and equipment.",
+      "icon": "FaCog"
+    },
+    {
+      "title": "Churn Detection",
+      "description": "Anticipate subscription cancellations and retain valuable customers.",
+      "icon": "FaCheckCircle"
+    },
+    {
+      "title": "Optimization and Scheduling",
+      "description": "Automate scheduling, fleet routing, and resource allocation to achieve maximum productivity.",
+      "icon": "FaCalendarCheck"
+    }
   ]
 
 

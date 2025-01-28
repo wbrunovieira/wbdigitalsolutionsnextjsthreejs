@@ -451,6 +451,62 @@
       "description": "Rileva automaticamente frodi e comportamenti anomali, garantendo conformità e protezione dei dati sensibili.",
       "icon": "FaShieldAlt"
     }
+  ],
+
+
+  "mlServicesTitle": "Soluzioni di Machine Learning Personalizzate",
+  "mlServicesSubtitle": "Scopri come l'IA può portare un valore reale in diverse aree della tua attività, trasformando i dati in informazioni fruibili e processi automatizzati.",
+  "mlServices": [
+    {
+      "title": "Modelli di Previsione della Domanda",
+      "description": "Anticipa le necessità di stock, logistica e produzione con modelli che evitano carenze ed eccessi.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Sistemi di Raccomandazione",
+      "description": "Suggerimenti personalizzati in e-commerce, intrattenimento o piattaforme di contenuti, aumentando engagement e vendite.",
+      "icon": "FaLightbulb"
+    },
+    {
+      "title": "Classificazione e Segmentazione dei Clienti",
+      "description": "Comprendi meglio il tuo pubblico, personalizza le campagne e scopri opportunità di upsell e cross-sell.",
+      "icon": "FaUserCheck"
+    },
+    {
+      "title": "Rilevamento di Anomalie e Frodi",
+      "description": "Previeni perdite finanziarie in e-commerce, banche e assicurazioni con analisi intelligenti.",
+      "icon": "FaShieldAlt"
+    },
+    {
+      "title": "Modelli di Prezzi Dinamici",
+      "description": "Massimizza i ricavi e la competitività definendo i prezzi di prodotti e servizi in tempo reale.",
+      "icon": "FaMoneyBill"
+    },
+    {
+      "title": "Analisi del Sentimento (NLP)",
+      "description": "Ottieni informazioni sulla soddisfazione del cliente e automatizza l'assistenza con l'elaborazione del linguaggio naturale.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Visione Artificiale",
+      "description": "Classifica immagini, esegui ispezioni di qualità e automatizza i processi di sicurezza.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Manutenzione Predittiva",
+      "description": "Riduci i tempi di inattività imprevisti prevedendo guasti e ottimizzando la vita utile di macchine e attrezzature.",
+      "icon": "FaCog"
+    },
+    {
+      "title": "Rilevamento del Churn",
+      "description": "Anticipa cancellazioni in servizi in abbonamento e conserva i clienti strategici.",
+      "icon": "FaCheckCircle"
+    },
+    {
+      "title": "Ottimizzazione e Scheduling",
+      "description": "Automatizza gli orari, il routing della flotta e l'allocazione delle risorse per ottenere la massima produttività.",
+      "icon": "FaCalendarCheck"
+    }
   ]
 
 
