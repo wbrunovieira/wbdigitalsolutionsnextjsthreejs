@@ -389,7 +389,14 @@
   "projectManagementTitle": "Automated Project Management",
   "projectManagementDesc": "Manage resources and deadlines more efficiently.",
   "hrAutomationTitle": "HR Process Automation",
-  "hrAutomationDesc": "Streamline recruitment and employee management."
+  "hrAutomationDesc": "Streamline recruitment and employee management.",
+
+    "technologiesTitle":"Technologies That Power Our Solutions",
+  "technologiesDescription":"We use the most modern technologies to create robust, scalable, and future-ready solutions."
+
+
+
+
 
 
 }

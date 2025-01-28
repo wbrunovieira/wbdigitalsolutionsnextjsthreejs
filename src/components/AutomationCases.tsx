@@ -145,7 +145,7 @@ const SuccessCases: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="py-20 px-6 bg-gradient-to-br from-primary via-primary to-custom-purple text-white overflow-hidden"
+      className="py-20 px-6 bg-gradient-to-br from-primary via-primary to-custom-purple text-white overflow-hidden mt-32"
     >
       <div className="text-center mb-12">
         <h2

@@ -363,6 +363,10 @@
   "projectManagementTitle": "Gestión de Proyectos Automatizada",
   "projectManagementDesc": "Gestiona recursos y plazos de manera más eficiente.",
   "hrAutomationTitle": "Automatización de Procesos de RRHH",
-  "hrAutomationDesc": "Agiliza el reclutamiento y la gestión de empleados."
+  "hrAutomationDesc": "Agiliza el reclutamiento y la gestión de empleados.",
+
+  "technologiesTitle":"Tecnologías que Impulsan Nuestras Soluciones",
+  "technologiesDescription":"Utilizamos las tecnologías más modernas para crear soluciones robustas, escalables y preparadas para el futuro."
+
 
 }
