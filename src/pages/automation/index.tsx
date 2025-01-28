@@ -1,22 +1,25 @@
+import dynamic from 'next/dynamic';
 
-import { AIHeader } from '@/components/AIHeader';
 import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
-import AnimatedBenefits from '@/components/AutomationBenefits';
 import { AutomationHeader } from '@/components/AutomationHeader';
-import React from 'react';
+const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false });
+
+
 
 const ai: React.FC = () => {
   return <main>
-      <div className="relative w-full h-screen overflow-hidden mt-32">
-        <div className="absolute inset-0 z-0">
+      <div className="relative w-full h-96 overflow-hidden mt-32">
+        <div className="absolute inset-0 z-0 h-96">
 
-              <AnimatedBackgroundAutomationComponent />
+         <AnimatedBackgroundAutomationComponent />
         </div>
         <div className="relative z-10">
           <AutomationHeader scrollIndicatorHidden={true} />
         </div>
     </div>
     <AnimatedBenefits />
+
+
   </main>
 };
 
