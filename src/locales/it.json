@@ -562,6 +562,33 @@
       "description": "Guida bracci robotici, monitora le linee di produzione e aumenta la sicurezza operativa con l'analisi delle immagini.",
       "icon": "FaCogs"
     }
+  ],
+
+
+
+  "agentTitle": "Orchestrazione di Agenti IA",
+  "agentSubtitle": "Immagina agenti intelligenti che lavorano in squadra: uno avvia il compito, un altro lo rivede e lo perfeziona, mentre un terzo sintetizza i risultati. Questa collaborazione autonoma e scalabile porta il tuo progetto a nuovi livelli di efficienza e qualità.",
+  "agentFlowItems": [
+    {
+      "title": "Coordinamento delle Attività",
+      "description": "Ogni agente IA riceve e trasmette obiettivi in modo autonomo, garantendo che ogni fase venga eseguita al momento giusto.",
+      "icon": "FaNetworkWired"
+    },
+    {
+      "title": "Collaborazione tra Agenti",
+      "description": "Un agente rivede il lavoro dell'altro, garantendo coerenza e qualità in ogni decisione o consegna.",
+      "icon": "FaPeopleCarry"
+    },
+    {
+      "title": "Apprendimento Continuo",
+      "description": "Gli agenti si scambiano informazioni e si evolvono insieme, perfezionando modelli e strategie a ogni iterazione.",
+      "icon": "FaBrain"
+    },
+    {
+      "title": "Ottimizzazione dei Costi",
+      "description": "Processi automatizzati, meno revisioni e una produzione più rapida riducono i costi e massimizzano il ROI.",
+      "icon": "FaHandHoldingUsd"
+    }
   ]
 
 

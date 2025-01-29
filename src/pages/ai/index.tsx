@@ -1,4 +1,5 @@
 
+
 import { AIHeader } from '@/components/AIHeader';
 
 
@@ -10,6 +11,7 @@ import dynamic from 'next/dynamic';
 const LLMSection = dynamic(() => import('@/components/AILLMSection'), { ssr: false });
 const MachineLearningServices = dynamic(() => import('@/components/AIMLServices'), { ssr: false });
 const VisionComputationalSection = dynamic(() => import('@/components/IAVision'), { ssr: false });
+const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), { ssr: false });
 
 const ai: React.FC = () => {
   return <main >
@@ -33,6 +35,10 @@ const ai: React.FC = () => {
          <div className="relative z-10">
 
         <VisionComputationalSection  />
+        </div>
+         <div className="relative z-10">
+
+        <AIAgentFlowSection  />
         </div>
     </div>
   </main>

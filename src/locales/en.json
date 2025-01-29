@@ -577,6 +577,32 @@
       "description": "Guide robotic arms, monitor production lines, and enhance operational safety through image analysis.",
       "icon": "FaCogs"
     }
+  ],
+
+
+  "agentTitle": "AI Agent Orchestration",
+  "agentSubtitle": "Imagine intelligent agents working in teams: one initiates a task, another reviews and refines it, while a third synthesizes the results. This autonomous, scalable collaboration takes your project to new heights of efficiency and quality.",
+  "agentFlowItems": [
+    {
+      "title": "Task Coordination",
+      "description": "Each AI agent autonomously receives and passes on objectives, ensuring every step is executed at the right time.",
+      "icon": "FaNetworkWired"
+    },
+    {
+      "title": "Agent Collaboration",
+      "description": "One agent reviews another's work, guaranteeing consistency and quality in each decision or deliverable.",
+      "icon": "FaPeopleCarry"
+    },
+    {
+      "title": "Continuous Learning",
+      "description": "Agents exchange insights and evolve together, refining models and strategies with each iteration.",
+      "icon": "FaBrain"
+    },
+    {
+      "title": "Cost Optimization",
+      "description": "Automated processes, fewer reworks, and faster production reduce costs and maximize ROI.",
+      "icon": "FaHandHoldingUsd"
+    }
   ]
 
 
