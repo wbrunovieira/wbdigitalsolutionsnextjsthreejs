@@ -11,7 +11,7 @@ import { useLanguage } from "./LanguageContext";
 import { MessageFormat, MessagesType } from "../types/messages";
 
 import en from "../locales/en.json";
-import pt from "../locales/pt.json";
+
 import es from "../locales/es.json";
 import it from "../locales/it.json";
 import ptbr from "../locales/ptbr.json";
@@ -29,7 +29,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     const translations: MessagesType = useMemo(
         () => ({
             en,
-            pt,
+          
             es,
             it,
             "pt-BR": ptbr,
