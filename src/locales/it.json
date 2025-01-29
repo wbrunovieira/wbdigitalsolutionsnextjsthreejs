@@ -507,6 +507,61 @@
       "description": "Automatizza gli orari, il routing della flotta e l'allocazione delle risorse per ottenere la massima produttività.",
       "icon": "FaCalendarCheck"
     }
+  ],
+
+    "visionTitle": "Soluzioni di Visione Artificiale",
+  "visionSubtitle": "Estrai informazioni preziose da immagini e video, automatizzando i processi, riducendo i costi e aumentando l'efficienza.",
+  "visionOptions": [
+    {
+      "title": "Rilevamento e Classificazione degli Oggetti",
+      "description": "Identifica e classifica prodotti, componenti o persino persone in immagini e video, aumentando la precisione e riducendo gli errori.",
+      "icon": "FaSearch"
+    },
+    {
+      "title": "Controllo Qualità Automatizzato",
+      "description": "Analizza difetti e guasti nelle linee di produzione, garantendo maggiore coerenza ed evitando sprechi.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Lettura e Analisi Documentale (OCR)",
+      "description": "Trasforma documenti cartacei in dati digitali, snellendo i processi di registrazione e riducendo i costi di inserimento manuale.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Analisi di Telecamere di Sicurezza",
+      "description": "Monitora gli ambienti in tempo reale, rileva comportamenti sospetti e proteggi la tua attività.",
+      "icon": "FaLock"
+    },
+    {
+      "title": "Tracciamento Oggetti",
+      "description": "Segui veicoli, prodotti o persone, migliorando la gestione delle risorse e ottimizzando i percorsi.",
+      "icon": "FaCar"
+    },
+    {
+      "title": "Riconoscimento Facciale e Biometria",
+      "description": "Automatizza il controllo degli accessi, personalizza le esperienze e crea processi più sicuri con tecnologia biometrica.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Analisi del Comportamento in Ambienti Retail",
+      "description": "Mappa i movimenti dei clienti, identifica le aree di maggior interesse e ottimizza il layout dei negozi.",
+      "icon": "FaStore"
+    },
+    {
+      "title": "Monitoraggio di Code e Traffico",
+      "description": "Stima i tempi di attesa, rileva gli ingorghi e migliora l'esperienza nei servizi e nel traffico.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Gestione di Inventario e Logistica",
+      "description": "Identifica pallet, traccia prodotti e ottimizza l'intera catena di fornitura, dal magazzino al trasporto.",
+      "icon": "FaQrcode"
+    },
+    {
+      "title": "Processi Industriali e Robotica",
+      "description": "Guida bracci robotici, monitora le linee di produzione e aumenta la sicurezza operativa con l'analisi delle immagini.",
+      "icon": "FaCogs"
+    }
   ]
 
 

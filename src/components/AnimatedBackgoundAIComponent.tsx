@@ -14,7 +14,7 @@ const AnimatedBackgroundAIComponent: React.FC = () => {
     const lightRef = useRef<RectAreaLight>(null);
 
     return (
-        <div className="w-full h-96 bg-transparent">
+        <div className="absolute w-full h-96 bg-transparent">
             <Canvas
                 style={{ background: 'transparent' }}
                 shadows

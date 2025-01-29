@@ -525,6 +525,63 @@
       "description": "Automatize escalas, roteirização de frota e alocação de recursos para produtividade máxima.",
       "icon": "FaCalendarCheck"
     }
+
+    
+  ],
+
+   "visionTitle": "Soluções de Visão Computacional",
+  "visionSubtitle": "Extraia informações valiosas de imagens e vídeos, automatizando processos, reduzindo custos e aumentando a eficiência.",
+  "visionOptions": [
+    {
+      "title": "Detecção e Classificação de Objetos",
+      "description": "Identifique e categorize produtos, peças ou até mesmo pessoas em imagens e vídeos, aumentando a precisão e reduzindo erros.",
+      "icon": "FaSearch"
+    },
+    {
+      "title": "Controle de Qualidade Automatizado",
+      "description": "Analise defeitos e falhas em linhas de produção, garantindo maior consistência e evitando desperdícios.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Leitura e Análise de Documentos (OCR)",
+      "description": "Transforme papéis em dados digitais, agilizando processos de cadastro e reduzindo custos com digitação manual.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Análise de Câmeras de Segurança",
+      "description": "Monitore ambientes em tempo real, detecte comportamentos suspeitos e garanta a segurança do seu negócio.",
+      "icon": "FaLock"
+    },
+    {
+      "title": "Rastreamento de Objetos",
+      "description": "Acompanhe movimentações de veículos, produtos ou pessoas, melhorando a gestão de ativos e otimizando rotas.",
+      "icon": "FaCar"
+    },
+    {
+      "title": "Reconhecimento Facial e Biometria",
+      "description": "Automatize controle de acesso, personalize experiências e crie processos mais seguros com tecnologia biométrica.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Análise de Comportamento em Ambiente de Varejo",
+      "description": "Mapeie deslocamento de clientes, identifique pontos de maior interesse e otimize o layout de suas lojas.",
+      "icon": "FaStore"
+    },
+    {
+      "title": "Monitoramento de Filas e Engarrafamentos",
+      "description": "Estime tempos de espera, detecte congestionamentos e melhore a experiência em serviços e no trânsito.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Gestão de Estoque e Logística",
+      "description": "Identifique paletes, rastreie produtos e otimize toda a cadeia de suprimentos, do armazém ao transporte.",
+      "icon": "FaQrcode"
+    },
+    {
+      "title": "Processos Industriais e Robótica",
+      "description": "Guie braços robóticos, monitore linhas de produção e aumente a segurança operacional com análise de imagens.",
+      "icon": "FaCogs"
+    }
   ]
 
 

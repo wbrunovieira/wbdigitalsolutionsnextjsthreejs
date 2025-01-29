@@ -101,7 +101,7 @@ export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
                 </span>
             </h2>
 
-            <p className="text-lg text-gray-300 mt-4 max-w-3xl">
+            <p className="text-lg text-gray-300 mt-4 max-w-3xl w-1/2">
                 {currentMessages.headerSubtitleIA}
             </p>
         </header>

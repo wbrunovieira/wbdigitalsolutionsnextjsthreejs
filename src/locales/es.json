@@ -495,6 +495,61 @@
       "description": "Automatiza horarios, rutas de flota y asignación de recursos para lograr la máxima productividad.",
       "icon": "FaCalendarCheck"
     }
+  ],
+
+  "visionTitle": "Soluciones de Visión por Computadora",
+  "visionSubtitle": "Extrae información valiosa de imágenes y videos, automatizando procesos, reduciendo costos y aumentando la eficiencia.",
+  "visionOptions": [
+    {
+      "title": "Detección y Clasificación de Objetos",
+      "description": "Identifica y clasifica productos, piezas o incluso personas en imágenes y videos, aumentando la precisión y reduciendo errores.",
+      "icon": "FaSearch"
+    },
+    {
+      "title": "Control de Calidad Automatizado",
+      "description": "Analiza defectos y fallas en líneas de producción, asegurando mayor consistencia y evitando desperdicios.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Lectura y Análisis de Documentos (OCR)",
+      "description": "Convierte documentos en papel a datos digitales, agilizando los procesos de registro y reduciendo costos de ingreso manual.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Análisis de Cámaras de Seguridad",
+      "description": "Monitorea entornos en tiempo real, detecta comportamientos sospechosos y protege tu negocio.",
+      "icon": "FaLock"
+    },
+    {
+      "title": "Rastreo de Objetos",
+      "description": "Sigue la ubicación de vehículos, productos o personas, mejorando la gestión de activos y optimizando rutas.",
+      "icon": "FaCar"
+    },
+    {
+      "title": "Reconocimiento Facial y Biometría",
+      "description": "Automatiza el control de acceso, personaliza experiencias y crea procesos más seguros con tecnología biométrica.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Análisis de Comportamiento en Entornos Minoristas",
+      "description": "Mapa el movimiento de clientes, identifica áreas de mayor interés y optimiza la distribución de tus tiendas.",
+      "icon": "FaStore"
+    },
+    {
+      "title": "Monitoreo de Filas y Congestión",
+      "description": "Estima tiempos de espera, detecta congestiones y mejora la experiencia en servicios y tráfico.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Gestión de Inventario y Logística",
+      "description": "Identifica palés, rastrea productos y optimiza toda la cadena de suministro, desde el almacén hasta el transporte.",
+      "icon": "FaQrcode"
+    },
+    {
+      "title": "Procesos Industriales y Robótica",
+      "description": "Guía brazos robóticos, supervisa líneas de producción y aumenta la seguridad operativa con análisis de imágenes.",
+      "icon": "FaCogs"
+    }
   ]
 
 

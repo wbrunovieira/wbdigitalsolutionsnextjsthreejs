@@ -522,6 +522,61 @@
       "description": "Automate scheduling, fleet routing, and resource allocation to achieve maximum productivity.",
       "icon": "FaCalendarCheck"
     }
+  ],
+
+  "visionTitle": "Computer Vision Solutions",
+  "visionSubtitle": "Extract valuable information from images and videos, automating processes, reducing costs, and increasing efficiency.",
+  "visionOptions": [
+    {
+      "title": "Object Detection and Classification",
+      "description": "Identify and categorize products, parts, or even people in images and videos, increasing accuracy and reducing errors.",
+      "icon": "FaSearch"
+    },
+    {
+      "title": "Automated Quality Control",
+      "description": "Analyze defects and failures in production lines, ensuring greater consistency and avoiding waste.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Document Reading and Analysis (OCR)",
+      "description": "Convert paper documents into digital data, streamlining registration processes and reducing manual entry costs.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Security Camera Analysis",
+      "description": "Monitor environments in real time, detect suspicious behavior, and safeguard your business.",
+      "icon": "FaLock"
+    },
+    {
+      "title": "Object Tracking",
+      "description": "Track vehicles, products, or people, improving asset management and optimizing routes.",
+      "icon": "FaCar"
+    },
+    {
+      "title": "Facial Recognition and Biometrics",
+      "description": "Automate access control, personalize experiences, and create more secure processes with biometric technology.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Retail Environment Behavior Analysis",
+      "description": "Map customer movement, identify areas of greater interest, and optimize your store layout.",
+      "icon": "FaStore"
+    },
+    {
+      "title": "Queue and Traffic Monitoring",
+      "description": "Estimate waiting times, detect congestion, and improve the experience in services and traffic.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Inventory and Logistics Management",
+      "description": "Identify pallets, track products, and optimize your entire supply chain, from warehouse to transport.",
+      "icon": "FaQrcode"
+    },
+    {
+      "title": "Industrial Processes and Robotics",
+      "description": "Guide robotic arms, monitor production lines, and enhance operational safety through image analysis.",
+      "icon": "FaCogs"
+    }
   ]
 
 
