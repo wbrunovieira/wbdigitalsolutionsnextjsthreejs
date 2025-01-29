@@ -608,7 +608,13 @@
       "description": "Processos automatizados, menos retrabalhos e maior velocidade de produção reduzem custos e maximizam ROI.",
       "icon": "FaHandHoldingUsd"
     }
-  ]
+  ],
+
+
+    "ctaHeading": "Vamos Conversar Sobre Seus Processos?",
+  "ctaMessage": "Conte para a gente como funciona o seu dia a dia. Juntos, podemos identificar oportunidades de automação, IA ou otimizações que fazem a diferença no seu negócio.",
+
+  "ctaEmail": "Envie um Email"
 
 
 

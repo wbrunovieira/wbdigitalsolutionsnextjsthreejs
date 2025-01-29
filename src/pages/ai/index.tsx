@@ -1,5 +1,6 @@
 
 
+import CTAInvitation from '@/components/AICTA';
 import { AIHeader } from '@/components/AIHeader';
 
 
@@ -39,6 +40,10 @@ const ai: React.FC = () => {
          <div className="relative z-10">
 
         <AIAgentFlowSection  />
+        </div>
+         <div className="relative z-10">
+
+        <CTAInvitation  />
         </div>
     </div>
   </main>
