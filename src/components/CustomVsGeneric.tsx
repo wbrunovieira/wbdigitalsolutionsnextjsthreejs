@@ -68,34 +68,34 @@ const CustomVsGeneric: React.FC = () => {
           {currentMessages.experienceTitleWebsite}
         </h2>
         <span className="text-3xl lg:text-5xl text-yellowcustom font-bold">   {currentMessages.experienceTitleWebsite2}</span>
-        <div className="mt-4 w-96 h-1 bg-gradient-to-r from-yellow-400 to-transparent mx-auto mb-6"></div>
+        <div className="mt-4 w-96 h-1 bg-gradient-to-r from-yellow-400 to-transparent mx-auto mb-6 pl-2"></div>
         <p
           ref={subtitleRef}
           className="flex text-lg lg:text-xl text-left text-white max-w-3xl mx-auto"
         >
-          <FaCopy className="text-yellow-400 text-xl mr-4" />
+          <FaCopy className="text-yellow-400 text-4xl mr-4 p-2" />
           {currentMessages.experienceSubtitle}
         </p>
         <p
           ref={subtitleRef}
           className="flex text-lg lg:text-xl text-left text-white max-w-3xl mx-auto mt-2"
         >
-           <FaPaintBrush className=" text-yellow-400 text-xl mr-4" />
+           <FaPaintBrush className=" text-yellow-400 text-4xl mr-4 p-2" />
           {currentMessages.experienceSubtitle1_1}
         </p>
         <p ref={subtitleRef}  className="flex text-lg lg:text-xl text-left text-white max-w-3xl mx-auto mt-2">
-          <FaChartLine className="text-yellow-400 text-xl mr-4" />
-          {currentMessages.experienceSubtitle1_2}
-        </p>
+          <FaChartLine className="text-yellow-400 text-4xl mr-4 p-2" />
+          {currentMessages.experienceSubtitle1_2} s 
+        </p> 
         <p ref={subtitleRef}  className="flex text-lg lg:text-xl text-left text-white max-w-3xl mx-auto mt-2">
-         <FaRocket className="text-yellow-400 text-xl mr-4" />
+         <FaRocket className="text-yellow-400 text-4xl mr-4 p-2" />
           {currentMessages.experienceSubtitle1_3}
         </p>
-        <p ref={subtitleRef}  className="flex text-2xl lg:text-3xl text-left text-yellowcustom max-w-3xl mx-auto mt-4 font-light">
+        <p ref={subtitleRef}  className="flex text-2xl lg:text-3xl text-left text-yellowcustom max-w-3xl mx-auto mt-4 font-light p-2">
          
           {currentMessages.experienceSubtitle1_4}
         </p>
-        <p ref={subtitleRef} className="bg-white w-1/2 mt-4 px-2 py-2 rounded text-lg lg:text-xl text-center text-primary max-w-3xl mx-auto">
+        <p ref={subtitleRef} className="bg-white w-1/2 mt-4 px-2 py-2 rounded text-lg lg:text-xl text-center text-primary max-w-3xl mx-auto p-2">
           {currentMessages.experienceSubtitle2}
         </p>
 
@@ -113,16 +113,16 @@ const CustomVsGeneric: React.FC = () => {
 
 
         {/* Custom Example */}
-        <div className="flex flex-col items-center text-center bg-custom-purple shadow-md p-6 rounded-lg relative">
+        <div className="flex flex-col items-center text-left bg-custom-purple shadow-md p-6 rounded-lg relative">
           <FaCopy className="text-yellowcustom text-4xl mb-4" />
           <h3 className="text-xl font-semibold text-white mb-4">
             {currentMessages.genericSolution}
           </h3>
-          <p className="text-white mb-6" dangerouslySetInnerHTML={{ __html: currentMessages.genericDescription }}></p>
+          <p className="text-white mb-6 " dangerouslySetInnerHTML={{ __html: currentMessages.genericDescription }}></p>
           <div className="absolute top-0 left-0 w-1 h-full bg-white"></div>
         </div>
 
-        <div className="flex flex-col items-center text-center bg-custom-purple shadow-md p-6 rounded-lg relative">
+        <div className="flex flex-col items-center text-left bg-custom-purple shadow-md p-6 rounded-lg relative">
           <FaRocket className="text-yellowcustom text-4xl mb-4" />
           <h3 className="text-xl font-semibold text-white mb-4">
             {currentMessages.customSolution}

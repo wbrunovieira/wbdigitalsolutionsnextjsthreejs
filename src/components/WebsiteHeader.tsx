@@ -125,7 +125,7 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
                     {currentMessages?.experiencesub1}
                   </p>
                    <div className="mt-2 w-full h-[1px] bg-gradient-to-r from-white to-transparent mx-auto"></div>
-                   <p className="font-extralight mt-2 border border-red-500 p-2 w-full max-w-none ">
+                   <p className="font-extralight mt-2  p-2 w-full max-w-none ">
                      {currentMessages?.experiencesub2}
                   </p>
             </div>

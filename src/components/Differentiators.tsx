@@ -96,7 +96,7 @@ const Differentiators: React.FC = () => {
       <div className="text-center max-w-3xl mx-auto">
         <h2
           ref={titleRef}
-          className="text-4xl lg:text-5xl font-bold text-white mb-6"
+          className="text-4xl lg:text-5xl font-bold text-white mb-6 p-2"
         >
           {currentMessages.differentiatorsTitle }
         </h2>
@@ -111,7 +111,7 @@ const Differentiators: React.FC = () => {
 
       <div
         ref={highlightsRef}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto relative"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto relative p-4"
       >
         {highlights.map((highlight, index) => (
           <div
