@@ -10,7 +10,7 @@ export const Button: React.FC<ButtonProps> = ({ text, href }) => {
     <>
       <div className='container-bright mb-4 z-50'>
         <div className='btn-bright'>
-          <a href={href}>{text}</a>
+          <a href={href} target="_blank">{text}</a>
         </div>
       </div>
     </>

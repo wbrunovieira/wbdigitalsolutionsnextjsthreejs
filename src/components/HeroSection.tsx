@@ -13,7 +13,7 @@ const HeroSection: React.FC = () => {
   <div className="flex flex-col md:flex-row items-start justify-between gap-2">
     
     {/* Coluna do texto e botão */}
-    <div className="md:w-1/2 w-full flex flex-col items-center md:items-start text-center md:text-left gap-4 z-10">
+    <div className="md:w-1/2 w-full flex flex-col items-start md:items-start text-left  gap-4 z-10">
       <AnimatedTextHero 
         name={currentMessages.heroTitleHome}
         disciplines={[
@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
       />
       
       <Button 
-        href="#" 
+        href="https://wa.me/5511982864581"
         text={currentMessages.contactbutton} 
       />
     </div>

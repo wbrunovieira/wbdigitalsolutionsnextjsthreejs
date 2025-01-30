@@ -12,10 +12,10 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
     const nameRef = useRef<HTMLSpanElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
     const disciplineRef = useRef<HTMLSpanElement>(null);
-    const disciplineIndexRef = useRef(0); // Usar ref para persistir o índice sem re-renderizações.
+    const disciplineIndexRef = useRef(0); 
 
     useEffect(() => {
-        // Atualiza animação do nome
+
         if (nameRef.current) {
             const letters = nameRef.current.querySelectorAll('span');
             gsap.fromTo(
@@ -32,7 +32,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
     }, [name]);
 
     useEffect(() => {
-        // Atualiza animação das disciplinas
+
         if (disciplineRef.current && overlayRef.current) {
             const timeline = gsap.timeline({
                 repeat: -1,
@@ -40,7 +40,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
                 onRepeat: () => {
                     disciplineIndexRef.current = (disciplineIndexRef.current + 1) % disciplines.length;
                     gsap.to(disciplineRef.current, {
-                        textContent: disciplines[disciplineIndexRef.current], // Suavemente atualiza o texto.
+                        textContent: disciplines[disciplineIndexRef.current], 
                         duration: 0.5,
                         ease: 'power1.out',
                     });
@@ -69,7 +69,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
     }, [disciplines]);
 
     useEffect(() => {
-        // Atualiza o texto inicial ao alterar `disciplines`
+
         if (disciplineRef.current) {
             disciplineRef.current.textContent = disciplines[0];
             disciplineIndexRef.current = 0;
@@ -88,14 +88,14 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
                 </span>
             </h1>
 
-            <h2 className="relative flex items-center text-5xl font-semibold">
+            <h2 className="relative flex items-start md:items-center text-3xl md:text-5xl font-semibold">
                 <span className="flex flex-col">
                     <span ref={disciplineRef} className="relative text-yellowcustom overflow-hidden">
                         <span className="relative z-30">{disciplines[0]}</span>
                     </span>
                     <div
                         ref={overlayRef}
-                        className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0"
+                        className="absolute bg-white z-20 w-full h-[0.1em] top-[3em] md:top-[1.95em] left-0"
                     ></div>
                 </span>
             </h2>
@@ -103,115 +103,3 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
     );
 };
 
-
-// 'use client';
-// import React, { useEffect, useRef } from 'react';
-// import { useGSAP } from '@gsap/react';
-// import gsap from 'gsap';
-
-// interface TextProps {
-//     disciplines: string[]; 
-//     name: string; 
-// }
-
-// export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => {
-//     let disciplineIndex = 0;
-
-//     const headerRef = useRef<HTMLDivElement>(null);
-//     const nameRef = useRef<HTMLSpanElement>(null);
-//     const overlayRef = useRef<HTMLDivElement>(null);
-//     const disciplineRef = useRef<HTMLSpanElement>(null);
-
-//     useGSAP(() => {
-//         if (nameRef.current) {
-//             const letters = nameRef.current.querySelectorAll('span');
-//             gsap.to(letters, {
-//                 opacity: 1,
-//                 stagger: 0.1,
-//                 duration: 2.3,
-//                 ease: 'power2.inOut',
-//             });
-//         }
-//     }, []);
-
-//     useGSAP(() => {
-//         const timeline = gsap.timeline({
-//             repeat: -1,
-//             repeatDelay: 1.5,
-//             onRepeat: () => {
-//                 disciplineIndex = (disciplineIndex + 1) % disciplines.length;
-//            if (disciplineRef.current) {
-
-//                 gsap.to(disciplineRef.current, {
-//                     textContent: disciplines[disciplineIndex], 
-//                     duration: 0.5, 
-//                     ease: 'power1.out', 
-//                 });
-//             }
-//             },
-//         });
-
-//         gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 1 });
-//         gsap.set(disciplineRef.current, { opacity: 0 });
-
-//         timeline
-//             .to(overlayRef.current, {
-//                 scaleX: 1,
-//                 transformOrigin: 'left center',
-//                 duration: 1.2,
-//                 yoyo: true,
-//                 ease: 'power2.out',
-//             })
-//             .to(
-//                 disciplineRef.current,
-//                 { opacity: 1, duration: 1 },
-//                 '-=1.2'
-//             )
-//             .to(
-//                 disciplineRef.current,
-//                 { opacity: 0, duration: 1 },
-//                 "+=1"
-//             )
-//             .to(
-//                 overlayRef.current,
-//                 { scaleX: 0, duration: 1, ease: 'power2.in' },
-//                 '-=0.8'
-//             );
-
-//         return () => {
-//             timeline.kill();
-//         };
-//     }, [disciplines]); 
-
-//     useEffect(() => {
-//     if (disciplineRef.current) {
-//         disciplineRef.current.textContent = disciplines[disciplineIndex];
-//     }
-// }, [disciplines]);
-
-//     return (
-//         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
-//             <h1 className="text-6xl">
-//                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
-//                     {name.split("").map((letter, index) => (
-//                         <span key={index} className="inline-block opacity-0">
-//                             {letter}
-//                         </span>
-//                     ))}
-//                 </span>
-//             </h1>
-
-//             <h2 className="relative flex items-center text-5xl font-semibold">
-//                 <span className="flex flex-col">
-//                     <span ref={disciplineRef} className="relative text-yellowcustom overflow-hidden">
-//                         <span className="relative z-30">{disciplines[disciplineIndex]}</span>
-//                     </span>
-//                     <div
-//                         ref={overlayRef}
-//                         className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0"
-//                     ></div>
-//                 </span>
-//             </h2>
-//         </header>
-//     );
-// };
