@@ -22,6 +22,14 @@ canvas {
 }
 
 
+html, body {
+  width: 100%;
+  min-width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 @layer utilities {
     .bg-custom-gradient {
         @apply bg-gradient-to-t from-custom-purple to-primary;

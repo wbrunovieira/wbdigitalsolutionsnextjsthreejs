@@ -15,14 +15,14 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     const computer = useGLTF("/models/desktop/scene.gltf");
 
       useEffect(() => {
-    // Percorre cada mesh para garantir que o bounding box seja calculado
+
     computer.scene.traverse((child) => {
       if ((child as THREE.Mesh).isMesh) {
         (child as THREE.Mesh).geometry.computeBoundingBox();
       }
     });
 
-    // Calcula o bounding box total e encontra o centro
+
     const box = new THREE.Box3().setFromObject(computer.scene);
     const center = box.getCenter(new THREE.Vector3());
 
