@@ -83,7 +83,7 @@ const AdvancedLLMSection: React.FC = () => {
         }
       );
 
-      // Animação dos cards com scroll trigger ajustado
+
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
         gsap.fromTo(

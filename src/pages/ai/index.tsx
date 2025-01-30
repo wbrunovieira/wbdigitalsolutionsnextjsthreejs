@@ -15,7 +15,8 @@ const VisionComputationalSection = dynamic(() => import('@/components/IAVision')
 const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), { ssr: false });
 
 const ai: React.FC = () => {
-  return <main >
+  return (
+  <main >
       <div className="relative w-full mt-32 ">
 
         <div className="flex relative inset-0 z-0">
@@ -46,7 +47,7 @@ const ai: React.FC = () => {
         <CTAInvitation  />
         </div>
     </div>
-  </main>
+  </main>)
 };
 
 export default ai;
