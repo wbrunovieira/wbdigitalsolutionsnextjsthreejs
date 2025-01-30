@@ -12,7 +12,7 @@ const ToolBox = () => {
     const currentMessages = useTranslations();
 
     return (
-        <div className='bg-modern-gradient pt-8 px-10 flex flex-col justify-center mt-32'>
+        <div className='bg-modern-gradient pt-8 md:px-10  flex flex-col justify-center mt-32 pb-16'>
             <h2 className={'text-white text-3xl text-center'}>
                 {currentMessages.tools}{' '}
             </h2>
@@ -21,7 +21,7 @@ const ToolBox = () => {
             <div className='flex flex-row flex-wrap justify-center gap-10'>
                 {technologies.map((technology, index) => (
                     <div
-                        className='w-28 h-28'
+                        className="w-20 h-20 md:w-28 md:h-28 flex justify-center items-center"
                         key={technology.name}
                         ref={(el) => {
                             ballRefs.current[index] = el; 
