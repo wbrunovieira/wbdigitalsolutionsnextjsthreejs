@@ -165,12 +165,13 @@ const Nav: React.FC = () => {
                             pathname={pathname}
                             setActiveMenu={setActiveMenu}
                             activeMenu={activeMenu}
+                            closeMenu={() => setIsMobileMenuOpen(false)} 
                         />
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-white mt-4"
+                            className="text-white mt-10 font-bold text-2xl z-50"
                         >
-                            Close
+                            X
                         </button>
                     </div>
                 )}
