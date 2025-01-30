@@ -78,9 +78,9 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
     }, []);
 
     return (
-        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
-            <h1 className="text-6xl">
-                <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
+        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-4 text-white mb-8 bg-primary/70 md:bg-transparent ">
+              <h1 className="text-xl md:text-4xl">
+                  <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
                     {currentMessages.headerTitle.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">
                             {letter}
@@ -89,19 +89,19 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
                 </span>
             </h1>
 
-            <h2 className="relative flex items-center text-5xl font-semibold">
+            <h2 className="relative flex items-center text-2xl md:text-5xl font-semibold">
                 <span className="flex flex-col">
-                    <span ref={disciplineRef} className="relative text-yellowcustom overflow-hidden">
+                    <span ref={disciplineRef} className="relative text-yellowcustom">
                         <span className="relative z-30">{disciplines[disciplineIndex]}</span>
                     </span>
                     <div
                         ref={overlayRef}
-                        className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0"
+                        className="absolute bg-white z-20 w-full h-[0.1em] top-[0.95em] left-0 mt-2"
                     ></div>
                 </span>
             </h2>
 
-            <p className="text-lg text-gray-300 mt-4 max-w-3xl">
+            <p className="text-lg text-gray-300 mt-16 max-w-3xl w-1/2 md:mt-4">
                 {currentMessages.headerSubtitle}
             </p>
         </header>

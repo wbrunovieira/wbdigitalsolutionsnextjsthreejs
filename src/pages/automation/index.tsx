@@ -14,13 +14,18 @@ const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr:
 
 
 const ai: React.FC = () => {
-  return <main>
-      <div className="relative w-full h-96 overflow-hidden mt-32">
-        <div className="absolute inset-0 z-0 h-96">
+  return(
+
+    <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen">
+
+      <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
+
+
+         <div className="relative md:absolute inset-0 z-0">
 
          <AnimatedBackgroundAutomationComponent />
         </div>
-        <div className="relative z-10">
+         <div className="relative z-10 flex flex-col justify-center items-center w-full md:w-auto min-h-[8rem]">
           <AutomationHeader scrollIndicatorHidden={true} />
         </div>
     </div>
@@ -31,6 +36,7 @@ const ai: React.FC = () => {
 
 
   </main>
+  ) 
 };
 
 export default ai;
