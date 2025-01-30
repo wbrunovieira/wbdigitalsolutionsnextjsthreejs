@@ -78,7 +78,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
 
     return (
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
-            <h1 className="text-6xl">
+            <h1 className="text-4xl md:text-6xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
                     {name.split('').map((letter, index) => (
                         <span key={index} className="inline-block opacity-0">
