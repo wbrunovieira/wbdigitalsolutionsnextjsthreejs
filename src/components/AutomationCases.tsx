@@ -21,7 +21,7 @@ const SuccessCases: React.FC = () => {
   useGSAP(() => {
     gsap.fromTo(
       titleRef.current,
-      { x: -450, y: 0 },
+      { x: -50, y: 0 },
       {
         x: 0,
         y: 0,
@@ -37,14 +37,14 @@ const SuccessCases: React.FC = () => {
 
     gsap.fromTo(
       subtitleRef.current,
-      { x: 450, y: 0 },
+      { x: 25, y: 0 },
       {
         x: 0,
         y: 0,
         ease: "power1.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 80%",
+          start: "top 100%",
           end: "bottom 55%",
           scrub: true,
         },
@@ -59,8 +59,8 @@ const SuccessCases: React.FC = () => {
         ease: "power1.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 90%",
-          end: "bottom 40%",
+          start: "top 100%",
+          end: "bottom 20%",
           scrub: true,
         },
       }
@@ -87,8 +87,8 @@ const SuccessCases: React.FC = () => {
               ease: "power3.out",
               scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top 70%",
-                end: "bottom 50%",
+                start: "top 100%",
+                end: "bottom 20%",
                 scrub: true,
                 toggleActions: "play reverse play reverse",
               },
