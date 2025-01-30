@@ -1,4 +1,5 @@
 import { Suspense, useState, useEffect } from "react";
+import * as THREE from "three";
 
 
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
@@ -12,6 +13,30 @@ interface isMobileProps {
 
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     const computer = useGLTF("/models/desktop/scene.gltf");
+
+      useEffect(() => {
+    // Percorre cada mesh para garantir que o bounding box seja calculado
+    computer.scene.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        (child as THREE.Mesh).geometry.computeBoundingBox();
+      }
+    });
+
+    // Calcula o bounding box total e encontra o centro
+    const box = new THREE.Box3().setFromObject(computer.scene);
+    const center = box.getCenter(new THREE.Vector3());
+
+    // Move a cena para que o pivot fique no (0, 0, 0)
+    computer.scene.position.x -= center.x;
+    computer.scene.position.y -= center.y;
+    computer.scene.position.z -= center.z;
+
+        if (isMobile) {
+     
+      computer.scene.position.y += 1;
+    }
+
+  }, [computer]);
 
     return (
         <mesh>
@@ -28,8 +53,8 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
 
             <primitive
                 object={computer.scene}
-                scale={isMobile ? 0.50 : 0.75}
-                position={isMobile ? [-2.5, -1, -2.2] : [5, -2.25, -1.5]}
+                scale={isMobile ? 0.6 : 0.8}
+                position={isMobile ? [-2.5, -2, -2.2] : [5, -1.25, -1.5]}
                 rotation={[-0.01, -0.2, -0.1]}
             />
         </mesh>
@@ -65,13 +90,17 @@ const ComputersCanvas = () => {
         <PreloadedCanvas
             preloadAssets={["/models/desktop/scene.gltf"]}
             shadows
-            camera={{ position: [30, 1, 10], fov: 25 }}
+            camera={{ position: [30, 1, 10], fov: 20 }}
             gl={{ preserveDrawingBuffer: true }}
-            className="w-full h-screen"
+             className="w-full h-full"
+         
         >
             <Suspense fallback={<CanvasLoader />}>
                 <OrbitControls
+                    target={[0, 0, 0]}
                     enableZoom={false}
+                    enablePan={false}
+                    enableRotate={true}
                     maxPolarAngle={Math.PI / 2}
                     minPolarAngle={Math.PI / 2}
                 />
