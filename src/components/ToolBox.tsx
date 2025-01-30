@@ -12,7 +12,7 @@ const ToolBox = () => {
     const currentMessages = useTranslations();
 
     return (
-        <div className='bg-modern-gradient pt-8 px-10 flex flex-col justify-center '>
+        <div className='bg-modern-gradient pt-8 px-10 flex flex-col justify-center mt-32'>
             <h2 className={'text-white text-3xl text-center'}>
                 {currentMessages.tools}{' '}
             </h2>

@@ -1,14 +1,22 @@
 import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Player } from "@lottiefiles/react-lottie-player";
 import { FaNetworkWired, FaPeopleCarry, FaBrain, FaHandHoldingUsd } from "react-icons/fa";
 import { useTranslations } from "@/contexts/TranslationContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-gsap.registerPlugin(ScrollTrigger);
 
+const Player = dynamic(
+  () =>
+    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  {
+    ssr: false,
+  }
+);
+
+gsap.registerPlugin(ScrollTrigger);
 
 type IconKey = "FaNetworkWired" | "FaPeopleCarry" | "FaBrain" | "FaHandHoldingUsd";
 
@@ -30,7 +38,6 @@ const AIAgentFlowSection: React.FC = () => {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-
       gsap.fromTo(
         titleRef.current,
         { opacity: 0, y: -30 },
@@ -45,7 +52,6 @@ const AIAgentFlowSection: React.FC = () => {
           },
         }
       );
-
 
       gsap.fromTo(
         textRef.current,
@@ -86,7 +92,6 @@ const AIAgentFlowSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-
   const agentFlowItems = (currentMessages.agentFlowItems || []).map((item: any) => {
     const iconKey = item.icon as IconKey;
     return {
@@ -113,6 +118,7 @@ const AIAgentFlowSection: React.FC = () => {
           </h2>
           <div className="mt-2 w-1/2 h-[2px] bg-gradient-to-r from-yellow-400 to-transparent mx-auto mb-6" />
           <div className="flex justify-center mt-4 mb-8">
+            {/* Aqui usamos o Player importado dinamicamente */}
             <Player
               src="/icons/ai-brain.json"
               className="w-40 h-40"
@@ -128,7 +134,6 @@ const AIAgentFlowSection: React.FC = () => {
             </p>
           </div>
         </div>
-
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {agentFlowItems.map((item: any, index: number) => (

@@ -2,10 +2,18 @@ import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { Player } from '@lottiefiles/react-lottie-player'; 
+const Player = dynamic(
+  () =>
+    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  {
+    ssr: false,
+  }
+);
+
 import { FaCogs, FaClock, FaChartLine, FaSmile } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslations } from '@/contexts/TranslationContext';
+import dynamic from 'next/dynamic';
 
 gsap.registerPlugin(ScrollTrigger);
 

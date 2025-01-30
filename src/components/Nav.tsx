@@ -68,14 +68,14 @@ const Nav: React.FC = () => {
                 <div className="flex">
 
                             <Image
-                                className="w-32 h-9 object-contain"
+                                className="w-32 h-9 object-contain mr-2"
                                 src={logo}
                                 alt="logo"
                                 width={158}
                                 height={42}
                                 />
 
-                            <p className="text-white text-sm/4 tracking-wide font-bold flex flex-col">
+                            <p className="text-white text-sm/4 tracking-wide font-light md:font-bold flex flex-col">
                                 WB Digital Solutions &nbsp;
                                 <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500">
                                     {currentMessages.technology}
@@ -175,7 +175,7 @@ const Nav: React.FC = () => {
                     </div>
                 )}
 
-            <div className="flex ml-auto lg:hidden">
+            <div className="flex ml-auto lg:hidden mb-2">
 
 
                 <HamburgerMenu 
@@ -235,7 +235,7 @@ const Nav: React.FC = () => {
 
 
 
-            <div className="bg-white/5  absolute right-[2%] top-[120%] ">
+            <div className="bg-white/5  absolute right-[2%] top-[120%] hidden md:block">
                 <SideSocial />
             </div>
   

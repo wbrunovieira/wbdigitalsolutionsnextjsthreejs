@@ -1,8 +1,16 @@
 import React from "react";
 import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { Player } from "@lottiefiles/react-lottie-player";
+const Player = dynamic(
+  () =>
+    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+  {
+    ssr: false,
+  }
+);
+
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslations } from '@/contexts/TranslationContext';
+import dynamic from "next/dynamic";
 
 const CallToAction = () => {
   const { language } = useLanguage();

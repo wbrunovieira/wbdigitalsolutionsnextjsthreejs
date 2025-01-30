@@ -61,18 +61,8 @@ const technologies = [
         name: "Rust",
         icon: "/tech/rust.png",
     },
-    {
-        name: "Facebook",
-        icon: "/tech/facebook.webp",
-    },
-    {
-        name: "Instagram",
-        icon: "/tech/instagram.webp",
-    },
-    {
-        name: "Google",
-        icon: "/tech/google.svg",
-    },
+
+
     {
         name: "Three JS",
         icon: "/tech/threejs.svg",
