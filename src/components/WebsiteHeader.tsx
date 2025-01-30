@@ -88,8 +88,9 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
 
 
     return (
-        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white mb-8">
-            <h1 className="text-4xl">
+        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white mb-8 bg-primary/70 md:bg-transparent ">
+
+            <h1 className="text-xl md:text-4xl">
                 <span aria-hidden="true" ref={name1Ref} className="flex space-x-1">
                      {config.name1.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">
@@ -118,14 +119,13 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
                 </span>
             </h2>
 
-            <div className="text-white w-1/3  bg-gradient-to-r from-primary to-transparent py-8 rounded opacity-80 mt-8 ">
-
-            <p className="font-semibold text-yellowcustom flex items-center">
-              <FaStar className="mr-2" />
-              {currentMessages?.experiencesub1}
-            </p>
-                   <div className="mt-2 w-full h-[1px] bg-gradient-to-r from-white to-transparent mx-auto mb-6"></div>
-                  <p className="font-extralight mt-2">
+<div className="flex flex-col text-white w-full md:w-1/3 bg-gradient-to-r from-primary to-transparent py-8 rounded opacity-80 mt-2 md:mt-8 min-h-[100px]">                 
+<p className="font-semibold text-yellowcustom flex items-center whitespace-nowrap ">
+                    <FaStar className="mr-2" />
+                    {currentMessages?.experiencesub1}
+                  </p>
+                   <div className="mt-2 w-full h-[1px] bg-gradient-to-r from-white to-transparent mx-auto"></div>
+                   <p className="font-extralight mt-2 border border-red-500 p-2 w-full max-w-none ">
                      {currentMessages?.experiencesub2}
                   </p>
             </div>

@@ -27,18 +27,20 @@ const Websites: React.FC = () => {
 
 
     return (
-        <main className="relative flex  flex-col items-center justify-center bg-modern-gradient min-h-screen">
-         <div className="relative w-full h-96 overflow-hidden mt-32">
+        <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen">
 
-              <div className="absolute inset-0 z-0 ">
-                <AnimatedBackgroundDesignComponent />
-              </div>
+         <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 
-              <div className=" z-10 px-4">
-                <WebsiteHeader scrollIndicatorHidden={true} />
-              </div>
+                 <div className="relative md:absolute inset-0 z-0">
+                  <AnimatedBackgroundDesignComponent />
+                </div>
+
+                <div className="relative z-10 flex flex-col justify-center items-center w-full md:w-auto min-h-[8rem]">
+                    <WebsiteHeader scrollIndicatorHidden={true} />
+                </div>
                 
-            </div>
+        </div>
+        
             <CustomVsGeneric />
             <OurApproach />
             <Differentiators />
