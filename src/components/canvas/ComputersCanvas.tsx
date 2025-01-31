@@ -1,9 +1,7 @@
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import * as THREE from "three";
-
-
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-
+import { useFrame } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import { PreloadedCanvas } from "../PreloadedCanvas";
 
@@ -13,30 +11,36 @@ interface isMobileProps {
 
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     const computer = useGLTF("/models/desktop/scene.gltf");
+    const computerRef = useRef<THREE.Group | null>(null); // Guardar a referência do modelo
 
-      useEffect(() => {
+    useEffect(() => {
+        if (!computerRef.current) return;
 
-    computer.scene.traverse((child) => {
-      if ((child as THREE.Mesh).isMesh) {
-        (child as THREE.Mesh).geometry.computeBoundingBox();
-      }
-    });
+        computerRef.current.traverse((child) => {
+            if ((child as THREE.Mesh).isMesh) {
+                (child as THREE.Mesh).geometry.computeBoundingBox();
+            }
+        });
+
+        const box = new THREE.Box3().setFromObject(computerRef.current);
+        const center = box.getCenter(new THREE.Vector3());
 
 
-    const box = new THREE.Box3().setFromObject(computer.scene);
-    const center = box.getCenter(new THREE.Vector3());
-
-    // Move a cena para que o pivot fique no (0, 0, 0)
-    computer.scene.position.x -= center.x;
-    computer.scene.position.y -= center.y;
-    computer.scene.position.z -= center.z;
+        computerRef.current.position.x -= center.x;
+        computerRef.current.position.y -= center.y;
+        computerRef.current.position.z -= center.z;
 
         if (isMobile) {
-     
-      computer.scene.position.y += 1;
-    }
+            computerRef.current.position.y += 1;
+        }
+    }, [computer]); 
 
-  }, [computer]);
+
+    useFrame(() => {
+        if (isMobile && computerRef.current) {
+            computerRef.current.rotation.y += 0.05; 
+        }
+    });
 
     return (
         <mesh>
@@ -52,6 +56,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
             <pointLight intensity={1} />
 
             <primitive
+                ref={computerRef}
                 object={computer.scene}
                 scale={isMobile ? 0.6 : 0.8}
                 position={isMobile ? [-2.5, -2, -2.2] : [5, -1.25, -1.5]}
@@ -67,7 +72,6 @@ const ComputersCanvas = () => {
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 500px)");
-
         setIsMobile(mediaQuery.matches);
 
         const handleMediaQueryChange = (event: Event) => {
@@ -87,28 +91,35 @@ const ComputersCanvas = () => {
     }
 
     return (
-        <PreloadedCanvas
-            preloadAssets={["/models/desktop/scene.gltf"]}
-            shadows
-            camera={{ position: [30, 1, 10], fov: 20 }}
-            gl={{ preserveDrawingBuffer: true }}
-             className="w-full h-full"
-         
-        >
-            <Suspense fallback={<CanvasLoader />}>
-                <OrbitControls
-                    target={[0, 0, 0]}
-                    enableZoom={false}
-                    enablePan={false}
-                    enableRotate={true}
-                    maxPolarAngle={Math.PI / 2}
-                    minPolarAngle={Math.PI / 2}
-                />
-                <Computers isMobile={isMobile} />
-            </Suspense>
+        <div className="relative w-full h-full">
 
-            <Preload all />
-        </PreloadedCanvas>
+            <PreloadedCanvas
+                preloadAssets={["/models/desktop/scene.gltf"]}
+                shadows
+                camera={{ position: [30, 1, 10], fov: 20 }}
+                gl={{ preserveDrawingBuffer: true }}
+                className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
+            >
+                <Suspense fallback={<CanvasLoader />}>
+                    <OrbitControls
+                        target={[0, 0, 0]}
+                        enableZoom={false}
+                        enablePan={false}
+                        enableRotate={!isMobile} 
+                        maxPolarAngle={Math.PI / 2}
+                        minPolarAngle={Math.PI / 2}
+                    />
+                    <Computers isMobile={isMobile} />
+                </Suspense>
+
+                <Preload all />
+            </PreloadedCanvas>
+
+
+            {isMobile && (
+                <div className="absolute inset-0 w-full h-full z-10 bg-transparent"></div>
+            )}
+        </div>
     );
 };
 

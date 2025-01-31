@@ -13,7 +13,7 @@ const ToolBox = () => {
 
     return (
         <div className='bg-modern-gradient pt-8 md:px-10  flex flex-col justify-center mt-32 pb-16'>
-            <h2 className={'text-white text-3xl text-center'}>
+            <h2 className={'text-white text-3xl text-center p-2'}>
                 {currentMessages.tools}{' '}
             </h2>
 

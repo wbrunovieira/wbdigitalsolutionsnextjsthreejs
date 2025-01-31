@@ -7,6 +7,7 @@ import { BaseCanvasProps, useIsVisible } from "./BaseCanvas";
 
 export interface PreloadedCanvasProps extends BaseCanvasProps {
     preloadAssets?: string[];
+    
 }
 
 const loadAsset = async (url: string): Promise<any> => {
