@@ -51,7 +51,7 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10  mx-auto">     
+        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-[1400px] mx-auto">     
             <Image
                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
                 width={300}
@@ -158,7 +158,7 @@ const Nav: React.FC = () => {
                 </div>
 
                 {isMobileMenuOpen && (
-                    <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center">
+                    <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center max-w-[1400px] mx-auto">
                         <MobileMenu 
                             isOpen={isMobileMenuOpen}
                             navData={navData}
