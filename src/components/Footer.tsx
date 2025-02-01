@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
                             <Link href="/ai" className="text-sm hover:underline">
                                 {currentMessages.dataManagement}
                             </Link>
-                        </li>
+                      </li>
                    
                     </ul>
                 </div>
