@@ -27,7 +27,7 @@ const Websites: React.FC = () => {
 
 
     return (
-        <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen">
+        <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen mt-16">
 
          <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 

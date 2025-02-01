@@ -16,7 +16,7 @@ const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr:
 const ai: React.FC = () => {
   return(
 
-    <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen">
+    <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen w-full max-w-7xl mx-auto">
 
       <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 

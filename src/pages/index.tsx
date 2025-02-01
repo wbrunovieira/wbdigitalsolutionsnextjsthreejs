@@ -4,7 +4,7 @@ import Home from "../components/Home";
 
 function Index() {
     return (
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto mt-16">
             <LanguageRouter />
             <Home />
         </div>

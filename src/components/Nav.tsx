@@ -75,7 +75,7 @@ const Nav: React.FC = () => {
                                 height={42}
                                 />
 
-                            <p className="text-white text-sm/4 tracking-wide font-light md:font-bold flex flex-col">
+                            <p className="text-white text-xs md:text-sm/4 tracking-wide font-light md:font-bold flex flex-col">
                                 WB Digital Solutions &nbsp;
                                 <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500">
                                     {currentMessages.technology}

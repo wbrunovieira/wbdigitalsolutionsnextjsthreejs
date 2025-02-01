@@ -16,7 +16,7 @@ const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), 
 
 const ai: React.FC = () => {
   return (
-  <main >
+  <main className='mt-16 w-full max-w-7xl mx-auto'>
       <div className="relative w-full mt-32 ">
 
         <div className="flex relative inset-0 z-0">
