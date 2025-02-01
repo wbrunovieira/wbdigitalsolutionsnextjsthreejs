@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
     const currentMessages = useTranslations();
 
     return (
-        <footer className="bg-modern-gradient text-white px-6 py-10 lg:px-10">
-            {/* 🔹 Newsletter */}
+        <footer className="bg-modern-gradient text-white px-6 py-10 lg:px-10 mt-32">
+
             <div className="container mx-auto">
                 <form
                     action="https://api.web3forms.com/submit"
