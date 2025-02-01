@@ -7,7 +7,9 @@ import Image from "next/image";
 
 const blogList = [
   { id: "do-i-need-a-website" },
-  { id: "how-emotional-design-can" }
+  { id: "how-emotional-design-can" },
+  { id: "digital-can-transform-company" }
+
 ];
 
 const BlogIndexPage: React.FC = () => {

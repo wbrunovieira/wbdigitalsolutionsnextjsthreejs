@@ -34,7 +34,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ title, text, images, category, auth
               </span>
             ))}
           </div>
-          <span>Por {author}</span>
+          <span className="whitespace-nowrap">Por {author}</span>
         </div>
       </header>
 
