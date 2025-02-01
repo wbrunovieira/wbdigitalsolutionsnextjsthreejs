@@ -95,30 +95,26 @@ const Footer: React.FC = () => {
                     </h4>
                     <ul className="space-y-2">
                         <li>
-                            <Link href="automacao-empresarial.html" className="text-sm hover:underline">
+                            <Link href="/automation" className="text-sm hover:underline">
                                 {currentMessages.process}
                             </Link>
                         </li>
                         <li>
-                            <Link href="assistentes-virtuais.html" className="text-sm hover:underline">
+                            <Link href="/automation" className="text-sm hover:underline">
                                 {currentMessages.assistant}
                             </Link>
                         </li>
                         <li>
-                            <Link href="analise-preditiva.html" className="text-sm hover:underline">
+                            <Link href="/ai" className="text-sm hover:underline">
                                 {currentMessages.analizy}
                             </Link>
                         </li>
                         <li>
-                            <Link href="gestao-inteligente-dados.html" className="text-sm hover:underline">
+                            <Link href="/ai" className="text-sm hover:underline">
                                 {currentMessages.dataManagement}
                             </Link>
                         </li>
-                        <li>
-                            <Link href="suporte-tecnologia.html" className="text-sm hover:underline">
-                                {currentMessages.IASupport}
-                            </Link>
-                        </li>
+                   
                     </ul>
                 </div>
 
@@ -129,14 +125,14 @@ const Footer: React.FC = () => {
                     </h4>
                     <ul className="space-y-3">
                         <li>
-                            <Link href="blog-details-1-Site.html" className="hover:underline text-sm">
+                            <Link href="/blog/do-i-need-a-website" className="hover:underline text-sm">
                                 {currentMessages.diINeedSite}
                             </Link>
                             <span className="block text-xs text-gray-400">27 de out, 2023</span>
                         </li>
-                        <li>
-                            <Link href="blog-como-o-sistemas-de-gestão-transforma-empresas.html" className="hover:underline text-sm">
-                                {currentMessages.SistemsTransform}
+                        <li>  
+                            <Link href="/blog/how-emotional-design-can" className="hover:underline text-sm">
+                                {currentMessages.DesignEmotional}
                             </Link>
                             <span className="block text-xs text-gray-400">06 de out, 2023</span>
                         </li>

@@ -15,7 +15,7 @@ const BlogIndexPage: React.FC = () => {
   const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Tradução específica para a página index do blog
+
   const pageTranslation = useBlogTranslation("blog-index");
 
   const blogTranslations = blogList.map(({ id }) => ({
@@ -38,7 +38,7 @@ const BlogIndexPage: React.FC = () => {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden mt-32">
-      {/* Título e subtítulo */}
+
       <div className="text-center mb-8">
         <h1 className="text-5xl font-extrabold text-yellowcustom mt-16">
           {pageTranslation?.title || "Explore Nossos Artigos"}
@@ -48,7 +48,7 @@ const BlogIndexPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Filtro de categorias */}
+
       <div className="flex flex-col items-center mb-8">
         <p className="text-white font-semibold text-sm uppercase tracking-wide mb-2">
           {pageTranslation?.filterLabel || "Filtrar por categoria:"}
@@ -80,7 +80,7 @@ const BlogIndexPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Lista de artigos */}
+
       <div className="px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mt-16">
         {filteredPosts.length > 0 ? (
           filteredPosts.map(({ id, translation }) => (
@@ -88,7 +88,7 @@ const BlogIndexPage: React.FC = () => {
               <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1 cursor-pointer">
                 {translation ? (
                   <>
-                    {/* Imagem do artigo */}
+
                     <div className="w-full h-48 relative">
                       <Image
                         src={translation.thumbnail}
@@ -101,12 +101,12 @@ const BlogIndexPage: React.FC = () => {
                     </div>
 
                     <div className="p-4">
-                      {/* Título do artigo */}
+
                       <h2 className="text-xl font-bold text-primary mb-2 group-hover:text-yellowcustom transition-colors duration-300">
                         {translation.title}
                       </h2>
 
-                      {/* Categorias do artigo */}
+
                       <div className="flex flex-wrap gap-2 mb-3">
                         {translation.category.map((cat: string, index: number) => (
                           <span
@@ -118,7 +118,7 @@ const BlogIndexPage: React.FC = () => {
                         ))}
                       </div>
 
-                      {/* Resumo do artigo */}
+
                       <p className="text-gray-700 text-sm">{translation.summary}</p>
                     </div>
                   </>
