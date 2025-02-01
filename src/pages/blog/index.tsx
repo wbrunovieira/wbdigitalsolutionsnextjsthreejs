@@ -6,7 +6,8 @@ import useBlogTranslation from "@/contexts/useBlogTranslation";
 import Image from "next/image";
 
 const blogList = [
-  { id: "do-i-need-a-website" }
+  { id: "do-i-need-a-website" },
+  { id: "how-emotional-design-can" }
 ];
 
 const BlogIndexPage: React.FC = () => {
