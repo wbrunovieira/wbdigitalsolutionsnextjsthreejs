@@ -39,7 +39,7 @@ const BlogIndexPage: React.FC = () => {
   return (
     <div className="relative w-full min-h-screen overflow-hidden mt-32">
 
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 p-2">
         <h1 className="text-5xl font-extrabold text-yellowcustom mt-16">
           {pageTranslation?.title || "Explore Nossos Artigos"}
         </h1>
@@ -49,7 +49,7 @@ const BlogIndexPage: React.FC = () => {
       </div>
 
 
-      <div className="flex flex-col items-center mb-8">
+      <div className="flex flex-col items-center mb-8 p-4">
         <p className="text-white font-semibold text-sm uppercase tracking-wide mb-2">
           {pageTranslation?.filterLabel || "Filtrar por categoria:"}
         </p>
