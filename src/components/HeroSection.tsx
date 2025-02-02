@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
     
  
 
-        <div className=" w-[400px] h-[400px]"> 
+       <div className="w-full md:w-[400px] h-[400px]">
 
         <ComputersCanvas />
        </div>
