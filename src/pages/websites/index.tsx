@@ -42,10 +42,10 @@ const Websites: React.FC = () => {
         </div>
         
             <CustomVsGeneric />
-            {/* <OurApproach />
+            <OurApproach />
             <Differentiators />
             <Comparison  />  
-            <CTAWebsite /> */}
+            <CTAWebsite />
         </main>
     );
 };

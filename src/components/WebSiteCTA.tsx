@@ -76,7 +76,7 @@ const CTAWebsite = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaWhatsapp className="text-2xl" />
+              <FaWhatsapp className="text-2xl text-green-500" />
               {currentMessages.whatsappLabel}
             </a>
 
