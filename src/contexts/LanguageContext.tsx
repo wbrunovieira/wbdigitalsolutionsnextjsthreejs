@@ -61,7 +61,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     }
   }, []);
 
-  // Toda vez que o language muda, salvamos no localStorage
+
   useEffect(() => {
     localStorage.setItem("language", language);
   }, [language]);
