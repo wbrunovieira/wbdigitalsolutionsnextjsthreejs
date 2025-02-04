@@ -11,7 +11,7 @@ interface isMobileProps {
 
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     const computer = useGLTF("/models/desktop/scene.gltf");
-    const computerRef = useRef<THREE.Group | null>(null); // Guardar a referência do modelo
+    const computerRef = useRef<THREE.Group | null>(null); 
 
     useEffect(() => {
         if (!computerRef.current) return;

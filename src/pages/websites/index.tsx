@@ -1,6 +1,6 @@
 "use client";
 
-import AnimatedBackgroundDesignComponent from "@/components/AnimatedBackgroundDesign";
+import AnimatedBackgroundWebsiteComponent from "@/components/AnimatedBackgroundWebsite";
 
 import CustomVsGeneric from "@/components/CustomVsGeneric";
 import CTAWebsite from "@/components/WebSiteCTA";
@@ -32,7 +32,7 @@ const Websites: React.FC = () => {
          <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 
                  <div className="relative md:absolute inset-0 z-0">
-                  <AnimatedBackgroundDesignComponent />
+                  <AnimatedBackgroundWebsiteComponent />
                 </div>
 
                 <div className="relative z-10 flex flex-col justify-center items-center w-full md:w-auto min-h-[8rem]">

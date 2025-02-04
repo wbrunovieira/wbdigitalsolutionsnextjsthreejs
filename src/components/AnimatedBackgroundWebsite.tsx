@@ -1,8 +1,11 @@
-import React, { useMemo, useEffect, useRef } from 'react';
+import React, { useMemo, useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
-import { useAnimations, useGLTF, useTexture, } from '@react-three/drei';
+import { useAnimations, useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
 import { animate } from 'framer-motion';
+import Loader from './Loader';
+
+
 
 const NUM_INSTANCES = 400;
 const MIN_DISTANCE = 4;
@@ -10,7 +13,7 @@ const INTERACTION_DISTANCE = 10;
 const INTENSITY_SCALE = 3000;
 const MIN_INTENSITY_CLOSE = 1000;
 
-const AnimatedBackgroundDesignComponent: React.FC = () => {
+const AnimatedBackgroundWebsiteComponent: React.FC = () => {
     const lightRef = useRef<RectAreaLight>(null);
 
     return (
@@ -25,22 +28,20 @@ const AnimatedBackgroundDesignComponent: React.FC = () => {
                 }}
             >
 
-                <primitive
-                    ref={lightRef}
-                    object={new RectAreaLight(0xffffff, 10, 15, 15)}
-                    position={[5, 5, 5]}
-                    intensity={5}
-                />
-                <ambientLight intensity={0.6} color={0xffffff} />
-                <directionalLight
-                    position={[10, 10, 10]}
-                    intensity={0.6}
-                />
+                <Suspense fallback={<Loader />}>
+                    <primitive
+                        ref={lightRef}
+                        object={new RectAreaLight(0xffffff, 10, 15, 15)}
+                        position={[5, 5, 5]}
+                        intensity={5}
+                    />
+                    <ambientLight intensity={0.6} color={0xffffff} />
+                    <directionalLight position={[10, 10, 10]} intensity={0.6} />
 
+                    <AnimatedInstancedMesh lightRef={lightRef} />
 
-                <AnimatedInstancedMesh lightRef={lightRef} />
-
-                <FloatingModel />
+                    <FloatingModel />
+                </Suspense>
             </Canvas>
         </div>
     );
@@ -192,9 +193,7 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
     return <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} />;
 };
 
-
 const FloatingModel: React.FC = () => {
-
     const keyboardLight = new PointLight(0xffffff, 0.5);
     keyboardLight.position.set(0, -0.5, 1);
     
@@ -204,6 +203,7 @@ const FloatingModel: React.FC = () => {
     const { scene } = useGLTF("/models/macbook-pro.glb");
     const screenTexture = useTexture("/models/screen.png");
     screenTexture.flipY = false;
+
     scene.traverse((node) => {
         if (node instanceof Mesh) {
             if (node.name === "Screen") {
@@ -222,15 +222,10 @@ const FloatingModel: React.FC = () => {
         }
     });
 
-
     useEffect(() => {
         const frameNode = scene.children.find(node => node.name === "Frame");
-
         if (frameNode) {
-
             frameNode.rotation.x = Math.PI / 2;
-
-
             animate(frameNode.rotation.x, 0, {
                 type: 'spring',
                 stiffness: 80,
@@ -241,7 +236,6 @@ const FloatingModel: React.FC = () => {
             });
         }
     }, [scene]);
-
 
     useFrame(({ clock }) => {
         if (modelRef.current) {
@@ -260,7 +254,4 @@ const FloatingModel: React.FC = () => {
     );
 };
 
-
-
-
-export default AnimatedBackgroundDesignComponent;
+export default AnimatedBackgroundWebsiteComponent;
