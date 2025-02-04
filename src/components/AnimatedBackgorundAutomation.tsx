@@ -16,35 +16,9 @@ import {
 } from 'three';
 import { useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
 import { animate } from 'framer-motion';
+import Loader from './Loader';
 
 
-const Loader: React.FC = () => {
-  const { progress } = useProgress();
-  return (
-    <Html
-      as="div"
-      center
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
-      <span className="canvas-loader"></span>
-      <p
-        style={{
-          fontSize: 14,
-          color: '#F1F1F1',
-          fontWeight: 800,
-          marginTop: 40,
-        }}
-      >
-        {progress.toFixed(2)}%
-      </p>
-    </Html>
-  );
-};
 
 const NUM_INSTANCES = 40;
 const MIN_DISTANCE = 6;
