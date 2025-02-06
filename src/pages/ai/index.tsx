@@ -19,7 +19,7 @@ const ai: React.FC = () => {
   <main className='mt-16 w-full max-w-7xl mx-auto'>
       <div className="relative w-full mt-32 ">
 
-        <div className="flex relative inset-0 z-0">
+        <div className="ml-2 md:ml-8 flex relative inset-0 z-0  mx-auto">
 
           <AIHeader scrollIndicatorHidden={true} />
            <AnimatedBackgroundAIComponent />
