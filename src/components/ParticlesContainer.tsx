@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
+
+const MAX_PARTICLES = 50;
 
 const ParticlesContainer: React.FC = () => {
   const [init, setInit] = useState(false);
@@ -25,12 +27,23 @@ const ParticlesContainer: React.FC = () => {
       fpsLimit: 120,
       interactivity: {
         events: {
-          onClick: { enable: true, mode: "push" },
-          onHover: { enable: true, mode: "repulse" },
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
         },
         modes: {
-          push: { quantity: 8 },
-          repulse: { distance: 200, duration: 0.4 },
+          push: {
+            quantity: 5, // Número de partículas adicionadas por clique
+          },
+          repulse: {
+            distance: 200,
+            duration: 0.4,
+          },
         },
       },
       particles: {
@@ -51,8 +64,11 @@ const ParticlesContainer: React.FC = () => {
           straight: false,
         },
         number: {
-          density: { enable: true, area: 800 },
-          value: 80,
+          density: {
+            enable: true,
+            area: 800,
+          },
+          value: MAX_PARTICLES, // Número inicial de partículas
         },
         opacity: { value: 0.5 },
         shape: { type: "circle" },

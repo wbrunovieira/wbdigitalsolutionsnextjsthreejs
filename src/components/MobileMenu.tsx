@@ -7,7 +7,8 @@ const MobileMenu: React.FC<{
   pathname: string;
   setActiveMenu: (name: string | null) => void;
   activeMenu: string | null;
-}> = ({ isOpen, navData, pathname, activeMenu }) => {
+  closeMenu: () => void;  
+}> = ({ isOpen, navData, pathname, activeMenu , closeMenu}) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -15,7 +16,7 @@ const MobileMenu: React.FC<{
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="fixed top-20 left-0 w-full bg-black/95 backdrop-blur-lg"
+          className="fixed top-20 right-0 w-1/2 bg-primary/95 backdrop-blur-lg rounded"
         >
           <div className="flex flex-col p-4">
             {navData.map((link, index) => {
@@ -33,6 +34,10 @@ const MobileMenu: React.FC<{
                     className={`block py-3 px-4 text-sm ${
                       isActive ? "text-white" : "text-slate-400"
                     }`}
+                         onClick={() => {
+
+                      closeMenu();
+                    }}
                   >
                     {link.name}
                   </Link>

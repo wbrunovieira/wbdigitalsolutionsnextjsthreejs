@@ -10,13 +10,13 @@ type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div className="min-h-screen flex flex-col items-center">
-            {/* Centraliza o Nav e o conteúdo */}
+
             <div className="w-full max-w-[1400px]">
                 <Nav />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1 w-full">{children}</main>
                 <Footer />
             </div>
-            <div className="h-[100vh]"></div>
+          
         </div>
     );
 };

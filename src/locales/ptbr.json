@@ -20,7 +20,7 @@
     "digitalmarketingSeo": "Seo",
     "digitalmarketingAds": "Tráfego de Anúncios",
     "digitalmarketingSocial": "Redes Sociais",
-    "automation": "Automatização",
+    "automation": "Automação",
     "blog": "Blog",
     "contact": "Contacto",
     "english": "Inglês",
@@ -134,6 +134,8 @@
     "SocialMedia": "Gestão de Redes Sociais",
     "addCampaing": "Campanhas Publicitárias",
 
+    "DesignEmotional":"Como o Design Emocional Pode Transformar a Experiência do Cliente",
+
     "diINeedSite": "Eu preciso de um site?",
     "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
     "enterEmail": "Seu endereço de email",
@@ -170,48 +172,56 @@
     "cardAppleContentMachine7": "Personalize a experiência do cliente.",
     "cardAppleContentMachine8": "Utilize dados para criar experiências únicas para cada cliente. Nossas soluções em Machine Learning permitem adaptar produtos e serviços às preferências e necessidades de cada consumidor.",
 
-    "cardAppleAutomation": "Automação",
+     "cardAppleAutomation": "Automação",
     "AutomateYour": "Automatize os Processos do Seu Negócio.",
-    "cardAppleContentAutomation1": "Simplifique tarefas repetitivas e ganhe eficiência.",
-    "cardAppleContentAutomation2": "Nossas soluções de automação permitem que você elimine processos manuais, liberando sua equipe para atividades mais estratégicas e aumentando a produtividade.",
+    "cardAppleContentAutomation1": "Elimine tarefas repetitivas e maximize a eficiência operacional.",
+    "cardAppleContentAutomation2": "Nossas soluções avançadas de automação substituem fluxos de trabalho manuais, permitindo que sua equipe foque na inovação e nos objetivos estratégicos.",
+    "cardAppleContentAutomation3": "Aumente a precisão e reduza erros dispendiosos.",
+    "cardAppleContentAutomation4": "A automação garante precisão consistente, mesmo para os processos mais complexos, protegendo a qualidade e a confiabilidade das suas operações.",
+    "cardAppleContentAutomation5": "Facilite uma tomada de decisão mais rápida por meio de insights em tempo real.",
+    "cardAppleContentAutomation6": "Ao automatizar a coleta e análise de dados, fornecemos inteligência acionável, ajudando sua empresa a tomar decisões informadas de forma ágil e confiante.",
+    "cardAppleContentAutomation7": "Alcance escalabilidade contínua para um crescimento sustentável.",
+    "cardAppleContentAutomation8": "A automação prepara sua empresa para lidar com uma demanda crescente de maneira eficiente, mantendo alto desempenho sem sobrecarregar recursos.",
+    "cardAppleContentAutomation9": "Otimize custos e impulsione a lucratividade.",
+    "cardAppleContentAutomation10": "Ao automatizar fluxos de trabalho, sua empresa pode reduzir despesas, economizar tempo e reinvestir recursos em áreas que impactam diretamente o crescimento e a receita.",
+"cardAppleBots": "Bots",
+    "IntegrateIntelligent": "Transforme Seu Negócio com Bots Inteligentes.",
 
-    "cardAppleContentAutomation3": "Reduza erros e melhore a precisão.",
-    "cardAppleContentAutomation4": "Com a automação, tarefas complexas são executadas de forma precisa e confiável, minimizando erros humanos e garantindo resultados consistentes para o seu negócio.",
+    "cardAppleContentBots1": "Revolucione o atendimento ao cliente com automação inteligente.",
+    "cardAppleContentBots2": "Nossos bots atendem às solicitações dos clientes de forma rápida e eficiente, resolvendo questões comuns enquanto sua equipe foca em problemas mais complexos.",
 
-    "cardAppleContentAutomation5": "Agilize a tomada de decisões com dados em tempo real.",
-    "cardAppleContentAutomation6": "Automatizamos a coleta e análise de dados, permitindo que sua empresa tome decisões rápidas e informadas, baseadas nas informações mais atuais.",
+    "cardAppleContentBots3": "Suporte 24/7 para seus clientes, a qualquer hora e em qualquer lugar.",
+    "cardAppleContentBots4": "Com bots, seu negócio está sempre disponível, garantindo assistência contínua aos clientes, aumentando a satisfação e a fidelidade.",
 
-    "cardAppleContentAutomation7": "Escalabilidade sem esforço.",
-    "cardAppleContentAutomation8": "Com a automação, seu negócio está preparado para crescer de forma sustentável, ampliando processos e atendendo a uma demanda maior sem aumentar a carga de trabalho.",
+    "cardAppleContentBots5": "Reduza custos operacionais sem comprometer a qualidade.",
+    "cardAppleContentBots6": "Ao automatizar tarefas repetitivas, os bots diminuem a necessidade de pessoal para operações rotineiras, ajudando sua empresa a economizar e aumentar a eficiência.",
 
-    "cardAppleBots": "Bots",
-    "IntegrateIntelligent": "Integre Bots Inteligentes.",
+    "cardAppleContentBots7": "Ofereça interações personalizadas e alinhadas à sua marca.",
+    "cardAppleContentBots8": "Nossos bots utilizam IA avançada para adaptar respostas com base nas preferências e no histórico do cliente, proporcionando uma experiência única e envolvente.",
 
-    "cardAppleContentBots1": "Automatize o atendimento e melhore a experiência do cliente.",
-    "cardAppleContentBots2": "Nossos bots inteligentes atendem seus clientes de forma rápida e eficiente, solucionando dúvidas comuns e agilizando o suporte.",
+    "cardAppleContentBots9": "Integração perfeita com suas plataformas favoritas.",
+    "cardAppleContentBots10": "Nossos bots se conectam facilmente a sistemas CRM, canais de mídia social e ferramentas internas, criando um sistema de suporte unificado e multicanal para o seu negócio.",
+    
+   "cardAppleAI": "Inteligência Artificial",
+  "LeverageAI": "Soluções Abrangentes de IA para o Sucesso do Seu Negócio",
 
-    "cardAppleContentBots3": "Disponibilidade 24/7 para o seu negócio.",
-    "cardAppleContentBots4": "Com bots, seu atendimento funciona sem pausas, garantindo que seus clientes tenham respostas a qualquer hora do dia ou da noite.",
+  "cardAppleContentAI1": "Melhore a comunicação com os clientes através da Inteligência Artificial.",
+  "cardAppleContentAI2": "Nossas soluções de IA ajudam sua empresa a interagir com os clientes de forma mais humana e personalizada, aumentando a satisfação e o engajamento em diversos canais.",
 
-    "cardAppleContentBots5": "Reduza custos com automação inteligente.",
-    "cardAppleContentBots6": "Os bots diminuem a necessidade de equipe dedicada para tarefas repetitivas, ajudando a reduzir custos e melhorar a eficiência operacional.",
+  "cardAppleContentAI3": "Forneça suporte instantâneo, preciso e escalável com assistentes inteligentes.",
+  "cardAppleContentAI4": "Integre o ChatGPT ou nossas soluções de IA personalizadas para automatizar o atendimento ao cliente, responder a perguntas e permitir que sua equipe se concentre em tarefas estratégicas.",
 
-    "cardAppleContentBots7": "Personalize a comunicação com seus clientes.",
-    "cardAppleContentBots8": "Nossos bots são projetados para entender e responder de forma personalizada, criando uma experiência de atendimento única e alinhada à identidade do seu negócio.",
+  "cardAppleContentAI5": "Análise de sentimentos e inteligência emocional para decisões mais inteligentes.",
+  "cardAppleContentAI6": "Monitore e interprete o tom das interações dos clientes usando IA, ajudando sua empresa a adaptar a comunicação e oferecer melhores experiências com base em insights emocionais.",
 
-    "cardAppleAI": "Inteligência Artificial",
-    "LeverageAI": "Aproveite a Inteligência Artificial para Interações Mais Humanas",
-    "cardAppleContentAI1": "Melhore a comunicação com clientes através da Inteligência Artificial.",
-    "cardAppleContentAI2": "Nossas soluções de IA baseadas em linguagem natural ajudam sua empresa a interagir com os clientes de forma mais humana e personalizada, aumentando a satisfação e o engajamento.",
+  "cardAppleContentAI7": "Criação de conteúdo automatizada e personalizada para a sua marca.",
+  "cardAppleContentAI8": "Use a IA para gerar conteúdo, automatizar respostas e manter a consistência da marca, criando mensagens personalizadas para cada perfil de cliente.",
 
-    "cardAppleContentAI3": "Ofereça respostas instantâneas e precisas com assistentes inteligentes.",
-    "cardAppleContentAI4": "Integre o ChatGPT e outras ferramentas de IA para automatizar o atendimento ao cliente, respondendo perguntas comuns e ajudando sua equipe a se concentrar em questões mais complexas.",
+  "cardAppleContentAI9": "Transforme o seu negócio com soluções completas de IA.",
+  "cardAppleContentAI10": "Do atendimento ao cliente à análise de sentimentos e interpretação de imagens e vídeos, nossas soluções de IA capacitam sua empresa a automatizar, otimizar e inovar, entregando resultados consistentes e escaláveis sob medida para suas necessidades.",
 
-    "cardAppleContentAI5": "Análise de sentimentos para entender melhor seu público.",
-    "cardAppleContentAI6": "Com IA, sua empresa pode monitorar e interpretar o tom das interações com os clientes, ajustando a comunicação e aprimorando a experiência com base nas emoções detectadas.",
-
-    "cardAppleContentAI7": "Criação de conteúdos automáticos e personalizados.",
-    "cardAppleContentAI8": "Utilize IA para gerar textos e respostas de forma automática, mantendo a consistência da marca e personalizando as mensagens conforme o perfil de cada cliente.",
+  "cardAppleContentAI11": "Agentes de IA projetados para aprimorar processos empresariais.",
+  "cardAppleContentAI12": "Desenvolvemos agentes inteligentes de IA capazes de automatizar tarefas repetitivas, analisar dados complexos e tomar decisões informadas em tempo real. Esses agentes podem simplificar operações, melhorar a produtividade e permitir que sua equipe se concentre em atividades de alto valor.",
 
     "cardAppleECommerce": "E-commerce",
     "boostYour": "Impulsione suas Vendas com Soluções de E-commerce.",
@@ -267,5 +277,361 @@
     "nameRequired": "Ops! Precisamos do seu nome para continuar",
     "messageLabel": "Conte-nos o que você está pensando",
     "messagePlaceHolder": "Compartilhe suas ideias, pensamentos ou dúvidas...",
-    "messageRequired": "Não se esqueça de escrever sua mensagem!"
+    "messageRequired": "Não se esqueça de escrever sua mensagem!",
+
+    "experienceTitle1": "Inovação que Transforma. ",
+    "experienceTitle2": "Experiências que Conectam.",
+    "experienceDisciplines": [
+        "Sites que impressionam.",
+        "Experiências que engajam.",
+        "Resultados que impulsionam seu negócio."
+    ],
+    "experiencesub1":"Muito mais que um site.", 
+    "experiencesub2":"Criamos experiências digitais que destacam o melhor da sua marca, combinando design exclusivo, interatividade e tecnologia avançada.", 
+
+
+    "experienceTitleWebsite":"Não é só um site,",
+    "experienceTitleWebsite2":"É uma experiência premium para quem quer se destacar.",
+    "experienceSubtitle": "Enquanto soluções genéricas oferecem o básico, nós criamos sites sob medida para empresários que buscam qualidade, inovação e tecnologia de ponta.",
+    "experienceSubtitle1_1": "Imagine um site que reflete a essência do seu negócio, com interações envolventes, design exclusivo e desempenho otimizado.",
+    "experienceSubtitle1_2": "Sabemos que animações, vídeos e 3D podem impactar levemente a velocidade. ",
+    "experienceSubtitle1_3": "Mas, para o seu público — com acesso a boa internet e equipamentos modernos — esses detalhes transformam a navegação em uma experiência memorável.",
+    "experienceSubtitle1_4": " É um equilíbrio entre performance e impacto visual que valorizamos ao máximo.",
+    "experienceSubtitle2":"é isso que criamos para você.",
+    "genericSolution":"Solução Genérica",
+    "genericDescription": "Sites limitados, com poucas opções de personalização e desempenho comprometido.<br />- <strong>Velocidade:</strong> Carregamento lento, comprometendo a experiência do usuário.<br />- <strong>Interatividade:</strong> Experiência básica, sem animações ou elementos interativos.<br />- <strong>Segurança:</strong> Pouco robusta, vulnerável a ataques e falhas técnicas.<br />- <strong>Design:</strong> Templates limitados, sem exclusividade ou identidade única.<br />- <strong>Escalabilidade:</strong> Restrita, com dificuldades para acompanhar o crescimento do negócio.",
+    "customSolution":"Solução Personalizada",
+"customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Tipos de Projetos:</strong> Landing pages, sites institucionais, lojas online, plataformas de ensino e projetos sob medida.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",   
+
+
+
+
+"approachSubtitle":"Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
+     "steps": [
+          {
+            "title": "Descoberta",
+            "description": "Entendimento do negócio e do público-alvo."
+          },
+          {
+            "title": "Design Exclusivo",
+            "description": "UI/UX focado em resultados e engajamento."
+          },
+          {
+            "title": "Tecnologia de Ponta",
+            "description": "Ferramentas modernas para garantir velocidade, escalabilidade e segurança."
+          },
+          {
+            "title": "Entrega e Suporte",
+            "description": "Um site funcional e pronto para crescer com o seu negócio."
+          }
+        ],
+
+        "differentiatorsSpeedTitle":"Velocidade",
+        "differentiatorsSpeedDesc":"Sites que carregam em milissegundos.",
+        "differentiatorsInteractivityTitle":"Interatividade",
+        "differentiatorsInteractivityDesc":"Animações e experiências que encantam o visitante.",
+        "differentiatorsSEOTitle":"SEO Avançado",
+        "differentiatorsSEODesc":"Melhor posicionamento nos motores de busca.",
+        "differentiatorsScalabilityTitle": "Escalabilidade",
+        "differentiatorsScalabilityDesc":"Cresça sem preocupações técnicas.",
+        "differentiatorsTitle":"Muito mais do que um site bonito.",
+        "differentiatorsSubtitle":"Funcionalidade, performance e resultados reais.",
+         "comparisonTitle": "Invista em um site que realmente funcione.",
+  "comparisonSubtitle": "Seu site pode ser o principal ativo do seu negócio, não um custo perdido.",
+  "genericTitle": "Genérico",
+  "customTitle": "Sob Medida",
+  "speedLabel": "Velocidade",
+  "securityLabel": "Segurança",
+  "experienceLabel": "Experiência",
+  "genericSpeed": "Carregamento lento",
+  "genericSecurity": "Baixa segurança",
+  "genericExperience": "Experiência pobre",
+  "customSpeed": "Carregamento em milissegundos",
+  "customSecurity": "Segurança avançada",
+  "customExperience": "Experiência envolvente",
+  "ctaTitle": "Transforme sua presença digital",
+    "ctaHighlight": "em resultados reais",
+    "ctaDesc1": "Seu negócio merece mais que um template genérico.",
+    "ctaDesc2": "Agende uma consulta gratuita e descubra como podemos criar uma experiência digital única para sua marca.",
+    "ctaButton": "Fale com um Especialista",
+    "ctaContactTitle": "Escolha a forma de contato mais conveniente para você:",
+    "whatsappLabel": "WhatsApp",
+    "emailLabel": "E-mail",
+
+        "benefitsTitle": "Benefícios da Automação para o Seu Negócio",
+    "benefit1Title": "Eficiência Operacional",
+    "benefit1Desc": "Reduza tarefas manuais e maximize sua produtividade com fluxos de trabalho otimizados.",
+    "benefit2Title": "Economia de Tempo",
+    "benefit2Desc": "Automatize processos repetitivos para focar no crescimento do seu negócio.",
+    "benefit3Title": "Escalabilidade",
+    "benefit3Desc": "Soluções projetadas para crescer junto com sua empresa.",
+    "benefit4Title": "Melhor Experiência do Cliente",
+    "benefit4Desc": "A automação permite atender seus clientes com rapidez e eficiência.",
+
+
+      "solutionsTitle": "Soluções de Automação para o Seu Negócio",
+    "solution1Title": "Parcerias Estratégicas",
+    "solution1Desc": "Conecte-se com parceiros para impulsionar resultados e melhorar processos.",
+    "solution2Title": "Automação Digital",
+    "solution2Desc": "Modernize fluxos de trabalho com ferramentas inovadoras e digitais.",
+    "solution3Title": "Ideias Criativas",
+    "solution3Desc": "Desenvolva estratégias personalizadas para superar desafios.",
+    "solution4Title": "Crescimento Acelerado",
+    "solution4Desc": "Implemente soluções que levem sua empresa ao próximo nível.",
+
+
+    "successCasesTitle": "Casos de Sucesso em Automação",
+  "successCasesSubtitle": "Descubra como sua empresa pode transformar operações com automação.",
+  "stockManagementTitle": "Gestão de Estoques Automatizada",
+  "stockManagementDesc": "Reduza perdas e aumente a eficiência com previsão inteligente de demandas.",
+  "chatbotSupportTitle": "Atendimento com Chatbots",
+  "chatbotSupportDesc": "Forneça suporte 24/7 e reduza custos com assistentes virtuais.",
+  "financialAutomationTitle": "Automação de Processos Financeiros",
+  "financialAutomationDesc": "Simplifique relatórios e controle financeiro com maior precisão.",
+  "systemIntegrationTitle": "Integração de Sistemas",
+  "systemIntegrationDesc": "Conecte plataformas para melhorar fluxos e reduzir erros.",
+  "qualityControlTitle": "Controle de Qualidade Automatizado",
+  "qualityControlDesc": "Garanta consistência e reduza falhas na produção.",
+  "marketingAutomationTitle": "Automação de Marketing Digital",
+  "marketingAutomationDesc": "Monitore campanhas e otimize resultados com menos esforço.",
+  "projectManagementTitle": "Gestão de Projetos Automatizada",
+  "projectManagementDesc": "Gerencie recursos e prazos com mais eficiência.",
+  "hrAutomationTitle": "Automação de Processos de RH",
+  "hrAutomationDesc": "Agilize recrutamento e gestão de colaboradores.",
+
+  "technologiesTitle":"Tecnologias que Potencializam Nossas Soluções",
+  "technologiesDescription":"Utilizamos as tecnologias mais modernas para criar soluções robustas, escaláveis e preparadas para o futuro.",
+
+  "ctaTitleAutomation": "Descubra Como a Automação Pode Transformar Seu Negócio",
+  "ctaDescription": "Existem inúmeras aplicações de automação que podemos implementar para otimizar seus processos, reduzir custos e aumentar a eficiência. Entre em contato com nosso especialista para entender suas necessidades e sugerir soluções personalizadas.",
+  "ctaWhatsapp": "Fale pelo WhatsApp",
+
+    "headerTitle": "Automação Inteligente",
+  "headerSubtitle": "Automação que trabalha por você: simplifique tarefas, aumente a produtividade e concentre-se no que realmente importa.",
+  "disciplines": [
+    "Economize Tempo",
+    "Aumente sua Produtividade",
+    "Reduza Erros e Custos"
+  ],
+
+   "headerTitleIA": "Inteligência Artificial",
+  "headerSubtitleIA": "Aproveite o poder da IA para transformar desafios em oportunidades e impulsionar sua empresa para o futuro.",
+  "disciplinesIA": [
+    "Economize Tempo",
+    "Aumente sua Produtividade",
+    "Reduza Erros e Custos"
+  ],
+
+
+  "advancedLLMTitle": "Transforme seu Negócio com IA Generativa",
+  "advancedLLMSubtitle": "Integre os mais poderosos modelos de linguagem do mercado como ChatGPT, Claude e Gemini para automatizar, otimizar e inovar em todas as áreas da sua empresa.",
+  "advancedLLMExamples": [
+    {
+      "title": "Chatbots Avançados",
+      "description": "Automatize conversas e suporte ao cliente com chatbots inteligentes, 24/7, integrados a plataformas como OpenAI ou Gemini.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Análise e Geração de Documentos",
+      "description": "Transforme documentos complexos em insights acionáveis e resumos automatizados para agilizar fluxos de trabalho.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Inteligência Competitiva",
+      "description": "Monitore redes sociais, notícias e concorrentes para detectar oportunidades e tendências de mercado antes de todo mundo.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Vendas e Marketing",
+      "description": "Crie copywriting personalizado, campanhas de email e estratégias de funil otimizadas para aumentar conversão e engajamento.",
+      "icon": "FaBullhorn"
+    },
+    {
+      "title": "Gestão de Conhecimento",
+      "description": "Centralize informações e responda perguntas internas de maneira rápida, fornecendo suporte e documentação contextualizada.",
+      "icon": "FaBook"
+    },
+    {
+      "title": "Processos de RH",
+      "description": "Faça triagem inteligente de currículos, onboarding automatizado e feedback de colaboradores com análises de sentimentos.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Engenharia e Desenvolvimento",
+      "description": "Utilize assistentes de código, análise de logs e documentação técnica automatizada para acelerar seu ciclo de entrega.",
+      "icon": "FaCode"
+    },
+    {
+      "title": "Financeiro e Contábil",
+      "description": "Gere relatórios, identifique anomalias e faça projeções mais seguras, analisando grandes volumes de dados em segundos.",
+      "icon": "FaMoneyBillWave"
+    },
+    {
+      "title": "Segurança e Auditoria",
+      "description": "Detecte fraudes e comportamentos anômalos automaticamente, garantindo conformidade e protegendo dados sensíveis.",
+      "icon": "FaShieldAlt"
+    }
+  ],
+
+
+   "mlServicesTitle": "Soluções de Machine Learning Sob Medida",
+  "mlServicesSubtitle": "Explore como a IA pode gerar valor real em diversas áreas do seu negócio, transformando dados em insights e processos automatizados.",
+  "mlServices": [
+    {
+      "title": "Modelos de Previsão de Demanda",
+      "description": "Antecipe necessidades de estoque, logística e produção com modelos que evitam rupturas e excedentes.",
+      "icon": "FaChartLine"
+    },
+    {
+      "title": "Sistemas de Recomendação",
+      "description": "Sugestões personalizadas em e-commerce, entretenimento ou plataformas de conteúdo, aumentando engajamento e vendas.",
+      "icon": "FaLightbulb"
+    },
+    {
+      "title": "Classificação e Segmentação de Clientes",
+      "description": "Entenda melhor o público, personalize campanhas e descubra oportunidades de upsell e cross-sell.",
+      "icon": "FaUserCheck"
+    },
+    {
+      "title": "Detecção de Anomalias e Fraudes",
+      "description": "Previna perdas financeiras em setores como e-commerce, bancos e seguros com análises inteligentes.",
+      "icon": "FaShieldAlt"
+    },
+    {
+      "title": "Modelos de Preço Dinâmico",
+      "description": "Maximize receita e competitividade definindo valores de produtos e serviços em tempo real.",
+      "icon": "FaMoneyBill"
+    },
+    {
+      "title": "Análise de Sentimento (NLP)",
+      "description": "Obtenha insights sobre satisfação do cliente e automatize atendimentos com processamento de linguagem natural.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Visão Computacional",
+      "description": "Classifique imagens, realize inspeções de qualidade e automatize processos de segurança.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Manutenção Preditiva",
+      "description": "Reduza paradas inesperadas prevendo falhas e otimize a vida útil de máquinas e equipamentos.",
+      "icon": "FaCog"
+    },
+    {
+      "title": "Detecção de Rotatividade (Churn)",
+      "description": "Antecipe cancelamentos em serviços de assinatura e retenha clientes estratégicos.",
+      "icon": "FaCheckCircle"
+    },
+    {
+      "title": "Otimização e Scheduling",
+      "description": "Automatize escalas, roteirização de frota e alocação de recursos para produtividade máxima.",
+      "icon": "FaCalendarCheck"
+    }
+
+    
+  ],
+
+   "visionTitle": "Soluções de Visão Computacional",
+  "visionSubtitle": "Extraia informações valiosas de imagens e vídeos, automatizando processos, reduzindo custos e aumentando a eficiência.",
+  "visionOptions": [
+    {
+      "title": "Detecção e Classificação de Objetos",
+      "description": "Identifique e categorize produtos, peças ou até mesmo pessoas em imagens e vídeos, aumentando a precisão e reduzindo erros.",
+      "icon": "FaSearch"
+    },
+    {
+      "title": "Controle de Qualidade Automatizado",
+      "description": "Analise defeitos e falhas em linhas de produção, garantindo maior consistência e evitando desperdícios.",
+      "icon": "FaEye"
+    },
+    {
+      "title": "Leitura e Análise de Documentos (OCR)",
+      "description": "Transforme papéis em dados digitais, agilizando processos de cadastro e reduzindo custos com digitação manual.",
+      "icon": "FaFileAlt"
+    },
+    {
+      "title": "Análise de Câmeras de Segurança",
+      "description": "Monitore ambientes em tempo real, detecte comportamentos suspeitos e garanta a segurança do seu negócio.",
+      "icon": "FaLock"
+    },
+    {
+      "title": "Rastreamento de Objetos",
+      "description": "Acompanhe movimentações de veículos, produtos ou pessoas, melhorando a gestão de ativos e otimizando rotas.",
+      "icon": "FaCar"
+    },
+    {
+      "title": "Reconhecimento Facial e Biometria",
+      "description": "Automatize controle de acesso, personalize experiências e crie processos mais seguros com tecnologia biométrica.",
+      "icon": "FaRobot"
+    },
+    {
+      "title": "Análise de Comportamento em Ambiente de Varejo",
+      "description": "Mapeie deslocamento de clientes, identifique pontos de maior interesse e otimize o layout de suas lojas.",
+      "icon": "FaStore"
+    },
+    {
+      "title": "Monitoramento de Filas e Engarrafamentos",
+      "description": "Estime tempos de espera, detecte congestionamentos e melhore a experiência em serviços e no trânsito.",
+      "icon": "FaUsers"
+    },
+    {
+      "title": "Gestão de Estoque e Logística",
+      "description": "Identifique paletes, rastreie produtos e otimize toda a cadeia de suprimentos, do armazém ao transporte.",
+      "icon": "FaQrcode"
+    },
+    {
+      "title": "Processos Industriais e Robótica",
+      "description": "Guie braços robóticos, monitore linhas de produção e aumente a segurança operacional com análise de imagens.",
+      "icon": "FaCogs"
+    }
+  ],
+
+
+  "agentTitle": "Orquestração de Agentes de IA",
+  "agentSubtitle": "Imagine agentes inteligentes trabalhando em equipe: um inicia a tarefa, outro revisa e aperfeiçoa, enquanto um terceiro sintetiza resultados. Essa colaboração autônoma e escalável leva seu projeto a novos patamares de eficiência e qualidade.",
+  "agentFlowItems": [
+    {
+      "title": "Coordenação de Tarefas",
+      "description": "Cada agente AI recebe e repassa objetivos de maneira autônoma, garantindo que cada etapa seja executada no momento certo.",
+      "icon": "FaNetworkWired"
+    },
+    {
+      "title": "Colaboração Entre Agentes",
+      "description": "Um agente revisa o trabalho do outro, garantindo consistência e qualidade em cada decisão ou entrega.",
+      "icon": "FaPeopleCarry"
+    },
+    {
+      "title": "Aprendizado Contínuo",
+      "description": "Os agentes trocam insights e evoluem juntos, refinando modelos e estratégias a cada iteração.",
+      "icon": "FaBrain"
+    },
+    {
+      "title": "Otimização de Custos",
+      "description": "Processos automatizados, menos retrabalhos e maior velocidade de produção reduzem custos e maximizam ROI.",
+      "icon": "FaHandHoldingUsd"
+    }
+  ],
+
+
+    "ctaHeading": "Vamos Conversar Sobre Seus Processos?",
+  "ctaMessage": "Conte para a gente como funciona o seu dia a dia. Juntos, podemos identificar oportunidades de automação, IA ou otimizações que fazem a diferença no seu negócio.",
+
+  "ctaEmail": "Envie um Email",
+
+
+
+    "metaTitle": "WB - Digital Solutions | Home",
+  "metaDescription": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
+  "metaOgTitle": "WB Digital Solutions | Solucoes Digitais para Empresas",
+  "metaTwitterTitle": "Solucoes Digitais para Empresas",
+  "metaTwitterDescription": "Solucoes Digitais para Empresas",
+  "metaKeywords": "solucoes digitais, empresas, tecnologia, digital, site, inteligencia artificial, automacao, marketing digital, wb digital solutions"
+
+
+
+
+
+
+
+
 }

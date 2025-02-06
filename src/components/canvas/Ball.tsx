@@ -9,6 +9,7 @@ import {
 import { Texture } from "three";
 import CanvasLoader from "../Loader";
 import { PauseableCanvas } from "../PauseableCanvas";
+import { useMediaQuery } from "react-responsive";
 
 type BallProps = {
     imgUrl: string;
@@ -123,6 +124,11 @@ const BallCanvas = ({
     height = 112,
 }: BallCanvasProps) => {
     const [hasError, setHasError] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+
+
+    const adjustedWidth = isMobile ? width / 2 : width;
+    const adjustedHeight = isMobile ? height / 2 : height;
 
     if (hasError && skipIfError) {
         return null;
@@ -134,8 +140,8 @@ const BallCanvas = ({
             gl={{ preserveDrawingBuffer: true }}
             className="w-full h-28"
             style={{
-                width: `${width}px`,
-                height: `${height}px`,
+                width: `${adjustedWidth}px`,
+                height: `${adjustedHeight}px`,
                 display: "block",
             }}
         >

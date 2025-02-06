@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import ButtonStandard from "./ButtonStandard";
 import EarthCanvas from "./canvas/Earth";
 import { slideIn } from "../utils/motion";
-import EmailInput from "./EmailInput";
+
 
 import { useTranslations } from "@/contexts/TranslationContext";
 import AnimatedInput from "./AnimatedInput";
@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
     `;
 
     return (
-        <div className="flex flex-col md:flex-row gap-2">
+        <div className="flex flex-col md:flex-row gap-2 mt-32">
             <div className="bg-custom-gradient flex-1 text-white p-8">
                 <motion.div
                     initial="hidden"

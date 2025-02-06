@@ -51,7 +51,7 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-screen-xl mx-auto">     
+        <nav className="bg-modern-gradient backdrop-blur-3xl opacity-90 fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-[1400px] mx-auto">     
             <Image
                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
                 width={300}
@@ -68,14 +68,14 @@ const Nav: React.FC = () => {
                 <div className="flex">
 
                             <Image
-                                className="w-32 h-9 object-contain"
+                                className="w-32 h-9 object-contain mr-2"
                                 src={logo}
                                 alt="logo"
                                 width={158}
                                 height={42}
                                 />
 
-                            <p className="text-white text-sm/4 tracking-wide font-bold flex flex-col">
+                            <p className="text-white text-xs md:text-sm/4 tracking-wide font-light md:font-bold flex flex-col">
                                 WB Digital Solutions &nbsp;
                                 <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500">
                                     {currentMessages.technology}
@@ -158,24 +158,25 @@ const Nav: React.FC = () => {
                 </div>
 
                 {isMobileMenuOpen && (
-                    <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center">
+                    <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center max-w-[1400px] mx-auto">
                         <MobileMenu 
                             isOpen={isMobileMenuOpen}
                             navData={navData}
                             pathname={pathname}
                             setActiveMenu={setActiveMenu}
                             activeMenu={activeMenu}
+                            closeMenu={() => setIsMobileMenuOpen(false)} 
                         />
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-white mt-4"
+                            className="text-white mt-10 font-bold text-2xl z-50"
                         >
-                            Close
+                            X
                         </button>
                     </div>
                 )}
 
-            <div className="flex ml-auto lg:hidden">
+            <div className="flex ml-auto lg:hidden mb-2">
 
 
                 <HamburgerMenu 
@@ -204,7 +205,7 @@ const Nav: React.FC = () => {
                                     legacyBehavior
                                 >
                                     <motion.a
-                                        className={`flex p-3 text-xs mt-2 font-light tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
+                                        className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
                                             isActive
                                                 ? "text-white semibold underline-menu link-active"
                                                 : "text-slate-500"
@@ -235,7 +236,7 @@ const Nav: React.FC = () => {
 
 
 
-            <div className="bg-white/5  absolute right-[2%] top-[120%] ">
+            <div className="bg-white/5  absolute right-[2%] top-[120%] hidden md:block">
                 <SideSocial />
             </div>
   

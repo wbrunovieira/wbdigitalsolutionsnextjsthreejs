@@ -1,25 +1,74 @@
 "use client";
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useEffect,
+} from "react";
 
-const LanguageContext = createContext({
-    language: "en",
-    setLanguage: (language: string) => {},
+
+type LanguageContextType = {
+  language: string;
+  setLanguage: (lang: string) => void;
+};
+
+
+const LanguageContext = createContext<LanguageContextType>({
+  language: "en",
+  setLanguage: () => {},
 });
 
 export const useLanguage = () => useContext(LanguageContext);
 
+
+const detectBrowserLanguage = (): string => {
+
+  if (typeof navigator === "undefined") return "en";
+  
+  const lang = navigator.language.toLowerCase();
+
+
+  if (lang.startsWith("pt")) return "pt-BR"; 
+  if (lang.startsWith("es")) return "es";
+  if (lang.startsWith("it")) return "it";
+  if (lang.startsWith("en")) return "en";
+
+
+  return "en";
+};
+
 type LanguageProviderProps = {
-    children: ReactNode;
+  children: ReactNode;
 };
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
-    children,
+  children,
 }) => {
-    const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState<string>("en");
 
-    return (
-        <LanguageContext.Provider value={{ language, setLanguage }}>
-            {children}
-        </LanguageContext.Provider>
-    );
+
+
+
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    } else {
+      const browserLanguage = detectBrowserLanguage();
+      setLanguage(browserLanguage);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
 };

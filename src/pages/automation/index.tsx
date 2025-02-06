@@ -1,21 +1,42 @@
-import AnimatedBackgroundDesignComponent from '@/components/AnimatedBackgroundDesign';
-import { DesignHeader } from '@/components/DesignHero';
-import React from 'react';
+import dynamic from 'next/dynamic';
 
-const automation: React.FC = () => {
-  return <main>
-        <div className="relative w-full h-screen overflow-hidden mt-32">
+import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';
 
-<div className="absolute inset-0 z-0">
-  <AnimatedBackgroundDesignComponent />
-</div>
+import CallToActionAutomation from '@/components/AutomationCTA';
+import { AutomationHeader } from '@/components/AutomationHeader';
 
 
-<div className="relative z-10">
-  <DesignHeader scrollIndicatorHidden={true} />
-</div>
-</div>
+const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false });
+const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { ssr: false });
+const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr: false });
+
+
+
+
+const ai: React.FC = () => {
+  return(
+
+    <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen w-full max-w-7xl mx-auto">
+
+      <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
+
+
+         <div className="relative md:absolute inset-0 z-0">
+
+         <AnimatedBackgroundAutomationComponent />
+        </div>
+         <div className="relative z-10 flex flex-col justify-center items-center w-full md:w-auto min-h-[8rem]">
+          <AutomationHeader scrollIndicatorHidden={true} />
+        </div>
+    </div>
+    <AnimatedBenefits />
+    <AutomationCases />
+    <Technologies />
+    <CallToActionAutomation />
+
+
   </main>
+  ) 
 };
 
-export default automation;
+export default ai;

@@ -3,20 +3,20 @@
 import HeroSection from "./HeroSection";
 
 import InfiniteScrollHash from "./InfiniteScrollHash";
-// import ToolBox from "./ToolBox";
+import ToolBox from "./ToolBox";
 import { AppleCardsCarouselDemo } from "./CardCarrosel";
 
 
 const Home: React.FC = () => {
     return (
-        <div className="min-h-screen bg-custom-gradient bg-[#350545] px-8 mx-auto">
-            <main className="flex flex-col">
+        <main className="flex flex-col min-h-screen bg-custom-gradient bg-[#350545] w-full max-w-none mx-0 px-0">
+
                 <HeroSection />
                 <InfiniteScrollHash />
-                {/* <ToolBox /> */}
+                <ToolBox />
                 <AppleCardsCarouselDemo />
-            </main>
-        </div>
+
+        </main>
     );
 };
 

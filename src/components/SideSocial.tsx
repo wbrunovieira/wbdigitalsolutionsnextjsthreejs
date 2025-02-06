@@ -5,16 +5,42 @@ import {
     PiWhatsappLogo,
     PiYoutubeLogo,
 } from "react-icons/pi";
-// nav data
-export const navData = [
-    { name: "Instagram", href: "/", icon: <PiInstagramLogo /> },
-    { name: "Facebook", href: "/", icon: <PiFacebookLogo /> },
-    { name: "Whatsapp", href: "/services", icon: <PiWhatsappLogo /> },
-    { name: "Youtube", path: "/work", icon: <PiYoutubeLogo /> },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SideSocial = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const { language } = useLanguage();
+
+
+    const socialLinks = {
+        en: [
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions_int/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
+        ],
+        "pt-BR": [
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
+        ],
+        it: [
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions_it/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
+        ],
+        es: [
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions_es/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
+        ],
+    };
+
+
+    const navData = socialLinks[language as keyof typeof socialLinks] || socialLinks.en;
 
     const handleMouseEnter = (index: number) => {
         setHoveredIndex(index);
@@ -54,41 +80,37 @@ const SideSocial = () => {
 
     return (
         <nav className="right-[2%] z-5550 w-16 border flex h-56 rounded !flex-col items-center gap-y-2 xl:w-16 xl:max-w-md xl:justify-center">
-            {/* inner */}
             <div
                 className="flex flex-col h-full items-center justify-between gap-y-10 px-2 py-4 text-2xl backdrop-blur-sm md:px-40 xl:h-max xl:flex-col
-        xl:justify-center xl:rounded-full xl:px-0 xl:text-xl"
+                xl:justify-center xl:rounded-full xl:px-0 xl:text-xl"
                 onMouseLeave={handleMouseLeave}
                 style={getContainerStyle()}
             >
-                {navData.map((link, index) => {
-                    return (
-                        <a
-                            className={`${link.href} hover:text-accent group relative flex items-center transition-all duration-300 dock-item cursor-pointer`}
-                            href={link.path}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            key={index}
-                            onMouseEnter={() => handleMouseEnter(index)}
-                        >
-                            {/* tooltip */}
-                            <div className="absolute right-0 hidden pr-14 xl:group-hover:flex">
-                              
-                                <div className="text-primary relative flex items-center rounded-[3px] bg-white p-[12px]  shadow-lg">
-                                    <div className="text-[10px] font-semibold capitalize leading-none">
-                                        {link.name}
-                                    </div>
-                                    {/* triangle */}
-                                    <div className="absolute -right-2 border-y-[6px] border-l-8 border-r-0 border-solid border-y-transparent border-l-white"></div>
+                {navData.map((link, index) => (
+                    <a
+                        className={`${link.href} hover:text-accent group relative flex items-center transition-all duration-300 dock-item cursor-pointer`}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={index}
+                        onMouseEnter={() => handleMouseEnter(index)}
+                    >
+                        {/* Tooltip */}
+                        <div className="absolute right-0 hidden pr-14 xl:group-hover:flex">
+                            <div className="text-primary relative flex items-center rounded-[3px] bg-white p-[12px] shadow-lg">
+                                <div className="text-[10px] font-semibold capitalize leading-none">
+                                    {link.name}
                                 </div>
+                                {/* Triangle */}
+                                <div className="absolute -right-2 border-y-[6px] border-l-8 border-r-0 border-solid border-y-transparent border-l-white"></div>
                             </div>
-                            {/* icon */}
-                            <div style={getIconStyle(index)}>
-                                <div className="text-white">{link.icon}</div>
-                            </div>
-                        </a>
-                    );
-                })}
+                        </div>
+                        {/* Icon */}
+                        <div style={getIconStyle(index)}>
+                            <div className="text-white">{link.icon}</div>
+                        </div>
+                    </a>
+                ))}
             </div>
         </nav>
     );
