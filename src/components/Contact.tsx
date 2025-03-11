@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import ButtonStandard from "./ButtonStandard";
 import EarthCanvas from "./canvas/Earth";
@@ -7,11 +8,15 @@ import { slideIn } from "../utils/motion";
 import { useTranslations } from "@/contexts/TranslationContext";
 import AnimatedInput from "./AnimatedInput";
 import AnimatedTextarea from "./AnimatedTextarea";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+  const router = useRouter();
 
   const currentMessages = useTranslations();
 
@@ -20,34 +25,32 @@ const Contact: React.FC = () => {
 
 
     if (!name.trim() || !email.trim() || !message.trim()) {
-      alert("Por favor, preencha todos os campos corretamente.");
+      toast.error(currentMessages.fillAllFields || "Por favor, preencha todos os campos corretamente.");
       return;
     }
 
     const formData = new FormData(e.target as HTMLFormElement);
-
+   
     formData.append("_captcha", "false");
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/bruno@wbdigitalsolutions.com",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("https://formsubmit.co/bruno@wbdigitalsolutions.com", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
-        alert("Formulário enviado com sucesso!");
-        setName("");
-        setEmail("");
-        setMessage("");
+        toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
+
+          setTimeout(() => {
+    router.push("/");
+  }, 2000);
       } else {
-        alert("Erro ao enviar o formulário. Tente novamente.");
+        toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
       }
     } catch (error) {
       console.error("Erro ao enviar o formulário", error);
-      alert("Erro ao enviar o formulário. Tente novamente.");
+      toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
     }
   }
 
@@ -100,7 +103,7 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="w-full flex justify-start">
-                <ButtonStandard buttonText={currentMessages.send} type="submit" />
+                <ButtonStandard buttonText={currentMessages.send2} type="submit" />
               </div>
             </form>
           </div>
@@ -110,6 +113,7 @@ const Contact: React.FC = () => {
       <div className="flex-1 flex justify-center items-center">
         <EarthCanvas />
       </div>
+      <ToastContainer />
     </div>
   );
 };
