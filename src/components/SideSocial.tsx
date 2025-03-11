@@ -11,35 +11,35 @@ const SideSocial = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const { language } = useLanguage();
 
-    // Define links para diferentes idiomas
+
     const socialLinks = {
         en: [
-            { name: "Instagram", href: "https://www.instagram.com/en", icon: <PiInstagramLogo /> },
-            { name: "Facebook", href: "https://www.facebook.com/en", icon: <PiFacebookLogo /> },
-            { name: "Whatsapp", href: "https://wa.me/en", icon: <PiWhatsappLogo /> },
-            { name: "Youtube", href: "https://www.youtube.com/en", icon: <PiYoutubeLogo /> },
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions_int/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
         ],
         "pt-BR": [
-            { name: "Instagram", href: "https://www.instagram.com/pt", icon: <PiInstagramLogo /> },
-            { name: "Facebook", href: "https://www.facebook.com/pt", icon: <PiFacebookLogo /> },
-            { name: "Whatsapp", href: "https://wa.me/pt", icon: <PiWhatsappLogo /> },
-            { name: "Youtube", href: "https://www.youtube.com/pt", icon: <PiYoutubeLogo /> },
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
         ],
         it: [
-            { name: "Instagram", href: "https://www.instagram.com/it", icon: <PiInstagramLogo /> },
-            { name: "Facebook", href: "https://www.facebook.com/it", icon: <PiFacebookLogo /> },
-            { name: "Whatsapp", href: "https://wa.me/it", icon: <PiWhatsappLogo /> },
-            { name: "Youtube", href: "https://www.youtube.com/it", icon: <PiYoutubeLogo /> },
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions_it/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
         ],
         es: [
-            { name: "Instagram", href: "https://www.instagram.com/es", icon: <PiInstagramLogo /> },
-            { name: "Facebook", href: "https://www.facebook.com/es", icon: <PiFacebookLogo /> },
-            { name: "Whatsapp", href: "https://wa.me/es", icon: <PiWhatsappLogo /> },
-            { name: "Youtube", href: "https://www.youtube.com/es", icon: <PiYoutubeLogo /> },
+            { name: "Instagram", href: "https://www.instagram.com/wb.digitalsolutions_es/", icon: <PiInstagramLogo /> },
+            { name: "Facebook", href: "https://www.facebook.com/wb.digitalsolutions/", icon: <PiFacebookLogo /> },
+            { name: "Whatsapp", href: "https://wa.me/5511982864581", icon: <PiWhatsappLogo /> },
+            { name: "Youtube", href: "https://www.youtube.com/@wbdigitalsolutions", icon: <PiYoutubeLogo /> },
         ],
     };
 
-    // Links da rede social com base no idioma atual
+
     const navData = socialLinks[language as keyof typeof socialLinks] || socialLinks.en;
 
     const handleMouseEnter = (index: number) => {

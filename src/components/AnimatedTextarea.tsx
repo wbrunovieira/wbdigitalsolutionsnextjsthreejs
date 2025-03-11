@@ -6,6 +6,7 @@ interface AnimatedTextareaProps {
   onChange: (value: string) => void;
   errorMessage?: string;
   required?: boolean;
+  name: string; 
 }
 
 const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
@@ -14,6 +15,7 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
   onChange,
   errorMessage,
   required = false,
+  name
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
@@ -23,7 +25,9 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
   return (
     <div className="relative my-5 w-full">
       <textarea
+        name={name}  
         value={value}
+        id={name}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => {

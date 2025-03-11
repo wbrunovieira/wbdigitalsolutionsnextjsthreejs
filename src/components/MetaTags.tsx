@@ -52,12 +52,12 @@ const Metatags = () => {
       <link
         rel="preload"
         as="image"
-        href="https://www.wbdigitalsolutions.com/svg/logo.svg"
+        href="/img/favicon.png"
       />
 
       {/* Título e favicon */}
       <title>{t.metaTitle}</title>
-      <link rel="icon" href="assets/favicon.png" />
+      <link rel="icon" href="/img/favicon.png" />
 
       {/* Pipedrive Tag */}
       <script

@@ -1,11 +1,12 @@
 interface ButtonStandardProps {
     buttonText: string;
+    type?: "button" | "submit" | "reset";
 }
 
-const ButtonStandard: React.FC<ButtonStandardProps> = ({ buttonText }) => {
+const ButtonStandard: React.FC<ButtonStandardProps> = ({ buttonText, type = "submit"  }) => {
     return (
         <button
-            type="submit"
+            type={type}
             className="flex justify-center gap-2 items-center shadow-xl text-md  text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-lg before:bg-custom-purple hover:text-secondary before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-1 overflow-hidden border-2 rounded-lg group whitespace-nowrap min-w-[180px] h-12"
         >
             {buttonText}

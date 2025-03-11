@@ -7,6 +7,7 @@ interface AnimatedInputProps {
   errorMessage?: string;
   required?: boolean;
   type?: "text" | "email";
+  name: string;
 }
 
 const AnimatedInput: React.FC<AnimatedInputProps> = ({
@@ -16,13 +17,14 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   errorMessage,
   required = false,
   type = "text",
+  name,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
 
   const isEmail = type === "email";
   const isValidEmail = isEmail
-    ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) 
+    ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     : true;
 
   const hasError =
@@ -32,7 +34,9 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
     <div className="relative my-5 w-full">
       <input
         type={type}
+        name={name}  // Adicionado para o FormData
         value={value}
+        id={name}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
@@ -48,7 +52,9 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
           <span
             key={index}
             className={`inline-block transition-transform duration-300 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] ${
-              hasError ? "text-red-500" : "text-gray-500 peer-focus:text-lightblue"
+              hasError
+                ? "text-red-500"
+                : "text-gray-500 peer-focus:text-lightblue"
             } ${
               isFocused || value
                 ? "text-sm -translate-y-6"

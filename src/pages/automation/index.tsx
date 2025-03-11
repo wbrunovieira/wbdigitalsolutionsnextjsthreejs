@@ -18,7 +18,7 @@ const ai: React.FC = () => {
 
     <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen w-full max-w-7xl mx-auto">
 
-      <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
+      <div className="ml-8 md:ml-20 md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 
 
          <div className="relative md:absolute inset-0 z-0">

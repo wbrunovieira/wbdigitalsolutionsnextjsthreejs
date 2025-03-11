@@ -78,7 +78,7 @@ export const AIHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
     }, []);
 
     return (
-        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white mb-8 bg-primary/70 md:bg-transparent z-50">
+        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white mb-8 bg-primary/20 md:bg-transparent z-50">
              <h1 className="text-xl md:text-4xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
                     {currentMessages.headerTitleIA.split("").map((letter: string, index: number) => (
