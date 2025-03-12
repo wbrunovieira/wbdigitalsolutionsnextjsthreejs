@@ -112,12 +112,7 @@ const Footer: React.FC = () => {
                 {currentMessages.brazil}: +55 11 5026-4203
               </a>
             </p>
-            <p className="flex items-center">
-              <FiPhone className="mr-2" />
-              <a href="tel:+351308808015">
-                {currentMessages.portugal}: +351 30 880 8015
-              </a>
-            </p>
+
             <p className="flex items-center">
               <FiMail className="mr-2" />
               <a href="mailto:contato@wbdigitalsolutions.com">
