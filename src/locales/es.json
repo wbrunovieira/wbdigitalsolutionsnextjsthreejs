@@ -252,6 +252,10 @@
     "messageLabel": "Cuéntanos lo que piensas",
     "messagePlaceHolder": "Comparte tus ideas, pensamientos o dudas...",
     "messageRequired": "¡No olvides escribir tu mensaje!",
+     "send2": "Enviar",
+  "fillAllFields": "Por favor, rellena todos los campos correctamente.",
+  "successSubmission": "¡Formulario enviado con éxito!",
+  "errorSubmission": "Error al enviar el formulario. Inténtalo de nuevo.",
 
  "experienceTitle1": "Innovación que Transforma.",
     "experienceTitle2": "Experiencias que Conectan.",

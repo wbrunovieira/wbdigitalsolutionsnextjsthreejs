@@ -8,11 +8,7 @@
     "homeculture": "Cultura",
     "design": "design",
     "systems": "Sistemas",
-    "wbweb": "WB Web",
-    "wbsalao": "WB Salão",
-    "wbclinica": "WB Clínica",
-    "wbfood": "WB Food",
-    "wbpet": "WB Pet",
+    
     "websites": "Sites",
     "websitesLand": "Land Pages",
     "websitesProjects": "Projecto",
@@ -278,6 +274,10 @@
     "messageLabel": "Conte-nos o que você está pensando",
     "messagePlaceHolder": "Compartilhe suas ideias, pensamentos ou dúvidas...",
     "messageRequired": "Não se esqueça de escrever sua mensagem!",
+      "send2": "Enviar",
+  "fillAllFields": "Por favor, preencha todos os campos corretamente.",
+  "successSubmission": "Formulário enviado com sucesso!",
+  "errorSubmission": "Erro ao enviar o formulário. Tente novamente.",
 
     "experienceTitle1": "Inovação que Transforma. ",
     "experienceTitle2": "Experiências que Conectam.",

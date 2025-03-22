@@ -279,6 +279,10 @@
     "messagePlaceHolder": "Share your thoughts, ideas or questions...",
 
     "messageRequired": "Don't forget to write your message!",
+      "send2": "Send",
+  "fillAllFields": "Please fill out all the fields correctly.",
+  "successSubmission": "Form submitted successfully!",
+  "errorSubmission": "Error sending the form. Please try again.",
  "experienceTitle1": "Innovation that Transforms.",
     "experienceTitle2": "Experiences that Connect.",
     "experienceDisciplines": [

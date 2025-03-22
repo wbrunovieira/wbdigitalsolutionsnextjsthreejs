@@ -264,6 +264,10 @@
     "messageLabel": "Dicci cosa ne pensi",
     "messagePlaceHolder": "Condividi i tuoi pensieri, idee o domande...",
     "messageRequired": "Non dimenticare di scrivere il tuo messaggio!",
+     "send2": "Invia",
+  "fillAllFields": "Per favore, compila tutti i campi correttamente.",
+  "successSubmission": "Modulo inviato con successo!",
+  "errorSubmission": "Errore durante l'invio del modulo. Riprova.",
 
  "experienceTitle1": "Innovazione che Trasforma.",
     "experienceTitle2": "Esperienze che Connettono.",
