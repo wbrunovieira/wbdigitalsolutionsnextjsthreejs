@@ -2,6 +2,7 @@
 import { ReactNode } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import ChatBotButton from "./ChatBotButton";
 
 type LayoutProps = {
     children: ReactNode;
@@ -13,6 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
             <div className="w-full max-w-[1400px]">
                 <Nav />
+                <ChatBotButton /> 
                 <main className="flex-1 w-full">{children}</main>
                 <Footer />
             </div>

@@ -1,4 +1,4 @@
-// pages/_app.tsx
+// src/pages/_app.tsx
 import '../styles/global.css';
 import '../styles/styles.js';
 
