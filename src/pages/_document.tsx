@@ -7,7 +7,7 @@ class MyDocument extends Document {
         <Head>
           <meta
             httpEquiv="Content-Security-Policy"
-            content="default-src 'self'; connect-src 'self' http://192.168.0.9:8000; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+            content="default-src 'self'; connect-src 'self' https://chatbotwb.wbdigitalsolutions.com; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
           />
         </Head>
         <body>

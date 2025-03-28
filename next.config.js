@@ -11,8 +11,19 @@ const nextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; connect-src 'self' http://192.168.0.9:8000 ws://192.168.0.9:3000; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
+            value: `
+              default-src 'self';
+              connect-src 'self' https://chatbotwb.wbdigitalsolutions.com;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+                https://connect.facebook.net 
+                https://www.googletagmanager.com 
+                https://sc.lfeeder.com 
+                https://www.clarity.ms;
+              style-src 'self' 'unsafe-inline';
+              img-src 'self' https://www.facebook.com https://www.google.com https://www.clarity.ms data:;
+              font-src 'self' https://fonts.gstatic.com data:;
+              frame-src 'self' https://www.youtube.com;
+            `.replace(/\s{2,}/g, ' ').trim()
           },
         ],
       },
@@ -22,52 +33,3 @@ const nextConfig = {
 
 export default nextConfig;
 
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   experimental: {
-//     webVitalsAttribution: ['CLS', 'LCP'],
-//   },
-
-//   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-//     const babelLoader = config.module.rules.find(
-//       (rule) => rule.use && rule.use.loader === 'next-babel-loader'
-//     );
-
-//     if (babelLoader) {
-//       babelLoader.use.options.presets = [
-//         [
-//           'next/babel',
-//           {
-//             'preset-react': {
-//               runtime: 'automatic',
-//               importSource: '@react',
-//             },
-//             'preset-env': {
-//               modules: 'commonjs',
-//             },
-//           },
-//         ],
-//       ];
-//     }
-
-//     return config;
-//   },
-
-//   async headers() {
-//     return [
-//       {
-//         source: "/(.*)",
-//         headers: [
-//           {
-//             key: "Content-Security-Policy",
-//             value:
-//               "default-src 'self'; connect-src 'self' http://192.168.0.9:8000; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
-//           },
-//         ],
-//       },
-//     ];
-//   },
-// };
-
-// export default nextConfig;
