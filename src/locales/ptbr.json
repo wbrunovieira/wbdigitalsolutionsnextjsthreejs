@@ -653,7 +653,8 @@
   "bot": "Bot:",
   "responseTime": "Tempo de resposta",
   "dragTutorialText": "Clique e arraste para interagir",
-  "mouseMoveTutorialText": "Mova o mouse para interagir com as partículas"
+  "mouseMoveTutorialText": "Mova o mouse para interagir com as partículas",
+  "cardClickTutorialText": "Clique em cada card para explorar nossos serviços"
 
 
 

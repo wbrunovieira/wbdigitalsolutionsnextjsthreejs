@@ -5,6 +5,7 @@ import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/contexts/TranslationContext";
+import CardClickTutorial from "./CardClickTutorial";
 
 export function AppleCardsCarouselDemo() {
     const { language } = useLanguage();
@@ -25,11 +26,14 @@ export function AppleCardsCarouselDemo() {
     ));
 
     return (
-        <div className="w-full h-full py-20 mt-20">
+        <div className="w-full h-full py-20 mt-20 relative">
             <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white font-sans">
                 {currentMessages.transformYourBusiness}
             </h2>
-            <Carousel items={cards} />
+            <div className="relative">
+                <CardClickTutorial />
+                <Carousel items={cards} />
+            </div>
         </div>
     );
 }
