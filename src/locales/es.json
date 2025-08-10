@@ -619,7 +619,8 @@
   "you": "Tú:",
   "bot": "Bot:",
   "responseTime": "Tiempo de respuesta",
-  "dragTutorialText": "Haz clic y arrastra para interactuar"
+  "dragTutorialText": "Haz clic y arrastra para interactuar",
+  "mouseMoveTutorialText": "Mueve el ratón para interactuar con las partículas"
 
 
 
