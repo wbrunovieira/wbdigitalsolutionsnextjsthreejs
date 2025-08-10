@@ -14,10 +14,6 @@ const Metatags = () => {
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta
-        httpEquiv="Content-Security-Policy"
-        content="default-src 'self'; connect-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com https://sc.lfeeder.com https://googleads.g.doubleclick.net https://www.google-analytics.com https://www.googleadservices.com https://cdn.lightwidget.com https://www.clarity.ms https://www.google.com https://t.clarity.ms https://www.google.com.br; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://www.facebook.com https://www.wbdigitalsolutions.com https://tr.lfeeder.com https://googleads.g.doubleclick.net https://www.google.com https://c.clarity.ms https://www.google.com.br; font-src 'self' https://fonts.gstatic.com data:; frame-src 'self' https://www.youtube.com https://cdn.lightwidget.com https://lightwidget.com https://td.doubleclick.net;"
-      />
 
 
       <meta name="robots" content="index, follow" />
