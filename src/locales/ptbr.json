@@ -625,7 +625,33 @@
   "metaOgTitle": "WB Digital Solutions | Solucoes Digitais para Empresas",
   "metaTwitterTitle": "Solucoes Digitais para Empresas",
   "metaTwitterDescription": "Solucoes Digitais para Empresas",
-  "metaKeywords": "solucoes digitais, empresas, tecnologia, digital, site, inteligencia artificial, automacao, marketing digital, wb digital solutions"
+  "metaKeywords": "solucoes digitais, empresas, tecnologia, digital, site, inteligencia artificial, automacao, marketing digital, wb digital solutions",
+
+
+   "typingMessages": [
+    "⏳ Processando sua solicitação...",
+    "💡 Pensando na melhor resposta para você...",
+    "🔍 Analisando sua mensagem...",
+    "🧠 Refletindo com inteligência...",
+    "⌛ Só mais um instante, preparando uma ótima resposta!"
+  ],
+  "progressiveMessages": [
+    "🔍 Ainda analisando sua pergunta...",
+    "🧠 Refletindo com inteligência...",
+    "⌛ Já estou quase lá...",
+    "📦 Finalizando os últimos detalhes...",
+    "🚀 Preparando a resposta ideal para você..."
+  ],
+  "initialReply": "Recebi sua pergunta! Estou analisando com carinho para te dar a melhor resposta 😊",
+  "fallbackReply": "Erro ao processar sua mensagem. Tente novamente mais tarde.",
+  "placeholder": "Digite sua mensagem...",
+  "specialist": "👉 Falar com um especialista",
+  "quote": "💰 Solicitar orçamento",
+  "services": "🛠️ Ver serviços",
+  "sendButton": "Enviar",
+  "you": "Você:",
+  "bot": "Bot:",
+  "responseTime": "Tempo de resposta"
 
 
 
