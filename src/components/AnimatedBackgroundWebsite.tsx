@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useRef, Suspense } from 'react';
+import React, { useMemo, useEffect, useRef, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
 import { useAnimations, useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
@@ -13,8 +13,49 @@ const INTERACTION_DISTANCE = 10;
 const INTENSITY_SCALE = 3000;
 const MIN_INTENSITY_CLOSE = 1000;
 
+const CustomLoader: React.FC = () => {
+    const { active, progress, errors, item, loaded, total } = useProgress();
+    const [showFallback, setShowFallback] = useState(false);
+
+    useEffect(() => {
+        // If progress is stuck at 75 for more than 5 seconds, show fallback
+        if (progress === 75) {
+            const timer = setTimeout(() => {
+                setShowFallback(true);
+            }, 5000);
+            return () => clearTimeout(timer);
+        }
+    }, [progress]);
+
+    if (showFallback || errors.length > 0) {
+        return (
+            <Html center>
+                <div style={{ color: 'white', textAlign: 'center' }}>
+                    <p>Loading 3D models...</p>
+                </div>
+            </Html>
+        );
+    }
+
+    return <Loader />;
+};
+
 const AnimatedBackgroundWebsiteComponent: React.FC = () => {
     const lightRef = useRef<RectAreaLight>(null);
+    const [assetsLoaded, setAssetsLoaded] = useState(false);
+
+    useEffect(() => {
+        // Force preload assets
+        Promise.all([
+            useGLTF.preload("/models/macbook-pro.glb"),
+            useTexture.preload("/models/screen.png")
+        ]).then(() => {
+            setAssetsLoaded(true);
+        }).catch((error) => {
+            console.error("Error preloading assets:", error);
+            setAssetsLoaded(true); // Continue anyway
+        });
+    }, []);
 
     return (
         <div className="w-full h-96 bg-transparent">
@@ -28,7 +69,7 @@ const AnimatedBackgroundWebsiteComponent: React.FC = () => {
                 }}
             >
 
-                <Suspense fallback={<Loader />}>
+                <Suspense fallback={<CustomLoader />}>
                     <primitive
                         ref={lightRef}
                         object={new RectAreaLight(0xffffff, 10, 15, 15)}
@@ -200,6 +241,8 @@ const FloatingModel: React.FC = () => {
     const screenLight = new PointLight(0xffffff, 0.8);
     screenLight.position.set(0, 0.5, 2);
     const modelRef = useRef<Group>(null);
+    
+    // Hooks must be called unconditionally
     const { scene } = useGLTF("/models/macbook-pro.glb");
     const screenTexture = useTexture("/models/screen.png");
     screenTexture.flipY = false;
@@ -253,5 +296,9 @@ const FloatingModel: React.FC = () => {
         />
     );
 };
+
+// Preload assets
+useGLTF.preload("/models/macbook-pro.glb");
+useTexture.preload("/models/screen.png");
 
 export default AnimatedBackgroundWebsiteComponent;

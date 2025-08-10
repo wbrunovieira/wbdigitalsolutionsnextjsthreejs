@@ -3,9 +3,12 @@
 import React, { useRef } from 'react';
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaRocket, FaArrowRight, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/contexts/TranslationContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CTAWebsite = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,6 +16,8 @@ const CTAWebsite = () => {
   const currentMessages = useTranslations();
 
   useGSAP(() => {
+    if (!containerRef.current) return;
+    
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -20,25 +25,34 @@ const CTAWebsite = () => {
       }
     });
 
-    tl.from(".cta-content", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power3.out"
-    })
-    .from(".cta-button", {
-      scale: 0.8,
-      opacity: 0,
-      duration: 0.6,
-      ease: "back.out(1.7)"
-    }, "-=0.4")
-    .from(".floating-icon", {
-      x: -30,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out"
-    }, "-=0.3");
-  }, []);
+    // Only animate if elements exist
+    if (containerRef.current.querySelector(".cta-content")) {
+      tl.from(".cta-content", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out"
+      });
+    }
+    
+    if (containerRef.current.querySelector(".cta-button")) {
+      tl.from(".cta-button", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      }, "-=0.4");
+    }
+    
+    if (containerRef.current.querySelector(".floating-icon")) {
+      tl.from(".floating-icon", {
+        x: -30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+      }, "-=0.3");
+    }
+  }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="relative bg-gradient-to-br from-[#350545] via-[#792990] to-[#350545] py-20 px-12 mt-20 rounded mb-20">

@@ -29,10 +29,10 @@ const ChatBotButton: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useGSAP(() => {
-    if (isOpen) {
+    if (isOpen && modalRef.current) {
       openAnimation();
       setNewMessageBadge(false);
-    } else {
+    } else if (!isOpen && modalRef.current) {
       gsap.to(modalRef.current, {
         opacity: 0,
         scaleY: 0.5,
@@ -42,7 +42,7 @@ const ChatBotButton: React.FC = () => {
         ease: 'elastic.in(1, 0.5)',
       });
     }
-  }, { scope: containerRef });
+  }, { dependencies: [isOpen], scope: containerRef });
 
   useEffect(() => {
     if (isTyping) {

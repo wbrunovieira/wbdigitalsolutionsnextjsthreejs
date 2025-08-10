@@ -24,7 +24,7 @@ const nextConfig = {
                 https://e.clarity.ms
                 https://www.facebook.com
                 data:;
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
                 https://connect.facebook.net 
                 https://www.googletagmanager.com 
                 https://www.google-analytics.com
@@ -34,6 +34,7 @@ const nextConfig = {
                 https://www.clarity.ms
                 https://scripts.clarity.ms
                 https://www.gstatic.com;
+              worker-src 'self' blob:;
               style-src 'self' 'unsafe-inline';
               img-src 'self' 
                 https://www.facebook.com 
