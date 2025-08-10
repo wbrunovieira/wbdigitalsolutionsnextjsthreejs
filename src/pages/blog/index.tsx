@@ -9,7 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 const blogList = [
   { id: "do-i-need-a-website" },
   { id: "how-emotional-design-can" },
-  { id: "digital-can-transform-company" }
+  { id: "digital-can-transform-company" },
+  { id: "chatgpt-for-smes" }
 ];
 
 const BlogIndexPage: React.FC = () => {
