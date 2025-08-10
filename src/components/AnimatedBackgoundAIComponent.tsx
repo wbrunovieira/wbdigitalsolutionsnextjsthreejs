@@ -17,6 +17,7 @@ import {
 import { useGLTF, Html, useProgress } from '@react-three/drei';
 import { animate } from 'framer-motion';
 import Loader from './Loader';
+import MouseMoveTutorial from './MouseMoveTutorial';
 
 
 
@@ -31,6 +32,9 @@ const AnimatedBackgroundAIComponent: React.FC = () => {
 
   return (
     <div className="absolute w-full h-96 bg-transparent">
+      {/* Mouse move tutorial */}
+      <MouseMoveTutorial />
+      
       <Canvas
         style={{ background: 'transparent' }}
         shadows
