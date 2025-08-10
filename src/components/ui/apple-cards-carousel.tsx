@@ -88,7 +88,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     if (!isDragging || !carouselRef.current) return;
     e.preventDefault();
     const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Ajuste o multiplicador conforme necessário
+    const walk = (x - startX) * 3.5; // Aumentado para maior sensibilidade
     carouselRef.current.scrollLeft = scrollPosition - walk;
   };
 
@@ -123,14 +123,18 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-4 scroll-smooth [scrollbar-width:none]"
+          className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-4 scroll-smooth [scrollbar-width:none] select-none"
           ref={carouselRef}
           onScroll={checkScrollability}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          style={{ cursor: isDragging ? "grabbing" : "grab" }}
+          style={{ 
+            cursor: isDragging ? "grabbing" : "grab",
+            userSelect: "none",
+            WebkitUserSelect: "none"
+          }}
         >
           <div
             className={cn(
@@ -210,20 +214,23 @@ export const Card = ({
   }, [setOpen, onCardClose, index]);
 
   useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    }
-
     if (open) {
       document.body.style.overflow = "hidden";
+      
+      function onKeyDown(event: KeyboardEvent) {
+        if (event.key === "Escape") {
+          handleClose();
+        }
+      }
+      
+      window.addEventListener("keydown", onKeyDown);
+      return () => {
+        window.removeEventListener("keydown", onKeyDown);
+        document.body.style.overflow = "auto";
+      };
     } else {
       document.body.style.overflow = "auto";
     }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
   }, [open, handleClose]);
 
   useOutsideClick(containerRef, () => handleClose());
