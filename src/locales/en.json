@@ -646,7 +646,8 @@
   "sendButton": "Send",
   "you": "You:",
   "bot": "Bot:",
-  "responseTime": "Response time"
+  "responseTime": "Response time",
+  "dragTutorialText": "Click and drag to interact"
 
 
 

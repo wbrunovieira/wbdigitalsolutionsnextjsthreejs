@@ -651,7 +651,8 @@
   "sendButton": "Enviar",
   "you": "Você:",
   "bot": "Bot:",
-  "responseTime": "Tempo de resposta"
+  "responseTime": "Tempo de resposta",
+  "dragTutorialText": "Clique e arraste para interagir"
 
 
 

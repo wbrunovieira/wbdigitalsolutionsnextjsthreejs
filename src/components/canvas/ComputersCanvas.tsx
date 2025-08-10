@@ -4,6 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import { PreloadedCanvas } from "../PreloadedCanvas";
+import DragTutorial from "../DragTutorial";
 
 interface isMobileProps {
     isMobile: boolean;
@@ -81,6 +82,7 @@ const ComputersCanvas = () => {
 
         mediaQuery.addEventListener("change", handleMediaQueryChange);
         setIsClient(true);
+        
         return () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange);
         };
@@ -92,7 +94,6 @@ const ComputersCanvas = () => {
 
     return (
         <div className="relative w-full h-full">
-
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows
@@ -118,6 +119,11 @@ const ComputersCanvas = () => {
 
             {isMobile && (
                 <div className="absolute inset-0 w-full h-full z-10 bg-transparent"></div>
+            )}
+
+            {/* Tutorial overlay - always shows on desktop on page load */}
+            {!isMobile && (
+                <DragTutorial />
             )}
         </div>
     );
