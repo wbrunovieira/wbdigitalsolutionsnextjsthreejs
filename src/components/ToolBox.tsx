@@ -5,6 +5,7 @@ import { Tooltip } from 'react-tooltip';
 import { technologies } from '../constants';
 import { useRef } from 'react';
 import { useTranslations } from '@/contexts/TranslationContext';
+import DragTutorial from './DragTutorial';
 
 const ToolBox = () => {
 
@@ -12,13 +13,14 @@ const ToolBox = () => {
     const currentMessages = useTranslations();
 
     return (
-        <div className='bg-modern-gradient pt-8 md:px-10  flex flex-col justify-center mt-32 pb-16'>
+        <div className='bg-modern-gradient pt-8 md:px-10  flex flex-col justify-center mt-32 pb-16 relative'>
             <h2 className={'text-white text-3xl text-center p-2'}>
                 {currentMessages.tools}{' '}
             </h2>
 
             <div className='w-full border-t border-gray-200 my-8 opacity-50  items-center'></div>
-            <div className='flex flex-row flex-wrap justify-center gap-10'>
+            <div className='flex flex-row flex-wrap justify-center gap-10 relative'>
+                <DragTutorial />
                 {technologies.map((technology, index) => (
                     <div
                         className="w-20 h-20 md:w-28 md:h-28 flex justify-center items-center"
