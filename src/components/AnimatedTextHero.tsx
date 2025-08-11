@@ -95,7 +95,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
                     </span>
                     <div
                         ref={overlayRef}
-                        className="absolute bg-white z-20 w-full h-[0.1em] top-[3em] md:top-[1.95em] left-0"
+                        className="absolute bg-white z-20 w-full h-[0.1em] top-[3.5em] md:top-[2.3em] left-0"
                     ></div>
                 </span>
             </h2>

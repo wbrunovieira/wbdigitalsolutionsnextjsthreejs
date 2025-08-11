@@ -59,8 +59,8 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
             <primitive
                 ref={computerRef}
                 object={computer.scene}
-                scale={isMobile ? 0.6 : 0.8}
-                position={isMobile ? [-2.5, -2, -2.2] : [5, -1.25, -1.5]}
+                scale={isMobile ? 0.6 : 1.8}
+                position={isMobile ? [-2.5, -2, -2.2] : [0, -1.25, -1.5]}
                 rotation={[-0.01, -0.2, -0.1]}
             />
         </mesh>
@@ -97,7 +97,7 @@ const ComputersCanvas = () => {
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows
-                camera={{ position: [30, 1, 10], fov: 20 }}
+                camera={{ position: [20, 3, 25], fov: 45 }}
                 gl={{ preserveDrawingBuffer: true }}
                 className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
             >
