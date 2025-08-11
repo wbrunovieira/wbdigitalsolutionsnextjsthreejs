@@ -29,8 +29,11 @@ const InfiniteScrollHash: React.FC = () => {
         currentMessages.PaymentGatewayIntegrationKey,
 
         currentMessages.VirtualRealityKey,
-        currentMessages.AugmentedRealityKey,
-    ];
+        // currentMessages.AugmentedRealityKey,
+        currentMessages.EADKey,
+    ].filter(tag => tag !== undefined);
+    
+    console.log("Tags filtradas:", tags.length, tags);
 
     return (
         <section className="w-full max-w-7xl mx-auto py-10 bg-[#350545] overflow-hidden">
@@ -38,6 +41,13 @@ const InfiniteScrollHash: React.FC = () => {
                 <div className="inner">
                     {tags.map((tag, index) => (
                         <div className="tag" key={index}>
+                            <span>#</span>
+                            {tag}
+                        </div>
+                    ))}
+                    {/* Duplicar as tags para criar o efeito infinito */}
+                    {tags.map((tag, index) => (
+                        <div className="tag" key={`duplicate-${index}`}>
                             <span>#</span>
                             {tag}
                         </div>
