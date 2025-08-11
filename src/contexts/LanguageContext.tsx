@@ -45,21 +45,26 @@ type LanguageProviderProps = {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<string>("en");
-
-
-
-
-
-  useEffect(() => {
+  // Initialize with the correct language from the start
+  const getInitialLanguage = (): string => {
+    if (typeof window === "undefined") return "en";
+    
     const savedLanguage = localStorage.getItem("language");
     if (savedLanguage) {
-      setLanguage(savedLanguage);
-    } else {
-      const browserLanguage = detectBrowserLanguage();
-      setLanguage(browserLanguage);
+      return savedLanguage;
     }
-  }, []);
+    
+    return detectBrowserLanguage();
+  };
+
+  const [language, setLanguage] = useState<string>(getInitialLanguage());
+
+
+
+
+
+  // No longer need to set language in useEffect since it's initialized correctly
+  // This prevents the visual glitch where language changes after mount
 
 
   useEffect(() => {

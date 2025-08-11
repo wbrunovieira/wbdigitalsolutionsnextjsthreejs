@@ -115,24 +115,38 @@ const ChatBotButton: React.FC = () => {
     }, 7000);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: messageToSend, user_id: 'user123' })
-      });
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      
+      // Only try to fetch if API URL is configured
+      if (apiUrl) {
+        const response = await fetch(`${apiUrl}/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: messageToSend, user_id: 'user123' })
+        });
 
-      clearInterval(intervalId);
-      const end = performance.now();
-      setResponseTime(Math.round(end - start));
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      const data = await response.json();
-      const reply = data.revised_response || data.raw_response || t.fallbackReply;
+        clearInterval(intervalId);
+        const end = performance.now();
+        setResponseTime(Math.round(end - start));
 
-      setMessages(prev => [...prev, { text: reply, isUser: false }]);
+        const data = await response.json();
+        const reply = data.revised_response || data.raw_response || t.fallbackReply;
+
+        setMessages(prev => [...prev, { text: reply, isUser: false }]);
+      } else {
+        // No API configured, use fallback
+        throw new Error('API URL not configured');
+      }
     } catch (error) {
       clearInterval(intervalId);
-      console.error('Erro ao enviar mensagem para o servidor:', error);
-      setMessages(prev => [...prev, { text: t.fallbackReply, isUser: false }]);
+      console.warn('Chatbot API not available, using fallback mode');
+      // Provide a helpful fallback message
+      const fallbackMessage = t.fallbackReply || "I'm currently offline. Please contact us directly at bruno@wbdigitalsolutions.com";
+      setMessages(prev => [...prev, { text: fallbackMessage, isUser: false }]);
     } finally {
       setIsTyping(false);
     }
