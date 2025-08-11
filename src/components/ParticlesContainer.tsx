@@ -4,16 +4,30 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
-const INITIAL_PARTICLES = 20;
-const MAX_PARTICLES = 30;
+const INITIAL_PARTICLES_DESKTOP = 20;
+const MAX_PARTICLES_DESKTOP = 30;
+const INITIAL_PARTICLES_MOBILE = 10;
+const MAX_PARTICLES_MOBILE = 15;
 
 const ParticlesContainer: React.FC = () => {
   const [init, setInit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
     }).then(() => setInit(true));
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const particlesLoaded = async (container?: Container) => {
@@ -25,21 +39,21 @@ const ParticlesContainer: React.FC = () => {
       background: {
         color: { value: "#1a202c" },
       },
-      fpsLimit: 120,
+      fpsLimit: isMobile ? 60 : 120,
       interactivity: {
         events: {
           onClick: {
-            enable: true,
+            enable: !isMobile,
             mode: "push",
           },
           onHover: {
-            enable: true,
+            enable: !isMobile,
             mode: "repulse",
           },
         },
         modes: {
           push: {
-            quantity: 3,
+            quantity: isMobile ? 2 : 3,
           },
           repulse: {
             distance: 200,
@@ -51,9 +65,9 @@ const ParticlesContainer: React.FC = () => {
         color: { value: "#ffffff" },
         links: {
           color: "#ffffff",
-          distance: 150,
+          distance: isMobile ? 100 : 150,
           enable: true,
-          opacity: 0.5,
+          opacity: isMobile ? 0.3 : 0.5,
           width: 1,
         },
         move: {
@@ -61,26 +75,26 @@ const ParticlesContainer: React.FC = () => {
           enable: true,
           outModes: { default: "bounce" },
           random: false,
-          speed: 2,
+          speed: isMobile ? 1 : 2,
           straight: false,
         },
         number: {
           density: {
             enable: false,
           },
-          value: INITIAL_PARTICLES,
+          value: isMobile ? INITIAL_PARTICLES_MOBILE : INITIAL_PARTICLES_DESKTOP,
           limit: {
             mode: "delete",
-            value: MAX_PARTICLES,
+            value: isMobile ? MAX_PARTICLES_MOBILE : MAX_PARTICLES_DESKTOP,
           },
         },
-        opacity: { value: 0.5 },
+        opacity: { value: isMobile ? 0.3 : 0.5 },
         shape: { type: "circle" },
-        size: { value: { min: 1, max: 5 } },
+        size: { value: { min: 1, max: isMobile ? 3 : 5 } },
       },
       detectRetina: true,
     }),
-    []
+    [isMobile]
   );
 
   if (init) {
