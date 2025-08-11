@@ -1,5 +1,6 @@
 // Layout.tsx
 import { ReactNode } from "react";
+import { useRouter } from "next/router";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import ChatBotButton from "./ChatBotButton";
@@ -9,6 +10,14 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const router = useRouter();
+    const is3DShowcase = router.pathname === '/3d-showcase';
+
+    // For 3D showcase, render only the children without layout
+    if (is3DShowcase) {
+        return <>{children}</>;
+    }
+
     return (
         <div className="min-h-screen flex flex-col items-center">
 

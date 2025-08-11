@@ -115,26 +115,45 @@ const FloatingParticles: React.FC = () => {
 };
 
 // Interactive Ball Component with Physics
-const InteractiveBall: React.FC = () => {
+interface BallProps {
+  position: [number, number, number];
+  velocity: [number, number, number];
+  color: string;
+  emissive: string;
+  delay?: number;
+}
+
+const InteractiveBall: React.FC<BallProps> = ({ position, velocity, color, emissive, delay = 0 }) => {
   const ballRef = useRef<THREE.Mesh>(null);
+  const [isActive, setIsActive] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsActive(true);
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
   
   useFrame((state) => {
-    if (ballRef.current) {
+    if (ballRef.current && isActive) {
       // Add subtle rotation for visual interest
       ballRef.current.rotation.x += 0.01;
       ballRef.current.rotation.y += 0.01;
     }
   });
 
+  if (!isActive) return null;
+
   return (
     <RigidBody 
       colliders="ball" 
-      restitution={0.4} 
-      friction={0.6}
-      position={[2, 3, 0]}
-      mass={1}
-      linearDamping={0.5}
-      angularDamping={0.5}
+      restitution={0.35} 
+      friction={0.15}
+      position={position}
+      mass={0.8}
+      linearDamping={0.3}
+      angularDamping={0.2}
+      linearVelocity={velocity}
     >
       <Sphere 
         ref={ballRef}
@@ -143,13 +162,13 @@ const InteractiveBall: React.FC = () => {
         receiveShadow
       >
         <MeshDistortMaterial
-          color="#792990"
+          color={color}
           attach="material"
           distort={0.3}
           speed={2}
           roughness={0.2}
           metalness={0.8}
-          emissive="#350545"
+          emissive={emissive}
           emissiveIntensity={0.2}
         />
       </Sphere>
@@ -248,8 +267,28 @@ const OfficeScene: React.FC = () => {
       
       {/* Physics World */}
       <Physics gravity={[0, -9.81, 0]}>
-        {/* Interactive Ball */}
-        <InteractiveBall />
+        {/* Interactive Balls - Three different colored balls */}
+        <InteractiveBall 
+          position={[-6, 3, 2]}
+          velocity={[-3, 0, -4]}
+          color="#792990"
+          emissive="#350545"
+          delay={0}
+        />
+        <InteractiveBall 
+          position={[6, 4, 3]}
+          velocity={[2, 0, -5]}
+          color="#ffb947"
+          emissive="#ff8800"
+          delay={500}
+        />
+        <InteractiveBall 
+          position={[0, 3.5, 5]}
+          velocity={[1, 0, -6]}
+          color="#350545"
+          emissive="#792990"
+          delay={1000}
+        />
         
         {/* Floor with physics */}
         <RigidBody type="fixed">
@@ -341,21 +380,71 @@ const OfficeScene: React.FC = () => {
           </Box>
         </RigidBody>
         
-        {/* Ceiling */}
-        <RigidBody type="fixed">
-          <Box args={[20, 0.1, 20]} position={[0, 10, 0]} receiveShadow>
-            <meshStandardMaterial color="#1a1a1a" />
+        {/* Office Furniture - Desks WITH PHYSICS */}
+        {/* Main Desk - WEBSITES */}
+        <RigidBody type="fixed" position={[0, 0, -3]}>
+          {/* Desk Top */}
+          <Box args={[3, 0.1, 1.5]} position={[0, 0.8, 0]} castShadow receiveShadow>
+            <meshStandardMaterial color="#4a3f36" />
+          </Box>
+          {/* Desk Legs */}
+          <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, -0.6]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[1.4, 0.4, -0.6]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, 0.6]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[1.4, 0.4, 0.6]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+        </RigidBody>
+        
+        {/* Side Desk 1 - AUTOMATION */}
+        <RigidBody type="fixed" position={[-5, 0, 2]}>
+          <Box args={[2, 0.1, 1.2]} position={[0, 0.8, 0]} castShadow receiveShadow>
+            <meshStandardMaterial color="#4a3f36" />
+          </Box>
+          {/* Desk Legs */}
+          <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, -0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, -0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, 0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, 0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+        </RigidBody>
+        
+        {/* Side Desk 2 - A.I. */}
+        <RigidBody type="fixed" position={[5, 0, 2]}>
+          <Box args={[2, 0.1, 1.2]} position={[0, 0.8, 0]} castShadow receiveShadow>
+            <meshStandardMaterial color="#4a3f36" />
+          </Box>
+          {/* Desk Legs */}
+          <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, -0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, -0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, 0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
+          </Box>
+          <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, 0.5]} castShadow>
+            <meshStandardMaterial color="#2a2520" />
           </Box>
         </RigidBody>
       </Physics>
-
-      {/* Office Furniture - Desks */}
-      {/* Main Desk - WEBSITES */}
+      
+      {/* Non-physics elements for WEBSITES desk */}
       <group position={[0, 0, -3]}>
-        {/* Desk Top */}
-        <Box args={[3, 0.1, 1.5]} position={[0, 0.8, 0]} castShadow receiveShadow>
-          <meshStandardMaterial color="#4a3f36" />
-        </Box>
         {/* WB Logo on Desk - Using the actual logo image */}
         <Image 
           url="/svg/logo-white.svg" 
@@ -365,20 +454,6 @@ const OfficeScene: React.FC = () => {
           transparent
           opacity={0.9}
         />
-        {/* Desk Legs */}
-        <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, -0.6]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[1.4, 0.4, -0.6]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, 0.6]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[1.4, 0.4, 0.6]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        
         {/* Button for WEBSITES */}
         <Button3D 
           position={[0.5, 0.85, 0.3]}
@@ -414,11 +489,8 @@ const OfficeScene: React.FC = () => {
         </Center>
       </group>
 
-      {/* Side Desk 1 - AUTOMATION */}
+      {/* Non-physics elements for AUTOMATION desk */}
       <group position={[-5, 0, 2]}>
-        <Box args={[2, 0.1, 1.2]} position={[0, 0.8, 0]} castShadow receiveShadow>
-          <meshStandardMaterial color="#4a3f36" />
-        </Box>
         {/* WB Logo on Side Desk 1 */}
         <Image 
           url="/svg/logo-white.svg" 
@@ -428,18 +500,6 @@ const OfficeScene: React.FC = () => {
           transparent
           opacity={0.9}
         />
-        <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, -0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, -0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, 0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, 0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
         
         {/* Button for AUTOMATION */}
         <Button3D 
@@ -476,11 +536,8 @@ const OfficeScene: React.FC = () => {
         </Center>
       </group>
 
-      {/* Side Desk 2 - A.I. */}
+      {/* Non-physics elements for A.I. desk */}
       <group position={[5, 0, 2]}>
-        <Box args={[2, 0.1, 1.2]} position={[0, 0.8, 0]} castShadow receiveShadow>
-          <meshStandardMaterial color="#4a3f36" />
-        </Box>
         {/* WB Logo on Side Desk 2 */}
         <Image 
           url="/svg/logo-white.svg" 
@@ -490,18 +547,6 @@ const OfficeScene: React.FC = () => {
           transparent
           opacity={0.9}
         />
-        <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, -0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, -0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, 0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
-        <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, 0.5]} castShadow>
-          <meshStandardMaterial color="#2a2520" />
-        </Box>
         
         {/* Button for A.I. */}
         <Button3D 
