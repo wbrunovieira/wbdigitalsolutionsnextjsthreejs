@@ -73,6 +73,7 @@
     "VirtualRealityKey": "RealidadeVirtual",
     "AugmentedRealityKey": "RealidadeAumentada",
     "EADKey": "PlataformasEAD",
+    "tapToSpeed": "Toque para acelerar a rotação",
     "cards": [
         {
             "name": "Websites",

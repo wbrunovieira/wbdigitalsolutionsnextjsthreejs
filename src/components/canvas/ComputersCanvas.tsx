@@ -1,10 +1,10 @@
 import { Suspense, useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import { PreloadedCanvas } from "../PreloadedCanvas";
 import DragTutorial from "../DragTutorial";
+import TapTutorial from "../TapTutorial";
 
 interface isMobileProps {
     isMobile: boolean;
@@ -37,11 +37,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     }, [computer]); 
 
 
-    useFrame(() => {
-        if (isMobile && computerRef.current) {
-            computerRef.current.rotation.y += 0.05; 
-        }
-    });
+    // Removido useFrame - agora usa autoRotate do OrbitControls
 
     return (
         <mesh>
@@ -59,7 +55,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
             <primitive
                 ref={computerRef}
                 object={computer.scene}
-                scale={isMobile ? 0.6 : 1.8}
+                scale={isMobile ? 1.2 : 1.8}
                 position={isMobile ? [-2.5, -2, -2.2] : [0, -1.25, -1.5]}
                 rotation={[-0.01, -0.2, -0.1]}
             />
@@ -70,6 +66,8 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
 const ComputersCanvas = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [isClient, setIsClient] = useState(false);
+    const [rotationSpeed, setRotationSpeed] = useState(0.5);
+    const orbitControlsRef = useRef<any>(null);
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 500px)");
@@ -88,12 +86,30 @@ const ComputersCanvas = () => {
         };
     }, []);
 
+    const handleTap = (e: React.TouchEvent) => {
+        if (isMobile) {
+            // Só acelera se foi um toque rápido (não um scroll)
+            const touch = e.changedTouches[0];
+            const element = document.elementFromPoint(touch.clientX, touch.clientY);
+            
+            // Verifica se o toque foi no canvas (não em outros elementos)
+            if (element?.closest('.canvas-container')) {
+                // Acelera a rotação temporariamente
+                setRotationSpeed(6);
+                
+                setTimeout(() => {
+                    setRotationSpeed(0.5);
+                }, 3500); // Volta ao normal após 3.5 segundos
+            }
+        }
+    };
+
     if (!isClient) {
         return null;
     }
 
     return (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full canvas-container" onTouchEnd={handleTap}>
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows
@@ -103,10 +119,13 @@ const ComputersCanvas = () => {
             >
                 <Suspense fallback={<CanvasLoader />}>
                     <OrbitControls
+                        ref={orbitControlsRef}
                         target={[0, 0, 0]}
                         enableZoom={false}
                         enablePan={false}
-                        enableRotate={!isMobile} 
+                        enableRotate={!isMobile}
+                        autoRotate={isMobile}
+                        autoRotateSpeed={rotationSpeed}
                         maxPolarAngle={Math.PI / 2}
                         minPolarAngle={Math.PI / 2}
                     />
@@ -121,10 +140,9 @@ const ComputersCanvas = () => {
                 <div className="absolute inset-0 w-full h-full z-10 bg-transparent"></div>
             )}
 
-            {/* Tutorial overlay - always shows on desktop on page load */}
-            {!isMobile && (
-                <DragTutorial />
-            )}
+            {/* Tutorial overlay - shows on desktop for drag, mobile for tap */}
+            {!isMobile && <DragTutorial />}
+            {isMobile && <TapTutorial />}
         </div>
     );
 };
