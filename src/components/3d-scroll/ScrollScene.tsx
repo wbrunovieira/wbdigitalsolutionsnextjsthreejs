@@ -176,6 +176,120 @@ const ScrollLogo: React.FC<{ scrollTrigger: number }> = ({ scrollTrigger }) => {
   );
 };
 
+// Gradient Background Plane with bright center
+const GradientBackground: React.FC = () => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const scroll = useScroll();
+  
+  useFrame((state) => {
+    if (meshRef.current && scroll) {
+      // Move background with scroll for parallax effect
+      meshRef.current.position.z = -50 - scroll.offset * 10;
+      
+      // Subtle pulsing effect for the light
+      const pulse = Math.sin(state.clock.elapsedTime * 0.5) * 0.1 + 0.9;
+      if (meshRef.current.material && 'opacity' in meshRef.current.material) {
+        (meshRef.current.material as any).opacity = pulse;
+      }
+    }
+  });
+  
+  // Create gradient texture with tiny bright center
+  const gradientTexture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 1024;
+    const context = canvas.getContext('2d')!;
+    
+    // Start with black background
+    context.fillStyle = '#000000';
+    context.fillRect(0, 0, 1024, 1024);
+    
+    // Create tiny, intense center light point
+    const mainGradient = context.createRadialGradient(512, 512, 0, 512, 512, 30);
+    mainGradient.addColorStop(0, '#ffffff');      // Bright white center (tiny)
+    mainGradient.addColorStop(0.1, '#ffb947');    // Yellow (very quick transition)
+    mainGradient.addColorStop(0.3, '#792990');    // Purple
+    mainGradient.addColorStop(0.6, '#350545');    // Dark purple
+    mainGradient.addColorStop(1, '#000000');      // Black
+    
+    context.fillStyle = mainGradient;
+    context.fillRect(0, 0, 1024, 1024);
+    
+    // Add a tiny, intense glow
+    context.globalCompositeOperation = 'screen';
+    const glowGradient = context.createRadialGradient(512, 512, 0, 512, 512, 15);
+    glowGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');    // Intense white core
+    glowGradient.addColorStop(0.5, 'rgba(255, 185, 71, 0.3)'); // Yellow glow
+    glowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');          // Transparent
+    
+    context.fillStyle = glowGradient;
+    context.fillRect(0, 0, 1024, 1024);
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }, []);
+  
+  return (
+    <mesh ref={meshRef} position={[0, 0, -50]}>
+      <planeGeometry args={[200, 200]} />
+      <meshBasicMaterial 
+        map={gradientTexture}
+        transparent
+        opacity={0.9}
+        depthWrite={false}
+      />
+    </mesh>
+  );
+};
+
+// Moving gradient spheres for additional depth with glow effect
+const GradientSphere: React.FC<{ 
+  position: [number, number, number];
+  scale: number;
+  speed: number;
+}> = ({ position, scale, speed }) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const scroll = useScroll();
+  
+  useFrame((state) => {
+    if (meshRef.current && scroll) {
+      // Floating motion
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed) * 2;
+      meshRef.current.position.x = position[0] + Math.cos(state.clock.elapsedTime * speed * 0.5) * 3;
+      
+      // Move with scroll
+      meshRef.current.position.z = position[2] - scroll.offset * 15;
+      
+      // Rotate
+      meshRef.current.rotation.x += 0.001;
+      meshRef.current.rotation.y += 0.002;
+      
+      // Pulsing glow effect
+      const pulse = Math.sin(state.clock.elapsedTime * speed * 2) * 0.2 + 0.8;
+      if (meshRef.current.material && 'emissiveIntensity' in meshRef.current.material) {
+        (meshRef.current.material as any).emissiveIntensity = pulse * 0.8;
+      }
+    }
+  });
+  
+  return (
+    <mesh ref={meshRef} position={position} scale={scale}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial
+        color="#ffb947"
+        emissive="#ffb947"
+        emissiveIntensity={0.5}
+        metalness={0.9}
+        roughness={0.1}
+        transparent
+        opacity={0.2}
+      />
+    </mesh>
+  );
+};
+
 // Main scene content
 const SceneContent: React.FC = () => {
   const { camera } = useThree();
@@ -214,13 +328,30 @@ const SceneContent: React.FC = () => {
   
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.5} />
-      <pointLight position={[0, 0, 5]} intensity={1} color="#ffffff" />
-      <pointLight position={[0, 0, -10]} intensity={0.5} color="#792990" />
+      {/* Gradient Background */}
+      <GradientBackground />
       
-      {/* Fog for depth */}
-      <fog attach="fog" color="#000000" near={5} far={50} />
+      {/* Background gradient spheres for depth */}
+      <GradientSphere position={[-15, 0, -30]} scale={8} speed={0.3} />
+      <GradientSphere position={[20, 5, -60]} scale={12} speed={0.2} />
+      <GradientSphere position={[-10, -10, -90]} scale={15} speed={0.4} />
+      <GradientSphere position={[25, 10, -120]} scale={10} speed={0.25} />
+      
+      {/* Lighting - enhanced for bright center effect */}
+      <ambientLight intensity={0.3} />
+      
+      {/* Central bright light */}
+      <pointLight position={[0, 0, -25]} intensity={2} color="#ffffff" />
+      <pointLight position={[0, 0, -25]} intensity={1.5} color="#ffb947" />
+      
+      {/* Supporting lights */}
+      <pointLight position={[0, 0, 5]} intensity={0.8} color="#ffffff" />
+      <pointLight position={[0, 0, -10]} intensity={0.6} color="#ff8833" />
+      <pointLight position={[-10, 10, -20]} intensity={0.4} color="#ffb947" />
+      <pointLight position={[10, -10, -30]} intensity={0.3} color="#792990" />
+      
+      {/* Fog for depth - very dark to contrast with bright center */}
+      <fog attach="fog" color="#000000" near={10} far={100} />
       
       {/* Elements */}
       {elements}

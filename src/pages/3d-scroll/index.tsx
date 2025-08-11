@@ -9,7 +9,7 @@ const ScrollScene = dynamic(() => import('@/components/3d-scroll/ScrollScene'), 
 
 const ThreeDScroll: React.FC = () => {
   return (
-    <div className="relative w-full h-screen bg-black overflow-hidden">
+    <div className="relative w-full h-screen bg-gradient-to-b from-purple-950 via-black to-purple-950 overflow-hidden">
       {/* Exit Button */}
       <div className="absolute top-4 left-4 z-50">
         <Link href="/websites">
