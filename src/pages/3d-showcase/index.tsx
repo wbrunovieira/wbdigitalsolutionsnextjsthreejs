@@ -25,10 +25,12 @@ const ThreeDShowcase: React.FC = () => {
         <h3 className="font-bold mb-2">Controls:</h3>
         <ul className="text-sm space-y-1">
           <li>• Mouse: Look around</li>
-          <li>• WASD: Move</li>
-          <li>• Shift: Run</li>
-          <li>• Space: Jump</li>
+          <li>• Scroll: Zoom in/out</li>
+          <li>• Click buttons on desks</li>
         </ul>
+        <div className="mt-3 pt-3 border-t border-white/20">
+          <p className="text-xs text-yellow-400">Watch the ball bounce!</p>
+        </div>
       </div>
 
       {/* 3D Scene */}

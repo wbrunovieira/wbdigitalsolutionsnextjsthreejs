@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Box, Plane, Image, Text3D, Center, Html } from '@react-three/drei';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Box, Plane, Image, Text3D, Center, Html, Sphere, MeshDistortMaterial, Float, Points, PointMaterial } from '@react-three/drei';
+import { Physics, RigidBody, CuboidCollider } from '@react-three/rapier';
 import * as THREE from 'three';
 
 // Code snippets for each service
@@ -56,6 +57,106 @@ async function generateContent(prompt) {
   return completion.choices[0].message;
 }`
 };
+
+// Floating Particles Component
+const FloatingParticles: React.FC = () => {
+  const ref = useRef<THREE.Group>(null);
+  
+  // Generate particle spheres
+  const particles = useMemo(() => {
+    const temp = [];
+    const count = 200;
+    
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * Math.PI * 2;
+      const radius = 15 + Math.random() * 15;
+      const height = Math.random() * 15;
+      
+      const x = Math.cos(angle) * radius + (Math.random() - 0.5) * 3;
+      const y = height;
+      const z = Math.sin(angle) * radius + (Math.random() - 0.5) * 3;
+      
+      const size = Math.random() * 0.15 + 0.05;
+      
+      temp.push({ position: [x, y, z], size });
+    }
+    
+    return temp;
+  }, []);
+  
+  useFrame((state) => {
+    if (ref.current) {
+      ref.current.rotation.y += 0.0003;
+      ref.current.children.forEach((child, i) => {
+        child.position.y += Math.sin(state.clock.elapsedTime + i * 0.1) * 0.002;
+      });
+    }
+  });
+  
+  return (
+    <group ref={ref}>
+      {particles.map((particle, i) => (
+        <Sphere
+          key={i}
+          args={[particle.size, 8, 8]}
+          position={particle.position as [number, number, number]}
+        >
+          <meshStandardMaterial
+            color="#792990"
+            emissive="#792990"
+            emissiveIntensity={1.5}
+            transparent
+            opacity={0.7}
+          />
+        </Sphere>
+      ))}
+    </group>
+  );
+};
+
+// Interactive Ball Component with Physics
+const InteractiveBall: React.FC = () => {
+  const ballRef = useRef<THREE.Mesh>(null);
+  
+  useFrame((state) => {
+    if (ballRef.current) {
+      // Add subtle rotation for visual interest
+      ballRef.current.rotation.x += 0.01;
+      ballRef.current.rotation.y += 0.01;
+    }
+  });
+
+  return (
+    <RigidBody 
+      colliders="ball" 
+      restitution={0.4} 
+      friction={0.6}
+      position={[2, 3, 0]}
+      mass={1}
+      linearDamping={0.5}
+      angularDamping={0.5}
+    >
+      <Sphere 
+        ref={ballRef}
+        args={[0.3, 32, 32]} 
+        castShadow 
+        receiveShadow
+      >
+        <MeshDistortMaterial
+          color="#792990"
+          attach="material"
+          distort={0.3}
+          speed={2}
+          roughness={0.2}
+          metalness={0.8}
+          emissive="#350545"
+          emissiveIntensity={0.2}
+        />
+      </Sphere>
+    </RigidBody>
+  );
+};
+
 
 // 3D Button Component
 interface ButtonProps {
@@ -123,6 +224,7 @@ const OfficeScene: React.FC = () => {
     setDisplayedCode('');
     setCurrentCharIndex(0);
   }, [activeButton]);
+  
   return (
     <Canvas
       shadows
@@ -141,42 +243,111 @@ const OfficeScene: React.FC = () => {
       <pointLight position={[-5, 5, 5]} intensity={1} color="#ffb947" />
       <pointLight position={[5, 5, 5]} intensity={1} color="#792990" />
       
-      {/* Floor */}
-      <Plane args={[20, 20]} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
-        <meshStandardMaterial color="#2a2a2a" />
-      </Plane>
-
-      {/* Walls */}
-      {/* Back Wall */}
-      <Box args={[20, 10, 0.5]} position={[0, 5, -10]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3d2f50" />
-      </Box>
+      {/* Floating Particles Outside the Room */}
+      <FloatingParticles />
       
-      {/* Front Wall with opening */}
-      <Box args={[7, 10, 0.5]} position={[-6.5, 5, 10]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3d2f50" />
-      </Box>
-      <Box args={[7, 10, 0.5]} position={[6.5, 5, 10]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3d2f50" />
-      </Box>
-      <Box args={[6, 3, 0.5]} position={[0, 8.5, 10]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3d2f50" />
-      </Box>
-      
-      {/* Left Wall */}
-      <Box args={[0.5, 10, 20]} position={[-10, 5, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3d2f50" />
-      </Box>
-      
-      {/* Right Wall */}
-      <Box args={[0.5, 10, 20]} position={[10, 5, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3d2f50" />
-      </Box>
-
-      {/* Ceiling */}
-      <Plane args={[20, 20]} rotation={[Math.PI / 2, 0, 0]} position={[0, 10, 0]} receiveShadow>
-        <meshStandardMaterial color="#1a1a1a" />
-      </Plane>
+      {/* Physics World */}
+      <Physics gravity={[0, -9.81, 0]}>
+        {/* Interactive Ball */}
+        <InteractiveBall />
+        
+        {/* Floor with physics */}
+        <RigidBody type="fixed">
+          <Box args={[20, 0.1, 20]} position={[0, -0.05, 0]} receiveShadow>
+            <meshStandardMaterial color="#2a2a2a" />
+          </Box>
+        </RigidBody>
+        
+        {/* Back Wall */}
+        <RigidBody type="fixed">
+          <Box args={[20, 10, 0.5]} position={[0, 5, -10]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        
+        {/* Left Wall with Window */}
+        {/* Lower wall section */}
+        <RigidBody type="fixed">
+          <Box args={[0.5, 3, 20]} position={[-10, 1.5, 0]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        {/* Upper wall section */}
+        <RigidBody type="fixed">
+          <Box args={[0.5, 3, 20]} position={[-10, 8.5, 0]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        {/* Left side of window */}
+        <RigidBody type="fixed">
+          <Box args={[0.5, 4, 6]} position={[-10, 5, -7]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        {/* Right side of window */}
+        <RigidBody type="fixed">
+          <Box args={[0.5, 4, 6]} position={[-10, 5, 7]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        
+        {/* Window Glass */}
+        <Box args={[0.1, 4, 8]} position={[-10, 5, 0]} castShadow>
+          <meshStandardMaterial 
+            color="#ffffff"
+            transparent
+            opacity={0.1}
+            metalness={0.9}
+            roughness={0.1}
+            envMapIntensity={1}
+          />
+        </Box>
+        
+        {/* Window Frame */}
+        <Box args={[0.2, 0.1, 8]} position={[-10, 3, 0]} castShadow>
+          <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+        </Box>
+        <Box args={[0.2, 0.1, 8]} position={[-10, 7, 0]} castShadow>
+          <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+        </Box>
+        <Box args={[0.2, 4, 0.1]} position={[-10, 5, -4]} castShadow>
+          <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+        </Box>
+        <Box args={[0.2, 4, 0.1]} position={[-10, 5, 4]} castShadow>
+          <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
+        </Box>
+        
+        {/* Right Wall */}
+        <RigidBody type="fixed">
+          <Box args={[0.5, 10, 20]} position={[10, 5, 0]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        
+        {/* Front walls */}
+        <RigidBody type="fixed">
+          <Box args={[7, 10, 0.5]} position={[-6.5, 5, 10]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        <RigidBody type="fixed">
+          <Box args={[7, 10, 0.5]} position={[6.5, 5, 10]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        <RigidBody type="fixed">
+          <Box args={[6, 3, 0.5]} position={[0, 8.5, 10]} receiveShadow castShadow>
+            <meshStandardMaterial color="#3d2f50" />
+          </Box>
+        </RigidBody>
+        
+        {/* Ceiling */}
+        <RigidBody type="fixed">
+          <Box args={[20, 0.1, 20]} position={[0, 10, 0]} receiveShadow>
+            <meshStandardMaterial color="#1a1a1a" />
+          </Box>
+        </RigidBody>
+      </Physics>
 
       {/* Office Furniture - Desks */}
       {/* Main Desk - WEBSITES */}
@@ -384,7 +555,7 @@ const OfficeScene: React.FC = () => {
       </Box>
 
       {/* Large Monitor on Back Wall */}
-      <group position={[0, 2, -9.8]}>
+      <group position={[0, 3, -9.8]}>
         {/* Monitor Frame */}
         <Box args={[4, 2.5, 0.1]} castShadow>
           <meshStandardMaterial color="#000000" />
