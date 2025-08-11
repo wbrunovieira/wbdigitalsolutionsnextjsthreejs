@@ -9,14 +9,25 @@ interface DragTutorialProps {
 const DragTutorial: React.FC<DragTutorialProps> = ({ onInteraction }) => {
   const t = useTranslations();
   const [isVisible, setIsVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     // Always show on load, hide after 15 seconds
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 15000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   // Hide on any interaction
@@ -163,7 +174,10 @@ const DragTutorial: React.FC<DragTutorialProps> = ({ onInteraction }) => {
                     opacity="0.8"
                   />
                 </svg>
-                {t.dragTutorialText || "Click and drag to interact"}
+                {isMobile 
+                  ? (t.dragTutorialTextMobile || "Touch and drag to interact")
+                  : (t.dragTutorialText || "Click and drag to interact")
+                }
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline">
                   <path
                     d="M12 2L15 9L22 10L17 15L18 22L12 18L6 22L7 15L2 10L9 9L12 2Z"

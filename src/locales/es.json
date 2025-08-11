@@ -74,6 +74,8 @@
     "AugmentedRealityKey": "RealidadAumentada",
     "EADKey": "PlataformasElearning",
     "tapToSpeed": "Toca para acelerar la rotación",
+    "dragTutorialText": "Haz clic y arrastra para interactuar",
+    "dragTutorialTextMobile": "Toca y arrastra para interactuar",
 
     "cards": [
         {

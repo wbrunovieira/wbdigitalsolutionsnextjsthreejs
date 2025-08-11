@@ -29,7 +29,7 @@ const Websites: React.FC = () => {
     return (
         <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen mt-16">
 
-         <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32 ml-16">
+         <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 
                  <div className="relative md:absolute inset-0 z-0">
                   <AnimatedBackgroundWebsiteComponent />
