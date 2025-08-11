@@ -5,11 +5,16 @@ import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 import CanvasLoader from '../Loader';
 import DragTutorial from '../DragTutorial';
 
-const Earth = () => {
+const Earth = ({ isMobile }: { isMobile: boolean }) => {
   const earth = useGLTF('/models/planet/scene.gltf');
 
   return (
-    <primitive object={earth.scene} scale={2.5} position-y={0} rotation-y={0} />
+    <primitive 
+      object={earth.scene} 
+      scale={isMobile ? 3 : 2.5} 
+      position-y={0} 
+      rotation-y={0} 
+    />
   );
 };
 const EarthCanvas: React.FC = () => {
@@ -31,7 +36,7 @@ const EarthCanvas: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full">
+    <div className={`relative w-full ${isMobile ? 'h-[500px]' : 'h-full'} ${isMobile ? 'overflow-visible' : ''}`}>
       {/* Drag tutorial - only shows on desktop */}
       {!isMobile && (
         <DragTutorial />
@@ -43,11 +48,12 @@ const EarthCanvas: React.FC = () => {
         dpr={[1, 2]}
         gl={{ preserveDrawingBuffer: true }}
         camera={{
-          fov: 45,
+          fov: isMobile ? 60 : 45,
           near: 0.1,
           far: 200,
-          position: [-4, 3, 6],
+          position: isMobile ? [-4, 3, 15] : [-4, 3, 6],
         }}
+        style={isMobile ? { height: '500px', width: '100%' } : undefined}
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
@@ -56,7 +62,7 @@ const EarthCanvas: React.FC = () => {
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 2}
           />
-          <Earth />
+          <Earth isMobile={isMobile} />
 
           <Preload all />
         </Suspense>

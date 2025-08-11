@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="flex-1 flex justify-center items-center">
+      <div className="flex-1 flex justify-center items-center min-h-[500px] md:min-h-[500px]" style={{ overflow: 'visible' }}>
         <EarthCanvas />
       </div>
       <ToastContainer />
