@@ -4,7 +4,8 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
-const MAX_PARTICLES = 50;
+const INITIAL_PARTICLES = 20;
+const MAX_PARTICLES = 30;
 
 const ParticlesContainer: React.FC = () => {
   const [init, setInit] = useState(false);
@@ -38,7 +39,7 @@ const ParticlesContainer: React.FC = () => {
         },
         modes: {
           push: {
-            quantity: 5, // Número de partículas adicionadas por clique
+            quantity: 3,
           },
           repulse: {
             distance: 200,
@@ -65,10 +66,13 @@ const ParticlesContainer: React.FC = () => {
         },
         number: {
           density: {
-            enable: true,
-            area: 800,
+            enable: false,
           },
-          value: MAX_PARTICLES, // Número inicial de partículas
+          value: INITIAL_PARTICLES,
+          limit: {
+            mode: "delete",
+            value: MAX_PARTICLES,
+          },
         },
         opacity: { value: 0.5 },
         shape: { type: "circle" },
