@@ -11,12 +11,14 @@ import React, {
 type LanguageContextType = {
   language: string;
   setLanguage: (lang: string) => void;
+  isLoaded: boolean;
 };
 
 
 const LanguageContext = createContext<LanguageContextType>({
   language: "en",
   setLanguage: () => {},
+  isLoaded: false,
 });
 
 export const useLanguage = () => useContext(LanguageContext);
@@ -45,34 +47,30 @@ type LanguageProviderProps = {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  // Initialize with the correct language from the start
-  const getInitialLanguage = (): string => {
-    if (typeof window === "undefined") return "en";
-    
+  const [language, setLanguage] = useState<string>("en");
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  // Load the correct language on mount (client-side only)
+  useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
     if (savedLanguage) {
-      return savedLanguage;
+      setLanguage(savedLanguage);
+    } else {
+      const browserLanguage = detectBrowserLanguage();
+      setLanguage(browserLanguage);
     }
-    
-    return detectBrowserLanguage();
-  };
+    setIsLoaded(true);
+  }, []);
 
-  const [language, setLanguage] = useState<string>(getInitialLanguage());
-
-
-
-
-
-  // No longer need to set language in useEffect since it's initialized correctly
-  // This prevents the visual glitch where language changes after mount
-
-
+  // Save language changes to localStorage
   useEffect(() => {
-    localStorage.setItem("language", language);
-  }, [language]);
+    if (isLoaded) {
+      localStorage.setItem("language", language);
+    }
+  }, [language, isLoaded]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage, isLoaded }}>
       {children}
     </LanguageContext.Provider>
   );

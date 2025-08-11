@@ -22,7 +22,7 @@ const Nav: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const router = useRouter();
     const pathname = router.pathname;
-    const { language, setLanguage } = useLanguage();
+    const { language, setLanguage, isLoaded } = useLanguage();
     
 
     const currentMessages = useTranslations();
@@ -92,7 +92,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="en"
                         onChange={() => setLanguage("en")}
-                        checked={language === "en"}
+                        checked={isLoaded && language === "en"}
                     />
                     <label
                         htmlFor="en"
@@ -109,7 +109,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="pt-BR"
                         onChange={() => setLanguage("pt-BR")}
-                        checked={language === "pt-BR"}
+                        checked={isLoaded && language === "pt-BR"}
                     />
                     <label
                         htmlFor="pt-BR"
@@ -128,7 +128,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="it"
                         onChange={() => setLanguage("it")}
-                        checked={language === "it"}
+                        checked={isLoaded && language === "it"}
                     />
                     <label
                         htmlFor="it"
@@ -145,7 +145,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="es"
                         onChange={() => setLanguage("es")}
-                        checked={language === "es"}
+                        checked={isLoaded && language === "es"}
                     />
                     <label
                         htmlFor="es"
