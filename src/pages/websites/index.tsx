@@ -56,6 +56,12 @@ const Websites: React.FC = () => {
                     <span>Tunnel Experience</span>
                 </button>
             </Link>
+            <Link href="/3d-scroll">
+                <button className="bg-gradient-to-r from-yellow-500 to-purple-600 hover:from-yellow-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-lg shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-3 text-lg">
+                    <span>📜</span>
+                    <span>Scroll Journey</span>
+                </button>
+            </Link>
         </div>
         
             <CustomVsGeneric />
