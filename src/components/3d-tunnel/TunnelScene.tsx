@@ -200,7 +200,7 @@ const FabricLogo: React.FC = () => {
       meshRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.4) * 0.1;
       meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.15;
       
-      // Manual wave deformation on vertices
+      // Manual wave deformation on vertices - EXTREME folding effect
       const positions = meshRef.current.geometry.attributes.position;
       const time = state.clock.elapsedTime;
       
@@ -208,9 +208,14 @@ const FabricLogo: React.FC = () => {
         const x = positions.getX(i);
         const y = positions.getY(i);
         
-        // Create realistic fabric wave
-        const waveZ = Math.sin(x * 1.5 + time * 2) * 0.2 * (1 - Math.abs(x) / 4) +
-                     Math.cos(y * 2 + time * 1.5) * 0.15 * (1 - Math.abs(y) / 1.5);
+        // Create extreme fabric folding effect
+        const primaryWave = Math.sin(x * 0.8 + time * 1.5) * 1.2; // Main large wave
+        const secondaryWave = Math.cos(x * 2 + time * 2.5) * 0.4; // Smaller ripples
+        const verticalWave = Math.sin(y * 3 + time * 2) * 0.3; // Vertical movement
+        
+        // Combine waves with edge dampening
+        const edgeDampen = (1 - Math.abs(x) / 4) * (1 - Math.abs(y) / 1.5);
+        const waveZ = (primaryWave + secondaryWave + verticalWave) * edgeDampen;
         
         positions.setZ(i, waveZ);
       }
@@ -225,7 +230,7 @@ const FabricLogo: React.FC = () => {
   
   return (
     <mesh ref={meshRef} position={[0, 1, -50]}>
-      <planeGeometry args={[8, 3, 64, 32]} />
+      <planeGeometry args={[8, 3, 128, 64]} />
       <meshStandardMaterial
         map={texture}
         color="#ffffff"
@@ -273,6 +278,50 @@ const HorizontalSphere: React.FC = () => {
         roughness={0.1}
       />
     </Sphere>
+  );
+};
+
+// Service Text - Larger and more colorful
+const ServiceText: React.FC<{ text: string; position: [number, number, number]; color: string }> = ({ text, position, color }) => {
+  const ref = useRef<THREE.Group>(null);
+  
+  useFrame(() => {
+    if (ref.current) {
+      ref.current.position.z += 0.06;
+      ref.current.rotation.y += 0.008;
+      ref.current.rotation.x = Math.sin(ref.current.position.z * 0.05) * 0.1;
+      
+      if (ref.current.position.z > 10) {
+        ref.current.position.z = -160;
+      }
+    }
+  });
+  
+  return (
+    <group ref={ref} position={position}>
+      <Center>
+        <Text3D
+          font="/img/assets/fonts/optimer_regular.typeface.json"
+          size={0.8}
+          height={0.2}
+          curveSegments={12}
+          bevelEnabled
+          bevelThickness={0.03}
+          bevelSize={0.03}
+          bevelOffset={0}
+          bevelSegments={5}
+        >
+          {text}
+          <meshStandardMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={0.6}
+            metalness={0.5}
+            roughness={0.2}
+          />
+        </Text3D>
+      </Center>
+    </group>
   );
 };
 
@@ -392,10 +441,18 @@ const TunnelScene: React.FC = () => {
       {/* Fabric-like Logo */}
       <FabricLogo />
       
-      {/* Floating Text */}
+      {/* Floating Text - Company name */}
       <FloatingText text="WB DIGITAL" position={[0, 3, -50]} />
       <FloatingText text="INNOVATION" position={[-3, -2, -70]} />
       <FloatingText text="TECHNOLOGY" position={[3, 1, -90]} />
+      
+      {/* Service Text - Outside the tunnel with colors */}
+      <ServiceText text="WEBSITES" position={[12, 5, -30]} color="#792990" />
+      <ServiceText text="AUTOMATION" position={[-13, 3, -55]} color="#ffb947" />
+      <ServiceText text="A.I." position={[11, -2, -75]} color="#792990" />
+      <ServiceText text="WEBSITES" position={[-12, 6, -100]} color="#792990" />
+      <ServiceText text="AUTOMATION" position={[14, 4, -120]} color="#ffb947" />
+      <ServiceText text="A.I." position={[-11, 1, -140]} color="#792990" />
     </Canvas>
   );
 };
