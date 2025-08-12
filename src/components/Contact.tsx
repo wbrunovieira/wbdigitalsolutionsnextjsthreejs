@@ -29,22 +29,39 @@ const Contact: React.FC = () => {
       return;
     }
 
-    const formData = new FormData(e.target as HTMLFormElement);
-   
-    formData.append("_captcha", "false");
+    // Prepare data for Web3Forms
+    const formData = {
+      access_key: process.env.NEXT_PUBLIC_WEB3_FORMS_ACCESS_KEY || "",
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      subject: `Nova mensagem de contato - ${name.trim()}`,
+      from_name: "WB Digital Solutions Website",
+    };
 
     try {
-      const response = await fetch("https://formsubmit.co/bruno@wbdigitalsolutions.com", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
+      const result = await response.json();
 
-          setTimeout(() => {
-    router.push("/");
-  }, 2000);
+      if (result.success) {
+        toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
+        
+        // Clear form
+        setName("");
+        setEmail("");
+        setMessage("");
+
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
       } else {
         toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
       }
