@@ -29,22 +29,32 @@ const Contact: React.FC = () => {
       return;
     }
 
-    const formData = new FormData(e.target as HTMLFormElement);
-   
-    formData.append("_captcha", "false");
-
     try {
-      const response = await fetch("https://formsubmit.co/bruno@wbdigitalsolutions.com", {
+      const response = await fetch("/api/send-email", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
       });
 
-      if (response.ok) {
-        toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
+      const result = await response.json();
 
-          setTimeout(() => {
-    router.push("/");
-  }, 2000);
+      if (result.success) {
+        toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
+        
+        // Clear form
+        setName("");
+        setEmail("");
+        setMessage("");
+
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
       } else {
         toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
       }
