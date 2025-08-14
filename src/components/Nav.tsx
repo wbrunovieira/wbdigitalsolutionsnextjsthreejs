@@ -24,6 +24,8 @@ const Nav: React.FC = () => {
     const pathname = router.pathname;
     const { language, setLanguage, isLoaded } = useLanguage();
     
+    // Debug log
+    console.log('Nav - language:', language, 'isLoaded:', isLoaded);
 
     const currentMessages = useTranslations();
 
@@ -85,6 +87,12 @@ const Nav: React.FC = () => {
         
          
           <div className="lg:flex flex-col text text-xs justify-end items-end">
+                {!isLoaded && (
+                    <div className="radio-input flex items-center z-50 opacity-50">
+                        <span className="text-white text-xs">...</span>
+                    </div>
+                )}
+                {isLoaded && (
                 <div className="radio-input flex  items-center z-50">
                     <input
                         className="input radio-custom border-r"
@@ -92,7 +100,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="en"
                         onChange={() => setLanguage("en")}
-                        checked={isLoaded && language === "en"}
+                        checked={language === "en"}
                     />
                     <label
                         htmlFor="en"
@@ -109,7 +117,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="pt-BR"
                         onChange={() => setLanguage("pt-BR")}
-                        checked={isLoaded && language === "pt-BR"}
+                        checked={language === "pt-BR"}
                     />
                     <label
                         htmlFor="pt-BR"
@@ -128,7 +136,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="it"
                         onChange={() => setLanguage("it")}
-                        checked={isLoaded && language === "it"}
+                        checked={language === "it"}
                     />
                     <label
                         htmlFor="it"
@@ -145,7 +153,7 @@ const Nav: React.FC = () => {
                         name="radio"
                         id="es"
                         onChange={() => setLanguage("es")}
-                        checked={isLoaded && language === "es"}
+                        checked={language === "es"}
                     />
                     <label
                         htmlFor="es"
@@ -156,6 +164,7 @@ const Nav: React.FC = () => {
                         </span>
                     </label>
                 </div>
+                )}
 
                 {isMobileMenuOpen && (
                     <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center max-w-[1400px] mx-auto">

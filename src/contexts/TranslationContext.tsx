@@ -41,7 +41,10 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     );
 
     useEffect(() => {
-        setCurrentMessages(translations[language] || translations.en);
+        console.log('TranslationContext - language received:', language);
+        // Handle both "pt" and "pt-BR"
+        const langKey = language === "pt" ? "pt-BR" : language;
+        setCurrentMessages(translations[langKey] || translations.en);
     }, [language, translations]);
 
     return (
