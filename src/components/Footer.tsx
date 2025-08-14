@@ -17,6 +17,7 @@ const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const currentMessages = useTranslations();
   const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleNewsletterSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,38 +30,53 @@ const Footer: React.FC = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("access_key", "4aeac532-e643-44c4-83c7-23d0c4b5e78e");
-    formData.append("email", newsletterEmail);
-    formData.append("_captcha", "false");
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(newsletterEmail)) {
+      toast.error(
+        currentMessages.validEmail ||
+          "Por favor, insira um email válido."
+      );
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/bruno@wbdigitalsolutions.com",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: newsletterEmail.trim(),
+          language: language, // Send current language
+        }),
+      });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         toast.success(
-          currentMessages.successSubmission ||
-            "Formulário enviado com sucesso!"
+          currentMessages.successNewsletter ||
+            currentMessages.successSubmission ||
+            "Inscrição realizada com sucesso!"
         );
         setNewsletterEmail("");
       } else {
         toast.error(
           currentMessages.errorSubmission ||
-            "Erro ao enviar o formulário. Tente novamente."
+            "Erro ao realizar inscrição. Tente novamente."
         );
       }
     } catch (error) {
-      console.error("Erro ao enviar o formulário", error);
+      console.error("Erro ao enviar inscrição", error);
       toast.error(
         currentMessages.errorSubmission ||
-          "Erro ao enviar o formulário. Tente novamente."
+          "Erro ao realizar inscrição. Tente novamente."
       );
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -82,8 +98,13 @@ const Footer: React.FC = () => {
               <EmailInput
                 value={newsletterEmail}
                 onChange={(value) => setNewsletterEmail(value)}
+                disabled={isSubmitting}
               />
-              <ButtonStandard buttonText={currentMessages.send} type="submit" />
+              <ButtonStandard 
+                buttonText={isSubmitting ? "..." : currentMessages.send} 
+                type="submit" 
+                disabled={isSubmitting}
+              />
             </div>
           </div>
         </form>
