@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { FiMessageCircle } from 'react-icons/fi';
 import { useTranslations } from '@/contexts/TranslationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useRouter } from 'next/router';
 
 interface Message {
   text: string;
@@ -11,6 +13,8 @@ interface Message {
 
 const ChatBotButton: React.FC = () => {
   const t = useTranslations();
+  const { language } = useLanguage();
+  const router = useRouter();
   const typingMessages = t.typingMessages;
   const progressiveMessages = t.progressiveMessages;
 
@@ -96,6 +100,13 @@ const ChatBotButton: React.FC = () => {
     const messageToSend = text || inputValue;
     if (!messageToSend.trim()) return;
 
+    // Get or create unique user ID
+    let userId = localStorage.getItem('chat_user_id');
+    if (!userId) {
+      userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('chat_user_id', userId);
+    }
+
     setMessages(prev => [
       ...prev,
       { text: messageToSend, isUser: true },
@@ -122,7 +133,14 @@ const ChatBotButton: React.FC = () => {
         const response = await fetch(`${apiUrl}/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: messageToSend, user_id: 'user123' })
+          body: JSON.stringify({ 
+            message: messageToSend, 
+            user_id: userId,
+            language: language,
+            current_page: router.pathname,
+            page_url: window.location.href,
+            timestamp: new Date().toISOString()
+          })
         });
 
         if (!response.ok) {

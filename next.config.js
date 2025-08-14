@@ -13,6 +13,8 @@ const nextConfig = {
             value: `
               default-src 'self';
               connect-src 'self' 
+                http://localhost:8000
+                http://45.90.123.190:8000
                 https://chatbotwb.wbdigitalsolutions.com
                 https://www.google-analytics.com
                 https://www.googleadservices.com
