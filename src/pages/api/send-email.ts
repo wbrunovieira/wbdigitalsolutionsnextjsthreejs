@@ -88,9 +88,11 @@ export default async function handler(
     console.log('Email sent successfully:', info.messageId);
     
     // Send auto-reply to the sender
+    // Note: Using a Gmail address as sender to avoid SPF/DKIM issues
     const autoReplyOptions = {
-      from: process.env.GMAIL_USER,
+      from: `"WB Digital Solutions" <${process.env.GMAIL_USER}>`,
       to: email,
+      replyTo: process.env.CONTACT_EMAIL,
       subject: 'Obrigado pelo seu contato - WB Digital Solutions',
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
@@ -114,8 +116,23 @@ export default async function handler(
       `,
     };
     
-    await transporter.sendMail(autoReplyOptions);
-    console.log('Auto-reply sent successfully');
+    // Only send auto-reply to non-Yahoo addresses to avoid SPF/DKIM issues
+    // Yahoo, Hotmail and some providers are strict about authentication
+    const problematicDomains = ['yahoo.com', 'yahoo.com.br', 'hotmail.com', 'outlook.com'];
+    const emailDomain = email.split('@')[1]?.toLowerCase();
+    const isProblematicDomain = problematicDomains.some(domain => emailDomain?.includes(domain));
+    
+    if (!isProblematicDomain) {
+      try {
+        await transporter.sendMail(autoReplyOptions);
+        console.log('Auto-reply sent successfully');
+      } catch (autoReplyError: any) {
+        // Don't fail the main request if auto-reply fails
+        console.error('Auto-reply failed (non-critical):', autoReplyError.message);
+      }
+    } else {
+      console.log('Skipping auto-reply for problematic domain:', emailDomain);
+    }
     
     return res.status(200).json({ 
       success: true, 
