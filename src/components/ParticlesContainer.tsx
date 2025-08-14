@@ -4,10 +4,10 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import type { Container, ISourceOptions } from "@tsparticles/engine";
 
-const INITIAL_PARTICLES_DESKTOP = 20;
-const MAX_PARTICLES_DESKTOP = 30;
-const INITIAL_PARTICLES_MOBILE = 10;
-const MAX_PARTICLES_MOBILE = 15;
+const INITIAL_PARTICLES_DESKTOP = 10;
+const MAX_PARTICLES_DESKTOP = 15;
+const INITIAL_PARTICLES_MOBILE = 5;
+const MAX_PARTICLES_MOBILE = 8;
 
 const ParticlesContainer: React.FC = () => {
   const [init, setInit] = useState(false);
@@ -53,7 +53,7 @@ const ParticlesContainer: React.FC = () => {
         },
         modes: {
           push: {
-            quantity: isMobile ? 2 : 3,
+            quantity: isMobile ? 1 : 2,
           },
           repulse: {
             distance: 200,
