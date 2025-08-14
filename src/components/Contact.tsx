@@ -6,6 +6,7 @@ import ButtonStandard from "./ButtonStandard";
 import EarthCanvas from "./canvas/Earth";
 import { slideIn } from "../utils/motion";
 import { useTranslations } from "@/contexts/TranslationContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedInput from "./AnimatedInput";
 import AnimatedTextarea from "./AnimatedTextarea";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,6 +20,7 @@ const Contact: React.FC = () => {
   const router = useRouter();
 
   const currentMessages = useTranslations();
+  const { language } = useLanguage();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,6 +41,7 @@ const Contact: React.FC = () => {
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
+          language: language, // Send current language
         }),
       });
 
