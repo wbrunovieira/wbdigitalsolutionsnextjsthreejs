@@ -16,6 +16,8 @@ const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const router = useRouter();
 
@@ -25,11 +27,17 @@ const Contact: React.FC = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    // Prevent double submission
+    if (isSubmitting || isSubmitted) {
+      return;
+    }
 
     if (!name.trim() || !email.trim() || !message.trim()) {
       toast.error(currentMessages.fillAllFields || "Por favor, preencha todos os campos corretamente.");
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("/api/send-email", {
@@ -48,22 +56,30 @@ const Contact: React.FC = () => {
       const result = await response.json();
 
       if (result.success) {
+        // Mark as submitted to prevent validation issues
+        setIsSubmitted(true);
+        
         toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
         
-        // Clear form
-        setName("");
-        setEmail("");
-        setMessage("");
+        // Clear form after a short delay to show success message
+        setTimeout(() => {
+          setName("");
+          setEmail("");
+          setMessage("");
+        }, 500);
 
+        // Redirect after toast is visible
         setTimeout(() => {
           router.push("/");
-        }, 2000);
+        }, 2500);
       } else {
         toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
+        setIsSubmitting(false);
       }
     } catch (error) {
       console.error("Erro ao enviar o formulário", error);
       toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
+      setIsSubmitting(false);
     }
   }
 
@@ -89,6 +105,8 @@ const Contact: React.FC = () => {
                   errorMessage={currentMessages.nameRequired}
                   required
                   name="name"
+                  disabled={isSubmitting || isSubmitted}
+                  skipValidation={isSubmitted}
                 />
               </div>
 
@@ -101,6 +119,8 @@ const Contact: React.FC = () => {
                   required
                   type="email"
                   name="email"
+                  disabled={isSubmitting || isSubmitted}
+                  skipValidation={isSubmitted}
                 />
               </div>
 
@@ -112,11 +132,17 @@ const Contact: React.FC = () => {
                   errorMessage={currentMessages.messageRequired}
                   required
                   name="message"
+                  disabled={isSubmitting || isSubmitted}
+                  skipValidation={isSubmitted}
                 />
               </div>
 
               <div className="w-full flex justify-start">
-                <ButtonStandard buttonText={currentMessages.send2} type="submit" />
+                <ButtonStandard 
+                  buttonText={isSubmitting ? "..." : currentMessages.send2} 
+                  type="submit" 
+                  disabled={isSubmitting || isSubmitted}
+                />
               </div>
             </form>
           </div>

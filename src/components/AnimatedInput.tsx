@@ -8,6 +8,8 @@ interface AnimatedInputProps {
   required?: boolean;
   type?: "text" | "email";
   name: string;
+  disabled?: boolean;
+  skipValidation?: boolean;
 }
 
 const AnimatedInput: React.FC<AnimatedInputProps> = ({
@@ -18,6 +20,8 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   required = false,
   type = "text",
   name,
+  disabled = false,
+  skipValidation = false,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
@@ -28,7 +32,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
     : true;
 
   const hasError =
-    required && isTouched && (!value.trim() || (isEmail && !isValidEmail));
+    !skipValidation && required && isTouched && (!value.trim() || (isEmail && !isValidEmail));
 
   return (
     <div className="relative my-5 w-full">
@@ -37,6 +41,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         name={name}  // Adicionado para o FormData
         value={value}
         id={name}
+        disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
@@ -45,7 +50,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         }}
         className={`peer bg-transparent border-b-2 w-full py-4 text-lg text-white placeholder-transparent focus:outline-none ${
           hasError ? "border-red-500" : "border-white focus:border-lightblue"
-        }`}
+        } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       />
       <label className="absolute top-4 left-0 pointer-events-none">
         {label.split("").map((char, index) => (

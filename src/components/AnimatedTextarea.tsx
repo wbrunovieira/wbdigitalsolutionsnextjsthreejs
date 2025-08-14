@@ -6,7 +6,9 @@ interface AnimatedTextareaProps {
   onChange: (value: string) => void;
   errorMessage?: string;
   required?: boolean;
-  name: string; 
+  name: string;
+  disabled?: boolean;
+  skipValidation?: boolean;
 }
 
 const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
@@ -15,12 +17,14 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
   onChange,
   errorMessage,
   required = false,
-  name
+  name,
+  disabled = false,
+  skipValidation = false
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
 
-  const hasError = required && isTouched && !value.trim();
+  const hasError = !skipValidation && required && isTouched && !value.trim();
 
   return (
     <div className="relative my-5 w-full">
@@ -28,6 +32,7 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
         name={name}  
         value={value}
         id={name}
+        disabled={disabled}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
@@ -38,7 +43,7 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
           hasError
             ? "border-red-500"
             : "border-white focus:border-lightblue"
-        }`}
+        } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         rows={4}
       />
       <label className="absolute top-4 left-0 pointer-events-none">

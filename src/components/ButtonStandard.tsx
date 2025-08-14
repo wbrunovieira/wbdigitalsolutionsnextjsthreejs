@@ -3,20 +3,25 @@ import React, { useState } from "react";
 interface ButtonStandardProps {
   buttonText: string;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 const ButtonStandard: React.FC<ButtonStandardProps> = ({
   buttonText,
   type = "submit",
+  disabled = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <button
       type={type}
+      disabled={disabled}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative flex justify-center gap-2 items-center shadow-xl text-md text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto px-4 py-1 overflow-hidden border-2 rounded-lg whitespace-nowrap min-w-[180px] h-12"
+      className={`relative flex justify-center gap-2 items-center shadow-xl text-md text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto px-4 py-1 overflow-hidden border-2 rounded-lg whitespace-nowrap min-w-[180px] h-12 ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      }`}
     >
       {buttonText}
       <div className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-700 transition-all duration-300 group-hover:border-none group-hover:bg-gray-50">
