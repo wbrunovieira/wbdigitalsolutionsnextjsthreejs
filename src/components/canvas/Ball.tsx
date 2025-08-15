@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect, useRef } from "react";
 import {
     Decal,
     Float,
@@ -6,7 +6,7 @@ import {
     Preload,
     useTexture,
 } from "@react-three/drei";
-import { Texture } from "three";
+import { Texture, Mesh } from "three";
 import CanvasLoader from "../Loader";
 import { PauseableCanvas } from "../PauseableCanvas";
 import { useMediaQuery } from "react-responsive";
@@ -29,6 +29,8 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
     const [error, setError] = useState(false);
     const [retryCount, setRetryCount] = useState(0);
     const [currentUrl, setCurrentUrl] = useState(imgUrl);
+    const meshRef = useRef<Mesh>(null);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     useEffect(() => {
         setError(false);
@@ -71,17 +73,43 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
             return () => clearTimeout(timeoutId);
         }
     }, [decal]);
+    
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (meshRef.current) {
+                meshRef.current.geometry?.dispose();
+                if (meshRef.current.material) {
+                    if (Array.isArray(meshRef.current.material)) {
+                        meshRef.current.material.forEach(mat => mat.dispose());
+                    } else {
+                        meshRef.current.material.dispose();
+                    }
+                }
+            }
+            decal?.dispose();
+        };
+    }, [decal]);
 
     if ((error && !fallbackUrl) || !decal?.image) {
         return null;
     }
 
     return (
-        <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
-            <ambientLight intensity={0.75} />
-            <directionalLight position={[0, 0, 0.1]} />
-            <mesh castShadow receiveShadow scale={2.75}>
-                <icosahedronGeometry args={[1, 1]} />
+        <Float 
+            speed={isMobile ? 1 : 1.75} 
+            rotationIntensity={isMobile ? 0.5 : 1} 
+            floatIntensity={isMobile ? 1 : 2}
+        >
+            <ambientLight intensity={isMobile ? 0.5 : 0.75} />
+            <directionalLight position={[0, 0, 0.1]} intensity={isMobile ? 0.5 : 1} />
+            <mesh 
+                ref={meshRef}
+                castShadow={!isMobile} 
+                receiveShadow={!isMobile} 
+                scale={2.75}
+            >
+                <icosahedronGeometry args={[1, isMobile ? 0 : 1]} /> {/* Lower detail on mobile */}
                 <meshStandardMaterial
                     color="#DECBEF"
                     polygonOffsetFactor={-1}
@@ -137,7 +165,12 @@ const BallCanvas = ({
     return (
         <PauseableCanvas
             frameloop="demand"
-            gl={{ preserveDrawingBuffer: true }}
+            gl={{ 
+                preserveDrawingBuffer: true,
+                powerPreference: "low-power", // Use low power mode for Ball components
+                antialias: !isMobile, // Disable antialiasing on mobile
+                pixelRatio: isMobile ? 1 : Math.min(window.devicePixelRatio, 2) // Limit pixel ratio
+            }}
             className="w-full h-28"
             style={{
                 width: `${adjustedWidth}px`,

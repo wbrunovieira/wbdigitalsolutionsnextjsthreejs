@@ -12,7 +12,28 @@ interface isMobileProps {
 
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     const computer = useGLTF("/models/desktop/scene.gltf");
-    const computerRef = useRef<THREE.Group | null>(null); 
+    const computerRef = useRef<THREE.Group | null>(null);
+    
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (computer.scene) {
+                computer.scene.traverse((child) => {
+                    if ((child as THREE.Mesh).isMesh) {
+                        const mesh = child as THREE.Mesh;
+                        mesh.geometry?.dispose();
+                        if (mesh.material) {
+                            if (Array.isArray(mesh.material)) {
+                                mesh.material.forEach(mat => mat.dispose());
+                            } else {
+                                mesh.material.dispose();
+                            }
+                        }
+                    }
+                });
+            }
+        };
+    }, [computer]); 
 
     useEffect(() => {
         if (!computerRef.current) return;
@@ -46,9 +67,9 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
                 position={[-10, 20, 10]}
                 angle={0.12}
                 penumbra={1}
-                intensity={4}
-                castShadow
-                shadow-mapSize={1024}
+                intensity={isMobile ? 2 : 4} // Lower intensity on mobile
+                castShadow={!isMobile} // No shadows on mobile
+                shadow-mapSize={isMobile ? 512 : 1024} // Lower shadow resolution on mobile
             />
             <pointLight intensity={1} />
 
@@ -112,9 +133,15 @@ const ComputersCanvas = () => {
         <div className="relative w-full h-full canvas-container" onTouchEnd={handleTap}>
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
-                shadows
+                shadows={!isMobile} // Disable shadows on mobile
                 camera={{ position: [20, 3, 25], fov: 45 }}
-                gl={{ preserveDrawingBuffer: true }}
+                gl={{ 
+                    preserveDrawingBuffer: true,
+                    powerPreference: "high-performance",
+                    antialias: !isMobile, // Disable antialiasing on mobile
+                    pixelRatio: isMobile ? 1 : window.devicePixelRatio // Lower pixel ratio on mobile
+                }}
+                frameloop="demand" // Only render when needed
                 className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
             >
                 <Suspense fallback={<CanvasLoader />}>
