@@ -40,6 +40,15 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Track form submission in Google Analytics
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'form_submit', {
+          event_category: 'engagement',
+          event_label: 'contact_form',
+          value: 1
+        });
+      }
+
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {

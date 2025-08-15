@@ -88,20 +88,7 @@ const Metatags = () => {
         />
       </noscript>
 
-      {/* Google Tag (gtag.js) */}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZ3WX1KF35"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-PZ3WX1KF35');
-            gtag('config', 'AW-802397591');
-            gtag('event', 'conversion', {'send_to': 'AW-802397591/sPHGCN3A2osYEJe7zv4C'});
-          `,
-        }}
-      />
+      {/* Google Tag removed - now handled in _document.tsx and _app.tsx */}
 
       {/* Microsoft Clarity */}
       <script

@@ -100,6 +100,15 @@ const ChatBotButton: React.FC = () => {
     const messageToSend = text || inputValue;
     if (!messageToSend.trim()) return;
 
+    // Track chat interaction in Google Analytics
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'chat_message_sent', {
+        event_category: 'chat',
+        event_label: text ? 'quick_reply' : 'custom_message',
+        value: 1
+      });
+    }
+
     // Get or create unique user ID
     let userId = localStorage.getItem('chat_user_id');
     if (!userId) {
@@ -432,7 +441,19 @@ const ChatBotButton: React.FC = () => {
     <div ref={containerRef}>
       <button
         ref={buttonRef}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          const newState = !isOpen;
+          setIsOpen(newState);
+          
+          // Track chat open/close in Google Analytics
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', newState ? 'chat_opened' : 'chat_closed', {
+              event_category: 'chat',
+              event_label: 'chat_toggle',
+              value: newState ? 1 : 0
+            });
+          }
+        }}
         className="fixed bottom-6 right-6 z-50 bg-custom-purple text-white p-5 rounded-full shadow-xl hover:scale-110 transition-all"
         aria-label="Abrir Chatbot"
       >
