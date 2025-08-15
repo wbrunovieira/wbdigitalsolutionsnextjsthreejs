@@ -107,10 +107,19 @@ const ChatBotButton: React.FC = () => {
       localStorage.setItem('chat_user_id', userId);
     }
 
+    // Log message send
+    const sendTime = new Date().toISOString();
+    console.log(`[${sendTime}] 📤 Sending message:`, {
+      message: messageToSend,
+      user_id: userId,
+      language: language,
+      page: router.pathname,
+      timestamp: sendTime
+    });
+
     setMessages(prev => [
       ...prev,
-      { text: messageToSend, isUser: true },
-      { text: t.initialReply, isUser: false }
+      { text: messageToSend, isUser: true }
     ]);
 
     setInputValue('');
@@ -119,53 +128,225 @@ const ChatBotButton: React.FC = () => {
 
     const start = performance.now();
 
-    let messageIndex = 0;
-    const intervalId = setInterval(() => {
-      if (messageIndex >= progressiveMessages.length) return clearInterval(intervalId);
-      setMessages(prev => [...prev, { text: progressiveMessages[messageIndex++], isUser: false }]);
-    }, 7000);
-
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       
       // Only try to fetch if API URL is configured
       if (apiUrl) {
-        const response = await fetch(`${apiUrl}/chat`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            message: messageToSend, 
-            user_id: userId,
-            language: language,
-            current_page: router.pathname,
-            page_url: window.location.href,
-            timestamp: new Date().toISOString()
-          })
-        });
+        const requestStartTime = new Date().toISOString();
+        
+        // Check if backend supports streaming endpoint
+        const useStreaming = true; // Enable SSE streaming
+        
+        if (useStreaming) {
+          console.log(`[${requestStartTime}] 🔄 Starting SSE connection to:`, `${apiUrl}/chat/stream`);
+          
+          // Since EventSource doesn't support POST, we'll use fetch with ReadableStream
+          const response = await fetch(`${apiUrl}/chat/stream`, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'text/event-stream'
+            },
+            body: JSON.stringify({
+              message: messageToSend,
+              user_id: userId,
+              language: language,
+              current_page: router.pathname,
+              page_url: window.location.href,
+              timestamp: new Date().toISOString()
+            })
+          });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const reader = response.body?.getReader();
+          const decoder = new TextDecoder();
+          
+          if (!reader) {
+            throw new Error('No reader available');
+          }
+
+          let buffer = '';
+          
+          while (true) {
+            const { done, value } = await reader.read();
+            
+            if (done) {
+              console.log(`[${new Date().toISOString()}] ✅ Stream complete`);
+              break;
+            }
+            
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || '';
+            
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const dataStr = line.slice(6);
+                if (dataStr === '[DONE]') continue;
+                
+                try {
+                  const data = JSON.parse(dataStr);
+                  const eventTime = new Date().toISOString();
+            
+                  console.log(`[${eventTime}] 📨 SSE event:`, data);
+                  
+                  switch(data.type) {
+                    case 'acknowledgment':
+                      // Show initial acknowledgment
+                      setIsTyping(true);
+                      console.log(`[${eventTime}] 👋 Acknowledgment:`, data.message);
+                      break;
+                      
+                    case 'thinking':
+                      // Update typing indicator
+                      setIsTyping(true);
+                      console.log(`[${eventTime}] 🤔 Thinking:`, data.message);
+                      break;
+                      
+                    case 'message':
+                      // Show actual message part
+                      setIsTyping(false);
+                      setMessages(prev => [...prev, { text: data.content, isUser: false }]);
+                      console.log(`[${eventTime}] 💬 Message part:`, data.content);
+                      break;
+                      
+                    case 'complete':
+                      // Stream complete
+                      setIsTyping(false);
+                      const end = performance.now();
+                      const responseTimeMs = Math.round(end - start);
+                      setResponseTime(responseTimeMs);
+                      console.log(`[${eventTime}] ✅ Stream complete, total time: ${responseTimeMs}ms`);
+                      break;
+                      
+                    case 'error':
+                      setIsTyping(false);
+                      console.error(`[${eventTime}] ❌ Stream error:`, data.message);
+                      throw new Error(data.message);
+                  }
+                } catch (e) {
+                  console.error('Error parsing SSE data:', e, dataStr);
+                }
+              }
+            }
+          }
+          
+          reader.releaseLock();
+          setIsTyping(false);
+          
+        } else {
+          // Fallback to regular POST request
+          console.log(`[${requestStartTime}] 🔄 Making API request to:`, `${apiUrl}/chat`);
+          
+          const response = await fetch(`${apiUrl}/chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+              message: messageToSend, 
+              user_id: userId,
+              language: language,
+              current_page: router.pathname,
+              page_url: window.location.href,
+              timestamp: new Date().toISOString()
+            })
+          });
+
+          const responseReceivedTime = new Date().toISOString();
+          console.log(`[${responseReceivedTime}] 📨 Response received:`, {
+            status: response.status,
+            ok: response.ok,
+            statusText: response.statusText
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const end = performance.now();
+          const responseTimeMs = Math.round(end - start);
+          setResponseTime(responseTimeMs);
+
+          const data = await response.json();
+          const dataProcessedTime = new Date().toISOString();
+          
+          console.log(`[${dataProcessedTime}] ✅ Response processed:`, {
+            responseTime: `${responseTimeMs}ms`,
+            hasRawResponse: !!data.raw_response,
+            hasRevisedResponse: !!data.revised_response,
+            detectedIntent: data.detected_intent,
+            cached: data.cached,
+            language: data.language_used,
+            fullResponse: data
+          });
+
+          // Use response_parts from backend if available
+          const messageParts = data.response_parts || [data.revised_response || data.raw_response || t.fallbackReply];
+          const isGreeting = data.is_greeting || false;
+          
+          // Calculate delays based on response type
+          const initialDelay = isGreeting ? 300 : 600;
+          const betweenDelay = isGreeting ? 400 : 800;
+          
+          console.log(`[${new Date().toISOString()}] 📝 Displaying ${messageParts.length} message parts, isGreeting: ${isGreeting}`);
+          
+          // Initial delay before first message
+          await new Promise(resolve => setTimeout(resolve, initialDelay));
+          
+          // Display messages progressively
+          for (let i = 0; i < messageParts.length; i++) {
+            const part = messageParts[i];
+            if (!part || !part.trim()) continue;
+            
+            // Calculate dynamic typing time based on text length
+            const typingTime = Math.min(part.length * 10, 1500);
+            
+            // Show typing indicator
+            setIsTyping(true);
+            console.log(`[${new Date().toISOString()}] 💬 Typing part ${i+1}/${messageParts.length}: ${typingTime}ms`);
+            
+            // Simulate typing
+            await new Promise(resolve => setTimeout(resolve, typingTime));
+            
+            // Hide typing and show message
+            setIsTyping(false);
+            setMessages(prev => [...prev, { text: part, isUser: false }]);
+            
+            // Wait before next message (if not last)
+            if (i < messageParts.length - 1) {
+              console.log(`[${new Date().toISOString()}] ⏱️ Waiting ${betweenDelay}ms before next part`);
+              await new Promise(resolve => setTimeout(resolve, betweenDelay));
+            }
+          }
         }
-
-        clearInterval(intervalId);
-        const end = performance.now();
-        setResponseTime(Math.round(end - start));
-
-        const data = await response.json();
-        const reply = data.revised_response || data.raw_response || t.fallbackReply;
-
-        setMessages(prev => [...prev, { text: reply, isUser: false }]);
       } else {
         // No API configured, use fallback
         throw new Error('API URL not configured');
       }
     } catch (error) {
-      clearInterval(intervalId);
-      console.warn('Chatbot API not available, using fallback mode');
+      const errorTime = new Date().toISOString();
+      console.error(`[${errorTime}] ❌ Error in chat:`, {
+        error: error instanceof Error ? error.message : error,
+        stack: error instanceof Error ? error.stack : undefined,
+        apiUrl: process.env.NEXT_PUBLIC_API_URL,
+        fallbackMode: true
+      });
+      
       // Provide a helpful fallback message
       const fallbackMessage = t.fallbackReply || "I'm currently offline. Please contact us directly at bruno@wbdigitalsolutions.com";
       setMessages(prev => [...prev, { text: fallbackMessage, isUser: false }]);
+      
+      console.log(`[${errorTime}] 🔄 Using fallback message:`, fallbackMessage);
     } finally {
+      const finalTime = new Date().toISOString();
+      const totalTime = Math.round(performance.now() - start);
+      console.log(`[${finalTime}] 🏁 Chat interaction completed:`, {
+        totalTime: `${totalTime}ms`,
+        isTyping: false
+      });
       setIsTyping(false);
     }
   };
