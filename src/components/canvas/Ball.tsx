@@ -169,7 +169,7 @@ const BallCanvas = ({
                 preserveDrawingBuffer: true,
                 powerPreference: "low-power", // Use low power mode for Ball components
                 antialias: !isMobile, // Disable antialiasing on mobile
-                pixelRatio: isMobile ? 1 : Math.min(window.devicePixelRatio, 2) // Limit pixel ratio
+                pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1 // Limit pixel ratio
             }}
             className="w-full h-28"
             style={{

@@ -139,7 +139,7 @@ const ComputersCanvas = () => {
                     preserveDrawingBuffer: true,
                     powerPreference: "high-performance",
                     antialias: !isMobile, // Disable antialiasing on mobile
-                    pixelRatio: isMobile ? 1 : window.devicePixelRatio // Lower pixel ratio on mobile
+                    pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? window.devicePixelRatio : 1 // Lower pixel ratio on mobile
                 }}
                 frameloop="demand" // Only render when needed
                 className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
