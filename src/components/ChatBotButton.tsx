@@ -136,7 +136,7 @@ const ChatBotButton: React.FC = () => {
         const requestStartTime = new Date().toISOString();
         
         // Check if backend supports streaming endpoint
-        const useStreaming = true; // Enable SSE streaming
+        const useStreaming = false; // Use regular endpoint with response_parts
         
         if (useStreaming) {
           console.log(`[${requestStartTime}] 🔄 Starting SSE connection to:`, `${apiUrl}/chat/stream`);
@@ -273,53 +273,120 @@ const ChatBotButton: React.FC = () => {
           const data = await response.json();
           const dataProcessedTime = new Date().toISOString();
           
+          // Log the full response structure for debugging
           console.log(`[${dataProcessedTime}] ✅ Response processed:`, {
             responseTime: `${responseTimeMs}ms`,
+            hasResponseParts: !!data.response_parts,
+            partsCount: data.response_parts?.length || 0,
             hasRawResponse: !!data.raw_response,
             hasRevisedResponse: !!data.revised_response,
             detectedIntent: data.detected_intent,
+            isGreeting: data.is_greeting,
             cached: data.cached,
             language: data.language_used,
+            contextPage: data.context_page,
             fullResponse: data
           });
 
-          // Use response_parts from backend if available
-          const messageParts = data.response_parts || [data.revised_response || data.raw_response || t.fallbackReply];
-          const isGreeting = data.is_greeting || false;
+          // Check if we have response_parts
+          let messageParts = [];
           
-          // Calculate delays based on response type
-          const initialDelay = isGreeting ? 300 : 600;
-          const betweenDelay = isGreeting ? 400 : 800;
-          
-          console.log(`[${new Date().toISOString()}] 📝 Displaying ${messageParts.length} message parts, isGreeting: ${isGreeting}`);
-          
-          // Initial delay before first message
-          await new Promise(resolve => setTimeout(resolve, initialDelay));
-          
-          // Display messages progressively
-          for (let i = 0; i < messageParts.length; i++) {
-            const part = messageParts[i];
-            if (!part || !part.trim()) continue;
+          if (data.response_parts && data.response_parts.length > 0) {
+            console.log(`[${new Date().toISOString()}] 📊 Using response_parts from backend:`, data.response_parts);
+            messageParts = data.response_parts;
+          } else if (data.revised_response || data.raw_response) {
+            // If no parts, split the response into sentences
+            const fullResponse = data.revised_response || data.raw_response;
+            console.log(`[${new Date().toISOString()}] 📊 Splitting response into sentences`);
             
-            // Calculate dynamic typing time based on text length
-            const typingTime = Math.min(part.length * 10, 1500);
+            // Split by sentence endings but keep the punctuation
+            // Also split on exclamation with emoji
+            const sentences = fullResponse.split(/(?<=[.!?])\s+(?=[A-Z])|(?<=[!])\s+(?=[A-Z])|(?<=😊)\s+/);
             
-            // Show typing indicator
-            setIsTyping(true);
-            console.log(`[${new Date().toISOString()}] 💬 Typing part ${i+1}/${messageParts.length}: ${typingTime}ms`);
+            // Process sentences into logical message parts
+            messageParts = [];
             
-            // Simulate typing
-            await new Promise(resolve => setTimeout(resolve, typingTime));
-            
-            // Hide typing and show message
-            setIsTyping(false);
-            setMessages(prev => [...prev, { text: part, isUser: false }]);
-            
-            // Wait before next message (if not last)
-            if (i < messageParts.length - 1) {
-              console.log(`[${new Date().toISOString()}] ⏱️ Waiting ${betweenDelay}ms before next part`);
-              await new Promise(resolve => setTimeout(resolve, betweenDelay));
+            for (const sentence of sentences) {
+              const trimmed = sentence.trim();
+              if (!trimmed) continue;
+              
+              // Each sentence becomes its own message for better readability
+              // Unless it's very short (like "Olá!")
+              if (trimmed.length > 20 || trimmed.includes('?') || trimmed.includes('!')) {
+                messageParts.push(trimmed);
+              } else if (messageParts.length > 0 && messageParts[messageParts.length - 1].length < 100) {
+                // Combine with previous if both are short
+                messageParts[messageParts.length - 1] += ' ' + trimmed;
+              } else {
+                messageParts.push(trimmed);
+              }
             }
+            
+            // If we still have a single long message, try to split it better
+            if (messageParts.length === 1 && messageParts[0].length > 150) {
+              const longMessage = messageParts[0];
+              messageParts = [];
+              
+              // Split on common conjunctions or transitions
+              const parts = longMessage.split(/(?<=\.)\s+(?=\w)|(?<=!)\s+(?=\w)|(?<=\?)\s+(?=\w)/);
+              for (const part of parts) {
+                if (part.trim()) {
+                  messageParts.push(part.trim());
+                }
+              }
+            }
+            
+            console.log(`[${new Date().toISOString()}] 📊 Split into ${messageParts.length} parts`);
+          }
+          
+          if (messageParts.length > 0) {
+            const isGreeting = data.is_greeting || false;
+            
+            // Calculate delays based on response type and length
+            const initialDelay = 500; // Small initial delay
+            const betweenDelay = isGreeting ? 400 : 700; // As specified by backend
+            
+            console.log(`[${new Date().toISOString()}] 📝 Displaying ${messageParts.length} message parts, isGreeting: ${isGreeting}`);
+            
+            // Initial delay before first message
+            await new Promise(resolve => setTimeout(resolve, initialDelay));
+            
+            // Display messages progressively
+            for (let i = 0; i < messageParts.length; i++) {
+              const part = messageParts[i];
+              if (!part || !part.trim()) continue;
+              
+              // Show typing indicator before each part
+              setIsTyping(true);
+              
+              // Calculate typing time (shorter for better UX)
+              const typingTime = Math.min(part.length * 5, 800);
+              console.log(`[${new Date().toISOString()}] 💬 Typing part ${i+1}/${messageParts.length}: "${part.substring(0, 50)}..." (${typingTime}ms)`);
+              
+              // Simulate typing
+              await new Promise(resolve => setTimeout(resolve, typingTime));
+              
+              // Hide typing and show message
+              setIsTyping(false);
+              setMessages(prev => [...prev, { text: part, isUser: false }]);
+              
+              // Wait before next message (if not last)
+              if (i < messageParts.length - 1) {
+                console.log(`[${new Date().toISOString()}] ⏱️ Waiting ${betweenDelay}ms before next part`);
+                await new Promise(resolve => setTimeout(resolve, betweenDelay));
+              }
+            }
+          } else {
+            // Fallback to single message if no parts at all
+            console.log(`[${new Date().toISOString()}] ⚠️ No response found, using fallback`);
+            const reply = t.fallbackReply || "Desculpe, não consegui processar sua mensagem.";
+            
+            // Show typing briefly
+            setIsTyping(true);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            setIsTyping(false);
+            
+            setMessages(prev => [...prev, { text: reply, isUser: false }]);
           }
         }
       } else {
