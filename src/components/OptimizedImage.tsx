@@ -109,7 +109,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   );
 };
 
-// Progressive video loading component
+// Progressive video loading component with automatic optimization
 export const OptimizedVideo: React.FC<{
   src: string;
   poster?: string;
@@ -118,7 +118,8 @@ export const OptimizedVideo: React.FC<{
   muted?: boolean;
   loop?: boolean;
   playsInline?: boolean;
-}> = ({ src, poster, className = '', autoPlay = false, muted = true, loop = true, playsInline = true }) => {
+  quality?: 'low' | 'optimized' | 'auto';
+}> = ({ src, poster, className = '', autoPlay = false, muted = true, loop = true, playsInline = true, quality = 'auto' }) => {
   const [isInView, setIsInView] = useState(false);
   const videoRef = useRef<HTMLDivElement>(null);
 
@@ -152,15 +153,39 @@ export const OptimizedVideo: React.FC<{
     );
   }
 
-  // Prefer optimized versions if available
-  const optimizedSrc = src.includes('_optimized') || src.includes('_lowbitrate') 
-    ? src 
-    : src.replace('.mp4', '_optimized.mp4');
+  // Automatically select best video version based on quality setting
+  const getOptimizedSrc = () => {
+    // If already optimized, use as is
+    if (src.includes('_optimized') || src.includes('_lowbitrate')) {
+      return src;
+    }
+    
+    // Choose quality based on setting or connection
+    if (quality === 'low') {
+      return src.replace('.mp4', '_lowbitrate.mp4');
+    } else if (quality === 'optimized') {
+      return src.replace('.mp4', '_optimized.mp4');
+    } else {
+      // Auto: check connection speed (if available)
+      if (typeof navigator !== 'undefined' && 'connection' in navigator) {
+        const connection = (navigator as any).connection;
+        if (connection && connection.effectiveType) {
+          // Use low quality for slow connections
+          if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+            return src.replace('.mp4', '_lowbitrate.mp4');
+          }
+        }
+      }
+      // Default to optimized version
+      return src.replace('.mp4', '_optimized.mp4');
+    }
+  };
+  
+  const optimizedSrc = getOptimizedSrc();
 
   return (
     <div ref={videoRef}>
       <video
-        src={optimizedSrc}
         poster={poster}
         className={className}
         autoPlay={autoPlay}
@@ -169,13 +194,24 @@ export const OptimizedVideo: React.FC<{
         playsInline={playsInline}
         preload="metadata"
         onError={(e) => {
-          // Fallback to original if optimized doesn't exist
+          // Try fallback versions
           const video = e.currentTarget;
-          if (video.src !== src) {
+          const currentSrc = video.src;
+          
+          if (currentSrc.includes('_lowbitrate')) {
+            // Try optimized version
+            video.src = src.replace('.mp4', '_optimized.mp4');
+          } else if (currentSrc.includes('_optimized')) {
+            // Fall back to original
             video.src = src;
           }
         }}
-      />
+      >
+        {/* Provide multiple sources for better compatibility */}
+        <source src={optimizedSrc} type="video/mp4" />
+        <source src={src.replace('.mp4', '_optimized.mp4')} type="video/mp4" />
+        <source src={src} type="video/mp4" />
+      </video>
     </div>
   );
 };
