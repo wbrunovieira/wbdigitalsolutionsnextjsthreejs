@@ -1,23 +1,47 @@
-"use client";
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from "next/router";
 import BlogPost from "@/components/BlogPost";
-import useBlogTranslation from "@/contexts/useBlogTranslation";
 import Link from "next/link";
 import PageHead from "@/components/PageHead";
+import fs from 'fs';
+import path from 'path';
 
+// List of all blog post IDs
+const blogPostIds = [
+  "do-i-need-a-website",
+  "how-emotional-design-can",
+  "digital-can-transform-company",
+  "chatgpt-for-smes"
+];
 
-const BlogPage: React.FC = () => {
+// List of supported languages
+const languages = ['en', 'es', 'it', 'ptbr'];
+
+interface BlogTranslation {
+  title: string;
+  summary?: string;
+  text: any[];
+  images?: string[];
+  thumbnail?: string;
+  category: string[];
+  author?: string;
+}
+
+interface BlogPageProps {
+  translation: BlogTranslation | null;
+  postId: string;
+}
+
+const BlogPage: React.FC<BlogPageProps> = ({ translation, postId }) => {
   const router = useRouter();
-  const { id } = router.query;
 
-  if (!id || typeof id !== "string") {
-    return <p className="text-center text-red-500 mt-10">Post não encontrado!</p>;
+  // Show loading state while page is being generated
+  if (router.isFallback) {
+    return <p className="text-center text-gray-500 mt-10">Carregando...</p>;
   }
 
-  const translation = useBlogTranslation(id);
-
   if (!translation) {
-    return <p className="text-center text-gray-500 mt-10">Carregando...</p>;
+    return <p className="text-center text-red-500 mt-10">Post não encontrado!</p>;
   }
 
   // Extract description from text array
@@ -41,7 +65,7 @@ const BlogPage: React.FC = () => {
           description: getDescription(),
           author: translation.author || 'WB Digital Solutions',
           datePublished: '2025-01-01T00:00:00Z',
-          images: translation.images || translation.thumbnail ? [translation.thumbnail] : undefined
+          images: translation.images || (translation.thumbnail ? [translation.thumbnail] : undefined)
         }}
       />
       <div className="bg-modern-gradient min-h-screen py-12 mt-32">
@@ -55,13 +79,64 @@ const BlogPage: React.FC = () => {
         <BlogPost
           title={translation.title}
           text={translation.text}
-          images={translation.images}
+          images={translation.images || []}
           category={translation.category}
-          author={translation.author}
+          author={translation.author || 'WB Digital Solutions'}
         />
       </div>
     </>
   );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Generate paths for all blog posts
+  const paths = blogPostIds.map(id => ({
+    params: { id }
+  }));
+
+  return {
+    paths,
+    fallback: false // false means 404 for non-existent pages
+  };
+};
+
+export const getStaticProps: GetStaticProps<BlogPageProps> = async ({ params }) => {
+  const postId = params?.id as string;
+
+  // Validate that the post ID exists
+  if (!blogPostIds.includes(postId)) {
+    return {
+      notFound: true
+    };
+  }
+
+  try {
+    // Default to English, but in production you might want to detect language from headers
+    // For now, we'll use English as default for static generation
+    const language = 'en';
+    
+    // Load the blog post translation
+    const filePath = path.join(process.cwd(), 'src', 'locales', 'blog', language, `${postId}.json`);
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const translation = JSON.parse(fileContent) as BlogTranslation;
+
+    return {
+      props: {
+        translation,
+        postId
+      },
+      revalidate: 3600 // Revalidate every hour
+    };
+  } catch (error) {
+    console.error(`Error loading blog post ${postId}:`, error);
+    return {
+      props: {
+        translation: null,
+        postId
+      },
+      revalidate: 60 // Try again in 1 minute if failed
+    };
+  }
 };
 
 export default BlogPage;
