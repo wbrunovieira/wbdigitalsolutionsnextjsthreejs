@@ -20,16 +20,28 @@ const BlogPage: React.FC = () => {
     return <p className="text-center text-gray-500 mt-10">Carregando...</p>;
   }
 
+  // Extract description from text array
+  const getDescription = () => {
+    if (translation.summary) return translation.summary;
+    if (Array.isArray(translation.text) && translation.text.length > 0) {
+      const firstSection = translation.text[0];
+      if (firstSection.content && Array.isArray(firstSection.content)) {
+        return firstSection.content[0].substring(0, 160);
+      }
+    }
+    return translation.title;
+  };
+
   return (
     <>
       <PageHead 
         customTitle={`${translation.title} | WB Blog`}
         blogPost={{
           title: translation.title,
-          description: translation.text.substring(0, 160),
+          description: getDescription(),
           author: translation.author || 'WB Digital Solutions',
           datePublished: '2025-01-01T00:00:00Z',
-          images: translation.images
+          images: translation.images || translation.thumbnail ? [translation.thumbnail] : undefined
         }}
       />
       <div className="bg-modern-gradient min-h-screen py-12 mt-32">
