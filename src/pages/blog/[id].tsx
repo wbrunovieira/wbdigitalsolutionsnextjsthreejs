@@ -1,8 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import BlogPost from "@/components/BlogPost";
 import Link from "next/link";
 import PageHead from "@/components/PageHead";
+import { useLanguage } from "@/contexts/LanguageContext";
 import fs from 'fs';
 import path from 'path';
 
@@ -28,20 +30,25 @@ interface BlogTranslation {
 }
 
 interface BlogPageProps {
-  translation: BlogTranslation | null;
+  translations: Record<string, BlogTranslation>;
   postId: string;
 }
 
-const BlogPage: React.FC<BlogPageProps> = ({ translation, postId }) => {
+const BlogPage: React.FC<BlogPageProps> = ({ translations, postId }) => {
   const router = useRouter();
+  const { language } = useLanguage();
+  const [translation, setTranslation] = useState<BlogTranslation | null>(null);
+
+  useEffect(() => {
+    // Get the translation for the current language
+    const langKey = language === 'pt' ? 'ptbr' : language;
+    const currentTranslation = translations[langKey] || translations['en'];
+    setTranslation(currentTranslation);
+  }, [language, translations]);
 
   // Show loading state while page is being generated
-  if (router.isFallback) {
+  if (router.isFallback || !translation) {
     return <p className="text-center text-gray-500 mt-10">Carregando...</p>;
-  }
-
-  if (!translation) {
-    return <p className="text-center text-red-500 mt-10">Post não encontrado!</p>;
   }
 
   // Extract description from text array
@@ -72,7 +79,10 @@ const BlogPage: React.FC<BlogPageProps> = ({ translation, postId }) => {
         <div className="mt-10 mb-10 text-center">
           <Link href="/blog">
             <button className="px-6 py-2 bg-yellowcustom text-white font-semibold rounded-lg shadow-md hover:bg-yellowcustom/70 transition duration-300">
-              ← Voltar ao Blog
+              ← {language === 'pt' || language === 'ptbr' ? 'Voltar ao Blog' : 
+                  language === 'es' ? 'Volver al Blog' :
+                  language === 'it' ? 'Torna al Blog' :
+                  'Back to Blog'}
             </button>
           </Link>
         </div>
@@ -110,33 +120,34 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({ params }) 
     };
   }
 
-  try {
-    // Default to English, but in production you might want to detect language from headers
-    // For now, we'll use English as default for static generation
-    const language = 'en';
-    
-    // Load the blog post translation
-    const filePath = path.join(process.cwd(), 'src', 'locales', 'blog', language, `${postId}.json`);
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const translation = JSON.parse(fileContent) as BlogTranslation;
+  // Load translations for all languages
+  const translations: Record<string, BlogTranslation> = {};
+  
+  for (const lang of languages) {
+    try {
+      const filePath = path.join(process.cwd(), 'src', 'locales', 'blog', lang, `${postId}.json`);
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      translations[lang] = JSON.parse(fileContent) as BlogTranslation;
+    } catch (error) {
+      console.error(`Error loading blog post ${postId} for language ${lang}:`, error);
+      // If a translation doesn't exist, we'll skip it
+    }
+  }
 
+  // Make sure we have at least English translation
+  if (!translations['en']) {
     return {
-      props: {
-        translation,
-        postId
-      },
-      revalidate: 3600 // Revalidate every hour
-    };
-  } catch (error) {
-    console.error(`Error loading blog post ${postId}:`, error);
-    return {
-      props: {
-        translation: null,
-        postId
-      },
-      revalidate: 60 // Try again in 1 minute if failed
+      notFound: true
     };
   }
+
+  return {
+    props: {
+      translations,
+      postId
+    },
+    revalidate: 3600 // Revalidate every hour
+  };
 };
 
 export default BlogPage;
