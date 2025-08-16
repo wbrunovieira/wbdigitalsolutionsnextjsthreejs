@@ -22,7 +22,16 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
-      <PageHead customTitle={`${translation.title} | WB Blog`} />
+      <PageHead 
+        customTitle={`${translation.title} | WB Blog`}
+        blogPost={{
+          title: translation.title,
+          description: translation.text.substring(0, 160),
+          author: translation.author || 'WB Digital Solutions',
+          datePublished: '2025-01-01T00:00:00Z',
+          images: translation.images
+        }}
+      />
       <div className="bg-modern-gradient min-h-screen py-12 mt-32">
         <div className="mt-10 mb-10 text-center">
           <Link href="/blog">

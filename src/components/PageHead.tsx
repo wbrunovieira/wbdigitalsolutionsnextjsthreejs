@@ -5,17 +5,34 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import SchemaMarkup from "./SchemaMarkup";
+import { 
+  getOrganizationSchema, 
+  getWebSiteSchema,
+  getServiceSchema,
+  getBreadcrumbSchema,
+  getBlogPostSchema,
+  getLocalBusinessSchema
+} from "@/utils/schemaHelpers";
 
 interface PageHeadProps {
   pageKey?: string;
   dynamicTitle?: string;
   customTitle?: string;
+  blogPost?: {
+    title: string;
+    description: string;
+    author: string;
+    datePublished: string;
+    images?: string[];
+  };
 }
 
 const PageHead: React.FC<PageHeadProps> = ({ 
   pageKey, 
   dynamicTitle,
-  customTitle 
+  customTitle,
+  blogPost 
 }) => {
   const t = useTranslations();
   const { language } = useLanguage();
@@ -63,8 +80,69 @@ const PageHead: React.FC<PageHeadProps> = ({
   const baseUrl = "https://www.wbdigitalsolutions.com";
   const canonicalUrl = `${baseUrl}${router.asPath}`;
 
+  // Generate schemas based on page type
+  const schemas = [];
+  
+  // Add Organization schema on homepage
+  if (!pageKey || pageKey === 'home') {
+    schemas.push(getOrganizationSchema(language));
+    schemas.push(getWebSiteSchema(language));
+    schemas.push(getLocalBusinessSchema(language));
+  }
+
+  // Add Service schema for service pages
+  if (pageKey === 'websites') {
+    schemas.push(getServiceSchema('Web Development', 'Web Development', language));
+  } else if (pageKey === 'automation') {
+    schemas.push(getServiceSchema('Digital Automation', 'Digital Automation', language));
+  } else if (pageKey === 'ai') {
+    schemas.push(getServiceSchema('Artificial Intelligence', 'Artificial Intelligence', language));
+  } else if (pageKey === 'systems') {
+    schemas.push(getServiceSchema('Custom Systems', 'Custom Systems', language));
+  }
+
+  // Add BlogPosting schema for blog posts
+  if (blogPost) {
+    schemas.push(getBlogPostSchema(
+      blogPost.title,
+      blogPost.description,
+      blogPost.author,
+      blogPost.datePublished,
+      canonicalUrl,
+      blogPost.images
+    ));
+  }
+
+  // Add Breadcrumb schema for all pages except homepage
+  if (pageKey && pageKey !== 'home') {
+    const breadcrumbItems = [
+      { name: 'Home', url: baseUrl }
+    ];
+    
+    if (pageKey === 'blog') {
+      breadcrumbItems.push({ name: 'Blog', url: `${baseUrl}/blog` });
+    } else if (blogPost) {
+      breadcrumbItems.push(
+        { name: 'Blog', url: `${baseUrl}/blog` },
+        { name: blogPost.title }
+      );
+    } else if (pageKey === 'contact') {
+      breadcrumbItems.push({ name: 'Contact', url: `${baseUrl}/contact` });
+    } else if (pageKey === 'websites') {
+      breadcrumbItems.push({ name: 'Websites', url: `${baseUrl}/websites` });
+    } else if (pageKey === 'automation') {
+      breadcrumbItems.push({ name: 'Automation', url: `${baseUrl}/automation` });
+    } else if (pageKey === 'ai') {
+      breadcrumbItems.push({ name: 'AI', url: `${baseUrl}/ai` });
+    }
+    
+    schemas.push(getBreadcrumbSchema(breadcrumbItems, language));
+  }
+
   return (
-    <Head>
+    <>
+      <SchemaMarkup schemas={schemas} />
+      <Head>
       {/* Core Meta Tags */}
       <title>{title}</title>
       <meta charSet="UTF-8" />
@@ -98,11 +176,12 @@ const PageHead: React.FC<PageHeadProps> = ({
       <link rel="icon" href="/img/favicon.png" />
       <link rel="preload" as="image" href="/img/favicon.png" />
 
-      {/* Language alternates for SEO */}
-      <link rel="alternate" hrefLang="en" href={`${baseUrl}/en${router.pathname}`} />
+      {/* Language alternates for SEO - Dynamic based on current language */}
+      <link rel="alternate" hrefLang="en" href={`${baseUrl}${router.pathname}`} />
       <link rel="alternate" hrefLang="es" href={`${baseUrl}/es${router.pathname}`} />
       <link rel="alternate" hrefLang="it" href={`${baseUrl}/it${router.pathname}`} />
       <link rel="alternate" hrefLang="pt-BR" href={`${baseUrl}/pt-BR${router.pathname}`} />
+      <link rel="alternate" hrefLang="pt" href={`${baseUrl}/pt-BR${router.pathname}`} />
       <link rel="alternate" hrefLang="x-default" href={`${baseUrl}${router.pathname}`} />
 
       {/* Pipedrive Tag */}
@@ -150,7 +229,8 @@ const PageHead: React.FC<PageHeadProps> = ({
           `,
         }}
       />
-    </Head>
+      </Head>
+    </>
   );
 };
 
