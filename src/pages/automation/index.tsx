@@ -4,6 +4,7 @@ import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgoru
 
 import CallToActionAutomation from '@/components/AutomationCTA';
 import { AutomationHeader } from '@/components/AutomationHeader';
+import PageHead from '@/components/PageHead';
 
 
 const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false });
@@ -15,8 +16,9 @@ const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr:
 
 const ai: React.FC = () => {
   return(
-
-    <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen w-full max-w-7xl mx-auto">
+    <>
+      <PageHead pageKey="automation" />
+      <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen w-full max-w-7xl mx-auto">
 
       <div className="ml-8 md:ml-20 md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 
@@ -35,7 +37,8 @@ const ai: React.FC = () => {
     <CallToActionAutomation />
 
 
-  </main>
+      </main>
+    </>
   ) 
 };
 

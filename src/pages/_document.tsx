@@ -17,9 +17,9 @@ class MyDocument extends Document {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                // Initial configuration - page tracking handled in _app.tsx
+                // Initial configuration - page tracking now handled by PageHead component
                 gtag('config', 'G-PZ3WX1KF35', {
-                  send_page_view: false // Prevent automatic page view on load
+                  send_page_view: true // Enable automatic page view tracking
                 });
                 gtag('config', 'AW-802397591');
               `,

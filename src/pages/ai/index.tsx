@@ -7,6 +7,7 @@ import { AIHeader } from '@/components/AIHeader';
 import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
 
 import dynamic from 'next/dynamic';
+import PageHead from '@/components/PageHead';
 
 
 const LLMSection = dynamic(() => import('@/components/AILLMSection'), { ssr: false });
@@ -16,7 +17,9 @@ const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), 
 
 const ai: React.FC = () => {
   return (
-  <main className='mt-16 w-full max-w-7xl mx-auto'>
+  <>
+    <PageHead pageKey="ai" />
+    <main className='mt-16 w-full max-w-7xl mx-auto'>
       <div className="relative w-full mt-32 ">
 
         <div className="ml-2 md:ml-8 flex relative inset-0 z-0  mx-auto">
@@ -47,7 +50,8 @@ const ai: React.FC = () => {
         <CTAInvitation  />
         </div>
     </div>
-  </main>)
+    </main>
+  </>)
 };
 
 export default ai;

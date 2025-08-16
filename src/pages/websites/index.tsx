@@ -10,6 +10,7 @@ import { WebsiteHeader } from "@/components/WebsiteHeader";
 
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
+import PageHead from "@/components/PageHead";
 
 const OurApproach = dynamic(() => import("../../components/OurApproach"), { ssr: false });
 const Differentiators = dynamic(() => import("../../components/Differentiators"), { ssr: false });
@@ -27,7 +28,9 @@ const Websites: React.FC = () => {
 
 
     return (
-        <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen mt-16">
+        <>
+            <PageHead pageKey="websites" />
+            <main className="relative flex flex-col items-center justify-center bg-modern-gradient min-h-screen mt-16">
 
          <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
 
@@ -46,7 +49,8 @@ const Websites: React.FC = () => {
             <Differentiators />
             <Comparison  />  
             <CTAWebsite />
-        </main>
+            </main>
+        </>
     );
 };
 

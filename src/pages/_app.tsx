@@ -55,26 +55,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     // Track page views on route change
     const handleRouteChange = (url: string) => {
-      // Wait for DOM to be ready
-      setTimeout(() => {
-        pageview(url);
-        console.log('[GA] Pageview tracked:', url);
-        
-        // Send a custom event to ensure tracking
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-          (window as any).gtag('event', 'page_view', {
-            page_path: url,
-            page_title: document.title,
-            page_location: window.location.href,
-            send_to: GA_TRACKING_ID
-          });
-        }
-        
-        // Also track for Facebook Pixel
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-          (window as any).fbq('track', 'PageView');
-        }
-      }, 100);
+      // Track for Facebook Pixel
+      if (typeof window !== 'undefined' && (window as any).fbq) {
+        (window as any).fbq('track', 'PageView');
+      }
     };
 
     // Listen to route changes
@@ -82,22 +66,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     router.events.on('routeChangeError', (err, url) => {
       console.error('[GA] Failed to track page:', url, err);
     });
-    
-    // Track initial page load after a delay to ensure GA is loaded
-    setTimeout(() => {
-      const initialUrl = window.location.pathname + window.location.search;
-      handleRouteChange(initialUrl);
-      
-      // Also send initial page view event
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'page_view', {
-          page_path: initialUrl,
-          page_title: document.title,
-          page_location: window.location.href,
-          send_to: GA_TRACKING_ID
-        });
-      }
-    }, 1000);
 
     // Clean up
     return () => {

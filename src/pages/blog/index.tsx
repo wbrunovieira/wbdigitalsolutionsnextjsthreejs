@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import useBlogTranslation from "@/contexts/useBlogTranslation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import PageHead from "@/components/PageHead";
 
 const blogList = [
   { id: "do-i-need-a-website" },
@@ -39,7 +40,9 @@ const BlogIndexPage: React.FC = () => {
   });
 
   return (
-    <div className="relative w-full min-h-screen overflow-hidden mt-32">
+    <>
+      <PageHead pageKey="blog" />
+      <div className="relative w-full min-h-screen overflow-hidden mt-32">
 
       <div className="text-center mb-8 p-2">
         <h1 className="text-5xl font-extrabold text-yellowcustom mt-16">
@@ -190,7 +193,8 @@ const BlogIndexPage: React.FC = () => {
           )}
         </AnimatePresence>
       </motion.div>
-    </div>
+      </div>
+    </>
   );
 };
 
