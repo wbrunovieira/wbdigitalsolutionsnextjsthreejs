@@ -124,7 +124,7 @@ const PageHead: React.FC<PageHeadProps> = ({
     } else if (blogPost) {
       breadcrumbItems.push(
         { name: 'Blog', url: `${baseUrl}/blog` },
-        { name: blogPost.title }
+        { name: blogPost.title, url: canonicalUrl }
       );
     } else if (pageKey === 'contact') {
       breadcrumbItems.push({ name: 'Contact', url: `${baseUrl}/contact` });
