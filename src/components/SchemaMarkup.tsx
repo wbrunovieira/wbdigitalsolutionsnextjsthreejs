@@ -99,6 +99,7 @@ export interface LocalBusinessSchema {
   };
   openingHours?: string[];
   priceRange?: string;
+  image?: string[];
 }
 
 type SchemaType = 
@@ -234,6 +235,7 @@ const SchemaMarkup: React.FC<SchemaMarkupProps> = ({ schemas }) => {
           url: schema.url,
           telephone: schema.telephone,
           email: schema.email,
+          image: schema.image,
           address: schema.address ? {
             '@type': 'PostalAddress',
             streetAddress: schema.address.streetAddress,
