@@ -33,6 +33,7 @@ const nextConfig = {
                 https://tr-rc.lfeeder.com
                 https://c.clarity.ms
                 https://e.clarity.ms
+                https://o.clarity.ms
                 https://www.facebook.com
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
