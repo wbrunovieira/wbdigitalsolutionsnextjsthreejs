@@ -116,7 +116,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         />
         
         {/* Room Structure */}
-        <Room />
+        <Room language={language} />
         
         {/* Office Desks */}
         <Desk position={[0, 0, -3]} service={getServiceName('websites')}>
