@@ -12,9 +12,10 @@ type LayoutProps = {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const router = useRouter();
     const is3DShowcase = router.pathname === '/3d-showcase';
+    const is3DTunnel = router.pathname === '/3d-tunnel';
 
-    // For 3D showcase, render only the children without layout
-    if (is3DShowcase) {
+    // For 3D showcase and tunnel, render only the children without layout
+    if (is3DShowcase || is3DTunnel) {
         return <>{children}</>;
     }
 
