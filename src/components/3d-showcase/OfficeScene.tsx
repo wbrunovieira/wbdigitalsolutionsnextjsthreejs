@@ -12,6 +12,7 @@ import Monitor from './components/Monitor';
 import InteractiveBall from './components/InteractiveBall';
 import FloatingParticles from './components/FloatingParticles';
 import Button3D from './components/Button3D';
+import HolographicInfo from './components/HolographicInfo';
 
 // Data & Constants
 import { codeSnippets, ServiceType } from './data/codeSnippets';
@@ -118,13 +119,19 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         {/* Room Structure */}
         <Room language={language} />
         
-        {/* Office Desks */}
+        {/* Office Desks with Holographic Info */}
         <Desk position={[0, 0, -3]} service={getServiceName('websites')}>
           <Button3D 
             position={[0.5, 0.85, 0.3]}
             onClick={() => setActiveButton('websites')}
             isActive={activeButton === 'websites'}
             label={getServiceName('websites')}
+          />
+          <HolographicInfo
+            isActive={activeButton === 'websites'}
+            serviceType="websites"
+            language={language}
+            position={[0, 2.8, 0]}
           />
         </Desk>
         
@@ -135,6 +142,12 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'automation'}
             label={getServiceName('automation')}
           />
+          <HolographicInfo
+            isActive={activeButton === 'automation'}
+            serviceType="automation"
+            language={language}
+            position={[0, 2.8, 0]}
+          />
         </Desk>
         
         <Desk position={[5, 0, 2]} service={getServiceName('ai')}>
@@ -143,6 +156,12 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             onClick={() => setActiveButton('ai')}
             isActive={activeButton === 'ai'}
             label={getServiceName('ai')}
+          />
+          <HolographicInfo
+            isActive={activeButton === 'ai'}
+            serviceType="ai"
+            language={language}
+            position={[0, 2.8, 0]}
           />
         </Desk>
       </Physics>
