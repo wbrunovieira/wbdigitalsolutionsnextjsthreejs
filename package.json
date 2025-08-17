@@ -10,7 +10,7 @@
         "lint": "next lint --fix"
     },
     "dependencies": {
-        "@gsap/react": "^2.1.1",
+        "@gsap/react": "^2.1.2",
         "@lottiefiles/react-lottie-player": "^3.6.0",
         "@react-spring/three": "^9.7.5",
         "@react-spring/web": "^9.7.5",
