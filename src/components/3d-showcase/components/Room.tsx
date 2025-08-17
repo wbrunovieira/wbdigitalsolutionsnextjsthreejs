@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@react-three/drei';
+import { Box, Image } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
 /**
@@ -15,6 +15,16 @@ const Room: React.FC = () => {
           <meshStandardMaterial color="#2a2a2a" />
         </Box>
       </RigidBody>
+      
+      {/* Giant WB Logo on Floor */}
+      <Image 
+        url="/svg/logo-white.svg" 
+        position={[0, 0.01, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[8, 3]}
+        transparent
+        opacity={0.3}
+      />
       
       {/* Back Wall */}
       <RigidBody type="fixed">

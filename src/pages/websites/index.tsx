@@ -47,13 +47,13 @@ const Websites: React.FC = () => {
             <Link href="/3d-showcase">
                 <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-3 text-lg">
                     <span>🚀</span>
-                    <span>Enter 3D Experience</span>
+                    <span>3D Office Experience</span>
                 </button>
             </Link>
             <Link href="/3d-tunnel">
                 <button className="bg-gradient-to-r from-purple-600 to-yellow-500 hover:from-purple-700 hover:to-yellow-600 text-white font-bold py-4 px-8 rounded-lg shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-3 text-lg">
                     <span>🌌</span>
-                    <span>Tunnel Experience</span>
+                    <span>3D Tunnel Experience</span>
                 </button>
             </Link>
         </div>

@@ -18,11 +18,14 @@ const nextConfig = {
                 https://www.googleadservices.com
                 https://www.google.com
                 https://www.gstatic.com
+                https://fonts.gstatic.com
+                https://fonts.googleapis.com
                 https://region1.google-analytics.com
                 https://tr-rc.lfeeder.com
                 https://c.clarity.ms
                 https://e.clarity.ms
                 https://www.facebook.com
+                https://cdn.jsdelivr.net
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
                 https://connect.facebook.net 
@@ -49,7 +52,7 @@ const nextConfig = {
                 https://tr.lfeeder.com
                 https://www.google.com.br
                 data:;
-              font-src 'self' https://fonts.gstatic.com data:;
+              font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
               frame-src 'self' 
                 https://www.youtube.com
                 https://www.googletagmanager.com

@@ -1,3 +1,4 @@
+// src/components/3d-showcase/OfficeScene.tsx
 import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -16,14 +17,49 @@ import Button3D from './components/Button3D';
 import { codeSnippets, ServiceType } from './data/codeSnippets';
 import { CAMERA, PHYSICS, COLORS, ANIMATION } from './constants';
 
+interface OfficeSceneProps {
+  language?: string;
+}
+
 /**
  * Main 3D Office Scene Component
  * Orchestrates all sub-components for the interactive 3D environment
  */
-const OfficeScene: React.FC = () => {
+const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
   const [activeButton, setActiveButton] = useState<ServiceType>('websites');
   const [displayedCode, setDisplayedCode] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  
+  // Get translated service names
+  const getServiceName = (service: string) => {
+    switch(language) {
+      case 'pt-BR':
+      case 'pt':
+        return {
+          websites: 'SITES',
+          automation: 'AUTOMAÇÃO',
+          ai: 'I.A.'
+        }[service.toLowerCase()] || service;
+      case 'es':
+        return {
+          websites: 'SITIOS WEB',
+          automation: 'AUTOMATIZACIÓN',
+          ai: 'I.A.'
+        }[service.toLowerCase()] || service;
+      case 'it':
+        return {
+          websites: 'SITI WEB',
+          automation: 'AUTOMAZIONE',
+          ai: 'I.A.'
+        }[service.toLowerCase()] || service;
+      default:
+        return {
+          websites: 'WEBSITES',
+          automation: 'AUTOMATION',
+          ai: 'A.I.'
+        }[service.toLowerCase()] || service;
+    }
+  };
   
   // Typewriter effect for code display
   useEffect(() => {
@@ -83,30 +119,30 @@ const OfficeScene: React.FC = () => {
         <Room />
         
         {/* Office Desks */}
-        <Desk position={[0, 0, -3]} service="WEBSITES">
+        <Desk position={[0, 0, -3]} service={getServiceName('websites')}>
           <Button3D 
             position={[0.5, 0.85, 0.3]}
             onClick={() => setActiveButton('websites')}
             isActive={activeButton === 'websites'}
-            label="WEBSITES"
+            label={getServiceName('websites')}
           />
         </Desk>
         
-        <Desk position={[-5, 0, 2]} service="AUTOMATION">
+        <Desk position={[-5, 0, 2]} service={getServiceName('automation')}>
           <Button3D 
             position={[0.4, 0.85, 0.2]}
             onClick={() => setActiveButton('automation')}
             isActive={activeButton === 'automation'}
-            label="AUTOMATION"
+            label={getServiceName('automation')}
           />
         </Desk>
         
-        <Desk position={[5, 0, 2]} service="A.I.">
+        <Desk position={[5, 0, 2]} service={getServiceName('ai')}>
           <Button3D 
             position={[0.4, 0.85, 0.2]}
             onClick={() => setActiveButton('ai')}
             isActive={activeButton === 'ai'}
-            label="A.I."
+            label={getServiceName('ai')}
           />
         </Desk>
       </Physics>

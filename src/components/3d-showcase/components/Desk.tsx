@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Image, Text3D, Center } from '@react-three/drei';
+import { Box, Image, Text, Center } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
 interface DeskProps {
   position: [number, number, number];
-  service: 'WEBSITES' | 'AUTOMATION' | 'A.I.';
+  service: string;
   deskSize?: [number, number, number];
   logoScale?: [number, number];
   textColor?: string;
@@ -33,13 +33,21 @@ const Desk: React.FC<DeskProps> = ({
   textSize = 0.3,
   children 
 }) => {
+  // Check service type based on content (works for any language)
+  const isWebsites = service.includes('SITE') || service.includes('WEB');
+  const isAutomation = service.includes('AUTOMA');
+  const isAI = service.includes('I.A') || service.includes('A.I');
+  
   // Adjust desk size for main desk
-  const finalDeskSize: BoxArgs = service === 'WEBSITES' ? [3, 0.1, 1.5] : [...deskSize] as BoxArgs;
-  const finalLogoScale: [number, number] = service === 'WEBSITES' ? [0.8, 0.3] : logoScale;
+  const finalDeskSize: BoxArgs = isWebsites ? [3, 0.1, 1.5] : [...deskSize] as BoxArgs;
+  const finalLogoScale: [number, number] = isWebsites ? [0.8, 0.3] : logoScale;
   
   // Adjust text color for different services
-  const finalTextColor = service === 'AUTOMATION' ? '#ffb947' : textColor;
-  const finalTextSize = service === 'A.I.' ? 0.36 : (service === 'AUTOMATION' ? 0.24 : textSize);
+  const finalTextColor = isAutomation ? '#ffb947' : textColor;
+  
+  // Adjust text size based on text length for better fitting
+  const baseSize = service.length > 10 ? 0.35 : (service.length > 8 ? 0.45 : 0.6);
+  const finalTextSize = isAI ? baseSize * 1.2 : (isAutomation ? baseSize * 0.8 : baseSize);
   
   return (
     <>
@@ -51,7 +59,7 @@ const Desk: React.FC<DeskProps> = ({
         </Box>
         
         {/* Desk Legs */}
-        {service === 'WEBSITES' ? (
+        {isWebsites ? (
           <>
             <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, -0.6]} castShadow>
               <meshStandardMaterial color="#2a2520" />
@@ -89,38 +97,81 @@ const Desk: React.FC<DeskProps> = ({
         {/* WB Logo on Desk */}
         <Image 
           url="/svg/logo-white.svg" 
-          position={[0, 0.86, service === 'WEBSITES' ? 0.2 : 0.1]}
+          position={[0, 0.86, isWebsites ? 0.2 : 0.1]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={finalLogoScale}
           transparent
           opacity={0.9}
         />
         
-        {/* 3D Text */}
-        <Center position={[0, 1.2, 0]}>
-          <Text3D
-            font="/img/assets/fonts/optimer_regular.typeface.json"
-            size={finalTextSize}
-            height={service === 'A.I.' ? 0.09 : 0.06}
-            curveSegments={12}
-            bevelEnabled
-            bevelThickness={0.01}
-            bevelSize={service === 'A.I.' ? 0.003 : 0.002}
-            bevelOffset={0}
-            bevelSegments={5}
+        {/* 3D Text with Troika (supports special characters) */}
+        <group position={[0, 1.3, 0]}>
+          <Text
+            fontSize={finalTextSize * 1.5}
+            color={finalTextColor}
+            anchorX="center"
+            anchorY="middle"
+            fontWeight={900}
+            maxWidth={4}
+            lineHeight={1}
+            letterSpacing={0.01}
+            textAlign="center"
+            outlineWidth={0.08}
+            outlineColor="#000000"
+            outlineBlur={0.02}
+            outlineOpacity={0.8}
+            strokeWidth={'2%'}
+            strokeColor={finalTextColor}
+            strokeOpacity={1}
+            fillOpacity={1}
             castShadow
             receiveShadow
           >
             {service}
             <meshStandardMaterial 
+              attach="material"
               color={finalTextColor} 
               emissive={finalTextColor} 
-              emissiveIntensity={service === 'A.I.' ? 0.2 : 0.1}
+              emissiveIntensity={isAI ? 0.4 : 0.2}
               metalness={0.3}
-              roughness={0.4}
+              roughness={0.2}
+              side={2}
             />
-          </Text3D>
-        </Center>
+          </Text>
+          
+          {/* Multiple shadow layers for depth */}
+          <Text
+            position={[0.02, -0.02, -0.03]}
+            fontSize={finalTextSize * 1.5}
+            color="#000000"
+            anchorX="center"
+            anchorY="middle"
+            fontWeight={900}
+            maxWidth={4}
+            lineHeight={1}
+            letterSpacing={0.01}
+            textAlign="center"
+            fillOpacity={0.4}
+          >
+            {service}
+          </Text>
+          
+          <Text
+            position={[0.04, -0.04, -0.06]}
+            fontSize={finalTextSize * 1.5}
+            color="#000000"
+            anchorX="center"
+            anchorY="middle"
+            fontWeight={900}
+            maxWidth={4}
+            lineHeight={1}
+            letterSpacing={0.01}
+            textAlign="center"
+            fillOpacity={0.2}
+          >
+            {service}
+          </Text>
+        </group>
         
         {/* Additional elements (buttons, etc) */}
         {children}
