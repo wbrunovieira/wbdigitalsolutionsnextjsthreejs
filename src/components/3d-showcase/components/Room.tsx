@@ -9,22 +9,90 @@ import { RigidBody } from '@react-three/rapier';
 const Room: React.FC = () => {
   return (
     <>
-      {/* Floor with physics */}
+      {/* Premium Minimalist Floor with physics */}
       <RigidBody type="fixed">
         <Box args={[20, 0.1, 20]} position={[0, -0.05, 0]} receiveShadow>
-          <meshStandardMaterial color="#2a2a2a" />
+          <meshStandardMaterial 
+            color="#3a3a3a"
+            metalness={0.2}
+            roughness={0.3}
+            envMapIntensity={0.5}
+          />
         </Box>
       </RigidBody>
       
-      {/* Giant WB Logo on Floor */}
-      <Image 
-        url="/svg/logo-white.svg" 
-        position={[0, 0.01, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={[8, 3]}
-        transparent
-        opacity={0.3}
-      />
+      {/* Polished concrete overlay effect */}
+      <Box args={[20, 0.01, 20]} position={[0, 0.01, 0]} receiveShadow>
+        <meshStandardMaterial 
+          color="#404040"
+          metalness={0.4}
+          roughness={0.15}
+          transparent
+          opacity={0.5}
+        />
+      </Box>
+      
+      {/* WB Logo - Embossed effect center */}
+      <group position={[0, 0.02, 0]}>
+        {/* Logo base (raised platform) */}
+        <Box args={[6, 0.02, 2.5]} position={[0, 0, 0]} castShadow receiveShadow>
+          <meshStandardMaterial 
+            color="#454545"
+            metalness={0.3}
+            roughness={0.2}
+          />
+        </Box>
+        
+        {/* Logo image on raised platform */}
+        <Image 
+          url="/svg/logo-white.svg" 
+          position={[0, 0.011, 0]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          scale={[5, 2]}
+          transparent
+          opacity={0.2}
+        />
+      </group>
+      
+      {/* Spotlights under desks (glowing circles) */}
+      {/* Center desk spotlight */}
+      <mesh position={[0, 0.012, -3]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[1.5, 2, 32]} />
+        <meshStandardMaterial
+          color="#792990"
+          emissive="#792990"
+          emissiveIntensity={0.3}
+          transparent
+          opacity={0.4}
+          side={2}
+        />
+      </mesh>
+      
+      {/* Left desk spotlight */}
+      <mesh position={[-5, 0.012, 2]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[1.2, 1.6, 32]} />
+        <meshStandardMaterial
+          color="#ffb947"
+          emissive="#ffb947"
+          emissiveIntensity={0.3}
+          transparent
+          opacity={0.4}
+          side={2}
+        />
+      </mesh>
+      
+      {/* Right desk spotlight */}
+      <mesh position={[5, 0.012, 2]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[1.2, 1.6, 32]} />
+        <meshStandardMaterial
+          color="#4a90e2"
+          emissive="#4a90e2"
+          emissiveIntensity={0.3}
+          transparent
+          opacity={0.4}
+          side={2}
+        />
+      </mesh>
       
       {/* Back Wall */}
       <RigidBody type="fixed">

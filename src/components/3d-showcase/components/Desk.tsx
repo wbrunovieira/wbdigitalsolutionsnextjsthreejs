@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Text, Center } from '@react-three/drei';
+import { Box, Image, Text, Text3D, Center } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
 interface DeskProps {
@@ -172,6 +172,32 @@ const Desk: React.FC<DeskProps> = ({
             {service}
           </Text>
         </group>
+        
+        {/* Small 3D Text - WB Digital Solutions */}
+        <Center position={[-0.7, 0.91, 0.3]}>
+          <Text3D
+            font="/img/assets/fonts/optimer_regular.typeface.json"
+            size={0.08}
+            height={0.02}
+            curveSegments={8}
+            bevelEnabled
+            bevelThickness={0.005}
+            bevelSize={0.002}
+            bevelOffset={0}
+            bevelSegments={3}
+            castShadow
+            receiveShadow
+          >
+            WB Digital Solutions
+            <meshStandardMaterial 
+              color="#792990"
+              emissive="#792990"
+              emissiveIntensity={0.1}
+              metalness={0.5}
+              roughness={0.3}
+            />
+          </Text3D>
+        </Center>
         
         {/* Additional elements (buttons, etc) */}
         {children}
