@@ -30,7 +30,12 @@ const ThreeDTunnel: React.FC = () => {
         <Link href="/websites">
           <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center gap-2">
             <span>←</span>
-            <span>Exit Tunnel</span>
+            <span>
+              {language === 'pt-BR' || language === 'pt' ? 'Sair do Túnel' : 
+               language === 'es' ? 'Salir del Túnel' :
+               language === 'it' ? 'Esci dal Tunnel' :
+               'Exit Tunnel'}
+            </span>
           </button>
         </Link>
       </div>
