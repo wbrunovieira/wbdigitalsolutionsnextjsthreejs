@@ -75,7 +75,7 @@ const VortexPortal: React.FC = () => {
         <Torus
           key={i}
           args={[2 + i * 0.5, 0.1, 16, 100]}
-          position={[0, 0, -i * 0.5]}
+          position={[0, 0.5, -2 - i * 0.8]}
         >
           <meshStandardMaterial
             color="#792990"
@@ -487,16 +487,16 @@ const Portal3DSectionGSAP: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative w-full min-h-screen bg-black overflow-hidden">
       {/* Deep Shadow Edges with Warping Effect - Creating hole effect */}
-      <div className="absolute inset-x-0 top-0 h-48 z-20 pointer-events-none">
+      <div className="absolute inset-x-0 top-0 h-48 z-10 pointer-events-none">
         {/* Multiple shadow layers for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-transparent blur-md" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent blur-2xl" />
         
         {/* Glowing energy line */}
-        <div ref={topGlowRef} className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-80" 
+        <div ref={topGlowRef} className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-80" 
              style={{ filter: 'blur(4px)' }} />
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
         
         {/* Distortion waves */}
         <div className="absolute bottom-0 left-0 right-0 h-32 overflow-hidden">
@@ -511,19 +511,11 @@ const Portal3DSectionGSAP: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent blur-2xl" />
         
         {/* Glowing energy line */}
-        <div ref={bottomGlowRef} className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-80" 
+        <div ref={bottomGlowRef} className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-80" 
              style={{ filter: 'blur(4px)' }} />
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
         
-        {/* Floating geometric fragments - larger and more visible */}
-        <div className="absolute top-8 left-0 right-0 h-16 overflow-visible">
-          <div className="absolute top-0 left-[15%] w-6 h-6 bg-yellow-500/50 rotate-45 animate-float-slow shadow-lg shadow-yellow-500/30" />
-          <div className="absolute top-2 left-[30%] w-8 h-8 bg-yellow-600/40 rotate-12 animate-float-medium shadow-lg shadow-yellow-600/30" />
-          <div className="absolute top-4 left-[45%] w-5 h-5 bg-purple-500/45 rotate-45 animate-float-slow shadow-lg shadow-purple-500/30" />
-          <div className="absolute top-0 left-[60%] w-4 h-4 bg-yellow-400/60 animate-float-fast shadow-lg shadow-yellow-400/30" />
-          <div className="absolute top-3 left-[75%] w-7 h-7 bg-yellow-700/40 rotate-60 animate-float-medium shadow-lg shadow-yellow-700/30" />
-          <div className="absolute top-1 left-[90%] w-6 h-6 bg-purple-600/50 rotate-30 animate-float-slow shadow-lg shadow-purple-600/30" />
-        </div>
+
         
         {/* Distortion waves */}
         <div className="absolute top-0 left-0 right-0 h-32 overflow-hidden">
@@ -595,7 +587,7 @@ const Portal3DSectionGSAP: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-24 flex flex-col items-center justify-center min-h-screen">
         {/* Title Section */}
-        <div className="text-center mb-16 max-w-4xl">
+        <div className="text-center mb-16 max-w-4xl" style={{ marginTop: '-400px', position: 'relative', zIndex: 30 }}>
           <h2 
             ref={titleRef}
             className="text-5xl md:text-7xl font-bold text-white mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent"

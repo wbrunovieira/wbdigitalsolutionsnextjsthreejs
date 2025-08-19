@@ -40,17 +40,39 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     // Removido useFrame - agora usa autoRotate do OrbitControls
 
     return (
-        <mesh>
-            <hemisphereLight intensity={2.5} groundColor="black" />
-            <spotLight
-                position={[-10, 20, 10]}
-                angle={0.12}
-                penumbra={1}
-                intensity={4}
-                castShadow
-                shadow-mapSize={1024}
+        <>
+            <fog attach="fog" args={["#0a0a0a", 10, 50]} />
+            
+            <ambientLight intensity={0.3} />
+            <hemisphereLight 
+                intensity={0.8} 
+                color="#b1e1ff"
+                groundColor="#000000" 
             />
-            <pointLight intensity={1} />
+            
+            <spotLight
+                position={[-20, 30, 10]}
+                angle={0.15}
+                penumbra={1}
+                intensity={2}
+                castShadow
+                shadow-mapSize={2048}
+                color="#ffffff"
+            />
+            
+            <spotLight
+                position={[10, -10, -5]}
+                angle={0.3}
+                penumbra={0.5}
+                intensity={0.5}
+                color="#792990"
+            />
+            
+            <pointLight 
+                position={[0, 5, -10]} 
+                intensity={0.5} 
+                color="#ffb947"
+            />
 
             <primitive
                 ref={computerRef}
@@ -59,7 +81,25 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
                 position={isMobile ? [-2.5, -2, -2.2] : [0, -1.25, -1.5]}
                 rotation={[-0.01, -0.2, -0.1]}
             />
-        </mesh>
+            
+            <mesh position={[0, -5, -2]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+                <planeGeometry args={[50, 50]} />
+                <meshStandardMaterial 
+                    color="#0a0a0a"
+                    roughness={0.8}
+                    metalness={0.2}
+                />
+            </mesh>
+            
+            <mesh position={[0, 0, -15]}>
+                <planeGeometry args={[100, 100]} />
+                <meshBasicMaterial 
+                    color="#050505"
+                    opacity={0.8}
+                    transparent
+                />
+            </mesh>
+        </>
     );
 };
 
@@ -113,8 +153,12 @@ const ComputersCanvas = () => {
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows
-                camera={{ position: [20, 3, 25], fov: 45 }}
-                gl={{ preserveDrawingBuffer: true }}
+                camera={{ position: [20, 5, 30], fov: 35, near: 0.1, far: 100 }}
+                gl={{ 
+                    preserveDrawingBuffer: true,
+                    antialias: true,
+                    alpha: true
+                }}
                 className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
             >
                 <Suspense fallback={<CanvasLoader />}>
