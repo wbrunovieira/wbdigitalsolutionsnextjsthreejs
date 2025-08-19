@@ -6,7 +6,7 @@ import MetaTags from "@/components/MetaTags";
 
 function Index() {
     return (
-        <div className="w-full max-w-7xl mt-16">
+        <div className="w-full">
           <MetaTags />
             <LanguageRouter />
             <Home />

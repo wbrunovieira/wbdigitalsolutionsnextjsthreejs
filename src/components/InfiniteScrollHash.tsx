@@ -36,7 +36,7 @@ const InfiniteScrollHash: React.FC = () => {
     console.log("Tags filtradas:", tags.length, tags);
 
     return (
-        <section className="w-full max-w-7xl mx-auto py-10 bg-[#350545] overflow-hidden">
+        <section className="w-full max-w-[1400px] mx-auto py-10 bg-[#350545] overflow-hidden mt-32">
             <div className="tag-list py-4">
                 <div className="inner">
                     {tags.map((tag, index) => (
