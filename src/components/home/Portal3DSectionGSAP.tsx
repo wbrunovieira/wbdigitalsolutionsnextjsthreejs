@@ -487,33 +487,57 @@ const Portal3DSectionGSAP: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative w-full min-h-screen bg-black overflow-hidden">
       {/* Deep Shadow Edges with Warping Effect - Creating hole effect */}
-      <div className="absolute inset-x-0 top-0 h-32 z-20 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-transparent blur-xl" />
-        <div ref={topGlowRef} className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-purple-600/50 to-transparent portal-glow-top" />
-        {/* Floating geometric fragments */}
-        <div className="absolute bottom-0 left-0 right-0 h-8 overflow-hidden">
-          <div className="absolute bottom-0 left-[10%] w-2 h-2 bg-purple-500/30 rotate-45 animate-float-slow" />
-          <div className="absolute bottom-0 left-[25%] w-3 h-3 bg-purple-600/20 rotate-12 animate-float-medium" />
-          <div className="absolute bottom-0 left-[40%] w-2 h-2 bg-yellow-500/25 rotate-45 animate-float-slow" />
-          <div className="absolute bottom-0 left-[55%] w-1 h-1 bg-purple-400/40 animate-float-fast" />
-          <div className="absolute bottom-0 left-[70%] w-3 h-3 bg-purple-700/20 rotate-60 animate-float-medium" />
-          <div className="absolute bottom-0 left-[85%] w-2 h-2 bg-yellow-600/30 rotate-30 animate-float-slow" />
+      <div className="absolute inset-x-0 top-0 h-48 z-20 pointer-events-none">
+        {/* Multiple shadow layers for depth */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-transparent blur-md" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent blur-2xl" />
+        
+        {/* Glowing energy line */}
+        <div ref={topGlowRef} className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-80" 
+             style={{ filter: 'blur(4px)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+        
+        {/* Floating geometric fragments - larger and more visible */}
+        <div className="absolute bottom-8 left-0 right-0 h-16 overflow-visible">
+          <div className="absolute bottom-0 left-[10%] w-6 h-6 bg-purple-500/50 rotate-45 animate-float-slow shadow-lg shadow-purple-500/30" />
+          <div className="absolute bottom-2 left-[25%] w-8 h-8 bg-purple-600/40 rotate-12 animate-float-medium shadow-lg shadow-purple-600/30" />
+          <div className="absolute bottom-4 left-[40%] w-5 h-5 bg-yellow-500/45 rotate-45 animate-float-slow shadow-lg shadow-yellow-500/30" />
+          <div className="absolute bottom-0 left-[55%] w-4 h-4 bg-purple-400/60 animate-float-fast shadow-lg shadow-purple-400/30" />
+          <div className="absolute bottom-3 left-[70%] w-7 h-7 bg-purple-700/40 rotate-60 animate-float-medium shadow-lg shadow-purple-700/30" />
+          <div className="absolute bottom-1 left-[85%] w-6 h-6 bg-yellow-600/50 rotate-30 animate-float-slow shadow-lg shadow-yellow-600/30" />
+        </div>
+        
+        {/* Distortion waves */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 overflow-hidden">
+          <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-purple-900/20 via-transparent to-transparent animate-pulse" />
         </div>
       </div>
       
-      <div className="absolute inset-x-0 bottom-0 h-32 z-20 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent blur-xl" />
-        <div ref={bottomGlowRef} className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-yellow-600/50 to-transparent portal-glow-bottom" />
-        {/* Floating geometric fragments */}
-        <div className="absolute top-0 left-0 right-0 h-8 overflow-hidden">
-          <div className="absolute top-0 left-[15%] w-2 h-2 bg-yellow-500/30 rotate-45 animate-float-slow" />
-          <div className="absolute top-0 left-[30%] w-3 h-3 bg-yellow-600/20 rotate-12 animate-float-medium" />
-          <div className="absolute top-0 left-[45%] w-2 h-2 bg-purple-500/25 rotate-45 animate-float-slow" />
-          <div className="absolute top-0 left-[60%] w-1 h-1 bg-yellow-400/40 animate-float-fast" />
-          <div className="absolute top-0 left-[75%] w-3 h-3 bg-yellow-700/20 rotate-60 animate-float-medium" />
-          <div className="absolute top-0 left-[90%] w-2 h-2 bg-purple-600/30 rotate-30 animate-float-slow" />
+      <div className="absolute inset-x-0 bottom-0 h-48 z-20 pointer-events-none">
+        {/* Multiple shadow layers for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent blur-md" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent blur-2xl" />
+        
+        {/* Glowing energy line */}
+        <div ref={bottomGlowRef} className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-yellow-500 to-transparent opacity-80" 
+             style={{ filter: 'blur(4px)' }} />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+        
+        {/* Floating geometric fragments - larger and more visible */}
+        <div className="absolute top-8 left-0 right-0 h-16 overflow-visible">
+          <div className="absolute top-0 left-[15%] w-6 h-6 bg-yellow-500/50 rotate-45 animate-float-slow shadow-lg shadow-yellow-500/30" />
+          <div className="absolute top-2 left-[30%] w-8 h-8 bg-yellow-600/40 rotate-12 animate-float-medium shadow-lg shadow-yellow-600/30" />
+          <div className="absolute top-4 left-[45%] w-5 h-5 bg-purple-500/45 rotate-45 animate-float-slow shadow-lg shadow-purple-500/30" />
+          <div className="absolute top-0 left-[60%] w-4 h-4 bg-yellow-400/60 animate-float-fast shadow-lg shadow-yellow-400/30" />
+          <div className="absolute top-3 left-[75%] w-7 h-7 bg-yellow-700/40 rotate-60 animate-float-medium shadow-lg shadow-yellow-700/30" />
+          <div className="absolute top-1 left-[90%] w-6 h-6 bg-purple-600/50 rotate-30 animate-float-slow shadow-lg shadow-purple-600/30" />
+        </div>
+        
+        {/* Distortion waves */}
+        <div className="absolute top-0 left-0 right-0 h-32 overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-yellow-900/20 via-transparent to-transparent animate-pulse" />
         </div>
       </div>
       
@@ -684,18 +708,36 @@ const Portal3DSectionGSAP: React.FC = () => {
         }
         
         @keyframes float-slow {
-          0%, 100% { transform: translateY(0) rotate(45deg); }
-          50% { transform: translateY(-10px) rotate(225deg); }
+          0%, 100% { 
+            transform: translateY(0) rotate(45deg) scale(1);
+            opacity: 0.5;
+          }
+          50% { 
+            transform: translateY(-20px) rotate(225deg) scale(1.2);
+            opacity: 0.8;
+          }
         }
         
         @keyframes float-medium {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-15px) rotate(180deg); }
+          0%, 100% { 
+            transform: translateY(0) rotate(0deg) scale(1);
+            opacity: 0.4;
+          }
+          50% { 
+            transform: translateY(-30px) rotate(180deg) scale(1.3);
+            opacity: 0.7;
+          }
         }
         
         @keyframes float-fast {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
+          0%, 100% { 
+            transform: translateY(0) scale(1);
+            opacity: 0.6;
+          }
+          50% { 
+            transform: translateY(-40px) scale(1.4);
+            opacity: 0.9;
+          }
         }
         
         .animate-float-slow {
