@@ -8,7 +8,6 @@ import { Physics } from '@react-three/rapier';
 import Lighting from './components/Lighting';
 import Room from './components/Room';
 import Desk from './components/Desk';
-import Monitor from './components/Monitor';
 import InteractiveBall from './components/InteractiveBall';
 import FloatingParticles from './components/FloatingParticles';
 import Button3D from './components/Button3D';
@@ -116,8 +115,12 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
           delay={ANIMATION.ballDropDelays[2]}
         />
         
-        {/* Room Structure */}
-        <Room language={language} />
+        {/* Room Structure with Code Display */}
+        <Room 
+          language={language} 
+          displayedCode={displayedCode}
+          activeButton={activeButton}
+        />
         
         {/* Office Desks with Holographic Info */}
         <Desk position={[0, 0, -3]} service={getServiceName('websites')}>
@@ -165,13 +168,6 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
           />
         </Desk>
       </Physics>
-      
-      {/* Large Monitor on Back Wall */}
-      <Monitor 
-        position={[0, 3, -9.8]}
-        displayedCode={displayedCode}
-        activeButton={activeButton}
-      />
       
       {/* Camera Controls */}
       <OrbitControls 

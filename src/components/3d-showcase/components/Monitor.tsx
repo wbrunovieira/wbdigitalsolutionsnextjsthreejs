@@ -22,19 +22,15 @@ const Monitor: React.FC<MonitorProps> = ({ position, displayedCode, activeButton
 
   return (
     <group position={position}>
-      {/* Monitor Frame */}
-      <Box args={[4, 2.5, 0.1]} castShadow>
-        <meshStandardMaterial color="#000000" />
-      </Box>
-      
-      {/* Monitor Screen */}
-      <Box args={[3.8, 2.3, 0.02]} position={[0, 0, 0.06]} castShadow>
-        <meshStandardMaterial color="#1e1e1e" />
-      </Box>
+      {/* Single black screen background */}
+      <mesh>
+        <planeGeometry args={[4, 2.5]} />
+        <meshStandardMaterial color="#0a0a0a" />
+      </mesh>
       
       {/* Code Display */}
       <Html
-        position={[0, 0, 0.08]}
+        position={[0, 0, 0.01]}
         transform
         occlude
         scale={[0.1, 0.1, 0.1]}

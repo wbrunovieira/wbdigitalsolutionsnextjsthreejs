@@ -6,13 +6,15 @@ import * as THREE from 'three';
 
 interface RoomProps {
   language?: string;
+  displayedCode?: string;
+  activeButton?: 'websites' | 'automation' | 'ai';
 }
 
 /**
  * Room component containing walls, floor and window
  * All elements have physics colliders for ball interaction
  */
-const Room: React.FC<RoomProps> = ({ language = 'en' }) => {
+const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', activeButton = 'websites' }) => {
   const ledTopRef = useRef<THREE.Mesh>(null);
   const ledBottomRef = useRef<THREE.Mesh>(null);
   const screenGlowRef = useRef<THREE.Mesh>(null);
@@ -253,6 +255,125 @@ const Room: React.FC<RoomProps> = ({ language = 'en' }) => {
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
+      
+      {/* Code Display on Back Wall - Digital Screen Style */}
+      <group position={[0, 3, -9.75]}>
+        {/* Outer Frame - Decorative Border */}
+        <Box args={[8.4, 5.4, 0.15]} position={[0, 0, -0.05]} castShadow receiveShadow>
+          <meshStandardMaterial 
+            color="#792990"
+            metalness={0.9}
+            roughness={0.1}
+            emissive="#792990"
+            emissiveIntensity={0.1}
+          />
+        </Box>
+        
+        {/* Inner Frame Border - Silver/Chrome */}
+        <Box args={[8.2, 5.2, 0.12]} position={[0, 0, -0.02]} castShadow receiveShadow>
+          <meshStandardMaterial 
+            color="#c0c0c0"
+            metalness={0.95}
+            roughness={0.05}
+          />
+        </Box>
+        
+        {/* Screen Frame */}
+        <Box args={[8, 5, 0.1]} position={[0, 0, 0]} castShadow receiveShadow>
+          <meshStandardMaterial 
+            color="#1a1a1a"
+            metalness={0.8}
+            roughness={0.2}
+          />
+        </Box>
+        
+        {/* Screen Glass */}
+        <Box args={[7.6, 4.6, 0.02]} position={[0, 0, 0.06]} castShadow>
+          <meshStandardMaterial 
+            color="#0a0a0a"
+            metalness={0.3}
+            roughness={0.7}
+          />
+        </Box>
+        
+        {/* Corner Accents */}
+        {/* Top Left */}
+        <Box args={[0.3, 0.3, 0.16]} position={[-4.05, 2.55, -0.05]} castShadow>
+          <meshStandardMaterial 
+            color="#ffb947"
+            metalness={0.8}
+            roughness={0.2}
+            emissive="#ffb947"
+            emissiveIntensity={0.3}
+          />
+        </Box>
+        {/* Top Right */}
+        <Box args={[0.3, 0.3, 0.16]} position={[4.05, 2.55, -0.05]} castShadow>
+          <meshStandardMaterial 
+            color="#ffb947"
+            metalness={0.8}
+            roughness={0.2}
+            emissive="#ffb947"
+            emissiveIntensity={0.3}
+          />
+        </Box>
+        {/* Bottom Left */}
+        <Box args={[0.3, 0.3, 0.16]} position={[-4.05, -2.55, -0.05]} castShadow>
+          <meshStandardMaterial 
+            color="#ffb947"
+            metalness={0.8}
+            roughness={0.2}
+            emissive="#ffb947"
+            emissiveIntensity={0.3}
+          />
+        </Box>
+        {/* Bottom Right */}
+        <Box args={[0.3, 0.3, 0.16]} position={[4.05, -2.55, -0.05]} castShadow>
+          <meshStandardMaterial 
+            color="#ffb947"
+            metalness={0.8}
+            roughness={0.2}
+            emissive="#ffb947"
+            emissiveIntensity={0.3}
+          />
+        </Box>
+        
+        {/* Code Text Display */}
+        <Text
+          position={[-3.7, 2.2, 0.08]}
+          fontSize={0.16}
+          color="#00ff00"
+          fontWeight={400}
+          anchorX="left"
+          anchorY="top"
+          maxWidth={7.2}
+          textAlign="left"
+          lineHeight={1.2}
+          outlineWidth={0}
+        >
+          {`// ${activeButton === 'websites' ? 'website.jsx' : activeButton === 'automation' ? 'automation.py' : 'ai-integration.js'}\n\n${displayedCode}`}
+          <meshStandardMaterial
+            color="#00ff00"
+            emissive="#00ff00"
+            emissiveIntensity={0.2}
+          />
+        </Text>
+        
+        {/* Cursor blink */}
+        <Text
+          position={[-3.6 + (displayedCode.length * 0.02), 1.8, 0.08]}
+          fontSize={0.2}
+          color="#00ff00"
+          fontWeight={700}
+        >
+          |
+          <meshStandardMaterial
+            color="#00ff00"
+            emissive="#00ff00"
+            emissiveIntensity={0.5}
+          />
+        </Text>
+      </group>
       
       {/* Left Wall with Window */}
       {/* Lower wall section */}
@@ -616,11 +737,6 @@ const Room: React.FC<RoomProps> = ({ language = 'en' }) => {
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
-      
-      {/* Logo on the wall */}
-      <Box args={[4, 1, 0.1]} position={[0, 6, -9.9]} castShadow>
-        <meshStandardMaterial color="#792990" emissive="#792990" emissiveIntensity={0.2} />
-      </Box>
       
       {/* Decorative Elements */}
       <Box args={[0.3, 2, 0.3]} position={[-8, 1, -8]} castShadow>
