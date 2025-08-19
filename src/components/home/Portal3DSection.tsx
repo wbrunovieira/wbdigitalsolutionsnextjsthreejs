@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Box, Sphere, Torus, Text } from '@react-three/drei';
 import * as THREE from 'three';
-import { TranslationContext } from '@/contexts/TranslationContext';
-import { LanguageContext } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/contexts/TranslationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Floating 3D Elements
 const FloatingElement: React.FC<{ 
@@ -163,8 +163,8 @@ const ParticleSystem: React.FC = () => {
 
 // Main Portal Section Component
 const Portal3DSection: React.FC = () => {
-  const { t } = useContext(TranslationContext);
-  const { language } = useContext(LanguageContext);
+  const t = useTranslations();
+  const { language } = useLanguage();
   
   // Get translated content
   const getContent = () => {
