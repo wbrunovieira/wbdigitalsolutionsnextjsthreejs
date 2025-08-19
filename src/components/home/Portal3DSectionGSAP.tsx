@@ -96,7 +96,7 @@ const EnergyParticles: React.FC = () => {
   const ref = useRef<THREE.Points>(null);
   
   const particles = React.useMemo(() => {
-    const count = 500;
+    const count = 70;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     
@@ -169,7 +169,7 @@ const ConvergingParticles: React.FC = () => {
   const velocitiesRef = useRef<Float32Array>();
   
   const particles = React.useMemo(() => {
-    const count = 300;
+    const count = 150;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const velocities = new Float32Array(count * 3);
@@ -498,16 +498,6 @@ const Portal3DSectionGSAP: React.FC = () => {
              style={{ filter: 'blur(4px)' }} />
         <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
         
-        {/* Floating geometric fragments - larger and more visible */}
-        <div className="absolute bottom-8 left-0 right-0 h-16 overflow-visible">
-          <div className="absolute bottom-0 left-[10%] w-6 h-6 bg-purple-500/50 rotate-45 animate-float-slow shadow-lg shadow-purple-500/30" />
-          <div className="absolute bottom-2 left-[25%] w-8 h-8 bg-purple-600/40 rotate-12 animate-float-medium shadow-lg shadow-purple-600/30" />
-          <div className="absolute bottom-4 left-[40%] w-5 h-5 bg-yellow-500/45 rotate-45 animate-float-slow shadow-lg shadow-yellow-500/30" />
-          <div className="absolute bottom-0 left-[55%] w-4 h-4 bg-purple-400/60 animate-float-fast shadow-lg shadow-purple-400/30" />
-          <div className="absolute bottom-3 left-[70%] w-7 h-7 bg-purple-700/40 rotate-60 animate-float-medium shadow-lg shadow-purple-700/30" />
-          <div className="absolute bottom-1 left-[85%] w-6 h-6 bg-yellow-600/50 rotate-30 animate-float-slow shadow-lg shadow-yellow-600/30" />
-        </div>
-        
         {/* Distortion waves */}
         <div className="absolute bottom-0 left-0 right-0 h-32 overflow-hidden">
           <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-purple-900/20 via-transparent to-transparent animate-pulse" />
@@ -588,14 +578,9 @@ const Portal3DSectionGSAP: React.FC = () => {
           {/* Vortex Portal */}
           <VortexPortal />
           
-          {/* Floating Elements */}
-          <FloatingElement position={[-2.5, 1.5, 0]} type="box" color="#792990" delay={0} />
+          {/* Floating Elements - Torus and Sphere */}
+          <FloatingElement position={[0, 2.5, -1]} type="torus" color="#792990" delay={2} />
           <FloatingElement position={[2.5, -1.5, 0.5]} type="sphere" color="#ffb947" delay={1} />
-          <FloatingElement position={[0, 2.5, -1]} type="torus" color="#350545" delay={2} />
-          <FloatingElement position={[-1.8, -1.8, 1]} type="box" color="#350545" delay={3} />
-          <FloatingElement position={[1.8, 1.8, -0.5]} type="sphere" color="#792990" delay={4} />
-          <FloatingElement position={[-3, 0, 0.5]} type="torus" color="#ffb947" delay={5} />
-          <FloatingElement position={[3, 0, -0.5]} type="box" color="#792990" delay={6} />
           
           {/* Energy Particles */}
           <EnergyParticles />
