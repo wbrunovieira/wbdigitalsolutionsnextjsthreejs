@@ -19,12 +19,17 @@ const AppleCardsCarouselDemo = dynamic(
   }
 );
 
+// Import Portal3DSection with GSAP animations - no SSR to avoid hydration issues
+const Portal3DSectionGSAP = dynamic(() => import('./home/Portal3DSectionGSAP'), {
+    ssr: false
+});
 
 const Home: React.FC = () => {
     return (
         <main className="flex flex-col min-h-screen bg-custom-gradient bg-[#350545] w-full max-w-none mx-0 px-0">
 
                 <HeroSection />
+                <Portal3DSectionGSAP />
                 <InfiniteScrollHash />
                 <ToolBox />
                 <AppleCardsCarouselDemo />

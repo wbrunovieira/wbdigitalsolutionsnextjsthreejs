@@ -6,7 +6,7 @@ import PageHead from "@/components/PageHead";
 
 function Index() {
     return (
-        <div className="w-full max-w-7xl mt-16">
+        <div className="w-full">
           <PageHead />
             <LanguageRouter />
             <Home />

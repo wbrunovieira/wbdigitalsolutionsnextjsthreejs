@@ -13,7 +13,8 @@ const ToolBox = () => {
     const currentMessages = useTranslations();
 
     return (
-        <div className='bg-modern-gradient pt-8 md:px-10  flex flex-col justify-center mt-32 pb-16 relative'>
+        <div className='bg-modern-gradient pt-8 flex flex-col justify-center mt-32 pb-16 relative'>
+            <div className='max-w-[1400px] mx-auto px-4 md:px-10 w-full'>
             <h2 className={'text-white text-3xl text-center p-2'}>
                 {currentMessages.tools}{' '}
             </h2>
@@ -40,6 +41,7 @@ const ToolBox = () => {
                         <Tooltip id='tech-tooltip' />
                     </div>
                 ))}
+            </div>
             </div>
         </div>
     );

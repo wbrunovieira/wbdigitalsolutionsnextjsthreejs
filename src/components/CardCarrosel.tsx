@@ -28,7 +28,7 @@ export function AppleCardsCarouselDemo() {
 
     return (
         <div className="w-full h-full py-20 mt-20 relative">
-            <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white font-sans">
+            <h2 className="max-w-[1400px] pl-4 mx-auto text-xl md:text-5xl font-bold text-white font-sans">
                 {currentMessages.transformYourBusiness}
             </h2>
             <div className="relative">

@@ -10,13 +10,14 @@
         "lint": "next lint --fix"
     },
     "dependencies": {
-        "@gsap/react": "^2.1.1",
+        "@gsap/react": "^2.1.2",
         "@lottiefiles/react-lottie-player": "^3.6.0",
         "@react-spring/three": "^9.7.5",
         "@react-spring/web": "^9.7.5",
         "@react-three/drei": "^9.117.3",
         "@react-three/fiber": "^8.17.10",
         "@react-three/postprocessing": "^2.16.3",
+        "@react-three/rapier": "^2.1.0",
         "@tabler/icons-react": "^3.22.0",
         "@tsparticles/engine": "^3.6.0",
         "@tsparticles/react": "^3.0.0",
