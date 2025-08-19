@@ -485,7 +485,7 @@ const Portal3DSectionGSAP: React.FC = () => {
   const content = getContent();
   
   return (
-    <section ref={sectionRef} className="relative w-full min-h-screen bg-black overflow-hidden">
+    <section ref={sectionRef} className="relative w-full min-h-screen bg-black overflow-hidden mt-32">
       {/* Deep Shadow Edges with Warping Effect - Creating hole effect */}
       <div className="absolute inset-x-0 top-0 h-48 z-10 pointer-events-none">
         {/* Multiple shadow layers for depth */}
@@ -587,7 +587,7 @@ const Portal3DSectionGSAP: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-24 flex flex-col items-center justify-center min-h-screen">
         {/* Title Section */}
-        <div className="text-center mb-16 max-w-4xl" style={{ marginTop: '-400px', position: 'relative', zIndex: 30 }}>
+        <div className="text-center mb-16 max-w-4xl" style={{ position: 'relative', zIndex: 30 }}>
           <h2 
             ref={titleRef}
             className="text-5xl md:text-7xl font-bold text-white mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent"

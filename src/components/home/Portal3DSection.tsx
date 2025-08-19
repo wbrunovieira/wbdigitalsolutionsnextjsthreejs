@@ -216,7 +216,7 @@ const Portal3DSection: React.FC = () => {
   const content = getContent();
   
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-b from-gray-900 via-purple-900/20 to-black overflow-hidden">
+    <section className="relative w-full min-h-screen bg-gradient-to-b from-gray-900 via-purple-900/20 to-black overflow-hidden mt-32">
       {/* Portal Background Effect */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-black/50" />
@@ -260,7 +260,7 @@ const Portal3DSection: React.FC = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-screen">
+      <div className="relative z-10 container mx-auto px-4 pt-32 pb-20 flex flex-col items-center justify-center">
         {/* Title Section */}
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400">
