@@ -40,13 +40,13 @@ const Desk: React.FC<DeskProps> = ({
   
   // All desks now have the same large size
   const finalDeskSize: BoxArgs = [6, 0.2, 3];
-  const finalLogoScale: [number, number] = [1.6, 0.6];
+  const finalLogoScale: [number, number] = [3.2, 1.2];
   
   // Adjust text color for different services
   const finalTextColor = isAutomation ? '#ffb947' : textColor;
   
-  // Adjust text size based on text length for better fitting
-  const baseSize = service.length > 10 ? 0.35 : (service.length > 8 ? 0.45 : 0.6);
+  // Adjust text size based on text length for better fitting - increased by 40%
+  const baseSize = service.length > 10 ? 0.49 : (service.length > 8 ? 0.63 : 0.84);
   const finalTextSize = isAI ? baseSize * 1.2 : (isAutomation ? baseSize * 0.8 : baseSize);
   
   return (
@@ -85,8 +85,8 @@ const Desk: React.FC<DeskProps> = ({
           opacity={0.9}
         />
         
-        {/* 3D Text with Troika (supports special characters) */}
-        <group position={[0, 1.3, 0]}>
+        {/* 3D Text with Troika (supports special characters) - moved to back of desk */}
+        <group position={[0, 1.5, -1]}>
           <Text
             fontSize={finalTextSize * 1.5}
             color={finalTextColor}
@@ -154,12 +154,12 @@ const Desk: React.FC<DeskProps> = ({
           </Text>
         </group>
         
-        {/* Small 3D Text - WB Digital Solutions */}
-        <Center position={[-1.4, 0.91, 0.6]}>
+        {/* Small 3D Text - WB Digital Solutions - moved to back */}
+        <Center position={[-1.4, 0.95, -0.8]}>
           <Text3D
             font="/img/assets/fonts/optimer_regular.typeface.json"
-            size={0.16}
-            height={0.04}
+            size={0.224}
+            height={0.056}
             curveSegments={8}
             bevelEnabled
             bevelThickness={0.005}

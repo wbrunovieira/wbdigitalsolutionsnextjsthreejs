@@ -125,10 +125,11 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         {/* Office Desks with Holographic Info - Better distributed */}
         <Desk position={[0, 0, -5]} service={getServiceName('websites')}>
           <Button3D 
-            position={[0, 0.95, 0.5]}
+            position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('websites')}
             isActive={activeButton === 'websites'}
             label={getServiceName('websites')}
+            scale={3.5}
           />
           <HolographicInfo
             isActive={activeButton === 'websites'}
@@ -140,10 +141,11 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         
         <Desk position={[-5, 0, 0]} service={getServiceName('automation')}>
           <Button3D 
-            position={[0, 0.95, 0.5]}
+            position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('automation')}
             isActive={activeButton === 'automation'}
             label={getServiceName('automation')}
+            scale={3.5}
           />
           <HolographicInfo
             isActive={activeButton === 'automation'}
@@ -155,10 +157,11 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         
         <Desk position={[5, 0, 0]} service={getServiceName('ai')}>
           <Button3D 
-            position={[0, 0.95, 0.5]}
+            position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('ai')}
             isActive={activeButton === 'ai'}
             label={getServiceName('ai')}
+            scale={3.5}
           />
           <HolographicInfo
             isActive={activeButton === 'ai'}
