@@ -27,8 +27,8 @@ type BoxArgs = [
 const Desk: React.FC<DeskProps> = ({ 
   position, 
   service, 
-  deskSize = [2, 0.1, 1.2],
-  logoScale = [0.6, 0.25],
+  deskSize = [4, 0.2, 2.4],
+  logoScale = [1.2, 0.5],
   textColor = "#792990",
   textSize = 0.3,
   children 
@@ -38,9 +38,9 @@ const Desk: React.FC<DeskProps> = ({
   const isAutomation = service.includes('AUTOMA');
   const isAI = service.includes('I.A') || service.includes('A.I');
   
-  // Adjust desk size for main desk
-  const finalDeskSize: BoxArgs = isWebsites ? [3, 0.1, 1.5] : [...deskSize] as BoxArgs;
-  const finalLogoScale: [number, number] = isWebsites ? [0.8, 0.3] : logoScale;
+  // All desks now have the same large size
+  const finalDeskSize: BoxArgs = [6, 0.2, 3];
+  const finalLogoScale: [number, number] = [1.6, 0.6];
   
   // Adjust text color for different services
   const finalTextColor = isAutomation ? '#ffb947' : textColor;
@@ -58,38 +58,19 @@ const Desk: React.FC<DeskProps> = ({
           <meshStandardMaterial color="#4a3f36" />
         </Box>
         
-        {/* Desk Legs */}
-        {isWebsites ? (
-          <>
-            <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, -0.6]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-            <Box args={[0.1, 0.8, 0.1]} position={[1.4, 0.4, -0.6]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-            <Box args={[0.1, 0.8, 0.1]} position={[-1.4, 0.4, 0.6]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-            <Box args={[0.1, 0.8, 0.1]} position={[1.4, 0.4, 0.6]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-          </>
-        ) : (
-          <>
-            <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, -0.5]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-            <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, -0.5]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-            <Box args={[0.1, 0.8, 0.1]} position={[-0.9, 0.4, 0.5]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-            <Box args={[0.1, 0.8, 0.1]} position={[0.9, 0.4, 0.5]} castShadow>
-              <meshStandardMaterial color="#2a2520" />
-            </Box>
-          </>
-        )}
+        {/* Desk Legs - All desks now have the same size */}
+        <Box args={[0.2, 0.8, 0.2]} position={[-2.8, 0.4, -1.2]} castShadow>
+          <meshStandardMaterial color="#2a2520" />
+        </Box>
+        <Box args={[0.2, 0.8, 0.2]} position={[2.8, 0.4, -1.2]} castShadow>
+          <meshStandardMaterial color="#2a2520" />
+        </Box>
+        <Box args={[0.2, 0.8, 0.2]} position={[-2.8, 0.4, 1.2]} castShadow>
+          <meshStandardMaterial color="#2a2520" />
+        </Box>
+        <Box args={[0.2, 0.8, 0.2]} position={[2.8, 0.4, 1.2]} castShadow>
+          <meshStandardMaterial color="#2a2520" />
+        </Box>
       </RigidBody>
       
       {/* Non-physics elements */}
@@ -97,7 +78,7 @@ const Desk: React.FC<DeskProps> = ({
         {/* WB Logo on Desk */}
         <Image 
           url="/svg/logo-white.svg" 
-          position={[0, 0.86, isWebsites ? 0.2 : 0.1]}
+          position={[0, 0.91, 0.4]}
           rotation={[-Math.PI / 2, 0, 0]}
           scale={finalLogoScale}
           transparent
@@ -174,11 +155,11 @@ const Desk: React.FC<DeskProps> = ({
         </group>
         
         {/* Small 3D Text - WB Digital Solutions */}
-        <Center position={[-0.7, 0.91, 0.3]}>
+        <Center position={[-1.4, 0.91, 0.6]}>
           <Text3D
             font="/img/assets/fonts/optimer_regular.typeface.json"
-            size={0.08}
-            height={0.02}
+            size={0.16}
+            height={0.04}
             curveSegments={8}
             bevelEnabled
             bevelThickness={0.005}

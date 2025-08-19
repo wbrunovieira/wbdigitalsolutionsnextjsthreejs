@@ -122,10 +122,10 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
           activeButton={activeButton}
         />
         
-        {/* Office Desks with Holographic Info */}
-        <Desk position={[0, 0, -3]} service={getServiceName('websites')}>
+        {/* Office Desks with Holographic Info - Better distributed */}
+        <Desk position={[0, 0, -5]} service={getServiceName('websites')}>
           <Button3D 
-            position={[0.5, 0.85, 0.3]}
+            position={[0, 0.95, 0.5]}
             onClick={() => setActiveButton('websites')}
             isActive={activeButton === 'websites'}
             label={getServiceName('websites')}
@@ -134,13 +134,13 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'websites'}
             serviceType="websites"
             language={language}
-            position={[0, 2.8, 0]}
+            position={[0, 3.5, 0]}
           />
         </Desk>
         
-        <Desk position={[-5, 0, 2]} service={getServiceName('automation')}>
+        <Desk position={[-5, 0, 0]} service={getServiceName('automation')}>
           <Button3D 
-            position={[0.4, 0.85, 0.2]}
+            position={[0, 0.95, 0.5]}
             onClick={() => setActiveButton('automation')}
             isActive={activeButton === 'automation'}
             label={getServiceName('automation')}
@@ -149,13 +149,13 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'automation'}
             serviceType="automation"
             language={language}
-            position={[0, 2.8, 0]}
+            position={[0, 3.5, 0]}
           />
         </Desk>
         
-        <Desk position={[5, 0, 2]} service={getServiceName('ai')}>
+        <Desk position={[5, 0, 0]} service={getServiceName('ai')}>
           <Button3D 
-            position={[0.4, 0.85, 0.2]}
+            position={[0, 0.95, 0.5]}
             onClick={() => setActiveButton('ai')}
             isActive={activeButton === 'ai'}
             label={getServiceName('ai')}
@@ -164,7 +164,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'ai'}
             serviceType="ai"
             language={language}
-            position={[0, 2.8, 0]}
+            position={[0, 3.5, 0]}
           />
         </Desk>
       </Physics>

@@ -56,7 +56,7 @@ const InteractiveBall: React.FC<BallProps> = ({
       <Sphere 
         ref={ballRef}
         args={[0.3, 32, 32]} 
-        castShadow 
+        castShadow
         receiveShadow
       >
         <MeshDistortMaterial

@@ -209,10 +209,10 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
         />
       </group>
       
-      {/* Spotlights under desks (glowing circles) */}
-      {/* Center desk spotlight */}
-      <mesh position={[0, 0.012, -3]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.5, 2, 32]} />
+      {/* Spotlights under desks (glowing circles) - Updated positions */}
+      {/* Center desk spotlight (Websites) */}
+      <mesh position={[0, 0.012, -5]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[2.5, 3.2, 32]} />
         <meshStandardMaterial
           color="#792990"
           emissive="#792990"
@@ -223,9 +223,9 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
         />
       </mesh>
       
-      {/* Left desk spotlight */}
-      <mesh position={[-5, 0.012, 2]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.2, 1.6, 32]} />
+      {/* Left desk spotlight (Automation) */}
+      <mesh position={[-5, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[2.5, 3.2, 32]} />
         <meshStandardMaterial
           color="#ffb947"
           emissive="#ffb947"
@@ -236,9 +236,9 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
         />
       </mesh>
       
-      {/* Right desk spotlight */}
-      <mesh position={[5, 0.012, 2]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[1.2, 1.6, 32]} />
+      {/* Right desk spotlight (AI) */}
+      <mesh position={[5, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[2.5, 3.2, 32]} />
         <meshStandardMaterial
           color="#4a90e2"
           emissive="#4a90e2"
@@ -257,7 +257,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
       </RigidBody>
       
       {/* Code Display on Back Wall - Digital Screen Style */}
-      <group position={[0, 3, -9.75]}>
+      <group position={[0, 5, -9.75]}>
         {/* Outer Frame - Decorative Border */}
         <Box args={[8.4, 5.4, 0.15]} position={[0, 0, -0.05]} castShadow receiveShadow>
           <meshStandardMaterial 
@@ -440,7 +440,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
       {/* Philosophy Display on Right Wall - Digital Screen Style */}
       <group position={[9.45, 5, 0]} rotation={[0, -Math.PI / 2, 0]}>
         {/* Screen Frame */}
-        <Box args={[8, 4.5, 0.3]} position={[0, 0, 0]} castShadow receiveShadow>
+        <Box args={[8, 4.5, 0.3]} position={[0, 0, 0]} receiveShadow>
           <meshStandardMaterial 
             color="#1a1a1a"
             metalness={0.8}
@@ -449,7 +449,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
         </Box>
         
         {/* Screen Glass */}
-        <Box args={[7.6, 4.1, 0.05]} position={[0, 0, 0.16]} castShadow>
+        <Box args={[7.6, 4.1, 0.05]} position={[0, 0, 0.16]}>
           <meshStandardMaterial 
             color="#0a0a0a"
             metalness={0.3}
@@ -738,16 +738,6 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
         </Box>
       </RigidBody>
       
-      {/* Decorative Elements */}
-      <Box args={[0.3, 2, 0.3]} position={[-8, 1, -8]} castShadow>
-        <meshStandardMaterial color="#792990" />
-      </Box>
-      <Box args={[0.3, 1.5, 0.3]} position={[8, 0.75, -8]} castShadow>
-        <meshStandardMaterial color="#ffb947" />
-      </Box>
-      <Box args={[0.3, 1.8, 0.3]} position={[-8, 0.9, 8]} castShadow>
-        <meshStandardMaterial color="#350545" />
-      </Box>
     </>
   );
 };

@@ -16,14 +16,20 @@ const Lighting: React.FC = () => {
         intensity={2}
         castShadow
         shadow-mapSize={[2048, 2048]}
+        shadow-camera-far={50}
+        shadow-camera-left={-20}
+        shadow-camera-right={20}
+        shadow-camera-top={20}
+        shadow-camera-bottom={-20}
+        shadow-bias={-0.0005}
       />
       
       {/* Ceiling light */}
       <pointLight position={[0, 8, 0]} intensity={2} color="#ffffff" />
       
-      {/* Accent lights */}
-      <pointLight position={[-5, 5, 5]} intensity={1} color="#ffb947" />
-      <pointLight position={[5, 5, 5]} intensity={1} color="#792990" />
+      {/* Accent lights - moved away from door area */}
+      <pointLight position={[-5, 5, -5]} intensity={1} color="#ffb947" />
+      <pointLight position={[5, 5, -5]} intensity={1} color="#792990" />
     </>
   );
 };
