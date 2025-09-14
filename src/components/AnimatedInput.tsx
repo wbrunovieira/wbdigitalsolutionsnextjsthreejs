@@ -56,7 +56,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         {label.split("").map((char, index) => (
           <span
             key={index}
-            className={`inline-block transition-transform duration-300 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] ${
+            className={`inline-block transition-transform duration-300 ${
               hasError
                 ? "text-red-500"
                 : "text-gray-500 peer-focus:text-lightblue"

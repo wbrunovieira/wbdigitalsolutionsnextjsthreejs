@@ -5,6 +5,7 @@ import * as THREE from 'three';
 
 interface TunnelSceneEnhancedProps {
   language?: string;
+  isMobile?: boolean;
 }
 
 // Enhanced Tunnel Ring with pulsing effect
@@ -53,9 +54,10 @@ interface HolographicMessageProps {
   language: string;
   serviceType: 'websites' | 'automation' | 'ai';
   delay: number;
+  isMobile?: boolean;
 }
 
-const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, language, serviceType, delay }) => {
+const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, language, serviceType, delay, isMobile = false }) => {
   const groupRef = useRef<THREE.Group>(null);
   const [opacity, setOpacity] = useState(0);
   
@@ -191,10 +193,12 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
     }
   });
   
+  const scale = isMobile ? 0.7 : 1;
+
   return (
     <group ref={groupRef} position={position}>
       {/* Holographic Frame */}
-      <Box args={[6, 3, 0.01]} position={[0, 0, -0.1]}>
+      <Box args={[6 * scale, 3 * scale, 0.01]} position={[0, 0, -0.1]}>
         <meshStandardMaterial
           color={message.color}
           emissive={message.color}
@@ -203,11 +207,11 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
           opacity={opacity * 0.1}
         />
       </Box>
-      
+
       {/* Title */}
       <Text
-        position={[0, 1, 0]}
-        fontSize={0.5}
+        position={[0, 1 * scale, 0]}
+        fontSize={0.5 * scale}
         color={message.color}
         fontWeight={900}
         anchorX="center"
@@ -225,11 +229,11 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
           opacity={opacity}
         />
       </Text>
-      
+
       {/* Subtitle */}
       <Text
-        position={[0, 0.3, 0]}
-        fontSize={0.25}
+        position={[0, 0.3 * scale, 0]}
+        fontSize={0.25 * scale}
         color="#ffffff"
         fontWeight={600}
         anchorX="center"
@@ -243,8 +247,8 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
       {message.features.map((feature, index) => (
         <Text
           key={index}
-          position={[0, -0.3 - index * 0.3, 0]}
-          fontSize={0.18}
+          position={[0, (-0.3 - index * 0.3) * scale, 0]}
+          fontSize={0.18 * scale}
           color="#ffffff"
           anchorX="center"
           anchorY="middle"
@@ -396,11 +400,15 @@ const FloatingValue: React.FC<FloatingValueProps> = ({ text, position, color, sp
 };
 
 // Enhanced Particle Field with gradient colors
-const EnhancedParticleField: React.FC = () => {
+interface ParticleFieldProps {
+  isMobile?: boolean;
+}
+
+const EnhancedParticleField: React.FC<ParticleFieldProps> = ({ isMobile = false }) => {
   const ref = useRef<THREE.Points>(null);
-  
+
   const { positions, colors } = useMemo(() => {
-    const count = 1000;
+    const count = isMobile ? 300 : 1000;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     
@@ -467,21 +475,22 @@ const EnhancedParticleField: React.FC = () => {
 };
 
 // Main Enhanced Tunnel Scene
-const TunnelSceneEnhanced: React.FC<TunnelSceneEnhancedProps> = ({ language = 'en' }) => {
-  // Generate tunnel rings
+const TunnelSceneEnhanced: React.FC<TunnelSceneEnhancedProps> = ({ language = 'en', isMobile = false }) => {
+  // Generate tunnel rings - fewer for mobile
   const tunnelRings = useMemo(() => {
     const rings = [];
-    for (let i = 0; i < 25; i++) {
+    const ringCount = isMobile ? 15 : 25;
+    for (let i = 0; i < ringCount; i++) {
       rings.push(
-        <TunnelRing 
-          key={`ring-${i}`} 
-          position={[0, 0, -i * 4]} 
+        <TunnelRing
+          key={`ring-${i}`}
+          position={[0, 0, -i * 4]}
           delay={i * 0.2}
         />
       );
     }
     return rings;
-  }, []);
+  }, [isMobile]);
   
   // Company values based on language
   const getValues = () => {
@@ -502,8 +511,16 @@ const TunnelSceneEnhanced: React.FC<TunnelSceneEnhancedProps> = ({ language = 'e
   
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 75 }}
-      gl={{ antialias: true, alpha: true }}
+      camera={{
+        position: [0, 0, isMobile ? 8 : 5],
+        fov: isMobile ? 80 : 75
+      }}
+      gl={{
+        antialias: !isMobile,
+        alpha: true,
+        powerPreference: isMobile ? 'low-power' : 'high-performance'
+      }}
+      dpr={isMobile ? [1, 1.5] : [1, 2]}
     >
       {/* Enhanced Lighting */}
       <ambientLight intensity={0.3} />
@@ -518,37 +535,45 @@ const TunnelSceneEnhanced: React.FC<TunnelSceneEnhancedProps> = ({ language = 'e
       {/* Tunnel Rings */}
       {tunnelRings}
       
-      {/* Enhanced Particle Field */}
-      <EnhancedParticleField />
+      {/* Enhanced Particle Field - Optimized for mobile */}
+      <EnhancedParticleField isMobile={isMobile} />
       
       {/* Portal Message */}
       <PortalMessage language={language} />
       
-      {/* Holographic Messages */}
-      <HolographicMessage 
-        position={[7, 2, -40]} 
-        language={language} 
+      {/* Holographic Messages - Adjusted for mobile */}
+      <HolographicMessage
+        position={[isMobile ? 4 : 7, 2, -40]}
+        language={language}
         serviceType="websites"
         delay={0}
+        isMobile={isMobile}
       />
-      <HolographicMessage 
-        position={[-7, -1, -70]} 
-        language={language} 
+      <HolographicMessage
+        position={[isMobile ? -4 : -7, -1, -70]}
+        language={language}
         serviceType="automation"
         delay={2}
+        isMobile={isMobile}
       />
-      <HolographicMessage 
-        position={[8, -2, -100]} 
-        language={language} 
-        serviceType="ai"
-        delay={4}
-      />
-      <HolographicMessage 
-        position={[-6, 3, -130]} 
-        language={language} 
-        serviceType="websites"
-        delay={6}
-      />
+      {!isMobile && (
+        <>
+          <HolographicMessage
+            position={[8, -2, -100]}
+            language={language}
+            serviceType="ai"
+            delay={4}
+            isMobile={isMobile}
+          />
+          <HolographicMessage
+            position={[-6, 3, -130]}
+            language={language}
+            serviceType="websites"
+            delay={6}
+            isMobile={isMobile}
+          />
+        </>
+      )}
       
       {/* Floating Company Values */}
       {values.map((value, index) => (

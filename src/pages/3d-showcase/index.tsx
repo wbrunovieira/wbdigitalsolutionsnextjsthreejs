@@ -198,13 +198,13 @@ const ThreeDShowcase: React.FC = () => {
 
       {/* Mobile Quick Navigation Buttons */}
       {isMobile && (
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50 flex gap-2">
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-50 flex gap-3">
           <button
             onClick={() => {
               const event = new CustomEvent('navigateToDesk', { detail: 'websites' });
               window.dispatchEvent(event);
             }}
-            className="bg-purple-600/80 text-white px-3 py-2 rounded-lg text-xs font-semibold shadow-lg"
+            className="bg-gradient-to-b from-purple-600 to-purple-700 text-white px-5 py-3 rounded-xl text-sm font-bold shadow-xl border border-purple-400/30 active:scale-95 transition-transform"
           >
             Sites
           </button>
@@ -213,7 +213,7 @@ const ThreeDShowcase: React.FC = () => {
               const event = new CustomEvent('navigateToDesk', { detail: 'automation' });
               window.dispatchEvent(event);
             }}
-            className="bg-yellow-500/80 text-white px-3 py-2 rounded-lg text-xs font-semibold shadow-lg"
+            className="bg-gradient-to-b from-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-xl text-sm font-bold shadow-xl border border-yellow-400/30 active:scale-95 transition-transform"
           >
             Automação
           </button>
@@ -222,7 +222,7 @@ const ThreeDShowcase: React.FC = () => {
               const event = new CustomEvent('navigateToDesk', { detail: 'ai' });
               window.dispatchEvent(event);
             }}
-            className="bg-blue-500/80 text-white px-3 py-2 rounded-lg text-xs font-semibold shadow-lg"
+            className="bg-gradient-to-b from-blue-500 to-blue-600 text-white px-5 py-3 rounded-xl text-sm font-bold shadow-xl border border-blue-400/30 active:scale-95 transition-transform"
           >
             I.A.
           </button>

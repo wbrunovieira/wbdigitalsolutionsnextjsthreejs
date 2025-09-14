@@ -79,6 +79,24 @@ const nextConfig = {
   },
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Handle nodemailer import warnings
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        dns: false,
+        child_process: false,
+      };
+    }
+
+    // Ignore nodemailer warnings in build
+    config.externals = config.externals || [];
+    if (isServer) {
+      config.externals.push('nodemailer');
+    }
+
     const babelLoader = config.module.rules.find(
       (rule) => rule.use && rule.use.loader === 'next-babel-loader'
     );
