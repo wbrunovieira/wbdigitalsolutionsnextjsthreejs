@@ -12,6 +12,7 @@ import InteractiveBall from './components/InteractiveBall';
 import FloatingParticles from './components/FloatingParticles';
 import Button3D from './components/Button3D';
 import HolographicInfo from './components/HolographicInfo';
+import PointerHand from './components/PointerHand';
 
 // Data & Constants
 import { codeSnippets, ServiceType } from './data/codeSnippets';
@@ -29,6 +30,8 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
   const [activeButton, setActiveButton] = useState<ServiceType>('websites');
   const [displayedCode, setDisplayedCode] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [showPointers, setShowPointers] = useState(true);
+  const [hasInteracted, setHasInteracted] = useState(false);
   
   // Get translated service names
   const getServiceName = (service: string) => {
@@ -77,7 +80,20 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
   useEffect(() => {
     setDisplayedCode('');
     setCurrentCharIndex(0);
-  }, [activeButton]);
+    // Hide pointers after first interaction
+    if (!hasInteracted && activeButton !== 'websites') {
+      setHasInteracted(true);
+      setShowPointers(false);
+    }
+  }, [activeButton, hasInteracted]);
+
+  // Hide pointers after 10 seconds if no interaction
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPointers(false);
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, []);
   
   return (
     <Canvas
@@ -140,7 +156,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         </Desk>
         
         <Desk position={[-5, 0, 0]} service={getServiceName('automation')}>
-          <Button3D 
+          <Button3D
             position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('automation')}
             isActive={activeButton === 'automation'}
@@ -153,10 +169,18 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             language={language}
             position={[0, 5.5, 0]}
           />
+          {/* Pointer hand for Automation button */}
+          <PointerHand
+            position={[2.5, 3, 1]}
+            rotation={[0, 0, 0]}
+            isVisible={showPointers}
+            delay={500}
+            language={language}
+          />
         </Desk>
-        
+
         <Desk position={[5, 0, 0]} service={getServiceName('ai')}>
-          <Button3D 
+          <Button3D
             position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('ai')}
             isActive={activeButton === 'ai'}
@@ -168,6 +192,14 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             serviceType="ai"
             language={language}
             position={[0, 5.5, 0]}
+          />
+          {/* Pointer hand for AI button */}
+          <PointerHand
+            position={[2.5, 3, 1]}
+            rotation={[0, 0, 0]}
+            isVisible={showPointers}
+            delay={1000}
+            language={language}
           />
         </Desk>
       </Physics>
