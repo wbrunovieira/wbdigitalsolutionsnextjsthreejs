@@ -138,8 +138,14 @@ const ChatBotButton: React.FC = () => {
     const start = performance.now();
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-      
+      // Use production URL in production, localhost in development
+      const apiUrl = process.env.NODE_ENV === 'production'
+        ? 'https://chatbotwb.wbdigitalsolutions.com'
+        : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000');
+
+      // Log which API URL is being used
+      console.log(`[${new Date().toISOString()}] 🌐 Using API URL:`, apiUrl, `(${process.env.NODE_ENV} mode)`);
+
       // Only try to fetch if API URL is configured
       if (apiUrl) {
         const requestStartTime = new Date().toISOString();
