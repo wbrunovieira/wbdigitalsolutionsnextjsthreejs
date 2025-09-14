@@ -140,7 +140,7 @@ const ChatBotButton: React.FC = () => {
     try {
       // Use production URL in production, localhost in development
       const apiUrl = process.env.NODE_ENV === 'production'
-        ? 'https://chatbotwb.wbdigitalsolutions.com'
+        ? 'https://chatbot.wbdigitalsolutions.com'
         : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000');
 
       // Log which API URL is being used
