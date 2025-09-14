@@ -166,7 +166,7 @@ const getPhilosophyText = () => {
     <>
       {/* Premium Minimalist Floor with physics */}
       <RigidBody type="fixed">
-        <Box args={[20, 0.1, 20]} position={[0, -0.05, 0]} receiveShadow>
+        <Box args={[30, 0.1, 30]} position={[0, -0.05, 0]} receiveShadow>
           <meshStandardMaterial 
             color="#3a3a3a"
             metalness={0.2}
@@ -177,7 +177,7 @@ const getPhilosophyText = () => {
       </RigidBody>
       
       {/* Polished concrete overlay effect */}
-      <Box args={[20, 0.01, 20]} position={[0, 0.01, 0]} receiveShadow>
+      <Box args={[30, 0.01, 30]} position={[0, 0.01, 0]} receiveShadow>
         <meshStandardMaterial 
           color="#404040"
           metalness={0.4}
@@ -211,7 +211,7 @@ const getPhilosophyText = () => {
       
       {/* Spotlights under desks (glowing circles) - Updated positions */}
       {/* Center desk spotlight (Websites) */}
-      <mesh position={[0, 0.012, -5]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[0, 0.012, -7]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[2.5, 3.2, 32]} />
         <meshStandardMaterial
           color="#792990"
@@ -224,7 +224,7 @@ const getPhilosophyText = () => {
       </mesh>
       
       {/* Left desk spotlight (Automation) */}
-      <mesh position={[-5, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[-7, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[2.5, 3.2, 32]} />
         <meshStandardMaterial
           color="#ffb947"
@@ -237,7 +237,7 @@ const getPhilosophyText = () => {
       </mesh>
       
       {/* Right desk spotlight (AI) */}
-      <mesh position={[5, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[7, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[2.5, 3.2, 32]} />
         <meshStandardMaterial
           color="#4a90e2"
@@ -251,13 +251,13 @@ const getPhilosophyText = () => {
       
       {/* Back Wall */}
       <RigidBody type="fixed">
-        <Box args={[20, 10, 0.5]} position={[0, 5, -10]} receiveShadow castShadow>
+        <Box args={[30, 10, 0.5]} position={[0, 5, -15]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       
       {/* Code Display on Back Wall - Digital Screen Style */}
-      <group position={[0, 5, -9.75]}>
+      <group position={[0, 5, -14.75]}>
         {/* Outer Frame - Decorative Border */}
         <Box args={[8.4, 5.4, 0.15]} position={[0, 0, -0.05]} castShadow receiveShadow>
           <meshStandardMaterial 
@@ -378,34 +378,34 @@ const getPhilosophyText = () => {
       {/* Left Wall with Window */}
       {/* Lower wall section */}
       <RigidBody type="fixed">
-        <Box args={[0.5, 3, 20]} position={[-10, 1.5, 0]} receiveShadow castShadow>
+        <Box args={[0.5, 3, 30]} position={[-15, 1.5, 0]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       
       {/* Upper wall section */}
       <RigidBody type="fixed">
-        <Box args={[0.5, 3, 20]} position={[-10, 8.5, 0]} receiveShadow castShadow>
+        <Box args={[0.5, 3, 30]} position={[-15, 8.5, 0]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       
       {/* Left side of window */}
       <RigidBody type="fixed">
-        <Box args={[0.5, 4, 6]} position={[-10, 5, -7]} receiveShadow castShadow>
+        <Box args={[0.5, 4, 11]} position={[-15, 5, -9.5]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       
       {/* Right side of window */}
       <RigidBody type="fixed">
-        <Box args={[0.5, 4, 6]} position={[-10, 5, 7]} receiveShadow castShadow>
+        <Box args={[0.5, 4, 11]} position={[-15, 5, 9.5]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       
       {/* Window Glass */}
-      <Box args={[0.1, 4, 8]} position={[-10, 5, 0]} castShadow>
+      <Box args={[0.1, 4, 8]} position={[-15, 5, 0]} castShadow>
         <meshStandardMaterial 
           color="#ffffff"
           transparent
@@ -417,28 +417,28 @@ const getPhilosophyText = () => {
       </Box>
       
       {/* Window Frame */}
-      <Box args={[0.2, 0.1, 8]} position={[-10, 3, 0]} castShadow>
+      <Box args={[0.2, 0.1, 8]} position={[-15, 3, 0]} castShadow>
         <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
       </Box>
-      <Box args={[0.2, 0.1, 8]} position={[-10, 7, 0]} castShadow>
+      <Box args={[0.2, 0.1, 8]} position={[-15, 7, 0]} castShadow>
         <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
       </Box>
-      <Box args={[0.2, 4, 0.1]} position={[-10, 5, -4]} castShadow>
+      <Box args={[0.2, 4, 0.1]} position={[-15, 5, -4]} castShadow>
         <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
       </Box>
-      <Box args={[0.2, 4, 0.1]} position={[-10, 5, 4]} castShadow>
+      <Box args={[0.2, 4, 0.1]} position={[-15, 5, 4]} castShadow>
         <meshStandardMaterial color="#1a1a1a" metalness={0.8} roughness={0.2} />
       </Box>
       
       {/* Right Wall */}
       <RigidBody type="fixed">
-        <Box args={[0.5, 10, 20]} position={[10, 5, 0]} receiveShadow castShadow>
+        <Box args={[0.5, 10, 30]} position={[15, 5, 0]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       
       {/* Philosophy Display on Right Wall - Digital Screen Style */}
-      <group position={[9.45, 5, 0]} rotation={[0, -Math.PI / 2, 0]}>
+      <group position={[14.45, 5, 0]} rotation={[0, -Math.PI / 2, 0]}>
         {/* Screen Frame */}
         <Box args={[8, 4.5, 0.3]} position={[0, 0, 0]} receiveShadow>
           <meshStandardMaterial 
@@ -723,17 +723,17 @@ const getPhilosophyText = () => {
       
       {/* Front walls with entrance */}
       <RigidBody type="fixed">
-        <Box args={[7, 10, 0.5]} position={[-6.5, 5, 10]} receiveShadow castShadow>
+        <Box args={[10.5, 10, 0.5]} position={[-9.75, 5, 15]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       <RigidBody type="fixed">
-        <Box args={[7, 10, 0.5]} position={[6.5, 5, 10]} receiveShadow castShadow>
+        <Box args={[10.5, 10, 0.5]} position={[9.75, 5, 15]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
       <RigidBody type="fixed">
-        <Box args={[6, 3, 0.5]} position={[0, 8.5, 10]} receiveShadow castShadow>
+        <Box args={[9, 3, 0.5]} position={[0, 8.5, 15]} receiveShadow castShadow>
           <meshStandardMaterial color="#3d2f50" />
         </Box>
       </RigidBody>
