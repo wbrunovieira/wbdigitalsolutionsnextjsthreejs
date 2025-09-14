@@ -106,59 +106,59 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
   });
   
   // Company philosophy texts
-  const getPhilosophyText = () => {
-    switch(language) {
-      case 'pt-BR':
-      case 'pt':
-        return {
-          mission: 'NOSSA MISSÃO',
-          missionText: 'Transformar ideias em soluções digitais inovadoras',
-          vision: 'NOSSA VISÃO',
-          visionText: 'Ser referência global em excelência tecnológica',
-          values: 'NOSSOS VALORES',
-          value1: '• Inovação constante',
-          value2: '• Qualidade sem compromissos',
-          value3: '• Parceria verdadeira',
-          value4: '• Resultados mensuráveis'
-        };
-      case 'es':
-        return {
-          mission: 'NUESTRA MISIÓN',
-          missionText: 'Transformar ideas en soluciones digitales innovadoras',
-          vision: 'NUESTRA VISIÓN',
-          visionText: 'Ser referencia global en excelencia tecnológica',
-          values: 'NUESTROS VALORES',
-          value1: '• Innovación constante',
-          value2: '• Calidad sin compromisos',
-          value3: '• Asociación verdadera',
-          value4: '• Resultados medibles'
-        };
-      case 'it':
-        return {
-          mission: 'LA NOSTRA MISSIONE',
-          missionText: 'Trasformare idee in soluzioni digitali innovative',
-          vision: 'LA NOSTRA VISIONE',
-          visionText: 'Essere riferimento globale in eccellenza tecnologica',
-          values: 'I NOSTRI VALORI',
-          value1: '• Innovazione costante',
-          value2: '• Qualità senza compromessi',
-          value3: '• Partnership vera',
-          value4: '• Risultati misurabili'
-        };
-      default:
-        return {
-          mission: 'OUR MISSION',
-          missionText: 'Transform ideas into innovative digital solutions',
-          vision: 'OUR VISION',
-          visionText: 'Be a global reference in technological excellence',
-          values: 'OUR VALUES',
-          value1: '• Constant innovation',
-          value2: '• Uncompromising quality',
-          value3: '• True partnership',
-          value4: '• Measurable results'
-        };
-    }
-  };
+const getPhilosophyText = () => {
+  switch(language) {
+    case 'pt-BR':
+    case 'pt':
+      return {
+        mission: 'NOSSA MISSÃO',
+        missionText: 'Dar vida a ideias, criando soluções digitais que realmente ajudam pessoas e negócios.',
+        vision: 'NOSSA VISÃO',
+        visionText: 'Ser reconhecida pela forma como unimos tecnologia e criatividade para transformar realidades.',
+        values: 'NOSSOS VALORES',
+        value1: '• Inovar sempre com propósito',
+        value2: '• Qualidade em cada detalhe',
+        value3: '• Parceria de confiança',
+        value4: '• Impacto que pode ser medido'
+      };
+    case 'es':
+      return {
+        mission: 'NUESTRA MISIÓN',
+        missionText: 'Dar vida a las ideas, creando soluciones digitales que realmente ayuden a las personas y negocios.',
+        vision: 'NUESTRA VISIÓN',
+        visionText: 'Ser reconocida por la forma en que unimos tecnología y creatividad para transformar realidades.',
+        values: 'NUESTROS VALORES',
+        value1: '• Innovar siempre con propósito',
+        value2: '• Calidad en cada detalle',
+        value3: '• Alianza de confianza',
+        value4: '• Impacto que se puede medir'
+      };
+    case 'it':
+      return {
+        mission: 'LA NOSTRA MISSIONE',
+        missionText: 'Dare vita alle idee, creando soluzioni digitali che realmente aiutino persone e imprese.',
+        vision: 'LA NOSTRA VISIONE',
+        visionText: 'Essere riconosciuta per il modo in cui uniamo tecnologia e creatività per trasformare le realtà.',
+        values: 'I NOSTRI VALORI',
+        value1: '• Innovare sempre con uno scopo',
+        value2: '• Qualità in ogni dettaglio',
+        value3: '• Partnership di fiducia',
+        value4: '• Impatto che può essere misurato'
+      };
+    default:
+      return {
+        mission: 'OUR MISSION',
+        missionText: 'Bring ideas to life by creating digital solutions that truly help people and businesses.',
+        vision: 'OUR VISION',
+        visionText: 'To be recognized for the way we unite technology and creativity to transform realities.',
+        values: 'OUR VALUES',
+        value1: '• Innovate always with purpose',
+        value2: '• Quality in every detail',
+        value3: '• Trusted partnership',
+        value4: '• Impact that can be measured'
+      };
+  }
+};
 
   const texts = getPhilosophyText();
 
@@ -521,7 +521,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
           {currentSection === 'mission' && (
             <group>
               <Text
-                position={[0, 0.8, 0.2]}
+                position={[0, 1.0, 0.2]}
                 fontSize={0.6}
                 color="#ffb947"
                 fontWeight={900}
@@ -541,7 +541,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
                 />
               </Text>
               <Text
-                position={[0, 0, 0.2]}
+                position={[0, -0.2, 0.2]}
                 fontSize={0.35}
                 color="#ffffff"
                 fontWeight={600}
@@ -569,7 +569,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
           {currentSection === 'vision' && (
             <group>
               <Text
-                position={[0, 0.8, 0.2]}
+                position={[0, 1.0, 0.2]}
                 fontSize={0.6}
                 color="#792990"
                 fontWeight={900}
@@ -589,7 +589,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
                 />
               </Text>
               <Text
-                position={[0, 0, 0.2]}
+                position={[0, -0.2, 0.2]}
                 fontSize={0.35}
                 color="#ffffff"
                 fontWeight={600}
