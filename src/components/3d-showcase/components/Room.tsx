@@ -8,13 +8,14 @@ interface RoomProps {
   language?: string;
   displayedCode?: string;
   activeButton?: 'websites' | 'automation' | 'ai';
+  isMobile?: boolean;
 }
 
 /**
  * Room component containing walls, floor and window
  * All elements have physics colliders for ball interaction
  */
-const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', activeButton = 'websites' }) => {
+const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', activeButton = 'websites', isMobile = false }) => {
   const ledTopRef = useRef<THREE.Mesh>(null);
   const ledBottomRef = useRef<THREE.Mesh>(null);
   const screenGlowRef = useRef<THREE.Mesh>(null);
@@ -721,22 +722,26 @@ const getPhilosophyText = () => {
         </group>
       </group>
       
-      {/* Front walls with entrance */}
-      <RigidBody type="fixed">
-        <Box args={[10.5, 10, 0.5]} position={[-9.75, 5, 15]} receiveShadow castShadow>
-          <meshStandardMaterial color="#3d2f50" />
-        </Box>
-      </RigidBody>
-      <RigidBody type="fixed">
-        <Box args={[10.5, 10, 0.5]} position={[9.75, 5, 15]} receiveShadow castShadow>
-          <meshStandardMaterial color="#3d2f50" />
-        </Box>
-      </RigidBody>
-      <RigidBody type="fixed">
-        <Box args={[9, 3, 0.5]} position={[0, 8.5, 15]} receiveShadow castShadow>
-          <meshStandardMaterial color="#3d2f50" />
-        </Box>
-      </RigidBody>
+      {/* Front walls with entrance - Hidden on mobile for better view */}
+      {!isMobile && (
+        <>
+          <RigidBody type="fixed">
+            <Box args={[10.5, 10, 0.5]} position={[-9.75, 5, 15]} receiveShadow castShadow>
+              <meshStandardMaterial color="#3d2f50" />
+            </Box>
+          </RigidBody>
+          <RigidBody type="fixed">
+            <Box args={[10.5, 10, 0.5]} position={[9.75, 5, 15]} receiveShadow castShadow>
+              <meshStandardMaterial color="#3d2f50" />
+            </Box>
+          </RigidBody>
+          <RigidBody type="fixed">
+            <Box args={[9, 3, 0.5]} position={[0, 8.5, 15]} receiveShadow castShadow>
+              <meshStandardMaterial color="#3d2f50" />
+            </Box>
+          </RigidBody>
+        </>
+      )}
       
     </>
   );

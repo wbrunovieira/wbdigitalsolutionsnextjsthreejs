@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/rapier';
+import * as THREE from 'three';
 
 // Components
 import Lighting from './components/Lighting';
@@ -32,6 +33,17 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [showPointers, setShowPointers] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Get translated service names
   const getServiceName = (service: string) => {
@@ -94,11 +106,26 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
     }, 10000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Listen for navigation events from mobile buttons
+  useEffect(() => {
+    const handleNavigate = (event: CustomEvent) => {
+      setActiveButton(event.detail as ServiceType);
+    };
+
+    window.addEventListener('navigateToDesk', handleNavigate as EventListener);
+    return () => {
+      window.removeEventListener('navigateToDesk', handleNavigate as EventListener);
+    };
+  }, []);
   
   return (
     <Canvas
       shadows
-      camera={{ position: CAMERA.position, fov: CAMERA.fov }}
+      camera={{
+        position: isMobile ? [0, 8, 12] : CAMERA.position,
+        fov: isMobile ? 60 : CAMERA.fov
+      }}
     >
       {/* Scene Lighting */}
       <Lighting />
@@ -132,10 +159,11 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         />
         
         {/* Room Structure with Code Display */}
-        <Room 
-          language={language} 
+        <Room
+          language={language}
           displayedCode={displayedCode}
           activeButton={activeButton}
+          isMobile={isMobile}
         />
         
         {/* Office Desks with Holographic Info - Better distributed */}
@@ -205,13 +233,22 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
       </Physics>
       
       {/* Camera Controls */}
-      <OrbitControls 
+      <OrbitControls
         enablePan={true}
         enableZoom={true}
         enableRotate={true}
         maxPolarAngle={Math.PI / 2}
-        minDistance={2}
-        maxDistance={30}
+        minDistance={isMobile ? 5 : 2}
+        maxDistance={isMobile ? 25 : 30}
+        touches={{
+          ONE: THREE.TOUCH.ROTATE,
+          TWO: THREE.TOUCH.DOLLY_PAN
+        }}
+        enableDamping={true}
+        dampingFactor={0.05}
+        target={isMobile && activeButton === 'automation' ? [-5, 3, 0] :
+                isMobile && activeButton === 'ai' ? [5, 3, 0] :
+                [0, 2, 0]}
       />
     </Canvas>
   );
