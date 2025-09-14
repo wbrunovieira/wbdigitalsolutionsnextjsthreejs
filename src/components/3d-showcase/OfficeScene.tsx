@@ -135,7 +135,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'websites'}
             serviceType="websites"
             language={language}
-            position={[0, 3.5, 0]}
+            position={[0, 5.5, 0]}
           />
         </Desk>
         
@@ -151,7 +151,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'automation'}
             serviceType="automation"
             language={language}
-            position={[0, 3.5, 0]}
+            position={[0, 5.5, 0]}
           />
         </Desk>
         
@@ -167,7 +167,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             isActive={activeButton === 'ai'}
             serviceType="ai"
             language={language}
-            position={[0, 3.5, 0]}
+            position={[0, 5.5, 0]}
           />
         </Desk>
       </Physics>
