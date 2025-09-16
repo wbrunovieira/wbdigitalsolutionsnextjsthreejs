@@ -9,7 +9,7 @@ interface ProjectCard3DProps {
   project: {
     id: string;
     title: string;
-    category: string;
+    category: 'website' | 'automation' | 'ai' | 'ecommerce' | 'education';
     color: string;
     icon: string;
   };
@@ -177,7 +177,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
 const Scene: React.FC<{
   projects: any[];
-  onProjectClick: (category: string) => void;
+  onProjectClick: (category: 'all' | 'website' | 'automation' | 'ai' | 'ecommerce' | 'education') => void;
 }> = ({ projects, onProjectClick }) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -236,7 +236,7 @@ const Scene: React.FC<{
 };
 
 interface ProjectsHero3DProps {
-  onCategorySelect: (category: string) => void;
+  onCategorySelect: (category: 'all' | 'website' | 'automation' | 'ai' | 'ecommerce' | 'education') => void;
 }
 
 const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => {
@@ -284,10 +284,10 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
   const showcaseProjects = [
     {
       id: '1',
-      title: 'E-commerce Platform',
-      category: 'ecommerce',
+      title: 'Plataforma de Ensino',
+      category: 'education',
       color: '#10b981',
-      icon: '🛒'
+      icon: '🎓'
     },
     {
       id: '2',
@@ -486,7 +486,7 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
         >
           <Scene
             projects={showcaseProjects}
-            onProjectClick={onCategorySelect}
+            onProjectClick={(cat) => onCategorySelect(cat as 'all' | 'website' | 'automation' | 'ai' | 'ecommerce' | 'education')}
           />
         </Canvas>
       </div>

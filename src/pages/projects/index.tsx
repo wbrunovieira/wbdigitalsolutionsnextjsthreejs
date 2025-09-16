@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageHead from '@/components/PageHead';
-import Link from 'next/link';
+import ProjectModal from '@/components/ProjectModal';
 
 const ProjectsHero3D = dynamic(() => import('@/components/ProjectsHero3D'), {
   ssr: false,
@@ -13,6 +13,15 @@ const ProjectsHero3D = dynamic(() => import('@/components/ProjectsHero3D'), {
   )
 });
 
+interface ProjectSlide {
+  type: 'image' | 'video' | 'mixed';
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  videoUrl?: string;
+  features?: string[];
+}
+
 interface Project {
   id: string;
   title: string;
@@ -21,11 +30,14 @@ interface Project {
   imageUrl: string;
   liveUrl?: string;
   githubUrl?: string;
-  category: 'website' | 'automation' | 'ai' | 'ecommerce';
+  category: 'website' | 'automation' | 'ai' | 'ecommerce' | 'education';
+  slides?: ProjectSlide[];
 }
 
 const ProjectsPage: React.FC = () => {
   const { language } = useLanguage();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const getContent = () => {
     switch(language) {
@@ -94,12 +106,69 @@ const ProjectsPage: React.FC = () => {
   const projects: Project[] = [
     {
       id: '1',
-      title: 'E-commerce Platform',
-      description: 'Modern e-commerce solution with 3D product visualization',
-      technologies: ['Next.js', 'Three.js', 'TypeScript', 'Tailwind CSS'],
+      title: 'Plataforma de Ensino',
+      description: 'Plataforma moderna de ensino online com recursos interativos',
+      technologies: ['Next.js', 'Three.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Stripe'],
       imageUrl: '/images/projects/project1.jpg',
       liveUrl: 'https://example.com',
-      category: 'ecommerce',
+      category: 'education',
+      slides: [
+        {
+          type: 'mixed',
+          title: language === 'pt-BR' ? 'Visão Geral' : 'Overview',
+          description: language === 'pt-BR'
+            ? 'Plataforma completa de ensino online desenvolvida para instituições educacionais e instrutores independentes. Sistema robusto com foco em experiência do usuário e recursos avançados de aprendizagem.'
+            : 'Complete online learning platform developed for educational institutions and independent instructors. Robust system focused on user experience and advanced learning features.',
+          imageUrl: '/images/education-overview.jpg',
+          features: language === 'pt-BR'
+            ? ['Sistema de gestão de cursos', 'Videoaulas em alta qualidade', 'Avaliações e certificados', 'Dashboard analítico', 'Pagamento integrado']
+            : ['Course management system', 'High quality video lessons', 'Assessments and certificates', 'Analytics dashboard', 'Integrated payment']
+        },
+        {
+          type: 'mixed',
+          title: language === 'pt-BR' ? 'Área do Aluno' : 'Student Area',
+          description: language === 'pt-BR'
+            ? 'Interface intuitiva e responsiva para os alunos acessarem cursos, acompanharem progresso e interagirem com instrutores e colegas.'
+            : 'Intuitive and responsive interface for students to access courses, track progress and interact with instructors and peers.',
+          imageUrl: '/images/student-dashboard.jpg',
+          features: language === 'pt-BR'
+            ? ['Progresso detalhado do curso', 'Sistema de gamificação', 'Fórum de discussão', 'Biblioteca de recursos', 'App mobile disponível']
+            : ['Detailed course progress', 'Gamification system', 'Discussion forum', 'Resource library', 'Mobile app available']
+        },
+        {
+          type: 'video',
+          title: language === 'pt-BR' ? 'Sistema de Videoaulas' : 'Video Lesson System',
+          description: language === 'pt-BR'
+            ? 'Player de vídeo customizado com recursos avançados como velocidade variável, legendas, marcadores e sistema de anotações.'
+            : 'Custom video player with advanced features like variable speed, subtitles, markers and note-taking system.',
+          videoUrl: '/videos/video-system-demo.mp4',
+          features: language === 'pt-BR'
+            ? ['Streaming adaptativo', 'Múltiplas resoluções', 'Sistema de bookmarks', 'Transcrição automática']
+            : ['Adaptive streaming', 'Multiple resolutions', 'Bookmark system', 'Automatic transcription']
+        },
+        {
+          type: 'mixed',
+          title: language === 'pt-BR' ? 'Painel do Instrutor' : 'Instructor Panel',
+          description: language === 'pt-BR'
+            ? 'Ferramentas completas para criação e gestão de cursos, acompanhamento de alunos e análise de desempenho.'
+            : 'Complete tools for course creation and management, student tracking and performance analysis.',
+          imageUrl: '/images/instructor-panel.jpg',
+          features: language === 'pt-BR'
+            ? ['Editor de curso drag-and-drop', 'Upload em massa', 'Relatórios detalhados', 'Comunicação com alunos', 'Gestão financeira']
+            : ['Drag-and-drop course editor', 'Bulk upload', 'Detailed reports', 'Student communication', 'Financial management']
+        },
+        {
+          type: 'mixed',
+          title: language === 'pt-BR' ? 'Tecnologia e Segurança' : 'Technology and Security',
+          description: language === 'pt-BR'
+            ? 'Infraestrutura moderna e segura, garantindo disponibilidade, performance e proteção de dados.'
+            : 'Modern and secure infrastructure, ensuring availability, performance and data protection.',
+          imageUrl: '/images/tech-stack.jpg',
+          features: language === 'pt-BR'
+            ? ['Criptografia end-to-end', 'Backup automático', 'CDN global', 'Conformidade LGPD', 'API RESTful']
+            : ['End-to-end encryption', 'Automatic backup', 'Global CDN', 'GDPR compliance', 'RESTful API']
+        }
+      ]
     },
     {
       id: '2',
@@ -121,7 +190,12 @@ const ProjectsPage: React.FC = () => {
     },
   ];
 
-  const [filter, setFilter] = React.useState<'all' | 'website' | 'automation' | 'ai' | 'ecommerce'>('all');
+  const [filter, setFilter] = React.useState<'all' | 'website' | 'automation' | 'ai' | 'ecommerce' | 'education'>('all');
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
 
   const filteredProjects = filter === 'all'
     ? projects
@@ -130,9 +204,8 @@ const ProjectsPage: React.FC = () => {
   return (
     <>
       <PageHead
-        title={content.title}
-        description={content.subtitle}
-        keywords="projects, portfolio, web development, automation, AI"
+        pageKey="projects"
+        customTitle={content.title}
       />
 
       <main className="min-h-screen bg-gradient-to-b from-primary via-primary/90 to-primary">
@@ -205,7 +278,8 @@ const ProjectsPage: React.FC = () => {
                 {filteredProjects.map((project) => (
                   <div
                     key={project.id}
-                    className="bg-primary/50 backdrop-blur-sm border border-custom-purple/30 rounded-2xl overflow-hidden hover:border-custom-purple/70 hover:shadow-xl hover:shadow-custom-purple/20 transition-all duration-300 group"
+                    className="bg-primary/50 backdrop-blur-sm border border-custom-purple/30 rounded-2xl overflow-hidden hover:border-custom-purple/70 hover:shadow-xl hover:shadow-custom-purple/20 transition-all duration-300 group cursor-pointer"
+                    onClick={() => handleProjectClick(project)}
                   >
                     {/* Project Image */}
                     <div className="aspect-video bg-gradient-to-br from-custom-purple/20 to-primary/40 relative overflow-hidden">
@@ -216,6 +290,7 @@ const ProjectsPage: React.FC = () => {
                           {project.category === 'automation' && '⚙️'}
                           {project.category === 'ai' && '🤖'}
                           {project.category === 'ecommerce' && '🛒'}
+                          {project.category === 'education' && '🎓'}
                         </span>
                       </div>
                     </div>
@@ -244,27 +319,29 @@ const ProjectsPage: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Actions */}
+                      {/* Actions - Buttons are visual only, click opens modal */}
                       <div className="flex gap-4">
                         {project.liveUrl && (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleProjectClick(project);
+                            }}
                             className="flex-1 bg-gradient-to-r from-custom-purple to-primary hover:from-custom-purple/90 hover:to-primary/90 text-white py-2 px-4 rounded-lg text-center font-semibold transition-all shadow-lg"
                           >
                             {content.viewProject}
-                          </a>
+                          </button>
                         )}
                         {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleProjectClick(project);
+                            }}
                             className="flex-1 bg-primary/70 hover:bg-primary text-white py-2 px-4 rounded-lg text-center font-semibold transition-all border border-custom-purple/30"
                           >
                             {content.viewCode}
-                          </a>
+                          </button>
                         )}
                       </div>
                     </div>
@@ -279,6 +356,18 @@ const ProjectsPage: React.FC = () => {
           </div>
         </section>
       </main>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <ProjectModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedProject(null);
+          }}
+          project={selectedProject}
+        />
+      )}
     </>
   );
 };
