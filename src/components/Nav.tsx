@@ -48,6 +48,8 @@ const Nav: React.FC = () => {
 
         { name: currentMessages.ai, path: "/ai", subItems: [] },
 
+        { name: currentMessages.projects || "Projects", path: "/projects", subItems: [] },
+
         { name: currentMessages.blog, path: "/blog", subItems: [] },
         { name: currentMessages.contact, path: "/contact", subItems: [] },
     ];
