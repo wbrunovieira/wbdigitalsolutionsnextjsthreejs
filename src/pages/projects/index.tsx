@@ -1,7 +1,17 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageHead from '@/components/PageHead';
 import Link from 'next/link';
+
+const ProjectsHero3D = dynamic(() => import('@/components/ProjectsHero3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-[80vh] flex items-center justify-center">
+      <div className="text-secondary">Loading 3D Experience...</div>
+    </div>
+  )
+});
 
 interface Project {
   id: string;
@@ -126,19 +136,8 @@ const ProjectsPage: React.FC = () => {
       />
 
       <main className="min-h-screen bg-gradient-to-b from-primary via-primary/90 to-primary">
-        {/* Header Section */}
-        <section className="relative py-20 px-6 mt-32">
-          <div className="container mx-auto">
-            <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-secondary to-white bg-clip-text text-transparent">
-                {content.title}
-              </h1>
-              <p className="text-xl text-secondary">
-                {content.subtitle}
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* 3D Hero Section */}
+        <ProjectsHero3D onCategorySelect={setFilter} />
 
         {/* Filter Section */}
         <section className="py-10 px-6">
@@ -199,7 +198,7 @@ const ProjectsPage: React.FC = () => {
         </section>
 
         {/* Projects Grid */}
-        <section className="py-20 px-6">
+        <section id="projects-grid" className="py-20 px-6">
           <div className="container mx-auto">
             {filteredProjects.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
