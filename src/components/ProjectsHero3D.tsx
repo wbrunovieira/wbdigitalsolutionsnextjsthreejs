@@ -36,19 +36,21 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const cardSize = isMobile ? [2.5, 1.8, 0.3] : [3.75, 2.7, 0.45]; // 50% larger on desktop
-  const iconSize = isMobile ? 0.8 : 1.2;
-  const titleSize = isMobile ? 0.15 : 0.225;
+  // Desktop cards MASSIVE for maximum visibility
+  const baseDesktopSize = 14.0; // 14x the original size - DOUBLED from previous
+  const cardSize = isMobile
+    ? [2.5, 1.8, 0.3]
+    : [3.75 * baseDesktopSize, 2.7 * baseDesktopSize, 0.45 * baseDesktopSize];
+  const iconSize = isMobile ? 0.8 : 1.2 * baseDesktopSize;
+  const titleSize = isMobile ? 0.15 : 0.225 * baseDesktopSize;
 
   useFrame((state) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += 0.003;
 
-      if (isHovered) {
-        groupRef.current.scale.lerp(new THREE.Vector3(1.2, 1.2, 1.2), 0.1);
-      } else {
-        groupRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
-      }
+      // Scale animation on hover
+      const targetScale = isHovered ? 1.15 : 1.0;
+      groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
     }
   });
 
@@ -79,7 +81,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
             onClick();
           }}
         >
-          <mesh>
+          <mesh scale={1}>
             <RoundedBox
               args={cardSize as [number, number, number]}
               radius={0.1}
@@ -108,7 +110,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Title - Front */}
           <Text
-            position={[0, -0.9, cardSize[2] / 2 + 0.05]}
+            position={[0, isMobile ? -0.9 : -12.6, cardSize[2] / 2 + 0.05]}
             fontSize={titleSize}
             color="#ffffff"
             anchorX="center"
@@ -132,7 +134,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Title - Back */}
           <Text
-            position={[0, -0.9, -(cardSize[2] / 2 + 0.05)]}
+            position={[0, isMobile ? -0.9 : -12.6, -(cardSize[2] / 2 + 0.05)]}
             fontSize={titleSize}
             color="#ffffff"
             anchorX="center"
@@ -156,7 +158,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
           {/* Tooltip on Hover - Below the card */}
           {hovered && (
             <Html
-              position={[0, -(cardSize[1] / 2 + 0.8), 0]}
+              position={[0, -(cardSize[1] / 2 + (isMobile ? 0.8 : 10.0)), 0]}
               center
               style={{
                 transition: 'all 0.3s',
@@ -189,11 +191,11 @@ const Scene: React.FC<{
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Arrange projects in a circular pattern - smaller radius on mobile, larger on desktop
+  // Arrange projects in a circular pattern - smaller radius on mobile, MAXIMUM spread on desktop
   const projectPositions = useMemo(() => {
-    const radius = isMobile ? 2.5 : 6; // Much larger radius on desktop for spacing
-    const verticalSpread = isMobile ? 1 : 2;
-    const depthSpread = isMobile ? 1 : 3;
+    const radius = isMobile ? 2.5 : 140; // MAXIMUM lateral spread - almost doubled
+    const verticalSpread = isMobile ? 1 : 20; // Extreme vertical variation
+    const depthSpread = isMobile ? 1 : 40; // MAXIMUM depth for strong 3D effect
 
     return projects.map((_, index) => {
       const angle = (index / projects.length) * Math.PI * 2;
@@ -284,10 +286,10 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
   const showcaseProjects = [
     {
       id: '1',
-      title: 'Plataforma de Ensino',
-      category: 'education',
-      color: '#10b981',
-      icon: '🎓'
+      title: 'Automation System',
+      category: 'automation',
+      color: '#ffb947',
+      icon: '⚙️'
     },
     {
       id: '2',
@@ -298,10 +300,10 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
     },
     {
       id: '3',
-      title: 'Automation System',
-      category: 'automation',
-      color: '#ffb947',
-      icon: '⚙️'
+      title: 'Plataforma de Ensino',
+      category: 'education',
+      color: '#10b981',
+      icon: '🎓'
     },
     {
       id: '4',
@@ -479,8 +481,8 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
       <div className="relative w-full h-[400px] max-w-7xl mx-auto">
         <Canvas
           camera={{
-            position: [0, 0, isMobile ? 12 : 15], // Further back on desktop to see wider spread
-            fov: isMobile ? 60 : 55 // Slightly wider FOV on desktop for better view
+            position: [0, 0, isMobile ? 12 : 200], // Maximum distance to see everything
+            fov: isMobile ? 60 : 100 // Absolute maximum FOV
           }}
           gl={{ antialias: true, alpha: true }}
         >
