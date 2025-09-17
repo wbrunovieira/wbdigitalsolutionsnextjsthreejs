@@ -27,13 +27,27 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const { language } = useLanguage();
+  const [isMobile, setIsMobile] = useState(() => {
+    // Initialize with correct value immediately
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
+
+    // Check once on mount
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Desktop cards MASSIVE for maximum visibility
@@ -44,13 +58,16 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   const iconSize = isMobile ? 0.8 : 1.2 * baseDesktopSize;
   const titleSize = isMobile ? 0.15 : 0.225 * baseDesktopSize;
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (groupRef.current) {
+      // Smooth rotation
       groupRef.current.rotation.y += 0.003;
 
-      // Scale animation on hover
+      // Scale animation on hover - use delta for smooth animation
       const targetScale = isHovered ? 1.15 : 1.0;
-      groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+      const currentScale = groupRef.current.scale.x;
+      const newScale = THREE.MathUtils.lerp(currentScale, targetScale, 0.1);
+      groupRef.current.scale.setScalar(newScale);
     }
   });
 
@@ -81,25 +98,77 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
             onClick();
           }}
         >
+          {/* Main card with gradient effect */}
           <mesh scale={1}>
             <RoundedBox
               args={cardSize as [number, number, number]}
-              radius={0.1}
-              smoothness={4}
+              radius={0.3}
+              smoothness={10}
             >
-              <meshStandardMaterial
-                color={hovered ? project.color : '#350545'}
-                emissive={project.color}
-                emissiveIntensity={hovered ? 0.3 : 0.1}
-                metalness={0.8}
-                roughness={0.2}
+              <meshPhysicalMaterial
+                color={hovered ? '#ffb947' : '#1a0225'}
+                emissive={hovered ? '#ffb947' : '#350545'}
+                emissiveIntensity={hovered ? 0.5 : 0.4}
+                metalness={0.9}
+                roughness={0.1}
+                clearcoat={1.0}
+                clearcoatRoughness={0.02}
+                reflectivity={1.0}
+                iridescence={1.0}
+                iridescenceIOR={1.8}
+                sheen={1.0}
+                sheenColor={hovered ? '#ffb947' : '#350545'}
+                sheenRoughness={0.2}
+                transparent={true}
+                opacity={0.95}
+                side={THREE.DoubleSide}
+              />
+            </RoundedBox>
+          </mesh>
+
+          {/* Holographic effect overlay */}
+          <mesh scale={[1.005, 1.005, 1.005]}>
+            <RoundedBox
+              args={cardSize as [number, number, number]}
+              radius={0.3}
+              smoothness={10}
+            >
+              <meshPhysicalMaterial
+                color="#350545"
+                emissive="#350545"
+                emissiveIntensity={hovered ? 0.3 : 0.15}
+                metalness={0.5}
+                roughness={0.3}
+                transmission={0.95}
+                thickness={0.2}
+                transparent={true}
+                opacity={0.4}
+                iridescence={1.0}
+                iridescenceIOR={2.0}
+                side={THREE.FrontSide}
+              />
+            </RoundedBox>
+          </mesh>
+
+          {/* Neon border effect */}
+          <mesh scale={[1.01, 1.01, 1.01]}>
+            <RoundedBox
+              args={cardSize as [number, number, number]}
+              radius={0.3}
+              smoothness={10}
+            >
+              <meshBasicMaterial
+                color={hovered ? '#ffb947' : '#350545'}
+                transparent={true}
+                opacity={hovered ? 0.5 : 0.3}
+                side={THREE.BackSide}
               />
             </RoundedBox>
           </mesh>
 
           {/* Icon - Front */}
           <Text
-            position={[0, 0, cardSize[2] / 2 + 0.05]}
+            position={[0, isMobile ? 0.3 : 3.0, cardSize[2] / 2 + 0.05]}
             fontSize={iconSize}
             color={hovered ? '#ffffff' : '#aaa6c3'}
             anchorX="center"
@@ -110,19 +179,20 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Title - Front */}
           <Text
-            position={[0, isMobile ? -0.9 : -12.6, cardSize[2] / 2 + 0.05]}
+            position={[0, isMobile ? -0.8 : -10.0, cardSize[2] / 2 + 0.05]}
             fontSize={titleSize}
             color="#ffffff"
             anchorX="center"
             anchorY="middle"
-            maxWidth={isMobile ? 2 : 3}
+            maxWidth={isMobile ? 2 : 50}
+            lineHeight={1.2}
           >
             {project.title}
           </Text>
 
           {/* Icon - Back */}
           <Text
-            position={[0, 0, -(cardSize[2] / 2 + 0.05)]}
+            position={[0, isMobile ? 0.3 : 3.0, -(cardSize[2] / 2 + 0.05)]}
             fontSize={iconSize}
             color={hovered ? '#ffffff' : '#aaa6c3'}
             anchorX="center"
@@ -134,12 +204,13 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Title - Back */}
           <Text
-            position={[0, isMobile ? -0.9 : -12.6, -(cardSize[2] / 2 + 0.05)]}
+            position={[0, isMobile ? -0.8 : -10.0, -(cardSize[2] / 2 + 0.05)]}
             fontSize={titleSize}
             color="#ffffff"
             anchorX="center"
             anchorY="middle"
-            maxWidth={isMobile ? 2 : 3}
+            maxWidth={isMobile ? 2 : 50}
+            lineHeight={1.2}
             rotation={[0, Math.PI, 0]}
           >
             {project.title}
@@ -147,18 +218,27 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Glow effect */}
           {hovered && (
-            <pointLight
-              position={[0, 0, 0.5]}
-              intensity={1}
-              color={project.color}
-              distance={3}
-            />
+            <>
+              <pointLight
+                position={[0, 0, cardSize[2]]}
+                intensity={2}
+                color="#ffb947"
+                distance={10}
+              />
+              <pointLight
+                position={[0, 0, -cardSize[2]]}
+                intensity={2}
+                color="#792990"
+                distance={10}
+              />
+            </>
           )}
+
 
           {/* Tooltip on Hover - Below the card */}
           {hovered && (
             <Html
-              position={[0, -(cardSize[1] / 2 + (isMobile ? 0.8 : 10.0)), 0]}
+              position={[0, -(cardSize[1] / 2 + (isMobile ? 0.8 : 2.0)), 0]}
               center
               style={{
                 transition: 'all 0.3s',
@@ -166,7 +246,12 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
               }}
             >
               <div className="bg-gradient-to-r from-custom-purple to-primary text-white px-4 py-2 rounded-lg shadow-xl border border-custom-purple/30 whitespace-nowrap backdrop-blur-sm">
-                <div className="text-xs font-light opacity-90 mb-1">Click to filter by</div>
+                <div className="text-xs font-light opacity-90 mb-1">
+                  {language === 'pt-BR' ? 'Clique para filtrar por' :
+                   language === 'es' ? 'Haz clic para filtrar por' :
+                   language === 'it' ? 'Clicca per filtrare per' :
+                   'Click to filter by'}
+                </div>
                 <div className="text-sm font-bold">{project.category.toUpperCase()}</div>
               </div>
             </Html>
@@ -182,20 +267,29 @@ const Scene: React.FC<{
   onProjectClick: (category: 'all' | 'website' | 'automation' | 'ai' | 'ecommerce' | 'education') => void;
 }> = ({ projects, onProjectClick }) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Arrange projects in a circular pattern - smaller radius on mobile, MAXIMUM spread on desktop
+  // Arrange projects in a circular pattern - smaller radius on mobile, wide spread on desktop
   const projectPositions = useMemo(() => {
-    const radius = isMobile ? 2.5 : 140; // MAXIMUM lateral spread - almost doubled
-    const verticalSpread = isMobile ? 1 : 20; // Extreme vertical variation
-    const depthSpread = isMobile ? 1 : 40; // MAXIMUM depth for strong 3D effect
+    const radius = isMobile ? 2.5 : 85; // Much more lateral spacing
+    const verticalSpread = isMobile ? 1 : 12; // Keep vertical variation
+    const depthSpread = isMobile ? 1 : 20; // Keep good depth
 
     return projects.map((_, index) => {
       const angle = (index / projects.length) * Math.PI * 2;
@@ -209,9 +303,13 @@ const Scene: React.FC<{
 
   return (
     <>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
+      <ambientLight intensity={0.4} />
+      <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
       <pointLight position={[0, 0, 0]} intensity={0.5} color="#792990" />
+      <spotLight position={[0, 10, 0]} intensity={0.5} angle={0.5} penumbra={1} color="#ffffff" />
+      {/* Custom lighting for metallic effect */}
+      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#ffffff" />
+      <pointLight position={[10, -10, -10]} intensity={0.3} color="#ffffff" />
 
       {projects.map((project, index) => (
         <ProjectCard3D
@@ -243,13 +341,22 @@ interface ProjectsHero3DProps {
 
 const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => {
   const { language } = useLanguage();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const getContent = () => {
@@ -286,45 +393,43 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
   const showcaseProjects = [
     {
       id: '1',
-      title: 'Automation System',
+      title: language === 'pt-BR' ? 'Sistema de Automação' :
+              language === 'es' ? 'Sistema de Automatización' :
+              language === 'it' ? 'Sistema di Automazione' :
+              'Automation System',
       category: 'automation',
-      color: '#ffb947',
+      color: '#350545', // primary dark purple
       icon: '⚙️'
     },
     {
       id: '2',
-      title: 'AI Chatbot',
-      category: 'ai',
-      color: '#3b82f6',
-      icon: '🤖'
+      title: language === 'pt-BR' ? 'Site Corporativo' :
+              language === 'es' ? 'Sitio Corporativo' :
+              language === 'it' ? 'Sito Aziendale' :
+              'Corporate Website',
+      category: 'website',
+      color: '#350545', // primary dark purple
+      icon: '🌐'
     },
     {
       id: '3',
-      title: 'Plataforma de Ensino',
+      title: language === 'pt-BR' ? 'Plataforma de Ensino' :
+              language === 'es' ? 'Plataforma de Enseñanza' :
+              language === 'it' ? 'Piattaforma di Apprendimento' :
+              'Learning Platform',
       category: 'education',
-      color: '#10b981',
+      color: '#350545', // primary dark purple
       icon: '🎓'
     },
     {
       id: '4',
-      title: 'Corporate Website',
-      category: 'website',
-      color: '#792990',
-      icon: '🌐'
-    },
-    {
-      id: '5',
-      title: 'Dashboard Analytics',
-      category: 'website',
-      color: '#792990',
-      icon: '📊'
-    },
-    {
-      id: '6',
-      title: 'Mobile App',
-      category: 'website',
-      color: '#792990',
-      icon: '📱'
+      title: language === 'pt-BR' ? 'Chatbot IA' :
+              language === 'es' ? 'Chatbot IA' :
+              language === 'it' ? 'Chatbot IA' :
+              'AI Chatbot',
+      category: 'ai',
+      color: '#350545', // primary dark purple
+      icon: '🤖'
     }
   ];
 
@@ -481,8 +586,8 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
       <div className="relative w-full h-[400px] max-w-7xl mx-auto">
         <Canvas
           camera={{
-            position: [0, 0, isMobile ? 12 : 200], // Maximum distance to see everything
-            fov: isMobile ? 60 : 100 // Absolute maximum FOV
+            position: [0, 0, isMobile ? 12 : 90], // Slightly further to see wider spread
+            fov: isMobile ? 60 : 80 // Slightly wider FOV for lateral spread
           }}
           gl={{ antialias: true, alpha: true }}
         >
