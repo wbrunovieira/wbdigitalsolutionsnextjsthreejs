@@ -53,10 +53,10 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   // Desktop cards MASSIVE for maximum visibility
   const baseDesktopSize = 14.0; // 14x the original size - DOUBLED from previous
   const cardSize = isMobile
-    ? [2.5, 1.8, 0.3]
+    ? [3.5, 2.5, 0.4]  // Increased mobile card size
     : [3.75 * baseDesktopSize, 2.7 * baseDesktopSize, 0.45 * baseDesktopSize];
-  const iconSize = isMobile ? 0.8 : 1.2 * baseDesktopSize;
-  const titleSize = isMobile ? 0.15 : 0.225 * baseDesktopSize;
+  const iconSize = isMobile ? 1.2 : 1.2 * baseDesktopSize;  // Increased mobile icon
+  const titleSize = isMobile ? 0.25 : 0.225 * baseDesktopSize;  // Increased mobile text
 
   useFrame((state, delta) => {
     if (groupRef.current) {
@@ -287,9 +287,9 @@ const Scene: React.FC<{
 
   // Arrange projects in a circular pattern - smaller radius on mobile, wide spread on desktop
   const projectPositions = useMemo(() => {
-    const radius = isMobile ? 2.5 : 85; // Much more lateral spacing
-    const verticalSpread = isMobile ? 1 : 12; // Keep vertical variation
-    const depthSpread = isMobile ? 1 : 20; // Keep good depth
+    const radius = isMobile ? 3.5 : 85; // Increased mobile radius for bigger cards
+    const verticalSpread = isMobile ? 1.5 : 12; // Slightly more vertical on mobile
+    const depthSpread = isMobile ? 1.5 : 20; // Slightly more depth on mobile
 
     return projects.map((_, index) => {
       const angle = (index / projects.length) * Math.PI * 2;
@@ -321,16 +321,6 @@ const Scene: React.FC<{
           onClick={() => onProjectClick(project.category)}
         />
       ))}
-
-      {/* Central glow */}
-      <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[0.3, 32, 32]} />
-        <meshStandardMaterial
-          emissive="#792990"
-          emissiveIntensity={2}
-          color="#792990"
-        />
-      </mesh>
     </>
   );
 };
@@ -586,8 +576,8 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
       <div className="relative w-full h-[400px] max-w-7xl mx-auto">
         <Canvas
           camera={{
-            position: [0, 0, isMobile ? 12 : 90], // Slightly further to see wider spread
-            fov: isMobile ? 60 : 80 // Slightly wider FOV for lateral spread
+            position: [0, 0, isMobile ? 8 : 90], // Closer camera on mobile to see bigger cards
+            fov: isMobile ? 75 : 80 // Wider FOV on mobile to see all cards
           }}
           gl={{ antialias: true, alpha: true }}
         >
@@ -619,12 +609,6 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
         </button>
       </div>
 
-      {/* Floating badge for new projects */}
-      <div className="absolute top-10 right-10 animate-float">
-        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-          ✨ New Project
-        </div>
-      </div>
     </section>
   );
 };
