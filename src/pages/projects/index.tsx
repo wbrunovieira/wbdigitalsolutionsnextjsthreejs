@@ -295,92 +295,79 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: '3',
-      title: language === 'pt-BR' ? 'Automação de Processos' :
-              language === 'es' ? 'Automatización de Procesos' :
-              language === 'it' ? 'Automazione dei Processi' :
-              'Process Automation',
-      description: language === 'pt-BR' ? 'Solução completa de automação de processos empresariais' :
-                   language === 'es' ? 'Solución completa de automatización de procesos empresariales' :
-                   language === 'it' ? 'Soluzione completa per l\'automazione dei processi aziendali' :
-                   'Complete business process automation solution',
-      technologies: ['Node.js', 'Docker', 'PostgreSQL', 'Redis'],
-      imageUrl: '/images/projects/project3.jpg',
-      githubUrl: 'https://github.com/example',
-      category: 'automation',
-      slides: [
-        {
-          type: 'mixed',
-          title: language === 'pt-BR' ? 'Visão Geral' : language === 'es' ? 'Visión General' : language === 'it' ? 'Panoramica' : 'Overview',
-          description: language === 'pt-BR'
-            ? 'Plataforma robusta de automação que otimiza processos empresariais, reduzindo custos operacionais e aumentando a eficiência.'
-            : language === 'es'
-            ? 'Plataforma robusta de automatización que optimiza procesos empresariales, reduciendo costos operativos y aumentando la eficiencia.'
-            : language === 'it'
-            ? 'Piattaforma robusta di automazione che ottimizza i processi aziendali, riducendo i costi operativi e aumentando l\'efficienza.'
-            : 'Robust automation platform that optimizes business processes, reducing operational costs and increasing efficiency.',
-          imageUrl: '/images/automation-overview.jpg',
-          features: language === 'pt-BR'
-            ? ['Workflows personalizados', 'Integração com APIs', 'Monitoramento em tempo real', 'Relatórios detalhados', 'Escalabilidade automática']
-            : language === 'es'
-            ? ['Flujos de trabajo personalizados', 'Integración con APIs', 'Monitoreo en tiempo real', 'Informes detallados', 'Escalabilidad automática']
-            : language === 'it'
-            ? ['Workflow personalizzati', 'Integrazione API', 'Monitoraggio in tempo reale', 'Report dettagliati', 'Scalabilità automatica']
-            : ['Custom workflows', 'API integration', 'Real-time monitoring', 'Detailed reports', 'Automatic scaling']
-        },
-        {
-          type: 'mixed',
-          title: language === 'pt-BR' ? 'Dashboard de Controle' : language === 'es' ? 'Panel de Control' : language === 'it' ? 'Pannello di Controllo' : 'Control Dashboard',
-          description: language === 'pt-BR'
-            ? 'Painel centralizado para gerenciamento e monitoramento de todos os processos automatizados, com métricas em tempo real.'
-            : language === 'es'
-            ? 'Panel centralizado para gestión y monitoreo de todos los procesos automatizados, con métricas en tiempo real.'
-            : language === 'it'
-            ? 'Pannello centralizzato per la gestione e il monitoraggio di tutti i processi automatizzati, con metriche in tempo reale.'
-            : 'Centralized panel for management and monitoring of all automated processes, with real-time metrics.',
-          imageUrl: '/images/automation-dashboard.jpg',
-          features: language === 'pt-BR'
-            ? ['Visualização em tempo real', 'Alertas inteligentes', 'Logs detalhados', 'Controle de acesso', 'Exportação de dados']
-            : language === 'es'
-            ? ['Visualización en tiempo real', 'Alertas inteligentes', 'Registros detallados', 'Control de acceso', 'Exportación de datos']
-            : language === 'it'
-            ? ['Visualizzazione in tempo reale', 'Avvisi intelligenti', 'Log dettagliati', 'Controllo accessi', 'Esportazione dati']
-            : ['Real-time visualization', 'Smart alerts', 'Detailed logs', 'Access control', 'Data export']
-        }
-      ]
-    },
-    {
-      id: '4',
-      title: language === 'pt-BR' ? 'Site Corporativo' :
-              language === 'es' ? 'Sitio Corporativo' :
-              language === 'it' ? 'Sito Aziendale' :
-              'Corporate Website',
-      description: language === 'pt-BR' ? 'Site institucional moderno com design responsivo e otimizado para SEO' :
-                   language === 'es' ? 'Sitio institucional moderno con diseño responsivo y optimizado para SEO' :
-                   language === 'it' ? 'Sito istituzionale moderno con design responsive e ottimizzato per SEO' :
-                   'Modern institutional website with responsive design and SEO optimization',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-      imageUrl: '/images/projects/project4.jpg',
+      title: language === 'pt-BR' ? 'Site de Salão de Beleza' :
+              language === 'es' ? 'Sitio de Salón de Belleza' :
+              language === 'it' ? 'Sito Salone di Bellezza' :
+              'Beauty Salon Website',
+      description: language === 'pt-BR' ? 'Landing page moderna com e-commerce de gift cards integrado' :
+                   language === 'es' ? 'Landing page moderna con e-commerce de tarjetas regalo integrado' :
+                   language === 'it' ? 'Landing page moderna con e-commerce di gift card integrato' :
+                   'Modern landing page with integrated gift card e-commerce',
+      technologies: ['Next.js', 'GSAP', 'Firebase', 'Square'],
+      imageUrl: '/img/projects/flavia1.png',
       liveUrl: 'https://example.com',
       category: 'website',
       slides: [
         {
           type: 'mixed',
-          title: language === 'pt-BR' ? 'Visão Geral' : language === 'es' ? 'Visión General' : language === 'it' ? 'Panoramica' : 'Overview',
+          title: language === 'pt-BR' ? 'Landing Page de Salão de Beleza' :
+                 language === 'es' ? 'Landing Page de Salón de Belleza' :
+                 language === 'it' ? 'Landing Page Salone di Bellezza' :
+                 'Beauty Salon Landing Page',
           description: language === 'pt-BR'
-            ? 'Site corporativo moderno desenvolvido com as últimas tecnologias web. Design elegante, performance otimizada e totalmente responsivo.'
+            ? 'Desenvolvemos uma landing page elegante e funcional para um salão de beleza de alto padrão.\n\nA plataforma apresenta seções interativas que destacam os serviços oferecidos e um portfólio visual impressionante dos trabalhos realizados.\n\nO grande diferencial é o sistema de venda de gift cards online, totalmente integrado com o Square para processamento seguro de pagamentos.\n\nInclui também um painel administrativo exclusivo onde o proprietário pode acompanhar as vendas em tempo real, gerenciar pedidos e visualizar relatórios detalhados.'
             : language === 'es'
-            ? 'Sitio corporativo moderno desarrollado con las últimas tecnologías web. Diseño elegante, rendimiento optimizado y totalmente responsivo.'
+            ? 'Desarrollamos una landing page elegante y funcional para un salón de belleza de alto estándar.\n\nLa plataforma presenta secciones interactivas que destacan los servicios ofrecidos y un portafolio visual impresionante de los trabajos realizados.\n\nEl gran diferencial es el sistema de venta de tarjetas regalo en línea, totalmente integrado con Square para el procesamiento seguro de pagos.\n\nTambién incluye un panel administrativo exclusivo donde el propietario puede seguir las ventas en tiempo real, gestionar pedidos y ver informes detallados.'
             : language === 'it'
-            ? 'Sito aziendale moderno sviluppato con le ultime tecnologie web. Design elegante, prestazioni ottimizzate e completamente responsive.'
-            : 'Modern corporate website developed with the latest web technologies. Elegant design, optimized performance and fully responsive.',
-          imageUrl: '/images/corporate-overview.jpg',
+            ? 'Abbiamo sviluppato una landing page elegante e funzionale per un salone di bellezza di alto livello.\n\nLa piattaforma presenta sezioni interattive che evidenziano i servizi offerti e un portfolio visivo impressionante dei lavori realizzati.\n\nIl grande differenziale è il sistema di vendita di gift card online, completamente integrato con Square per l\'elaborazione sicura dei pagamenti.\n\nInclude anche un pannello amministrativo esclusivo dove il proprietario può seguire le vendite in tempo reale, gestire gli ordini e visualizzare report dettagliati.'
+            : 'We developed an elegant and functional landing page for a high-end beauty salon.\n\nThe platform features interactive sections that highlight the services offered and an impressive visual portfolio of completed work.\n\nThe major differentiator is the online gift card sales system, fully integrated with Square for secure payment processing.\n\nIt also includes an exclusive admin panel where the owner can track sales in real-time, manage orders and view detailed reports.',
+          imageUrl: '/img/projects/flavia1.png',
           features: language === 'pt-BR'
-            ? ['Design responsivo', 'SEO otimizado', 'Performance A+', 'Acessibilidade WCAG', 'Analytics integrado']
+            ? ['Seções interativas de serviços', 'Portfólio visual de trabalhos', 'Sistema de venda de gift cards', 'Integração com Square para pagamentos', 'Painel administrativo em tempo real']
             : language === 'es'
-            ? ['Diseño responsivo', 'SEO optimizado', 'Rendimiento A+', 'Accesibilidad WCAG', 'Analytics integrado']
+            ? ['Secciones interactivas de servicios', 'Portafolio visual de trabajos', 'Sistema de venta de tarjetas regalo', 'Integración con Square para pagos', 'Panel administrativo en tiempo real']
             : language === 'it'
-            ? ['Design responsive', 'SEO ottimizzato', 'Performance A+', 'Accessibilità WCAG', 'Analytics integrato']
-            : ['Responsive design', 'SEO optimized', 'A+ Performance', 'WCAG accessibility', 'Integrated analytics']
+            ? ['Sezioni interattive dei servizi', 'Portfolio visivo dei lavori', 'Sistema di vendita gift card', 'Integrazione con Square per pagamenti', 'Pannello amministrativo in tempo reale']
+            : ['Interactive service sections', 'Visual portfolio of work', 'Gift card sales system', 'Square payment integration', 'Real-time admin panel']
+        }
+      ]
+    },
+    {
+      id: '4',
+      title: language === 'pt-BR' ? 'Kundalini Activation' :
+              language === 'es' ? 'Activación Kundalini' :
+              language === 'it' ? 'Attivazione Kundalini' :
+              'Kundalini Activation',
+      description: language === 'pt-BR' ? 'Plataforma de agendamento e apresentação de sessões de Kundalini' :
+                   language === 'es' ? 'Plataforma de programación y presentación de sesiones de Kundalini' :
+                   language === 'it' ? 'Piattaforma di prenotazione e presentazione di sessioni Kundalini' :
+                   'Kundalini session scheduling and presentation platform',
+      technologies: ['Next.js', 'Tailwind CSS', 'GSAP'],
+      imageUrl: '/img/projects/elaine1.png',
+      liveUrl: 'https://kundaliniactivation.com',
+      category: 'website',
+      slides: [
+        {
+          type: 'mixed',
+          title: language === 'pt-BR' ? 'Kundalini Activation by Elaine Vieira' :
+                 language === 'es' ? 'Activación Kundalini por Elaine Vieira' :
+                 language === 'it' ? 'Attivazione Kundalini di Elaine Vieira' :
+                 'Kundalini Activation by Elaine Vieira',
+          description: language === 'pt-BR'
+            ? 'Desenvolvemos uma plataforma completa para Elaine Vieira, especialista em ativação de Kundalini e harmonização energética.\n\nO site oferece uma jornada transformadora onde energia, cura e conexão se fundem. As sessões presenciais de Ativação Kundalini são projetadas para despertar o poder interior, liberar bloqueios emocionais e reconectar com o eu superior.\n\nA plataforma inclui sistema de agendamento para sessões presenciais e online, galeria de fotos inspiradoras, depoimentos em vídeo e texto, e seção de FAQ completa.\n\nInterface otimizada para conversão com múltiplas CTAs estratégicas, informações sobre locais dos eventos (Fort Lauderdale e Orlando), e diferentes opções de experiência Kundalini.'
+            : language === 'es'
+            ? 'Desarrollamos una plataforma completa para Elaine Vieira, especialista en activación de Kundalini y armonización energética.\n\nEl sitio ofrece un viaje transformador donde la energía, la sanación y la conexión se fusionan. Las sesiones presenciales de Activación Kundalini están diseñadas para despertar el poder interior, liberar bloqueos emocionales y reconectar con el yo superior.\n\nLa plataforma incluye sistema de programación para sesiones presenciales y en línea, galería de fotos inspiradoras, testimonios en video y texto, y sección completa de preguntas frecuentes.\n\nInterfaz optimizada para conversión con múltiples CTAs estratégicos, información sobre ubicaciones de eventos (Fort Lauderdale y Orlando), y diferentes opciones de experiencia Kundalini.'
+            : language === 'it'
+            ? 'Abbiamo sviluppato una piattaforma completa per Elaine Vieira, specialista in attivazione Kundalini e armonizzazione energetica.\n\nIl sito offre un viaggio trasformativo dove energia, guarigione e connessione si fondono. Le sessioni in presenza di Attivazione Kundalini sono progettate per risvegliare il potere interiore, rilasciare blocchi emotivi e riconnettersi con il sé superiore.\n\nLa piattaforma include sistema di prenotazione per sessioni in presenza e online, galleria di foto ispiratrici, testimonianze video e testuali, e sezione FAQ completa.\n\nInterfaccia ottimizzata per la conversione con molteplici CTA strategiche, informazioni sulle location degli eventi (Fort Lauderdale e Orlando), e diverse opzioni di esperienza Kundalini.'
+            : 'We developed a complete platform for Elaine Vieira, a specialist in Kundalini activation and energy harmonization.\n\nThe site offers a transformative journey where energy, healing, and connection merge. The in-person Kundalini Activation sessions are designed to awaken inner power, release emotional blockages, and reconnect with the higher self.\n\nThe platform includes a booking system for in-person and online sessions, inspiring photo gallery, video and text testimonials, and comprehensive FAQ section.\n\nConversion-optimized interface with multiple strategic CTAs, event location information (Fort Lauderdale and Orlando), and different Kundalini experience options.',
+          imageUrl: '/img/projects/elaine1.png',
+          features: language === 'pt-BR'
+            ? ['Sistema de agendamento de sessões', 'Galeria de fotos de alta resolução', 'Depoimentos em vídeo e texto', 'Seção de perguntas frequentes', 'Informações de locais e eventos', 'Design responsivo e espiritual']
+            : language === 'es'
+            ? ['Sistema de programación de sesiones', 'Galería de fotos de alta resolución', 'Testimonios en video y texto', 'Sección de preguntas frecuentes', 'Información de ubicaciones y eventos', 'Diseño responsivo y espiritual']
+            : language === 'it'
+            ? ['Sistema di prenotazione sessioni', 'Galleria foto ad alta risoluzione', 'Testimonianze video e testuali', 'Sezione domande frequenti', 'Informazioni su location ed eventi', 'Design responsive e spirituale']
+            : ['Session booking system', 'High-resolution photo gallery', 'Video and text testimonials', 'Frequently asked questions section', 'Location and event information', 'Responsive and spiritual design']
         },
         {
           type: 'mixed',
@@ -419,6 +406,45 @@ const ProjectsPage: React.FC = () => {
             : language === 'it'
             ? ['Punteggio 100 su Lighthouse', 'Tempo di caricamento < 1s', 'Immagini ottimizzate', 'Lazy loading', 'Compressione Brotli']
             : ['Lighthouse score 100', 'Load time < 1s', 'Optimized images', 'Lazy loading', 'Brotli compression']
+        }
+      ]
+    },
+    {
+      id: '5',
+      title: language === 'pt-BR' ? 'Salão Loha' :
+              language === 'es' ? 'Salón Loha' :
+              language === 'it' ? 'Salone Loha' :
+              'Loha Beauty Salon',
+      description: language === 'pt-BR' ? 'Website institucional para salão de beleza com design elegante' :
+                   language === 'es' ? 'Sitio web institucional para salón de belleza con diseño elegante' :
+                   language === 'it' ? 'Sito web istituzionale per salone di bellezza con design elegante' :
+                   'Institutional website for beauty salon with elegant design',
+      technologies: ['HTML', 'CSS', 'JavaScript'],
+      imageUrl: '/img/projects/loha1.png',
+      liveUrl: 'https://salaololha.com.br',
+      category: 'website',
+      slides: [
+        {
+          type: 'mixed',
+          title: language === 'pt-BR' ? 'Salão Loha - Estética e Beleza' :
+                 language === 'es' ? 'Salón Loha - Estética y Belleza' :
+                 language === 'it' ? 'Salone Loha - Estetica e Bellezza' :
+                 'Loha Salon - Aesthetics and Beauty',
+          description: language === 'pt-BR'
+            ? 'Desenvolvemos um website institucional moderno e elegante para o Salão Loha, focado em transmitir a atmosfera acolhedora e profissional do estabelecimento.\n\nO site apresenta uma experiência visual envolvente com seções que destacam os serviços oferecidos: cabeleireiro, manicure, terapia capilar e depilação.\n\nA galeria de fotos permite aos visitantes conhecerem o espaço e os trabalhos realizados, enquanto a seção de portfólio exibe transformações inspiradoras.\n\nDestaque especial para a sala de esterilização, demonstrando o compromisso com higiene e segurança, utilizando autoclave para garantir um ambiente seguro para todos os clientes.'
+            : language === 'es'
+            ? 'Desarrollamos un sitio web institucional moderno y elegante para el Salón Loha, enfocado en transmitir la atmósfera acogedora y profesional del establecimiento.\n\nEl sitio presenta una experiencia visual envolvente con secciones que destacan los servicios ofrecidos: peluquería, manicura, terapia capilar y depilación.\n\nLa galería de fotos permite a los visitantes conocer el espacio y los trabajos realizados, mientras que la sección de portafolio muestra transformaciones inspiradoras.\n\nDestaque especial para la sala de esterilización, demostrando el compromiso con la higiene y seguridad, utilizando autoclave para garantizar un ambiente seguro para todos los clientes.'
+            : language === 'it'
+            ? 'Abbiamo sviluppato un sito web istituzionale moderno ed elegante per il Salone Loha, focalizzato nel trasmettere l\'atmosfera accogliente e professionale dello stabilimento.\n\nIl sito presenta un\'esperienza visiva coinvolgente con sezioni che evidenziano i servizi offerti: parrucchiere, manicure, terapia capillare e depilazione.\n\nLa galleria fotografica permette ai visitatori di conoscere lo spazio e i lavori realizzati, mentre la sezione portfolio mostra trasformazioni ispiratrici.\n\nRilievo speciale per la sala di sterilizzazione, dimostrando l\'impegno per l\'igiene e la sicurezza, utilizzando l\'autoclave per garantire un ambiente sicuro per tutti i clienti.'
+            : 'We developed a modern and elegant institutional website for Loha Salon, focused on conveying the welcoming and professional atmosphere of the establishment.\n\nThe site features an engaging visual experience with sections highlighting the services offered: hairdressing, manicure, hair therapy and waxing.\n\nThe photo gallery allows visitors to get to know the space and work performed, while the portfolio section showcases inspiring transformations.\n\nSpecial highlight for the sterilization room, demonstrating commitment to hygiene and safety, using autoclave to ensure a safe environment for all clients.',
+          imageUrl: '/img/projects/loha1.png',
+          features: language === 'pt-BR'
+            ? ['Design responsivo e elegante', 'Galeria de fotos interativa', 'Seção de serviços detalhada', 'Portfólio de transformações', 'Informações sobre esterilização', 'Localização e contato']
+            : language === 'es'
+            ? ['Diseño responsivo y elegante', 'Galería de fotos interactiva', 'Sección de servicios detallada', 'Portafolio de transformaciones', 'Información sobre esterilización', 'Ubicación y contacto']
+            : language === 'it'
+            ? ['Design responsive ed elegante', 'Galleria fotografica interattiva', 'Sezione servizi dettagliata', 'Portfolio di trasformazioni', 'Informazioni sulla sterilizzazione', 'Posizione e contatto']
+            : ['Responsive and elegant design', 'Interactive photo gallery', 'Detailed services section', 'Transformation portfolio', 'Sterilization information', 'Location and contact']
         }
       ]
     },
