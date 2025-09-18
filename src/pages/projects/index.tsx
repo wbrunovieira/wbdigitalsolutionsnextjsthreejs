@@ -93,7 +93,7 @@ const ProjectsPage: React.FC = () => {
           filterAutomation: 'Automation',
           filterAI: 'Artificial Intelligence',
           filterEcommerce: 'E-commerce',
-          viewProject: 'Learn More',
+          viewProject: 'View Details',
           viewCode: 'View Code',
           technologies: 'Technologies',
           noProjects: 'No projects found',
@@ -116,7 +116,7 @@ const ProjectsPage: React.FC = () => {
                    language === 'it' ? 'Piattaforma di apprendimento online moderna con funzionalità interattive e supporto multilingue completo' :
                    'Modern online learning platform with interactive features and complete multilingual support',
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'AWS'],
-      imageUrl: '/images/projects/project1.jpg',
+      imageUrl: '/img/projects/revalida1.png',
       liveUrl: 'https://example.com',
       category: 'education',
       slides: [
@@ -234,56 +234,62 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: '2',
-      title: language === 'pt-BR' ? 'Sistema de Chatbot IA' :
-              language === 'es' ? 'Sistema de Chatbot IA' :
-              language === 'it' ? 'Sistema Chatbot IA' :
-              'AI Chatbot System',
-      description: language === 'pt-BR' ? 'Sistema inteligente de suporte ao cliente com processamento de linguagem natural' :
-                   language === 'es' ? 'Sistema inteligente de soporte al cliente con procesamiento de lenguaje natural' :
-                   language === 'it' ? 'Sistema intelligente di supporto clienti con elaborazione del linguaggio naturale' :
-                   'Intelligent customer support system with natural language processing',
-      technologies: ['Python', 'FastAPI', 'OpenAI', 'React'],
-      imageUrl: '/images/projects/project2.jpg',
-      liveUrl: 'https://example.com',
-      category: 'ai',
+      title: language === 'pt-BR' ? 'Site de Consultoria' :
+              language === 'es' ? 'Sitio de Consultoría' :
+              language === 'it' ? 'Sito di Consulenza' :
+              'Consulting Website',
+      description: language === 'pt-BR' ? 'Plataforma digital completa para consultora internacional em Access Consciousness' :
+                   language === 'es' ? 'Plataforma digital completa para consultora internacional en Access Consciousness' :
+                   language === 'it' ? 'Piattaforma digitale completa per consulente internazionale di Access Consciousness' :
+                   'Complete digital platform for international Access Consciousness consultant',
+      technologies: ['Next.js', 'React', 'Tailwind CSS', 'Sanity CMS', 'PostgreSQL', 'GSAP', 'i18n'],
+      imageUrl: '/img/projects/manon1.png',
+      liveUrl: 'https://manoruivo.com',
+      category: 'website',
       slides: [
         {
           type: 'mixed',
-          title: language === 'pt-BR' ? 'Visão Geral' : language === 'es' ? 'Visión General' : language === 'it' ? 'Panoramica' : 'Overview',
+          title: language === 'pt-BR' ? 'Site de Consultoria - Manon Ruivo' :
+                 language === 'es' ? 'Sitio de Consultoría - Manon Ruivo' :
+                 language === 'it' ? 'Sito di Consulenza - Manon Ruivo' :
+                 'Consulting Website - Manon Ruivo',
           description: language === 'pt-BR'
-            ? 'Sistema avançado de chatbot com IA para atendimento ao cliente 24/7. Utiliza processamento de linguagem natural para compreender e responder perguntas complexas.'
+            ? 'Desenvolvemos uma plataforma digital completa e moderna para Manon Ruivo, consultora internacional em Access Consciousness.\n\nA solução entrega uma experiência imersiva com design responsivo, trilíngue (PT/ES/EN), permitindo que a consultora alcance clientes globalmente.'
             : language === 'es'
-            ? 'Sistema avanzado de chatbot con IA para atención al cliente 24/7. Utiliza procesamiento de lenguaje natural para comprender y responder preguntas complejas.'
+            ? 'Desarrollamos una plataforma digital completa y moderna para Manon Ruivo, consultora internacional en Access Consciousness.\n\nLa solución ofrece una experiencia inmersiva con diseño responsivo, trilingüe (PT/ES/EN), permitiendo que la consultora alcance clientes globalmente.'
             : language === 'it'
-            ? 'Sistema avanzato di chatbot con IA per assistenza clienti 24/7. Utilizza l\'elaborazione del linguaggio naturale per comprendere e rispondere a domande complesse.'
-            : 'Advanced AI chatbot system for 24/7 customer support. Uses natural language processing to understand and respond to complex questions.',
-          imageUrl: '/images/ai-overview.jpg',
+            ? 'Abbiamo sviluppato una piattaforma digitale completa e moderna per Manon Ruivo, consulente internazionale di Access Consciousness.\n\nLa soluzione offre un\'esperienza immersiva con design responsive, trilingue (PT/ES/EN), permettendo alla consulente di raggiungere clienti a livello globale.'
+            : 'We developed a complete and modern digital platform for Manon Ruivo, international Access Consciousness consultant.\n\nThe solution delivers an immersive experience with responsive design, trilingual (PT/ES/EN), allowing the consultant to reach clients globally.',
+          imageUrl: '/img/projects/manon1.png',
           features: language === 'pt-BR'
-            ? ['Atendimento 24/7', 'Múltiplos idiomas', 'Integração com CRM', 'Análise de sentimento', 'Aprendizado contínuo']
+            ? ['Interface trilíngue com suporte nativo para PT/ES/EN', 'Hero section com slider interativo de imagens', 'Seções especializadas para diferentes públicos', 'Depoimentos dinâmicos com vídeo e texto', 'Design responsivo e acessível']
             : language === 'es'
-            ? ['Atención 24/7', 'Múltiples idiomas', 'Integración con CRM', 'Análisis de sentimiento', 'Aprendizaje continuo']
+            ? ['Interfaz trilingüe con soporte nativo para PT/ES/EN', 'Hero section con slider interactivo de imágenes', 'Secciones especializadas para diferentes públicos', 'Testimonios dinámicos con video y texto', 'Diseño responsivo y accesible']
             : language === 'it'
-            ? ['Assistenza 24/7', 'Multilingue', 'Integrazione CRM', 'Analisi del sentiment', 'Apprendimento continuo']
-            : ['24/7 support', 'Multiple languages', 'CRM integration', 'Sentiment analysis', 'Continuous learning']
+            ? ['Interfaccia trilingue con supporto nativo per PT/ES/EN', 'Hero section con slider interattivo di immagini', 'Sezioni specializzate per diversi pubblici', 'Testimonianze dinamiche con video e testo', 'Design responsive e accessibile']
+            : ['Trilingual interface with native support for PT/ES/EN', 'Hero section with interactive image slider', 'Specialized sections for different audiences', 'Dynamic testimonials with video and text', 'Responsive and accessible design']
         },
         {
           type: 'mixed',
-          title: language === 'pt-BR' ? 'Interface de Conversação' : language === 'es' ? 'Interfaz de Conversación' : language === 'it' ? 'Interfaccia di Conversazione' : 'Conversation Interface',
+          title: language === 'pt-BR' ? 'Gestão de Conteúdo com Sanity CMS' :
+                 language === 'es' ? 'Gestión de Contenido con Sanity CMS' :
+                 language === 'it' ? 'Gestione Contenuti con Sanity CMS' :
+                 'Content Management with Sanity CMS',
           description: language === 'pt-BR'
-            ? 'Interface moderna e intuitiva para conversação com suporte a texto, voz e imagens. Design responsivo para todos os dispositivos.'
+            ? 'Implementamos o Sanity como CMS headless, permitindo que o cliente gerencie o conteúdo da página de blog de forma autônoma.\n\nO sistema de blog integrado possibilita a criação de artigos, categorias e autores, fortalecendo a estratégia de marketing de conteúdo.\n\nInterface administrativa intuitiva com preview em tempo real das alterações antes da publicação.'
             : language === 'es'
-            ? 'Interfaz moderna e intuitiva para conversación con soporte de texto, voz e imágenes. Diseño responsivo para todos los dispositivos.'
+            ? 'Implementamos Sanity como CMS headless, permitiendo que el cliente gestione el contenido de la página del blog de forma autónoma.\n\nEl sistema de blog integrado posibilita la creación de artículos, categorías y autores, fortaleciendo la estrategia de marketing de contenidos.\n\nInterfaz administrativa intuitiva con vista previa en tiempo real de los cambios antes de la publicación.'
             : language === 'it'
-            ? 'Interfaccia moderna e intuitiva per la conversazione con supporto per testo, voce e immagini. Design responsive per tutti i dispositivi.'
-            : 'Modern and intuitive conversation interface with support for text, voice and images. Responsive design for all devices.',
-          imageUrl: '/images/chat-interface.jpg',
+            ? 'Abbiamo implementato Sanity come CMS headless, permettendo al cliente di gestire autonomamente i contenuti della pagina del blog.\n\nIl sistema di blog integrato consente la creazione di articoli, categorie e autori, rafforzando la strategia di content marketing.\n\nInterfaccia amministrativa intuitiva con anteprima in tempo reale delle modifiche prima della pubblicazione.'
+            : 'We implemented Sanity as a headless CMS, allowing the client to manage blog page content autonomously.\n\nThe integrated blog system enables the creation of articles, categories and authors, strengthening the content marketing strategy.\n\nIntuitive administrative interface with real-time preview of changes before publication.',
+          imageUrl: '/img/projects/manon2.png',
           features: language === 'pt-BR'
-            ? ['Chat em tempo real', 'Suporte a voz', 'Compartilhamento de arquivos', 'Histórico de conversas', 'Indicadores de digitação']
+            ? ['Painel administrativo personalizado no /studio', 'Sistema de blog com categorias e tags', 'Upload e gestão de imagens otimizadas', 'Preview em tempo real das alterações', 'Versionamento automático de conteúdo']
             : language === 'es'
-            ? ['Chat en tiempo real', 'Soporte de voz', 'Compartir archivos', 'Historial de conversaciones', 'Indicadores de escritura']
+            ? ['Panel administrativo personalizado en /studio', 'Sistema de blog con categorías y etiquetas', 'Carga y gestión de imágenes optimizadas', 'Vista previa en tiempo real de los cambios', 'Versionado automático de contenido']
             : language === 'it'
-            ? ['Chat in tempo reale', 'Supporto vocale', 'Condivisione file', 'Cronologia conversazioni', 'Indicatori di digitazione']
-            : ['Real-time chat', 'Voice support', 'File sharing', 'Conversation history', 'Typing indicators']
+            ? ['Pannello amministrativo personalizzato su /studio', 'Sistema blog con categorie e tag', 'Upload e gestione di immagini ottimizzate', 'Anteprima in tempo reale delle modifiche', 'Versioning automatico dei contenuti']
+            : ['Custom admin panel at /studio', 'Blog system with categories and tags', 'Upload and management of optimized images', 'Real-time preview of changes', 'Automatic content versioning']
         }
       ]
     },
@@ -512,17 +518,17 @@ const ProjectsPage: React.FC = () => {
                     {/* Project Image */}
                     <div className="aspect-video bg-gradient-to-br from-custom-purple/20 to-primary/40 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent z-10"></div>
-                      {/* Use optimized image for education category, emoji fallback for others */}
-                      {project.category === 'education' ? (
+                      {/* Use project image if available */}
+                      {project.imageUrl ? (
                         <div className="absolute inset-0 flex items-center justify-center p-6">
                           <div className="relative w-full h-full max-w-[90%] max-h-[90%] rounded-lg border-2 border-custom-purple/40 overflow-hidden shadow-xl group-hover:scale-105 transition-transform duration-300">
                             <Image
-                              src="/img/projects/revalida1.png"
+                              src={project.imageUrl}
                               alt={project.title}
                               fill
                               sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 30vw"
                               className="object-cover"
-                              priority={project.id === '1'}
+                              priority={project.id === '1' || project.id === '2'}
                               quality={85}
                             />
                             {/* Purple overlay that disappears on hover */}
@@ -536,6 +542,7 @@ const ProjectsPage: React.FC = () => {
                             {project.category === 'automation' && '⚙️'}
                             {project.category === 'ai' && '🤖'}
                             {project.category === 'ecommerce' && '🛒'}
+                            {project.category === 'education' && '🎓'}
                           </span>
                         </div>
                       )}

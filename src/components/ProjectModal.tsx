@@ -79,7 +79,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
       default:
         return {
           close: 'Close',
-          viewLive: 'Learn More',
+          viewLive: 'View Details',
           viewCode: 'View Code',
           features: 'Features',
           technologies: 'Technologies',
