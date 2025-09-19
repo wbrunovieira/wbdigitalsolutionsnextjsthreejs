@@ -409,45 +409,6 @@ const ProjectsPage: React.FC = () => {
         }
       ]
     },
-    {
-      id: '5',
-      title: language === 'pt-BR' ? 'Salão Loha' :
-              language === 'es' ? 'Salón Loha' :
-              language === 'it' ? 'Salone Loha' :
-              'Loha Beauty Salon',
-      description: language === 'pt-BR' ? 'Website institucional para salão de beleza com design elegante' :
-                   language === 'es' ? 'Sitio web institucional para salón de belleza con diseño elegante' :
-                   language === 'it' ? 'Sito web istituzionale per salone di bellezza con design elegante' :
-                   'Institutional website for beauty salon with elegant design',
-      technologies: ['HTML', 'CSS', 'JavaScript'],
-      imageUrl: '/img/projects/loha1.png',
-      liveUrl: 'https://salaololha.com.br',
-      category: 'website',
-      slides: [
-        {
-          type: 'mixed',
-          title: language === 'pt-BR' ? 'Salão Loha - Estética e Beleza' :
-                 language === 'es' ? 'Salón Loha - Estética y Belleza' :
-                 language === 'it' ? 'Salone Loha - Estetica e Bellezza' :
-                 'Loha Salon - Aesthetics and Beauty',
-          description: language === 'pt-BR'
-            ? 'Desenvolvemos um website institucional moderno e elegante para o Salão Loha, focado em transmitir a atmosfera acolhedora e profissional do estabelecimento.\n\nO site apresenta uma experiência visual envolvente com seções que destacam os serviços oferecidos: cabeleireiro, manicure, terapia capilar e depilação.\n\nA galeria de fotos permite aos visitantes conhecerem o espaço e os trabalhos realizados, enquanto a seção de portfólio exibe transformações inspiradoras.\n\nDestaque especial para a sala de esterilização, demonstrando o compromisso com higiene e segurança, utilizando autoclave para garantir um ambiente seguro para todos os clientes.'
-            : language === 'es'
-            ? 'Desarrollamos un sitio web institucional moderno y elegante para el Salón Loha, enfocado en transmitir la atmósfera acogedora y profesional del establecimiento.\n\nEl sitio presenta una experiencia visual envolvente con secciones que destacan los servicios ofrecidos: peluquería, manicura, terapia capilar y depilación.\n\nLa galería de fotos permite a los visitantes conocer el espacio y los trabajos realizados, mientras que la sección de portafolio muestra transformaciones inspiradoras.\n\nDestaque especial para la sala de esterilización, demostrando el compromiso con la higiene y seguridad, utilizando autoclave para garantizar un ambiente seguro para todos los clientes.'
-            : language === 'it'
-            ? 'Abbiamo sviluppato un sito web istituzionale moderno ed elegante per il Salone Loha, focalizzato nel trasmettere l\'atmosfera accogliente e professionale dello stabilimento.\n\nIl sito presenta un\'esperienza visiva coinvolgente con sezioni che evidenziano i servizi offerti: parrucchiere, manicure, terapia capillare e depilazione.\n\nLa galleria fotografica permette ai visitatori di conoscere lo spazio e i lavori realizzati, mentre la sezione portfolio mostra trasformazioni ispiratrici.\n\nRilievo speciale per la sala di sterilizzazione, dimostrando l\'impegno per l\'igiene e la sicurezza, utilizzando l\'autoclave per garantire un ambiente sicuro per tutti i clienti.'
-            : 'We developed a modern and elegant institutional website for Loha Salon, focused on conveying the welcoming and professional atmosphere of the establishment.\n\nThe site features an engaging visual experience with sections highlighting the services offered: hairdressing, manicure, hair therapy and waxing.\n\nThe photo gallery allows visitors to get to know the space and work performed, while the portfolio section showcases inspiring transformations.\n\nSpecial highlight for the sterilization room, demonstrating commitment to hygiene and safety, using autoclave to ensure a safe environment for all clients.',
-          imageUrl: '/img/projects/loha1.png',
-          features: language === 'pt-BR'
-            ? ['Design responsivo e elegante', 'Galeria de fotos interativa', 'Seção de serviços detalhada', 'Portfólio de transformações', 'Informações sobre esterilização', 'Localização e contato']
-            : language === 'es'
-            ? ['Diseño responsivo y elegante', 'Galería de fotos interactiva', 'Sección de servicios detallada', 'Portafolio de transformaciones', 'Información sobre esterilización', 'Ubicación y contacto']
-            : language === 'it'
-            ? ['Design responsive ed elegante', 'Galleria fotografica interattiva', 'Sezione servizi dettagliata', 'Portfolio di trasformazioni', 'Informazioni sulla sterilizzazione', 'Posizione e contatto']
-            : ['Responsive and elegant design', 'Interactive photo gallery', 'Detailed services section', 'Transformation portfolio', 'Sterilization information', 'Location and contact']
-        }
-      ]
-    },
   ];
 
   const [filter, setFilter] = React.useState<'all' | 'website' | 'automation' | 'ai' | 'ecommerce' | 'education'>('all');
