@@ -31,14 +31,16 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   const [isMobile, setIsMobile] = useState(() => {
     // Initialize with correct value immediately
     if (typeof window !== 'undefined') {
-      return window.innerWidth < 768;
+      const width = window.innerWidth;
+      return width < 768;
     }
-    return false;
+    return true; // Default to mobile
   });
 
   useEffect(() => {
     const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
+      const width = window.innerWidth;
+      const mobile = width < 768;
       setIsMobile(mobile);
     };
 
@@ -53,10 +55,10 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   // Desktop cards MASSIVE for maximum visibility
   const baseDesktopSize = 14.0; // 14x the original size - DOUBLED from previous
   const cardSize = isMobile
-    ? [3.5, 2.5, 0.4]  // Increased mobile card size
+    ? [2.5, 1.8, 0.3]  // Small mobile card size
     : [3.75 * baseDesktopSize, 2.7 * baseDesktopSize, 0.45 * baseDesktopSize];
-  const iconSize = isMobile ? 1.2 : 1.2 * baseDesktopSize;  // Increased mobile icon
-  const titleSize = isMobile ? 0.25 : 0.225 * baseDesktopSize;  // Increased mobile text
+  const iconSize = isMobile ? 0.8 : 1.2 * baseDesktopSize;  // Small mobile icon
+  const titleSize = isMobile ? 0.2 : 0.225 * baseDesktopSize;  // Small mobile text
 
   useFrame((state, delta) => {
     if (groupRef.current) {
@@ -168,7 +170,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Icon - Front */}
           <Text
-            position={[0, isMobile ? 0.3 : 3.0, cardSize[2] / 2 + 0.05]}
+            position={[0, isMobile ? 0.2 : 3.0, cardSize[2] / 2 + 0.05]}
             fontSize={iconSize}
             color={hovered ? '#ffffff' : '#aaa6c3'}
             anchorX="center"
@@ -179,7 +181,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Title - Front */}
           <Text
-            position={[0, isMobile ? -0.8 : -10.0, cardSize[2] / 2 + 0.05]}
+            position={[0, isMobile ? -0.5 : -10.0, cardSize[2] / 2 + 0.05]}
             fontSize={titleSize}
             color="#ffffff"
             anchorX="center"
@@ -192,7 +194,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Icon - Back */}
           <Text
-            position={[0, isMobile ? 0.3 : 3.0, -(cardSize[2] / 2 + 0.05)]}
+            position={[0, isMobile ? 0.2 : 3.0, -(cardSize[2] / 2 + 0.05)]}
             fontSize={iconSize}
             color={hovered ? '#ffffff' : '#aaa6c3'}
             anchorX="center"
@@ -204,7 +206,7 @@ const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
 
           {/* Title - Back */}
           <Text
-            position={[0, isMobile ? -0.8 : -10.0, -(cardSize[2] / 2 + 0.05)]}
+            position={[0, isMobile ? -0.5 : -10.0, -(cardSize[2] / 2 + 0.05)]}
             fontSize={titleSize}
             color="#ffffff"
             anchorX="center"
@@ -285,20 +287,31 @@ const Scene: React.FC<{
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Arrange projects in a circular pattern - smaller radius on mobile, wide spread on desktop
+  // Arrange projects - vertical stack on mobile, circular on desktop
   const projectPositions = useMemo(() => {
-    const radius = isMobile ? 3.5 : 85; // Increased mobile radius for bigger cards
-    const verticalSpread = isMobile ? 1.5 : 12; // Slightly more vertical on mobile
-    const depthSpread = isMobile ? 1.5 : 20; // Slightly more depth on mobile
+    if (isMobile) {
+      // Vertical stack for mobile with slight horizontal offset for visual interest
+      return projects.map((_, index) => {
+        const yPosition = (index - (projects.length - 1) / 2) * 3.0; // Vertical spacing
+        const xOffset = Math.sin(index * 0.5) * 0.8; // Slight horizontal wave
+        const zOffset = Math.cos(index * 0.5) * 0.5; // Slight depth variation
+        return [xOffset, yPosition, zOffset] as [number, number, number];
+      });
+    } else {
+      // Circular pattern for desktop
+      const radius = 85;
+      const verticalSpread = 12;
+      const depthSpread = 20;
 
-    return projects.map((_, index) => {
-      const angle = (index / projects.length) * Math.PI * 2;
-      return [
-        Math.cos(angle) * radius,
-        Math.sin(angle) * verticalSpread,
-        Math.sin(angle) * depthSpread
-      ] as [number, number, number];
-    });
+      return projects.map((_, index) => {
+        const angle = (index / projects.length) * Math.PI * 2;
+        return [
+          Math.cos(angle) * radius,
+          Math.sin(angle) * verticalSpread,
+          Math.sin(angle) * depthSpread
+        ] as [number, number, number];
+      });
+    }
   }, [projects.length, isMobile]);
 
   return (
@@ -576,8 +589,8 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
       <div className="relative w-full h-[400px] max-w-7xl mx-auto">
         <Canvas
           camera={{
-            position: [0, 0, isMobile ? 8 : 90], // Closer camera on mobile to see bigger cards
-            fov: isMobile ? 75 : 80 // Wider FOV on mobile to see all cards
+            position: [0, 0, isMobile ? 10 : 90], // Further camera distance on mobile
+            fov: isMobile ? 65 : 80 // Wider FOV on mobile to see all cards
           }}
           gl={{ antialias: true, alpha: true }}
         >
