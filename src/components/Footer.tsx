@@ -1,116 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "/public/svg/logo-white.svg";
-import EmailInput from "./EmailInput";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/contexts/TranslationContext";
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa";
 import { FiPhone, FiMail } from "react-icons/fi";
 import { SiWhatsapp } from "react-icons/si";
-import ButtonStandard from "./ButtonStandard";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Footer: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
   const currentMessages = useTranslations();
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  async function handleNewsletterSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (!newsletterEmail.trim()) {
-      toast.error(
-        currentMessages.fillAllFields ||
-          "Por favor, preencha todos os campos corretamente."
-      );
-      return;
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(newsletterEmail)) {
-      toast.error(
-        currentMessages.validEmail ||
-          "Por favor, insira um email válido."
-      );
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: newsletterEmail.trim(),
-          language: language, // Send current language
-        }),
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        toast.success(
-          currentMessages.successNewsletter ||
-            currentMessages.successSubmission ||
-            "Inscrição realizada com sucesso!"
-        );
-        setNewsletterEmail("");
-      } else {
-        toast.error(
-          currentMessages.errorSubmission ||
-            "Erro ao realizar inscrição. Tente novamente."
-        );
-      }
-    } catch (error) {
-      console.error("Erro ao enviar inscrição", error);
-      toast.error(
-        currentMessages.errorSubmission ||
-          "Erro ao realizar inscrição. Tente novamente."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
 
   return (
     <footer className="bg-modern-gradient text-white px-6 py-10 lg:px-10 mt-32">
-      <div className="container mx-auto">
-        <form
-          onSubmit={handleNewsletterSubmit}
-          className="bg-cover p-6 rounded w-full"
-        >
-
-
-          <div className="flex flex-col lg:flex-row items-center gap-4 w-full">
-            <h2 className="text-lg md:text-xl font-semibold text-center lg:text-left">
-              {currentMessages.subscribeNewsletter}
-            </h2>
-
-            <div className="flex flex-col md:flex-row items-center gap-2 w-full md:w-auto">
-              <EmailInput
-                value={newsletterEmail}
-                onChange={(value) => setNewsletterEmail(value)}
-                disabled={isSubmitting}
-              />
-              <ButtonStandard 
-                buttonText={isSubmitting ? "..." : currentMessages.send} 
-                type="submit" 
-                disabled={isSubmitting}
-              />
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div className="mt-6 border-b border-gray-400 opacity-50 mx-auto w-full"></div>
 
       <div className="container mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start">
@@ -222,7 +124,6 @@ const Footer: React.FC = () => {
           © WBDIGITALSOLUTIONS | {currentMessages.allRightsReserved}
         </p>
       </div>
-      <ToastContainer />
     </footer>
   );
 };

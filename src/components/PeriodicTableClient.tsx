@@ -207,12 +207,6 @@ Assunto
 Mensagem`,
     },
     {
-        id: "newsletter",
-        title: "Increva-se em nossa Newsletter",
-        type: "card",
-        content: "Digite o seu e-mail",
-    },
-    {
         id: "rodape",
         title: "WB Digital Solutions",
         type: "card",
