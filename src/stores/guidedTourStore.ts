@@ -33,27 +33,88 @@ interface GuidedTourState {
   setSteps: (steps: GuidedStep[]) => void;
 }
 
-// Default tour steps (can be customized)
+// Default tour steps - hub-only tour showcasing each portal
 const DEFAULT_STEPS: GuidedStep[] = [
   {
-    id: 'intro-welcome',
-    title: 'Bem-vindo',
-    description:
-      'Este é o Hub de Experiências 3D. Cada portal representa uma forma diferente de apresentar conteúdo.',
+    id: 'welcome',
+    title: 'tourWelcomeTitle',
+    description: 'tourWelcomeDesc',
     location: 'hub',
     cameraPosition: [0, 12, 20],
     cameraTarget: [0, 0, 0],
     duration: 5000,
   },
   {
-    id: 'intro-hub',
-    title: 'O Hub Central',
-    description:
-      'O ponto de partida. De aqui, seu cliente pode explorar diferentes experiências.',
+    id: 'portal-learning',
+    title: 'tourPortalLearningTitle',
+    description: 'tourPortalLearningDesc',
+    location: 'hub',
+    cameraPosition: [0, 4, -5],
+    cameraTarget: [0, 2, -10],
+    duration: 4000,
+  },
+  {
+    id: 'portal-product',
+    title: 'tourPortalProductTitle',
+    description: 'tourPortalProductDesc',
+    location: 'hub',
+    cameraPosition: [3.5, 4, -3.5],
+    cameraTarget: [7, 2, -7],
+    duration: 4000,
+  },
+  {
+    id: 'portal-landing',
+    title: 'tourPortalLandingTitle',
+    description: 'tourPortalLandingDesc',
+    location: 'hub',
+    cameraPosition: [5, 4, 0],
+    cameraTarget: [10, 2, 0],
+    duration: 4000,
+  },
+  {
+    id: 'portal-virtual-space',
+    title: 'tourPortalVirtualSpaceTitle',
+    description: 'tourPortalVirtualSpaceDesc',
+    location: 'hub',
+    cameraPosition: [3.5, 4, 3.5],
+    cameraTarget: [7, 2, 7],
+    duration: 4000,
+  },
+  {
+    id: 'portal-sales-demo',
+    title: 'tourPortalSalesDemoTitle',
+    description: 'tourPortalSalesDemoDesc',
+    location: 'hub',
+    cameraPosition: [0, 4, 5],
+    cameraTarget: [0, 2, 10],
+    duration: 4000,
+  },
+  {
+    id: 'portal-brand',
+    title: 'tourPortalBrandTitle',
+    description: 'tourPortalBrandDesc',
+    location: 'hub',
+    cameraPosition: [-3.5, 4, 3.5],
+    cameraTarget: [-7, 2, 7],
+    duration: 4000,
+  },
+  {
+    id: 'portal-micro',
+    title: 'tourPortalMicroTitle',
+    description: 'tourPortalMicroDesc',
+    location: 'hub',
+    cameraPosition: [-5, 4, 0],
+    cameraTarget: [-10, 2, 0],
+    duration: 4000,
+  },
+  {
+    id: 'conclusion',
+    title: 'tourConclusionTitle',
+    description: 'tourConclusionDesc',
     location: 'hub',
     cameraPosition: [0, 8, 15],
     cameraTarget: [0, 0, 0],
-    duration: 4000,
+    duration: 5000,
   },
 ];
 

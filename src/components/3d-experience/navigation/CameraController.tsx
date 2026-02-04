@@ -6,6 +6,7 @@ import { useRef, useEffect } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useNavigationStore } from '@/stores/navigationStore';
+import { useGuidedTourStore } from '@/stores/guidedTourStore';
 
 const HUB_RADIUS = 15;
 const HUB_HEIGHT = 8;
@@ -28,13 +29,27 @@ export function CameraController({
     hubOrbitAngle,
   } = useNavigationStore();
 
+  const {
+    isActive: isTourActive,
+    currentStepIndex,
+    steps,
+  } = useGuidedTourStore();
+
   const targetPosition = useRef(new Vector3(...cameraPosition));
   const targetLookAt = useRef(new Vector3(...cameraTarget));
   const currentLookAt = useRef(new Vector3(...cameraTarget));
 
-  // Update targets when navigation store changes
+  // Update targets when navigation store or tour changes
   useEffect(() => {
-    if (currentLocation === 'hub') {
+    if (isTourActive) {
+      // During tour, use the step's camera position and target
+      const step = steps[currentStepIndex];
+      if (step) {
+        targetPosition.current.set(...step.cameraPosition);
+        const target = step.cameraTarget || [0, 0, 0] as [number, number, number];
+        targetLookAt.current.set(...target);
+      }
+    } else if (currentLocation === 'hub') {
       // Calculate orbital position from angle
       const x = HUB_RADIUS * Math.sin(hubOrbitAngle);
       const z = HUB_RADIUS * Math.cos(hubOrbitAngle);
@@ -44,7 +59,7 @@ export function CameraController({
       targetPosition.current.set(...cameraPosition);
       targetLookAt.current.set(...cameraTarget);
     }
-  }, [cameraPosition, cameraTarget, currentLocation, hubOrbitAngle]);
+  }, [cameraPosition, cameraTarget, currentLocation, hubOrbitAngle, isTourActive, currentStepIndex, steps]);
 
   useFrame(() => {
     if (!enableDamping) {

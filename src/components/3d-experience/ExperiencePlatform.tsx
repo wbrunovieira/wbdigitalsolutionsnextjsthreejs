@@ -11,7 +11,7 @@ import { useDeviceType } from '@/hooks/useDeviceType';
 import { COLORS, PERFORMANCE, CAMERA_POSITIONS } from './constants';
 import { CameraController } from './navigation/CameraController';
 import { TransitionOverlay } from './navigation/TransitionOverlay';
-import { BackToHubButton, HubUI, LanguageSelector } from './ui';
+import { BackToHubButton, GuidedTourOverlay, HubUI, LanguageSelector } from './ui';
 import { MobileControls } from './navigation/MobileControls';
 import { HubScene } from './HubCentral';
 import { ExperienceRenderer } from './experiences';
@@ -104,6 +104,7 @@ function ExperiencePlatformContent({ children }: ExperiencePlatformProps) {
       <TransitionOverlay />
       <BackToHubButton />
       <HubUI />
+      <GuidedTourOverlay />
       <MobileControls />
 
       {/* Location indicator for development */}
