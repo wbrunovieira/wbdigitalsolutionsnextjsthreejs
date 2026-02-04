@@ -2,7 +2,7 @@
  * HubParticles - Ambient particles around the Hub
  */
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, memo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Points, Color, AdditiveBlending } from 'three';
 
@@ -10,7 +10,7 @@ interface HubParticlesProps {
   count?: number;
 }
 
-export function HubParticles({ count = 500 }: HubParticlesProps) {
+export const HubParticles = memo(function HubParticles({ count = 500 }: HubParticlesProps) {
   const particlesRef = useRef<Points>(null);
 
   const { positions, colors, sizes } = useMemo(() => {
@@ -80,6 +80,6 @@ export function HubParticles({ count = 500 }: HubParticlesProps) {
       />
     </points>
   );
-}
+});
 
 export default HubParticles;

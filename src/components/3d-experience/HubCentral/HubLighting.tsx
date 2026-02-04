@@ -2,15 +2,17 @@
  * HubLighting - Lighting setup for the Hub Central
  */
 
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { PointLight } from 'three';
 import { COLORS } from '../constants';
+import { useNavigationStore } from '@/stores/navigationStore';
 
-export function HubLighting() {
+export const HubLighting = memo(function HubLighting() {
   const purpleLight1Ref = useRef<PointLight>(null);
   const purpleLight2Ref = useRef<PointLight>(null);
   const yellowLightRef = useRef<PointLight>(null);
+  const { isMobile } = useNavigationStore();
 
   // Subtle light animation
   useFrame(({ clock }) => {
@@ -30,15 +32,15 @@ export function HubLighting() {
   return (
     <>
       {/* Ambient base light */}
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={isMobile ? 0.4 : 0.3} />
 
-      {/* Main top light */}
+      {/* Main top light - shadows only on desktop */}
       <pointLight
         position={[0, 15, 0]}
         intensity={1.5}
         color="#ffffff"
-        castShadow
-        shadow-mapSize={[1024, 1024]}
+        castShadow={!isMobile}
+        shadow-mapSize={isMobile ? undefined : [1024, 1024]}
         shadow-camera-near={0.5}
         shadow-camera-far={50}
       />
@@ -79,21 +81,25 @@ export function HubLighting() {
         distance={15}
       />
 
-      {/* Rim lights */}
-      <pointLight
-        position={[7, 2, -7]}
-        intensity={0.3}
-        color={COLORS.yellow}
-        distance={12}
-      />
-      <pointLight
-        position={[-7, 2, 7]}
-        intensity={0.3}
-        color={COLORS.blue}
-        distance={12}
-      />
+      {/* Rim lights - desktop only */}
+      {!isMobile && (
+        <>
+          <pointLight
+            position={[7, 2, -7]}
+            intensity={0.3}
+            color={COLORS.yellow}
+            distance={12}
+          />
+          <pointLight
+            position={[-7, 2, 7]}
+            intensity={0.3}
+            color={COLORS.blue}
+            distance={12}
+          />
+        </>
+      )}
     </>
   );
-}
+});
 
 export default HubLighting;

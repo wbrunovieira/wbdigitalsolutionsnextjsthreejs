@@ -5,7 +5,7 @@
 
 import { Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Preload } from '@react-three/drei';
+import { Html, Preload, useProgress } from '@react-three/drei';
 import { useNavigationStore } from '@/stores/navigationStore';
 import { useDeviceType } from '@/hooks/useDeviceType';
 import { COLORS, PERFORMANCE, CAMERA_POSITIONS } from './constants';
@@ -22,16 +22,42 @@ interface ExperiencePlatformProps {
 }
 
 function LoadingFallback() {
+  const { progress } = useProgress();
   const { t } = useExperienceLanguage();
 
   return (
-    <group>
-      <mesh>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={COLORS.purple} wireframe />
-      </mesh>
-      <ambientLight intensity={0.5} />
-    </group>
+    <Html
+      center
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        gap: '16px',
+      }}
+    >
+      <span className="canvas-loader" />
+      <p
+        style={{
+          fontSize: 14,
+          color: '#F1F1F1',
+          fontWeight: 800,
+          fontFamily: 'Plus Jakarta Sans, sans-serif',
+          marginTop: 16,
+        }}
+      >
+        {progress.toFixed(0)}%
+      </p>
+      <p
+        style={{
+          fontSize: 12,
+          color: 'rgba(255,255,255,0.5)',
+          fontFamily: 'Plus Jakarta Sans, sans-serif',
+        }}
+      >
+        {t.loading}
+      </p>
+    </Html>
   );
 }
 

@@ -2,41 +2,37 @@
  * HubPlatform - Hexagonal platform base for the Hub
  */
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, memo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Mesh, Shape, ExtrudeGeometry } from 'three';
+import { Mesh, MeshStandardMaterial, Color } from 'three';
 import { COLORS } from '../constants';
 
 interface HubPlatformProps {
   radius?: number;
 }
 
+// Shared grid material (created once, reused by all grid meshes)
+const gridMaterial = new MeshStandardMaterial({
+  color: new Color(COLORS.purple),
+  emissive: new Color(COLORS.purple),
+  emissiveIntensity: 0.2,
+  transparent: true,
+  opacity: 0.3,
+});
+
+const edgeMaterial = new MeshStandardMaterial({
+  color: new Color(COLORS.purple),
+  emissive: new Color(COLORS.purple),
+  emissiveIntensity: 0.3,
+  transparent: true,
+  opacity: 0.5,
+});
+
 export function HubPlatform({ radius = 12 }: HubPlatformProps) {
   const ringRef = useRef<Mesh>(null);
-  const gridRef = useRef<Mesh>(null);
-
-  // Hexagon grid pattern
-  const gridGeometry = useMemo(() => {
-    const lines: [number, number, number][] = [];
-    const gridSize = 20;
-    const cellSize = 1.5;
-
-    // Hexagonal grid lines
-    for (let i = -gridSize; i <= gridSize; i++) {
-      // Horizontal lines
-      const y = i * cellSize * 0.866;
-      if (Math.abs(y) < radius - 1) {
-        const xMax = Math.sqrt(radius * radius - y * y) * 0.9;
-        lines.push([-xMax, 0.16, y], [xMax, 0.16, y]);
-      }
-    }
-
-    return lines;
-  }, [radius]);
 
   useFrame(({ clock }) => {
     if (ringRef.current) {
-      // Subtle pulse on the ring
       const scale = 1 + Math.sin(clock.getElapsedTime() * 0.5) * 0.01;
       ringRef.current.scale.set(scale, 1, scale);
     }
@@ -95,15 +91,9 @@ export function HubPlatform({ radius = 12 }: HubPlatformProps) {
             key={i}
             position={[(x + nextX) / 2, 0.2, (z + nextZ) / 2]}
             rotation={[0, -angle - Math.PI / 6, 0]}
+            material={edgeMaterial}
           >
             <boxGeometry args={[radius * 0.95, 0.05, 0.1]} />
-            <meshStandardMaterial
-              color={COLORS.purple}
-              emissive={COLORS.purple}
-              emissiveIntensity={0.3}
-              transparent
-              opacity={0.5}
-            />
           </mesh>
         );
       })}
@@ -111,8 +101,8 @@ export function HubPlatform({ radius = 12 }: HubPlatformProps) {
   );
 }
 
-// Hexagonal grid pattern component
-function HexGrid({ radius }: { radius: number }) {
+// Hexagonal grid pattern component — shared material for all lines
+const HexGrid = memo(function HexGrid({ radius }: { radius: number }) {
   const gridLines = useMemo(() => {
     const lines: { start: [number, number, number]; end: [number, number, number] }[] = [];
     const spacing = 2;
@@ -160,20 +150,14 @@ function HexGrid({ radius }: { radius: number }) {
             key={i}
             position={[midX, 0.16, midZ]}
             rotation={[0, -angle, 0]}
+            material={gridMaterial}
           >
             <boxGeometry args={[length, 0.02, 0.03]} />
-            <meshStandardMaterial
-              color={COLORS.purple}
-              emissive={COLORS.purple}
-              emissiveIntensity={0.2}
-              transparent
-              opacity={0.3}
-            />
           </mesh>
         );
       })}
     </group>
   );
-}
+});
 
 export default HubPlatform;

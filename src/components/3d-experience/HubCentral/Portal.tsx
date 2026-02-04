@@ -2,7 +2,7 @@
  * Portal - Individual portal for accessing experiences
  */
 
-import { useRef, useState } from 'react';
+import { useRef, useState, memo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text, Html } from '@react-three/drei';
 import { Group, Vector3 } from 'three';
@@ -23,7 +23,7 @@ interface PortalProps {
   isVisited: boolean;
 }
 
-export function Portal({ experience, onEnter, translations, portalNumber, isVisited }: PortalProps) {
+export const Portal = memo(function Portal({ experience, onEnter, translations, portalNumber, isVisited }: PortalProps) {
   const groupRef = useRef<Group>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isMobile, isTransitioning } = useNavigationStore();
@@ -184,6 +184,6 @@ export function Portal({ experience, onEnter, translations, portalNumber, isVisi
       />
     </group>
   );
-}
+});
 
 export default Portal;
