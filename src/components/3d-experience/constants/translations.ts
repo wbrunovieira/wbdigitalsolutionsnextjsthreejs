@@ -138,12 +138,12 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     loading: 'Carregando...',
 
     experienceNames: {
-      learning: 'Learning',
-      product: 'Product',
-      landing: 'Landing',
-      'virtual-space': 'Virtual Space',
-      'sales-demo': 'Sales Demo',
-      brand: 'Brand',
+      learning: 'Aprendizado',
+      product: 'Produto',
+      landing: 'Landing Page',
+      'virtual-space': 'Espaço Virtual',
+      'sales-demo': 'Demo de Vendas',
+      brand: 'Marca',
       micro: 'Micro',
     },
 
@@ -204,12 +204,12 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     loading: 'Cargando...',
 
     experienceNames: {
-      learning: 'Learning',
-      product: 'Product',
-      landing: 'Landing',
-      'virtual-space': 'Virtual Space',
-      'sales-demo': 'Sales Demo',
-      brand: 'Brand',
+      learning: 'Aprendizaje',
+      product: 'Producto',
+      landing: 'Landing Page',
+      'virtual-space': 'Espacio Virtual',
+      'sales-demo': 'Demo de Ventas',
+      brand: 'Marca',
       micro: 'Micro',
     },
 
@@ -270,12 +270,12 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     loading: 'Caricamento...',
 
     experienceNames: {
-      learning: 'Learning',
-      product: 'Product',
-      landing: 'Landing',
-      'virtual-space': 'Virtual Space',
-      'sales-demo': 'Sales Demo',
-      brand: 'Brand',
+      learning: 'Apprendimento',
+      product: 'Prodotto',
+      landing: 'Landing Page',
+      'virtual-space': 'Spazio Virtuale',
+      'sales-demo': 'Demo Vendite',
+      brand: 'Marchio',
       micro: 'Micro',
     },
 

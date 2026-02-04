@@ -109,7 +109,7 @@ export function Portal({ experience, onEnter, translations, portalNumber, isVisi
 
       {/* Experience name */}
       <Text
-        position={[0, -0.5, 0.3]}
+        position={[0, 0.3, 0.3]}
         fontSize={0.84}
         color={COLORS.white}
         anchorX="center"

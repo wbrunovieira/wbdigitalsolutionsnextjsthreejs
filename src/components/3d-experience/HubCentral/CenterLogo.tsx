@@ -17,7 +17,7 @@ export function CenterLogo() {
       // Gentle rotation
       groupRef.current.rotation.y = clock.getElapsedTime() * 0.1;
       // Floating motion
-      groupRef.current.position.y = 3.5 + Math.sin(clock.getElapsedTime() * 0.8) * 0.15;
+      groupRef.current.position.y = 2 + Math.sin(clock.getElapsedTime() * 0.8) * 0.15;
     }
 
     if (glowRef.current) {
@@ -28,7 +28,7 @@ export function CenterLogo() {
   });
 
   return (
-    <group ref={groupRef} position={[0, 3.5, 0]}>
+    <group ref={groupRef} position={[0, 2, 0]}>
       {/* WB Text Logo */}
       <Text
         fontSize={1.5}
