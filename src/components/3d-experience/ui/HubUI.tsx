@@ -10,7 +10,7 @@ import { COLORS } from '../constants';
 import { useExperienceLanguage } from '../contexts';
 
 export function HubUI() {
-  const { currentLocation, isMobile } = useNavigationStore();
+  const { currentLocation, isMobile, hubOrbitAngle, setHubOrbitAngle } = useNavigationStore();
   const { startTour, isActive: isTourActive } = useGuidedTourStore();
   const { t } = useExperienceLanguage();
   const [showWelcome, setShowWelcome] = useState(true);
@@ -146,6 +146,43 @@ export function HubUI() {
             <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
           </svg>
           {t.guidedTour}
+        </motion.button>
+
+        {/* Rotate button */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setHubOrbitAngle(hubOrbitAngle + Math.PI)}
+          style={{
+            background: 'rgba(0, 0, 0, 0.6)',
+            border: `1px solid ${COLORS.purple}`,
+            borderRadius: '8px',
+            padding: isMobile ? '10px 16px' : '12px 24px',
+            color: COLORS.white,
+            fontSize: isMobile ? '12px' : '14px',
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontWeight: 600,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21.5 2v6h-6" />
+            <path d="M21.34 15.57a10 10 0 1 1-.57-8.38" />
+          </svg>
+          {t.rotate}
         </motion.button>
 
         {/* Portal count indicator */}

@@ -6,7 +6,9 @@ import { useRef, useEffect } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useNavigationStore } from '@/stores/navigationStore';
-import { TRANSITION } from '@/components/3d-experience/constants';
+
+const HUB_RADIUS = 15;
+const HUB_HEIGHT = 8;
 
 interface CameraControllerProps {
   enableDamping?: boolean;
@@ -18,7 +20,13 @@ export function CameraController({
   dampingFactor = 0.05,
 }: CameraControllerProps) {
   const { camera } = useThree();
-  const { cameraPosition, cameraTarget, isTransitioning } = useNavigationStore();
+  const {
+    cameraPosition,
+    cameraTarget,
+    isTransitioning,
+    currentLocation,
+    hubOrbitAngle,
+  } = useNavigationStore();
 
   const targetPosition = useRef(new Vector3(...cameraPosition));
   const targetLookAt = useRef(new Vector3(...cameraTarget));
@@ -26,9 +34,17 @@ export function CameraController({
 
   // Update targets when navigation store changes
   useEffect(() => {
-    targetPosition.current.set(...cameraPosition);
-    targetLookAt.current.set(...cameraTarget);
-  }, [cameraPosition, cameraTarget]);
+    if (currentLocation === 'hub') {
+      // Calculate orbital position from angle
+      const x = HUB_RADIUS * Math.sin(hubOrbitAngle);
+      const z = HUB_RADIUS * Math.cos(hubOrbitAngle);
+      targetPosition.current.set(x, HUB_HEIGHT, z);
+      targetLookAt.current.set(0, 0, 0);
+    } else {
+      targetPosition.current.set(...cameraPosition);
+      targetLookAt.current.set(...cameraTarget);
+    }
+  }, [cameraPosition, cameraTarget, currentLocation, hubOrbitAngle]);
 
   useFrame(() => {
     if (!enableDamping) {
@@ -39,7 +55,7 @@ export function CameraController({
 
     // Smooth camera movement
     const lerpFactor = isTransitioning
-      ? dampingFactor * 2 // Faster during transitions
+      ? dampingFactor * 2
       : dampingFactor;
 
     camera.position.lerp(targetPosition.current, lerpFactor);

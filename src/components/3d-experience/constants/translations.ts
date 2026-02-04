@@ -11,6 +11,7 @@ export interface ExperienceTranslations {
   hubWelcome: string;
   experiencesAvailable: string;
   guidedTour: string;
+  rotate: string;
   exitExperience: string;
   backToHub: string;
   loading: string;
@@ -59,6 +60,7 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     hubWelcome: 'Welcome',
     experiencesAvailable: 'experiences available',
     guidedTour: 'Guided Tour',
+    rotate: 'Rotate',
     exitExperience: 'Exit',
     backToHub: 'Back to Hub',
     loading: 'Loading...',
@@ -101,6 +103,7 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     hubWelcome: 'Bem-vindo',
     experiencesAvailable: 'experiências disponíveis',
     guidedTour: 'Tour Guiado',
+    rotate: 'Girar',
     exitExperience: 'Sair',
     backToHub: 'Voltar ao Hub',
     loading: 'Carregando...',
@@ -143,6 +146,7 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     hubWelcome: 'Bienvenido',
     experiencesAvailable: 'experiencias disponibles',
     guidedTour: 'Tour Guiado',
+    rotate: 'Girar',
     exitExperience: 'Salir',
     backToHub: 'Volver al Hub',
     loading: 'Cargando...',
@@ -185,6 +189,7 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     hubWelcome: 'Benvenuto',
     experiencesAvailable: 'esperienze disponibili',
     guidedTour: 'Tour Guidato',
+    rotate: 'Ruota',
     exitExperience: 'Esci',
     backToHub: 'Torna all\'Hub',
     loading: 'Caricamento...',

@@ -16,6 +16,7 @@ interface NavigationState {
   // Camera
   cameraPosition: [number, number, number];
   cameraTarget: [number, number, number];
+  hubOrbitAngle: number;
 
   // Hotspots
   hoveredHotspot: string | null;
@@ -31,6 +32,7 @@ interface NavigationState {
   setHoveredHotspot: (id: string | null) => void;
   setCameraPosition: (pos: [number, number, number]) => void;
   setCameraTarget: (target: [number, number, number]) => void;
+  setHubOrbitAngle: (angle: number) => void;
   setIsMobile: (isMobile: boolean) => void;
   reset: () => void;
 }
@@ -41,6 +43,7 @@ const initialState = {
   isTransitioning: false,
   cameraPosition: [0, 8, 15] as [number, number, number],
   cameraTarget: [0, 0, 0] as [number, number, number],
+  hubOrbitAngle: 0,
   hoveredHotspot: null,
   isMobile: false,
 };
@@ -61,6 +64,8 @@ export const useNavigationStore = create<NavigationState>((set) => ({
   setCameraPosition: (pos) => set({ cameraPosition: pos }),
 
   setCameraTarget: (target) => set({ cameraTarget: target }),
+
+  setHubOrbitAngle: (angle) => set({ hubOrbitAngle: angle }),
 
   setIsMobile: (isMobile) => set({ isMobile }),
 
