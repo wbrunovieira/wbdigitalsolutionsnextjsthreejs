@@ -4,7 +4,7 @@
 
 import { useRef, useState, memo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text, Html } from '@react-three/drei';
+import { Text, Text3D, Center, Html, useTexture } from '@react-three/drei';
 import { Group, Vector3 } from 'three';
 import { PortalArch } from './PortalArch';
 import { PortalEnergy } from './PortalEnergy';
@@ -32,6 +32,9 @@ export const Portal = memo(function Portal({ experience, onEnter, translations, 
   const targetScale = useRef(new Vector3(1, 1, 1));
   const frameCount = useRef(0);
   const lastFacing = useRef(1);
+
+  // Matcap texture for polished metallic 3D numbers (local file)
+  const matcapTexture = useTexture('/textures/matcap-chrome.png');
 
   // Get translated name and description
   const name = translations.experienceNames[experience.id] || experience.name;
@@ -114,20 +117,42 @@ export const Portal = memo(function Portal({ experience, onEnter, translations, 
         <planeGeometry args={[2.5, 3.5]} />
       </mesh>
 
-      {/* Portal number */}
-      <Text
-        position={[0, 4.2, 0.2]}
-        fontSize={0.6}
-        color={isVisited ? VISITED_COLOR : experience.color}
-        anchorX="center"
-        anchorY="middle"
-        fontWeight={700}
-        fillOpacity={facingFactor}
-      >
-        {isVisited
-          ? `✓ ${String(portalNumber).padStart(2, '0')}`
-          : String(portalNumber).padStart(2, '0')}
-      </Text>
+      {/* Portal number - 3D extruded text with matcap surface */}
+      <group position={[0, 4.2, 0.2]}>
+        <Center>
+          <Text3D
+            font="/fonts/helvetiker_bold.typeface.json"
+            size={0.75}
+            height={0.22}
+            curveSegments={16}
+            bevelEnabled
+            bevelThickness={0.05}
+            bevelSize={0.035}
+            bevelSegments={5}
+          >
+            {String(portalNumber)}
+            <meshMatcapMaterial
+              matcap={matcapTexture}
+              color={isVisited ? VISITED_COLOR : experience.color}
+              transparent
+              opacity={facingFactor}
+            />
+          </Text3D>
+        </Center>
+        {/* Visited checkmark above the number */}
+        {isVisited && (
+          <Text
+            position={[0, 0.75, 0]}
+            fontSize={0.4}
+            color={VISITED_COLOR}
+            anchorX="center"
+            anchorY="middle"
+            fillOpacity={facingFactor}
+          >
+            ✓
+          </Text>
+        )}
+      </group>
 
       {/* Icon */}
       <Text
