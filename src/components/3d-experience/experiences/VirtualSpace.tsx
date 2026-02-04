@@ -27,14 +27,14 @@ const STATIONS = [
     position: [-5, 0, 0] as [number, number, number],
     icon: '\u{1F3AC}', // clapper emoji
     color: COLORS.yellow,
-    panelRotation: [0, Math.PI / 2, 0] as [number, number, number],
+    panelRotation: [0, 0.56, 0] as [number, number, number],
   },
   {
     id: 'station-3',
     position: [5, 0, 0] as [number, number, number],
     icon: '\u{2705}', // check emoji
     color: COLORS.blue,
-    panelRotation: [0, -Math.PI / 2, 0] as [number, number, number],
+    panelRotation: [0, -0.56, 0] as [number, number, number],
   },
 ];
 
