@@ -5,6 +5,7 @@
 import { useNavigationStore } from '@/stores/navigationStore';
 import { EXPERIENCES } from '../constants/experiences';
 import { ExperiencePlaceholder } from './ExperiencePlaceholder';
+import { VirtualSpace } from './VirtualSpace';
 import { useExperienceLanguage } from '../contexts';
 
 export function ExperienceRenderer() {
@@ -31,8 +32,7 @@ export function ExperienceRenderer() {
       return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'virtual-space':
-      // TODO: Phase 3 - VirtualSpace
-      return <ExperiencePlaceholder experience={experience} translations={t} />;
+      return <VirtualSpace />;
 
     case 'landing':
       // TODO: Phase 6+ - InteractiveLanding

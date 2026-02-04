@@ -43,8 +43,8 @@ export const CAMERA_POSITIONS = {
       fov: 60,
     },
     'virtual-space': {
-      position: [8, 5, 8] as [number, number, number],
-      target: [0, 2, 0] as [number, number, number],
+      position: [0, 6, 14] as [number, number, number],
+      target: [0, 1, 0] as [number, number, number],
       fov: 60,
     },
     landing: {

@@ -57,6 +57,21 @@ export interface ExperienceTranslations {
 
   // Tour step texts (keyed by step id from guidedTourStore)
   tourTexts: Record<string, string>;
+
+  // Virtual Space experience
+  virtualSpace?: {
+    mainContentTitle: string;
+    mainContentSubtitle: string;
+    resourcesTitle: string;
+    resourceItems: string[];
+    stations: {
+      id: string;
+      title: string;
+      subtitle: string;
+      description: string;
+      options: string[];
+    }[];
+  };
 }
 
 export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
@@ -124,6 +139,36 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
       tourConclusionTitle: 'Ready to Explore?',
       tourConclusionDesc: 'Click on any portal to enter an experience. Each one can be customized for your business.',
     },
+
+    virtualSpace: {
+      mainContentTitle: 'Knowledge Module',
+      mainContentSubtitle: 'Interactive content organized in stations',
+      resourcesTitle: 'Complementary Resources',
+      resourceItems: ['Video Library', 'Documents', 'Assessments', 'Certificates'],
+      stations: [
+        {
+          id: 'station-1',
+          title: 'Content Library',
+          subtitle: 'Explore materials',
+          description: 'Access a curated collection of learning materials, articles, and interactive guides organized by topic.',
+          options: ['Articles', 'Guides', 'Downloads'],
+        },
+        {
+          id: 'station-2',
+          title: 'Media Center',
+          subtitle: 'Watch & listen',
+          description: 'Multimedia content including video presentations, recorded workshops, and podcast episodes.',
+          options: ['Videos', 'Workshops', 'Podcasts'],
+        },
+        {
+          id: 'station-3',
+          title: 'Assessments',
+          subtitle: 'Test your knowledge',
+          description: 'Interactive quizzes and evaluations to measure understanding and track progress.',
+          options: ['Quizzes', 'Evaluations', 'Certificates'],
+        },
+      ],
+    },
   },
 
   'pt-BR': {
@@ -189,6 +234,36 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
       tourPortalMicroDesc: 'Micro experiência de alto impacto. Rápida, focada e impressionante.',
       tourConclusionTitle: 'Pronto para Explorar?',
       tourConclusionDesc: 'Clique em qualquer portal para entrar numa experiência. Cada uma pode ser personalizada para o seu negócio.',
+    },
+
+    virtualSpace: {
+      mainContentTitle: 'Módulo de Conhecimento',
+      mainContentSubtitle: 'Conteúdo interativo organizado em estações',
+      resourcesTitle: 'Recursos Complementares',
+      resourceItems: ['Videoteca', 'Documentos', 'Avaliações', 'Certificados'],
+      stations: [
+        {
+          id: 'station-1',
+          title: 'Biblioteca de Conteúdo',
+          subtitle: 'Explore materiais',
+          description: 'Acesse uma coleção curada de materiais de aprendizagem, artigos e guias interativos organizados por tema.',
+          options: ['Artigos', 'Guias', 'Downloads'],
+        },
+        {
+          id: 'station-2',
+          title: 'Central de Mídia',
+          subtitle: 'Assista e ouça',
+          description: 'Conteúdo multimídia incluindo apresentações em vídeo, workshops gravados e episódios de podcast.',
+          options: ['Vídeos', 'Workshops', 'Podcasts'],
+        },
+        {
+          id: 'station-3',
+          title: 'Avaliações',
+          subtitle: 'Teste seu conhecimento',
+          description: 'Quizzes interativos e avaliações para medir compreensão e acompanhar o progresso.',
+          options: ['Quizzes', 'Avaliações', 'Certificados'],
+        },
+      ],
     },
   },
 
@@ -256,6 +331,36 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
       tourConclusionTitle: '¿Listo para Explorar?',
       tourConclusionDesc: 'Haz clic en cualquier portal para entrar en una experiencia. Cada una puede personalizarse para tu negocio.',
     },
+
+    virtualSpace: {
+      mainContentTitle: 'Módulo de Conocimiento',
+      mainContentSubtitle: 'Contenido interactivo organizado en estaciones',
+      resourcesTitle: 'Recursos Complementarios',
+      resourceItems: ['Videoteca', 'Documentos', 'Evaluaciones', 'Certificados'],
+      stations: [
+        {
+          id: 'station-1',
+          title: 'Biblioteca de Contenido',
+          subtitle: 'Explora materiales',
+          description: 'Accede a una colección curada de materiales de aprendizaje, artículos y guías interactivas organizadas por tema.',
+          options: ['Artículos', 'Guías', 'Descargas'],
+        },
+        {
+          id: 'station-2',
+          title: 'Centro de Medios',
+          subtitle: 'Mira y escucha',
+          description: 'Contenido multimedia incluyendo presentaciones en video, talleres grabados y episodios de podcast.',
+          options: ['Videos', 'Talleres', 'Podcasts'],
+        },
+        {
+          id: 'station-3',
+          title: 'Evaluaciones',
+          subtitle: 'Pon a prueba tu conocimiento',
+          description: 'Quizzes interactivos y evaluaciones para medir comprensión y seguir el progreso.',
+          options: ['Quizzes', 'Evaluaciones', 'Certificados'],
+        },
+      ],
+    },
   },
 
   it: {
@@ -321,6 +426,36 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
       tourPortalMicroDesc: 'Micro esperienza ad alto impatto. Rapida, focalizzata e impressionante.',
       tourConclusionTitle: 'Pronto per Esplorare?',
       tourConclusionDesc: 'Clicca su qualsiasi portale per entrare in un\'esperienza. Ognuna può essere personalizzata per il tuo business.',
+    },
+
+    virtualSpace: {
+      mainContentTitle: 'Modulo di Conoscenza',
+      mainContentSubtitle: 'Contenuti interattivi organizzati in stazioni',
+      resourcesTitle: 'Risorse Complementari',
+      resourceItems: ['Videoteca', 'Documenti', 'Valutazioni', 'Certificati'],
+      stations: [
+        {
+          id: 'station-1',
+          title: 'Libreria Contenuti',
+          subtitle: 'Esplora materiali',
+          description: 'Accedi a una raccolta curata di materiali didattici, articoli e guide interattive organizzate per tema.',
+          options: ['Articoli', 'Guide', 'Download'],
+        },
+        {
+          id: 'station-2',
+          title: 'Centro Multimediale',
+          subtitle: 'Guarda e ascolta',
+          description: 'Contenuti multimediali tra cui presentazioni video, workshop registrati e episodi podcast.',
+          options: ['Video', 'Workshop', 'Podcast'],
+        },
+        {
+          id: 'station-3',
+          title: 'Valutazioni',
+          subtitle: 'Metti alla prova le tue conoscenze',
+          description: 'Quiz interattivi e valutazioni per misurare la comprensione e monitorare i progressi.',
+          options: ['Quiz', 'Valutazioni', 'Certificati'],
+        },
+      ],
     },
   },
 };
