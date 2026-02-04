@@ -11,16 +11,19 @@ import { useDeviceType } from '@/hooks/useDeviceType';
 import { COLORS, PERFORMANCE, CAMERA_POSITIONS } from './constants';
 import { CameraController } from './navigation/CameraController';
 import { TransitionOverlay } from './navigation/TransitionOverlay';
-import { BackToHubButton, HubUI } from './ui';
+import { BackToHubButton, HubUI, LanguageSelector } from './ui';
 import { MobileControls } from './navigation/MobileControls';
 import { HubScene } from './HubCentral';
 import { ExperienceRenderer } from './experiences';
+import { ExperienceLanguageProvider, useExperienceLanguage } from './contexts';
 
 interface ExperiencePlatformProps {
   children?: React.ReactNode;
 }
 
 function LoadingFallback() {
+  const { t } = useExperienceLanguage();
+
   return (
     <group>
       <mesh>
@@ -32,10 +35,11 @@ function LoadingFallback() {
   );
 }
 
-export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
+function ExperiencePlatformContent({ children }: ExperiencePlatformProps) {
   const { setIsMobile, setCameraPosition, setCameraTarget, currentLocation } =
     useNavigationStore();
   const { isMobile, isTablet } = useDeviceType();
+  const { language, setLanguage, t } = useExperienceLanguage();
 
   // Sync device type with navigation store
   useEffect(() => {
@@ -92,6 +96,11 @@ export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
       </Canvas>
 
       {/* UI Overlays */}
+      <LanguageSelector
+        language={language}
+        onLanguageChange={setLanguage}
+        isMobile={isMobile}
+      />
       <TransitionOverlay />
       <BackToHubButton />
       <HubUI />
@@ -112,10 +121,18 @@ export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
             fontFamily: 'monospace',
           }}
         >
-          Location: {currentLocation}
+          Location: {currentLocation} | Lang: {language}
         </div>
       )}
     </div>
+  );
+}
+
+export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
+  return (
+    <ExperienceLanguageProvider>
+      <ExperiencePlatformContent>{children}</ExperiencePlatformContent>
+    </ExperienceLanguageProvider>
   );
 }
 

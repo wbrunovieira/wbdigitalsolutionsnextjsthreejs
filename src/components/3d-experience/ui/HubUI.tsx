@@ -7,10 +7,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigationStore } from '@/stores/navigationStore';
 import { useGuidedTourStore } from '@/stores/guidedTourStore';
 import { COLORS } from '../constants';
+import { useExperienceLanguage } from '../contexts';
 
 export function HubUI() {
   const { currentLocation, isMobile } = useNavigationStore();
   const { startTour, isActive: isTourActive } = useGuidedTourStore();
+  const { t } = useExperienceLanguage();
   const [showWelcome, setShowWelcome] = useState(true);
 
   const isInHub = currentLocation === 'hub';
@@ -46,7 +48,7 @@ export function HubUI() {
             transition={{ duration: 0.5 }}
             style={{
               position: 'fixed',
-              top: '20px',
+              top: isMobile ? '60px' : '80px',
               left: '50%',
               transform: 'translateX(-50%)',
               zIndex: 40,
@@ -58,7 +60,7 @@ export function HubUI() {
               style={{
                 background: 'rgba(0, 0, 0, 0.8)',
                 backdropFilter: 'blur(10px)',
-                padding: '20px 30px',
+                padding: isMobile ? '16px 20px' : '20px 30px',
                 borderRadius: '12px',
                 border: `1px solid ${COLORS.purple}`,
                 boxShadow: `0 0 30px ${COLORS.purple}40`,
@@ -67,26 +69,26 @@ export function HubUI() {
               <h2
                 style={{
                   color: COLORS.white,
-                  fontSize: isMobile ? '18px' : '24px',
+                  fontSize: isMobile ? '16px' : '24px',
                   fontFamily: 'Plus Jakarta Sans, sans-serif',
                   fontWeight: 700,
                   margin: 0,
                   marginBottom: '8px',
                 }}
               >
-                Hub de Experiências 3D
+                {t.hubTitle}
               </h2>
               <p
                 style={{
                   color: COLORS.white,
-                  fontSize: isMobile ? '12px' : '14px',
+                  fontSize: isMobile ? '11px' : '14px',
                   fontFamily: 'Plus Jakarta Sans, sans-serif',
                   opacity: 0.8,
                   margin: 0,
                   maxWidth: '400px',
                 }}
               >
-                Clique em um portal para explorar diferentes formas de apresentar conteúdo imersivo
+                {t.hubSubtitle}
               </p>
             </div>
           </motion.div>
@@ -118,9 +120,9 @@ export function HubUI() {
             background: `linear-gradient(135deg, ${COLORS.purple} 0%, ${COLORS.darkPurple} 100%)`,
             border: 'none',
             borderRadius: '8px',
-            padding: '12px 24px',
+            padding: isMobile ? '10px 16px' : '12px 24px',
             color: COLORS.white,
-            fontSize: '14px',
+            fontSize: isMobile ? '12px' : '14px',
             fontFamily: 'Plus Jakarta Sans, sans-serif',
             fontWeight: 600,
             cursor: 'pointer',
@@ -143,7 +145,7 @@ export function HubUI() {
             <circle cx="12" cy="12" r="10" />
             <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
           </svg>
-          Tour Guiado
+          {t.guidedTour}
         </motion.button>
 
         {/* Portal count indicator */}
@@ -151,17 +153,17 @@ export function HubUI() {
           style={{
             background: 'rgba(0, 0, 0, 0.6)',
             backdropFilter: 'blur(5px)',
-            padding: '10px 16px',
+            padding: isMobile ? '8px 12px' : '10px 16px',
             borderRadius: '8px',
             color: COLORS.white,
-            fontSize: '12px',
+            fontSize: isMobile ? '11px' : '12px',
             fontFamily: 'Plus Jakarta Sans, sans-serif',
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
           }}
         >
-          <span style={{ color: COLORS.yellow }}>7</span> experiências disponíveis
+          <span style={{ color: COLORS.yellow }}>7</span> {t.experiencesAvailable}
         </div>
       </motion.div>
     </>

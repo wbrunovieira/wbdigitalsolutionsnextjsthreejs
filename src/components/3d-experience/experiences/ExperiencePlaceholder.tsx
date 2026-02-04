@@ -7,16 +7,22 @@ import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import { Group, Mesh } from 'three';
 import { Experience } from '../constants/experiences';
+import { ExperienceTranslations } from '../constants/translations';
 import { COLORS } from '../constants';
 
 interface ExperiencePlaceholderProps {
   experience: Experience;
+  translations: ExperienceTranslations;
 }
 
-export function ExperiencePlaceholder({ experience }: ExperiencePlaceholderProps) {
+export function ExperiencePlaceholder({ experience, translations }: ExperiencePlaceholderProps) {
   const groupRef = useRef<Group>(null);
   const ringRef = useRef<Mesh>(null);
   const cubeRef = useRef<Mesh>(null);
+
+  // Get translated texts
+  const name = translations.experienceNames[experience.id] || experience.name;
+  const description = translations.experienceDescriptions[experience.id] || experience.description;
 
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
@@ -97,10 +103,10 @@ export function ExperiencePlaceholder({ experience }: ExperiencePlaceholderProps
         anchorX="center"
         anchorY="middle"
       >
-        {experience.name}
+        {name}
       </Text>
 
-      {/* Coming soon text */}
+      {/* In development text */}
       <Text
         position={[0, -1.5, 0]}
         fontSize={0.3}
@@ -108,7 +114,7 @@ export function ExperiencePlaceholder({ experience }: ExperiencePlaceholderProps
         anchorX="center"
         anchorY="middle"
       >
-        Em Desenvolvimento
+        {translations.inDevelopment}
       </Text>
 
       {/* Description */}
@@ -121,7 +127,7 @@ export function ExperiencePlaceholder({ experience }: ExperiencePlaceholderProps
         maxWidth={5}
         textAlign="center"
       >
-        {experience.description}
+        {description}
       </Text>
 
       {/* Fog */}

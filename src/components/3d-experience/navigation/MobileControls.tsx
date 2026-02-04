@@ -5,7 +5,8 @@
 import { motion } from 'framer-motion';
 import { useNavigationStore } from '@/stores/navigationStore';
 import { useExperienceNavigation } from '@/hooks/useExperienceNavigation';
-import { COLORS } from '@/components/3d-experience/constants';
+import { COLORS } from '../constants';
+import { useExperienceLanguage } from '../contexts';
 
 interface MobileControlsProps {
   showNavigation?: boolean;
@@ -14,6 +15,7 @@ interface MobileControlsProps {
 export function MobileControls({ showNavigation = true }: MobileControlsProps) {
   const { isMobile } = useNavigationStore();
   const { navigateToHub, isInExperience, isTransitioning } = useExperienceNavigation();
+  const { t } = useExperienceLanguage();
 
   if (!isMobile) return null;
 
@@ -61,7 +63,7 @@ export function MobileControls({ showNavigation = true }: MobileControlsProps) {
             ...buttonStyle,
             opacity: isTransitioning ? 0.5 : 1,
           }}
-          aria-label="Voltar ao Hub"
+          aria-label={t.backToHub}
         >
           <svg
             width="24"
@@ -83,7 +85,7 @@ export function MobileControls({ showNavigation = true }: MobileControlsProps) {
       <motion.button
         whileTap={{ scale: 0.9 }}
         style={buttonStyle}
-        aria-label="Ajuda"
+        aria-label={t.help}
       >
         <svg
           width="24"
@@ -112,7 +114,7 @@ export function MobileControls({ showNavigation = true }: MobileControlsProps) {
           }
         }}
         style={buttonStyle}
-        aria-label="Tela cheia"
+        aria-label={t.fullscreen}
       >
         <svg
           width="24"

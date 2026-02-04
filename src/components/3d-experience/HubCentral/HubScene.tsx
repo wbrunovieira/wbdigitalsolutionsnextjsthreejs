@@ -8,14 +8,16 @@ import { HubLighting } from './HubLighting';
 import { HubParticles } from './HubParticles';
 import { CenterLogo } from './CenterLogo';
 import { Portal } from './Portal';
-import { EXPERIENCES, EXPERIENCE_LIST } from '../constants/experiences';
+import { EXPERIENCE_LIST } from '../constants/experiences';
 import { ExperienceType, COLORS } from '../constants';
 import { useExperienceNavigation } from '@/hooks/useExperienceNavigation';
 import { useNavigationStore } from '@/stores/navigationStore';
+import { useExperienceLanguage } from '../contexts';
 
 export function HubScene() {
   const { navigateToExperience, isInHub } = useExperienceNavigation();
   const { isMobile } = useNavigationStore();
+  const { t } = useExperienceLanguage();
 
   const handleEnterExperience = useCallback(
     (experienceId: ExperienceType) => {
@@ -47,6 +49,7 @@ export function HubScene() {
           key={experience.id}
           experience={experience}
           onEnter={() => handleEnterExperience(experience.id)}
+          translations={t}
         />
       ))}
 

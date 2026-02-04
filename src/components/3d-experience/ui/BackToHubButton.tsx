@@ -4,14 +4,12 @@
 
 import { motion } from 'framer-motion';
 import { useExperienceNavigation } from '@/hooks/useExperienceNavigation';
-import { COLORS } from '@/components/3d-experience/constants';
+import { COLORS } from '../constants';
+import { useExperienceLanguage } from '../contexts';
 
-interface BackToHubButtonProps {
-  label?: string;
-}
-
-export function BackToHubButton({ label = 'Voltar ao Hub' }: BackToHubButtonProps) {
+export function BackToHubButton() {
   const { navigateToHub, isInExperience, isTransitioning } = useExperienceNavigation();
+  const { t } = useExperienceLanguage();
 
   if (!isInExperience) return null;
 
@@ -25,7 +23,7 @@ export function BackToHubButton({ label = 'Voltar ao Hub' }: BackToHubButtonProp
       disabled={isTransitioning}
       style={{
         position: 'fixed',
-        top: '20px',
+        top: '60px',
         left: '20px',
         zIndex: 50,
         display: 'flex',
@@ -67,7 +65,7 @@ export function BackToHubButton({ label = 'Voltar ao Hub' }: BackToHubButtonProp
       >
         <path d="M19 12H5M12 19l-7-7 7-7" />
       </svg>
-      {label}
+      {t.backToHub}
     </motion.button>
   );
 }

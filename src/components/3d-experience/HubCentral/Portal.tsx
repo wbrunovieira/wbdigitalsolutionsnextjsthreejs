@@ -9,20 +9,26 @@ import { Group, Vector3 } from 'three';
 import { PortalArch } from './PortalArch';
 import { PortalEnergy } from './PortalEnergy';
 import { Experience } from '../constants/experiences';
+import { ExperienceTranslations } from '../constants/translations';
 import { COLORS } from '../constants';
 import { useNavigationStore } from '@/stores/navigationStore';
 
 interface PortalProps {
   experience: Experience;
   onEnter: () => void;
+  translations: ExperienceTranslations;
 }
 
-export function Portal({ experience, onEnter }: PortalProps) {
+export function Portal({ experience, onEnter, translations }: PortalProps) {
   const groupRef = useRef<Group>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isMobile, isTransitioning } = useNavigationStore();
 
   const targetScale = useRef(new Vector3(1, 1, 1));
+
+  // Get translated name and description
+  const name = translations.experienceNames[experience.id] || experience.name;
+  const description = translations.experienceDescriptions[experience.id] || experience.description;
 
   useFrame(() => {
     if (groupRef.current) {
@@ -92,7 +98,7 @@ export function Portal({ experience, onEnter }: PortalProps) {
         anchorY="middle"
         maxWidth={2}
       >
-        {experience.name}
+        {name}
       </Text>
 
       {/* Description tooltip on hover */}
@@ -119,9 +125,9 @@ export function Portal({ experience, onEnter }: PortalProps) {
             }}
           >
             <div style={{ fontWeight: 'bold', marginBottom: '4px', color: experience.color }}>
-              {experience.name}
+              {name}
             </div>
-            <div style={{ opacity: 0.9 }}>{experience.description}</div>
+            <div style={{ opacity: 0.9 }}>{description}</div>
           </div>
         </Html>
       )}

@@ -5,9 +5,11 @@
 import { useNavigationStore } from '@/stores/navigationStore';
 import { EXPERIENCES } from '../constants/experiences';
 import { ExperiencePlaceholder } from './ExperiencePlaceholder';
+import { useExperienceLanguage } from '../contexts';
 
 export function ExperienceRenderer() {
   const { currentLocation, currentExperience } = useNavigationStore();
+  const { t } = useExperienceLanguage();
 
   // Only render when in an experience
   if (currentLocation !== 'experience' || !currentExperience) {
@@ -22,34 +24,34 @@ export function ExperienceRenderer() {
   switch (currentExperience) {
     case 'learning':
       // TODO: Phase 5 - LearningExperience
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'product':
       // TODO: Phase 4 - ProductShowcase
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'virtual-space':
       // TODO: Phase 3 - VirtualSpace
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'landing':
       // TODO: Phase 6+ - InteractiveLanding
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'sales-demo':
       // TODO: Phase 6+ - SalesDemo
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'brand':
       // TODO: Phase 6+ - BrandExperience
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     case 'micro':
       // TODO: Phase 6+ - MicroExperience
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
 
     default:
-      return <ExperiencePlaceholder experience={experience} />;
+      return <ExperiencePlaceholder experience={experience} translations={t} />;
   }
 }
 
