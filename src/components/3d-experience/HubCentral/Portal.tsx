@@ -81,8 +81,8 @@ export function Portal({ experience, onEnter, translations }: PortalProps) {
 
       {/* Icon */}
       <Text
-        position={[0, 2, 0.2]}
-        fontSize={0.6}
+        position={[0, 2.2, 0.2]}
+        fontSize={1.8}
         anchorX="center"
         anchorY="middle"
       >
@@ -91,12 +91,12 @@ export function Portal({ experience, onEnter, translations }: PortalProps) {
 
       {/* Experience name */}
       <Text
-        position={[0, -0.4, 0.3]}
-        fontSize={0.28}
+        position={[0, -0.5, 0.3]}
+        fontSize={0.84}
         color={COLORS.white}
         anchorX="center"
         anchorY="middle"
-        maxWidth={2}
+        maxWidth={4}
       >
         {name}
       </Text>
@@ -104,27 +104,26 @@ export function Portal({ experience, onEnter, translations }: PortalProps) {
       {/* Description tooltip on hover */}
       {(isHovered || isMobile) && (
         <Html
-          position={[0, 3.8, 0]}
+          position={[0, 5, 0]}
           center
-          distanceFactor={15}
           style={{ pointerEvents: 'none' }}
         >
           <div
             style={{
               background: 'rgba(0, 0, 0, 0.85)',
               color: COLORS.white,
-              padding: '10px 16px',
-              borderRadius: '8px',
-              fontSize: '13px',
+              padding: '20px 28px',
+              borderRadius: '12px',
+              fontSize: '20px',
               fontFamily: 'Plus Jakarta Sans, sans-serif',
-              border: `1px solid ${experience.color}`,
-              boxShadow: `0 0 20px ${experience.color}40`,
-              maxWidth: '200px',
+              border: `2px solid ${experience.color}`,
+              boxShadow: `0 0 30px ${experience.color}50`,
+              maxWidth: '360px',
               textAlign: 'center',
               whiteSpace: 'normal',
             }}
           >
-            <div style={{ fontWeight: 'bold', marginBottom: '4px', color: experience.color }}>
+            <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '24px', color: experience.color }}>
               {name}
             </div>
             <div style={{ opacity: 0.9 }}>{description}</div>
