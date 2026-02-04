@@ -11,8 +11,10 @@ import { useDeviceType } from '@/hooks/useDeviceType';
 import { COLORS, PERFORMANCE, CAMERA_POSITIONS } from './constants';
 import { CameraController } from './navigation/CameraController';
 import { TransitionOverlay } from './navigation/TransitionOverlay';
-import { BackToHubButton } from './ui/BackToHubButton';
+import { BackToHubButton, HubUI } from './ui';
 import { MobileControls } from './navigation/MobileControls';
+import { HubScene } from './HubCentral';
+import { ExperienceRenderer } from './experiences';
 
 interface ExperiencePlatformProps {
   children?: React.ReactNode;
@@ -20,31 +22,19 @@ interface ExperiencePlatformProps {
 
 function LoadingFallback() {
   return (
-    <mesh>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={COLORS.purple} wireframe />
-    </mesh>
-  );
-}
-
-function SceneLighting() {
-  return (
-    <>
-      <ambientLight intensity={0.4} />
-      <directionalLight
-        position={[10, 10, 5]}
-        intensity={1}
-        castShadow
-        shadow-mapSize={[2048, 2048]}
-      />
-      <pointLight position={[-10, 5, -10]} intensity={0.5} color={COLORS.purple} />
-      <pointLight position={[10, 5, 10]} intensity={0.3} color={COLORS.yellow} />
-    </>
+    <group>
+      <mesh>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color={COLORS.purple} wireframe />
+      </mesh>
+      <ambientLight intensity={0.5} />
+    </group>
   );
 }
 
 export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
-  const { setIsMobile, setCameraPosition, setCameraTarget } = useNavigationStore();
+  const { setIsMobile, setCameraPosition, setCameraTarget, currentLocation } =
+    useNavigationStore();
   const { isMobile, isTablet } = useDeviceType();
 
   // Sync device type with navigation store
@@ -86,11 +76,16 @@ export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
         }}
       >
         <Suspense fallback={<LoadingFallback />}>
-          <SceneLighting />
           <CameraController />
 
-          {/* Placeholder content - will be replaced with Hub and Experiences */}
-          {children || <PlaceholderHub />}
+          {/* Hub Central - visible when in hub location */}
+          <HubScene />
+
+          {/* Experience scenes - rendered when in an experience */}
+          <ExperienceRenderer />
+
+          {/* Additional content - passed as children */}
+          {children}
 
           <Preload all />
         </Suspense>
@@ -99,56 +94,28 @@ export function ExperiencePlatform({ children }: ExperiencePlatformProps) {
       {/* UI Overlays */}
       <TransitionOverlay />
       <BackToHubButton />
+      <HubUI />
       <MobileControls />
+
+      {/* Location indicator for development */}
+      {process.env.NODE_ENV === 'development' && (
+        <div
+          style={{
+            position: 'fixed',
+            bottom: '80px',
+            right: '20px',
+            background: 'rgba(0,0,0,0.7)',
+            color: COLORS.white,
+            padding: '8px 12px',
+            borderRadius: '4px',
+            fontSize: '12px',
+            fontFamily: 'monospace',
+          }}
+        >
+          Location: {currentLocation}
+        </div>
+      )}
     </div>
-  );
-}
-
-// Temporary placeholder for the Hub
-function PlaceholderHub() {
-  return (
-    <group>
-      {/* Ground plane */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]} receiveShadow>
-        <circleGeometry args={[15, 64]} />
-        <meshStandardMaterial color={COLORS.darkPurple} />
-      </mesh>
-
-      {/* Central platform indicator */}
-      <mesh position={[0, 0.1, 0]}>
-        <cylinderGeometry args={[3, 3.5, 0.5, 6]} />
-        <meshStandardMaterial
-          color={COLORS.purple}
-          emissive={COLORS.purple}
-          emissiveIntensity={0.2}
-        />
-      </mesh>
-
-      {/* Portal position markers (will be replaced with actual portals) */}
-      {[
-        [0, 0.5, -10],
-        [7, 0.5, -7],
-        [10, 0.5, 0],
-        [7, 0.5, 7],
-        [0, 0.5, 10],
-        [-7, 0.5, 7],
-        [-10, 0.5, 0],
-      ].map((pos, i) => (
-        <mesh key={i} position={pos as [number, number, number]}>
-          <boxGeometry args={[2, 3, 0.5]} />
-          <meshStandardMaterial
-            color={COLORS.yellow}
-            emissive={COLORS.yellow}
-            emissiveIntensity={0.3}
-            transparent
-            opacity={0.6}
-          />
-        </mesh>
-      ))}
-
-      {/* Fog for depth */}
-      <fog attach="fog" args={[COLORS.darkPurple, 20, 50]} />
-    </group>
   );
 }
 

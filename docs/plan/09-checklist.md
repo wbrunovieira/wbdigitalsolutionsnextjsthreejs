@@ -8,59 +8,59 @@
 
 ---
 
-## FASE 1: Setup e Estrutura Base
+## FASE 1: Setup e Estrutura Base ✅
 
 ### Estrutura de Arquivos
-- ⬜ `src/pages/experience/index.tsx`
-- ⬜ `src/components/3d-experience/ExperiencePlatform.tsx`
-- ⬜ `src/components/3d-experience/constants/index.ts`
-- ⬜ `src/components/3d-experience/constants/experiences.ts`
-- ⬜ `src/components/3d-experience/constants/colors.ts`
+- ✅ `src/pages/experience/index.tsx`
+- ✅ `src/components/3d-experience/ExperiencePlatform.tsx`
+- ✅ `src/components/3d-experience/constants/index.ts`
+- ✅ `src/components/3d-experience/constants/experiences.ts`
+- ⬜ `src/components/3d-experience/constants/colors.ts` (integrado em index.ts)
 
 ### Stores (Zustand)
-- ⬜ `src/stores/navigationStore.ts`
-- ⬜ `src/stores/guidedTourStore.ts`
+- ✅ `src/stores/navigationStore.ts`
+- ✅ `src/stores/guidedTourStore.ts`
 
 ### Hooks
-- ⬜ `src/hooks/useExperienceNavigation.ts`
-- ⬜ `src/hooks/useGuidedTour.ts`
-- ⬜ `src/hooks/useDeviceType.ts`
+- ✅ `src/hooks/useExperienceNavigation.ts`
+- ⬜ `src/hooks/useGuidedTour.ts` (funcionalidade em guidedTourStore)
+- ✅ `src/hooks/useDeviceType.ts`
 
 ### Navegação Base
-- ⬜ `src/components/3d-experience/navigation/CameraController.tsx`
-- ⬜ `src/components/3d-experience/navigation/Hotspot.tsx`
-- ⬜ `src/components/3d-experience/navigation/TransitionOverlay.tsx`
-- ⬜ `src/components/3d-experience/navigation/BackToHubButton.tsx`
-- ⬜ `src/components/3d-experience/navigation/MobileControls.tsx`
+- ✅ `src/components/3d-experience/navigation/CameraController.tsx`
+- ✅ `src/components/3d-experience/navigation/Hotspot.tsx`
+- ✅ `src/components/3d-experience/navigation/TransitionOverlay.tsx`
+- ✅ `src/components/3d-experience/ui/BackToHubButton.tsx`
+- ✅ `src/components/3d-experience/navigation/MobileControls.tsx`
 
 ---
 
-## FASE 2: Hub Central
+## FASE 2: Hub Central ✅
 
 ### Componentes do Hub
-- ⬜ `src/components/3d-experience/HubCentral/HubScene.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/HubPlatform.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/HubLighting.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/HubParticles.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/CenterLogo.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/HexGrid.tsx`
+- ✅ `src/components/3d-experience/HubCentral/HubScene.tsx`
+- ✅ `src/components/3d-experience/HubCentral/HubPlatform.tsx`
+- ✅ `src/components/3d-experience/HubCentral/HubLighting.tsx`
+- ✅ `src/components/3d-experience/HubCentral/HubParticles.tsx`
+- ✅ `src/components/3d-experience/HubCentral/CenterLogo.tsx`
+- ✅ `src/components/3d-experience/HubCentral/HexGrid.tsx` (integrado em HubPlatform.tsx)
 
 ### Portais
-- ⬜ `src/components/3d-experience/HubCentral/Portal.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/PortalArch.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/PortalEnergy.tsx`
-- ⬜ `src/components/3d-experience/HubCentral/PortalIcon.tsx`
+- ✅ `src/components/3d-experience/HubCentral/Portal.tsx`
+- ✅ `src/components/3d-experience/HubCentral/PortalArch.tsx`
+- ✅ `src/components/3d-experience/HubCentral/PortalEnergy.tsx`
+- ✅ `src/components/3d-experience/HubCentral/PortalIcon.tsx` (integrado em Portal.tsx com emoji)
 
 ### Funcionalidades do Hub
-- ⬜ Renderização da plataforma hexagonal
-- ⬜ Posicionamento dos 7 portais
-- ⬜ Hover effect nos portais
-- ⬜ Click para entrar na experiência
-- ⬜ Animação de transição (zoom + fade)
-- ⬜ Partículas de ambiente
-- ⬜ Logo central flutuante
-- ⬜ Iluminação adequada
-- ⬜ Fog para profundidade
+- ✅ Renderização da plataforma hexagonal
+- ✅ Posicionamento dos 7 portais
+- ✅ Hover effect nos portais
+- ✅ Click para entrar na experiência
+- ✅ Animação de transição (zoom + fade)
+- ✅ Partículas de ambiente
+- ✅ Logo central flutuante
+- ✅ Iluminação adequada
+- ✅ Fog para profundidade
 
 ---
 
@@ -235,10 +235,10 @@
 
 | Fase | Status | Progresso |
 |------|--------|-----------|
-| 1. Setup | ⬜ | 0% |
-| 2. Hub Central | ⬜ | 0% |
+| 1. Setup | ✅ | 100% |
+| 2. Hub Central | ✅ | 100% |
 | 3. Virtual Space | ⬜ | 0% |
 | 4. Product Showcase | ⬜ | 0% |
 | 5. Learning Experience | ⬜ | 0% |
 | 6. Tour Guiado | ⬜ | 0% |
-| **TOTAL** | ⬜ | **0%** |
+| **TOTAL** | 🔄 | **~33%** |

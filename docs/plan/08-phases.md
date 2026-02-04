@@ -17,7 +17,7 @@
 
 ---
 
-## FASE 1: Setup e Estrutura Base (2 dias)
+## FASE 1: Setup e Estrutura Base (2 dias) ✅
 
 ### Objetivo
 Criar a infraestrutura básica: página, stores, e sistema de navegação.
@@ -25,26 +25,26 @@ Criar a infraestrutura básica: página, stores, e sistema de navegação.
 ### Tarefas
 
 #### Dia 1: Estrutura
-- [ ] Criar página `/experience/index.tsx`
-- [ ] Criar estrutura de pastas `src/components/3d-experience/`
-- [ ] Instalar dependências necessárias (zustand se não tiver)
-- [ ] Criar store de navegação (`navigationStore.ts`)
-- [ ] Criar store do tour guiado (`guidedTourStore.ts`)
-- [ ] Criar componente wrapper `ExperiencePlatform.tsx`
+- [x] Criar página `/experience/index.tsx`
+- [x] Criar estrutura de pastas `src/components/3d-experience/`
+- [x] Instalar dependências necessárias (zustand se não tiver)
+- [x] Criar store de navegação (`navigationStore.ts`)
+- [x] Criar store do tour guiado (`guidedTourStore.ts`)
+- [x] Criar componente wrapper `ExperiencePlatform.tsx`
 
 #### Dia 2: Navegação Base
-- [ ] Criar `CameraController.tsx`
-- [ ] Criar `Hotspot.tsx` base
-- [ ] Criar `TransitionOverlay.tsx`
-- [ ] Criar `BackToHubButton.tsx`
-- [ ] Testar transições de câmera básicas
+- [x] Criar `CameraController.tsx`
+- [x] Criar `Hotspot.tsx` base
+- [x] Criar `TransitionOverlay.tsx`
+- [x] Criar `BackToHubButton.tsx`
+- [x] Testar transições de câmera básicas
 
 ### Entregável
 Página funcionando com Canvas vazio e sistema de navegação pronto.
 
 ---
 
-## FASE 2: Hub Central (3 dias)
+## FASE 2: Hub Central (3 dias) ✅
 
 ### Objetivo
 Criar o Hub Central completo com todos os 7 portais.
@@ -52,24 +52,24 @@ Criar o Hub Central completo com todos os 7 portais.
 ### Tarefas
 
 #### Dia 1: Plataforma Base
-- [ ] Criar `HubScene.tsx`
-- [ ] Criar `HubPlatform.tsx` (hexágono base)
-- [ ] Criar `HubLighting.tsx`
-- [ ] Criar `HubParticles.tsx`
-- [ ] Criar `CenterLogo.tsx`
+- [x] Criar `HubScene.tsx`
+- [x] Criar `HubPlatform.tsx` (hexágono base)
+- [x] Criar `HubLighting.tsx`
+- [x] Criar `HubParticles.tsx`
+- [x] Criar `CenterLogo.tsx`
 
 #### Dia 2: Portais
-- [ ] Criar `Portal.tsx`
-- [ ] Criar `PortalArch.tsx`
-- [ ] Criar `PortalEnergy.tsx`
-- [ ] Posicionar os 7 portais
-- [ ] Implementar hover nos portais
+- [x] Criar `Portal.tsx`
+- [x] Criar `PortalArch.tsx`
+- [x] Criar `PortalEnergy.tsx`
+- [x] Posicionar os 7 portais
+- [x] Implementar hover nos portais
 
 #### Dia 3: Interação
-- [ ] Implementar click nos portais
-- [ ] Criar animação de transição Hub → Experiência
-- [ ] Testar navegação completa do Hub
-- [ ] Otimizar para mobile (hotspots maiores)
+- [x] Implementar click nos portais
+- [x] Criar animação de transição Hub → Experiência
+- [x] Testar navegação completa do Hub
+- [x] Otimizar para mobile (hotspots maiores)
 
 ### Entregável
 Hub Central completo e navegável, com 7 portais funcionais (ainda sem experiências).
