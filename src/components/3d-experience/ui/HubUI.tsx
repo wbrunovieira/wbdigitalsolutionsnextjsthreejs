@@ -76,10 +76,12 @@ function ActionCard({
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <motion.button
+      <motion.div
         onClick={onClick}
-        whileHover={{ scale: 1.04, x: -6 }}
-        whileTap={{ scale: 0.97 }}
+        whileHover={onClick ? { scale: 1.04, x: -6 } : undefined}
+        whileTap={onClick ? { scale: 0.97 } : undefined}
+        role={onClick ? 'button' : undefined}
+        tabIndex={onClick ? 0 : undefined}
         style={{
           width: '100%',
           background: gradient,
@@ -98,14 +100,14 @@ function ActionCard({
           position: 'relative',
           overflow: 'hidden',
         }}
-        onMouseEnter={(e) => {
+        onMouseEnter={onClick ? (e) => {
           e.currentTarget.style.boxShadow = `0 8px 40px ${glowColor}, 0 0 25px ${glowColor}, inset 0 1px 0 rgba(255,255,255,0.1)`;
           e.currentTarget.style.borderColor = accentColor;
-        }}
-        onMouseLeave={(e) => {
+        } : undefined}
+        onMouseLeave={onClick ? (e) => {
           e.currentTarget.style.boxShadow = `0 4px 24px ${glowColor}, inset 0 1px 0 rgba(255,255,255,0.06)`;
           e.currentTarget.style.borderColor = `${accentColor}40`;
-        }}
+        } : undefined}
       >
         {/* Decorative corner accent */}
         <div style={{
@@ -151,7 +153,7 @@ function ActionCard({
             </svg>
           </div>
         )}
-      </motion.button>
+      </motion.div>
     </motion.div>
   );
 }
