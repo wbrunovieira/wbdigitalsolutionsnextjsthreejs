@@ -4,6 +4,7 @@
 
 import { useCallback } from 'react';
 import { useNavigationStore } from '@/stores/navigationStore';
+import { useVisitedExperiencesStore } from '@/stores/visitedExperiencesStore';
 import { ExperienceType, CAMERA_POSITIONS } from '@/components/3d-experience/constants';
 import { EXPERIENCES } from '@/components/3d-experience/constants/experiences';
 
@@ -37,6 +38,8 @@ export function useExperienceNavigation(): UseExperienceNavigationReturn {
     setCameraTarget,
   } = useNavigationStore();
 
+  const { markVisited } = useVisitedExperiencesStore();
+
   const navigateToExperience = useCallback(
     (experience: ExperienceType) => {
       if (isTransitioning) return;
@@ -45,6 +48,9 @@ export function useExperienceNavigation(): UseExperienceNavigationReturn {
       if (!experienceConfig) return;
 
       startTransition();
+
+      // Mark as visited
+      markVisited(experience);
 
       // Set camera to experience position
       setCameraPosition(experienceConfig.camera.position);
@@ -62,6 +68,7 @@ export function useExperienceNavigation(): UseExperienceNavigationReturn {
     [
       isTransitioning,
       startTransition,
+      markVisited,
       setCameraPosition,
       setCameraTarget,
       setLocation,

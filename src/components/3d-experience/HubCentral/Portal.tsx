@@ -13,13 +13,17 @@ import { ExperienceTranslations } from '../constants/translations';
 import { COLORS } from '../constants';
 import { useNavigationStore } from '@/stores/navigationStore';
 
+const VISITED_COLOR = '#4ade80';
+
 interface PortalProps {
   experience: Experience;
   onEnter: () => void;
   translations: ExperienceTranslations;
+  portalNumber: number;
+  isVisited: boolean;
 }
 
-export function Portal({ experience, onEnter, translations }: PortalProps) {
+export function Portal({ experience, onEnter, translations, portalNumber, isVisited }: PortalProps) {
   const groupRef = useRef<Group>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { isMobile, isTransitioning } = useNavigationStore();
@@ -79,6 +83,20 @@ export function Portal({ experience, onEnter, translations }: PortalProps) {
         <planeGeometry args={[2.5, 3.5]} />
       </mesh>
 
+      {/* Portal number */}
+      <Text
+        position={[0, 4.2, 0.2]}
+        fontSize={0.6}
+        color={isVisited ? VISITED_COLOR : experience.color}
+        anchorX="center"
+        anchorY="middle"
+        fontWeight={700}
+      >
+        {isVisited
+          ? `✓ ${String(portalNumber).padStart(2, '0')}`
+          : String(portalNumber).padStart(2, '0')}
+      </Text>
+
       {/* Icon */}
       <Text
         position={[0, 2.2, 0.2]}
@@ -123,7 +141,21 @@ export function Portal({ experience, onEnter, translations }: PortalProps) {
               whiteSpace: 'normal',
             }}
           >
-            <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '24px', color: experience.color }}>
+            {isVisited && (
+              <div style={{
+                display: 'inline-block',
+                background: VISITED_COLOR,
+                color: '#000',
+                padding: '2px 10px',
+                borderRadius: '12px',
+                fontSize: '12px',
+                fontWeight: 700,
+                marginBottom: '8px',
+              }}>
+                ✓ {translations.explored}
+              </div>
+            )}
+            <div style={{ fontWeight: 'bold', marginBottom: '8px', fontSize: '24px', color: isVisited ? VISITED_COLOR : experience.color }}>
               {name}
             </div>
             <div style={{ opacity: 0.9 }}>{description}</div>
@@ -135,19 +167,19 @@ export function Portal({ experience, onEnter, translations }: PortalProps) {
       <mesh position={[0, 0.02, 0.5]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[0.3, 0.5, 32]} />
         <meshStandardMaterial
-          color={experience.color}
-          emissive={experience.color}
-          emissiveIntensity={isHovered ? 0.6 : 0.2}
+          color={isVisited ? VISITED_COLOR : experience.color}
+          emissive={isVisited ? VISITED_COLOR : experience.color}
+          emissiveIntensity={isHovered ? 0.6 : isVisited ? 0.4 : 0.2}
           transparent
-          opacity={0.5}
+          opacity={isVisited ? 0.7 : 0.5}
         />
       </mesh>
 
       {/* Point light for the portal */}
       <pointLight
         position={[0, 1.5, 0.5]}
-        intensity={isHovered ? 0.8 : 0.3}
-        color={experience.color}
+        intensity={isHovered ? 0.8 : isVisited ? 0.5 : 0.3}
+        color={isVisited ? VISITED_COLOR : experience.color}
         distance={5}
       />
     </group>

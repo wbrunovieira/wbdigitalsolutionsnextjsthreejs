@@ -6,13 +6,18 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigationStore } from '@/stores/navigationStore';
 import { useGuidedTourStore } from '@/stores/guidedTourStore';
+import { useVisitedExperiencesStore } from '@/stores/visitedExperiencesStore';
 import { COLORS } from '../constants';
+import { EXPERIENCE_LIST } from '../constants/experiences';
 import { useExperienceLanguage } from '../contexts';
 
 export function HubUI() {
   const { currentLocation, isMobile, hubOrbitAngle, setHubOrbitAngle } = useNavigationStore();
   const { startTour, isActive: isTourActive } = useGuidedTourStore();
+  const { visitedExperiences } = useVisitedExperiencesStore();
   const { t } = useExperienceLanguage();
+  const totalExperiences = EXPERIENCE_LIST.length;
+  const visitedCount = visitedExperiences.length;
   const [showWelcome, setShowWelcome] = useState(true);
 
   const isInHub = currentLocation === 'hub';
@@ -185,7 +190,7 @@ export function HubUI() {
           {t.rotate}
         </motion.button>
 
-        {/* Portal count indicator */}
+        {/* Progress indicator */}
         <div
           style={{
             background: 'rgba(0, 0, 0, 0.6)',
@@ -196,11 +201,39 @@ export function HubUI() {
             fontSize: isMobile ? '11px' : '12px',
             fontFamily: 'Plus Jakarta Sans, sans-serif',
             display: 'flex',
-            alignItems: 'center',
+            flexDirection: 'column',
             gap: '6px',
+            minWidth: isMobile ? '120px' : '140px',
           }}
         >
-          <span style={{ color: COLORS.yellow }}>7</span> {t.experiencesAvailable}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: visitedCount === totalExperiences ? '#4ade80' : COLORS.yellow, fontWeight: 700 }}>
+              {visitedCount}/{totalExperiences}
+            </span>
+            {t.explored}
+          </div>
+          {/* Progress bar */}
+          <div
+            style={{
+              width: '100%',
+              height: '3px',
+              background: 'rgba(255, 255, 255, 0.15)',
+              borderRadius: '2px',
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                width: `${(visitedCount / totalExperiences) * 100}%`,
+                height: '100%',
+                background: visitedCount === totalExperiences
+                  ? '#4ade80'
+                  : `linear-gradient(90deg, ${COLORS.purple}, ${COLORS.yellow})`,
+                borderRadius: '2px',
+                transition: 'width 0.5s ease',
+              }}
+            />
+          </div>
         </div>
       </motion.div>
     </>

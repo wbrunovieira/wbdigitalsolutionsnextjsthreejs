@@ -45,6 +45,9 @@ export interface ExperienceTranslations {
   help: string;
   fullscreen: string;
 
+  // Visited
+  explored: string;
+
   // Tour
   tourStart: string;
   tourNext: string;
@@ -86,6 +89,8 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     },
 
     inDevelopment: 'In Development',
+
+    explored: 'Explored',
 
     help: 'Help',
     fullscreen: 'Fullscreen',
@@ -130,6 +135,8 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
 
     inDevelopment: 'Em Desenvolvimento',
 
+    explored: 'Explorado',
+
     help: 'Ajuda',
     fullscreen: 'Tela Cheia',
 
@@ -173,6 +180,8 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
 
     inDevelopment: 'En Desarrollo',
 
+    explored: 'Explorado',
+
     help: 'Ayuda',
     fullscreen: 'Pantalla Completa',
 
@@ -215,6 +224,8 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
     },
 
     inDevelopment: 'In Sviluppo',
+
+    explored: 'Esplorato',
 
     help: 'Aiuto',
     fullscreen: 'Schermo Intero',

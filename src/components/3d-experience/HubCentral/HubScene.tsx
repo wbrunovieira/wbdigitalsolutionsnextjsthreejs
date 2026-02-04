@@ -13,11 +13,13 @@ import { ExperienceType, COLORS } from '../constants';
 import { useExperienceNavigation } from '@/hooks/useExperienceNavigation';
 import { useNavigationStore } from '@/stores/navigationStore';
 import { useExperienceLanguage } from '../contexts';
+import { useVisitedExperiencesStore } from '@/stores/visitedExperiencesStore';
 
 export function HubScene() {
   const { navigateToExperience, isInHub } = useExperienceNavigation();
   const { isMobile } = useNavigationStore();
   const { t } = useExperienceLanguage();
+  const { visitedExperiences } = useVisitedExperiencesStore();
 
   const handleEnterExperience = useCallback(
     (experienceId: ExperienceType) => {
@@ -44,12 +46,14 @@ export function HubScene() {
       <HubParticles count={isMobile ? 250 : 500} />
 
       {/* All 7 portals */}
-      {EXPERIENCE_LIST.map((experience) => (
+      {EXPERIENCE_LIST.map((experience, index) => (
         <Portal
           key={experience.id}
           experience={experience}
           onEnter={() => handleEnterExperience(experience.id)}
           translations={t}
+          portalNumber={index + 1}
+          isVisited={visitedExperiences.includes(experience.id)}
         />
       ))}
 
