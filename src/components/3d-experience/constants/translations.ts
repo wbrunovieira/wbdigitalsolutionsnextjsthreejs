@@ -71,6 +71,30 @@ export interface ExperienceTranslations {
       description: string;
       options: string[];
     }[];
+    overlay: {
+      close: string;
+      library: {
+        search: string;
+        categories: string[];
+        articles: { title: string; category: string; time: string }[];
+        viewAll: string;
+      };
+      video: {
+        title: string;
+        subtitle: string;
+        playlist: { title: string; duration: string }[];
+        play: string;
+      };
+      quiz: {
+        title: string;
+        progress: string;
+        question: string;
+        options: string[];
+        submit: string;
+        score: string;
+        timer: string;
+      };
+    };
   };
 }
 
@@ -168,6 +192,43 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
           options: ['Quizzes', 'Evaluations', 'Certificates'],
         },
       ],
+      overlay: {
+        close: 'Close',
+        library: {
+          search: 'Search content...',
+          categories: ['Marketing', 'Sales', 'Leadership', 'Tech'],
+          articles: [
+            { title: 'Digital Marketing Strategy', category: 'Marketing', time: '5 min' },
+            { title: 'Sales Funnel Optimization', category: 'Sales', time: '8 min' },
+            { title: 'Leadership in Remote Teams', category: 'Leadership', time: '6 min' },
+          ],
+          viewAll: 'View All',
+        },
+        video: {
+          title: 'Corporate Training',
+          subtitle: 'Module 1: Introduction',
+          playlist: [
+            { title: 'Module 1: Introduction', duration: '12:30' },
+            { title: 'Module 2: Fundamentals', duration: '18:45' },
+            { title: 'Module 3: Advanced Topics', duration: '22:10' },
+          ],
+          play: 'Play',
+        },
+        quiz: {
+          title: 'Knowledge Assessment',
+          progress: 'Question 2 of 5',
+          question: 'What is the primary benefit of immersive content for corporate training?',
+          options: [
+            'Higher information retention',
+            'Lower production cost',
+            'Simpler implementation',
+            'Less preparation needed',
+          ],
+          submit: 'Submit Answer',
+          score: 'Current Score',
+          timer: 'Time remaining',
+        },
+      },
     },
   },
 
@@ -264,6 +325,43 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
           options: ['Quizzes', 'Avaliações', 'Certificados'],
         },
       ],
+      overlay: {
+        close: 'Fechar',
+        library: {
+          search: 'Buscar conteúdo...',
+          categories: ['Marketing', 'Vendas', 'Liderança', 'Tecnologia'],
+          articles: [
+            { title: 'Estratégia de Marketing Digital', category: 'Marketing', time: '5 min' },
+            { title: 'Otimização de Funil de Vendas', category: 'Vendas', time: '8 min' },
+            { title: 'Liderança em Times Remotos', category: 'Liderança', time: '6 min' },
+          ],
+          viewAll: 'Ver Todos',
+        },
+        video: {
+          title: 'Treinamento Corporativo',
+          subtitle: 'Módulo 1: Introdução',
+          playlist: [
+            { title: 'Módulo 1: Introdução', duration: '12:30' },
+            { title: 'Módulo 2: Fundamentos', duration: '18:45' },
+            { title: 'Módulo 3: Tópicos Avançados', duration: '22:10' },
+          ],
+          play: 'Reproduzir',
+        },
+        quiz: {
+          title: 'Avaliação de Conhecimento',
+          progress: 'Questão 2 de 5',
+          question: 'Qual é o principal benefício do conteúdo imersivo para treinamento corporativo?',
+          options: [
+            'Maior retenção de informação',
+            'Menor custo de produção',
+            'Implementação mais simples',
+            'Menos preparação necessária',
+          ],
+          submit: 'Enviar Resposta',
+          score: 'Pontuação Atual',
+          timer: 'Tempo restante',
+        },
+      },
     },
   },
 
@@ -360,6 +458,43 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
           options: ['Quizzes', 'Evaluaciones', 'Certificados'],
         },
       ],
+      overlay: {
+        close: 'Cerrar',
+        library: {
+          search: 'Buscar contenido...',
+          categories: ['Marketing', 'Ventas', 'Liderazgo', 'Tecnología'],
+          articles: [
+            { title: 'Estrategia de Marketing Digital', category: 'Marketing', time: '5 min' },
+            { title: 'Optimización de Embudo de Ventas', category: 'Ventas', time: '8 min' },
+            { title: 'Liderazgo en Equipos Remotos', category: 'Liderazgo', time: '6 min' },
+          ],
+          viewAll: 'Ver Todos',
+        },
+        video: {
+          title: 'Capacitación Corporativa',
+          subtitle: 'Módulo 1: Introducción',
+          playlist: [
+            { title: 'Módulo 1: Introducción', duration: '12:30' },
+            { title: 'Módulo 2: Fundamentos', duration: '18:45' },
+            { title: 'Módulo 3: Temas Avanzados', duration: '22:10' },
+          ],
+          play: 'Reproducir',
+        },
+        quiz: {
+          title: 'Evaluación de Conocimiento',
+          progress: 'Pregunta 2 de 5',
+          question: '¿Cuál es el beneficio principal del contenido inmersivo para la capacitación corporativa?',
+          options: [
+            'Mayor retención de información',
+            'Menor costo de producción',
+            'Implementación más simple',
+            'Menos preparación necesaria',
+          ],
+          submit: 'Enviar Respuesta',
+          score: 'Puntuación Actual',
+          timer: 'Tiempo restante',
+        },
+      },
     },
   },
 
@@ -456,6 +591,43 @@ export const translations: Record<SupportedLanguage, ExperienceTranslations> = {
           options: ['Quiz', 'Valutazioni', 'Certificati'],
         },
       ],
+      overlay: {
+        close: 'Chiudi',
+        library: {
+          search: 'Cerca contenuti...',
+          categories: ['Marketing', 'Vendite', 'Leadership', 'Tecnologia'],
+          articles: [
+            { title: 'Strategia di Marketing Digitale', category: 'Marketing', time: '5 min' },
+            { title: 'Ottimizzazione Funnel di Vendita', category: 'Vendite', time: '8 min' },
+            { title: 'Leadership nei Team Remoti', category: 'Leadership', time: '6 min' },
+          ],
+          viewAll: 'Vedi Tutti',
+        },
+        video: {
+          title: 'Formazione Aziendale',
+          subtitle: 'Modulo 1: Introduzione',
+          playlist: [
+            { title: 'Modulo 1: Introduzione', duration: '12:30' },
+            { title: 'Modulo 2: Fondamenti', duration: '18:45' },
+            { title: 'Modulo 3: Argomenti Avanzati', duration: '22:10' },
+          ],
+          play: 'Riproduci',
+        },
+        quiz: {
+          title: 'Valutazione delle Conoscenze',
+          progress: 'Domanda 2 di 5',
+          question: 'Qual è il principale beneficio dei contenuti immersivi per la formazione aziendale?',
+          options: [
+            'Maggiore ritenzione delle informazioni',
+            'Minor costo di produzione',
+            'Implementazione più semplice',
+            'Meno preparazione necessaria',
+          ],
+          submit: 'Invia Risposta',
+          score: 'Punteggio Attuale',
+          timer: 'Tempo rimanente',
+        },
+      },
     },
   },
 };
