@@ -1,8 +1,13 @@
 {
   "title": "ChatGPT para PYMEs: Ahorra tiempo y dinero",
   "summary": "Descubre cómo las pequeñas y medianas empresas pueden usar ChatGPT para automatizar tareas, mejorar la atención al cliente y aumentar la productividad sin gastar una fortuna.",
-  "category": ["Inteligencia Artificial", "Productividad", "Negocios"],
+  "category": [
+    "Inteligencia Artificial",
+    "Productividad",
+    "Negocios"
+  ],
   "author": "Bruno Vieira",
+  "datePublished": "2024-11-05T10:00:00Z",
   "thumbnail": "/img/blog/imageblogGPT1.png",
   "text": [
     {

@@ -8,7 +8,6 @@ import CTAWebsite from "@/components/WebSiteCTA";
 
 import { WebsiteHeader } from "@/components/WebsiteHeader";
 
-import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import PageHead from "@/components/PageHead";
 import Link from "next/link";
@@ -20,11 +19,6 @@ const ThreeDExperiencesSection = dynamic(() => import("../../components/3DExperi
 
 
 
-
-export const metadata: Metadata = {
-    title: "Interactive Periodic Table",
-    description: "3D Interactive Periodic Table visualization",
-};
 
 const Websites: React.FC = () => {
 

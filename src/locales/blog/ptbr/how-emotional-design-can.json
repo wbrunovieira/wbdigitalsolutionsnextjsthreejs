@@ -1,9 +1,14 @@
 {
   "title": "Como o Design Emocional Pode Transformar a Experiência do Cliente",
   "summary": "Descubra como o Design Emocional pode impactar a experiência do usuário, criando conexões mais profundas e envolventes com seus clientes.",
-  "category": ["Design", "UX/UI", "Psicologia do Design"],
+  "category": [
+    "Design",
+    "UX/UI",
+    "Psicologia do Design"
+  ],
   "author": "Bruno Vieira",
-   "thumbnail": "/img/blog/deseginemocionalcapa.jpg",
+  "datePublished": "2024-05-20T10:00:00Z",
+  "thumbnail": "/img/blog/deseginemocionalcapa.jpg",
   "text": [
     {
       "title": "",
@@ -57,9 +62,9 @@
     {
       "title": "Experiências em Empresas e Lojas Físicas",
       "content": [
-"Enquanto o Design Emocional é frequentemente associado ao mundo digital, sua aplicação vai muito além das telas de computadores e smartphones.",
-"Na verdade, empresas e lojas físicas têm utilizado princípios de Design Emocional para criar experiências de cliente inesquecíveis e altamente envolventes. Nesta seção, vamos explorar como o Design Emocional se manifesta no mundo real, desde a atmosfera de uma loja até o atendimento ao cliente e programas de fidelidade.",
-"Prepare-se para descobrir como esses princípios podem transformar não apenas interfaces digitais, mas também ambientes físicos e interações humanas.",
+        "Enquanto o Design Emocional é frequentemente associado ao mundo digital, sua aplicação vai muito além das telas de computadores e smartphones.",
+        "Na verdade, empresas e lojas físicas têm utilizado princípios de Design Emocional para criar experiências de cliente inesquecíveis e altamente envolventes. Nesta seção, vamos explorar como o Design Emocional se manifesta no mundo real, desde a atmosfera de uma loja até o atendimento ao cliente e programas de fidelidade.",
+        "Prepare-se para descobrir como esses princípios podem transformar não apenas interfaces digitais, mas também ambientes físicos e interações humanas.",
         "<strong>Ambiente da Loja:</strong> Imagine uma loja de roupas onde a iluminação, a música e até mesmo o aroma foram cuidadosamente escolhidos para criar uma atmosfera relaxante. Isso é um exemplo de design emocional no nível visceral, pois visa provocar uma reação emocional imediata nos clientes assim que eles entram na loja.",
         "<strong>Atendimento ao Cliente:</strong> Pense em um restaurante onde os garçons são treinados para serem extremamente atenciosos e prestativos, fazendo com que os clientes se sintam valorizados e bem cuidados. Isso é design emocional no nível comportamental, pois cria uma experiência positiva que vai além do simples ato de comer.",
         "<strong>Programas de Fidelidade:</strong> Muitas empresas oferecem programas de fidelidade que recompensam os clientes por suas compras repetidas, fazendo-os sentir-se valorizados e incentivados a retornar. Isso é design emocional no nível reflexivo, pois cria uma ligação emocional de longo prazo entre o cliente e a marca."
@@ -75,7 +80,7 @@
       "title": "Conclusão",
       "content": [
         "O Design Emocional é uma ferramenta poderosa que pode fazer a diferença na experiência do usuário. Aplicar esses princípios não só enriquece a experiência do usuário, mas também aumenta as taxas de conversão e fidelização.",
-       "Em um mundo cada vez mais saturado de informações e estímulos, a emoção assume um papel crucial não apenas na forma como interagimos com produtos e serviços, mas também em como vivemos nossas vidas.",
+        "Em um mundo cada vez mais saturado de informações e estímulos, a emoção assume um papel crucial não apenas na forma como interagimos com produtos e serviços, mas também em como vivemos nossas vidas.",
         "Nosso inconsciente é fortemente influenciado por nossas emoções, que por sua vez guiam nossas ações e decisões de maneira significativa. O Design Emocional é, portanto, uma ferramenta poderosa para criar experiências que vão além do funcional e do estético, tocando o coração e a mente dos usuários.",
         "Lembre-se: o cliente pode até esquecer o que você disse ou o que você fez, mas ele jamais esquecerá como você o fez sentir. Ao aplicar os princípios do Design Emocional, você não apenas cria uma experiência mais rica e memorável, mas também aumenta suas chances de conversão e fidelização de clientes.",
         "Em última análise, o cliente pode esquecer as palavras que você usou ou os detalhes específicos do seu produto, mas a emoção que ele leva consigo é o que realmente importa. Utilize as ferramentas de Design Emocional para garantir que essa emoção seja positiva e memorável, consolidando assim a imagem da sua empresa no coração e na mente do seu público.",
@@ -87,6 +92,5 @@
     "/img/blog/deseginemocionalcapa.jpg",
     "/img/blog/blog3designemocional1.jpg",
     "/img/blog/blog3designemocional2.jpg"
-
   ]
 }
