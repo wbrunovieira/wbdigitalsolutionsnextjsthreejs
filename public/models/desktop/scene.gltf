@@ -33991,10 +33991,10 @@
             "uri": "textures/Material_metallicRoughness.png"
         },
         {
-            "uri": "textures/Material.074_baseColor.png"
+            "uri": "textures/Material.074_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_0_baseColor.png"
+            "uri": "textures/Material.074_0_baseColor.jpeg"
         },
         {
             "uri": "textures/Material.074_1_baseColor.jpeg"
@@ -34003,13 +34003,13 @@
             "uri": "textures/Material.074_2_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_3_baseColor.png"
+            "uri": "textures/Material.074_3_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_4_baseColor.png"
+            "uri": "textures/Material.074_4_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_4_emissive.png"
+            "uri": "textures/Material.074_4_emissive.jpeg"
         },
         {
             "uri": "textures/Material.023_baseColor.jpeg"
@@ -34018,22 +34018,22 @@
             "uri": "textures/Material.024_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_5_baseColor.png"
+            "uri": "textures/Material.074_5_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_6_baseColor.png"
+            "uri": "textures/Material.074_6_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_7_baseColor.png"
+            "uri": "textures/Material.074_7_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_8_baseColor.png"
+            "uri": "textures/Material.074_8_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_9_baseColor.png"
+            "uri": "textures/Material.074_9_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_9_emissive.png"
+            "uri": "textures/Material.074_9_emissive.jpeg"
         },
         {
             "uri": "textures/Material.074_10_baseColor.jpeg"
@@ -34045,70 +34045,70 @@
             "uri": "textures/Material.074_12_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_13_baseColor.png"
+            "uri": "textures/Material.074_13_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_14_baseColor.png"
+            "uri": "textures/Material.074_14_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_15_baseColor.png"
+            "uri": "textures/Material.074_15_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_16_baseColor.png"
+            "uri": "textures/Material.074_16_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_17_baseColor.png"
+            "uri": "textures/Material.074_17_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_18_baseColor.png"
+            "uri": "textures/Material.074_18_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_18_emissive.png"
+            "uri": "textures/Material.074_18_emissive.jpeg"
         },
         {
-            "uri": "textures/Material.074_19_baseColor.png"
+            "uri": "textures/Material.074_19_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_20_baseColor.png"
+            "uri": "textures/Material.074_20_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_21_baseColor.png"
+            "uri": "textures/Material.074_21_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_22_baseColor.png"
+            "uri": "textures/Material.074_22_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_23_baseColor.png"
+            "uri": "textures/Material.074_23_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_24_baseColor.png"
+            "uri": "textures/Material.074_24_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_24_emissive.png"
+            "uri": "textures/Material.074_24_emissive.jpeg"
         },
         {
             "uri": "textures/Material.074_25_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_26_baseColor.png"
+            "uri": "textures/Material.074_26_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_27_baseColor.png"
+            "uri": "textures/Material.074_27_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_27_emissive.png"
+            "uri": "textures/Material.074_27_emissive.jpeg"
         },
         {
-            "uri": "textures/Material.074_28_baseColor.png"
+            "uri": "textures/Material.074_28_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_29_baseColor.png"
+            "uri": "textures/Material.074_29_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_30_baseColor.png"
+            "uri": "textures/Material.074_30_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_31_baseColor.png"
+            "uri": "textures/Material.074_31_baseColor.jpeg"
         },
         {
             "uri": "textures/Material.002_baseColor.png"
@@ -34135,7 +34135,7 @@
             "uri": "textures/Material.074_39_baseColor.jpeg"
         },
         {
-            "uri": "textures/Material.074_40_baseColor.png"
+            "uri": "textures/Material.074_40_baseColor.jpeg"
         }
     ],
     "materials": [

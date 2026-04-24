@@ -3,6 +3,17 @@ const nextConfig = {
     webVitalsAttribution: ['CLS', 'LCP'],
   },
 
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'wbdigitalsolutions.com' }],
+        destination: 'https://www.wbdigitalsolutions.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       {
@@ -14,6 +25,20 @@ const nextConfig = {
 
   async headers() {
     return [
+      // Long-term cache for immutable 3D models and textures
+      {
+        source: '/models/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      // Long-term cache for static images
+      {
+        source: '/img/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [
