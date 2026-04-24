@@ -3,8 +3,8 @@
  * Full-screen 3D experience hub
  */
 
-import Head from 'next/head';
 import dynamic from 'next/dynamic';
+import PageHead from '@/components/PageHead';
 
 // Dynamic import to avoid SSR issues with Three.js
 const ExperiencePlatform = dynamic(
@@ -15,15 +15,7 @@ const ExperiencePlatform = dynamic(
 export default function ExperiencePage() {
   return (
     <>
-      <Head>
-        <title>3D Experience Platform | WB Digital Solutions</title>
-        <meta
-          name="description"
-          content="Explore nossa plataforma de experiências 3D interativas. Conheça 7 formas diferentes de apresentar conteúdo imersivo."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      </Head>
-
+      <PageHead pageKey="experience" />
       <ExperiencePlatform />
     </>
   );

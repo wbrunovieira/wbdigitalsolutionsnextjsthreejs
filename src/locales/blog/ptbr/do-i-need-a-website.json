@@ -1,8 +1,13 @@
 {
   "title": "Por que ainda preciso de um site?",
   "summary": "Na era digital, muitos empresários questionam a necessidade de um site próprio. Descubra por que um site ainda é essencial para sua marca e negócios.",
-  "category": ["Marketing Digital", "Desenvolvimento Web", "Negócios Online"],
+  "category": [
+    "Marketing Digital",
+    "Desenvolvimento Web",
+    "Negócios Online"
+  ],
   "author": "Bruno Vieira",
+  "datePublished": "2024-03-15T10:00:00Z",
   "thumbnail": "/img/blog/1porquesite.jpg",
   "text": [
     {
@@ -47,7 +52,7 @@
         "Ter um site é a única maneira de garantir que sua empresa possa ser encontrada através das buscas no Google.",
         "Este fator é crucial, pois amplia significativamente o alcance do seu negócio, possibilita a atração de novos clientes e consolida a presença online da sua marca."
       ],
-       "quotes": [
+      "quotes": [
         {
           "text": "Ter um site é como ter uma voz no vasto coro digital do mundo, permitindo que você compartilhe sua visão, conhecimento e paixão com um público global.",
           "author": "Autor desconhecido"
@@ -67,7 +72,7 @@
         "Embora seja possível vender no Instagram usando links na bio ou shoppable posts, a experiência de checkout ainda é limitada.",
         "Já sites permitem uma experiência de compra completa, com páginas de produto detalhadas, integrações com gateways de pagamento, etc."
       ],
-       "quotes": [
+      "quotes": [
         {
           "text": "Ter um site é como ter uma filial aberta 24 horas por dia, 7 dias por semana, sem interrupções, para que seus clientes possam acessar informações sobre sua empresa e seus produtos ou serviços a qualquer momento.",
           "author": "Autor desconhecido"
@@ -84,41 +89,38 @@
     },
     {
       "title": "Pixels e Rastreamento",
-     "content": [
-    "Pixels são como os detetives do mundo digital. Mas, o que significa isso no contexto do seu site? Bem, um pixel é um pequeno código inserido nas páginas do seu site que coleta informações sobre o comportamento dos visitantes. Ele permite que você saiba quais seções do site são mais visitadas, onde os usuários clicam e até mesmo que tipo de conteúdo gera mais interesse.",
-    "Esta ferramenta é vital porque, ao entender o comportamento dos seus visitantes, você pode ajustar e otimizar o seu site para melhor atender às necessidades e preferências do seu público. É como ter um termômetro para medir o interesse dos seus clientes e, assim, oferecer a eles não apenas o que eles querem, mas da maneira que desejam.",
-
-    "Esta ferramenta permite entender melhor seu público, otimizar campanhas e personalizar estratégias de marketing.",
-    "Além disso, com os dados coletados pelos pixels, é possível criar estratégias de marketing digital mais personalizadas e eficazes, o que se traduz em maior engajamento, mais conversões e, consequentemente, aumento nas vendas e na satisfação dos clientes. Portanto, ao optar por ter um site, você ganha a capacidade de \"espionar\" de forma ética o comportamento dos usuários, algo indispensável na era da informação e personalização.",
-
-    "<span class='text-custom-purple'>Remarketing:</span> O pixel também possibilita o rastreamento dos usuários após saírem do seu site, permitindo que você exiba anúncios específicos para eles em outras plataformas, como o Facebook, incentivando-os a retornar e concluir uma ação, como uma compra.",
-
-    "<span class='text-custom-purple'>Segmentação de Público:</span> Com os dados recolhidos, é possível segmentar o público em diferentes grupos com base em suas preferências e comportamentos, permitindo a criação de campanhas publicitárias mais personalizadas e eficientes."
-  ]
-    },
-    {
-      "title": "Programação e Estrutura",
       "content": [
-        "Um site bem programado é como um motor afinado.",
-"Ele funciona suavemente, proporcionando uma experiência ágil e estável, e é facilmente indexado pelos motores de busca, aumentando sua visibilidade e ranqueamento no Google, melhorando assim sua visibilidade e posição nas pesquisas.",
-"Ao tomar a decisão de criar um site, é essencial ponderar sobre a escolha entre utilizar soluções prontas, como o WordPress, ou investir em um site construído com códigos personalizados."      ]
-    },
-    {
-      "title": "Credibilidade e Profissionalismo",
-      "content": [
-        "Neste mundo digital, um site é seu aperto de mão, seu olhar nos olhos.",
-"Ele comunica seriedade, estabelece confiança e serve como uma plataforma central de informações, onde clientes podem aprender mais sobre seus produtos ou serviços."   
+        "Pixels são como os detetives do mundo digital. Mas, o que significa isso no contexto do seu site? Bem, um pixel é um pequeno código inserido nas páginas do seu site que coleta informações sobre o comportamento dos visitantes. Ele permite que você saiba quais seções do site são mais visitadas, onde os usuários clicam e até mesmo que tipo de conteúdo gera mais interesse.",
+        "Esta ferramenta é vital porque, ao entender o comportamento dos seus visitantes, você pode ajustar e otimizar o seu site para melhor atender às necessidades e preferências do seu público. É como ter um termômetro para medir o interesse dos seus clientes e, assim, oferecer a eles não apenas o que eles querem, mas da maneira que desejam.",
+        "Esta ferramenta permite entender melhor seu público, otimizar campanhas e personalizar estratégias de marketing.",
+        "Além disso, com os dados coletados pelos pixels, é possível criar estratégias de marketing digital mais personalizadas e eficazes, o que se traduz em maior engajamento, mais conversões e, consequentemente, aumento nas vendas e na satisfação dos clientes. Portanto, ao optar por ter um site, você ganha a capacidade de \"espionar\" de forma ética o comportamento dos usuários, algo indispensável na era da informação e personalização.",
+        "<span class='text-custom-purple'>Remarketing:</span> O pixel também possibilita o rastreamento dos usuários após saírem do seu site, permitindo que você exiba anúncios específicos para eles em outras plataformas, como o Facebook, incentivando-os a retornar e concluir uma ação, como uma compra.",
+        "<span class='text-custom-purple'>Segmentação de Público:</span> Com os dados recolhidos, é possível segmentar o público em diferentes grupos com base em suas preferências e comportamentos, permitindo a criação de campanhas publicitárias mais personalizadas e eficientes."
       ]
     },
     {
       "title": "Programação e Estrutura",
       "content": [
         "Um site bem programado é como um motor afinado.",
-"Ele funciona suavemente, proporcionando uma experiência ágil e estável, e é facilmente indexado pelos motores de busca, aumentando sua visibilidade e ranqueamento no Google, melhorando assim sua visibilidade e posição nas pesquisas.",
-"Ao tomar a decisão de criar um site, é essencial ponderar sobre a escolha entre utilizar soluções prontas, como o WordPress, ou investir em um site construído com códigos personalizados."      ]
+        "Ele funciona suavemente, proporcionando uma experiência ágil e estável, e é facilmente indexado pelos motores de busca, aumentando sua visibilidade e ranqueamento no Google, melhorando assim sua visibilidade e posição nas pesquisas.",
+        "Ao tomar a decisão de criar um site, é essencial ponderar sobre a escolha entre utilizar soluções prontas, como o WordPress, ou investir em um site construído com códigos personalizados."
+      ]
     },
-
-
+    {
+      "title": "Credibilidade e Profissionalismo",
+      "content": [
+        "Neste mundo digital, um site é seu aperto de mão, seu olhar nos olhos.",
+        "Ele comunica seriedade, estabelece confiança e serve como uma plataforma central de informações, onde clientes podem aprender mais sobre seus produtos ou serviços."
+      ]
+    },
+    {
+      "title": "Programação e Estrutura",
+      "content": [
+        "Um site bem programado é como um motor afinado.",
+        "Ele funciona suavemente, proporcionando uma experiência ágil e estável, e é facilmente indexado pelos motores de busca, aumentando sua visibilidade e ranqueamento no Google, melhorando assim sua visibilidade e posição nas pesquisas.",
+        "Ao tomar a decisão de criar um site, é essencial ponderar sobre a escolha entre utilizar soluções prontas, como o WordPress, ou investir em um site construído com códigos personalizados."
+      ]
+    },
     {
       "title": "Importância do Código Personalizado",
       "content": [

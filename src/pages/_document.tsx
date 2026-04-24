@@ -1,12 +1,29 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import Script from 'next/script';
+import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
 
-class MyDocument extends Document {
+interface MyDocumentProps extends DocumentInitialProps {
+  lang: string;
+}
+
+class MyDocument extends Document<MyDocumentProps> {
+  static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
+    const initialProps = await Document.getInitialProps(ctx);
+    const acceptLanguage = ctx.req?.headers?.['accept-language'] ?? '';
+    const primary = acceptLanguage.split(',')[0].split(';')[0].trim().toLowerCase();
+
+    let lang = 'en';
+    if (primary.startsWith('pt')) lang = 'pt-BR';
+    else if (primary.startsWith('es')) lang = 'es';
+    else if (primary.startsWith('it')) lang = 'it';
+
+    return { ...initialProps, lang };
+  }
+
   render() {
+    const { lang } = this.props;
     return (
-      <Html lang="pt-BR">
+      <Html lang={lang}>
         <Head>
-          {/* Google Analytics - Load early for better tracking */}
+          {/* Google Analytics */}
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-PZ3WX1KF35"
@@ -17,16 +34,15 @@ class MyDocument extends Document {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                // Initial configuration - page tracking now handled by PageHead component
                 gtag('config', 'G-PZ3WX1KF35', {
-                  send_page_view: true // Enable automatic page view tracking
+                  send_page_view: true
                 });
                 gtag('config', 'AW-802397591');
               `,
             }}
           />
-          
-          {/* Microsoft Clarity - Load once globally */}
+
+          {/* Microsoft Clarity */}
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -38,8 +54,8 @@ class MyDocument extends Document {
               `,
             }}
           />
-          
-          {/* Facebook Pixel Code */}
+
+          {/* Facebook Pixel */}
           <script
             dangerouslySetInnerHTML={{
               __html: `
@@ -51,13 +67,13 @@ class MyDocument extends Document {
                 t.src=v;s=b.getElementsByTagName(e)[0];
                 s.parentNode.insertBefore(t,s)}(window,document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', '1261665671358254'); 
+                fbq('init', '1261665671358254');
                 fbq('track', 'PageView');
               `,
             }}
           />
-          
-          {/* Pipedrive Tag */}
+
+          {/* Pipedrive */}
           <script
             dangerouslySetInnerHTML={{
               __html: `(function(ss,ex){ window.ldfdr=window.ldfdr||function(){(ldfdr._q=ldfdr._q||[]).push([].slice.call(arguments));}; (function(d,s){ var fs=d.getElementsByTagName(s)[0]; function ce(src){ var cs=d.createElement(s); cs.src=src; cs.async=1; fs.parentNode.insertBefore(cs,fs); }; ce('https://sc.lfeeder.com/lftracker_v1_'+ss+(ex?'_'+ex:'')+'.js'); })(document,'script'); })('DzLR5a5vDgJ8BoQ2');`,

@@ -27,6 +27,7 @@ interface BlogTranslation {
   thumbnail?: string;
   category: string[];
   author?: string;
+  datePublished?: string;
 }
 
 interface BlogPageProps {
@@ -71,7 +72,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, postId }) => {
           title: translation.title,
           description: getDescription(),
           author: translation.author || 'WB Digital Solutions',
-          datePublished: '2025-01-01T00:00:00Z',
+          datePublished: translation.datePublished || '2024-01-01T00:00:00Z',
           images: translation.images || (translation.thumbnail ? [translation.thumbnail] : undefined)
         }}
       />
