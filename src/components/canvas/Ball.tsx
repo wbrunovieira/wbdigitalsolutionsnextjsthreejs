@@ -1,11 +1,11 @@
-import { Suspense, useState, useEffect, useRef } from "react";
+import { Suspense, useState, useEffect, useRef, useMemo } from "react";
 import {
     Decal,
-    Float,
     OrbitControls,
     Preload,
     useTexture,
 } from "@react-three/drei";
+import { motion } from "framer-motion";
 import { Texture, Mesh } from "three";
 import CanvasLoader from "../Loader";
 import { PauseableCanvas } from "../PauseableCanvas";
@@ -95,11 +95,7 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
     }
 
     return (
-        <Float
-            speed={isMobile ? 1 : 1.75}
-            rotationIntensity={isMobile ? 0.5 : 1}
-            floatIntensity={isMobile ? 1 : 2}
-        >
+        <>
             <ambientLight intensity={isMobile ? 0.5 : 0.75} />
             <directionalLight position={[0, 0, 0.1]} intensity={isMobile ? 0.5 : 1} />
             <mesh
@@ -123,7 +119,7 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
                     />
                 )}
             </mesh>
-        </Float>
+        </>
     );
 };
 
@@ -151,7 +147,9 @@ const BallCanvas = ({
     height = 112,
 }: BallCanvasProps) => {
     const [hasError, setHasError] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 768 });
+    const floatDuration = useMemo(() => 2.2 + Math.random() * 1.2, []);
 
     const adjustedWidth = isMobile ? width / 2 : width;
     const adjustedHeight = isMobile ? height / 2 : height;
@@ -161,32 +159,41 @@ const BallCanvas = ({
     }
 
     return (
-        <PauseableCanvas
-            frameloop="demand"
-            gl={{
-                preserveDrawingBuffer: true,
-                powerPreference: "low-power",
-                antialias: !isMobile,
-                pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1,
-            }}
-            className="w-full h-28"
-            style={{
-                width: `${adjustedWidth}px`,
-                height: `${adjustedHeight}px`,
-                display: "block",
-            }}
+        <motion.div
+            animate={isDragging ? { y: 0 } : { y: [0, -8, 0] }}
+            transition={{ duration: floatDuration, repeat: Infinity, ease: "easeInOut" }}
+            onPointerDown={() => setIsDragging(true)}
+            onPointerUp={() => setIsDragging(false)}
+            onPointerLeave={() => setIsDragging(false)}
+            style={{ display: "inline-block" }}
         >
-            <Suspense fallback={<CanvasLoader />}>
-                <CanvasControls />
-                <CanvasLights />
-                <Ball
-                    imgUrl={icon}
-                    fallbackUrl={fallbackIcon}
-                    onError={() => setHasError(true)}
-                />
-            </Suspense>
-            <Preload all />
-        </PauseableCanvas>
+            <PauseableCanvas
+                frameloop="demand"
+                gl={{
+                    preserveDrawingBuffer: true,
+                    powerPreference: "low-power",
+                    antialias: !isMobile,
+                    pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1,
+                }}
+                className="w-full h-28"
+                style={{
+                    width: `${adjustedWidth}px`,
+                    height: `${adjustedHeight}px`,
+                    display: "block",
+                }}
+            >
+                <Suspense fallback={<CanvasLoader />}>
+                    <CanvasControls />
+                    <CanvasLights />
+                    <Ball
+                        imgUrl={icon}
+                        fallbackUrl={fallbackIcon}
+                        onError={() => setHasError(true)}
+                    />
+                </Suspense>
+                <Preload all />
+            </PauseableCanvas>
+        </motion.div>
     );
 };
 
