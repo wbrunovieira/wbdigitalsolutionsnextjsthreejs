@@ -170,7 +170,7 @@ const BallCanvas = ({
             <PauseableCanvas
                 frameloop="demand"
                 gl={{
-                    preserveDrawingBuffer: true,
+                    preserveDrawingBuffer: false,
                     powerPreference: "low-power",
                     antialias: !isMobile,
                     pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1,

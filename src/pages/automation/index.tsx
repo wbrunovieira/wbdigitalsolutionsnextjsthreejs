@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 
-import AnimatedBackgroundAutomationComponent from '@/components/AnimatedBackgorundAutomation';
+const AnimatedBackgroundAutomationComponent = dynamic(() => import('@/components/AnimatedBackgorundAutomation'), { ssr: false, loading: () => <div className="w-full h-96" /> });
 
 import CallToActionAutomation from '@/components/AutomationCTA';
 import { AutomationHeader } from '@/components/AutomationHeader';

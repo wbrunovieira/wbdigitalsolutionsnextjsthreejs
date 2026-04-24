@@ -4,7 +4,7 @@ import CTAInvitation from '@/components/AICTA';
 import { AIHeader } from '@/components/AIHeader';
 
 
-import AnimatedBackgroundAIComponent from '@/components/AnimatedBackgoundAIComponent';
+const AnimatedBackgroundAIComponent = dynamic(() => import('@/components/AnimatedBackgoundAIComponent'), { ssr: false, loading: () => <div className="w-full h-96" /> });
 
 import dynamic from 'next/dynamic';
 import PageHead from '@/components/PageHead';

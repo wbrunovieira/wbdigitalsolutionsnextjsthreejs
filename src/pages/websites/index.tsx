@@ -1,14 +1,11 @@
 "use client";
 
-import AnimatedBackgroundWebsiteComponent from "@/components/AnimatedBackgroundWebsite";
+import dynamic from "next/dynamic";
+const AnimatedBackgroundWebsiteComponent = dynamic(() => import("@/components/AnimatedBackgroundWebsite"), { ssr: false, loading: () => <div className="w-full h-96" /> });
 
 import CustomVsGeneric from "@/components/CustomVsGeneric";
 import CTAWebsite from "@/components/WebSiteCTA";
-
-
 import { WebsiteHeader } from "@/components/WebsiteHeader";
-
-import dynamic from "next/dynamic";
 import PageHead from "@/components/PageHead";
 import Link from "next/link";
 

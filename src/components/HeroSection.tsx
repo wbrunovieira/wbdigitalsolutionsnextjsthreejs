@@ -1,5 +1,6 @@
 import { useTranslations } from "@/contexts/TranslationContext";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Button } from "./Button";
 import { AnimatedTextHero } from "./AnimatedTextHero";
 
@@ -12,7 +13,15 @@ const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
-<section className="w-full pt-32 bg-modern-gradient">
+<section className="w-full pt-32 bg-modern-gradient relative overflow-hidden">
+  <Image
+    src="/img/herobg5-optimized.jpg"
+    alt=""
+    fill
+    priority
+    className="object-cover opacity-10 pointer-events-none select-none"
+    aria-hidden="true"
+  />
 
   <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-start justify-between gap-2">
     

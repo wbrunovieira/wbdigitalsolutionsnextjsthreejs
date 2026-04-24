@@ -1,4 +1,5 @@
-import BallCanvas from './canvas/Ball';
+import dynamic from 'next/dynamic';
+const BallCanvas = dynamic(() => import('./canvas/Ball'), { ssr: false, loading: () => <div className="w-full h-full" /> });
 import { Tooltip } from 'react-tooltip';
 import { technologies } from '../constants';
 import { useTranslations } from '@/contexts/TranslationContext';
