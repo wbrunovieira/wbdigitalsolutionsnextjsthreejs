@@ -11,7 +11,7 @@ export interface PreloadedCanvasProps extends BaseCanvasProps {
 }
 
 const loadAsset = async (url: string): Promise<any> => {
-    if (url.endsWith(".gltf") || url.endsWith(".glb")) {
+    if (url.endsWith(".gltf")) {
         return new Promise((resolve) => {
             useGLTF.preload(url);
             setTimeout(resolve, 100);

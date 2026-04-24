@@ -1,18 +1,18 @@
 import React, { useMemo, useEffect, useRef, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { RectAreaLight, Color, Vector3, InstancedMesh, SphereGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
-import { useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
+import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
+import { useAnimations, useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
 import { animate } from 'framer-motion';
 import Loader from './Loader';
 import MouseMoveTutorial from './MouseMoveTutorial';
 
 
 
-const NUM_INSTANCES_DESKTOP = 180;
-const NUM_INSTANCES_MOBILE = 55;
-const INTERACTION_DISTANCE = 12;
-const INTENSITY_SCALE = 2000;
-const MIN_INTENSITY_CLOSE = 600;
+const NUM_INSTANCES = 400;
+const MIN_DISTANCE = 4;
+const INTERACTION_DISTANCE = 10;
+const INTENSITY_SCALE = 3000;
+const MIN_INTENSITY_CLOSE = 1000;
 
 const CustomLoader: React.FC = () => {
     const { active, progress, errors, item, loaded, total } = useProgress();
@@ -43,25 +43,36 @@ const CustomLoader: React.FC = () => {
 
 const AnimatedBackgroundWebsiteComponent: React.FC = () => {
     const lightRef = useRef<RectAreaLight>(null);
-    const [isMobile, setIsMobile] = useState(false);
+    const [assetsLoaded, setAssetsLoaded] = useState(false);
 
     useEffect(() => {
-        const mq = window.matchMedia("(max-width: 768px)");
-        setIsMobile(mq.matches);
-        const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-        mq.addEventListener("change", handler);
-        return () => mq.removeEventListener("change", handler);
+        // Force preload assets
+        Promise.all([
+            useGLTF.preload("/models/macbook-pro.glb"),
+            useTexture.preload("/models/screen.png")
+        ]).then(() => {
+            setAssetsLoaded(true);
+        }).catch((error) => {
+            console.error("Error preloading assets:", error);
+            setAssetsLoaded(true); // Continue anyway
+        });
     }, []);
 
     return (
         <div className="w-full h-96 bg-transparent relative">
+            {/* Mouse move tutorial */}
             <MouseMoveTutorial />
+            
             <Canvas
                 style={{ background: 'transparent' }}
                 shadows
-                gl={{ alpha: true, preserveDrawingBuffer: false, antialias: !isMobile }}
-                camera={{ fov: 50, position: new Vector3(0, 0, 100) }}
+                gl={{ alpha: true, preserveDrawingBuffer: false }}
+                camera={{
+                    fov: 50,
+                    position: new Vector3(0, 0, 100),
+                }}
             >
+
                 <Suspense fallback={<CustomLoader />}>
                     <primitive
                         ref={lightRef}
@@ -71,7 +82,9 @@ const AnimatedBackgroundWebsiteComponent: React.FC = () => {
                     />
                     <ambientLight intensity={0.6} color={0xffffff} />
                     <directionalLight position={[10, 10, 10]} intensity={0.6} />
-                    <AnimatedInstancedMesh lightRef={lightRef} isMobile={isMobile} />
+
+                    <AnimatedInstancedMesh lightRef={lightRef} />
+
                     <FloatingModel />
                 </Suspense>
             </Canvas>
@@ -81,142 +94,145 @@ const AnimatedBackgroundWebsiteComponent: React.FC = () => {
 
 interface AnimatedInstancedMeshProps {
     lightRef: React.RefObject<RectAreaLight>;
-    isMobile: boolean;
 }
 
-const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef, isMobile }) => {
-    const NUM_INSTANCES = isMobile ? NUM_INSTANCES_MOBILE : NUM_INSTANCES_DESKTOP;
-
-    // Smooth spheres instead of faceted dodecahedrons
-    const geometry = useMemo(() => new SphereGeometry(1, 10, 10), []);
+const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef }) => {
+    const geometry = useMemo(() => new DodecahedronGeometry(1.2), []);
     const material = useMemo(() => new MeshPhysicalMaterial({
         vertexColors: true,
         transparent: true,
-        opacity: 0.88,
-        roughness: 0.25,
-        metalness: 0.15,
     }), []);
 
     const dummy = useMemo(() => new Object3D(), []);
     const meshRef = useRef<InstancedMesh>(null);
     const target = useRef(new Vector3());
+    const instances = useMemo(() => generateNonOverlappingPositions(NUM_INSTANCES, MIN_DISTANCE), []);
 
-    // Random size per particle for visual depth (0.4 → 2.2)
-    const sizes = useMemo(() => {
-        const s = new Float32Array(NUM_INSTANCES);
-        for (let i = 0; i < NUM_INSTANCES; i++) s[i] = 0.4 + Math.random() * 1.8;
-        return s;
-    }, [NUM_INSTANCES]);
+    function generateNonOverlappingPositions(numInstances: number, minDistance: number) {
+        const positions: { position: Vector3; velocity: Vector3; attraction: number; vlimit: number }[] = [];
 
-    const instances = useMemo(() => {
-        const list = [];
-        for (let i = 0; i < NUM_INSTANCES; i++) {
-            list.push({
-                position: new Vector3(
+        for (let i = 0; i < numInstances; i++) {
+            let position: Vector3;
+            let isOverlapping: boolean;
+            let attempt = 0;
+
+            do {
+                position = new Vector3(
                     Math.random() * 60 - 30,
                     Math.random() * 40 - 20,
-                    Math.random() * 20 - 10,
-                ),
-                velocity: new Vector3(
-                    (Math.random() - 0.5) * 0.18,
-                    (Math.random() - 0.5) * 0.18,
-                    (Math.random() - 0.5) * 0.08,
-                ),
+                    Math.random() * 20 - 10
+                );
+
+                isOverlapping = positions.some(existingPos => position.distanceTo(existingPos.position) < minDistance);
+
+                attempt++;
+            } while (isOverlapping && attempt < 500);
+
+            positions.push({
+                position,
+                velocity: new Vector3(Math.random() * 0.2 - 0.1, Math.random() * 0.2 - 0.1, Math.random() * 0.2 - 0.1),
+                attraction: 0.01,
+                vlimit: 0.2,
             });
         }
-        return list;
-    }, [NUM_INSTANCES]);
+
+        return positions;
+    }
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
             const x = (event.clientX / window.innerWidth) * 2 - 1;
             const y = -(event.clientY / window.innerHeight) * 2 + 1;
             target.current.set(x * 50, y * 30, 0);
-            if (lightRef.current) lightRef.current.position.copy(target.current);
+
+            if (lightRef.current) {
+                lightRef.current.position.copy(target.current);
+            }
         };
+
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [lightRef]);
 
     useEffect(() => {
-        if (!meshRef.current) return;
+        if (meshRef.current) {
+            const colorPalette = [
+                new Color('#792990'),
+                new Color('#350545'),
+                new Color('#aaa6c3'),
+                new Color('#ffb947'),
+            ];
 
-        const colorPalette = [
-            new Color('#792990'),
-            new Color('#5a1a7a'),
-            new Color('#350545'),
-            new Color('#aaa6c3'),
-            new Color('#c084fc'),
-            new Color('#ffb947'),
-        ];
-        const colors = new Float32Array(NUM_INSTANCES * 3);
+            const colors = new Float32Array(NUM_INSTANCES * 3);
 
-        for (let i = 0; i < NUM_INSTANCES; i++) {
-            const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            colors[i * 3] = c.r;
-            colors[i * 3 + 1] = c.g;
-            colors[i * 3 + 2] = c.b;
+            for (let i = 0; i < NUM_INSTANCES; i++) {
+                const selectedColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+                colors[i * 3 + 0] = selectedColor.r;
+                colors[i * 3 + 1] = selectedColor.g;
+                colors[i * 3 + 2] = selectedColor.b;
 
-            dummy.position.copy(instances[i].position);
-            dummy.scale.setScalar(sizes[i]);
-            dummy.updateMatrix();
-            meshRef.current.setMatrixAt(i, dummy.matrix);
+                const { position } = instances[i];
+                dummy.position.copy(position);
+                dummy.updateMatrix();
+                meshRef.current.setMatrixAt(i, dummy.matrix);
+            }
+
+            geometry.setAttribute('color', new InstancedBufferAttribute(colors, 3));
+            geometry.attributes.color.needsUpdate = true;
+            meshRef.current.instanceMatrix.needsUpdate = true;
         }
-
-        geometry.setAttribute('color', new InstancedBufferAttribute(colors, 3));
-        geometry.attributes.color.needsUpdate = true;
-        meshRef.current.instanceMatrix.needsUpdate = true;
-    }, [geometry, dummy, instances, sizes, NUM_INSTANCES]);
+    }, [geometry, dummy, instances]);
 
     useFrame(() => {
-        if (!meshRef.current || !lightRef.current) return;
+        if (meshRef.current && lightRef.current) {
+            for (let i = 0; i < NUM_INSTANCES; i++) {
+                const instance = instances[i];
+                const { position, velocity, attraction, vlimit } = instance;
 
-        const BOUNDS_X = 32, BOUNDS_Y = 22, BOUNDS_Z = 12;
-        const ATTRACTION = 0.008;
-        const VLIMIT = 0.22;
-        const DAMPING = 0.998;
+                const direction = new Vector3().copy(target.current).sub(position).normalize().multiplyScalar(attraction);
+                velocity.add(direction).clampScalar(-vlimit, vlimit);
+                position.add(velocity);
 
-        let closestDist = Infinity;
+                for (let j = 0; j < NUM_INSTANCES; j++) {
+                    if (i !== j) {
+                        const otherInstance = instances[j];
+                        const distance = position.distanceTo(otherInstance.position);
 
-        for (let i = 0; i < NUM_INSTANCES; i++) {
-            const { position, velocity } = instances[i];
+                        if (distance < MIN_DISTANCE) {
+                            const repulsion = new Vector3().copy(position).sub(otherInstance.position).normalize().multiplyScalar(0.1);
+                            velocity.add(repulsion);
+                        }
+                    }
+                }
 
-            // Attract toward mouse
-            const dx = target.current.x - position.x;
-            const dy = target.current.y - position.y;
-            const dz = target.current.z - position.z;
-            velocity.x += dx * ATTRACTION;
-            velocity.y += dy * ATTRACTION;
-            velocity.z += dz * ATTRACTION;
+                dummy.position.copy(position);
+                dummy.lookAt(new Vector3().copy(position).add(velocity));
+                dummy.rotation.x += 0.01;
+                dummy.rotation.y += 0.01;
+                dummy.updateMatrix();
 
-            // Clamp speed + damping
-            velocity.clampScalar(-VLIMIT, VLIMIT).multiplyScalar(DAMPING);
-            position.add(velocity);
+                meshRef.current.setMatrixAt(i, dummy.matrix);
 
-            // Soft boundary bounce
-            if (position.x > BOUNDS_X)  { position.x = BOUNDS_X;  velocity.x *= -0.6; }
-            if (position.x < -BOUNDS_X) { position.x = -BOUNDS_X; velocity.x *= -0.6; }
-            if (position.y > BOUNDS_Y)  { position.y = BOUNDS_Y;  velocity.y *= -0.6; }
-            if (position.y < -BOUNDS_Y) { position.y = -BOUNDS_Y; velocity.y *= -0.6; }
-            if (position.z > BOUNDS_Z)  { position.z = BOUNDS_Z;  velocity.z *= -0.6; }
-            if (position.z < -BOUNDS_Z) { position.z = -BOUNDS_Z; velocity.z *= -0.6; }
+                const lerp = (start: number, end: number, alpha: number): number => {
+                    return start * (1 - alpha) + end * alpha;
+                };
 
-            dummy.position.copy(position);
-            dummy.scale.setScalar(sizes[i]);
-            dummy.updateMatrix();
-            meshRef.current.setMatrixAt(i, dummy.matrix);
+                const distanceToMouse = position.distanceTo(target.current);
+                let targetIntensity;
 
-            const d = position.distanceTo(target.current);
-            if (d < closestDist) closestDist = d;
+                if (distanceToMouse < MIN_DISTANCE) {
+                    targetIntensity = Math.max(MIN_INTENSITY_CLOSE, INTENSITY_SCALE * (MIN_DISTANCE - distanceToMouse) / MIN_DISTANCE);
+                } else if (distanceToMouse < INTERACTION_DISTANCE) {
+                    targetIntensity = MIN_INTENSITY_CLOSE * (INTERACTION_DISTANCE - distanceToMouse) / INTERACTION_DISTANCE;
+                } else {
+                    targetIntensity = 0;
+                }
+
+                lightRef.current.intensity = lerp(lightRef.current.intensity, targetIntensity, 0.1);
+            }
+
+            meshRef.current.instanceMatrix.needsUpdate = true;
         }
-
-        // Light intensity based on closest particle only (O(N) not O(N²))
-        const targetIntensity = closestDist < INTERACTION_DISTANCE
-            ? MIN_INTENSITY_CLOSE * (1 - closestDist / INTERACTION_DISTANCE) * (INTENSITY_SCALE / MIN_INTENSITY_CLOSE)
-            : 0;
-        lightRef.current.intensity += (targetIntensity - lightRef.current.intensity) * 0.1;
-
-        meshRef.current.instanceMatrix.needsUpdate = true;
     });
 
     return <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} />;
