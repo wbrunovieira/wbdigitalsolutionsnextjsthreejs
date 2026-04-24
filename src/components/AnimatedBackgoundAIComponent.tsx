@@ -209,7 +209,7 @@ const FloatingModel: React.FC = () => {
   const screenLight = new PointLight(0xffffff, 0.8);
   screenLight.position.set(0, 0.5, 2);
   const modelRef = useRef<Group>(null);
-  const { scene } = useGLTF('/models/ai/ai.glb');
+  const { scene } = useGLTF('/models/ai/ai_opt.glb');
 
   useEffect(() => {
     const frameNode = scene.children.find(node => node.name === 'Frame');
