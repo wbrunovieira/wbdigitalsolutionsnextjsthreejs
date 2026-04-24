@@ -4,17 +4,12 @@ import React, {
     useContext,
     useState,
     useEffect,
-    useMemo,
 } from "react";
 import { useLanguage } from "./LanguageContext";
 
-import { MessageFormat, MessagesType } from "../types/messages";
+import { MessageFormat } from "../types/messages";
 
 import en from "../locales/en.json";
-
-import es from "../locales/es.json";
-import it from "../locales/it.json";
-import ptbr from "../locales/ptbr.json";
 
 const TranslationContext = createContext<MessageFormat>(en);
 
@@ -26,26 +21,38 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     children,
 }) => {
     const { language } = useLanguage();
-    const translations: MessagesType = useMemo(
-        () => ({
-            en,
-          
-            es,
-            it,
-            "pt-BR": ptbr,
-        }),
-        []
-    );
-    const [currentMessages, setCurrentMessages] = useState<MessageFormat>(
-        translations.en
-    );
+    const [currentMessages, setCurrentMessages] = useState<MessageFormat>(en);
 
     useEffect(() => {
-        console.log('TranslationContext - language received:', language);
-        // Handle both "pt" and "pt-BR"
         const langKey = language === "pt" ? "pt-BR" : language;
-        setCurrentMessages(translations[langKey] || translations.en);
-    }, [language, translations]);
+
+        if (!langKey || langKey === "en") {
+            setCurrentMessages(en);
+            return;
+        }
+
+        const loadLocale = async () => {
+            switch (langKey) {
+                case "es": {
+                    const mod = await import("../locales/es.json");
+                    setCurrentMessages(mod.default as MessageFormat);
+                    break;
+                }
+                case "it": {
+                    const mod = await import("../locales/it.json");
+                    setCurrentMessages(mod.default as MessageFormat);
+                    break;
+                }
+                case "pt-BR": {
+                    const mod = await import("../locales/ptbr.json");
+                    setCurrentMessages(mod.default as MessageFormat);
+                    break;
+                }
+            }
+        };
+
+        loadLocale();
+    }, [language]);
 
     return (
         <TranslationContext.Provider value={currentMessages}>

@@ -1,9 +1,11 @@
 // Layout.tsx
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import ChatBotButton from "./ChatBotButton";
+
+const ChatBotButton = dynamic(() => import("./ChatBotButton"), { ssr: false });
 
 type LayoutProps = {
     children: ReactNode;

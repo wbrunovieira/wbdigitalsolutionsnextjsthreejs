@@ -18,16 +18,12 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
 
         if (nameRef.current) {
             const letters = nameRef.current.querySelectorAll('span');
-            gsap.fromTo(
-                letters,
-                { opacity: 0 },
-                {
-                    opacity: 1,
-                    stagger: 0.1,
-                    duration: 2.3,
-                    ease: 'power2.inOut',
-                }
-            );
+            gsap.from(letters, {
+                opacity: 0,
+                stagger: 0.1,
+                duration: 2.3,
+                ease: 'power2.inOut',
+            });
         }
     }, [name]);
 
@@ -81,8 +77,8 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
             <h1 className="text-4xl md:text-6xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
                     {name.split('').map((letter, index) => (
-                        <span key={index} className="inline-block opacity-0">
-                            {letter}
+                        <span key={index} className="inline-block">
+                            {letter === ' ' ? ' ' : letter}
                         </span>
                     ))}
                 </span>

@@ -24,8 +24,6 @@ const Nav: React.FC = () => {
     const pathname = router.pathname;
     const { language, setLanguage, isLoaded } = useLanguage();
     
-    // Debug log
-    console.log('Nav - language:', language, 'isLoaded:', isLoaded);
 
     const currentMessages = useTranslations();
 
@@ -208,28 +206,19 @@ const Nav: React.FC = () => {
                                 key={index}
                                 >
                                 <Link
-                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
+                                    className={`flex p-3 text-xs mt-2 tracking-widest no-underline font-light lowercase whitespace-nowrap cursor-pointer relative ${
+                                        isActive ? "text-white" : "text-slate-500"
+                                    }`}
                                     href={link.path}
-                                    key={index}
-                                    legacyBehavior
                                 >
-                                    <motion.a
-                                        className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
-                                            isActive
-                                                ? "text-white semibold underline-menu link-active"
-                                                : "text-slate-500"
-                                        }`}
-                                        initial={{ width: "0%" }}
-                                        animate={{
-                                            width: isActive ? "100%" : "0%",
-                                        }}
-                                        transition={{
-                                            duration: 1,
-                                            ease: "easeInOut",
-                                        }}
-                                    >
-                                        {link.name}
-                                    </motion.a>
+                                    {link.name}
+                                    <motion.span
+                                        className="absolute bottom-0 left-3 right-3 h-px bg-white"
+                                        initial={false}
+                                        animate={{ scaleX: isActive ? 1 : 0 }}
+                                        transition={{ duration: 1, ease: "easeInOut" }}
+                                        style={{ originX: 0 }}
+                                    />
                                 </Link>
 
                             </div>

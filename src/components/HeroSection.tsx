@@ -1,8 +1,12 @@
 import { useTranslations } from "@/contexts/TranslationContext";
-import Image from "next/image";
-import ComputersCanvas from "./canvas/ComputersCanvas";
+import dynamic from "next/dynamic";
 import { Button } from "./Button";
 import { AnimatedTextHero } from "./AnimatedTextHero";
+
+const ComputersCanvas = dynamic(() => import("./canvas/ComputersCanvas"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />,
+});
 
 const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
