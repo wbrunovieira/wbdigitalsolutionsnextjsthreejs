@@ -36,6 +36,7 @@ const nextConfig = {
                 https://c.clarity.ms
                 https://e.clarity.ms
                 https://o.clarity.ms
+                https://j.clarity.ms
                 https://www.facebook.com
                 https://cdn.jsdelivr.net
                 data:;
@@ -63,6 +64,7 @@ const nextConfig = {
                 https://www.wbdigitalsolutions.com
                 https://tr.lfeeder.com
                 https://www.google.com.br
+                https://c.bing.com
                 data:;
               font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
               frame-src 'self'
