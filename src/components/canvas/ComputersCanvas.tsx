@@ -11,7 +11,7 @@ interface isMobileProps {
 }
 
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
-    const computer = useGLTF("/models/desktop/scene.gltf");
+    const computer = useGLTF("/models/desktop/scene.glb");
     const computerRef = useRef<THREE.Group | null>(null);
     
     // Cleanup on unmount
@@ -132,7 +132,7 @@ const ComputersCanvas = () => {
     return (
         <div className="relative w-full h-full canvas-container" onTouchEnd={handleTap}>
             <PreloadedCanvas
-                preloadAssets={["/models/desktop/scene.gltf"]}
+                preloadAssets={["/models/desktop/scene.glb"]}
                 shadows={!isMobile} // Disable shadows on mobile
                 camera={{ position: [20, 3, 25], fov: 45 }}
                 gl={{ 
