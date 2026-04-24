@@ -84,9 +84,11 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
     () => generateNonOverlappingPositions(NUM_INSTANCES, MIN_DISTANCE),
     []
   );
+  const _dir = useMemo(() => new Vector3(), []);
+  const _personalTarget = useMemo(() => new Vector3(), []);
 
   function generateNonOverlappingPositions(numInstances: number, minDistance: number) {
-    const positions: { position: Vector3; velocity: Vector3; attraction: number; vlimit: number }[] = [];
+    const positions: { position: Vector3; velocity: Vector3; attraction: number; vlimit: number; offset: Vector3 }[] = [];
 
     for (let i = 0; i < numInstances; i++) {
       let position: Vector3;
@@ -105,7 +107,8 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
       } while (isOverlapping && attempt < 500);
 
       positions.push({
-        position,
+        position: position.clone(),
+        offset: position.clone(),
         velocity: new Vector3(
           Math.random() * 0.2 - 0.1,
           Math.random() * 0.2 - 0.1,
@@ -166,52 +169,30 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
   useFrame(() => {
     if (meshRef.current && lightRef.current) {
       for (let i = 0; i < NUM_INSTANCES; i++) {
-        const instance = instances[i];
-        const { position, velocity, attraction, vlimit } = instance;
+        const { position, velocity, attraction, vlimit, offset } = instances[i];
 
-        const direction = new Vector3().copy(target.current).sub(position).normalize().multiplyScalar(attraction);
-        velocity.add(direction).clampScalar(-vlimit, vlimit);
+        _personalTarget.copy(target.current).add(offset);
+        _dir.copy(_personalTarget).sub(position).normalize().multiplyScalar(attraction);
+        velocity.add(_dir).clampScalar(-vlimit, vlimit);
         position.add(velocity);
 
-        for (let j = 0; j < NUM_INSTANCES; j++) {
-          if (i !== j) {
-            const otherInstance = instances[j];
-            const distance = position.distanceTo(otherInstance.position);
-
-            if (distance < MIN_DISTANCE) {
-              const repulsion = new Vector3().copy(position).sub(otherInstance.position).normalize().multiplyScalar(0.1);
-              velocity.add(repulsion);
-            }
-          }
-        }
-
         dummy.position.copy(position);
-        dummy.lookAt(new Vector3().copy(position).add(velocity));
         dummy.rotation.x += 0.01;
         dummy.rotation.y += 0.01;
         dummy.updateMatrix();
 
         meshRef.current.setMatrixAt(i, dummy.matrix);
 
-        const lerp = (start: number, end: number, alpha: number): number => {
-          return start * (1 - alpha) + end * alpha;
-        };
-
         const distanceToMouse = position.distanceTo(target.current);
         let targetIntensity;
-
         if (distanceToMouse < MIN_DISTANCE) {
-          targetIntensity = Math.max(
-            MIN_INTENSITY_CLOSE,
-            INTENSITY_SCALE * (MIN_DISTANCE - distanceToMouse) / MIN_DISTANCE
-          );
+          targetIntensity = Math.max(MIN_INTENSITY_CLOSE, INTENSITY_SCALE * (MIN_DISTANCE - distanceToMouse) / MIN_DISTANCE);
         } else if (distanceToMouse < INTERACTION_DISTANCE) {
           targetIntensity = MIN_INTENSITY_CLOSE * (INTERACTION_DISTANCE - distanceToMouse) / INTERACTION_DISTANCE;
         } else {
           targetIntensity = 0;
         }
-
-        lightRef.current.intensity = lerp(lightRef.current.intensity, targetIntensity, 0.1);
+        lightRef.current.intensity = lightRef.current.intensity * 0.9 + targetIntensity * 0.1;
       }
 
       meshRef.current.instanceMatrix.needsUpdate = true;
