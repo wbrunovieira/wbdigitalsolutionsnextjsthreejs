@@ -273,10 +273,10 @@
     "extensionsUsed": ["KHR_materials_unlit"],
     "images": [
         {
-            "uri": "textures/Clouds_baseColor.png"
+            "uri": "textures/Clouds_baseColor.jpeg"
         },
         {
-            "uri": "textures/Planet_baseColor.png"
+            "uri": "textures/Planet_baseColor.jpeg"
         }
     ],
     "materials": [
