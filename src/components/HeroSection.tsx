@@ -14,16 +14,18 @@ const HeroSection: React.FC = () => {
 
   return (
 <section className="w-full pt-32 bg-modern-gradient relative overflow-hidden">
-  <Image
-    src="/img/herobg5-optimized.jpg"
-    alt=""
-    fill
-    priority
-    className="object-cover opacity-10 pointer-events-none select-none"
-    aria-hidden="true"
-  />
+  <div className="absolute inset-0 z-0">
+    <Image
+      src="/img/herobg5-optimized.jpg"
+      alt=""
+      fill
+      priority
+      className="object-cover opacity-10 pointer-events-none select-none"
+      aria-hidden="true"
+    />
+  </div>
 
-  <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-start justify-between gap-2">
+  <div className="relative z-10 max-w-[1400px] mx-auto px-4 md:px-8 flex flex-col md:flex-row items-start justify-between gap-2">
     
     
     <div className="md:w-1/2 w-full flex flex-col items-start md:items-start text-left  gap-4 z-10">

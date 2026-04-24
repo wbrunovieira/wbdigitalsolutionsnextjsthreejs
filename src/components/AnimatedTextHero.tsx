@@ -18,12 +18,12 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => 
 
         if (nameRef.current) {
             const letters = nameRef.current.querySelectorAll('span');
-            gsap.from(letters, {
-                opacity: 0,
-                stagger: 0.1,
-                duration: 2.3,
-                ease: 'power2.inOut',
-            });
+            gsap.killTweensOf(letters);
+            gsap.fromTo(
+                letters,
+                { opacity: 0 },
+                { opacity: 1, stagger: 0.1, duration: 2.3, ease: 'power2.inOut' }
+            );
         }
     }, [name]);
 
