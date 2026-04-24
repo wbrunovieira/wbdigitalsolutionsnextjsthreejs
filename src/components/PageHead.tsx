@@ -99,6 +99,8 @@ const PageHead: React.FC<PageHeadProps> = ({
     schemas.push(getServiceSchema('Artificial Intelligence', 'Artificial Intelligence', language));
   } else if (pageKey === 'systems') {
     schemas.push(getServiceSchema('Custom Systems', 'Custom Systems', language));
+  } else if (pageKey === 'experience') {
+    schemas.push(getServiceSchema('3D Experience Platform', '3D Experience Platform', language));
   }
 
   // Add BlogPosting schema for blog posts
@@ -134,8 +136,12 @@ const PageHead: React.FC<PageHeadProps> = ({
       breadcrumbItems.push({ name: 'Automation', url: `${baseUrl}/automation` });
     } else if (pageKey === 'ai') {
       breadcrumbItems.push({ name: 'AI', url: `${baseUrl}/ai` });
+    } else if (pageKey === 'systems') {
+      breadcrumbItems.push({ name: 'Systems', url: `${baseUrl}/systems` });
+    } else if (pageKey === 'experience') {
+      breadcrumbItems.push({ name: '3D Experience', url: `${baseUrl}/experience` });
     }
-    
+
     schemas.push(getBreadcrumbSchema(breadcrumbItems, language));
   }
 
