@@ -12,6 +12,7 @@ const STATIC_PAGES = [
   'contact',
   'websites',
   'systems',
+  'experience',
 ];
 
 // Blog posts (you can fetch these dynamically from a database in production)
