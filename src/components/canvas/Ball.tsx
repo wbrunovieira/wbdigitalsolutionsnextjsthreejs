@@ -1,198 +1,61 @@
-import { Suspense, useState, useEffect, useRef } from "react";
-import {
-    Decal,
-    Float,
-    OrbitControls,
-    Preload,
-    useTexture,
-} from "@react-three/drei";
-import { Texture, Mesh } from "three";
-import CanvasLoader from "../Loader";
-import { PauseableCanvas } from "../PauseableCanvas";
-import { useMediaQuery } from "react-responsive";
-
-type BallProps = {
-    imgUrl: string;
-    fallbackUrl?: string;
-    onError?: (errorInfo: string) => void;
-};
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 type BallCanvasProps = {
     icon: string;
-    fallbackIcon?: string;
-    skipIfError?: boolean;
-    width?: number;
-    height?: number;
+    index?: number;
 };
 
-const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
-    const [error, setError] = useState(false);
-    const [retryCount, setRetryCount] = useState(0);
-    const [currentUrl, setCurrentUrl] = useState(imgUrl);
-    const meshRef = useRef<Mesh>(null);
-    const isMobile = useMediaQuery({ maxWidth: 768 });
-
-    useEffect(() => {
-        setError(false);
-        setRetryCount(0);
-        setCurrentUrl(imgUrl);
-    }, [imgUrl]);
-
-    const applyRetryOrFallback = () => {
-        if (retryCount === 0) {
-            setRetryCount(1);
-            setTimeout(() => setCurrentUrl((url) => url + "?retry=1"), 500);
-        } else if (fallbackUrl && currentUrl !== fallbackUrl) {
-            setCurrentUrl(fallbackUrl);
-        } else {
-            setError(true);
-            onError?.(
-                `Erro ao carregar textura de ${imgUrl} com fallback ${fallbackUrl}`
-            );
-        }
-    };
-
-    const [decal] = useTexture([currentUrl], (textures: Texture[]) => {
-        if (textures[0]?.image) {
-            setError(false);
-        } else {
-            applyRetryOrFallback();
-        }
-    });
-
-    useEffect(() => {
-        if (decal) {
-            const checkTexture = () => {
-                if (!decal.image || decal.image.width === 0) {
-                    applyRetryOrFallback();
-                }
-            };
-
-            checkTexture();
-            const timeoutId = setTimeout(checkTexture, 100);
-            return () => clearTimeout(timeoutId);
-        }
-    }, [decal]);
-    
-    // Cleanup on unmount
-    useEffect(() => {
-        return () => {
-            if (meshRef.current) {
-                meshRef.current.geometry?.dispose();
-                if (meshRef.current.material) {
-                    if (Array.isArray(meshRef.current.material)) {
-                        meshRef.current.material.forEach(mat => mat.dispose());
-                    } else {
-                        meshRef.current.material.dispose();
-                    }
-                }
-            }
-            decal?.dispose();
-        };
-    }, [decal]);
-
-    if ((error && !fallbackUrl) || !decal?.image) {
-        return null;
-    }
-
-    return (
-        <Float 
-            speed={isMobile ? 1 : 1.75} 
-            rotationIntensity={isMobile ? 0.5 : 1} 
-            floatIntensity={isMobile ? 1 : 2}
-        >
-            <ambientLight intensity={isMobile ? 0.5 : 0.75} />
-            <directionalLight position={[0, 0, 0.1]} intensity={isMobile ? 0.5 : 1} />
-            <mesh 
-                ref={meshRef}
-                castShadow={!isMobile} 
-                receiveShadow={!isMobile} 
-                scale={2.75}
-            >
-                <icosahedronGeometry args={[1, isMobile ? 0 : 1]} /> {/* Lower detail on mobile */}
-                <meshStandardMaterial
-                    color="#DECBEF"
-                    polygonOffsetFactor={-1}
-                    flatShading
-                />
-                {decal.image && (
-                    <Decal
-                        position={[0, 0, 1]}
-                        rotation={[0, 0, 0]}
-                        scale={1}
-                        map={decal}
-                    />
-                )}
-            </mesh>
-        </Float>
-    );
-};
-
-const CanvasLights = () => (
-    <>
-        <ambientLight intensity={0.75} />
-        <directionalLight position={[0, 0, 0.1]} />
-    </>
-);
-
-const CanvasControls = () => (
-    <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 2}
-    />
-);
-
-const BallCanvas = ({
-    icon,
-    fallbackIcon,
-    skipIfError = false,
-    width = 112,
-    height = 112,
-}: BallCanvasProps) => {
-    const [hasError, setHasError] = useState(false);
-    const isMobile = useMediaQuery({ maxWidth: 768 });
-
-
-    const adjustedWidth = isMobile ? width / 2 : width;
-    const adjustedHeight = isMobile ? height / 2 : height;
-
-    if (hasError && skipIfError) {
-        return null;
-    }
-
-    return (
-        <PauseableCanvas
-            frameloop="demand"
-            gl={{ 
-                preserveDrawingBuffer: true,
-                powerPreference: "low-power", // Use low power mode for Ball components
-                antialias: !isMobile, // Disable antialiasing on mobile
-                pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1 // Limit pixel ratio
-            }}
-            className="w-full h-28"
+const BallCanvas = ({ icon, index = 0 }: BallCanvasProps) => (
+    <motion.div
+        className="relative w-full h-full rounded-full flex items-center justify-center cursor-pointer select-none overflow-hidden"
+        style={{
+            background:
+                "radial-gradient(circle at 38% 30%, #e9d5ff, #7c3aed 38%, #350545 68%, #150222 92%)",
+            boxShadow:
+                "5px 8px 22px rgba(0,0,0,0.7), 0 0 14px rgba(121,41,144,0.2)",
+        }}
+        animate={{ y: [0, -9, 0] }}
+        transition={{
+            duration: 2.2 + (index % 5) * 0.35,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: index * 0.13,
+        }}
+        whileHover={{
+            scale: 1.14,
+            boxShadow:
+                "5px 8px 28px rgba(0,0,0,0.8), 0 0 36px rgba(168,85,247,0.55)",
+            transition: { duration: 0.22 },
+        }}
+        whileTap={{ scale: 0.93 }}
+    >
+        {/* Specular highlight — faz a esfera parecer polida/3D */}
+        <div
+            className="absolute rounded-full pointer-events-none"
             style={{
-                width: `${adjustedWidth}px`,
-                height: `${adjustedHeight}px`,
-                display: "block",
+                top: "13%",
+                left: "19%",
+                width: "30%",
+                height: "22%",
+                background:
+                    "radial-gradient(ellipse, rgba(255,255,255,0.52) 0%, transparent 80%)",
             }}
+        />
+        <div
+            className="relative z-10 w-[48%] h-[48%]"
+            style={{ filter: "drop-shadow(0 2px 5px rgba(0,0,0,0.65))" }}
         >
-            <Suspense fallback={<CanvasLoader />}>
-                <CanvasControls />
-                <CanvasLights />
-                <Ball
-                    imgUrl={icon}
-                    fallbackUrl={fallbackIcon}
-                    onError={(errorInfo) => {
-                        console.error(errorInfo);
-                        setHasError(true);
-                    }}
-                />
-            </Suspense>
-            <Preload all />
-        </PauseableCanvas>
-    );
-};
+            <Image
+                src={icon}
+                alt=""
+                fill
+                className="object-contain"
+                loading="lazy"
+                unoptimized
+            />
+        </div>
+    </motion.div>
+);
 
 export default BallCanvas;
