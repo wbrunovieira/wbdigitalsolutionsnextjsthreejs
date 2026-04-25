@@ -35,7 +35,7 @@ const ParticlesContainer: React.FC = () => {
   const options: ISourceOptions = useMemo(
     () => ({
       background: {
-        color: { value: "#1a202c" },
+        color: { value: "transparent" },
       },
       fpsLimit: isMobile ? 60 : 120,
       interactivity: {

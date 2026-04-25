@@ -57,8 +57,8 @@ const Nav: React.FC = () => {
     return (
         <nav className={`fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-[1400px] mx-auto transition-all duration-500 ${
             scrolled
-                ? "bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/30"
-                : "bg-modern-gradient backdrop-blur-3xl"
+                ? "bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/40 border-b border-purple-700/40"
+                : "bg-modern-gradient backdrop-blur-3xl border-b border-transparent"
         }`}>     
             <Image
                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
