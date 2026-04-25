@@ -99,79 +99,45 @@ const Nav: React.FC = () => {
                         <span className="text-white text-xs">...</span>
                     </div>
                 )}
-                {isLoaded && (
-                <div key={pathname} className="radio-input flex items-center z-50">
-                    <input
-                        className="input radio-custom border-r"
-                        type="radio"
-                        name="radio"
-                        id="en"
-                        onChange={() => setLanguage("en")}
-                        checked={language === "en"}
-                    />
-                    <label
-                        htmlFor="en"
-                        className="radio-custom-label en btn hover:text-gray-300 "
-                    >en
-                        <span className="tooltip-text">
-                            {currentMessages.english}
-                        </span>
-                    </label>
-
-                    <input
-                        className="input radio-custom border-r"
-                        type="radio"
-                        name="radio"
-                        id="pt-BR"
-                        onChange={() => setLanguage("pt-BR")}
-                        checked={language === "pt-BR"}
-                    />
-                    <label
-                        htmlFor="pt-BR"
-                        className="radio-custom-label pt-BR btn hover:text-gray-300"
-                    >pt
-                        <span className="tooltip-text">
-                            {currentMessages.portuguese}
-                        </span>
-                    </label>
-
-
-
-                    <input
-                        className="input radio-custom border-r"
-                        type="radio"
-                        name="radio"
-                        id="it"
-                        onChange={() => setLanguage("it")}
-                        checked={language === "it"}
-                    />
-                    <label
-                        htmlFor="it"
-                        className="radio-custom-label it btn hover:text-gray-300"
-                    >it
-                        <span className="tooltip-text">
-                            {currentMessages.italian}
-                        </span>
-                    </label>
-
-                    <input
-                        className="input radio-custom border-r"
-                        type="radio"
-                        name="radio"
-                        id="es"
-                        onChange={() => setLanguage("es")}
-                        checked={language === "es"}
-                    />
-                    <label
-                        htmlFor="es"
-                        className="radio-custom-label es btn hover:text-gray-300 z-50"
-                    >es
-                        <span className="tooltip-text">
-                            {currentMessages.spanish}
-                        </span>
-                    </label>
-                </div>
-                )}
+                {isLoaded && (() => {
+                    const langs = ["en", "pt-BR", "it", "es"] as const;
+                    const selectedIdx = langs.indexOf(language as typeof langs[number]);
+                    const ballPos = (i: number) => {
+                        if (i === selectedIdx) return "0 0";
+                        if (i < selectedIdx) return "0 24px";
+                        return "0 -24px";
+                    };
+                    const labels = [
+                        { id: "en", display: "en", tooltip: currentMessages.english },
+                        { id: "pt-BR", display: "pt", tooltip: currentMessages.portuguese },
+                        { id: "it", display: "it", tooltip: currentMessages.italian },
+                        { id: "es", display: "es", tooltip: currentMessages.spanish },
+                    ];
+                    return (
+                        <div className="radio-input flex items-center z-50">
+                            {labels.map((lang, i) => (
+                                <React.Fragment key={lang.id}>
+                                    <input
+                                        className="input radio-custom border-r"
+                                        type="radio"
+                                        name="radio"
+                                        id={lang.id}
+                                        onChange={() => setLanguage(lang.id)}
+                                        checked={language === lang.id}
+                                        style={{ backgroundPosition: ballPos(i) }}
+                                        readOnly={false}
+                                    />
+                                    <label
+                                        htmlFor={lang.id}
+                                        className={`radio-custom-label ${lang.id} btn hover:text-gray-300`}
+                                    >{lang.display}
+                                        <span className="tooltip-text">{lang.tooltip}</span>
+                                    </label>
+                                </React.Fragment>
+                            ))}
+                        </div>
+                    );
+                })()}
 
                 {isMobileMenuOpen && (
                     <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center max-w-[1400px] mx-auto">
