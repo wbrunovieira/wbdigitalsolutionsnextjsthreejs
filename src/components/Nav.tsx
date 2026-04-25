@@ -116,7 +116,7 @@ const Nav: React.FC = () => {
                             {labels.map((lang, i) => (
                                 <React.Fragment key={lang.id}>
                                     <input
-                                        className="input radio-custom border-r"
+                                        className="input radio-custom"
                                         type="radio"
                                         name="radio"
                                         id={lang.id}
@@ -131,6 +131,9 @@ const Nav: React.FC = () => {
                                     >{lang.display}
                                         <span className="tooltip-text">{lang.tooltip}</span>
                                     </label>
+                                    {i < labels.length - 1 && (
+                                        <span className="w-px h-3 bg-white/20 mx-3 self-center" />
+                                    )}
                                 </React.Fragment>
                             ))}
                         </div>
