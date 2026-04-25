@@ -1,6 +1,7 @@
 import { Suspense, useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import { PreloadedCanvas } from "../PreloadedCanvas";
 import DragTutorial from "../DragTutorial";
@@ -13,7 +14,13 @@ interface isMobileProps {
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     const computer = useGLTF("/models/desktop/scene.gltf");
     const computerRef = useRef<THREE.Group | null>(null);
-    
+    const groupRef = useRef<THREE.Group | null>(null);
+
+    useFrame(({ clock }) => {
+        if (!groupRef.current) return;
+        groupRef.current.position.y = Math.sin(clock.getElapsedTime() * 0.7) * 0.07;
+    });
+
     // Cleanup on unmount
     useEffect(() => {
         return () => {
@@ -33,7 +40,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
                 });
             }
         };
-    }, [computer]); 
+    }, [computer]);
 
     useEffect(() => {
         if (!computerRef.current) return;
@@ -55,32 +62,32 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
         if (isMobile) {
             computerRef.current.position.y += 1;
         }
-    }, [computer]); 
+    }, [computer]);
 
-
-    // Removido useFrame - agora usa autoRotate do OrbitControls
 
     return (
-        <mesh>
-            <hemisphereLight intensity={2.5} groundColor="black" />
-            <spotLight
-                position={[-10, 20, 10]}
-                angle={0.12}
-                penumbra={1}
-                intensity={isMobile ? 2 : 4} // Lower intensity on mobile
-                castShadow={!isMobile} // No shadows on mobile
-                shadow-mapSize={isMobile ? 512 : 1024} // Lower shadow resolution on mobile
-            />
-            <pointLight intensity={1} />
+        <group ref={groupRef}>
+            <mesh>
+                <hemisphereLight intensity={2.5} groundColor="black" />
+                <spotLight
+                    position={[-10, 20, 10]}
+                    angle={0.12}
+                    penumbra={1}
+                    intensity={isMobile ? 2 : 4}
+                    castShadow={!isMobile}
+                    shadow-mapSize={isMobile ? 512 : 1024}
+                />
+                <pointLight intensity={1} />
 
-            <primitive
-                ref={computerRef}
-                object={computer.scene}
-                scale={isMobile ? 1.2 : 1.8}
-                position={isMobile ? [-2.5, -2, -2.2] : [0, -1.25, -1.5]}
-                rotation={[-0.01, -0.2, -0.1]}
-            />
-        </mesh>
+                <primitive
+                    ref={computerRef}
+                    object={computer.scene}
+                    scale={isMobile ? 1.2 : 1.8}
+                    position={isMobile ? [-2.5, -2, -2.2] : [0, -1.25, -1.5]}
+                    rotation={[-0.01, -0.2, -0.1]}
+                />
+            </mesh>
+        </group>
     );
 };
 
@@ -101,7 +108,7 @@ const ComputersCanvas = () => {
 
         mediaQuery.addEventListener("change", handleMediaQueryChange);
         setIsClient(true);
-        
+
         return () => {
             mediaQuery.removeEventListener("change", handleMediaQueryChange);
         };
@@ -112,12 +119,12 @@ const ComputersCanvas = () => {
             // Só acelera se foi um toque rápido (não um scroll)
             const touch = e.changedTouches[0];
             const element = document.elementFromPoint(touch.clientX, touch.clientY);
-            
+
             // Verifica se o toque foi no canvas (não em outros elementos)
             if (element?.closest('.canvas-container')) {
                 // Acelera a rotação temporariamente
                 setRotationSpeed(6);
-                
+
                 setTimeout(() => {
                     setRotationSpeed(0.5);
                 }, 3500); // Volta ao normal após 3.5 segundos
@@ -135,13 +142,13 @@ const ComputersCanvas = () => {
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows={!isMobile} // Disable shadows on mobile
                 camera={{ position: [20, 3, 25], fov: 45 }}
-                gl={{ 
+                gl={{
                     preserveDrawingBuffer: true,
                     powerPreference: "high-performance",
                     antialias: !isMobile, // Disable antialiasing on mobile
                     pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? window.devicePixelRatio : 1 // Lower pixel ratio on mobile
                 }}
-                frameloop="demand" // Only render when needed
+                frameloop="always"
                 className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
             >
                 <Suspense fallback={<CanvasLoader />}>
@@ -150,9 +157,9 @@ const ComputersCanvas = () => {
                         target={[0, 0, 0]}
                         enableZoom={false}
                         enablePan={false}
-                        enableRotate={!isMobile}
-                        autoRotate={isMobile}
-                        autoRotateSpeed={rotationSpeed}
+                        enableRotate={true}
+                        autoRotate={true}
+                        autoRotateSpeed={isMobile ? rotationSpeed : 1.2}
                         maxPolarAngle={Math.PI / 2}
                         minPolarAngle={Math.PI / 2}
                     />
