@@ -55,11 +55,12 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className={`fixed w-full top-0 z-20 transition-all duration-500 ${
+        <nav className={`fixed left-0 right-0 top-0 z-20 transition-all duration-500 ${
             scrolled
                 ? "bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/40 border-b border-purple-700/40"
                 : "bg-modern-gradient backdrop-blur-3xl border-b border-transparent"
         }`}>
+            <ParticlesContainer />
             <div className="text-secondary max-w-[1400px] mx-auto pt-10 px-4 lg:px-10 relative">
             <Image
                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
@@ -70,8 +71,7 @@ const Nav: React.FC = () => {
             />
 
             <div className="flex justify-between items-center">
-                
-                <ParticlesContainer />
+
 
            
                 <div className="flex">
