@@ -11,6 +11,7 @@ interface TextProps {
 
 export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub, supportText, pills }) => {
     const statementRef  = useRef<HTMLHeadingElement>(null);
+    const glowRef       = useRef<HTMLDivElement>(null);
     const subRef        = useRef<HTMLParagraphElement>(null);
     const supportRef    = useRef<HTMLParagraphElement>(null);
     const pillsRef      = useRef<HTMLDivElement>(null);
@@ -19,18 +20,18 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
     useEffect(() => {
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-        // 1 — statement mask reveal (rises from overflow:hidden wrapper)
+        // 1 — statement mask reveal via clipPath (allows descenders, no overflow:hidden needed)
         if (statementRef.current) {
             tl.fromTo(statementRef.current,
-                { y: '105%' },
-                { y: '0%', duration: 0.85 },
+                { clipPath: 'inset(0 0 100% 0)' },
+                { clipPath: 'inset(0 0 -30% 0)', duration: 0.85 },
                 0.1
             );
         }
 
-        // 2 — glow pulse on statement after reveal
-        if (statementRef.current) {
-            tl.fromTo(statementRef.current,
+        // 2 — glow pulse on outer wrapper (not clipped by overflow:hidden)
+        if (glowRef.current) {
+            tl.fromTo(glowRef.current,
                 { filter: 'drop-shadow(0 0 0px rgba(255,185,71,0))' },
                 { filter: 'drop-shadow(0 0 28px rgba(255,185,71,0.55))', duration: 0.6, ease: 'power2.inOut' },
                 0.8
@@ -86,8 +87,8 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
     return (
         <header className="relative flex flex-col items-start p-8 text-white">
 
-            {/* Statement — overflow hidden = mask for reveal */}
-            <div style={{ overflow: 'hidden', paddingBottom: '4px' }}>
+            {/* Statement — glow on outer, clipPath reveal on h1 (no overflow:hidden = descenders intact) */}
+            <div ref={glowRef}>
                 <h1
                     ref={statementRef}
                     className="font-black leading-none"
