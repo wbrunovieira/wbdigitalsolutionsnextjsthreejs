@@ -94,8 +94,9 @@ const Nav: React.FC = () => {
         
          
           <div className="lg:flex flex-col text text-xs justify-end items-end">
+                <div className="hidden lg:flex items-center z-50">
                 {!isLoaded && (
-                    <div className="radio-input hidden lg:flex items-center z-50 opacity-50">
+                    <div className="radio-input opacity-50">
                         <span className="text-white text-xs">...</span>
                     </div>
                 )}
@@ -114,7 +115,7 @@ const Nav: React.FC = () => {
                         { id: "es", display: "es", tooltip: currentMessages.spanish },
                     ];
                     return (
-                        <div className="radio-input hidden lg:flex items-center z-50">
+                        <div className="radio-input">
                             {labels.map((lang, i) => (
                                 <React.Fragment key={lang.id}>
                                     <input
@@ -138,6 +139,7 @@ const Nav: React.FC = () => {
                         </div>
                     );
                 })()}
+                </div>
 
                 <MobileMenu
                     isOpen={isMobileMenuOpen}
