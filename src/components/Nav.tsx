@@ -55,11 +55,12 @@ const Nav: React.FC = () => {
     ];
 
     return (
-        <nav className={`fixed text-secondary w-full top-0 z-20 pt-10 px-4 lg:px-10 max-w-[1400px] mx-auto transition-all duration-500 ${
+        <nav className={`fixed w-full top-0 z-20 transition-all duration-500 ${
             scrolled
                 ? "bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/40 border-b border-purple-700/40"
                 : "bg-modern-gradient backdrop-blur-3xl border-b border-transparent"
-        }`}>     
+        }`}>
+            <div className="text-secondary max-w-[1400px] mx-auto pt-10 px-4 lg:px-10 relative">
             <Image
                className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
                 width={300}
@@ -67,7 +68,7 @@ const Nav: React.FC = () => {
                 src="/svg/barra.svg"
                 alt="bar"
             />
-        
+
             <div className="flex justify-between items-center">
                 
                 <ParticlesContainer />
@@ -239,10 +240,11 @@ const Nav: React.FC = () => {
 
 
 
-            <div className="bg-white/5  absolute right-[2%] top-[120%] hidden md:block">
+            <div className="bg-white/5 absolute right-[2%] top-[120%] hidden md:block">
                 <SideSocial />
             </div>
-  
+
+            </div>{/* end max-w inner */}
         </nav>
     );
 };

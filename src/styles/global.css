@@ -22,6 +22,10 @@ canvas {
 }
 
 
+html {
+  background-color: #350545;
+}
+
 html, body {
   width: 100%;
   min-width: 100vw;
