@@ -1,346 +1,296 @@
 {
-    "technology": "Sites, IA e Automação que Geram Resultados",
-    "title": "WB Digital Solutions | Soluções Digitais para Empresas",
-    "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
-    "home": "Home",
-    "heroTitleHome":"Web e Além",
-    "homewho": "Quem somos",
-    "homeculture": "Cultura",
-    "design": "design",
-    "systems": "Sistemas",
-    
-    "websites": "Sites",
-    "websitesLand": "Land Pages",
-    "websitesProjects": "Projecto",
-    "digitalmarketing": "Marketing Digital",
-    "digitalmarketingSeo": "Seo",
-    "digitalmarketingAds": "Tráfego de Anúncios",
-    "digitalmarketingSocial": "Redes Sociais",
-    "automation": "Automação",
-    "blog": "Blog",
-    "contact": "Contacto",
-    "english": "Inglês",
-    "portuguese": "Portuguese",
-    "spanish": "Espanhol",
-    "italian": "Italiano",
-    "ai": "ai",
-    "welcome": "Bem vindo ao nosso escritório",
-    "services1": "Transforme sua presença digital ",
-    "services2": "em uma experiência única, ",
-    "services3": "que converte visitantes",
-    "services4": "em clientes fidelizados.",
-
-    "contactbutton": "contate",
-    "WebSitesKey": "SitesWeb",
-    "CustomSystemsKey": "SistemasPersonalizados",
-    "PaidAdsKey": "AnúnciosPagos",
-    "SocialMediaManagementKey": "GestãoDeRedesSociais",
-    "OnlineStoreKey": "LojaOnline",
-    "AutomationKey": "Automação",
-    "ArtificialIntelligenceKey": "InteligênciaArtificial",
-    "DataScienceKey": "CiênciaDeDados",
-    "DigitalMarketingKey": "MarketingDigital",
-    "GraphicDesignKey": "DesignGráfico",
-    "SEOOptimizationKey": "OtimizaçãoSEO",
-    "ResponsiveDesignKey": "DesignResponsivo",
-    "UIUXDesignKey": "DesignUIUX",
-    "EcommerceDevelopmentKey": "DesenvolvimentoDeEcommerce",
-    "AppDevelopmentKey": "DesenvolvimentoDeAplicativos",
-    "ConversionOptimizationKey": "OtimizaçãoDeConversão",
-    "BrandStrategyKey": "EstratégiaDeMarca",
-    "ContentCreationKey": "CriaçãoDeConteúdo",
-    "EmailMarketingKey": "EmailMarketing",
-    "PerformanceAnalyticsKey": "AnáliseDeDesempenho",
-    "SocialMediaAdsKey": "AnúnciosEmRedesSociais",
-    "LeadGenerationKey": "GeraçãoDeLeads",
-    "MarketingAutomationKey": "AutomaçãoDeMarketing",
-    "InfluencerMarketingKey": "MarketingDeInfluenciadores",
-    "CampaignManagementKey": "GestãoDeCampanhas",
-    "LandingPagesKey": "PáginasDeCaptura",
-    "ABTestingKey": "TestesAB",
-    "DataAnalyticsKey": "AnáliseDeDados",
-    "ChatbotsKey": "Chatbots",
-    "MachineLearningKey": "AprendizadoDeMáquina",
-    "CloudSolutionsKey": "SoluçõesNaNuvem",
-    "CRMIntegrationKey": "IntegraçãoCRM",
-    "PaymentGatewayIntegrationKey": "IntegraçãoDeGatewayDePagamento",
-    "ProductPhotographyKey": "FotografiaDeProdutos",
-    "VideoEditingKey": "EdiçãoDeVídeo",
-    "CopywritingKey": "RedaçãoPublicitária",
-    "LogoDesignKey": "DesignDeLogotipo",
-    "ConversionTrackingKey": "RastreamentoDeConversões",
-    "MarketResearchKey": "PesquisaDeMercado",
-    "VirtualRealityKey": "RealidadeVirtual",
-    "AugmentedRealityKey": "RealidadeAumentada",
-    "EADKey": "PlataformasEAD",
-    "tapToSpeed": "Toque para acelerar a rotação",
-    "dragTutorialText": "Clique e arraste para interagir",
-    "dragTutorialTextMobile": "Toque e arraste para interagir",
-    "cards": [
-        {
-            "name": "Websites",
-            "subtitle": "Desenvolvimento de sites profissionais",
-            "image": "svg/bghome.svg",
-            "link": "link_para_websites.html"
-        },
-        {
-            "name": "Sistemas",
-            "subtitle": "Soluções em sistemas customizados",
-            "image": "svg/bghome.svg",
-            "link": "link_para_sistemas.html"
-        },
-        {
-            "name": "Automatização",
-            "subtitle": "Automatize processos e aumente a eficiência",
-            "image": "svg/bghome.svg",
-            "link": "link_para_automatizacao.html"
-        },
-        {
-            "name": "Marketing Digital",
-            "subtitle": "Estratégias digitais para seu negócio",
-            "image": "svg/bghome.svg",
-            "link": "link_para_marketing_digital.html"
-        },
-        {
-            "name": "Automações",
-            "subtitle": "Tecnologia para automações inteligentes",
-            "image": "svg/bghome.svg",
-            "link": "link_para_automacoes.html"
-        },
-        {
-            "name": "Inteligência Artificial",
-            "subtitle": "Inovação com IA",
-            "image": "svg/bghome.svg",
-            "link": "link_para_inteligencia_artificial.html"
-        }
-    ],
-    "tools": "Ferramentas que Transformam Ideias em Realidade",
-    "subscribeNewsletter": "Inscreva-se na nossa Newsletter",
-    "logoAltText": "Logotipo da empresa",
-    "contacts": "Contatos",
-    "brazil": "Brasil",
-    "portugal": "Portugal",
-    "emailContact": "E-mail de Contato",
-    "artificialIntelligence": "Inteligência Artificial",
-    "digitalMarketing": "Marketing Digital",
-    "recentBlogs": "Blogs Recentes",
-    "allRightsReserved": "Todos os direitos reservados",
-    "process": "Automação de Processos",
-    "assistant": "Assistentes Virtuais",
-    "analizy": "Análise Preditiva",
-    "dataManagement": "Gestão Inteligente de Dados",
-    "IASupport": "Suporte Tecnológico",
-    "siteCreation": "Criação de Sites",
-    "SocialMedia": "Gestão de Redes Sociais",
-    "addCampaing": "Campanhas Publicitárias",
-
-    "DesignEmotional":"Como o Design Emocional Pode Transformar a Experiência do Cliente",
-
-    "diINeedSite": "Eu preciso de um site?",
-    "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
-    "enterEmail": "Seu endereço de email",
-    "send": "Enviar mensagem",
-    "validEmail": "Ops! Este email não parece correto",
-    "transformYourBusiness": "Transforme o seu negócio com as nossas soluções",
-    "cardAppleWebSite": "Desenvolvimento Web",
-    "createStunningWebsites": "Crie Websites Impressionantes.",
-    "cardAppleContentWeb1": "Transforme seu negócio com tecnologia de ponta.",
-    "cardAppleContentWeb2": "Impressione seus clientes, aumente sua presença online e destaque-se no mercado com websites modernos e personalizados, feitos sob medida para suas necessidades.",
-    "cardAppleContentWeb3": "Aproveite o Melhor do Design e da Tecnologia",
-    "cardAppleContentWeb4": "Utilizamos as ferramentas mais avançadas de design e desenvolvimento para criar sites modernos e eficientes. Combinamos criatividade e tecnologia para garantir que seu público tenha uma experiência incrível ao navegar no seu site.",
-    
-
-    "cardAppleContentWeb5": "Segurança em Primeiro Lugar para Seu Site",
-    "cardAppleContentWeb6": "Construímos sites com a mais alta preocupação com segurança, testados por profissionais especializados em cibersegurança. ",
-     "cardAppleContentWeb6_2": "Proteja os dados do seu negócio e dos seus clientes com soluções confiáveis e robustas.",
-
-    "cardAppleContentWeb7": "Apareça nos primeiros resultados de busca.",
-    "cardAppleContentWeb8": "Construímos sites que são facilmente encontrados pelos seus clientes, aumentando sua presença online. Quanto mais pessoas encontram seu site, mais oportunidades de negócios você tem.",
-
-    "cardAppleMachineLearning": "Aprendizado de Máquina",
-    "UnlockInsights": "Desbloqueie Insights com Aprendizado de Máquina.",
-
-    "cardAppleContentMachine1": "Transforme dados em decisões inteligentes.",
-    "cardAppleContentMachine2": "Nossas soluções de Machine Learning ajudam a analisar grandes volumes de dados para obter insights que guiam as melhores decisões para o seu negócio.",
-
-    "cardAppleContentMachine3": "Automatize processos complexos com precisão.",
-    "cardAppleContentMachine4": "Implementamos modelos de Machine Learning que automatizam tarefas repetitivas, permitindo que sua equipe foque no que realmente importa para o crescimento da empresa.",
-
-    "cardAppleContentMachine5": "Antecipe tendências e comportamentos.",
-    "cardAppleContentMachine6": "Com Machine Learning, seu negócio pode prever padrões de consumo, necessidades do cliente e tendências do mercado, ajudando você a se antecipar às demandas.",
-
-    "cardAppleContentMachine7": "Personalize a experiência do cliente.",
-    "cardAppleContentMachine8": "Utilize dados para criar experiências únicas para cada cliente. Nossas soluções em Machine Learning permitem adaptar produtos e serviços às preferências e necessidades de cada consumidor.",
-
-     "cardAppleAutomation": "Automação",
-    "AutomateYour": "Automatize os Processos do Seu Negócio.",
-    "cardAppleContentAutomation1": "Elimine tarefas repetitivas e maximize a eficiência operacional.",
-    "cardAppleContentAutomation2": "Nossas soluções avançadas de automação substituem fluxos de trabalho manuais, permitindo que sua equipe foque na inovação e nos objetivos estratégicos.",
-    "cardAppleContentAutomation3": "Aumente a precisão e reduza erros dispendiosos.",
-    "cardAppleContentAutomation4": "A automação garante precisão consistente, mesmo para os processos mais complexos, protegendo a qualidade e a confiabilidade das suas operações.",
-    "cardAppleContentAutomation5": "Facilite uma tomada de decisão mais rápida por meio de insights em tempo real.",
-    "cardAppleContentAutomation6": "Ao automatizar a coleta e análise de dados, fornecemos inteligência acionável, ajudando sua empresa a tomar decisões informadas de forma ágil e confiante.",
-    "cardAppleContentAutomation7": "Alcance escalabilidade contínua para um crescimento sustentável.",
-    "cardAppleContentAutomation8": "A automação prepara sua empresa para lidar com uma demanda crescente de maneira eficiente, mantendo alto desempenho sem sobrecarregar recursos.",
-    "cardAppleContentAutomation9": "Otimize custos e impulsione a lucratividade.",
-    "cardAppleContentAutomation10": "Ao automatizar fluxos de trabalho, sua empresa pode reduzir despesas, economizar tempo e reinvestir recursos em áreas que impactam diretamente o crescimento e a receita.",
-"cardAppleBots": "Bots",
-    "IntegrateIntelligent": "Transforme Seu Negócio com Bots Inteligentes.",
-
-    "cardAppleContentBots1": "Revolucione o atendimento ao cliente com automação inteligente.",
-    "cardAppleContentBots2": "Nossos bots atendem às solicitações dos clientes de forma rápida e eficiente, resolvendo questões comuns enquanto sua equipe foca em problemas mais complexos.",
-
-    "cardAppleContentBots3": "Suporte 24/7 para seus clientes, a qualquer hora e em qualquer lugar.",
-    "cardAppleContentBots4": "Com bots, seu negócio está sempre disponível, garantindo assistência contínua aos clientes, aumentando a satisfação e a fidelidade.",
-
-    "cardAppleContentBots5": "Reduza custos operacionais sem comprometer a qualidade.",
-    "cardAppleContentBots6": "Ao automatizar tarefas repetitivas, os bots diminuem a necessidade de pessoal para operações rotineiras, ajudando sua empresa a economizar e aumentar a eficiência.",
-
-    "cardAppleContentBots7": "Ofereça interações personalizadas e alinhadas à sua marca.",
-    "cardAppleContentBots8": "Nossos bots utilizam IA avançada para adaptar respostas com base nas preferências e no histórico do cliente, proporcionando uma experiência única e envolvente.",
-
-    "cardAppleContentBots9": "Integração perfeita com suas plataformas favoritas.",
-    "cardAppleContentBots10": "Nossos bots se conectam facilmente a sistemas CRM, canais de mídia social e ferramentas internas, criando um sistema de suporte unificado e multicanal para o seu negócio.",
-    
-   "cardAppleAI": "Inteligência Artificial",
+  "technology": "Sites, IA e Automação que Geram Resultados",
+  "title": "WB Digital Solutions | Soluções Digitais para Empresas",
+  "description": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
+  "home": "Home",
+  "heroTitleHome": "Criamos §Sites e Plataformas, IA e Automação§ que Geram §Resultados",
+  "homewho": "Quem somos",
+  "homeculture": "Cultura",
+  "design": "design",
+  "systems": "Sistemas",
+  "websites": "Sites",
+  "websitesLand": "Land Pages",
+  "websitesProjects": "Projecto",
+  "digitalmarketing": "Marketing Digital",
+  "digitalmarketingSeo": "Seo",
+  "digitalmarketingAds": "Tráfego de Anúncios",
+  "digitalmarketingSocial": "Redes Sociais",
+  "automation": "Automação",
+  "blog": "Blog",
+  "contact": "Contacto",
+  "english": "Inglês",
+  "portuguese": "Portuguese",
+  "spanish": "Espanhol",
+  "italian": "Italiano",
+  "ai": "ai",
+  "welcome": "Bem vindo ao nosso escritório",
+  "services1": "Sites e Plataformas|de landing pages a sistemas completos",
+  "services2": "Automação|que elimina o trabalho repetitivo",
+  "services3": "IA|que atende, analisa e decide",
+  "services4": "Soluções completas para empresas que querem crescer.",
+  "contactbutton": "contate",
+  "WebSitesKey": "SitesWeb",
+  "CustomSystemsKey": "SistemasPersonalizados",
+  "PaidAdsKey": "AnúnciosPagos",
+  "SocialMediaManagementKey": "GestãoDeRedesSociais",
+  "OnlineStoreKey": "LojaOnline",
+  "AutomationKey": "Automação",
+  "ArtificialIntelligenceKey": "InteligênciaArtificial",
+  "DataScienceKey": "CiênciaDeDados",
+  "DigitalMarketingKey": "MarketingDigital",
+  "GraphicDesignKey": "DesignGráfico",
+  "SEOOptimizationKey": "OtimizaçãoSEO",
+  "ResponsiveDesignKey": "DesignResponsivo",
+  "UIUXDesignKey": "DesignUIUX",
+  "EcommerceDevelopmentKey": "DesenvolvimentoDeEcommerce",
+  "AppDevelopmentKey": "DesenvolvimentoDeAplicativos",
+  "ConversionOptimizationKey": "OtimizaçãoDeConversão",
+  "BrandStrategyKey": "EstratégiaDeMarca",
+  "ContentCreationKey": "CriaçãoDeConteúdo",
+  "EmailMarketingKey": "EmailMarketing",
+  "PerformanceAnalyticsKey": "AnáliseDeDesempenho",
+  "SocialMediaAdsKey": "AnúnciosEmRedesSociais",
+  "LeadGenerationKey": "GeraçãoDeLeads",
+  "MarketingAutomationKey": "AutomaçãoDeMarketing",
+  "InfluencerMarketingKey": "MarketingDeInfluenciadores",
+  "CampaignManagementKey": "GestãoDeCampanhas",
+  "LandingPagesKey": "PáginasDeCaptura",
+  "ABTestingKey": "TestesAB",
+  "DataAnalyticsKey": "AnáliseDeDados",
+  "ChatbotsKey": "Chatbots",
+  "MachineLearningKey": "AprendizadoDeMáquina",
+  "CloudSolutionsKey": "SoluçõesNaNuvem",
+  "CRMIntegrationKey": "IntegraçãoCRM",
+  "PaymentGatewayIntegrationKey": "IntegraçãoDeGatewayDePagamento",
+  "ProductPhotographyKey": "FotografiaDeProdutos",
+  "VideoEditingKey": "EdiçãoDeVídeo",
+  "CopywritingKey": "RedaçãoPublicitária",
+  "LogoDesignKey": "DesignDeLogotipo",
+  "ConversionTrackingKey": "RastreamentoDeConversões",
+  "MarketResearchKey": "PesquisaDeMercado",
+  "VirtualRealityKey": "RealidadeVirtual",
+  "AugmentedRealityKey": "RealidadeAumentada",
+  "EADKey": "PlataformasEAD",
+  "tapToSpeed": "Toque para acelerar a rotação",
+  "dragTutorialText": "Clique e arraste para interagir",
+  "dragTutorialTextMobile": "Toque e arraste para interagir",
+  "cards": [
+    {
+      "name": "Websites",
+      "subtitle": "Desenvolvimento de sites profissionais",
+      "image": "svg/bghome.svg",
+      "link": "link_para_websites.html"
+    },
+    {
+      "name": "Sistemas",
+      "subtitle": "Soluções em sistemas customizados",
+      "image": "svg/bghome.svg",
+      "link": "link_para_sistemas.html"
+    },
+    {
+      "name": "Automatização",
+      "subtitle": "Automatize processos e aumente a eficiência",
+      "image": "svg/bghome.svg",
+      "link": "link_para_automatizacao.html"
+    },
+    {
+      "name": "Marketing Digital",
+      "subtitle": "Estratégias digitais para seu negócio",
+      "image": "svg/bghome.svg",
+      "link": "link_para_marketing_digital.html"
+    },
+    {
+      "name": "Automações",
+      "subtitle": "Tecnologia para automações inteligentes",
+      "image": "svg/bghome.svg",
+      "link": "link_para_automacoes.html"
+    },
+    {
+      "name": "Inteligência Artificial",
+      "subtitle": "Inovação com IA",
+      "image": "svg/bghome.svg",
+      "link": "link_para_inteligencia_artificial.html"
+    }
+  ],
+  "tools": "Ferramentas que Transformam Ideias em Realidade",
+  "subscribeNewsletter": "Inscreva-se na nossa Newsletter",
+  "logoAltText": "Logotipo da empresa",
+  "contacts": "Contatos",
+  "brazil": "Brasil",
+  "portugal": "Portugal",
+  "emailContact": "E-mail de Contato",
+  "artificialIntelligence": "Inteligência Artificial",
+  "digitalMarketing": "Marketing Digital",
+  "recentBlogs": "Blogs Recentes",
+  "allRightsReserved": "Todos os direitos reservados",
+  "process": "Automação de Processos",
+  "assistant": "Assistentes Virtuais",
+  "analizy": "Análise Preditiva",
+  "dataManagement": "Gestão Inteligente de Dados",
+  "IASupport": "Suporte Tecnológico",
+  "siteCreation": "Criação de Sites",
+  "SocialMedia": "Gestão de Redes Sociais",
+  "addCampaing": "Campanhas Publicitárias",
+  "DesignEmotional": "Como o Design Emocional Pode Transformar a Experiência do Cliente",
+  "diINeedSite": "Eu preciso de um site?",
+  "SistemsTransform": "Como os Sistemas de Gestão Transformam Empresas",
+  "enterEmail": "Seu endereço de email",
+  "send": "Enviar mensagem",
+  "validEmail": "Ops! Este email não parece correto",
+  "transformYourBusiness": "Transforme o seu negócio com as nossas soluções",
+  "cardAppleWebSite": "Desenvolvimento Web",
+  "createStunningWebsites": "Crie Websites Impressionantes.",
+  "cardAppleContentWeb1": "Transforme seu negócio com tecnologia de ponta.",
+  "cardAppleContentWeb2": "Impressione seus clientes, aumente sua presença online e destaque-se no mercado com websites modernos e personalizados, feitos sob medida para suas necessidades.",
+  "cardAppleContentWeb3": "Aproveite o Melhor do Design e da Tecnologia",
+  "cardAppleContentWeb4": "Utilizamos as ferramentas mais avançadas de design e desenvolvimento para criar sites modernos e eficientes. Combinamos criatividade e tecnologia para garantir que seu público tenha uma experiência incrível ao navegar no seu site.",
+  "cardAppleContentWeb5": "Segurança em Primeiro Lugar para Seu Site",
+  "cardAppleContentWeb6": "Construímos sites com a mais alta preocupação com segurança, testados por profissionais especializados em cibersegurança. ",
+  "cardAppleContentWeb6_2": "Proteja os dados do seu negócio e dos seus clientes com soluções confiáveis e robustas.",
+  "cardAppleContentWeb7": "Apareça nos primeiros resultados de busca.",
+  "cardAppleContentWeb8": "Construímos sites que são facilmente encontrados pelos seus clientes, aumentando sua presença online. Quanto mais pessoas encontram seu site, mais oportunidades de negócios você tem.",
+  "cardAppleMachineLearning": "Aprendizado de Máquina",
+  "UnlockInsights": "Desbloqueie Insights com Aprendizado de Máquina.",
+  "cardAppleContentMachine1": "Transforme dados em decisões inteligentes.",
+  "cardAppleContentMachine2": "Nossas soluções de Machine Learning ajudam a analisar grandes volumes de dados para obter insights que guiam as melhores decisões para o seu negócio.",
+  "cardAppleContentMachine3": "Automatize processos complexos com precisão.",
+  "cardAppleContentMachine4": "Implementamos modelos de Machine Learning que automatizam tarefas repetitivas, permitindo que sua equipe foque no que realmente importa para o crescimento da empresa.",
+  "cardAppleContentMachine5": "Antecipe tendências e comportamentos.",
+  "cardAppleContentMachine6": "Com Machine Learning, seu negócio pode prever padrões de consumo, necessidades do cliente e tendências do mercado, ajudando você a se antecipar às demandas.",
+  "cardAppleContentMachine7": "Personalize a experiência do cliente.",
+  "cardAppleContentMachine8": "Utilize dados para criar experiências únicas para cada cliente. Nossas soluções em Machine Learning permitem adaptar produtos e serviços às preferências e necessidades de cada consumidor.",
+  "cardAppleAutomation": "Automação",
+  "AutomateYour": "Automatize os Processos do Seu Negócio.",
+  "cardAppleContentAutomation1": "Elimine tarefas repetitivas e maximize a eficiência operacional.",
+  "cardAppleContentAutomation2": "Nossas soluções avançadas de automação substituem fluxos de trabalho manuais, permitindo que sua equipe foque na inovação e nos objetivos estratégicos.",
+  "cardAppleContentAutomation3": "Aumente a precisão e reduza erros dispendiosos.",
+  "cardAppleContentAutomation4": "A automação garante precisão consistente, mesmo para os processos mais complexos, protegendo a qualidade e a confiabilidade das suas operações.",
+  "cardAppleContentAutomation5": "Facilite uma tomada de decisão mais rápida por meio de insights em tempo real.",
+  "cardAppleContentAutomation6": "Ao automatizar a coleta e análise de dados, fornecemos inteligência acionável, ajudando sua empresa a tomar decisões informadas de forma ágil e confiante.",
+  "cardAppleContentAutomation7": "Alcance escalabilidade contínua para um crescimento sustentável.",
+  "cardAppleContentAutomation8": "A automação prepara sua empresa para lidar com uma demanda crescente de maneira eficiente, mantendo alto desempenho sem sobrecarregar recursos.",
+  "cardAppleContentAutomation9": "Otimize custos e impulsione a lucratividade.",
+  "cardAppleContentAutomation10": "Ao automatizar fluxos de trabalho, sua empresa pode reduzir despesas, economizar tempo e reinvestir recursos em áreas que impactam diretamente o crescimento e a receita.",
+  "cardAppleBots": "Bots",
+  "IntegrateIntelligent": "Transforme Seu Negócio com Bots Inteligentes.",
+  "cardAppleContentBots1": "Revolucione o atendimento ao cliente com automação inteligente.",
+  "cardAppleContentBots2": "Nossos bots atendem às solicitações dos clientes de forma rápida e eficiente, resolvendo questões comuns enquanto sua equipe foca em problemas mais complexos.",
+  "cardAppleContentBots3": "Suporte 24/7 para seus clientes, a qualquer hora e em qualquer lugar.",
+  "cardAppleContentBots4": "Com bots, seu negócio está sempre disponível, garantindo assistência contínua aos clientes, aumentando a satisfação e a fidelidade.",
+  "cardAppleContentBots5": "Reduza custos operacionais sem comprometer a qualidade.",
+  "cardAppleContentBots6": "Ao automatizar tarefas repetitivas, os bots diminuem a necessidade de pessoal para operações rotineiras, ajudando sua empresa a economizar e aumentar a eficiência.",
+  "cardAppleContentBots7": "Ofereça interações personalizadas e alinhadas à sua marca.",
+  "cardAppleContentBots8": "Nossos bots utilizam IA avançada para adaptar respostas com base nas preferências e no histórico do cliente, proporcionando uma experiência única e envolvente.",
+  "cardAppleContentBots9": "Integração perfeita com suas plataformas favoritas.",
+  "cardAppleContentBots10": "Nossos bots se conectam facilmente a sistemas CRM, canais de mídia social e ferramentas internas, criando um sistema de suporte unificado e multicanal para o seu negócio.",
+  "cardAppleAI": "Inteligência Artificial",
   "LeverageAI": "Soluções Abrangentes de IA para o Sucesso do Seu Negócio",
-
   "cardAppleContentAI1": "Melhore a comunicação com os clientes através da Inteligência Artificial.",
   "cardAppleContentAI2": "Nossas soluções de IA ajudam sua empresa a interagir com os clientes de forma mais humana e personalizada, aumentando a satisfação e o engajamento em diversos canais.",
-
   "cardAppleContentAI3": "Forneça suporte instantâneo, preciso e escalável com assistentes inteligentes.",
   "cardAppleContentAI4": "Integre o ChatGPT ou nossas soluções de IA personalizadas para automatizar o atendimento ao cliente, responder a perguntas e permitir que sua equipe se concentre em tarefas estratégicas.",
-
   "cardAppleContentAI5": "Análise de sentimentos e inteligência emocional para decisões mais inteligentes.",
   "cardAppleContentAI6": "Monitore e interprete o tom das interações dos clientes usando IA, ajudando sua empresa a adaptar a comunicação e oferecer melhores experiências com base em insights emocionais.",
-
   "cardAppleContentAI7": "Criação de conteúdo automatizada e personalizada para a sua marca.",
   "cardAppleContentAI8": "Use a IA para gerar conteúdo, automatizar respostas e manter a consistência da marca, criando mensagens personalizadas para cada perfil de cliente.",
-
   "cardAppleContentAI9": "Transforme o seu negócio com soluções completas de IA.",
   "cardAppleContentAI10": "Do atendimento ao cliente à análise de sentimentos e interpretação de imagens e vídeos, nossas soluções de IA capacitam sua empresa a automatizar, otimizar e inovar, entregando resultados consistentes e escaláveis sob medida para suas necessidades.",
-
   "cardAppleContentAI11": "Agentes de IA projetados para aprimorar processos empresariais.",
   "cardAppleContentAI12": "Desenvolvemos agentes inteligentes de IA capazes de automatizar tarefas repetitivas, analisar dados complexos e tomar decisões informadas em tempo real. Esses agentes podem simplificar operações, melhorar a produtividade e permitir que sua equipe se concentre em atividades de alto valor.",
-
-    "cardAppleECommerce": "E-commerce",
-    "boostYour": "Impulsione suas Vendas com Soluções de E-commerce.",
-
-    "cardAppleContentECommerce1": "Aumente as vendas sem complicação.",
-    "cardAppleContentECommerce2": "Nossas soluções de e-commerce são projetadas para atrair mais clientes e aumentar a conversão, ajudando seu negócio a vender mais sem precisar de uma equipe extensa.",
-
-    "cardAppleContentECommerce3": "Transforme sua loja online com as melhores tecnologias e design do mercado.",
-    "cardAppleContentECommerce4": "Nosso e-commerce oferece uma plataforma poderosa, com tecnologia avançada e design moderno, garantindo uma experiência atraente e intuitiva para seus clientes. Controle tudo de forma fácil e aproveite um visual que destaca sua marca.",
-
-    "cardAppleContentECommerce5": "Simplifique pagamentos e entregas para seus clientes.",
-    "cardAppleContentECommerce6": "Oferecemos métodos de pagamento variados e seguros, além de opções de entrega confiáveis que proporcionam tranquilidade tanto para você quanto para seus clientes, garantindo uma experiência de compra completa e sem complicações.",
-
-    "cardAppleContentECommerce7": "Expanda suas operações com flexibilidade e controle.",
-    "cardAppleContentECommerce8": "Nossas soluções permitem que você adicione facilmente novos métodos de pagamento e opções de entrega, adaptando-se às preferências dos clientes e mantendo uma operação segura e escalável.",
-
-    "cardAppleMarketing": "Marketing Digital",
-    "boostYourMarketing": "Leve sua Empresa ao Mundo Digital como Você Nunca Imaginou.",
-
-    "cardAppleSystems": "Sistemas de Gestão",
-    "Maximizar": "Soluções de Gestão para Maximizar Resultados",
-
-    "cardAppleContentMarketing1": "Expanda seu alcance com estratégias de marketing digital.",
-    "cardAppleContentMarketing2": "Oferecemos soluções completas para atrair e engajar seu público, aumentando a visibilidade da sua marca e gerando mais oportunidades de negócio.",
-
-    "cardAppleContentMarketing3": "Gerencie suas redes sociais com uma abordagem completa.",
-    "cardAppleContentMarketing4": "Nossa equipe desenvolve uma estratégia personalizada para suas redes sociais, com posts visualmente atraentes, textos envolventes e vídeos impactantes, garantindo que sua marca se destaque e engaje o público.",
-
-    "cardAppleContentMarketing5": "Aumente seu retorno com campanhas pagas.",
-    "cardAppleContentMarketing6": "Criamos campanhas pagas feitas para alcançar o público certo e trazer resultados rápidos, ajudando seu negócio a crescer e ganhar mais relevância.",
-
-    "cardAppleContentMarketing7": "Apareça nas buscas do Google com automação.",
-    "cardAppleContentMarketing8": "Nossas soluções preparam seu site para ser encontrado facilmente, garantindo que sua marca chegue aos clientes certos e atraia mais visitantes de forma natural.",
-
-    "cardAppleManagementSystems": "Sistemas de Gestão",
-    "boostYourManagement": "Transforme a Gestão do Seu Negócio como Nunca Imaginou.",
-
-    "cardAppleContentManagement1": "Soluções de gestão personalizadas para cada setor.",
-    "cardAppleContentManagement2": "Oferecemos sistemas sob medida para o seu negócio: Gestão para Empresas (WB Web), Gestão para Salões (WB Salão), Gestão para Clínicas de Saúde (WB Clínica), Gestão para Restaurantes (WB Food) e Gestão para Pet Shops (WB Pet).",
-
-    "cardAppleContentManagement3": "Simplicidade e eficiência em uma plataforma completa.",
-    "cardAppleContentManagement4": "Nossos sistemas de gestão são fáceis de usar e oferecem uma gama completa de recursos, facilitando o dia a dia e garantindo que você tenha tudo o que precisa para o sucesso do seu negócio.",
-
-    "cardAppleContentManagement5": "Simplifique sua gestão com funcionalidades completas.",
-    "cardAppleContentManagement6": "Nossos sistemas oferecem controle de vendas eficiente, gestão financeira integrada, emissão fácil de documentos fiscais, controle de estoque inteligente e muito mais. Tudo isso em uma plataforma segura, atualizada e de fácil uso, com suporte dedicado e treinamento personalizado para o seu negócio.",
-
-    "cardAppleContentManagement7": "Acompanhe o desempenho em tempo real.",
-    "cardAppleContentManagement8": "Monitore indicadores, resultados e metas a qualquer momento, com relatórios intuitivos que ajudam você a acompanhar o progresso e identificar oportunidades de melhoria.",
-
-    "getInTouch": "Vamos conversar",
-    "namePlaceHolder": "Como podemos te chamar?",
-    "nameLabel": "Nome",
-    "nameRequired": "Ops! Precisamos do seu nome para continuar",
-    "messageLabel": "Conte-nos o que você está pensando",
-    "messagePlaceHolder": "Compartilhe suas ideias, pensamentos ou dúvidas...",
-    "messageRequired": "Não se esqueça de escrever sua mensagem!",
-      "send2": "Enviar",
+  "cardAppleECommerce": "E-commerce",
+  "boostYour": "Impulsione suas Vendas com Soluções de E-commerce.",
+  "cardAppleContentECommerce1": "Aumente as vendas sem complicação.",
+  "cardAppleContentECommerce2": "Nossas soluções de e-commerce são projetadas para atrair mais clientes e aumentar a conversão, ajudando seu negócio a vender mais sem precisar de uma equipe extensa.",
+  "cardAppleContentECommerce3": "Transforme sua loja online com as melhores tecnologias e design do mercado.",
+  "cardAppleContentECommerce4": "Nosso e-commerce oferece uma plataforma poderosa, com tecnologia avançada e design moderno, garantindo uma experiência atraente e intuitiva para seus clientes. Controle tudo de forma fácil e aproveite um visual que destaca sua marca.",
+  "cardAppleContentECommerce5": "Simplifique pagamentos e entregas para seus clientes.",
+  "cardAppleContentECommerce6": "Oferecemos métodos de pagamento variados e seguros, além de opções de entrega confiáveis que proporcionam tranquilidade tanto para você quanto para seus clientes, garantindo uma experiência de compra completa e sem complicações.",
+  "cardAppleContentECommerce7": "Expanda suas operações com flexibilidade e controle.",
+  "cardAppleContentECommerce8": "Nossas soluções permitem que você adicione facilmente novos métodos de pagamento e opções de entrega, adaptando-se às preferências dos clientes e mantendo uma operação segura e escalável.",
+  "cardAppleMarketing": "Marketing Digital",
+  "boostYourMarketing": "Leve sua Empresa ao Mundo Digital como Você Nunca Imaginou.",
+  "cardAppleSystems": "Sistemas de Gestão",
+  "Maximizar": "Soluções de Gestão para Maximizar Resultados",
+  "cardAppleContentMarketing1": "Expanda seu alcance com estratégias de marketing digital.",
+  "cardAppleContentMarketing2": "Oferecemos soluções completas para atrair e engajar seu público, aumentando a visibilidade da sua marca e gerando mais oportunidades de negócio.",
+  "cardAppleContentMarketing3": "Gerencie suas redes sociais com uma abordagem completa.",
+  "cardAppleContentMarketing4": "Nossa equipe desenvolve uma estratégia personalizada para suas redes sociais, com posts visualmente atraentes, textos envolventes e vídeos impactantes, garantindo que sua marca se destaque e engaje o público.",
+  "cardAppleContentMarketing5": "Aumente seu retorno com campanhas pagas.",
+  "cardAppleContentMarketing6": "Criamos campanhas pagas feitas para alcançar o público certo e trazer resultados rápidos, ajudando seu negócio a crescer e ganhar mais relevância.",
+  "cardAppleContentMarketing7": "Apareça nas buscas do Google com automação.",
+  "cardAppleContentMarketing8": "Nossas soluções preparam seu site para ser encontrado facilmente, garantindo que sua marca chegue aos clientes certos e atraia mais visitantes de forma natural.",
+  "cardAppleManagementSystems": "Sistemas de Gestão",
+  "boostYourManagement": "Transforme a Gestão do Seu Negócio como Nunca Imaginou.",
+  "cardAppleContentManagement1": "Soluções de gestão personalizadas para cada setor.",
+  "cardAppleContentManagement2": "Oferecemos sistemas sob medida para o seu negócio: Gestão para Empresas (WB Web), Gestão para Salões (WB Salão), Gestão para Clínicas de Saúde (WB Clínica), Gestão para Restaurantes (WB Food) e Gestão para Pet Shops (WB Pet).",
+  "cardAppleContentManagement3": "Simplicidade e eficiência em uma plataforma completa.",
+  "cardAppleContentManagement4": "Nossos sistemas de gestão são fáceis de usar e oferecem uma gama completa de recursos, facilitando o dia a dia e garantindo que você tenha tudo o que precisa para o sucesso do seu negócio.",
+  "cardAppleContentManagement5": "Simplifique sua gestão com funcionalidades completas.",
+  "cardAppleContentManagement6": "Nossos sistemas oferecem controle de vendas eficiente, gestão financeira integrada, emissão fácil de documentos fiscais, controle de estoque inteligente e muito mais. Tudo isso em uma plataforma segura, atualizada e de fácil uso, com suporte dedicado e treinamento personalizado para o seu negócio.",
+  "cardAppleContentManagement7": "Acompanhe o desempenho em tempo real.",
+  "cardAppleContentManagement8": "Monitore indicadores, resultados e metas a qualquer momento, com relatórios intuitivos que ajudam você a acompanhar o progresso e identificar oportunidades de melhoria.",
+  "getInTouch": "Vamos conversar",
+  "namePlaceHolder": "Como podemos te chamar?",
+  "nameLabel": "Nome",
+  "nameRequired": "Ops! Precisamos do seu nome para continuar",
+  "messageLabel": "Conte-nos o que você está pensando",
+  "messagePlaceHolder": "Compartilhe suas ideias, pensamentos ou dúvidas...",
+  "messageRequired": "Não se esqueça de escrever sua mensagem!",
+  "send2": "Enviar",
   "fillAllFields": "Por favor, preencha todos os campos corretamente.",
   "successSubmission": "Formulário enviado com sucesso!",
   "errorSubmission": "Erro ao enviar o formulário. Tente novamente.",
-
-    "experienceTitle1": "Inovação que Transforma. ",
-    "experienceTitle2": "Experiências que Conectam.",
-    "experienceDisciplines": [
-        "Sites que impressionam.",
-        "Experiências que engajam.",
-        "Resultados que impulsionam seu negócio."
-    ],
-    "experiencesub1":"Muito mais que um site.", 
-    "experiencesub2":"Criamos experiências digitais que destacam o melhor da sua marca, combinando design exclusivo, interatividade e tecnologia avançada.", 
-
-
-    "experienceTitleWebsite":"Não é só um site,",
-    "experienceTitleWebsite2":"É uma experiência premium para quem quer se destacar.",
-    "experienceSubtitle": "Enquanto soluções genéricas oferecem o básico, nós criamos sites sob medida para empresários que buscam qualidade, inovação e tecnologia de ponta.",
-    "experienceSubtitle1_1": "Imagine um site que reflete a essência do seu negócio, com interações envolventes, design exclusivo e desempenho otimizado.",
-    "experienceSubtitle1_2": "Sabemos que animações, vídeos e 3D podem impactar levemente a velocidade. ",
-    "experienceSubtitle1_3": "Mas, para o seu público — com acesso a boa internet e equipamentos modernos — esses detalhes transformam a navegação em uma experiência memorável.",
-    "experienceSubtitle1_4": " É um equilíbrio entre performance e impacto visual que valorizamos ao máximo.",
-    "experienceSubtitle2":"é isso que criamos para você.",
-    "genericSolution":"Solução Genérica",
-    "genericDescription": "Sites limitados, com poucas opções de personalização e desempenho comprometido.<br />- <strong>Velocidade:</strong> Carregamento lento, comprometendo a experiência do usuário.<br />- <strong>Interatividade:</strong> Experiência básica, sem animações ou elementos interativos.<br />- <strong>Segurança:</strong> Pouco robusta, vulnerável a ataques e falhas técnicas.<br />- <strong>Design:</strong> Templates limitados, sem exclusividade ou identidade única.<br />- <strong>Escalabilidade:</strong> Restrita, com dificuldades para acompanhar o crescimento do negócio.",
-    "customSolution":"Solução Personalizada",
-"customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Tipos de Projetos:</strong> Landing pages, sites institucionais, lojas online, plataformas de ensino e projetos sob medida.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",   
-
-
-
-
-"approachSubtitle":"Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
-     "steps": [
-          {
-            "title": "Descoberta",
-            "description": "Entendimento do negócio e do público-alvo."
-          },
-          {
-            "title": "Design Exclusivo",
-            "description": "UI/UX focado em resultados e engajamento."
-          },
-          {
-            "title": "Tecnologia de Ponta",
-            "description": "Ferramentas modernas para garantir velocidade, escalabilidade e segurança."
-          },
-          {
-            "title": "Entrega e Suporte",
-            "description": "Um site funcional e pronto para crescer com o seu negócio."
-          }
-        ],
-
-        "differentiatorsSpeedTitle":"Velocidade",
-        "differentiatorsSpeedDesc":"Sites que carregam em milissegundos.",
-        "differentiatorsInteractivityTitle":"Interatividade",
-        "differentiatorsInteractivityDesc":"Animações e experiências que encantam o visitante.",
-        "differentiatorsSEOTitle":"SEO Avançado",
-        "differentiatorsSEODesc":"Melhor posicionamento nos motores de busca.",
-        "differentiatorsScalabilityTitle": "Escalabilidade",
-        "differentiatorsScalabilityDesc":"Cresça sem preocupações técnicas.",
-        "differentiatorsTitle":"Muito mais do que um site bonito.",
-        "differentiatorsSubtitle":"Funcionalidade, performance e resultados reais.",
-         "comparisonTitle": "Invista em um site que realmente funcione.",
+  "experienceTitle1": "Inovação que Transforma. ",
+  "experienceTitle2": "Experiências que Conectam.",
+  "experienceDisciplines": [
+    "Sites que impressionam.",
+    "Experiências que engajam.",
+    "Resultados que impulsionam seu negócio."
+  ],
+  "experiencesub1": "Muito mais que um site.",
+  "experiencesub2": "Criamos experiências digitais que destacam o melhor da sua marca, combinando design exclusivo, interatividade e tecnologia avançada.",
+  "experienceTitleWebsite": "Não é só um site,",
+  "experienceTitleWebsite2": "É uma experiência premium para quem quer se destacar.",
+  "experienceSubtitle": "Enquanto soluções genéricas oferecem o básico, nós criamos sites sob medida para empresários que buscam qualidade, inovação e tecnologia de ponta.",
+  "experienceSubtitle1_1": "Imagine um site que reflete a essência do seu negócio, com interações envolventes, design exclusivo e desempenho otimizado.",
+  "experienceSubtitle1_2": "Sabemos que animações, vídeos e 3D podem impactar levemente a velocidade. ",
+  "experienceSubtitle1_3": "Mas, para o seu público — com acesso a boa internet e equipamentos modernos — esses detalhes transformam a navegação em uma experiência memorável.",
+  "experienceSubtitle1_4": " É um equilíbrio entre performance e impacto visual que valorizamos ao máximo.",
+  "experienceSubtitle2": "é isso que criamos para você.",
+  "genericSolution": "Solução Genérica",
+  "genericDescription": "Sites limitados, com poucas opções de personalização e desempenho comprometido.<br />- <strong>Velocidade:</strong> Carregamento lento, comprometendo a experiência do usuário.<br />- <strong>Interatividade:</strong> Experiência básica, sem animações ou elementos interativos.<br />- <strong>Segurança:</strong> Pouco robusta, vulnerável a ataques e falhas técnicas.<br />- <strong>Design:</strong> Templates limitados, sem exclusividade ou identidade única.<br />- <strong>Escalabilidade:</strong> Restrita, com dificuldades para acompanhar o crescimento do negócio.",
+  "customSolution": "Solução Personalizada",
+  "customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Tipos de Projetos:</strong> Landing pages, sites institucionais, lojas online, plataformas de ensino e projetos sob medida.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",
+  "approachSubtitle": "Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
+  "steps": [
+    {
+      "title": "Descoberta",
+      "description": "Entendimento do negócio e do público-alvo."
+    },
+    {
+      "title": "Design Exclusivo",
+      "description": "UI/UX focado em resultados e engajamento."
+    },
+    {
+      "title": "Tecnologia de Ponta",
+      "description": "Ferramentas modernas para garantir velocidade, escalabilidade e segurança."
+    },
+    {
+      "title": "Entrega e Suporte",
+      "description": "Um site funcional e pronto para crescer com o seu negócio."
+    }
+  ],
+  "differentiatorsSpeedTitle": "Velocidade",
+  "differentiatorsSpeedDesc": "Sites que carregam em milissegundos.",
+  "differentiatorsInteractivityTitle": "Interatividade",
+  "differentiatorsInteractivityDesc": "Animações e experiências que encantam o visitante.",
+  "differentiatorsSEOTitle": "SEO Avançado",
+  "differentiatorsSEODesc": "Melhor posicionamento nos motores de busca.",
+  "differentiatorsScalabilityTitle": "Escalabilidade",
+  "differentiatorsScalabilityDesc": "Cresça sem preocupações técnicas.",
+  "differentiatorsTitle": "Muito mais do que um site bonito.",
+  "differentiatorsSubtitle": "Funcionalidade, performance e resultados reais.",
+  "comparisonTitle": "Invista em um site que realmente funcione.",
   "comparisonSubtitle": "Seu site pode ser o principal ativo do seu negócio, não um custo perdido.",
   "genericTitle": "Genérico",
   "customTitle": "Sob Medida",
@@ -354,37 +304,32 @@
   "customSecurity": "Segurança avançada",
   "customExperience": "Experiência envolvente",
   "ctaTitle": "Transforme sua presença digital",
-    "ctaHighlight": "em resultados reais",
-    "ctaDesc1": "Seu negócio merece mais que um template genérico.",
-    "ctaDesc2": "Agende uma consulta gratuita e descubra como podemos criar uma experiência digital única para sua marca.",
-    "ctaButton": "Fale com um Especialista",
-    "ctaContactTitle": "Escolha a forma de contato mais conveniente para você:",
-    "whatsappLabel": "WhatsApp",
-    "emailLabel": "E-mail",
-
-        "benefitsTitle": "Benefícios da Automação para o Seu Negócio",
-    "benefit1Title": "Eficiência Operacional",
-    "benefit1Desc": "Reduza tarefas manuais e maximize sua produtividade com fluxos de trabalho otimizados.",
-    "benefit2Title": "Economia de Tempo",
-    "benefit2Desc": "Automatize processos repetitivos para focar no crescimento do seu negócio.",
-    "benefit3Title": "Escalabilidade",
-    "benefit3Desc": "Soluções projetadas para crescer junto com sua empresa.",
-    "benefit4Title": "Melhor Experiência do Cliente",
-    "benefit4Desc": "A automação permite atender seus clientes com rapidez e eficiência.",
-
-
-      "solutionsTitle": "Soluções de Automação para o Seu Negócio",
-    "solution1Title": "Parcerias Estratégicas",
-    "solution1Desc": "Conecte-se com parceiros para impulsionar resultados e melhorar processos.",
-    "solution2Title": "Automação Digital",
-    "solution2Desc": "Modernize fluxos de trabalho com ferramentas inovadoras e digitais.",
-    "solution3Title": "Ideias Criativas",
-    "solution3Desc": "Desenvolva estratégias personalizadas para superar desafios.",
-    "solution4Title": "Crescimento Acelerado",
-    "solution4Desc": "Implemente soluções que levem sua empresa ao próximo nível.",
-
-
-    "successCasesTitle": "Casos de Sucesso em Automação",
+  "ctaHighlight": "em resultados reais",
+  "ctaDesc1": "Seu negócio merece mais que um template genérico.",
+  "ctaDesc2": "Agende uma consulta gratuita e descubra como podemos criar uma experiência digital única para sua marca.",
+  "ctaButton": "Fale com um Especialista",
+  "ctaContactTitle": "Escolha a forma de contato mais conveniente para você:",
+  "whatsappLabel": "WhatsApp",
+  "emailLabel": "E-mail",
+  "benefitsTitle": "Benefícios da Automação para o Seu Negócio",
+  "benefit1Title": "Eficiência Operacional",
+  "benefit1Desc": "Reduza tarefas manuais e maximize sua produtividade com fluxos de trabalho otimizados.",
+  "benefit2Title": "Economia de Tempo",
+  "benefit2Desc": "Automatize processos repetitivos para focar no crescimento do seu negócio.",
+  "benefit3Title": "Escalabilidade",
+  "benefit3Desc": "Soluções projetadas para crescer junto com sua empresa.",
+  "benefit4Title": "Melhor Experiência do Cliente",
+  "benefit4Desc": "A automação permite atender seus clientes com rapidez e eficiência.",
+  "solutionsTitle": "Soluções de Automação para o Seu Negócio",
+  "solution1Title": "Parcerias Estratégicas",
+  "solution1Desc": "Conecte-se com parceiros para impulsionar resultados e melhorar processos.",
+  "solution2Title": "Automação Digital",
+  "solution2Desc": "Modernize fluxos de trabalho com ferramentas inovadoras e digitais.",
+  "solution3Title": "Ideias Criativas",
+  "solution3Desc": "Desenvolva estratégias personalizadas para superar desafios.",
+  "solution4Title": "Crescimento Acelerado",
+  "solution4Desc": "Implemente soluções que levem sua empresa ao próximo nível.",
+  "successCasesTitle": "Casos de Sucesso em Automação",
   "successCasesSubtitle": "Descubra como sua empresa pode transformar operações com automação.",
   "stockManagementTitle": "Gestão de Estoques Automatizada",
   "stockManagementDesc": "Reduza perdas e aumente a eficiência com previsão inteligente de demandas.",
@@ -402,31 +347,25 @@
   "projectManagementDesc": "Gerencie recursos e prazos com mais eficiência.",
   "hrAutomationTitle": "Automação de Processos de RH",
   "hrAutomationDesc": "Agilize recrutamento e gestão de colaboradores.",
-
-  "technologiesTitle":"Tecnologias que Potencializam Nossas Soluções",
-  "technologiesDescription":"Utilizamos as tecnologias mais modernas para criar soluções robustas, escaláveis e preparadas para o futuro.",
-
+  "technologiesTitle": "Tecnologias que Potencializam Nossas Soluções",
+  "technologiesDescription": "Utilizamos as tecnologias mais modernas para criar soluções robustas, escaláveis e preparadas para o futuro.",
   "ctaTitleAutomation": "Descubra Como a Automação Pode Transformar Seu Negócio",
   "ctaDescription": "Existem inúmeras aplicações de automação que podemos implementar para otimizar seus processos, reduzir custos e aumentar a eficiência. Entre em contato com nosso especialista para entender suas necessidades e sugerir soluções personalizadas.",
   "ctaWhatsapp": "Fale pelo WhatsApp",
-
-    "headerTitle": "Automação Inteligente",
+  "headerTitle": "Automação Inteligente",
   "headerSubtitle": "Automação que trabalha por você: simplifique tarefas, aumente a produtividade e concentre-se no que realmente importa.",
   "disciplines": [
     "Economize Tempo",
     "Aumente sua Produtividade",
     "Reduza Erros e Custos"
   ],
-
-   "headerTitleIA": "Inteligência Artificial",
+  "headerTitleIA": "Inteligência Artificial",
   "headerSubtitleIA": "Aproveite o poder da IA para transformar desafios em oportunidades e impulsionar sua empresa para o futuro.",
   "disciplinesIA": [
     "Economize Tempo",
     "Aumente sua Produtividade",
     "Reduza Erros e Custos"
   ],
-
-
   "advancedLLMTitle": "Transforme seu Negócio com IA Generativa",
   "advancedLLMSubtitle": "Integre os mais poderosos modelos de linguagem do mercado como ChatGPT, Claude e Gemini para automatizar, otimizar e inovar em todas as áreas da sua empresa.",
   "advancedLLMExamples": [
@@ -476,9 +415,7 @@
       "icon": "FaShieldAlt"
     }
   ],
-
-
-   "mlServicesTitle": "Soluções de Machine Learning Sob Medida",
+  "mlServicesTitle": "Soluções de Machine Learning Sob Medida",
   "mlServicesSubtitle": "Explore como a IA pode gerar valor real em diversas áreas do seu negócio, transformando dados em insights e processos automatizados.",
   "mlServices": [
     {
@@ -531,11 +468,8 @@
       "description": "Automatize escalas, roteirização de frota e alocação de recursos para produtividade máxima.",
       "icon": "FaCalendarCheck"
     }
-
-    
   ],
-
-   "visionTitle": "Soluções de Visão Computacional",
+  "visionTitle": "Soluções de Visão Computacional",
   "visionSubtitle": "Extraia informações valiosas de imagens e vídeos, automatizando processos, reduzindo custos e aumentando a eficiência.",
   "visionOptions": [
     {
@@ -589,8 +523,6 @@
       "icon": "FaCogs"
     }
   ],
-
-
   "agentTitle": "Orquestração de Agentes de IA",
   "agentSubtitle": "Imagine agentes inteligentes trabalhando em equipe: um inicia a tarefa, outro revisa e aperfeiçoa, enquanto um terceiro sintetiza resultados. Essa colaboração autônoma e escalável leva seu projeto a novos patamares de eficiência e qualidade.",
   "agentFlowItems": [
@@ -615,16 +547,10 @@
       "icon": "FaHandHoldingUsd"
     }
   ],
-
-
-    "ctaHeading": "Vamos Conversar Sobre Seus Processos?",
+  "ctaHeading": "Vamos Conversar Sobre Seus Processos?",
   "ctaMessage": "Conte para a gente como funciona o seu dia a dia. Juntos, podemos identificar oportunidades de automação, IA ou otimizações que fazem a diferença no seu negócio.",
-
   "ctaEmail": "Envie um Email",
-
-
-
-    "metaTitle": "WB - Digital Solutions | Home",
+  "metaTitle": "WB - Digital Solutions | Home",
   "metaDescription": "A WB Digital Solutions é especialista em oferecer soluções digitais inovadoras e personalizadas para empresas. Transforme o seu negócio e alcance resultados extraordinários com a nossa expertise em tecnologia!",
   "metaOgTitle": "WB Digital Solutions | Solucoes Digitais para Empresas",
   "metaTwitterTitle": "Solucoes Digitais para Empresas",
@@ -651,9 +577,7 @@
   "metaKeywords_ai": "inteligência artificial, soluções de IA, integração ChatGPT, machine learning, visão computacional",
   "metaKeywords_systems": "desenvolvimento de software personalizado, sistemas empresariais, software escalável, soluções enterprise",
   "metaKeywords_experience": "plataforma de experiência 3D, showcase digital interativo, 3D imersivo, espaço virtual, WebGL, Three.js",
-
-
-   "typingMessages": [
+  "typingMessages": [
     "⏳ Processando sua solicitação...",
     "💡 Pensando na melhor resposta para você...",
     "🔍 Analisando sua mensagem...",
@@ -677,15 +601,6 @@
   "you": "Você:",
   "bot": "Bot:",
   "responseTime": "Tempo de resposta",
-  "dragTutorialText": "Clique e arraste para interagir",
   "mouseMoveTutorialText": "Mova o mouse para interagir com as partículas",
   "cardClickTutorialText": "Clique em cada card para explorar nossos serviços"
-
-
-
-
-
-
-
-
 }
