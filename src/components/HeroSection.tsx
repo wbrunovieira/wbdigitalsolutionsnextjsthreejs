@@ -29,14 +29,11 @@ const HeroSection: React.FC = () => {
     
     
     <div className="md:w-1/2 w-full flex flex-col items-start md:items-start text-left  gap-4 z-10">
-      <AnimatedTextHero 
-        name={currentMessages.heroTitleHome}
-        disciplines={[
-          currentMessages.services1, 
-          currentMessages.services2, 
-          currentMessages.services3, 
-          currentMessages.services4
-        ]}
+      <AnimatedTextHero
+        statement={currentMessages.heroStatement}
+        statementSub={currentMessages.heroStatementSub}
+        supportText={currentMessages.heroSupportText}
+        pills={[currentMessages.heroPill1, currentMessages.heroPill2, currentMessages.heroPill3]}
       />
       <div className="mt-8">
         
