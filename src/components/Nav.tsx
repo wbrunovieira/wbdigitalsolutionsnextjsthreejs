@@ -3,16 +3,13 @@ import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/contexts/TranslationContext";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
-
-
 import { useRouter } from "next/router";
-
 import Image from "next/image";
-
+import dynamic from "next/dynamic";
 import logo from "/public/svg/logo-white.svg";
-import ParticlesContainer from "./ParticlesContainer";
+
+const ParticlesContainer = dynamic(() => import("./ParticlesContainer"), { ssr: false });
 import SideSocial from "./SideSocial";
 import HamburgerMenu from "./MenuAnimatedBuguer";
 import MobileMenu from "./MobileMenu";
@@ -212,12 +209,9 @@ const Nav: React.FC = () => {
                                     href={link.path}
                                 >
                                     {link.name}
-                                    <motion.span
-                                        className="absolute bottom-0 left-3 right-3 h-px bg-white"
-                                        initial={false}
-                                        animate={{ scaleX: isActive ? 1 : 0 }}
-                                        transition={{ duration: 1, ease: "easeInOut" }}
-                                        style={{ originX: 0 }}
+                                    <span
+                                        className="absolute bottom-0 left-3 right-3 h-px bg-white transition-transform duration-1000 ease-in-out origin-left"
+                                        style={{ transform: isActive ? 'scaleX(1)' : 'scaleX(0)' }}
                                     />
                                 </Link>
 

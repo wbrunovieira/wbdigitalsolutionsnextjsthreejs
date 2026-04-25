@@ -30,9 +30,7 @@ const ParticlesContainer: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const particlesLoaded = async (container?: Container) => {
-    console.log("Particles container loaded:", container);
-  };
+  const particlesLoaded = async (_container?: Container) => {};
 
   const options: ISourceOptions = useMemo(
     () => ({
