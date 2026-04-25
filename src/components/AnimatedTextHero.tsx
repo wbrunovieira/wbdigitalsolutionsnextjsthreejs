@@ -8,94 +8,113 @@ interface TextProps {
 }
 
 export const AnimatedTextHero: React.FC<TextProps> = ({ disciplines, name }) => {
-    const headerRef = useRef<HTMLDivElement>(null);
-    const nameRef = useRef<HTMLSpanElement>(null);
-    const overlayRef = useRef<HTMLDivElement>(null);
-    const disciplineRef = useRef<HTMLSpanElement>(null);
-    const disciplineIndexRef = useRef(0); 
+    const eyebrowRef = useRef<HTMLParagraphElement>(null);
+    const nameRef = useRef<HTMLDivElement>(null);
+    const accentLineRef = useRef<HTMLDivElement>(null);
+    const linesRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        const tl = gsap.timeline();
+
+        if (eyebrowRef.current) {
+            tl.fromTo(eyebrowRef.current,
+                { opacity: 0, y: -8 },
+                { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+                0
+            );
+        }
 
         if (nameRef.current) {
             const letters = nameRef.current.querySelectorAll('span');
             gsap.killTweensOf(letters);
-            gsap.fromTo(
-                letters,
+            tl.fromTo(letters,
                 { opacity: 0 },
-                { opacity: 1, stagger: 0.1, duration: 2.3, ease: 'power2.inOut' }
+                { opacity: 1, stagger: 0.08, duration: 1.8, ease: 'power2.inOut' },
+                0.3
             );
         }
-    }, [name]);
 
-    useEffect(() => {
-
-        if (disciplineRef.current && overlayRef.current) {
-            const timeline = gsap.timeline({
-                repeat: -1,
-                repeatDelay: 1.5,
-                onRepeat: () => {
-                    disciplineIndexRef.current = (disciplineIndexRef.current + 1) % disciplines.length;
-                    gsap.to(disciplineRef.current, {
-                        textContent: disciplines[disciplineIndexRef.current], 
-                        duration: 0.5,
-                        ease: 'power1.out',
-                    });
-                },
-            });
-
-            gsap.set(overlayRef.current, { scaleX: 0, backgroundColor: 'white', zIndex: 1 });
-            gsap.set(disciplineRef.current, { opacity: 0 });
-
-            timeline
-                .to(overlayRef.current, {
-                    scaleX: 1,
-                    transformOrigin: 'left center',
-                    duration: 1.2,
-                    yoyo: true,
-                    ease: 'power2.out',
-                })
-                .to(disciplineRef.current, { opacity: 1, duration: 1 }, '-=1.2')
-                .to(disciplineRef.current, { opacity: 0, duration: 1 }, '+=1')
-                .to(overlayRef.current, { scaleX: 0, duration: 1, ease: 'power2.in' }, '-=0.8');
-
-            return () => {
-                timeline.kill();
-            };
+        if (accentLineRef.current) {
+            tl.fromTo(accentLineRef.current,
+                { width: 0 },
+                { width: '80px', duration: 0.7, ease: 'power2.out' },
+                1.2
+            );
         }
-    }, [disciplines]);
 
-    useEffect(() => {
-
-        if (disciplineRef.current) {
-            disciplineRef.current.textContent = disciplines[0];
-            disciplineIndexRef.current = 0;
+        if (linesRef.current) {
+            const lines = linesRef.current.querySelectorAll('.discipline-line');
+            gsap.killTweensOf(lines);
+            tl.fromTo(lines,
+                { opacity: 0, y: 14 },
+                { opacity: 1, y: 0, stagger: 0.28, duration: 0.8, ease: 'power2.out' },
+                1.5
+            );
         }
-    }, [disciplines]);
+
+        return () => { tl.kill(); };
+    }, [name, disciplines]);
 
     return (
-        <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
-            <h1 className="text-4xl md:text-6xl">
-                <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
-                    {name.split('').map((letter, index) => (
-                        <span key={index} className="inline-block">
-                            {letter === ' ' ? ' ' : letter}
+        <header className="relative flex flex-col items-start p-8 text-white">
+
+            {/* Eyebrow */}
+            <p
+                ref={eyebrowRef}
+                className="opacity-0 text-[10px] md:text-xs tracking-[0.35em] uppercase mb-4 font-mono"
+                style={{ color: '#792990' }}
+            >
+                digital solutions
+            </p>
+
+            {/* Title */}
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                <span ref={nameRef} className="flex flex-wrap gap-x-2">
+                    {name.split(' ').map((word, wi) => (
+                        <span key={wi} className="inline-flex">
+                            {word.split('').map((letter, li) => (
+                                <span key={li} className="inline-block opacity-0">{letter}</span>
+                            ))}
                         </span>
                     ))}
                 </span>
             </h1>
 
-            <h2 className="relative flex items-start md:items-center text-3xl md:text-5xl font-semibold">
-                <span className="flex flex-col">
-                    <span ref={disciplineRef} className="relative text-yellowcustom overflow-hidden">
-                        <span className="relative z-30">{disciplines[0]}</span>
-                    </span>
-                    <div
-                        ref={overlayRef}
-                        className="absolute bg-white z-20 w-full h-[0.1em] top-[3.5em] md:top-[2.3em] left-0"
-                    ></div>
-                </span>
-            </h2>
+            {/* Accent line */}
+            <div
+                ref={accentLineRef}
+                className="h-px mb-6"
+                style={{
+                    width: 0,
+                    background: 'linear-gradient(90deg, #ffb947, transparent)',
+                }}
+            />
+
+            {/* Sentence block with left border */}
+            <div ref={linesRef} className="relative pl-4">
+                <div
+                    className="absolute left-0 top-1 bottom-1 w-px"
+                    style={{ background: 'linear-gradient(to bottom, #ffb94760, transparent)' }}
+                />
+                {disciplines.map((line, index) => {
+                    const isLast = index === disciplines.length - 1;
+                    return (
+                        <p
+                            key={index}
+                            className="discipline-line opacity-0 leading-snug"
+                            style={{
+                                fontSize: isLast ? 'clamp(1.1rem, 2.5vw, 1.6rem)' : 'clamp(0.9rem, 2vw, 1.25rem)',
+                                fontWeight: isLast ? 700 : 300,
+                                color: isLast ? '#ffb947' : 'rgba(255,255,255,0.75)',
+                                marginBottom: isLast ? 0 : '2px',
+                            }}
+                        >
+                            {line}
+                        </p>
+                    );
+                })}
+            </div>
+
         </header>
     );
 };
-
