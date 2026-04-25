@@ -3,6 +3,13 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
 
+const LANGS = [
+  { id: "en", display: "EN" },
+  { id: "pt-BR", display: "PT" },
+  { id: "it", display: "IT" },
+  { id: "es", display: "ES" },
+];
+
 const MobileMenu: React.FC<{
   isOpen: boolean;
   navData: any[];
@@ -10,7 +17,9 @@ const MobileMenu: React.FC<{
   setActiveMenu: (name: string | null) => void;
   activeMenu: string | null;
   closeMenu: () => void;
-}> = ({ isOpen, navData, pathname, closeMenu }) => {
+  language: string;
+  setLanguage: (lang: string) => void;
+}> = ({ isOpen, navData, pathname, closeMenu, language, setLanguage }) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -69,7 +78,7 @@ const MobileMenu: React.FC<{
               </button>
             </div>
 
-            {/* Links */}
+            {/* Nav links */}
             <nav className="flex flex-col justify-center flex-1 px-8 gap-1">
               {navData.map((link, index) => {
                 const isActive = pathname === link.path;
@@ -105,9 +114,40 @@ const MobileMenu: React.FC<{
               })}
             </nav>
 
+            {/* Language selector */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.3, duration: 0.25 }}
+              className="px-8 pb-10"
+            >
+              <p className="text-xs tracking-widest uppercase mb-3" style={{ color: "rgba(170,166,195,0.4)" }}>
+                language
+              </p>
+              <div className="flex gap-2">
+                {LANGS.map(lang => {
+                  const isSelected = language === lang.id;
+                  return (
+                    <button
+                      key={lang.id}
+                      onClick={() => setLanguage(lang.id)}
+                      className="flex-1 py-3 text-sm font-mono tracking-widest rounded transition-all duration-200"
+                      style={{
+                        color: isSelected ? "#1a0826" : "#aaa6c3",
+                        background: isSelected ? "#ffb947" : "rgba(255,255,255,0.05)",
+                        border: isSelected ? "1px solid #ffb947" : "1px solid rgba(121,41,144,0.3)",
+                      }}
+                    >
+                      {lang.display}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+
             {/* Bottom accent line */}
             <div className="h-px w-full" style={{ background: "linear-gradient(90deg, transparent, #792990, transparent)" }} />
-            <div className="h-8" />
           </motion.div>
         </>
       )}
