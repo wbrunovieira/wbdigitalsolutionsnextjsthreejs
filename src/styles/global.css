@@ -197,20 +197,15 @@ html, body {
 
 .link {
     transition: background 0.3s ease;
-    background-image: none;
-    opacity: 0.7;
     background-size: 25% 25%;
     background-repeat: no-repeat;
     background-position-x: 60%;
     background-position-y: 90%;
-    background-image: none;
 }
 
 .link:hover,
 .link-active {
     color: var(--yellowcustom);
-    font-weight: semibold;
-    opacity: 0.7;
     background-size: 25% 25%;
     background-repeat: no-repeat;
     background-position-x: 50%;
