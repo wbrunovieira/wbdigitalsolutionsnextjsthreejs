@@ -100,7 +100,7 @@ const Nav: React.FC = () => {
                     </div>
                 )}
                 {isLoaded && (
-                <div className="radio-input flex  items-center z-50">
+                <div key={pathname} className="radio-input flex items-center z-50">
                     <input
                         className="input radio-custom border-r"
                         type="radio"
