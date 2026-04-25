@@ -139,24 +139,14 @@ const Nav: React.FC = () => {
                     );
                 })()}
 
-                {isMobileMenuOpen && (
-                    <div className="absolute inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-center items-center max-w-[1400px] mx-auto">
-                        <MobileMenu 
-                            isOpen={isMobileMenuOpen}
-                            navData={navData}
-                            pathname={pathname}
-                            setActiveMenu={setActiveMenu}
-                            activeMenu={activeMenu}
-                            closeMenu={() => setIsMobileMenuOpen(false)} 
-                        />
-                        <button
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-white mt-10 font-bold text-2xl z-50"
-                        >
-                            X
-                        </button>
-                    </div>
-                )}
+                <MobileMenu
+                    isOpen={isMobileMenuOpen}
+                    navData={navData}
+                    pathname={pathname}
+                    setActiveMenu={setActiveMenu}
+                    activeMenu={activeMenu}
+                    closeMenu={() => setIsMobileMenuOpen(false)}
+                />
 
             <div className="flex ml-auto lg:hidden mb-2">
 
