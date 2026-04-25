@@ -10,9 +10,9 @@ import dynamic from "next/dynamic";
 import logo from "/public/svg/logo-white.svg";
 
 const ParticlesContainer = dynamic(() => import("./ParticlesContainer"), { ssr: false });
+const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
 import SideSocial from "./SideSocial";
 import HamburgerMenu from "./MenuAnimatedBuguer";
-import MobileMenu from "./MobileMenu";
 
 const Nav: React.FC = () => {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
