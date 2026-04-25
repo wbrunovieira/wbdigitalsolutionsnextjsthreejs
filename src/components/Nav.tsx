@@ -70,12 +70,9 @@ const Nav: React.FC = () => {
                 alt="bar"
             />
 
-            <div className="flex justify-between items-center">
+            <div className="relative flex items-center lg:justify-between">
 
-
-           
-                <div className="flex">
-
+                <div className="flex absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 items-center">
                             <Image
                                 className="w-32 h-9 object-contain mr-2"
                                 src={logo}
@@ -84,7 +81,7 @@ const Nav: React.FC = () => {
                                 height={42}
                                 />
 
-                            <p className="text-white text-xs md:text-sm/4 tracking-wide font-light md:font-bold flex flex-col">
+                            <p className="text-white text-xs md:text-sm/4 tracking-wide font-light md:font-bold flex flex-col whitespace-nowrap">
                                 WB Digital Solutions &nbsp;
                                 <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500 mt-1">
                                     {currentMessages.technology}
@@ -93,7 +90,7 @@ const Nav: React.FC = () => {
                 </div>
         
          
-          <div className="lg:flex flex-col text text-xs justify-end items-end">
+          <div className="ml-auto lg:ml-0 lg:flex flex-col text text-xs justify-end items-end">
                 <div className="hidden lg:flex items-center z-50">
                 {!isLoaded && (
                     <div className="radio-input opacity-50">
