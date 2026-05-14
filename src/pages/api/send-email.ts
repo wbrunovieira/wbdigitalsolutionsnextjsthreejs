@@ -189,14 +189,30 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
-  const { name, email, message, language = 'pt-BR' } = req.body;
+  const { name, email, message, language = 'pt-BR', _hp, _t } = req.body;
+
+  // Honeypot: bots fill this hidden field
+  if (_hp) {
+    return res.status(200).json({ success: true, message: 'Email sent successfully' });
+  }
+
+  // Timing: reject if form was submitted in under 3 seconds (bot behavior)
+  if (_t && typeof _t === 'number' && Date.now() - _t < 3000) {
+    return res.status(200).json({ success: true, message: 'Email sent successfully' });
+  }
 
   // Validate input
   if (!name || !email || !message) {
-    return res.status(400).json({ 
-      success: false, 
-      message: 'Missing required fields' 
+    return res.status(400).json({
+      success: false,
+      message: 'Missing required fields'
     });
+  }
+
+  // Reject obviously random/bot-generated content (all uppercase random strings)
+  const looksRandom = (str: string) => str.length > 8 && /^[A-Z]{6,}/.test(str) && !/\s/.test(str);
+  if (looksRandom(name) || looksRandom(message)) {
+    return res.status(200).json({ success: true, message: 'Email sent successfully' });
   }
 
   // Get templates for the current language (fallback to pt-BR)

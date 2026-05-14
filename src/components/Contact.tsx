@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import ButtonStandard from "./ButtonStandard";
@@ -19,6 +19,12 @@ const Contact: React.FC = () => {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const loadTimeRef = useRef<number>(Date.now());
+
+  useEffect(() => {
+    loadTimeRef.current = Date.now();
+  }, []);
 
   const router = useRouter();
 
@@ -30,6 +36,17 @@ const Contact: React.FC = () => {
 
     // Prevent double submission
     if (isSubmitting || isSubmitted) {
+      return;
+    }
+
+    // Honeypot: bots fill hidden fields, humans don't
+    if (honeypot) {
+      return;
+    }
+
+    // Timing: reject submissions faster than 3 seconds (bots are instant)
+    const elapsed = Date.now() - loadTimeRef.current;
+    if (elapsed < 3000) {
       return;
     }
 
@@ -59,7 +76,9 @@ const Contact: React.FC = () => {
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
-          language: language, // Send current language
+          language: language,
+          _hp: honeypot,
+          _t: loadTimeRef.current,
         }),
       });
 
@@ -107,6 +126,17 @@ const Contact: React.FC = () => {
               {currentMessages.getInTouch}
             </h2>
             <form className="w-full" onSubmit={handleSubmit}>
+              {/* Honeypot: visually hidden, bots fill it, humans don't */}
+              <div style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <div className="mb-4 w-full">
                 <AnimatedInput
                   label={currentMessages.nameLabel}
