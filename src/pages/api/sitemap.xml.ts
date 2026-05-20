@@ -21,6 +21,7 @@ const BLOG_POSTS = [
   'how-emotional-design-can',
   'digital-can-transform-company',
   'chatgpt-for-smes',
+  'increase-pme-sales',
 ];
 
 interface SitemapUrl {
