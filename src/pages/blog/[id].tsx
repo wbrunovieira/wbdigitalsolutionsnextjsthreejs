@@ -13,7 +13,8 @@ const blogPostIds = [
   "do-i-need-a-website",
   "how-emotional-design-can",
   "digital-can-transform-company",
-  "chatgpt-for-smes"
+  "chatgpt-for-smes",
+  "increase-pme-sales"
 ];
 
 // List of supported languages
@@ -42,7 +43,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, postId }) => {
 
   useEffect(() => {
     // Get the translation for the current language
-    const langKey = language === 'pt' ? 'ptbr' : language;
+    const langKey = (language === 'pt' || language === 'pt-BR') ? 'ptbr' : language;
     const currentTranslation = translations[langKey] || translations['en'];
     setTranslation(currentTranslation);
   }, [language, translations]);

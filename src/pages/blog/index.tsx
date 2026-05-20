@@ -11,7 +11,8 @@ const blogList = [
   { id: "do-i-need-a-website" },
   { id: "how-emotional-design-can" },
   { id: "digital-can-transform-company" },
-  { id: "chatgpt-for-smes" }
+  { id: "chatgpt-for-smes" },
+  { id: "increase-pme-sales" }
 ];
 
 const BlogIndexPage: React.FC = () => {
