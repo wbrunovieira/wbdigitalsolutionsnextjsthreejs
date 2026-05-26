@@ -10,26 +10,23 @@ const emailTemplates = {
   'en': {
     subject: 'New newsletter subscription',
     autoReplySubject: 'Welcome to WB Digital Solutions Newsletter',
-    mainEmailHtml: (email: string) => `
+    mainEmailHtml: (email: string, name: string, company: string) => `
       <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
         <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <h2 style="color: #792990; border-bottom: 2px solid #792990; padding-bottom: 10px;">New Newsletter Subscription</h2>
           <p style="color: #666; font-size: 14px; margin-top: 10px;">Language: English 🇬🇧</p>
-          
+          ${name ? `<div style="margin: 20px 0;"><p style="color: #666; margin: 5px 0;"><strong>Name:</strong></p><p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">${name}</p></div>` : ''}
+          ${company ? `<div style="margin: 20px 0;"><p style="color: #666; margin: 5px 0;"><strong>Company:</strong></p><p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">${company}</p></div>` : ''}
           <div style="margin: 20px 0;">
             <p style="color: #666; margin: 5px 0;"><strong>Email:</strong></p>
             <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
               <a href="mailto:${email}" style="color: #792990; text-decoration: none;">${email}</a>
             </p>
           </div>
-          
           <div style="margin: 20px 0;">
             <p style="color: #666; margin: 5px 0;"><strong>Date:</strong></p>
-            <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
-              ${new Date().toLocaleString('en-US')}
-            </p>
+            <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">${new Date().toLocaleString('en-US')}</p>
           </div>
-          
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
             <p style="color: #999; font-size: 12px;">Newsletter subscription from WB Digital Solutions website</p>
           </div>
@@ -57,26 +54,23 @@ const emailTemplates = {
   'pt-BR': {
     subject: 'Nova inscrição na newsletter',
     autoReplySubject: 'Bem-vindo à Newsletter da WB Digital Solutions',
-    mainEmailHtml: (email: string) => `
+    mainEmailHtml: (email: string, name: string, company: string) => `
       <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
         <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <h2 style="color: #792990; border-bottom: 2px solid #792990; padding-bottom: 10px;">Nova Inscrição na Newsletter</h2>
           <p style="color: #666; font-size: 14px; margin-top: 10px;">Idioma: Português 🇧🇷</p>
-          
+          ${name ? `<div style="margin: 20px 0;"><p style="color: #666; margin: 5px 0;"><strong>Nome:</strong></p><p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">${name}</p></div>` : ''}
+          ${company ? `<div style="margin: 20px 0;"><p style="color: #666; margin: 5px 0;"><strong>Empresa:</strong></p><p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">${company}</p></div>` : ''}
           <div style="margin: 20px 0;">
             <p style="color: #666; margin: 5px 0;"><strong>Email:</strong></p>
             <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
               <a href="mailto:${email}" style="color: #792990; text-decoration: none;">${email}</a>
             </p>
           </div>
-          
           <div style="margin: 20px 0;">
             <p style="color: #666; margin: 5px 0;"><strong>Data:</strong></p>
-            <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">
-              ${new Date().toLocaleString('pt-BR')}
-            </p>
+            <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background-color: #f9f9f9; border-radius: 5px;">${new Date().toLocaleString('pt-BR')}</p>
           </div>
-          
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
             <p style="color: #999; font-size: 12px;">Inscrição na newsletter através do site WB Digital Solutions</p>
           </div>
@@ -104,7 +98,7 @@ const emailTemplates = {
   'es': {
     subject: 'Nueva suscripción al boletín',
     autoReplySubject: 'Bienvenido al Boletín de WB Digital Solutions',
-    mainEmailHtml: (email: string) => `
+    mainEmailHtml: (email: string, name: string, company: string) => `
       <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
         <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <h2 style="color: #792990; border-bottom: 2px solid #792990; padding-bottom: 10px;">Nueva Suscripción al Boletín</h2>
@@ -151,7 +145,7 @@ const emailTemplates = {
   'it': {
     subject: 'Nuova iscrizione alla newsletter',
     autoReplySubject: 'Benvenuto alla Newsletter di WB Digital Solutions',
-    mainEmailHtml: (email: string) => `
+    mainEmailHtml: (email: string, name: string, company: string) => `
       <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
         <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <h2 style="color: #792990; border-bottom: 2px solid #792990; padding-bottom: 10px;">Nuova Iscrizione alla Newsletter</h2>
@@ -205,13 +199,13 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
-  const { email, language = 'pt-BR' } = req.body;
+  const { email, name = '', company = '', language = 'pt-BR' } = req.body;
 
   // Validate input
   if (!email) {
-    return res.status(400).json({ 
-      success: false, 
-      message: 'Email is required' 
+    return res.status(400).json({
+      success: false,
+      message: 'Email is required'
     });
   }
 
@@ -247,7 +241,7 @@ export default async function handler(
       from: `"Newsletter Subscription" <${process.env.GMAIL_USER}>`,
       to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
       subject: templates.subject,
-      html: templates.mainEmailHtml(email),
+      html: templates.mainEmailHtml(email, name, company),
       text: `
         ${langKey === 'en' ? 'New Newsletter Subscription' : 
           langKey === 'es' ? 'Nueva Suscripción al Boletín' :
