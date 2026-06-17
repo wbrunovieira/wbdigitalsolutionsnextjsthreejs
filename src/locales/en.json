@@ -620,23 +620,23 @@
       "education": "Education"
     },
     "stats": {
-      "title": "Our numbers",
+      "title": "What sets us apart",
       "items": [
         {
-          "value": "4+",
-          "label": "Projects delivered"
+          "value": "Full-stack",
+          "label": "Web, mobile, systems and AI — from design to deploy"
         },
         {
-          "value": "5,000+",
-          "label": "Automated tests"
+          "value": "Tailor-made",
+          "label": "Every project from scratch, no templates"
         },
         {
-          "value": "4",
-          "label": "Languages supported"
+          "value": "Cutting-edge tech",
+          "label": "Next.js, Go, Rust, 3D and AI — the right stack for each challenge"
         },
         {
-          "value": "100%",
-          "label": "Custom solutions"
+          "value": "No borders",
+          "label": "Multilingual projects, clients in more than one country"
         }
       ]
     },

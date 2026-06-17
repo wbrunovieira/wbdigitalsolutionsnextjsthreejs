@@ -609,23 +609,23 @@
       "education": "Educación"
     },
     "stats": {
-      "title": "Nuestros números",
+      "title": "Lo que nos diferencia",
       "items": [
         {
-          "value": "4+",
-          "label": "Proyectos entregados"
+          "value": "Full-stack",
+          "label": "Web, móvil, sistemas e IA — del diseño al deploy"
         },
         {
-          "value": "5.000+",
-          "label": "Pruebas automatizadas"
+          "value": "A medida",
+          "label": "Cada proyecto desde cero, sin plantillas"
         },
         {
-          "value": "4",
-          "label": "Idiomas soportados"
+          "value": "Tecnología de punta",
+          "label": "Next.js, Go, Rust, 3D e IA — el stack adecuado para cada desafío"
         },
         {
-          "value": "100%",
-          "label": "Soluciones personalizadas"
+          "value": "Sin fronteras",
+          "label": "Proyectos multilingües, clientes en más de un país"
         }
       ]
     },

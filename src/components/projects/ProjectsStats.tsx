@@ -12,44 +12,14 @@ interface ProjectsStatsProps {
   content: ProjectsPageContent['stats'];
 }
 
-// Split "5.000+" -> { prefix:"", num:5000, suffix:"+", sep:"." } so we can
-// count up and re-insert the original thousands separator per locale.
-function parseStat(value: string) {
-  const m = value.match(/^(\D*)([\d.,]+)(\D*)$/);
-  if (!m) return { prefix: '', num: null as number | null, suffix: value, sep: '' };
-  const [, prefix, raw, suffix] = m;
-  const sep = raw.includes('.') ? '.' : raw.includes(',') ? ',' : '';
-  const num = parseInt(raw.replace(/[.,]/g, ''), 10);
-  return { prefix, num, suffix, sep };
-}
-
-function format(num: number, sep: string) {
-  if (!sep) return String(num);
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, sep);
-}
-
+// Capability pillars (not vanity numbers): each item is a short title (value)
+// + a one-line descriptor (label).
 const ProjectsStats: React.FC<ProjectsStatsProps> = ({ content }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
       if (typeof window === 'undefined' || !sectionRef.current) return;
-      const valueEls = sectionRef.current.querySelectorAll<HTMLElement>('[data-stat-value]');
-
-      valueEls.forEach((el) => {
-        const { prefix, num, suffix, sep } = parseStat(el.dataset.statValue ?? '');
-        if (num === null) return;
-        const counter = { v: 0 };
-        gsap.to(counter, {
-          v: num,
-          duration: 1.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
-          onUpdate: () => {
-            el.textContent = prefix + format(Math.round(counter.v), sep) + suffix;
-          },
-        });
-      });
 
       gsap.from(sectionRef.current.querySelectorAll('[data-stat-item]'), {
         opacity: 0,
@@ -72,16 +42,18 @@ const ProjectsStats: React.FC<ProjectsStatsProps> = ({ content }) => {
         <h2 className="mb-12 text-center text-2xl font-bold text-white lg:text-3xl">
           {content.title}
         </h2>
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-          {content.items.map((stat) => (
-            <div key={stat.label} data-stat-item className="text-center">
-              <p
-                data-stat-value={stat.value}
-                className="bg-gradient-to-r from-yellowcustom to-custom-purple bg-clip-text text-4xl font-extrabold text-transparent lg:text-5xl"
-              >
-                {stat.value}
-              </p>
-              <p className="mt-2 text-sm text-secondary lg:text-base">{stat.label}</p>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {content.items.map((pillar) => (
+            <div
+              key={pillar.value}
+              data-stat-item
+              className="group rounded-2xl border border-custom-purple/20 bg-white/[0.02] p-6 text-center transition-colors duration-300 hover:border-yellowcustom/40"
+            >
+              <span className="mx-auto mb-4 block h-0.5 w-10 rounded-full bg-gradient-to-r from-yellowcustom to-custom-purple" />
+              <h3 className="bg-gradient-to-r from-yellowcustom to-custom-purple bg-clip-text text-xl font-extrabold text-transparent lg:text-2xl">
+                {pillar.value}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-secondary">{pillar.label}</p>
             </div>
           ))}
         </div>
