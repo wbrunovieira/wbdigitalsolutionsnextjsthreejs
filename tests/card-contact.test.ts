@@ -125,7 +125,7 @@ describe('card-contact webhook', () => {
     expect(vcf).toContain('FN:Maria Silva Santos');
     expect(vcf).toContain('N:Silva Santos;Maria;;;');
     expect(vcf).toContain('TEL;TYPE=CELL,VOICE:+1 555 123 4567');
-    expect(vcf).toContain('EMAIL;TYPE=INTERNET:maria@ex.com');
+    expect(vcf).toContain('EMAIL;TYPE=WORK:maria@ex.com');
     expect(vcf).toContain('URL:https://card.wbdigitalsolutions.com');
     // vCard escaping: the semicolon in the note must be escaped
     expect(vcf).toContain('NOTE:oi\\; tudo bem');

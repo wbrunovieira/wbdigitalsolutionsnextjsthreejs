@@ -51,26 +51,24 @@ const vesc = (s: string) =>
 
 // Build a vCard (.vcf) for the visitor so Bruno can save the contact in one tap.
 function buildVCard(
-  { name, phone, email, company, note }: { name: string; phone?: string; email?: string; company?: string; note?: string },
-  rev: string
+  { name, phone, email, company, note }: { name: string; phone?: string; email?: string; company?: string; note?: string }
 ) {
   const parts = String(name).trim().split(/\s+/);
   const given = parts[0] || '';
   const family = parts.slice(1).join(' ');
+  // Mirror the card's known-working bruno.vcf: FN before N, TYPE=WORK email, no REV.
   const lines = [
     'BEGIN:VCARD',
     'VERSION:3.0',
-    `N:${vesc(family)};${vesc(given)};;;`,
     `FN:${vesc(name)}`,
+    `N:${vesc(family)};${vesc(given)};;;`,
   ];
   if (company) lines.push(`ORG:${vesc(company)}`);
   if (phone) lines.push(`TEL;TYPE=CELL,VOICE:${vesc(phone)}`);
-  if (email) lines.push(`EMAIL;TYPE=INTERNET:${vesc(email)}`);
+  if (email) lines.push(`EMAIL;TYPE=WORK:${vesc(email)}`);
   if (note) lines.push(`NOTE:${vesc(note)}`);
   lines.push('URL:https://card.wbdigitalsolutions.com');
-  lines.push(`REV:${rev}`);
   lines.push('END:VCARD');
-  // Trailing CRLF — some parsers (incl. iOS) want the file to end with a newline.
   return lines.join('\r\n') + '\r\n';
 }
 
@@ -248,7 +246,7 @@ export default async function handler(
       </div>`;
 
     // vCard of the visitor, attached so Bruno saves the contact in one tap.
-    const vcard = buildVCard({ name, phone, email, company, note }, new Date().toISOString());
+    const vcard = buildVCard({ name, phone, email, company, note });
     const safeName = String(name).replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'contato';
 
     await transporter.sendMail({
