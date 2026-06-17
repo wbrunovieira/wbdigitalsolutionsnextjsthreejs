@@ -73,6 +73,100 @@ function buildVCard(
   return lines.join('\r\n');
 }
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CARD_URL = 'https://card.wbdigitalsolutions.com';
+
+type Lang = 'pt-BR' | 'en' | 'es' | 'it';
+
+// Resolve the visitor's language: explicit form `language` wins, then the
+// browser's Accept-Language, then English.
+function resolveLang(bodyLang: unknown, acceptLanguage?: string): Lang {
+  const norm = (v: string): Lang | null => {
+    const s = v.toLowerCase();
+    if (s.startsWith('pt')) return 'pt-BR';
+    if (s.startsWith('es')) return 'es';
+    if (s.startsWith('it')) return 'it';
+    if (s.startsWith('en')) return 'en';
+    return null;
+  };
+  if (typeof bodyLang === 'string') {
+    const m = norm(bodyLang);
+    if (m) return m;
+  }
+  if (acceptLanguage) {
+    const first = acceptLanguage.split(',')[0]?.split(';')[0]?.trim();
+    if (first) {
+      const m = norm(first);
+      if (m) return m;
+    }
+  }
+  return 'en';
+}
+
+// Auto thank-you email sent to the visitor (only with a valid email).
+const THANKYOU: Record<
+  Lang,
+  { subject: string; greeting: (n: string) => string; body: string; cta: string; signoff: string }
+> = {
+  'pt-BR': {
+    subject: 'Que bom te conhecer! 🙌',
+    greeting: (n) => `Oi ${n}! 👋`,
+    body: 'Muito obrigado por deixar seu contato — já está comigo! 🙌<br><br>Pra facilitar a nossa conexão, no meu cartão digital estão <strong>todos os meus contatos</strong>, com um botão <strong>Salvar contato</strong> que adiciona o meu direto no seu celular:',
+    cta: 'Ver meu cartão · Salvar contato',
+    signoff: 'Um abraço,<br><strong>Bruno Vieira</strong><br>WB Digital Solutions',
+  },
+  en: {
+    subject: 'Great to connect! 🙌',
+    greeting: (n) => `Hi ${n}! 👋`,
+    body: 'Thanks so much for leaving your contact — I’ve got it! 🙌<br><br>To make connecting easy, my digital card has <strong>all my contacts</strong>, with a <strong>Save contact</strong> button that adds me straight to your phone:',
+    cta: 'Open my card · Save contact',
+    signoff: 'Cheers,<br><strong>Bruno Vieira</strong><br>WB Digital Solutions',
+  },
+  es: {
+    subject: '¡Un gusto conocerte! 🙌',
+    greeting: (n) => `¡Hola ${n}! 👋`,
+    body: '¡Muchas gracias por dejar tu contacto — ya lo tengo! 🙌<br><br>Para facilitar nuestra conexión, en mi tarjeta digital están <strong>todos mis contactos</strong>, con un botón <strong>Guardar contacto</strong> que me añade directo a tu celular:',
+    cta: 'Ver mi tarjeta · Guardar contacto',
+    signoff: 'Un abrazo,<br><strong>Bruno Vieira</strong><br>WB Digital Solutions',
+  },
+  it: {
+    subject: 'Che piacere conoscerti! 🙌',
+    greeting: (n) => `Ciao ${n}! 👋`,
+    body: 'Grazie mille per aver lasciato il tuo contatto — ce l’ho! 🙌<br><br>Per semplificare il collegamento, sul mio biglietto digitale trovi <strong>tutti i miei contatti</strong>, con un pulsante <strong>Salva contatto</strong> che mi aggiunge direttamente sul tuo telefono:',
+    cta: 'Apri il biglietto · Salva contatto',
+    signoff: 'Un caro saluto,<br><strong>Bruno Vieira</strong><br>WB Digital Solutions',
+  },
+};
+
+function thankYouHtml(lang: Lang, name: string): string {
+  const t = THANKYOU[lang];
+  return `
+  <div style="font-family: Arial, sans-serif; background:#f5f5f5; padding:24px;">
+    <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);">
+      <div style="background:linear-gradient(135deg,#350545,#792990);padding:26px 30px;">
+        <h1 style="color:#fff;margin:0;font-size:20px;letter-spacing:.5px;">WB Digital Solutions</h1>
+      </div>
+      <div style="padding:30px;">
+        <p style="color:#333;font-size:16px;margin:0 0 14px;">${t.greeting(esc(name))}</p>
+        <p style="color:#444;line-height:1.6;margin:0;">${t.body}</p>
+        <div style="text-align:center;margin:28px 0;">
+          <a href="${CARD_URL}" style="display:inline-block;background:#ffb947;color:#350545;font-weight:bold;text-decoration:none;padding:14px 28px;border-radius:999px;">${t.cta}</a>
+        </div>
+        <p style="color:#444;line-height:1.6;margin:0;">${t.signoff}</p>
+      </div>
+      <div style="background:#1a0526;padding:16px 30px;text-align:center;">
+        <a href="${CARD_URL}" style="color:#aaa6c3;font-size:12px;text-decoration:none;">card.wbdigitalsolutions.com</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+function thankYouText(lang: Lang, name: string): string {
+  const t = THANKYOU[lang];
+  const strip = (s: string) => s.replace(/<br\s*\/?>/g, '\n').replace(/<[^>]+>/g, '');
+  return `${t.greeting(name)}\n\n${strip(t.body)}\n\n${CARD_URL}\n\n${strip(t.signoff)}`;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -92,7 +186,8 @@ export default async function handler(
     return res.status(401).json({ success: false, message: 'Unauthorized' });
   }
 
-  const { name, phone, email, company, note, _hp, _t } = req.body ?? {};
+  const { name, phone, email, company, note, language, _hp, _t } = req.body ?? {};
+  const lang = resolveLang(language, req.headers['accept-language']);
 
   // Honeypot — bots fill the hidden field. Pretend success.
   if (_hp) return res.status(200).json({ success: true, message: 'OK' });
@@ -170,6 +265,17 @@ export default async function handler(
         },
       ],
     });
+
+    // Auto thank-you to the visitor, in their language — only with a valid email.
+    if (email && EMAIL_RE.test(String(email))) {
+      await transporter.sendMail({
+        from: `"Bruno Vieira — WB Digital Solutions" <${process.env.GMAIL_USER}>`,
+        to: email,
+        subject: THANKYOU[lang].subject,
+        html: thankYouHtml(lang, name),
+        text: thankYouText(lang, name),
+      });
+    }
 
     return res.status(200).json({ success: true, message: 'Contato enviado com sucesso!' });
   } catch (err) {

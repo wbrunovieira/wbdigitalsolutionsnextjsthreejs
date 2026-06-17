@@ -86,7 +86,7 @@ describe('card-contact webhook', () => {
     process.env.CARD_SHARE_TOKEN = 'secret';
     const res = await call('POST', { name: 'Maria Silva', email: 'a@b.com' }, { 'x-card-token': 'secret' });
     expect(res._getStatusCode()).toBe(200);
-    expect(sendMail).toHaveBeenCalledOnce();
+    expect(sendMail).toHaveBeenCalled();
   });
 
   it('accepts phone-only submissions (no email)', async () => {
@@ -106,7 +106,8 @@ describe('card-contact webhook', () => {
     expect(res._getStatusCode()).toBe(200);
     expect(res._getJSONData().success).toBe(true);
     expect(res.getHeader('Access-Control-Allow-Origin')).toBe(ORIGIN);
-    expect(sendMail).toHaveBeenCalledOnce();
+    // Bruno notification (calls[0]) + visitor thank-you (calls[1], valid email).
+    expect(sendMail).toHaveBeenCalledTimes(2);
 
     const mail = sendMail.mock.calls[0][0];
     expect(mail.to).toBe('bruno@wbdigitalsolutions.com');
@@ -161,5 +162,47 @@ describe('card-contact webhook', () => {
   it('falls back to the canonical origin for a disallowed origin', async () => {
     const res = await call('OPTIONS', {}, { origin: 'https://evil.example.com' });
     expect(res.getHeader('Access-Control-Allow-Origin')).toBe(ORIGIN);
+  });
+
+  it('sends a thank-you to the visitor in the form language (pt-BR)', async () => {
+    await call('POST', { name: 'Maria', email: 'maria@ex.com', language: 'pt-BR' });
+    expect(sendMail).toHaveBeenCalledTimes(2);
+    const reply = sendMail.mock.calls[1][0];
+    expect(reply.to).toBe('maria@ex.com');
+    expect(reply.subject).toBe('Que bom te conhecer! 🙌');
+    expect(reply.html).toContain('https://card.wbdigitalsolutions.com');
+    expect(reply.html).toContain('Salvar contato');
+    expect(reply.html).toContain('Oi Maria! 👋');
+  });
+
+  it('translates the thank-you per language field (en/es/it)', async () => {
+    await call('POST', { name: 'John', email: 'john@ex.com', language: 'en' });
+    expect(sendMail.mock.calls[1][0].subject).toBe('Great to connect! 🙌');
+
+    sendMail.mockClear();
+    await call('POST', { name: 'Carlos', email: 'c@ex.com', language: 'es' });
+    expect(sendMail.mock.calls[1][0].subject).toBe('¡Un gusto conocerte! 🙌');
+
+    sendMail.mockClear();
+    await call('POST', { name: 'Giulia', email: 'g@ex.com', language: 'it' });
+    expect(sendMail.mock.calls[1][0].subject).toContain('Che piacere conoscerti');
+  });
+
+  it('falls back to Accept-Language when no language field is sent', async () => {
+    await call('POST', { name: 'Giulia', email: 'g@ex.com' }, { 'accept-language': 'it-IT,it;q=0.9' });
+    expect(sendMail.mock.calls[1][0].subject).toContain('Che piacere conoscerti');
+  });
+
+  it('does NOT send a thank-you for an invalid email (only the Bruno notification)', async () => {
+    const res = await call('POST', { name: 'Maria', email: 'not-an-email' });
+    expect(res._getStatusCode()).toBe(200);
+    expect(sendMail).toHaveBeenCalledTimes(1);
+    expect(sendMail.mock.calls[0][0].to).toBe('bruno@wbdigitalsolutions.com');
+  });
+
+  it('does NOT send a thank-you for phone-only submissions', async () => {
+    await call('POST', { name: 'João', phone: '+55 11 90000-0000' });
+    expect(sendMail).toHaveBeenCalledTimes(1);
+    expect(sendMail.mock.calls[0][0].to).toBe('bruno@wbdigitalsolutions.com');
   });
 });
