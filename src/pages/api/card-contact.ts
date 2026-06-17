@@ -150,7 +150,7 @@ function thankYouHtml(lang: Lang, name: string): string {
         <p style="color:#333;font-size:16px;margin:0 0 14px;">${t.greeting(esc(name))}</p>
         <p style="color:#444;line-height:1.6;margin:0;">${t.body}</p>
         <div style="text-align:center;margin:28px 0;">
-          <a href="${CARD_URL}" style="display:inline-block;background:#ffb947;color:#350545;font-weight:bold;text-decoration:none;padding:14px 28px;border-radius:999px;">${t.cta}</a>
+          <a href="${CARD_URL}" style="display:inline-block;background-color:#350545;color:#ffb947 !important;font-weight:bold;font-size:15px;text-decoration:none;padding:15px 30px;border-radius:999px;border:2px solid #ffb947;">${t.cta}</a>
         </div>
         <p style="color:#444;line-height:1.6;margin:0;">${t.signoff}</p>
       </div>
