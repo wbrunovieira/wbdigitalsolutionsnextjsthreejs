@@ -81,7 +81,9 @@ const MobileMenu: React.FC<{
             {/* Nav links */}
             <nav className="flex flex-col justify-center flex-1 px-8 gap-1">
               {navData.map((link, index) => {
-                const isActive = pathname === link.path;
+                const isActive =
+                  pathname === link.path ||
+                  (link.path !== "/" && pathname.startsWith(link.path + "/"));
                 return (
                   <motion.div
                     key={link.path}

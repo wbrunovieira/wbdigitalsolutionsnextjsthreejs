@@ -168,7 +168,9 @@ const Nav: React.FC = () => {
                 <div className="hidden lg:flex flex-1 justify-center w-full mt-4">
                     {navData.map((link, index) => {
 
-                        const isActive = pathname === link.path;
+                        const isActive =
+                            pathname === link.path ||
+                            (link.path !== "/" && pathname.startsWith(link.path + "/"));
 
                         return (
                             <div
