@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslations } from "@/contexts/TranslationContext";
 
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -177,16 +178,27 @@ const Nav: React.FC = () => {
                                 key={index}
                                 >
                                 <Link
-                                    className={`flex p-3 text-xs mt-2 tracking-widest no-underline font-light lowercase whitespace-nowrap cursor-pointer relative ${
-                                        isActive ? "text-white" : "text-slate-500"
-                                    }`}
+                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
                                     href={link.path}
+                                    legacyBehavior
                                 >
-                                    {link.name}
-                                    <span
-                                        className="absolute bottom-0 left-3 right-3 h-px bg-white transition-transform duration-1000 ease-in-out origin-left"
-                                        style={{ transform: isActive ? 'scaleX(1)' : 'scaleX(0)' }}
-                                    />
+                                    <motion.a
+                                        className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
+                                            isActive
+                                                ? "text-white semibold underline-menu link-active"
+                                                : "text-slate-500"
+                                        }`}
+                                        initial={{ width: "0%" }}
+                                        animate={{
+                                            width: isActive ? "100%" : "0%",
+                                        }}
+                                        transition={{
+                                            duration: 1,
+                                            ease: "easeInOut",
+                                        }}
+                                    >
+                                        {link.name}
+                                    </motion.a>
                                 </Link>
 
                             </div>
