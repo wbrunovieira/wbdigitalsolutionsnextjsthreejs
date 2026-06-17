@@ -1,0 +1,119 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+/**
+ * Contact-exchange webhook for the digital business card (card.wbdigitalsolutions.com).
+ *
+ * The card has no email service of its own. It POSTs the visitor's contact here
+ * and this endpoint emails it to Bruno using the site's existing Gmail/nodemailer
+ * setup — so we avoid Resend's one-domain-per-free-account limit.
+ *
+ * Security: CORS locked to the card origin, optional shared token, honeypot,
+ * timing check and a random-string heuristic.
+ */
+
+type Data = { success: boolean; message: string };
+
+const ALLOWED_ORIGIN = process.env.CARD_ORIGIN || 'https://card.wbdigitalsolutions.com';
+const DEST_EMAIL =
+  process.env.CARD_CONTACT_EMAIL || 'bruno@wbdigitalsolutions.com';
+
+function setCors(res: NextApiResponse) {
+  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-card-token');
+  res.setHeader('Vary', 'Origin');
+}
+
+const looksRandom = (str: string) =>
+  str.length > 8 && /^[A-Z]{6,}/.test(str) && !/\s/.test(str);
+
+const esc = (s: string) =>
+  String(s).replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c] as string));
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  setCors(res);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, message: 'Method not allowed' });
+  }
+
+  // Optional shared secret: enforced only when CARD_SHARE_TOKEN is configured.
+  const expectedToken = process.env.CARD_SHARE_TOKEN;
+  if (expectedToken && req.headers['x-card-token'] !== expectedToken) {
+    return res.status(401).json({ success: false, message: 'Unauthorized' });
+  }
+
+  const { name, phone, email, note, _hp, _t } = req.body ?? {};
+
+  // Honeypot — bots fill the hidden field. Pretend success.
+  if (_hp) return res.status(200).json({ success: true, message: 'OK' });
+
+  // Timing — submitted in under 3s = bot. Pretend success.
+  if (_t && typeof _t === 'number' && Date.now() - _t < 3000) {
+    return res.status(200).json({ success: true, message: 'OK' });
+  }
+
+  if (!name || (!email && !phone)) {
+    return res
+      .status(400)
+      .json({ success: false, message: 'Informe ao menos nome e (email ou telefone).' });
+  }
+
+  if (looksRandom(name) || (note && looksRandom(note))) {
+    return res.status(200).json({ success: true, message: 'OK' });
+  }
+
+  try {
+    const nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_APP_PASSWORD },
+    });
+
+    const html = `
+      <div style="font-family: Arial, sans-serif; padding: 20px; background-color: #f5f5f5;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h2 style="color: #792990; border-bottom: 2px solid #792990; padding-bottom: 10px;">Novo contato do cartão digital</h2>
+          <div style="margin: 20px 0;">
+            <p style="color: #666; margin: 5px 0;"><strong>Nome:</strong></p>
+            <p style="color: #333; margin: 5px 0 15px 0; padding: 10px; background:#f9f9f9; border-radius:5px;">${esc(name)}</p>
+          </div>
+          ${phone ? `<div style="margin: 20px 0;">
+            <p style="color:#666;margin:5px 0;"><strong>Telefone:</strong></p>
+            <p style="color:#333;margin:5px 0 15px 0;padding:10px;background:#f9f9f9;border-radius:5px;"><a href="tel:${esc(phone)}" style="color:#792990;text-decoration:none;">${esc(phone)}</a></p>
+          </div>` : ''}
+          ${email ? `<div style="margin: 20px 0;">
+            <p style="color:#666;margin:5px 0;"><strong>Email:</strong></p>
+            <p style="color:#333;margin:5px 0 15px 0;padding:10px;background:#f9f9f9;border-radius:5px;"><a href="mailto:${esc(email)}" style="color:#792990;text-decoration:none;">${esc(email)}</a></p>
+          </div>` : ''}
+          ${note ? `<div style="margin: 20px 0;">
+            <p style="color:#666;margin:5px 0;"><strong>Nota:</strong></p>
+            <p style="color:#333;margin:5px 0 15px 0;padding:15px;background:#f9f9f9;border-radius:5px;white-space:pre-wrap;">${esc(note)}</p>
+          </div>` : ''}
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+            <p style="color: #999; font-size: 12px;">Enviado pelo cartão digital — card.wbdigitalsolutions.com</p>
+          </div>
+        </div>
+      </div>`;
+
+    await transporter.sendMail({
+      from: `"Cartão Digital WB" <${process.env.GMAIL_USER}>`,
+      to: DEST_EMAIL,
+      replyTo: email || undefined,
+      subject: `Novo contato do cartão digital - ${name}`,
+      html,
+      text: `Novo contato do cartão digital\n\nNome: ${name}\nTelefone: ${phone || '-'}\nEmail: ${email || '-'}\nNota: ${note || '-'}\n\n— card.wbdigitalsolutions.com`,
+    });
+
+    return res.status(200).json({ success: true, message: 'Contato enviado com sucesso!' });
+  } catch (err) {
+    console.error('card-contact error:', err);
+    return res.status(500).json({ success: false, message: 'Falha ao enviar. Tente novamente.' });
+  }
+}
