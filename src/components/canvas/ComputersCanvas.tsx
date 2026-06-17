@@ -4,6 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
 import { PreloadedCanvas } from "../PreloadedCanvas";
+import CanvasErrorBoundary from "../CanvasErrorBoundary";
 import DragTutorial from "../DragTutorial";
 import TapTutorial from "../TapTutorial";
 
@@ -138,6 +139,7 @@ const ComputersCanvas = () => {
 
     return (
         <div className="relative w-full h-full canvas-container" onTouchEnd={handleTap}>
+            <CanvasErrorBoundary>
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows={!isMobile} // Disable shadows on mobile
@@ -168,6 +170,7 @@ const ComputersCanvas = () => {
 
                 <Preload all />
             </PreloadedCanvas>
+            </CanvasErrorBoundary>
 
 
             {isMobile && (

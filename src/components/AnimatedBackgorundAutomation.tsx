@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import CanvasErrorBoundary from './CanvasErrorBoundary';
 import {
   RectAreaLight,
   Color,
@@ -35,6 +36,7 @@ const AnimatedBackgroundAutomationComponent: React.FC = () => {
       {/* Mouse move tutorial */}
       <MouseMoveTutorial />
       
+      <CanvasErrorBoundary>
       <Canvas
         style={{ background: 'transparent' }}
         shadows
@@ -58,6 +60,7 @@ const AnimatedBackgroundAutomationComponent: React.FC = () => {
           <FloatingModel />
         </Suspense>
       </Canvas>
+      </CanvasErrorBoundary>
     </div>
   );
 };

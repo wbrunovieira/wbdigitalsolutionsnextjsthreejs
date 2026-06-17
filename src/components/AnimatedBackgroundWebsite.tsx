@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect, useRef, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
+import CanvasErrorBoundary from './CanvasErrorBoundary';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
 import { useAnimations, useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
 import { animate } from 'framer-motion';
@@ -63,6 +64,7 @@ const AnimatedBackgroundWebsiteComponent: React.FC = () => {
             {/* Mouse move tutorial */}
             <MouseMoveTutorial />
             
+            <CanvasErrorBoundary>
             <Canvas
                 style={{ background: 'transparent' }}
                 shadows
@@ -88,6 +90,7 @@ const AnimatedBackgroundWebsiteComponent: React.FC = () => {
                     <FloatingModel />
                 </Suspense>
             </Canvas>
+            </CanvasErrorBoundary>
         </div>
     );
 };
