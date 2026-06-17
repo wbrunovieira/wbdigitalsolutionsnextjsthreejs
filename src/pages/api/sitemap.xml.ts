@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { PROJECT_DETAILS } from '@/data/projectDetails';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
 const LANGUAGES = ['en', 'es', 'it', 'pt-BR'];
@@ -8,12 +9,16 @@ const STATIC_PAGES = [
   '',  // Homepage
   'ai',
   'automation',
+  'projects',
   'blog',
   'contact',
   'websites',
   'systems',
   'experience',
 ];
+
+// Project detail pages (/projects/[slug]) — kept in sync with projectDetails.ts
+const PROJECT_SLUGS = Object.keys(PROJECT_DETAILS);
 
 // Blog posts (you can fetch these dynamically from a database in production)
 const BLOG_POSTS = [
@@ -103,8 +108,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   // Add static pages
   STATIC_PAGES.slice(1).forEach(page => {
     const changefreq = page === 'blog' ? 'daily' : page === 'contact' ? 'monthly' : 'weekly';
-    const priority = page === 'blog' ? 0.9 : 0.8;
+    const priority = page === 'blog' ? 0.9 : page === 'projects' ? 0.9 : 0.8;
     urls.push(...generateSitemapUrl(`/${page}`, changefreq, priority));
+  });
+
+  // Add project detail pages
+  PROJECT_SLUGS.forEach(slug => {
+    urls.push(...generateSitemapUrl(`/projects/${slug}`, 'monthly', 0.7));
   });
 
   // Add blog posts
