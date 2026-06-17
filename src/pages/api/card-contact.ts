@@ -30,6 +30,33 @@ const looksRandom = (str: string) =>
 const esc = (s: string) =>
   String(s).replace(/[<>&]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c] as string));
 
+// Escape a value for a vCard field (RFC 6350): backslash, newline, comma, semicolon.
+const vesc = (s: string) =>
+  String(s).replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/,/g, '\\,').replace(/;/g, '\\;');
+
+// Build a vCard (.vcf) for the visitor so Bruno can save the contact in one tap.
+function buildVCard(
+  { name, phone, email, note }: { name: string; phone?: string; email?: string; note?: string },
+  rev: string
+) {
+  const parts = String(name).trim().split(/\s+/);
+  const given = parts[0] || '';
+  const family = parts.slice(1).join(' ');
+  const lines = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    `N:${vesc(family)};${vesc(given)};;;`,
+    `FN:${vesc(name)}`,
+  ];
+  if (phone) lines.push(`TEL;TYPE=CELL:${vesc(phone)}`);
+  if (email) lines.push(`EMAIL;TYPE=WORK:${vesc(email)}`);
+  if (note) lines.push(`NOTE:${vesc(note)}`);
+  lines.push('SOURCE:card.wbdigitalsolutions.com');
+  lines.push(`REV:${rev}`);
+  lines.push('END:VCARD');
+  return lines.join('\r\n');
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -96,11 +123,18 @@ export default async function handler(
             <p style="color:#666;margin:5px 0;"><strong>Nota:</strong></p>
             <p style="color:#333;margin:5px 0 15px 0;padding:15px;background:#f9f9f9;border-radius:5px;white-space:pre-wrap;">${esc(note)}</p>
           </div>` : ''}
+          <div style="margin: 20px 0; padding: 12px 15px; background:#f3eafa; border-radius:5px; text-align:center;">
+            <p style="color:#792990; margin:0; font-size:13px;">📎 Contato anexado (.vcf) — abra o anexo no celular para salvar na agenda.</p>
+          </div>
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
             <p style="color: #999; font-size: 12px;">Enviado pelo cartão digital — card.wbdigitalsolutions.com</p>
           </div>
         </div>
       </div>`;
+
+    // vCard of the visitor, attached so Bruno saves the contact in one tap.
+    const vcard = buildVCard({ name, phone, email, note }, new Date().toISOString());
+    const safeName = String(name).replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'contato';
 
     await transporter.sendMail({
       from: `"Cartão Digital WB" <${process.env.GMAIL_USER}>`,
@@ -108,7 +142,14 @@ export default async function handler(
       replyTo: email || undefined,
       subject: `Novo contato do cartão digital - ${name}`,
       html,
-      text: `Novo contato do cartão digital\n\nNome: ${name}\nTelefone: ${phone || '-'}\nEmail: ${email || '-'}\nNota: ${note || '-'}\n\n— card.wbdigitalsolutions.com`,
+      text: `Novo contato do cartão digital\n\nNome: ${name}\nTelefone: ${phone || '-'}\nEmail: ${email || '-'}\nNota: ${note || '-'}\n\nContato anexado (.vcf) para salvar no celular.\n\n— card.wbdigitalsolutions.com`,
+      attachments: [
+        {
+          filename: `${safeName}.vcf`,
+          content: vcard,
+          contentType: 'text/vcard; charset=utf-8',
+        },
+      ],
     });
 
     return res.status(200).json({ success: true, message: 'Contato enviado com sucesso!' });
