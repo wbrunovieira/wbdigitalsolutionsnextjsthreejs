@@ -17,6 +17,22 @@ const nextConfig = {
         destination: 'https://www.wbdigitalsolutions.com/:path*',
         permanent: true,
       },
+      // Legacy language-prefixed URLs (the site is single-locale by path now)
+      // were advertised by an old sitemap and now 404. Redirect to the canonical
+      // page so Google consolidates instead of seeing 404s.
+      {
+        source: '/:locale(es|it|pt-BR)',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/:locale(es|it|pt-BR)/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+      // Old static files from the previous site.
+      { source: '/index.html', destination: '/', permanent: true },
+      { source: '/site.html', destination: '/', permanent: true },
     ];
   },
 
