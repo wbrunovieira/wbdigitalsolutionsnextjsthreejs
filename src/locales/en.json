@@ -826,8 +826,8 @@
         "id": "4",
         "slug": "kundalini-activation",
         "title": "Kundalini Activation",
-        "subtitle": "Conversion Landing",
-        "description": "Conversion-focused site for a Kundalini activation specialist, with a photo gallery, video player, FAQ, event info and multiple CTAs — GSAP animations and responsive design.",
+        "subtitle": "Site + Client CMS",
+        "description": "Conversion site for a Kundalini activation specialist — gallery, videos, testimonials, FAQ and events. It ships with a custom CMS panel where the client updates photos, videos, testimonials, sessions, locations and text herself, with no developer needed. GSAP animations and responsive design.",
         "category": "website",
         "imageUrl": "/img/projects/kundalini-cover.jpg",
         "technologies": [
@@ -838,21 +838,27 @@
           "GSAP",
           "Framer Motion",
           "react-photo-album",
-          "react-player"
+          "react-player",
+          "Vercel Blob",
+          "Mux",
+          "dnd-kit",
+          "JWT (jose)",
+          "Zod"
         ],
         "liveUrl": "https://www.elainevieira-us.com/",
         "slides": [
           {
             "type": "mixed",
             "title": "Kundalini Activation by Elaine Vieira",
-            "description": "We developed a complete platform for Elaine Vieira, a specialist in Kundalini activation and energy harmonization.\n\nThe site offers a transformative journey where energy, healing, and connection merge. The in-person Kundalini Activation sessions are designed to awaken inner power, release emotional blockages, and reconnect with the higher self.\n\nThe platform includes an inspiring photo gallery, video and text testimonials, and a comprehensive FAQ section.\n\nConversion-optimized interface with multiple strategic CTAs, event location information (Fort Lauderdale and Orlando), and different Kundalini experience options.",
+            "description": "We developed a complete platform for Elaine Vieira, a specialist in Kundalini activation and energy harmonization.\n\nThe site offers a transformative journey where energy, healing, and connection merge. The in-person Kundalini Activation sessions are designed to awaken inner power, release emotional blockages, and reconnect with the higher self.\n\nThe platform includes an inspiring photo gallery, video and text testimonials, and a comprehensive FAQ section.\n\nConversion-optimized interface with multiple strategic CTAs, event location information (Fort Lauderdale and Orlando), and different Kundalini experience options.\n\nA standout is the tailor-made admin panel (CMS): the client logs in and updates the gallery, videos, testimonials, sessions, locations and text on her own — with optimized image upload (compression and HEIC conversion) and video via Mux.",
             "imageUrl": "/img/projects/elaine1.png",
             "features": [
               "High-resolution photo gallery",
               "Video and text testimonials",
               "Frequently asked questions section",
               "Location and event information",
-              "Responsive and spiritual design"
+              "Responsive and spiritual design",
+              "Custom CMS for the client to update photos, videos and text"
             ]
           }
         ]

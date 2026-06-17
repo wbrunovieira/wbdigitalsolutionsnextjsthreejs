@@ -815,8 +815,8 @@
         "id": "4",
         "slug": "kundalini-activation",
         "title": "Activación Kundalini",
-        "subtitle": "Landing de Conversión",
-        "description": "Sitio de conversión para especialista en activación Kundalini, con galería de fotos, reproductor de vídeo, FAQ, información de eventos y múltiples CTAs — animaciones con GSAP y diseño responsivo.",
+        "subtitle": "Sitio + Panel de la Clienta (CMS)",
+        "description": "Sitio de conversión para especialista en activación Kundalini — galería, vídeos, testimonios, FAQ y eventos. Incluye un panel (CMS) propio donde la propia clienta actualiza fotos, vídeos, testimonios, sesiones, lugares y textos del sitio, sin depender de un programador. Animaciones con GSAP y diseño responsivo.",
         "category": "website",
         "imageUrl": "/img/projects/kundalini-cover.jpg",
         "technologies": [
@@ -827,21 +827,27 @@
           "GSAP",
           "Framer Motion",
           "react-photo-album",
-          "react-player"
+          "react-player",
+          "Vercel Blob",
+          "Mux",
+          "dnd-kit",
+          "JWT (jose)",
+          "Zod"
         ],
         "liveUrl": "https://www.elainevieira-us.com/",
         "slides": [
           {
             "type": "mixed",
             "title": "Activación Kundalini por Elaine Vieira",
-            "description": "Desarrollamos una plataforma completa para Elaine Vieira, especialista en activación de Kundalini y armonización energética.\n\nEl sitio ofrece un viaje transformador donde la energía, la sanación y la conexión se fusionan. Las sesiones presenciales de Activación Kundalini están diseñadas para despertar el poder interior, liberar bloqueos emocionales y reconectar con el yo superior.\n\nLa plataforma incluye galería de fotos inspiradoras, testimonios en video y texto, y sección completa de preguntas frecuentes.\n\nInterfaz optimizada para conversión con múltiples CTAs estratégicos, información sobre ubicaciones de eventos (Fort Lauderdale y Orlando), y diferentes opciones de experiencia Kundalini.",
+            "description": "Desarrollamos una plataforma completa para Elaine Vieira, especialista en activación de Kundalini y armonización energética.\n\nEl sitio ofrece un viaje transformador donde la energía, la sanación y la conexión se fusionan. Las sesiones presenciales de Activación Kundalini están diseñadas para despertar el poder interior, liberar bloqueos emocionales y reconectar con el yo superior.\n\nLa plataforma incluye galería de fotos inspiradoras, testimonios en video y texto, y sección completa de preguntas frecuentes.\n\nInterfaz optimizada para conversión con múltiples CTAs estratégicos, información sobre ubicaciones de eventos (Fort Lauderdale y Orlando), y diferentes opciones de experiencia Kundalini.\n\nUn diferencial es el panel administrativo (CMS) a medida: la clienta inicia sesión y actualiza sola la galería, vídeos, testimonios, sesiones, lugares y textos — con subida de imágenes optimizada (compresión y conversión de HEIC) y vídeos vía Mux.",
             "imageUrl": "/img/projects/elaine1.png",
             "features": [
               "Galería de fotos de alta resolución",
               "Testimonios en video y texto",
               "Sección de preguntas frecuentes",
               "Información de ubicaciones y eventos",
-              "Diseño responsivo y espiritual"
+              "Diseño responsivo y espiritual",
+              "Panel propio (CMS) para que la clienta actualice fotos, vídeos y textos"
             ]
           }
         ]
