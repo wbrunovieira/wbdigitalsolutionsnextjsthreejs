@@ -51,7 +51,7 @@ const vesc = (s: string) =>
 
 // Build a vCard (.vcf) for the visitor so Bruno can save the contact in one tap.
 function buildVCard(
-  { name, phone, email, note }: { name: string; phone?: string; email?: string; note?: string },
+  { name, phone, email, company, note }: { name: string; phone?: string; email?: string; company?: string; note?: string },
   rev: string
 ) {
   const parts = String(name).trim().split(/\s+/);
@@ -63,6 +63,7 @@ function buildVCard(
     `N:${vesc(family)};${vesc(given)};;;`,
     `FN:${vesc(name)}`,
   ];
+  if (company) lines.push(`ORG:${vesc(company)}`);
   if (phone) lines.push(`TEL;TYPE=CELL:${vesc(phone)}`);
   if (email) lines.push(`EMAIL;TYPE=WORK:${vesc(email)}`);
   if (note) lines.push(`NOTE:${vesc(note)}`);
@@ -91,7 +92,7 @@ export default async function handler(
     return res.status(401).json({ success: false, message: 'Unauthorized' });
   }
 
-  const { name, phone, email, note, _hp, _t } = req.body ?? {};
+  const { name, phone, email, company, note, _hp, _t } = req.body ?? {};
 
   // Honeypot — bots fill the hidden field. Pretend success.
   if (_hp) return res.status(200).json({ success: true, message: 'OK' });
@@ -133,6 +134,10 @@ export default async function handler(
             <p style="color:#666;margin:5px 0;"><strong>Email:</strong></p>
             <p style="color:#333;margin:5px 0 15px 0;padding:10px;background:#f9f9f9;border-radius:5px;"><a href="mailto:${esc(email)}" style="color:#792990;text-decoration:none;">${esc(email)}</a></p>
           </div>` : ''}
+          ${company ? `<div style="margin: 20px 0;">
+            <p style="color:#666;margin:5px 0;"><strong>Empresa:</strong></p>
+            <p style="color:#333;margin:5px 0 15px 0;padding:10px;background:#f9f9f9;border-radius:5px;">${esc(company)}</p>
+          </div>` : ''}
           ${note ? `<div style="margin: 20px 0;">
             <p style="color:#666;margin:5px 0;"><strong>Nota:</strong></p>
             <p style="color:#333;margin:5px 0 15px 0;padding:15px;background:#f9f9f9;border-radius:5px;white-space:pre-wrap;">${esc(note)}</p>
@@ -147,7 +152,7 @@ export default async function handler(
       </div>`;
 
     // vCard of the visitor, attached so Bruno saves the contact in one tap.
-    const vcard = buildVCard({ name, phone, email, note }, new Date().toISOString());
+    const vcard = buildVCard({ name, phone, email, company, note }, new Date().toISOString());
     const safeName = String(name).replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'contato';
 
     await transporter.sendMail({
@@ -156,7 +161,7 @@ export default async function handler(
       replyTo: email || undefined,
       subject: `Novo contato do cartão digital - ${name}`,
       html,
-      text: `Novo contato do cartão digital\n\nNome: ${name}\nTelefone: ${phone || '-'}\nEmail: ${email || '-'}\nNota: ${note || '-'}\n\nContato anexado (.vcf) para salvar no celular.\n\n— card.wbdigitalsolutions.com`,
+      text: `Novo contato do cartão digital\n\nNome: ${name}\nTelefone: ${phone || '-'}\nEmail: ${email || '-'}\nEmpresa: ${company || '-'}\nNota: ${note || '-'}\n\nContato anexado (.vcf) para salvar no celular.\n\n— card.wbdigitalsolutions.com`,
       attachments: [
         {
           filename: `${safeName}.vcf`,

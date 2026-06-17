@@ -129,6 +129,15 @@ describe('card-contact webhook', () => {
     expect(vcf).toContain('NOTE:oi\\; tudo bem');
   });
 
+  it('includes company in the email body and the vCard ORG', async () => {
+    const res = await call('POST', { name: 'Maria', email: 'maria@ex.com', company: 'ACME Ltda' });
+    expect(res._getStatusCode()).toBe(200);
+    const mail = sendMail.mock.calls[0][0];
+    expect(mail.html).toContain('ACME Ltda');
+    expect(mail.text).toContain('Empresa: ACME Ltda');
+    expect(mail.attachments[0].content).toContain('ORG:ACME Ltda');
+  });
+
   it('returns 500 when the mailer fails', async () => {
     sendMail.mockRejectedValueOnce(new Error('smtp down'));
     const res = await call('POST', { name: 'Maria', email: 'a@b.com' });
