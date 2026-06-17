@@ -32,9 +32,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, content }) => {
         <div className="container mx-auto max-w-5xl">
           <Link
             href="/projects"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-secondary transition-colors hover:text-yellowcustom"
+            className="group mb-8 inline-flex items-center gap-2 rounded-full border border-yellowcustom/70 bg-yellowcustom/5 py-2 pl-3 pr-4 text-sm font-semibold text-yellowcustom shadow-[0_0_14px_-3px_rgba(255,185,71,0.45)] backdrop-blur-sm transition-all duration-300 hover:border-yellowcustom hover:bg-yellowcustom/10 hover:text-white hover:shadow-[0_0_26px_0_rgba(255,185,71,0.7)]"
           >
-            <span aria-hidden>←</span> {ui.back}
+            <span
+              aria-hidden
+              className="grid h-6 w-6 place-items-center rounded-full bg-yellowcustom/20 text-yellowcustom transition-all duration-300 group-hover:-translate-x-0.5 group-hover:bg-yellowcustom group-hover:text-primary"
+            >
+              ←
+            </span>
+            {ui.back}
           </Link>
 
           {project.subtitle && (
