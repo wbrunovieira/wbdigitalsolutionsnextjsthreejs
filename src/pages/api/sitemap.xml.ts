@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { PROJECT_DETAILS } from '@/data/projectDetails';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
-const LANGUAGES = ['en', 'es', 'it', 'pt-BR'];
 
 // Static pages that exist in the application
 const STATIC_PAGES = [
@@ -34,45 +33,25 @@ interface SitemapUrl {
   lastmod: string;
   changefreq: string;
   priority: number;
-  alternates?: Array<{ lang: string; href: string }>;
 }
 
+// The site serves every language from a single URL (client-side i18n), so we
+// emit ONE canonical URL per page — no /es, /it, /pt-BR variants (those routes
+// don't exist → 404) and no hreflang (which requires distinct per-language URLs).
 const generateSitemapUrl = (
   path: string,
   changefreq: string = 'weekly',
-  priority: number = 0.8,
-  includeLanguages: boolean = true
+  priority: number = 0.8
 ): SitemapUrl[] => {
-  const urls: SitemapUrl[] = [];
   const lastmod = new Date().toISOString().split('T')[0];
-
-  if (includeLanguages) {
-    // Generate URLs for each language
-    LANGUAGES.forEach(lang => {
-      const langPath = lang === 'en' ? path : `/${lang}${path}`;
-      const url: SitemapUrl = {
-        loc: `${SITE_URL}${langPath}`,
-        lastmod,
-        changefreq,
-        priority,
-        alternates: LANGUAGES.map(altLang => ({
-          lang: altLang,
-          href: `${SITE_URL}${altLang === 'en' ? path : `/${altLang}${path}`}`,
-        })),
-      };
-      urls.push(url);
-    });
-  } else {
-    // Single URL without language variations
-    urls.push({
+  return [
+    {
       loc: `${SITE_URL}${path}`,
       lastmod,
       changefreq,
       priority,
-    });
-  }
-
-  return urls;
+    },
+  ];
 };
 
 const generateXmlUrl = (url: SitemapUrl): string => {
@@ -81,16 +60,6 @@ const generateXmlUrl = (url: SitemapUrl): string => {
   xml += `    <lastmod>${url.lastmod}</lastmod>\n`;
   xml += `    <changefreq>${url.changefreq}</changefreq>\n`;
   xml += `    <priority>${url.priority}</priority>\n`;
-  
-  // Add hreflang tags for language alternates
-  if (url.alternates) {
-    url.alternates.forEach(alt => {
-      xml += `    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.href}"/>\n`;
-    });
-    // Add x-default for the main language (English)
-    xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${url.loc.replace(SITE_URL, '').replace(/^\/(es|it|pt-BR)/, '')}"/>\n`;
-  }
-  
   xml += `  </url>\n`;
   return xml;
 };
@@ -124,8 +93,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // Generate XML
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
-  xml += '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
   urls.forEach(url => {
     xml += generateXmlUrl(url);
