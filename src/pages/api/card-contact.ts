@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 
 /**
  * Contact-exchange webhook for the digital business card (card.wbdigitalsolutions.com).
@@ -13,12 +14,26 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 type Data = { success: boolean; message: string };
 
-const ALLOWED_ORIGIN = process.env.CARD_ORIGIN || 'https://card.wbdigitalsolutions.com';
-const DEST_EMAIL =
-  process.env.CARD_CONTACT_EMAIL || 'bruno@wbdigitalsolutions.com';
+// Comma-separated allowlist read at request time, e.g.
+// "https://card.wbdigitalsolutions.com,http://localhost:3000,https://card-x.vercel.app"
+function allowedOrigins(): string[] {
+  return (process.env.CARD_ORIGIN || 'https://card.wbdigitalsolutions.com')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
 
-function setCors(res: NextApiResponse) {
-  res.setHeader('Access-Control-Allow-Origin', ALLOWED_ORIGIN);
+function destEmail(): string {
+  return process.env.CARD_CONTACT_EMAIL || 'bruno@wbdigitalsolutions.com';
+}
+
+function setCors(req: NextApiRequest, res: NextApiResponse) {
+  // Access-Control-Allow-Origin can't be a list — echo the request origin when
+  // it's allowed, otherwise fall back to the canonical card origin.
+  const list = allowedOrigins();
+  const origin = req.headers.origin;
+  const allow = origin && list.includes(origin) ? origin : list[0];
+  res.setHeader('Access-Control-Allow-Origin', allow);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-card-token');
   res.setHeader('Vary', 'Origin');
@@ -61,7 +76,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  setCors(res);
+  setCors(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
@@ -97,7 +112,6 @@ export default async function handler(
   }
 
   try {
-    const nodemailer = require('nodemailer');
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_APP_PASSWORD },
@@ -138,7 +152,7 @@ export default async function handler(
 
     await transporter.sendMail({
       from: `"Cartão Digital WB" <${process.env.GMAIL_USER}>`,
-      to: DEST_EMAIL,
+      to: destEmail(),
       replyTo: email || undefined,
       subject: `Novo contato do cartão digital - ${name}`,
       html,
