@@ -64,13 +64,14 @@ function buildVCard(
     `FN:${vesc(name)}`,
   ];
   if (company) lines.push(`ORG:${vesc(company)}`);
-  if (phone) lines.push(`TEL;TYPE=CELL:${vesc(phone)}`);
-  if (email) lines.push(`EMAIL;TYPE=WORK:${vesc(email)}`);
+  if (phone) lines.push(`TEL;TYPE=CELL,VOICE:${vesc(phone)}`);
+  if (email) lines.push(`EMAIL;TYPE=INTERNET:${vesc(email)}`);
   if (note) lines.push(`NOTE:${vesc(note)}`);
-  lines.push('SOURCE:card.wbdigitalsolutions.com');
+  lines.push('URL:https://card.wbdigitalsolutions.com');
   lines.push(`REV:${rev}`);
   lines.push('END:VCARD');
-  return lines.join('\r\n');
+  // Trailing CRLF — some parsers (incl. iOS) want the file to end with a newline.
+  return lines.join('\r\n') + '\r\n';
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
