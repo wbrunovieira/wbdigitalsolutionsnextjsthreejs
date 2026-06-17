@@ -1,4 +1,10 @@
 const nextConfig = {
+  // Disable the dev "static route indicator". Its HMR `isrManifest` message
+  // crashes the Next 15.5 dev client (handleStaticIndicator → "Cannot read
+  // properties of undefined (reading 'components')"), causing an infinite
+  // Fast Refresh full-reload loop. Off = no message = no loop.
+  devIndicators: false,
+
   experimental: {
     webVitalsAttribution: ['CLS', 'LCP'],
   },

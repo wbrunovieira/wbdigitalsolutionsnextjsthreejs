@@ -596,5 +596,500 @@
   "heroSupportText": "Creiamo Siti Web, Piattaforme, IA e Automazione per aziende che vogliono crescere online.",
   "heroPill1": "Siti e Piattaforme",
   "heroPill2": "IA",
-  "heroPill3": "Automazione"
+  "heroPill3": "Automazione",
+  "projects": "Progetti",
+  "projectsPage": {
+    "title": "I Nostri Progetti",
+    "subtitle": "Scopri alcuni dei lavori che abbiamo realizzato per i nostri clienti",
+    "featuredLabel": "Progetto in evidenza",
+    "technologies": "Tecnologie",
+    "viewProject": "Scopri di Più",
+    "noProjects": "Nessun progetto trovato",
+    "filters": {
+      "all": "Tutti",
+      "sistemas": "Sistemi",
+      "website": "Siti Web",
+      "ecommerce": "E-commerce",
+      "education": "Istruzione"
+    },
+    "stats": {
+      "title": "I nostri numeri",
+      "items": [
+        {
+          "value": "4+",
+          "label": "Progetti consegnati"
+        },
+        {
+          "value": "5.000+",
+          "label": "Test automatizzati"
+        },
+        {
+          "value": "4",
+          "label": "Lingue supportate"
+        },
+        {
+          "value": "100%",
+          "label": "Soluzioni personalizzate"
+        }
+      ]
+    },
+    "cta": {
+      "title": "Pronto a costruire il tuo progetto?",
+      "subtitle": "Trasformiamo la tua idea in una soluzione digitale su misura.",
+      "button": "Contattaci"
+    },
+    "items": [
+      {
+        "id": "1",
+        "slug": "revalida-italia",
+        "title": "Revalida Italia",
+        "subtitle": "Piattaforma di Apprendimento",
+        "description": "Piattaforma di apprendimento online completa e su misura — corsi, lezioni video, simulazioni, flashcard intelligenti con monitoraggio delle prestazioni, community interattiva ed emissione automatica di certificati — costruita su un'architettura enterprise (NestJS, PostgreSQL, Redis e code asincrone) con migliaia di test automatizzati e infrastruttura AWS provisionata con Terraform e Ansible.",
+        "category": "education",
+        "imageUrl": "/img/projects/revalida1.png",
+        "technologies": [
+          "Next.js",
+          "NestJS",
+          "TypeScript",
+          "PostgreSQL",
+          "Prisma",
+          "Redis",
+          "BullMQ",
+          "AWS",
+          "Terraform",
+          "Docker",
+          "OpenTelemetry"
+        ],
+        "slides": [
+          {
+            "type": "mixed",
+            "title": "Piattaforma di Apprendimento Su Misura",
+            "description": "Abbiamo sviluppato questo progetto partendo dalle esigenze specifiche del cliente, creando una soluzione completa e totalmente personalizzata.\n\nTutto all'interno di un'interfaccia moderna, intuitiva e multilingue, garantendo la migliore esperienza per amministratori, insegnanti e studenti.",
+            "imageUrl": "/img/projects/revalida2.png",
+            "features": [
+              "Gestione utenti e profili",
+              "Controllo corsi, lezioni e percorsi di apprendimento",
+              "Creazione di quiz, simulazioni e valutazioni",
+              "Statistiche e report dettagliati",
+              "Comunicazione integrata tra studenti e insegnanti",
+              "Emissione automatica di certificati",
+              "Integrazioni con Panda Video, Zoom e Hotmart"
+            ]
+          },
+          {
+            "type": "mixed",
+            "title": "Comunità Interattiva",
+            "description": "Oltre all'apprendimento formale, la piattaforma dispone di uno spazio comunitario esclusivo — un ambiente dinamico che collega studenti, insegnanti e amministratori in tempo reale.\n\nFunziona come un social network accademico, dove i partecipanti possono interagire su argomenti di interesse comune.\n\nQuesto spazio promuove la collaborazione, lo scambio di conoscenze e il coinvolgimento continuo tra tutti i soggetti coinvolti nel processo di insegnamento.",
+            "imageUrl": "/img/projects/revalida3.png",
+            "features": [
+              "Creare post e condividere domande, riassunti ed esperienze",
+              "Mettere mi piace con reazioni emoji e rispondere ai commenti",
+              "Interagire su argomenti di interesse comune"
+            ]
+          },
+          {
+            "type": "video",
+            "title": "Flashcard Interattivi e Dinamici",
+            "description": "Abbiamo creato una risorsa di flashcard con animazioni moderne per rendere la memorizzazione più coinvolgente ed efficace.\n\nOgni studente ha un pannello completo che permette di monitorare le proprie prestazioni in tempo reale.\n\nQuesto monitoraggio intelligente aiuta lo studente a identificare i punti di forza, rivedere i contenuti più difficili e mantenere costanza nell'apprendimento.",
+            "videoUrl": "/img/projects/revalidaFlashcard.mp4",
+            "features": [
+              "Evoluzione del tasso di successo",
+              "Numero di interazioni e sequenza di studio",
+              "Distribuzione per difficoltà",
+              "Storico delle attività recenti",
+              "Calendario personalizzato di studio",
+              "Insights sugli orari più produttivi"
+            ]
+          },
+          {
+            "type": "mixed",
+            "title": "Infrastruttura Cloud con AWS",
+            "description": "La piattaforma è stata progettata per operare con massime prestazioni e affidabilità, utilizzando AWS (Amazon Web Services) — leader mondiale nei servizi cloud.\n\nTutta l'infrastruttura è automatizzata e ottimizzata con i migliori strumenti del mercato: Terraform e Ansible.\n\nQuesta solida base consente alla soluzione di fornire prestazioni a livello globale, soddisfacendo le esigenze del cliente su qualsiasi scala.",
+            "imageUrl": "/img/projects/aws.svg",
+            "features": [
+              "Scalabilità on-demand per accompagnare la crescita della piattaforma",
+              "Alta disponibilità e sicurezza dei dati",
+              "Automazione di deploy e configurazioni, riducendo errori umani",
+              "Monitoraggio e aggiornamenti continui",
+              "Flessibilità per l'integrazione di nuove risorse e servizi"
+            ]
+          },
+          {
+            "type": "mixed",
+            "title": "Qualità, Affidabilità e Integrazioni Intelligenti",
+            "description": "Questo progetto è stato sviluppato seguendo le migliori pratiche di codifica, con oltre 5.000 test automatizzati che garantiscono stabilità e sicurezza ad ogni aggiornamento.\n\nIl sistema dispone anche di integrazioni strategiche che ampliano il valore della piattaforma.\n\nUna soluzione robusta e scalabile, che unisce tecnologia avanzata, automazione e praticità per studenti, insegnanti e amministratori.",
+            "imageUrl": "/images/quality-shield.svg",
+            "features": [
+              "Zoom – gestione completa delle lezioni dal vivo direttamente dalla piattaforma",
+              "Hotmart – integrazione nativa che automatizza il processo di vendita",
+              "Gestione Acquisti e Accessi – statistiche di vendita e controllo iscrizioni"
+            ]
+          }
+        ],
+        "categories": [
+          "education",
+          "sistemas"
+        ]
+      },
+      {
+        "id": "2",
+        "slug": "manon-ruivo",
+        "title": "Manon Ruivo",
+        "subtitle": "Sito di Consulenza",
+        "description": "Piattaforma digitale trilingue per una consulente internazionale, con blog gestibile via Sanity CMS, hero animato e sezioni segmentate per pubblico — esperienza immersiva con GSAP e particelle.",
+        "category": "website",
+        "imageUrl": "/img/projects/manon1.png",
+        "technologies": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "Sanity CMS",
+          "GSAP",
+          "Framer Motion",
+          "next-intl"
+        ],
+        "liveUrl": "https://www.manonruivo.com/",
+        "slides": [
+          {
+            "type": "mixed",
+            "title": "Sito di Consulenza - Manon Ruivo",
+            "description": "Abbiamo sviluppato una piattaforma digitale completa e moderna per Manon Ruivo, consulente internazionale di Access Consciousness.\n\nLa soluzione offre un'esperienza immersiva con design responsive, trilingue (PT/ES/EN), permettendo alla consulente di raggiungere clienti a livello globale.",
+            "imageUrl": "/img/projects/manon1.png",
+            "features": [
+              "Interfaccia trilingue con supporto nativo per PT/ES/EN",
+              "Hero section con slider interattivo di immagini",
+              "Sezioni specializzate per diversi pubblici",
+              "Testimonianze dinamiche con video e testo",
+              "Design responsive e accessibile"
+            ]
+          },
+          {
+            "type": "mixed",
+            "title": "Gestione Contenuti con Sanity CMS",
+            "description": "Abbiamo implementato Sanity come CMS headless, permettendo al cliente di gestire autonomamente i contenuti della pagina del blog.\n\nIl sistema di blog integrato consente la creazione di articoli, categorie e autori, rafforzando la strategia di content marketing.\n\nInterfaccia amministrativa intuitiva con anteprima in tempo reale delle modifiche prima della pubblicazione.",
+            "imageUrl": "/img/projects/manon2.png",
+            "features": [
+              "Pannello amministrativo personalizzato su /studio",
+              "Sistema blog con categorie e tag",
+              "Upload e gestione di immagini ottimizzate",
+              "Anteprima in tempo reale delle modifiche",
+              "Versioning automatico dei contenuti"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "slug": "flavia-guedes",
+        "title": "Flávia Guedes",
+        "subtitle": "Sito & Gift Card",
+        "description": "Sito istituzionale con e-commerce di gift card e Beauty Bank (credito prepagato con bonus a fasce): pagamenti via Square e Stripe, pannello amministrativo dove la titolare scala i servizi dal credito e monitora il saldo di ogni cliente e quello complessivo, galleria fotografica e QR code — multilingue e con analytics.",
+        "category": "website",
+        "imageUrl": "/img/projects/flavia1.png",
+        "technologies": [
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Square",
+          "Stripe",
+          "Firebase",
+          "NextAuth",
+          "Resend",
+          "GSAP"
+        ],
+        "liveUrl": "https://flaviaguedes.com/",
+        "slides": [
+          {
+            "type": "mixed",
+            "title": "Landing Page Salone di Bellezza",
+            "description": "Abbiamo sviluppato una landing page elegante e funzionale per un salone di bellezza di alto livello.\n\nLa piattaforma presenta sezioni interattive che evidenziano i servizi offerti e un portfolio visivo impressionante dei lavori realizzati.\n\nIl grande differenziale è il sistema di vendita di gift card online, completamente integrato con Square per l'elaborazione sicura dei pagamenti.\n\nInclude anche un pannello amministrativo esclusivo dove il proprietario può seguire le vendite in tempo reale, gestire gli ordini e visualizzare report dettagliati.",
+            "imageUrl": "/img/projects/flavia1.png",
+            "features": [
+              "Sezioni interattive dei servizi",
+              "Portfolio visivo dei lavori",
+              "Sistema di vendita gift card",
+              "Integrazione con Square per pagamenti",
+              "Pannello amministrativo in tempo reale"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "slug": "kundalini-activation",
+        "title": "Attivazione Kundalini",
+        "subtitle": "Landing di Conversione",
+        "description": "Sito orientato alla conversione per una specialista in attivazione Kundalini, con galleria fotografica, video player, FAQ, informazioni sugli eventi e CTA multiple — animazioni GSAP e design responsive.",
+        "category": "website",
+        "imageUrl": "/img/projects/kundalini-cover.jpg",
+        "technologies": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "GSAP",
+          "Framer Motion",
+          "react-photo-album",
+          "react-player"
+        ],
+        "liveUrl": "https://www.elainevieira-us.com/",
+        "slides": [
+          {
+            "type": "mixed",
+            "title": "Attivazione Kundalini di Elaine Vieira",
+            "description": "Abbiamo sviluppato una piattaforma completa per Elaine Vieira, specialista in attivazione Kundalini e armonizzazione energetica.\n\nIl sito offre un viaggio trasformativo dove energia, guarigione e connessione si fondono. Le sessioni in presenza di Attivazione Kundalini sono progettate per risvegliare il potere interiore, rilasciare blocchi emotivi e riconnettersi con il sé superiore.\n\nLa piattaforma include galleria di foto ispiratrici, testimonianze video e testuali, e sezione FAQ completa.\n\nInterfaccia ottimizzata per la conversione con molteplici CTA strategiche, informazioni sulle location degli eventi (Fort Lauderdale e Orlando), e diverse opzioni di esperienza Kundalini.",
+            "imageUrl": "/img/projects/elaine1.png",
+            "features": [
+              "Galleria foto ad alta risoluzione",
+              "Testimonianze video e testuali",
+              "Sezione domande frequenti",
+              "Informazioni su location ed eventi",
+              "Design responsive e spirituale"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "slug": "wb-crm",
+        "title": "WB CRM",
+        "subtitle": "Piattaforma CRM & Vendite",
+        "description": "CRM completo per le vendite: gestione di lead, contatti e trattative in pipeline kanban, cadenze e attività, campagne email (con warming) e WhatsApp, telefonia GoTo con trascrizione, analisi di chiamate e riunioni con agenti IA, automazioni e proposte — su architettura enterprise.",
+        "category": "sistemas",
+        "icon": "📊",
+        "technologies": [
+          "Next.js",
+          "NestJS",
+          "TypeScript",
+          "PostgreSQL",
+          "Prisma",
+          "Google APIs",
+          "AWS S3",
+          "dnd-kit",
+          "React Flow",
+          "Recharts"
+        ],
+        "categories": [
+          "sistemas",
+          "automation"
+        ],
+        "imageUrl": "/img/projects/wbcrm-cover.jpg"
+      },
+      {
+        "id": "6",
+        "slug": "ai-agents",
+        "title": "Agenti IA",
+        "subtitle": "Sistema Multi-agente",
+        "description": "Sistema multi-agente di IA orchestrato con LangGraph: un router classifica l'intento e indirizza ad agenti specializzati (CRM e finanze) che agiscono collegandosi ai servizi della piattaforma. Usa modelli OpenAI e Anthropic, esposto come servizio FastAPI.",
+        "category": "ai",
+        "icon": "🤖",
+        "technologies": [
+          "Python",
+          "FastAPI",
+          "LangGraph",
+          "LangChain",
+          "OpenAI",
+          "Anthropic",
+          "Docker"
+        ]
+      },
+      {
+        "id": "7",
+        "slug": "konnen",
+        "title": "Konnen",
+        "subtitle": "App di Valutazione Fisica",
+        "description": "App di valutazione fisica per KONNEN: registrazione degli allievi con foto, test di performance (Cooper), zone cardiache, VO₂max, IMC, storico dell'evoluzione con grafici e generazione/condivisione di report PDF via WhatsApp ed email — con accesso protetto da password.",
+        "category": "sistemas",
+        "icon": "💪",
+        "technologies": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "SQLite",
+          "jsPDF",
+          "Recharts",
+          "Vercel Blob"
+        ],
+        "imageUrl": "/img/projects/konnen-cover.jpg"
+      },
+      {
+        "id": "8",
+        "slug": "calendar",
+        "title": "Calendar",
+        "subtitle": "Agenda & Abitudini",
+        "description": "App di produttività: agenda con eventi ricorrenti, categorie ed etichette, monitoraggio di abitudini e obiettivi settimanali/mensili, promemoria e dashboard — con sincronizzazione Google Calendar. Backend NestJS (Prisma/PostgreSQL) e frontend Next.js.",
+        "category": "sistemas",
+        "icon": "📆",
+        "technologies": [
+          "NestJS",
+          "TypeScript",
+          "Prisma",
+          "PostgreSQL",
+          "Google Calendar API",
+          "Next.js",
+          "Docker"
+        ],
+        "imageUrl": "/img/projects/calendar-cover.jpg"
+      },
+      {
+        "id": "9",
+        "slug": "salto",
+        "title": "Salto",
+        "subtitle": "Sito & Proposte",
+        "description": "Sito multilingue di Salto con deck di vendita protetti (automazione, siti web, Google Business e ordini di servizio), moduli di briefing e ordini che generano PDF e inviano email automatiche — animazioni GSAP, scroll fluido (Lenis) e tracciamento eventi.",
+        "category": "website",
+        "icon": "🚀",
+        "technologies": [
+          "Next.js",
+          "TypeScript",
+          "next-intl",
+          "GSAP",
+          "Lenis",
+          "React Email",
+          "Resend",
+          "jsPDF",
+          "Vercel Analytics"
+        ],
+        "liveUrl": "https://saltoup.com",
+        "imageUrl": "/img/projects/salto-cover.jpg"
+      },
+      {
+        "id": "10",
+        "slug": "wb-project-manager",
+        "title": "WB Project Manager",
+        "subtitle": "Project Management",
+        "description": "Strumento di project management in stile Linear/Jira: workspace, progetti, issue, milestone, label e feature, con board kanban trascinabili, time tracking, dashboard, command palette e autenticazione.",
+        "category": "sistemas",
+        "icon": "🗂️",
+        "technologies": [
+          "Next.js",
+          "TypeScript",
+          "Prisma",
+          "SQLite",
+          "NextAuth",
+          "dnd-kit",
+          "Radix UI",
+          "Tailwind CSS",
+          "Zod"
+        ],
+        "imageUrl": "/img/projects/wb-project-manager-cover.jpg"
+      },
+      {
+        "id": "11",
+        "slug": "stylos",
+        "title": "Stylos",
+        "subtitle": "Negozio Online",
+        "description": "Negozio online completo: catalogo con varianti (colori, taglie, marchi e categorie), carrello persistente, checkout integrato con MercadoPago, calcolo della spedizione, gestione ordini, pannello amministrativo e account con verifica email.",
+        "category": "ecommerce",
+        "icon": "🛍️",
+        "technologies": [
+          "Next.js",
+          "NestJS",
+          "TypeScript",
+          "PostgreSQL",
+          "Prisma",
+          "MercadoPago",
+          "NextAuth",
+          "Zustand",
+          "SendGrid",
+          "GSAP"
+        ],
+        "categories": [
+          "ecommerce",
+          "sistemas"
+        ],
+        "imageUrl": "/img/projects/stylos-cover.jpg",
+        "slides": [
+          {
+            "type": "image",
+            "imageUrl": "/img/projects/stylos-pdp.jpg",
+            "title": "Pagina prodotto",
+            "description": "Prodotto con varianti (colori e taglie), galleria immagini e aggiunta al carrello."
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "slug": "vetor",
+        "title": "Vetor",
+        "subtitle": "Revisione IRPF (Desktop)",
+        "description": "Applicazione desktop (Tauri + Rust + React) per la revisione delle dichiarazioni IRPF (imposta sul reddito brasiliana): importa e interpreta i file .DEC della Receita Federal, estrae i dati per CPF ed esercizio (redditi imponibili, esenti e a tassazione esclusiva) e li organizza localmente in SQLite — con licenze legate al dispositivo (JWT) e backend di licenze in NestJS.",
+        "category": "sistemas",
+        "icon": "🖥️",
+        "technologies": [
+          "Tauri",
+          "Rust",
+          "React",
+          "TypeScript",
+          "SQLite",
+          "NestJS",
+          "PostgreSQL",
+          "Prisma",
+          "JWT"
+        ],
+        "imageUrl": "/img/projects/vetor-home.jpg",
+        "slides": [
+          {
+            "type": "image",
+            "imageUrl": "/img/projects/vetor-login.jpg",
+            "title": "Login sicuro",
+            "description": "Accesso con email/password o Google, con licenza legata al dispositivo."
+          },
+          {
+            "type": "image",
+            "imageUrl": "/img/projects/vetor-home.jpg",
+            "title": "Ricerca contribuente",
+            "description": "Elenco contribuenti filtrato per anno, nome e CPF — con gruppo e stato finanziario."
+          },
+          {
+            "type": "image",
+            "imageUrl": "/img/projects/vetor-detail.jpg",
+            "title": "Dettaglio della dichiarazione",
+            "description": "Redditi (imponibili, esenti ed esclusivi) e pagamenti/detrazioni per esercizio."
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "slug": "salao-loha",
+        "title": "Salão Loha",
+        "subtitle": "Sito Salone di Bellezza",
+        "description": "Sito single-page di marketing per Salão Loha (estetica e bellezza a Osasco, Brasile): servizi, portfolio con lightbox, calendario animato, posizione e contatto — animazioni Lottie/AOS e deploy continuo su Vercel.",
+        "category": "website",
+        "icon": "💇",
+        "technologies": [
+          "HTML",
+          "CSS",
+          "Bootstrap",
+          "JavaScript",
+          "Lottie",
+          "AOS",
+          "Vercel"
+        ],
+        "liveUrl": "https://www.salaoloha.com.br/",
+        "imageUrl": "/img/projects/salao-loha-cover.jpg"
+      },
+      {
+        "id": "14",
+        "slug": "financas",
+        "title": "Finanze",
+        "subtitle": "Finanze e Investimenti",
+        "description": "Sistema completo di finanze personali e investimenti: conti, transazioni, categorie, centri di costo, budget e obiettivi, ricorrenze e fatture, conferimenti, portafoglio cripto e dati di mercato (B3, Yahoo Finance, Binance) — include lo screener azionario Magic Formula. Backend in Go (DDD) con frontend Next.js.",
+        "category": "sistemas",
+        "icon": "💰",
+        "technologies": [
+          "Go",
+          "Next.js",
+          "TypeScript",
+          "PostgreSQL",
+          "Python",
+          "Docker",
+          "Binance API",
+          "Yahoo Finance"
+        ]
+      }
+    ]
+  }
 }

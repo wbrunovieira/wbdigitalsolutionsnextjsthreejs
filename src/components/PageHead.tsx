@@ -19,6 +19,8 @@ interface PageHeadProps {
   pageKey?: string;
   dynamicTitle?: string;
   customTitle?: string;
+  customDescription?: string;
+  customImage?: string;
   blogPost?: {
     title: string;
     description: string;
@@ -28,11 +30,13 @@ interface PageHeadProps {
   };
 }
 
-const PageHead: React.FC<PageHeadProps> = ({ 
-  pageKey, 
+const PageHead: React.FC<PageHeadProps> = ({
+  pageKey,
   dynamicTitle,
   customTitle,
-  blogPost 
+  customDescription,
+  customImage,
+  blogPost
 }) => {
   const t = useTranslations();
   const { language } = useLanguage();
@@ -55,7 +59,7 @@ const PageHead: React.FC<PageHeadProps> = ({
 
   // Get description based on page
   const descriptionKey = pageKey ? `metaDescription_${pageKey}` : "metaDescription";
-  const description = (t as any)[descriptionKey] || t.metaDescription || "";
+  const description = customDescription || (t as any)[descriptionKey] || t.metaDescription || "";
 
   // Get keywords based on page
   const keywordsKey = pageKey ? `metaKeywords_${pageKey}` : "metaKeywords";
@@ -79,6 +83,11 @@ const PageHead: React.FC<PageHeadProps> = ({
   // Build the canonical URL
   const baseUrl = "https://www.wbdigitalsolutions.com";
   const canonicalUrl = `${baseUrl}${router.asPath}`;
+
+  // Per-page social image when provided, else the brand logo.
+  const ogImage = customImage
+    ? (customImage.startsWith("http") ? customImage : `${baseUrl}${customImage}`)
+    : "https://www.wbdigitalsolutions.com/svg/logo.svg";
 
   // Generate schemas based on page type
   const schemas = [];
@@ -165,7 +174,7 @@ const PageHead: React.FC<PageHeadProps> = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content="https://www.wbdigitalsolutions.com/svg/logo.svg" />
+      <meta property="og:image" content={ogImage} />
       <meta property="og:locale" content={language === "pt-BR" ? "pt_BR" : language} />
 
       {/* Twitter */}
@@ -173,7 +182,7 @@ const PageHead: React.FC<PageHeadProps> = ({
       <meta name="twitter:site" content="@wbdigitalsolutions" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="https://www.wbdigitalsolutions.com/svg/logo.svg" />
+      <meta name="twitter:image" content={ogImage} />
 
       {/* Canonical URL */}
       <link rel="canonical" href={canonicalUrl} />
