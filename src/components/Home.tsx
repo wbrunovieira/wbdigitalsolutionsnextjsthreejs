@@ -24,10 +24,17 @@ const Portal3DSectionGSAP = dynamic(() => import('./home/Portal3DSectionGSAP'), 
     ssr: false
 });
 
+// PROTOTYPE: persistent scroll-driven 3D computer (desktop only). Self-nullifies
+// on mobile, where the hero keeps its own ComputersCanvas.
+const ScrollComputer3D = dynamic(() => import('./canvas/ScrollComputer3D'), {
+    ssr: false
+});
+
 const Home: React.FC = () => {
     return (
         <main className="flex flex-col min-h-screen bg-custom-gradient bg-[#350545] w-full max-w-none mx-0 px-0">
 
+                <ScrollComputer3D />
                 <HeroSection />
                 <Portal3DSectionGSAP />
                 <InfiniteScrollHash />

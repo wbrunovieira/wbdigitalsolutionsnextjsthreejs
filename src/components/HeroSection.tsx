@@ -1,6 +1,7 @@
 import { useTranslations } from "@/contexts/TranslationContext";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { AnimatedTextHero } from "./AnimatedTextHero";
 
@@ -11,6 +12,20 @@ const ComputersCanvas = dynamic(() => import("./canvas/ComputersCanvas"), {
 
 const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();
+
+  // PROTOTYPE: on desktop the persistent ScrollComputer3D (in Home) draws the
+  // model; the hero box becomes a transparent spacer (pointer-events let the
+  // drag reach the fixed canvas behind). Mobile keeps the boxed ComputersCanvas.
+  const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const apply = () => setIsDesktop(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   return (
 <section className="w-full pt-32 bg-modern-gradient relative overflow-hidden">
@@ -46,9 +61,10 @@ const HeroSection: React.FC = () => {
     
  
 
-       <div className="w-full md:w-[600px] h-[500px] overflow-visible">
-
-        <ComputersCanvas />
+       <div className={`w-full md:w-[600px] h-[500px] overflow-visible ${mounted && isDesktop ? "pointer-events-none" : ""}`}>
+        {/* Desktop: empty spacer — the persistent ScrollComputer3D renders the model.
+            Mobile (or pre-mount): the original boxed canvas. */}
+        {(!mounted || !isDesktop) && <ComputersCanvas />}
        </div>
 
     
