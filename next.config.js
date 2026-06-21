@@ -78,7 +78,6 @@ const nextConfig = {
                 https://fonts.gstatic.com
                 https://fonts.googleapis.com
                 https://region1.google-analytics.com
-                https://tr-rc.lfeeder.com
                 https://www.facebook.com
                 https://cdn.jsdelivr.net
                 data:;
@@ -86,7 +85,6 @@ const nextConfig = {
                 https://connect.facebook.net
                 https://www.googletagmanager.com
                 https://www.google-analytics.com
-                https://sc.lfeeder.com
                 https://www.gstatic.com;
               worker-src 'self' blob:;
               style-src 'self' 'unsafe-inline';
@@ -94,9 +92,7 @@ const nextConfig = {
                 https://www.facebook.com
                 https://www.google.com
                 https://www.google-analytics.com
-                https://tr-rc.lfeeder.com
                 https://www.wbdigitalsolutions.com
-                https://tr.lfeeder.com
                 https://www.google.com.br
                 data:;
               font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
