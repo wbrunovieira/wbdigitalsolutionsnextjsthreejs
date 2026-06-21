@@ -1,4 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -75,6 +76,12 @@ const ThreeDShowcase: React.FC = () => {
 
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
+      <Head>
+        <title>WB - 3D Office Showcase | WB Digital Solutions</title>
+        <meta name="description" content="Interactive 3D office experience by WB Digital Solutions." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://www.wbdigitalsolutions.com/3d-showcase" />
+      </Head>
       {/* Language Selector */}
       <div className={`absolute z-50 flex gap-1 ${isMobile ? 'top-2 right-2' : 'top-4 left-1/2 transform -translate-x-1/2'}`}>
         <button

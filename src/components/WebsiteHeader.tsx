@@ -90,7 +90,7 @@ export const WebsiteHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) 
     return (
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white mb-8 bg-primary/70 md:bg-transparent ">
 
-            <h1 className="text-xl md:text-4xl">
+            <h1 className="text-xl md:text-4xl" aria-label={`${config.name1} ${config.name2}`}>
                 <span aria-hidden="true" ref={name1Ref} className="flex space-x-1">
                      {config.name1.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">

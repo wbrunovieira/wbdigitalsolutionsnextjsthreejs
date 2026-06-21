@@ -37,13 +37,13 @@ const Footer: React.FC = () => {
             </p>
 
             <p className="flex items-center">
-              <FiMail className="mr-2" />
+              <FiMail aria-hidden="true" className="mr-2" />
               <a href="mailto:bruno@wbdigitalsolutions.com">
                 bruno@wbdigitalsolutions.com
               </a>
             </p>
             <p className="flex items-center">
-              <SiWhatsapp className="mr-2" />
+              <SiWhatsapp aria-hidden="true" className="mr-2" />
               <a
                 href="https://wa.me/5511982864581"
                 target="_blank"
@@ -55,17 +55,17 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="flex space-x-4 mt-6">
-            <Link href="https://www.instagram.com/wb.digitalsolutions/">
-              <FaInstagram className="text-lg hover:scale-110 transition-transform duration-300" />
+            <Link href="https://www.instagram.com/wb.digitalsolutions/" aria-label="Instagram">
+              <FaInstagram aria-hidden="true" className="text-lg hover:scale-110 transition-transform duration-300" />
             </Link>
-            <Link href="https://www.facebook.com/wb.digitalsolutions">
-              <FaFacebookF className="text-lg hover:scale-110 transition-transform duration-300" />
+            <Link href="https://www.facebook.com/wb.digitalsolutions" aria-label="Facebook">
+              <FaFacebookF aria-hidden="true" className="text-lg hover:scale-110 transition-transform duration-300" />
             </Link>
-            <Link href="https://www.youtube.com/@wbdigitalsolutions">
-              <FaYoutube className="text-lg hover:scale-110 transition-transform duration-300" />
+            <Link href="https://www.youtube.com/@wbdigitalsolutions" aria-label="YouTube">
+              <FaYoutube aria-hidden="true" className="text-lg hover:scale-110 transition-transform duration-300" />
             </Link>
-            <Link href="https://www.tiktok.com/@wb.digitalsolutions">
-              <FaTiktok className="text-lg hover:scale-110 transition-transform duration-300" />
+            <Link href="https://www.tiktok.com/@wb.digitalsolutions" aria-label="TikTok">
+              <FaTiktok aria-hidden="true" className="text-lg hover:scale-110 transition-transform duration-300" />
             </Link>
           </div>
         </div>

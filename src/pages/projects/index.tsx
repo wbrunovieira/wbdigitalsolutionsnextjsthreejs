@@ -41,7 +41,7 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <>
-      <PageHead pageKey="projects" customTitle={content.title} />
+      <PageHead pageKey="projects" />
 
       <main className="min-h-screen bg-gradient-to-b from-primary via-primary/95 to-primary">
         {/* 3D hero — floating, clickable project cards */}

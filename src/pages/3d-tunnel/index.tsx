@@ -1,4 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
@@ -36,6 +37,12 @@ const ThreeDTunnel: React.FC = () => {
   
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
+      <Head>
+        <title>WB - 3D Tunnel Experience | WB Digital Solutions</title>
+        <meta name="description" content="Interactive 3D tunnel experience by WB Digital Solutions." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://www.wbdigitalsolutions.com/3d-tunnel" />
+      </Head>
       {/* Exit Button */}
       <div className={`absolute z-50 ${isMobile ? 'top-2 left-2' : 'top-4 left-4'}`}>
         <Link href="/websites">

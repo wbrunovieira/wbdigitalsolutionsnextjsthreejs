@@ -192,12 +192,9 @@ const PageHead: React.FC<PageHeadProps> = ({
       {/* Favicon */}
       <link rel="icon" href="/img/favicon.png" />
 
-      {/* Language alternates for SEO - Dynamic based on current language */}
-      <link rel="alternate" hrefLang="en" href={`${baseUrl}${router.pathname}`} />
-      <link rel="alternate" hrefLang="es" href={`${baseUrl}/es${router.pathname}`} />
-      <link rel="alternate" hrefLang="it" href={`${baseUrl}/it${router.pathname}`} />
-      <link rel="alternate" hrefLang="pt-BR" href={`${baseUrl}/pt-BR${router.pathname}`} />
-      <link rel="alternate" hrefLang="pt" href={`${baseUrl}/pt-BR${router.pathname}`} />
+      {/* Single-URL multilingual site (client-side i18n): the language-prefixed
+          routes (/es, /it, /pt-BR) don't exist — they redirect to the canonical
+          URL — so we only emit x-default to avoid hreflang pointing at redirects. */}
       <link rel="alternate" hrefLang="x-default" href={`${baseUrl}${router.pathname}`} />
       </Head>
     </>

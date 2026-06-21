@@ -7,6 +7,10 @@ import { useSpring, animated as a3 } from "@react-spring/three";
 import { useSpring as useWebSpring, animated } from "@react-spring/web";
 import * as THREE from "three";
 
+// Debug logging — silenced in production to avoid console noise.
+const devLog = (...args: unknown[]) => {
+  if (process.env.NODE_ENV !== "production") console.log(...args);
+};
 
 type Direction = "up" | "down" | "left" | "right" | "forward" | "backward";
 
@@ -257,7 +261,7 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
             x: rect.left + rect.width / 2,
             y: rect.top + rect.height / 2,
         };
-        console.log("Posição do elemento clicado:", elementPosition);
+        devLog("Posição do elemento clicado:", elementPosition);
         onClick(data, elementPosition);
     };
 
@@ -442,7 +446,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                 const initialY =
                     elementPosition.y - window.innerHeight / 2 - 100;
 
-                console.log(
+                devLog(
                     "Posição inicial ajustada para a animação do modal (com offset):",
                     {
                         x: initialX,
@@ -450,7 +454,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                     }
                 );
             } else {
-                console.log(
+                devLog(
                     "Posição inicial da animação do modal não disponível"
                 );
             }

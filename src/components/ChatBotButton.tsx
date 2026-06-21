@@ -6,6 +6,11 @@ import { useTranslations } from '@/contexts/TranslationContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/router';
 
+// Debug logging — silenced in production to avoid console noise / info leakage.
+const devLog = (...args: unknown[]) => {
+  if (process.env.NODE_ENV !== 'production') console.log(...args);
+};
+
 interface Message {
   text: string;
   isUser: boolean;
@@ -118,7 +123,7 @@ const ChatBotButton: React.FC = () => {
 
     // Log message send
     const sendTime = new Date().toISOString();
-    console.log(`[${sendTime}] 📤 Sending message:`, {
+    devLog(`[${sendTime}] 📤 Sending message:`, {
       message: messageToSend,
       user_id: userId,
       language: language,
@@ -144,7 +149,7 @@ const ChatBotButton: React.FC = () => {
         : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000');
 
       // Log which API URL is being used
-      console.log(`[${new Date().toISOString()}] 🌐 Using API URL:`, apiUrl, `(${process.env.NODE_ENV} mode)`);
+      devLog(`[${new Date().toISOString()}] 🌐 Using API URL:`, apiUrl, `(${process.env.NODE_ENV} mode)`);
 
       // Only try to fetch if API URL is configured
       if (apiUrl) {
@@ -154,7 +159,7 @@ const ChatBotButton: React.FC = () => {
         const useStreaming = false; // Use regular endpoint with response_parts
         
         if (useStreaming) {
-          console.log(`[${requestStartTime}] 🔄 Starting SSE connection to:`, `${apiUrl}/chat/stream`);
+          devLog(`[${requestStartTime}] 🔄 Starting SSE connection to:`, `${apiUrl}/chat/stream`);
           
           // Since EventSource doesn't support POST, we'll use fetch with ReadableStream
           const response = await fetch(`${apiUrl}/chat/stream`, {
@@ -190,7 +195,7 @@ const ChatBotButton: React.FC = () => {
             const { done, value } = await reader.read();
             
             if (done) {
-              console.log(`[${new Date().toISOString()}] ✅ Stream complete`);
+              devLog(`[${new Date().toISOString()}] ✅ Stream complete`);
               break;
             }
             
@@ -207,26 +212,26 @@ const ChatBotButton: React.FC = () => {
                   const data = JSON.parse(dataStr);
                   const eventTime = new Date().toISOString();
             
-                  console.log(`[${eventTime}] 📨 SSE event:`, data);
+                  devLog(`[${eventTime}] 📨 SSE event:`, data);
                   
                   switch(data.type) {
                     case 'acknowledgment':
                       // Show initial acknowledgment
                       setIsTyping(true);
-                      console.log(`[${eventTime}] 👋 Acknowledgment:`, data.message);
+                      devLog(`[${eventTime}] 👋 Acknowledgment:`, data.message);
                       break;
                       
                     case 'thinking':
                       // Update typing indicator
                       setIsTyping(true);
-                      console.log(`[${eventTime}] 🤔 Thinking:`, data.message);
+                      devLog(`[${eventTime}] 🤔 Thinking:`, data.message);
                       break;
                       
                     case 'message':
                       // Show actual message part
                       setIsTyping(false);
                       setMessages(prev => [...prev, { text: data.content, isUser: false }]);
-                      console.log(`[${eventTime}] 💬 Message part:`, data.content);
+                      devLog(`[${eventTime}] 💬 Message part:`, data.content);
                       break;
                       
                     case 'complete':
@@ -235,7 +240,7 @@ const ChatBotButton: React.FC = () => {
                       const end = performance.now();
                       const responseTimeMs = Math.round(end - start);
                       setResponseTime(responseTimeMs);
-                      console.log(`[${eventTime}] ✅ Stream complete, total time: ${responseTimeMs}ms`);
+                      devLog(`[${eventTime}] ✅ Stream complete, total time: ${responseTimeMs}ms`);
                       break;
                       
                     case 'error':
@@ -255,7 +260,7 @@ const ChatBotButton: React.FC = () => {
           
         } else {
           // Fallback to regular POST request
-          console.log(`[${requestStartTime}] 🔄 Making API request to:`, `${apiUrl}/chat`);
+          devLog(`[${requestStartTime}] 🔄 Making API request to:`, `${apiUrl}/chat`);
           
           const response = await fetch(`${apiUrl}/chat`, {
             method: 'POST',
@@ -271,7 +276,7 @@ const ChatBotButton: React.FC = () => {
           });
 
           const responseReceivedTime = new Date().toISOString();
-          console.log(`[${responseReceivedTime}] 📨 Response received:`, {
+          devLog(`[${responseReceivedTime}] 📨 Response received:`, {
             status: response.status,
             ok: response.ok,
             statusText: response.statusText
@@ -289,7 +294,7 @@ const ChatBotButton: React.FC = () => {
           const dataProcessedTime = new Date().toISOString();
           
           // Log the full response structure for debugging
-          console.log(`[${dataProcessedTime}] ✅ Response processed:`, {
+          devLog(`[${dataProcessedTime}] ✅ Response processed:`, {
             responseTime: `${responseTimeMs}ms`,
             hasResponseParts: !!data.response_parts,
             partsCount: data.response_parts?.length || 0,
@@ -307,12 +312,12 @@ const ChatBotButton: React.FC = () => {
           let messageParts = [];
           
           if (data.response_parts && data.response_parts.length > 0) {
-            console.log(`[${new Date().toISOString()}] 📊 Using response_parts from backend:`, data.response_parts);
+            devLog(`[${new Date().toISOString()}] 📊 Using response_parts from backend:`, data.response_parts);
             messageParts = data.response_parts;
           } else if (data.revised_response || data.raw_response) {
             // If no parts, split the response into sentences
             const fullResponse = data.revised_response || data.raw_response;
-            console.log(`[${new Date().toISOString()}] 📊 Splitting response into sentences`);
+            devLog(`[${new Date().toISOString()}] 📊 Splitting response into sentences`);
             
             // Split by sentence endings but keep the punctuation
             // Also split on exclamation with emoji
@@ -351,7 +356,7 @@ const ChatBotButton: React.FC = () => {
               }
             }
             
-            console.log(`[${new Date().toISOString()}] 📊 Split into ${messageParts.length} parts`);
+            devLog(`[${new Date().toISOString()}] 📊 Split into ${messageParts.length} parts`);
           }
           
           if (messageParts.length > 0) {
@@ -361,7 +366,7 @@ const ChatBotButton: React.FC = () => {
             const initialDelay = 500; // Small initial delay
             const betweenDelay = isGreeting ? 400 : 700; // As specified by backend
             
-            console.log(`[${new Date().toISOString()}] 📝 Displaying ${messageParts.length} message parts, isGreeting: ${isGreeting}`);
+            devLog(`[${new Date().toISOString()}] 📝 Displaying ${messageParts.length} message parts, isGreeting: ${isGreeting}`);
             
             // Initial delay before first message
             await new Promise(resolve => setTimeout(resolve, initialDelay));
@@ -376,7 +381,7 @@ const ChatBotButton: React.FC = () => {
               
               // Calculate typing time (shorter for better UX)
               const typingTime = Math.min(part.length * 5, 800);
-              console.log(`[${new Date().toISOString()}] 💬 Typing part ${i+1}/${messageParts.length}: "${part.substring(0, 50)}..." (${typingTime}ms)`);
+              devLog(`[${new Date().toISOString()}] 💬 Typing part ${i+1}/${messageParts.length}: "${part.substring(0, 50)}..." (${typingTime}ms)`);
               
               // Simulate typing
               await new Promise(resolve => setTimeout(resolve, typingTime));
@@ -387,13 +392,13 @@ const ChatBotButton: React.FC = () => {
               
               // Wait before next message (if not last)
               if (i < messageParts.length - 1) {
-                console.log(`[${new Date().toISOString()}] ⏱️ Waiting ${betweenDelay}ms before next part`);
+                devLog(`[${new Date().toISOString()}] ⏱️ Waiting ${betweenDelay}ms before next part`);
                 await new Promise(resolve => setTimeout(resolve, betweenDelay));
               }
             }
           } else {
             // Fallback to single message if no parts at all
-            console.log(`[${new Date().toISOString()}] ⚠️ No response found, using fallback`);
+            devLog(`[${new Date().toISOString()}] ⚠️ No response found, using fallback`);
             const reply = t.fallbackReply || "Desculpe, não consegui processar sua mensagem.";
             
             // Show typing briefly
@@ -421,11 +426,11 @@ const ChatBotButton: React.FC = () => {
       const fallbackMessage = t.fallbackReply || "I'm currently offline. Please contact us directly at bruno@wbdigitalsolutions.com";
       setMessages(prev => [...prev, { text: fallbackMessage, isUser: false }]);
       
-      console.log(`[${errorTime}] 🔄 Using fallback message:`, fallbackMessage);
+      devLog(`[${errorTime}] 🔄 Using fallback message:`, fallbackMessage);
     } finally {
       const finalTime = new Date().toISOString();
       const totalTime = Math.round(performance.now() - start);
-      console.log(`[${finalTime}] 🏁 Chat interaction completed:`, {
+      devLog(`[${finalTime}] 🏁 Chat interaction completed:`, {
         totalTime: `${totalTime}ms`,
         isTyping: false
       });

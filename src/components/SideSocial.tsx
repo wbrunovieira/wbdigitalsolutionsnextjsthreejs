@@ -96,6 +96,7 @@ const SideSocial = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         key={index}
+                        aria-label={link.name}
                         onMouseEnter={() => setHoveredIndex(index)}
                     >
                         {/* Tooltip */}

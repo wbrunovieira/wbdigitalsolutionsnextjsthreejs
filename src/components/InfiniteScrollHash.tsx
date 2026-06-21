@@ -32,8 +32,6 @@ const InfiniteScrollHash: React.FC = () => {
         // currentMessages.AugmentedRealityKey,
         currentMessages.EADKey,
     ].filter(tag => tag !== undefined);
-    
-    console.log("Tags filtradas:", tags.length, tags);
 
     return (
         <section className="w-full max-w-[1400px] mx-auto py-10 bg-[#350545] overflow-hidden mt-32">

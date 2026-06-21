@@ -54,12 +54,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   // Load the correct language on mount (client-side only)
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
-    console.log('LanguageContext - savedLanguage from localStorage:', savedLanguage);
-    
+
     if (savedLanguage) {
       // Fix legacy "pt" value to "pt-BR"
       if (savedLanguage === "pt") {
-        console.log('LanguageContext - migrating "pt" to "pt-BR"');
         localStorage.setItem("language", "pt-BR");
         setLanguage("pt-BR");
       } else {
@@ -67,7 +65,6 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
       }
     } else {
       const browserLanguage = detectBrowserLanguage();
-      console.log('LanguageContext - detected browser language:', browserLanguage);
       setLanguage(browserLanguage);
     }
     setIsLoaded(true);

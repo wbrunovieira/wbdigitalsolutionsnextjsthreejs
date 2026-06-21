@@ -182,16 +182,15 @@ const Nav: React.FC = () => {
                                 key={index}
                                 >
                                 <Link
-                                    className="flex p-3 tracking-widest lowercase font-light cursor-pointer "
                                     href={link.path}
-                                    legacyBehavior
+                                    className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light whitespace-nowrap cursor-pointer ${
+                                        isActive
+                                            ? "text-white semibold underline-menu link-active"
+                                            : "text-slate-500"
+                                    }`}
                                 >
-                                    <motion.a
-                                        className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light text-white whitespace-nowrap cursor-pointer ${
-                                            isActive
-                                                ? "text-white semibold underline-menu link-active"
-                                                : "text-slate-500"
-                                        }`}
+                                    <motion.span
+                                        className="flex"
                                         initial={{ width: "0%" }}
                                         animate={{
                                             width: isActive ? "100%" : "0%",
@@ -202,7 +201,7 @@ const Nav: React.FC = () => {
                                         }}
                                     >
                                         {link.name}
-                                    </motion.a>
+                                    </motion.span>
                                 </Link>
 
                             </div>
