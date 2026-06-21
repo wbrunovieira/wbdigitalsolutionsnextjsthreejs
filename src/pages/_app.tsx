@@ -72,7 +72,14 @@ export default function App(props: AppProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', { send_page_view: true });
+            // Disable Google Ads signals/remarketing so GA4 (linked to an Ads
+            // account) stops pinging doubleclick — no third-party cookies, no CSP
+            // errors. GA4 measurement itself keeps working (first-party _ga).
+            gtag('config', '${GA_TRACKING_ID}', {
+              send_page_view: true,
+              allow_google_signals: false,
+              allow_ad_personalization_signals: false,
+            });
           `,
         }}
       />

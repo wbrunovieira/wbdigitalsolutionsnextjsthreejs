@@ -18,6 +18,8 @@ const GoogleAnalytics = () => {
           
           gtag('config', '${GA_TRACKING_ID}', {
             page_path: window.location.pathname,
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false,
           });
         `}
       </Script>
