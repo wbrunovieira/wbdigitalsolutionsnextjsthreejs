@@ -69,43 +69,43 @@ const Technologies = () => {
   const technologies = [
     {
       name: "Next.js",
-      icon: <SiNextdotjs className="text-6xl text-gray-800" />, 
+      icon: <SiNextdotjs aria-hidden="true" className="text-6xl text-gray-800" />, 
     },
     {
       name: "Go",
-      icon: <SiGoland className="text-6xl text-blue-500" />, 
+      icon: <SiGoland aria-hidden="true" className="text-6xl text-blue-500" />, 
     },
     {
       name: "Rust",
-      icon: <SiRust className="text-6xl text-orange-500" />, 
+      icon: <SiRust aria-hidden="true" className="text-6xl text-orange-500" />, 
     },
     {
       name: "n8n",
-      icon: <SiN8N className="text-6xl text-green-500" />, 
+      icon: <SiN8N aria-hidden="true" className="text-6xl text-green-500" />, 
     },
     {
       name: "TypeScript",
-      icon: <SiTypescript className="text-6xl text-blue-600" />, 
+      icon: <SiTypescript aria-hidden="true" className="text-6xl text-blue-600" />, 
     },
     {
       name: "Python",
-      icon: <SiPython className="text-6xl text-yellow-500" />, 
+      icon: <SiPython aria-hidden="true" className="text-6xl text-yellow-500" />, 
     },
     {
       name: "Docker",
-      icon: <SiDocker className="text-6xl text-blue-400" />, 
+      icon: <SiDocker aria-hidden="true" className="text-6xl text-blue-400" />, 
     },
     {
       name: "Node.js",
-      icon: <SiNodedotjs className="text-6xl text-green-500" />, 
+      icon: <SiNodedotjs aria-hidden="true" className="text-6xl text-green-500" />, 
     },
     {
       name: "Redis",
-      icon: <SiRedis className="text-6xl text-red-500" />, 
+      icon: <SiRedis aria-hidden="true" className="text-6xl text-red-500" />, 
     },
     {
       name: "PostgreSQL",
-      icon: <SiPostgresql className="text-6xl text-blue-500" />, 
+      icon: <SiPostgresql aria-hidden="true" className="text-6xl text-blue-500" />, 
     },
   ];
 

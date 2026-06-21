@@ -82,6 +82,7 @@ const nextConfig = {
                 https://cdn.jsdelivr.net
                 https://ad.doubleclick.net
                 https://stats.g.doubleclick.net
+                https://pagead2.googlesyndication.com
                 https://va.vercel-scripts.com
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
@@ -100,6 +101,7 @@ const nextConfig = {
                 https://www.google-analytics.com
                 https://googleads.g.doubleclick.net
                 https://www.googleadservices.com
+                https://pagead2.googlesyndication.com
                 https://www.wbdigitalsolutions.com
                 https://www.google.com.br
                 data:;

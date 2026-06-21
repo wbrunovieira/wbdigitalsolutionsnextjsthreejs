@@ -42,15 +42,15 @@ const CallToAction = () => {
             href="https://wa.me/5511982864581"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-6 py-3 bg-green-500 text-lg font-semibold rounded-lg shadow-md hover:shadow-lg hover:bg-green-600 transform hover:scale-105 transition-transform duration-300"
+            className="flex items-center gap-3 px-6 py-3 bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transform hover:scale-105 transition-transform duration-300"
           >
-            <FaWhatsapp className="text-2xl" /> {currentMessages.ctaWhatsapp}
+            <FaWhatsapp aria-hidden="true" className="text-2xl" /> {currentMessages.ctaWhatsapp}
           </a>
           <a
             href="mailto:bruno@wbdigitalsolutions.com"
             className="flex items-center gap-3 px-6 py-3 bg-gray-100 text-gray-800 text-lg font-semibold rounded-lg shadow-md hover:shadow-lg hover:bg-gray-200 transform hover:scale-105 transition-transform duration-300"
           >
-            <FaEnvelope className="text-2xl text-gray-800" /> {currentMessages.ctaEmail}
+            <FaEnvelope aria-hidden="true" className="text-2xl text-gray-800" /> {currentMessages.ctaEmail}
           </a>
         </div>
 
