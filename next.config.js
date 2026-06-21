@@ -86,6 +86,9 @@ const nextConfig = {
                 https://j.clarity.ms
                 https://www.facebook.com
                 https://cdn.jsdelivr.net
+                https://t.clarity.ms
+                https://ad.doubleclick.net
+                https://stats.g.doubleclick.net
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
                 https://connect.facebook.net

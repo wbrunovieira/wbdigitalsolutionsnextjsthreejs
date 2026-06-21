@@ -80,6 +80,15 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     }
   }, [language, isLoaded]);
 
+  // Keep <html lang> in sync with the active language. The SSR value comes from
+  // Accept-Language (_document), but the client may render a different language
+  // (localStorage / navigator), so update it to match the rendered content.
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = language;
+    }
+  }, [language]);
+
   return (
     <LanguageContext.Provider value={{ language, setLanguage, isLoaded }}>
       {children}

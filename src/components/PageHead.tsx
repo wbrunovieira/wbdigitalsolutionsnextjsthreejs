@@ -84,10 +84,12 @@ const PageHead: React.FC<PageHeadProps> = ({
   const baseUrl = "https://www.wbdigitalsolutions.com";
   const canonicalUrl = `${baseUrl}${router.asPath}`;
 
-  // Per-page social image when provided, else the brand logo.
+  // Per-page social image when provided, else a raster default. NOTE: og/twitter
+  // images must be raster (JPG/PNG) — social platforms (Facebook, LinkedIn,
+  // WhatsApp, X) do not render SVG, so the brand SVG logo would show no preview.
   const ogImage = customImage
     ? (customImage.startsWith("http") ? customImage : `${baseUrl}${customImage}`)
-    : "https://www.wbdigitalsolutions.com/svg/logo.svg";
+    : "https://www.wbdigitalsolutions.com/img/herobg5-optimized.jpg";
 
   // Generate schemas based on page type
   const schemas = [];

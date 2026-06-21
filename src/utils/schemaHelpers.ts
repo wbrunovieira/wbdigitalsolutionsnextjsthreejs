@@ -53,7 +53,7 @@ export const getLocalBusinessSchema = (language: string): LocalBusinessSchema =>
     addressLocality: 'São Paulo',
   },
   priceRange: '$$',
-  image: [`${SITE_URL}/img/logo-wb.png`, `${SITE_URL}/svg/logo.svg`],
+  image: [`${SITE_URL}/img/herobg5-optimized.jpg`, `${SITE_URL}/svg/logo.svg`],
 });
 
 export const getServiceSchema = (
