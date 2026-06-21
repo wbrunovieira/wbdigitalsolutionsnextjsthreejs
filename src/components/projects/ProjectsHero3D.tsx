@@ -154,13 +154,14 @@ const ProjectCard3D: React.FC<CardProps> = ({
           {project.icon}
         </Text>
 
-        {/* Title */}
+        {/* Title — anchored from the top so a two-line title grows downward
+            (away from the icon) instead of expanding into it. */}
         <Text
-          position={[0, -halfH * 0.02, faceZ + 0.05]}
+          position={[0, halfH * 0.056, faceZ + 0.05]}
           fontSize={0.22}
           color="#ffffff"
           anchorX="center"
-          anchorY="middle"
+          anchorY="top"
           textAlign="center"
           maxWidth={W * 0.68}
           lineHeight={1.18}
