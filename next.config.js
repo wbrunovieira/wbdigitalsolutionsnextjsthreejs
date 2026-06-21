@@ -73,32 +73,20 @@ const nextConfig = {
                 http://45.90.123.190:8000
                 https://chatbot.wbdigitalsolutions.com
                 https://www.google-analytics.com
-                https://www.googleadservices.com
                 https://www.google.com
                 https://www.gstatic.com
                 https://fonts.gstatic.com
                 https://fonts.googleapis.com
                 https://region1.google-analytics.com
                 https://tr-rc.lfeeder.com
-                https://c.clarity.ms
-                https://e.clarity.ms
-                https://o.clarity.ms
-                https://j.clarity.ms
                 https://www.facebook.com
                 https://cdn.jsdelivr.net
-                https://t.clarity.ms
-                https://ad.doubleclick.net
-                https://stats.g.doubleclick.net
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
                 https://connect.facebook.net
                 https://www.googletagmanager.com
                 https://www.google-analytics.com
-                https://googleads.g.doubleclick.net
-                https://www.googleadservices.com
                 https://sc.lfeeder.com
-                https://www.clarity.ms
-                https://scripts.clarity.ms
                 https://www.gstatic.com;
               worker-src 'self' blob:;
               style-src 'self' 'unsafe-inline';
@@ -106,23 +94,17 @@ const nextConfig = {
                 https://www.facebook.com
                 https://www.google.com
                 https://www.google-analytics.com
-                https://www.googleadservices.com
-                https://googleads.g.doubleclick.net
-                https://www.clarity.ms
                 https://tr-rc.lfeeder.com
-                https://c.clarity.ms
                 https://www.wbdigitalsolutions.com
                 https://tr.lfeeder.com
                 https://www.google.com.br
-                https://c.bing.com
                 data:;
               font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
               frame-src 'self'
                 https://www.youtube.com
                 https://www.googletagmanager.com
                 https://cdn.lightwidget.com
-                https://lightwidget.com
-                https://td.doubleclick.net;
+                https://lightwidget.com;
             `.replace(/\s{2,}/g, ' ').trim()
           },
           {

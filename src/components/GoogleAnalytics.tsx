@@ -1,7 +1,6 @@
 import Script from 'next/script';
 
 const GA_TRACKING_ID = 'G-PZ3WX1KF35';
-const AW_CONVERSION_ID = 'AW-802397591';
 
 const GoogleAnalytics = () => {
   return (
@@ -20,8 +19,6 @@ const GoogleAnalytics = () => {
           gtag('config', '${GA_TRACKING_ID}', {
             page_path: window.location.pathname,
           });
-          
-          gtag('config', '${AW_CONVERSION_ID}');
         `}
       </Script>
     </>
