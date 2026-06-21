@@ -80,11 +80,15 @@ const nextConfig = {
                 https://region1.google-analytics.com
                 https://www.facebook.com
                 https://cdn.jsdelivr.net
+                https://ad.doubleclick.net
+                https://stats.g.doubleclick.net
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
                 https://connect.facebook.net
                 https://www.googletagmanager.com
                 https://www.google-analytics.com
+                https://googleads.g.doubleclick.net
+                https://www.googleadservices.com
                 https://www.gstatic.com;
               worker-src 'self' blob:;
               style-src 'self' 'unsafe-inline';
@@ -92,6 +96,8 @@ const nextConfig = {
                 https://www.facebook.com
                 https://www.google.com
                 https://www.google-analytics.com
+                https://googleads.g.doubleclick.net
+                https://www.googleadservices.com
                 https://www.wbdigitalsolutions.com
                 https://www.google.com.br
                 data:;
@@ -100,7 +106,8 @@ const nextConfig = {
                 https://www.youtube.com
                 https://www.googletagmanager.com
                 https://cdn.lightwidget.com
-                https://lightwidget.com;
+                https://lightwidget.com
+                https://td.doubleclick.net;
             `.replace(/\s{2,}/g, ' ').trim()
           },
           {
