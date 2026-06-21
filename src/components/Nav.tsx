@@ -44,8 +44,10 @@ const Nav: React.FC = () => {
         {
             name: currentMessages.websites,
             path: "/websites",
-     
+
         },
+
+        { name: currentMessages.systems || "Plataformas e Sistemas", path: "/systems", subItems: [] },
 
         { name: currentMessages.automation, path: "/automation", subItems: [] },
 
