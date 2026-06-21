@@ -112,14 +112,49 @@ const Contact: React.FC = () => {
     }
   }
 
+  // Earth drifts organically (and nudges behind the form on the little scroll we
+  // have). We move the CANVAS WRAPPER via CSS transform so the 3D scene — spin
+  // (autoRotate) + user drag (OrbitControls) — stays fully intact. Desktop only.
+  const earthWrapRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let raf = 0;
+    const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
+    const tick = () => {
+      const el = earthWrapRef.current;
+      if (el) {
+        if (window.innerWidth < 768) {
+          el.style.transform = "";
+        } else {
+          const t = performance.now() / 1000;
+          // Map the page's (small) scroll range to a LARGE travel so it has impact.
+          const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+          const p = clamp(window.scrollY / maxScroll, 0, 1);
+          const ease = p * p * (3 - 2 * p); // smoothstep
+          // Quasi-random organic drift (incommensurate sine frequencies).
+          const driftX = Math.sin(t * 0.5) * 32 + Math.sin(t * 0.23 + 1.3) * 20;
+          const driftY = Math.cos(t * 0.42) * 24 + Math.sin(t * 0.17 + 0.6) * 15;
+          // On scroll it sweeps far left + down and recedes (scale), drifting
+          // behind the form for a clear, impactful motion.
+          const sx = -ease * 760;
+          const sy = ease * 130;
+          const scale = 1 - ease * 0.18;
+          el.style.transform = `translate3d(${(driftX + sx).toFixed(1)}px, ${(driftY + sy).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+        }
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
-    <div className="flex flex-col md:flex-row gap-2 mt-32">
-      <div className="bg-custom-gradient flex-1 text-white p-8">
+    <div className="relative flex flex-col md:flex-row gap-2 mt-32 md:overflow-hidden">
+      <div className="relative z-10 flex-1 text-white p-8">
         <motion.div
           initial="hidden"
           animate="show"
           variants={slideIn("left", "tween", 0.2, 1)}
-          className="bg-custom-gradient rounded-lg shadow-md p-6"
+          className="bg-primary/70 backdrop-blur-md rounded-lg shadow-md p-6"
         >
           <div className="flex flex-col items-start">
             <h2 className="bg-custom-purple inline-block rounded text-4xl px-4 py-2 font-bold mb-6">
@@ -189,7 +224,11 @@ const Contact: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="flex-1 flex justify-center items-center min-h-[500px] md:min-h-[500px]" style={{ overflow: 'visible' }}>
+      <div
+        ref={earthWrapRef}
+        className="relative z-0 flex-1 flex justify-center items-center min-h-[500px] md:min-h-[500px] will-change-transform"
+        style={{ overflow: 'visible' }}
+      >
         <EarthCanvas />
       </div>
       <ToastContainer />
