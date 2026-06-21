@@ -8,7 +8,7 @@ const CTAInvitationTranslated: React.FC = () => {
   const currentMessages = useTranslations();
 
   return (
-    <section className="py-16 px-6 bg-gradient-to-r from-primary to-custom-purple text-white text-center rounded shadow-xl mt-32">
+    <section className="py-16 px-6 bg-gradient-to-r from-primary/80 to-custom-purple/80 backdrop-blur-sm text-white text-center rounded shadow-xl mt-32">
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-8">
         <h2 className="text-3xl sm:text-4xl font-bold">
           {currentMessages.ctaHeading}

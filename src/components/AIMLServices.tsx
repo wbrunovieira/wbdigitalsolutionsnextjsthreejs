@@ -100,7 +100,7 @@ const MachineLearningServices: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-custom-gradient text-white py-20 px-6 mt-32"
+      className="relative bg-primary/75 backdrop-blur-sm text-white py-20 px-6 mt-32"
       aria-labelledby="ml-services-title"
     >
       <div className="max-w-6xl mx-auto">

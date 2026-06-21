@@ -104,7 +104,7 @@ const AIAgentFlowSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-20 px-6 bg-white overflow-hidden rounded"
+      className="py-20 px-6 bg-white/80 backdrop-blur-sm overflow-hidden rounded"
       aria-labelledby="ai-agent-heading"
     >
       <div className="max-w-7xl mx-auto">

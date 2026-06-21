@@ -109,7 +109,7 @@ const VisionComputationalSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 px-6 bg-custom-purple text-white"
+      className="relative py-20 px-6 bg-custom-purple/80 backdrop-blur-sm text-white"
       aria-labelledby="vision-computational-heading"
     >
       <div className="max-w-7xl mx-auto">

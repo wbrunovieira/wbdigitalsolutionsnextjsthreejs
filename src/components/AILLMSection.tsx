@@ -113,7 +113,7 @@ const AdvancedLLMSection: React.FC = () => {
     <section
       ref={sectionRef}
       aria-labelledby="advanced-llms-heading"
-      className="relative z-10 bg-gradient-to-br from-primary via-primary to-custom-purple py-20 px-6 text-white mt-32 min-h-[1200px] sm:min-h-[1000px]"
+      className="relative z-10 bg-gradient-to-br from-primary/80 via-primary/80 to-custom-purple/80 backdrop-blur-sm py-20 px-6 text-white mt-32 min-h-[1200px] sm:min-h-[1000px]"
       role="region"
     >
 
