@@ -82,6 +82,7 @@ const nextConfig = {
                 https://cdn.jsdelivr.net
                 https://ad.doubleclick.net
                 https://stats.g.doubleclick.net
+                https://va.vercel-scripts.com
                 data:;
               script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
                 https://connect.facebook.net
@@ -89,6 +90,7 @@ const nextConfig = {
                 https://www.google-analytics.com
                 https://googleads.g.doubleclick.net
                 https://www.googleadservices.com
+                https://va.vercel-scripts.com
                 https://www.gstatic.com;
               worker-src 'self' blob:;
               style-src 'self' 'unsafe-inline';

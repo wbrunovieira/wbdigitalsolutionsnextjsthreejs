@@ -6,9 +6,13 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
 import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { TranslationProvider } from '../contexts/TranslationContext';
 import Layout from '../components/Layout';
+import CookieConsent from '../components/CookieConsent';
 
 const GA_TRACKING_ID = 'G-PZ3WX1KF35';
 
@@ -32,8 +36,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
+      // SPA page views (GA respects Consent Mode; Pixel only if consented/loaded).
       if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('config', GA_TRACKING_ID, { page_path: url });
+        (window as any).gtag('event', 'page_view', { page_path: url });
       }
       if (typeof window !== 'undefined' && (window as any).fbq) {
         (window as any).fbq('track', 'PageView');
@@ -50,6 +55,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        {/* LGPD consent banner — inside the providers so it's localized */}
+        <CookieConsent />
       </TranslationProvider>
     </LanguageProvider>
   );
@@ -58,51 +65,49 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default function App(props: AppProps) {
   return (
     <>
-      {/* Google Analytics — load after page is interactive */}
+      {/* Google Consent Mode v2 — defaults set BEFORE any tag loads. Everything
+          ad/analytics related starts DENIED (no cookies); the consent banner
+          flips it to granted on accept. A prior "granted" choice is restored. */}
       <Script
-        id="ga-gtag"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script
-        id="ga-init"
-        strategy="afterInteractive"
+        id="consent-default"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            // Disable Google Ads signals/remarketing so GA4 (linked to an Ads
-            // account) stops pinging doubleclick — no third-party cookies, no CSP
-            // errors. GA4 measurement itself keeps working (first-party _ga).
-            gtag('config', '${GA_TRACKING_ID}', {
-              send_page_view: true,
-              allow_google_signals: false,
-              allow_ad_personalization_signals: false,
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              functionality_storage: 'granted',
+              security_storage: 'granted',
+              wait_for_update: 500
             });
+            gtag('set', 'url_passthrough', true);
+            gtag('set', 'ads_data_redaction', true);
+            try {
+              if (localStorage.getItem('wb-consent') === 'granted') {
+                gtag('consent', 'update', {
+                  ad_storage: 'granted',
+                  ad_user_data: 'granted',
+                  ad_personalization: 'granted',
+                  analytics_storage: 'granted'
+                });
+              }
+            } catch (e) {}
           `,
         }}
       />
-      {/* Facebook Pixel */}
-      <Script
-        id="fb-pixel"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window,document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1261665671358254');
-            fbq('track', 'PageView');
-          `,
-        }}
-      />
+
+      {/* GA4 via the official Next library (loads gtag.js, respects Consent Mode) */}
+      <GoogleAnalytics gaId={GA_TRACKING_ID} />
+
       <MyApp {...props} />
+
+      {/* Vercel — cookieless, privacy-first metrics (no consent needed) */}
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }
