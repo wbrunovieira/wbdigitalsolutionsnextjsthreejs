@@ -33,51 +33,56 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
 
   const hasError =
     !skipValidation && required && isTouched && (!value.trim() || (isEmail && !isValidEmail));
+  const floated = isFocused || !!value;
 
   return (
-    <div className="relative my-5 w-full">
+    <div className="relative my-6 w-full">
       <input
         type={type}
-        name={name}  // Adicionado para o FormData
+        name={name}
         value={value}
         id={name}
         disabled={disabled}
+        required={required}
+        aria-invalid={hasError}
+        aria-describedby={hasError ? `${name}-error` : undefined}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
           setIsFocused(false);
           setIsTouched(true);
         }}
-        className={`peer bg-transparent border-b-2 w-full py-4 text-lg text-white placeholder-transparent focus:outline-none ${
-          hasError ? "border-red-500" : "border-white focus:border-lightblue"
+        className={`peer bg-transparent border-b-2 w-full py-4 text-lg text-white placeholder-transparent focus:outline-none transition-colors duration-300 ${
+          hasError ? "border-red-500" : "border-white/40 focus:border-yellowcustom"
         } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
       />
-      <label className="absolute top-4 left-0 pointer-events-none">
+      <label htmlFor={name} className="absolute top-4 left-0 pointer-events-none">
         {label.split("").map((char, index) => (
           <span
             key={index}
             className={`inline-block transition-transform duration-300 ${
-              hasError
-                ? "text-red-500"
-                : "text-gray-500 peer-focus:text-lightblue"
-            } ${
-              isFocused || value
-                ? "text-sm -translate-y-6"
-                : "text-lg translate-y-0"
-            }`}
-            style={{
-              transitionDelay: `${index * 50}ms`,
-            }}
+              hasError ? "text-red-500" : "text-gray-300 peer-focus:text-yellowcustom"
+            } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
+            // Cap the per-letter stagger so long labels don't lag on focus.
+            style={{ transitionDelay: `${Math.min(index, 10) * 35}ms` }}
           >
-            {char === " " ? "\u00A0" : char}
+            {char === " " ? " " : char}
           </span>
         ))}
+        {required && (
+          <span
+            aria-hidden="true"
+            className={`ml-0.5 inline-block transition-transform duration-300 ${
+              hasError ? "text-red-500" : "text-yellowcustom"
+            } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
+          >
+            *
+          </span>
+        )}
       </label>
       {hasError && (
-        <p className="text-red-500 text-sm mt-2">
-          {isEmail && !isValidEmail
-            ? "Please enter a valid email address."
-            : errorMessage}
+        <p id={`${name}-error`} role="alert" className="text-red-500 text-sm mt-2">
+          {errorMessage}
         </p>
       )}
     </div>

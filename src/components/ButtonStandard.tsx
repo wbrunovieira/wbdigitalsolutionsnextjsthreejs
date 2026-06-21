@@ -4,12 +4,14 @@ interface ButtonStandardProps {
   buttonText: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 const ButtonStandard: React.FC<ButtonStandardProps> = ({
   buttonText,
   type = "submit",
   disabled = false,
+  isLoading = false,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -17,14 +19,21 @@ const ButtonStandard: React.FC<ButtonStandardProps> = ({
     <button
       type={type}
       disabled={disabled}
+      aria-busy={isLoading}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative flex justify-center gap-2 items-center shadow-xl text-md text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto px-4 py-1 overflow-hidden border-2 rounded-lg whitespace-nowrap min-w-[180px] h-12 ${
-        disabled ? "opacity-50 cursor-not-allowed" : ""
+      className={`group relative flex justify-center gap-2 items-center shadow-xl text-md text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto px-4 py-1 overflow-hidden border-2 border-transparent rounded-lg whitespace-nowrap min-w-[180px] h-12 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary ${
+        disabled ? "opacity-60 cursor-not-allowed hover:translate-y-0 hover:shadow-xl" : ""
       }`}
     >
+      {isLoading && (
+        <span
+          aria-hidden="true"
+          className="h-4 w-4 animate-spin rounded-full border-2 border-primary/30 border-t-primary"
+        />
+      )}
       {buttonText}
-      <div className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-700 transition-all duration-300 group-hover:border-none group-hover:bg-gray-50">
+      <div className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-700 transition-all duration-300 group-hover:border-transparent group-hover:bg-primary/10">
         <svg
           className={`w-4 h-4 transition-transform duration-300 ${
             isHovered ? "rotate-90" : "rotate-45"
