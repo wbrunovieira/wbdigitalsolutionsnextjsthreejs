@@ -73,7 +73,7 @@ const ThreeDExperiencesSection: React.FC = () => {
   const content = getContent();
 
   return (
-    <section className="py-20 mt-20 bg-gradient-to-b from-[#350545] via-[#350545]/80 to-[#350545]">
+    <section className="py-20 mt-20 bg-gradient-to-b from-[#350545]/80 via-[#350545]/60 to-[#350545]/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-8">
         {/* Header */}
         <div className="text-center mb-12">

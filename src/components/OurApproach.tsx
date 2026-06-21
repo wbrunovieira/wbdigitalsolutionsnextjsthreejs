@@ -100,7 +100,7 @@ const OurApproach: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="bg-gray-100 px-6 py-12 lg:px-20 lg:py-24 relative">
+    <section ref={sectionRef} className="bg-gray-100/80 backdrop-blur-sm px-6 py-12 lg:px-20 lg:py-24 relative">
       <div className="text-center max-w-3xl mx-auto">
         <h2 ref={titleRef} className="text-3xl lg:text-5xl font-bold text-gray-800 mb-6 mt-8">
           {currentMessages.approachTitle}

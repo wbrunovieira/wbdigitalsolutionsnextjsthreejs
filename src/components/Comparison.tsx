@@ -85,7 +85,7 @@ const Comparison: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-gray-100 px-6 py-12 lg:px-20 lg:py-24 relative mt-4"
+      className="bg-gray-100/80 backdrop-blur-sm px-6 py-12 lg:px-20 lg:py-24 relative mt-4"
     >
       <div className="text-center max-w-3xl mx-auto">
         <h2

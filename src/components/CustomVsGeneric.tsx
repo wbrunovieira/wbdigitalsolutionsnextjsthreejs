@@ -60,7 +60,7 @@ const CustomVsGeneric: React.FC = () => {
   return (
     <section
         ref={sectionRef}
-        className="bg-primary relative flex flex-col items-center px-6 sm:px-8 md:px-12 lg:px-20 py-12 lg:py-24 mt-32"
+        className="bg-primary/80 backdrop-blur-sm relative flex flex-col items-center px-6 sm:px-8 md:px-12 lg:px-20 py-12 lg:py-24 mt-32"
       >
        <div className="container mx-auto px-4 sm:px-8">
 

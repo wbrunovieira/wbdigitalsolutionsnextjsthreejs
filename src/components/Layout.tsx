@@ -28,7 +28,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Nav />
                 <ChatBotButton /> 
                 <main className="flex-1 w-full">{children}</main>
-                <Footer />
+                {/* relative z-10 keeps the footer above any page-level fixed
+                    background canvas (e.g. the /websites ScrollWebsiteHero3D). */}
+                <div className="relative z-10">
+                    <Footer />
+                </div>
             </div>
           
         </div>

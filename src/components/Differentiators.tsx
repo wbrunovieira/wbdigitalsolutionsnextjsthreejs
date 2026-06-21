@@ -91,7 +91,7 @@ const Differentiators: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-r from-primary via-custom-purple to-primary px-6 py-16 lg:px-20 lg:py-24"
+      className="relative bg-gradient-to-r from-primary/80 via-custom-purple/80 to-primary/80 backdrop-blur-sm px-6 py-16 lg:px-20 lg:py-24"
     >
       <div className="text-center max-w-3xl mx-auto">
         <h2

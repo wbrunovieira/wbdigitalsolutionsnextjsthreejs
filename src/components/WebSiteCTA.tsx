@@ -55,7 +55,7 @@ const CTAWebsite = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative bg-gradient-to-br from-[#350545] via-[#792990] to-[#350545] py-20 px-12 mt-20 rounded mb-20">
+    <section ref={containerRef} className="relative bg-gradient-to-br from-[#350545]/80 via-[#792990]/80 to-[#350545]/80 backdrop-blur-sm py-20 px-12 mt-20 rounded mb-20">
       <div className="max-w-5xl mx-auto relative">
         <div className="floating-icon absolute -top-10 right-10 animate-float">
           <FaRocket className="text-yellowcustom text-5xl transform -rotate-45" />
