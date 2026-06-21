@@ -72,10 +72,14 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, content }) => {
           {/* Visit live site */}
           {project.liveUrl && (
             <div className="mt-7">
+              {/* Dofollow on purpose: this editorial portfolio link passes link
+                  equity to the client's site (helps their Google ranking). Keep
+                  `noopener` for security; drop `noreferrer` so their analytics can
+                  attribute the referral traffic back to this portfolio. */}
               <a
                 href={project.liveUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className="inline-flex items-center gap-2 rounded-full border border-yellowcustom/60 px-6 py-3 text-sm font-semibold text-yellowcustom transition-colors duration-300 hover:bg-yellowcustom hover:text-primary"
               >
                 {ui.visit}
