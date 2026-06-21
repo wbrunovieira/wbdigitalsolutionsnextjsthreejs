@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import ButtonStandard from "./ButtonStandard";
 import dynamic from "next/dynamic";
@@ -10,7 +9,7 @@ import { useTranslations } from "@/contexts/TranslationContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import AnimatedInput from "./AnimatedInput";
 import AnimatedTextarea from "./AnimatedTextarea";
-import { FiMail, FiPhone, FiCopy, FiCheck } from "react-icons/fi";
+import { FiMail, FiPhone, FiCopy, FiCheck, FiCheckCircle } from "react-icons/fi";
 import { SiWhatsapp } from "react-icons/si";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,6 +35,13 @@ const COPY_UI: Record<string, { copy: string; copied: string }> = {
   it: { copy: "Copia", copied: "Copiato!" },
 };
 
+const SUCCESS_UI: Record<string, { title: string; body: string }> = {
+  "pt-BR": { title: "Mensagem enviada!", body: "Obrigado pelo contato. Retornaremos para você em breve." },
+  en: { title: "Message sent!", body: "Thanks for reaching out. We'll get back to you soon." },
+  es: { title: "¡Mensaje enviado!", body: "Gracias por contactarnos. Te responderemos muy pronto." },
+  it: { title: "Messaggio inviato!", body: "Grazie per averci contattato. Ti risponderemo a breve." },
+};
+
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -49,14 +55,13 @@ const Contact: React.FC = () => {
     loadTimeRef.current = Date.now();
   }, []);
 
-  const router = useRouter();
-
   const currentMessages = useTranslations();
   const { language } = useLanguage();
   const lang = language === "pt" ? "pt-BR" : language;
   const directLabel = CONTACT_DIRECT[lang] ?? CONTACT_DIRECT["pt-BR"];
   const copyUi = COPY_UI[lang] ?? COPY_UI["pt-BR"];
   const phoneLabel = PHONE_LABEL[lang] ?? PHONE_LABEL["pt-BR"];
+  const successUi = SUCCESS_UI[lang] ?? SUCCESS_UI["pt-BR"];
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const handleCopy = async (key: string, text: string) => {
@@ -127,18 +132,13 @@ const Contact: React.FC = () => {
         setIsSubmitted(true);
         
         toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
-        
-        // Clear form after a short delay to show success message
-        setTimeout(() => {
-          setName("");
-          setEmail("");
-          setMessage("");
-        }, 500);
 
-        // Redirect after toast is visible
-        setTimeout(() => {
-          router.push("/");
-        }, 2500);
+        // Clear the underlying field values; the inline success panel (driven by
+        // isSubmitted) replaces the form so the user gets a clear confirmation
+        // and stays on the page (no redirect).
+        setName("");
+        setEmail("");
+        setMessage("");
       } else {
         toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
         setIsSubmitting(false);
@@ -195,6 +195,16 @@ const Contact: React.FC = () => {
           className="bg-primary/70 backdrop-blur-md border border-white/10 rounded-lg shadow-md p-6"
         >
           <div className="flex flex-col items-start">
+            {isSubmitted ? (
+              <div role="status" aria-live="polite" className="flex w-full flex-col items-center py-10 text-center">
+                <span className="mb-5 grid h-16 w-16 place-items-center rounded-full bg-green-500/15 text-green-400">
+                  <FiCheckCircle className="h-9 w-9" aria-hidden="true" />
+                </span>
+                <h2 className="mb-2 text-2xl font-bold text-white">{successUi.title}</h2>
+                <p className="max-w-sm text-secondary">{successUi.body}</p>
+              </div>
+            ) : (
+            <>
             <h2 className="bg-custom-purple inline-block rounded text-4xl px-4 py-2 font-bold mb-6">
               {currentMessages.getInTouch}
             </h2>
@@ -259,6 +269,8 @@ const Contact: React.FC = () => {
                 />
               </div>
             </form>
+            </>
+            )}
           </div>
         </motion.div>
 
