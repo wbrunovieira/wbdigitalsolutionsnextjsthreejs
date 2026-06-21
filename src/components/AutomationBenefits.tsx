@@ -91,7 +91,7 @@ const AnimatedBenefits: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="py-16 px-6 bg-primary text-white overflow-hidden"
+      className="py-16 px-6 bg-primary/80 backdrop-blur-sm text-white overflow-hidden"
     >
     
 

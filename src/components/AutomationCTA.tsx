@@ -17,7 +17,7 @@ const CallToAction = () => {
   const currentMessages = useTranslations();
 
   return (
-    <section className="py-16 px-6 bg-gradient-to-br from-custom-purple to-primary text-white text-center rounded-lg shadow-lg overflow-hidden">
+    <section className="py-16 px-6 bg-gradient-to-br from-custom-purple/80 to-primary/80 backdrop-blur-sm text-white text-center rounded-lg shadow-lg overflow-hidden">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <Player

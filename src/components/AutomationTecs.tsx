@@ -110,7 +110,7 @@ const Technologies = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-gray-100 text-gray-800">
+    <section className="py-20 px-6 bg-gray-100/80 backdrop-blur-sm text-gray-800">
       <div className="max-w-7xl mx-auto text-center">
         <h2 ref={titleRef} className="text-4xl font-bold mb-6 text-gray-900">
           {currentMessages.technologiesTitle}

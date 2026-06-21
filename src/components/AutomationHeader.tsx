@@ -30,6 +30,16 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
                 duration: 1.3,
                 ease: 'power2.inOut'
             });
+            // Safety net: the GSAP stagger runs on requestAnimationFrame, so a heavy
+            // main-thread block (e.g. the 3D hero canvas initialising) can stall it
+            // and leave the last letters stuck at opacity 0. This real-time timeout
+            // is independent of GSAP's ticker and guarantees the title is fully shown.
+            const safety = setTimeout(() => {
+                letters.forEach((l) => {
+                    (l as HTMLElement).style.opacity = '1';
+                });
+            }, 4000);
+            return () => clearTimeout(safety);
         }
     }, []);
 
