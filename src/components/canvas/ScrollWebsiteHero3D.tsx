@@ -144,10 +144,15 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       let overlapping: boolean;
       let attempt = 0;
       do {
+        // Ellipsoid distribution (not a box) so the cloud reads organic, not square.
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        const rad = Math.cbrt(Math.random()); // uniform within the volume
+        const sp = Math.sin(phi);
         position = new Vector3(
-          Math.random() * 60 - 30,
-          Math.random() * 40 - 20,
-          Math.random() * 20 - 10
+          Math.cos(theta) * sp * rad * 34,
+          Math.sin(theta) * sp * rad * 22,
+          Math.cos(phi) * rad * 12
         );
         overlapping = list.some((e) => position.distanceTo(e.position) < MIN_DISTANCE);
         attempt++;
@@ -227,8 +232,8 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       }
 
       dummy.position.copy(inst.position);
-      dummy.rotation.x += 0.01;
-      dummy.rotation.y += 0.01;
+      dummy.rotation.x += 0.002;
+      dummy.rotation.y += 0.002;
       dummy.scale.setScalar(Math.max(scale, 0.0001));
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);

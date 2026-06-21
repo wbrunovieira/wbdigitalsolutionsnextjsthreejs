@@ -63,16 +63,18 @@ const Nav: React.FC = () => {
         <nav className={`fixed left-0 right-0 top-0 z-20 transition-all duration-500 ${
             scrolled
                 ? "bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/40 border-b border-purple-700/40"
-                : "bg-modern-gradient backdrop-blur-3xl border-b border-transparent"
+                : "bg-modern-gradient backdrop-blur-3xl border-b border-white/15 shadow-[0_14px_28px_-6px_rgba(0,0,0,0.55)]"
         }`}>
             <ParticlesContainer />
             <div className="text-secondary max-w-[1400px] mx-auto pt-10 px-4 lg:px-10 relative">
             <Image
-               className="absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2"
+               className={`absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
+                   scrolled ? "brightness-[2]" : ""
+               }`}
                 width={300}
                 height={60}
                 src="/svg/barra.svg"
-                alt="bar"
+                alt=""
             />
 
             <div className="relative flex items-center lg:justify-between">
@@ -88,7 +90,7 @@ const Nav: React.FC = () => {
 
                             <p className="text-white text-xs md:text-sm/4 tracking-wide font-light md:font-bold flex flex-col whitespace-nowrap">
                                 WB Digital Solutions &nbsp;
-                                <span className="sm:block hidden font-mono lowercase font-extralight text-slate-500 mt-1">
+                                <span className="sm:block hidden font-mono lowercase font-light tracking-wide text-secondary/85 mt-1">
                                     {currentMessages.technology}
                                 </span>
                             </p>
@@ -183,25 +185,22 @@ const Nav: React.FC = () => {
                                 >
                                 <Link
                                     href={link.path}
-                                    className={`flex p-3 text-xs mt-2  tracking-widest no-underline font-light  lowercase hover:yellow-light whitespace-nowrap cursor-pointer ${
-                                        isActive
-                                            ? "text-white semibold underline-menu link-active"
-                                            : "text-slate-500"
+                                    className={`relative flex p-3 text-xs mt-2 tracking-widest no-underline font-light lowercase whitespace-nowrap cursor-pointer transition-colors duration-300 ${
+                                        isActive ? "text-white" : "text-slate-300/90 hover:text-white"
                                     }`}
                                 >
-                                    <motion.span
-                                        className="flex"
-                                        initial={{ width: "0%" }}
-                                        animate={{
-                                            width: isActive ? "100%" : "0%",
-                                        }}
-                                        transition={{
-                                            duration: 1,
-                                            ease: "easeInOut",
-                                        }}
-                                    >
-                                        {link.name}
-                                    </motion.span>
+                                    <span className="relative z-10">{link.name}</span>
+                                    {isActive && (
+                                        // Single shared indicator: Framer animates it
+                                        // sliding from the previously-active item to this
+                                        // one (shared layout transition via layoutId).
+                                        <motion.span
+                                            layoutId="nav-active-indicator"
+                                            className="pointer-events-none absolute inset-x-2 -bottom-0.5 h-[3px] rounded-full bg-yellowcustom"
+                                            style={{ boxShadow: "0 0 10px 1px rgba(255,185,71,0.7)" }}
+                                            transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                                        />
+                                    )}
                                 </Link>
 
                             </div>

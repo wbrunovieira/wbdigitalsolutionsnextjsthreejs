@@ -122,10 +122,15 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
             let attempt = 0;
 
             do {
+                // Ellipsoid distribution (not a box) so the cloud reads organic.
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const rad = Math.cbrt(Math.random());
+                const sp = Math.sin(phi);
                 position = new Vector3(
-                    Math.random() * 60 - 30,
-                    Math.random() * 40 - 20,
-                    Math.random() * 20 - 10
+                    Math.cos(theta) * sp * rad * 34,
+                    Math.sin(theta) * sp * rad * 22,
+                    Math.cos(phi) * rad * 12
                 );
 
                 isOverlapping = positions.some(existingPos => position.distanceTo(existingPos.position) < minDistance);
@@ -200,8 +205,8 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
                 position.add(velocity);
 
                 dummy.position.copy(position);
-                dummy.rotation.x += 0.01;
-                dummy.rotation.y += 0.01;
+                dummy.rotation.x += 0.002;
+                dummy.rotation.y += 0.002;
                 dummy.updateMatrix();
 
                 meshRef.current.setMatrixAt(i, dummy.matrix);
