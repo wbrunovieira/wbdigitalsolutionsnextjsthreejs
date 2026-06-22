@@ -32,29 +32,37 @@ type Keyframe = {
 // One stop per section (Hero → Portal → Tags → ToolBox → Carousel).
 const KEYFRAMES: Keyframe[] = [
   { pos: [4.5, -1.0, 0], rot: [0, -0.35, -0.05], scale: 1.8 }, // hero (right)
-  { pos: [-5.0, -0.5, 1], rot: [0.1, 0.7, 0.05], scale: 1.9 }, // move left, turn
-  { pos: [0.5, 0.5, 3], rot: [0.15, -0.25, 0], scale: 2.3 },   // center, closer
+  { pos: [-12.0, 0.4, 1], rot: [0.05, -0.35, 0], scale: 0.9 }, // portal: far left (edge) + facing front, half size
+  { pos: [0, 0, 0], rot: [0.05, -0.35, 0], scale: 1.2 },       // after portal: centered behind text, a bit bigger
   { pos: [5.0, 1.0, -2], rot: [0.25, 1.0, 0.1], scale: 1.6 },  // right-up, angled
-  { pos: [0, -0.8, 0.5], rot: [0, Math.PI * 2, 0], scale: 1.95 }, // center, full spin
+  { pos: [0, -4, 0], rot: [0.05, -0.35, 0], scale: 1.0 }, // after apple cards: in the gap between cards and footer
 ];
 
 const HERO_ZONE = 0.08;
 
+// World units the model rises per scroll pixel while a section is on screen.
+// ~0.03 ≈ 1:1 with the page, so the model stays glued to a point in the section
+// and rides it upward; when the section leaves, the target jumps to the next stop
+// and the damping below plays the descent.
+const GLUE = 0.03;
+
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 
+type TargetPose = { x: number; y: number; z: number; rx: number; ry: number; rz: number; s: number };
+
 interface ComputerProps {
-  progress: React.MutableRefObject<number>;
+  target: React.MutableRefObject<TargetPose>;
   dragRot: React.MutableRefObject<{ x: number; y: number }>;
   dragging: React.MutableRefObject<boolean>;
   inHero: React.MutableRefObject<boolean>;
 }
 
-const Computer: React.FC<ComputerProps> = ({ progress, dragRot, dragging, inHero }) => {
+const Computer: React.FC<ComputerProps> = ({ target, dragRot, dragging, inHero }) => {
   const { scene } = useGLTF("/models/desktop/scene.gltf");
   const group = useRef<THREE.Group>(null);
   const inner = useRef<THREE.Group>(null);
-  // Current (lerped) base pose driven by scroll.
+  // Current (damped) pose, eased toward `target` (computed from scroll in parent).
   const pose = useRef({ x: 4.5, y: -1, z: 0, rx: 0, ry: -0.35, rz: -0.05, s: 1.8 });
 
   useEffect(() => {
@@ -66,27 +74,23 @@ const Computer: React.FC<ComputerProps> = ({ progress, dragRot, dragging, inHero
 
   useFrame((state, delta) => {
     if (!group.current) return;
-    const p = clamp(progress.current, 0, 1);
-
-    // Interpolate the keyframe list by progress.
-    const n = KEYFRAMES.length - 1;
-    const f = p * n;
-    const i = Math.min(Math.floor(f), n - 1);
-    const t = f - i;
-    const a = KEYFRAMES[i];
-    const b = KEYFRAMES[i + 1];
-
-    const k = 1 - Math.pow(0.0015, delta); // frame-rate-independent damping
     const pr = pose.current;
-    pr.x = lerp(pr.x, lerp(a.pos[0], b.pos[0], t), k);
-    pr.y = lerp(pr.y, lerp(a.pos[1], b.pos[1], t), k);
-    pr.z = lerp(pr.z, lerp(a.pos[2], b.pos[2], t), k);
-    pr.rx = lerp(pr.rx, lerp(a.rot[0], b.rot[0], t), k);
-    pr.ry = lerp(pr.ry, lerp(a.rot[1], b.rot[1], t), k);
-    pr.rz = lerp(pr.rz, lerp(a.rot[2], b.rot[2], t), k);
-    pr.s = lerp(pr.s, lerp(a.scale, b.scale, t), k);
+    const tg = target.current;
 
-    // Drag offset: idle auto-spin in hero, decay to 0 once we leave the hero.
+    // Ease toward the scroll-derived target. While a section is on screen the
+    // target glides upward with the scroll (the model rides the section up); when
+    // the section leaves, the target jumps to the next stop and this easing plays
+    // the descent into the next section.
+    const k = 1 - Math.pow(0.05, delta); // frame-rate-independent damping (smoother ease in/out)
+    pr.x = lerp(pr.x, tg.x, k);
+    pr.y = lerp(pr.y, tg.y, k);
+    pr.z = lerp(pr.z, tg.z, k);
+    pr.rx = lerp(pr.rx, tg.rx, k);
+    pr.ry = lerp(pr.ry, tg.ry, k);
+    pr.rz = lerp(pr.rz, tg.rz, k);
+    pr.s = lerp(pr.s, tg.s, k);
+
+    // Idle auto-spin in hero; drag offset decays once we leave the hero.
     if (inHero.current) {
       if (!dragging.current) dragRot.current.y += delta * 0.25;
     } else {
@@ -115,6 +119,11 @@ const ScrollComputer3D: React.FC = () => {
   const dragging = useRef(false);
   const last = useRef({ x: 0, y: 0 });
   const inHeroRef = useRef(true);
+  const stopsRef = useRef<HTMLElement[]>([]);
+  const target = useRef<TargetPose>({
+    x: KEYFRAMES[0].pos[0], y: KEYFRAMES[0].pos[1], z: KEYFRAMES[0].pos[2],
+    rx: KEYFRAMES[0].rot[0], ry: KEYFRAMES[0].rot[1], rz: KEYFRAMES[0].rot[2], s: KEYFRAMES[0].scale,
+  });
 
   const [enabled, setEnabled] = useState(false);
   const [inHero, setInHero] = useState(true);
@@ -128,23 +137,72 @@ const ScrollComputer3D: React.FC = () => {
     return () => mq.removeEventListener("change", apply);
   }, []);
 
-  // Scroll progress + hero zone.
+  // Scroll → target pose. Anchored to the REAL section positions (data-cpu-stop):
+  // the active section is the one currently at the top of the viewport; the model
+  // GLUES to a point in it (rides it up via `glueY`) and only when that section
+  // fully leaves does the active index advance, so the target jumps to the next
+  // stop and the model descends (eased in the Computer's useFrame).
   useEffect(() => {
     if (!enabled) return;
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
-      progress.current = p;
-      const next = p < HERO_ZONE;
-      inHeroRef.current = next;
-      setInHero((prev) => (prev === next ? prev : next));
+
+    const readStops = () => {
+      stopsRef.current = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-cpu-stop]")
+      ).sort((a, b) => Number(a.dataset.cpuStop) - Number(b.dataset.cpuStop));
     };
+
+    const onScroll = () => {
+      const vh = window.innerHeight;
+      const S = window.scrollY;
+      const max = document.documentElement.scrollHeight - vh;
+      const p = max > 0 ? clamp(S / max, 0, 1) : 0;
+      progress.current = p;
+      const nextHero = p < HERO_ZONE;
+      inHeroRef.current = nextHero;
+      setInHero((prev) => (prev === nextHero ? prev : nextHero));
+
+      if (stopsRef.current.length < 2) readStops();
+      const stops = stopsRef.current;
+      if (!stops.length) return;
+
+      // Active section = first whose bottom is still below the viewport top.
+      let i = stops.length - 1;
+      for (let k = 0; k < stops.length; k++) {
+        if (S < stops[k].offsetTop + stops[k].offsetHeight) {
+          i = k;
+          break;
+        }
+      }
+      i = Math.min(i, KEYFRAMES.length - 1);
+      // Last stop parks low (between the cards and the footer) — no glue, so it
+      // doesn't ride up and out as you scroll to the bottom.
+      const isLast = i === stops.length - 1;
+      const glueY = isLast ? 0 : (S - stops[i].offsetTop) * GLUE;
+      const kf = KEYFRAMES[i];
+      const t = target.current;
+      t.x = kf.pos[0];
+      t.y = kf.pos[1] + glueY;
+      t.z = kf.pos[2];
+      t.rx = kf.rot[0];
+      t.ry = kf.rot[1];
+      t.rz = kf.rot[2];
+      t.s = kf.scale;
+    };
+
+    const onResize = () => {
+      readStops();
+      onScroll();
+    };
+
+    readStops();
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("load", onResize);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", onResize);
     };
   }, [enabled]);
 
@@ -191,7 +249,7 @@ const ScrollComputer3D: React.FC = () => {
               <hemisphereLight intensity={2.5} groundColor="black" />
               <spotLight position={[-10, 20, 10]} angle={0.12} penumbra={1} intensity={4} castShadow />
               <pointLight intensity={1} />
-              <Computer progress={progress} dragRot={dragRot} dragging={dragging} inHero={inHeroRef} />
+              <Computer target={target} dragRot={dragRot} dragging={dragging} inHero={inHeroRef} />
               <Preload all />
             </Suspense>
           </Canvas>

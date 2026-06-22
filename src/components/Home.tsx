@@ -35,11 +35,13 @@ const Home: React.FC = () => {
         <main className="flex flex-col min-h-screen bg-custom-gradient bg-[#350545] w-full max-w-none mx-0 px-0">
 
                 <ScrollComputer3D />
-                <HeroSection />
-                <Portal3DSectionGSAP />
-                <InfiniteScrollHash />
-                <ToolBox />
-                <AppleCardsCarouselDemo />
+                {/* data-cpu-stop marks each "parking" section for the scroll-driven
+                    3D computer (ScrollComputer3D uses GSAP ScrollTrigger on these). */}
+                <div data-cpu-stop="0"><HeroSection /></div>
+                <div data-cpu-stop="1"><Portal3DSectionGSAP /></div>
+                <div data-cpu-stop="2"><InfiniteScrollHash /></div>
+                <div data-cpu-stop="3"><ToolBox /></div>
+                <div data-cpu-stop="4"><AppleCardsCarouselDemo /></div>
 
         </main>
     );
