@@ -5,6 +5,7 @@ import '../styles/styles.js';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
+import { motion } from 'framer-motion';
 import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/react';
@@ -55,7 +56,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       <TranslationProvider>
         <Preloader />
         <Layout>
-          <Component {...pageProps} />
+          {/* Page transition — OPACITY ONLY on purpose: a transform/filter on this
+              ancestor would turn the home's fixed 3D canvas into a scrolling one. */}
+          <motion.div
+            key={router.asPath}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
+            <Component {...pageProps} />
+          </motion.div>
         </Layout>
         {/* LGPD consent banner — inside the providers so it's localized */}
         <CookieConsent />
