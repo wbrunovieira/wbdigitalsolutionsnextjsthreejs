@@ -90,7 +90,7 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
     return (
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-4 text-white mb-8 bg-primary/70 md:bg-transparent ">
               <h1 className="text-xl md:text-4xl" aria-label={currentMessages.headerTitle}>
-                  <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
+                  <span aria-hidden="true" ref={nameRef} className="flex flex-wrap space-x-0.5 md:space-x-1">
                     {currentMessages.headerTitle.split("").map((letter: string, index: number) => (
                         <span key={index} className="inline-block opacity-0">
                             {letter}
