@@ -61,7 +61,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
         computerRef.current.position.z -= center.z;
 
         if (isMobile) {
-            computerRef.current.position.y += 1;
+            computerRef.current.position.y += 0.4;
         }
     }, [computer]);
 
@@ -83,9 +83,9 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
                 <primitive
                     ref={computerRef}
                     object={computer.scene}
-                    scale={isMobile ? 1.2 : 1.8}
-                    position={isMobile ? [-2.5, -2, -2.2] : [0, -1.25, -1.5]}
-                    rotation={[-0.01, -0.2, -0.1]}
+                    scale={isMobile ? 1.65 : 1.8}
+                    position={isMobile ? [0, -1.2, -1.5] : [0, -1.25, -1.5]}
+                    rotation={isMobile ? [-0.04, -0.25, -0.08] : [-0.01, -0.2, -0.1]}
                 />
             </mesh>
         </group>
@@ -143,7 +143,7 @@ const ComputersCanvas = () => {
             <PreloadedCanvas
                 preloadAssets={["/models/desktop/scene.gltf"]}
                 shadows={!isMobile} // Disable shadows on mobile
-                camera={{ position: [20, 3, 25], fov: 45 }}
+                camera={{ position: isMobile ? [22, 6, 24] : [20, 3, 25], fov: isMobile ? 38 : 45 }}
                 gl={{
                     preserveDrawingBuffer: true,
                     powerPreference: "high-performance",
@@ -151,7 +151,7 @@ const ComputersCanvas = () => {
                     pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? window.devicePixelRatio : 1 // Lower pixel ratio on mobile
                 }}
                 frameloop="always"
-                className={`w-full h-full ${isMobile ? "z-[-1]" : "z-10"}`}
+                className={`w-full h-full ${isMobile ? "z-[1] pointer-events-auto" : "z-10"}`}
             >
                 <Suspense fallback={<CanvasLoader />}>
                     <OrbitControls

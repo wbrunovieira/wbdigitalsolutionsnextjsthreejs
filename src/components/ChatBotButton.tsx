@@ -465,10 +465,10 @@ const ChatBotButton: React.FC = () => {
             });
           }
         }}
-        className="fixed bottom-6 right-6 z-50 bg-custom-purple text-white p-5 rounded-full shadow-xl hover:scale-110 transition-all"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-custom-purple text-white p-3.5 sm:p-5 rounded-full shadow-xl hover:scale-110 transition-all"
         aria-label="Abrir Chatbot"
       >
-        <FiMessageCircle className="h-7 w-7" />
+        <FiMessageCircle className="h-6 w-6 sm:h-7 sm:w-7" />
         {newMessageBadge && <span className="absolute top-0 right-0 h-3 w-3 bg-red-500 rounded-full"></span>}
       </button>
 

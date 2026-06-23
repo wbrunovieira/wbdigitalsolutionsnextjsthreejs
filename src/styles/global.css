@@ -373,6 +373,11 @@ html, body {
     width: 100vh;
 }
 
+@keyframes wb-loadbar {
+    0% { transform: translateX(-120%); }
+    100% { transform: translateX(360%); }
+}
+
 .container-bright {
     width: 150px;
     display: flex;
@@ -451,6 +456,7 @@ a:hover::before {
     width: 30px;
     height: 10px;
     border-radius: 10px;
+    opacity: 0;
     transition: 0.5s;
     transition-delay: 0s;
 }
@@ -460,6 +466,7 @@ a:hover::before {
     height: 50%;
     width: 80%;
     border-radius: 30px;
+    opacity: 1;
     transition-delay: 0.5s;
 }
 
@@ -473,6 +480,7 @@ a:hover::before {
     width: 30px;
     height: 10px;
     border-radius: 10px;
+    opacity: 0;
     transition: 0.5s;
     transition-delay: 0s;
 }
@@ -482,6 +490,7 @@ a:hover::before {
     height: 50%;
     width: 80%;
     border-radius: 30px;
+    opacity: 1;
     transition-delay: 0.5s;
 }
 

@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import logo from "/public/svg/logo-white.svg";
+import logo from "/public/svg/logo.svg";
 
 const ParticlesContainer = dynamic(() => import("./ParticlesContainer"), { ssr: false });
 const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
@@ -66,7 +66,7 @@ const Nav: React.FC = () => {
                 : "bg-modern-gradient backdrop-blur-3xl border-b border-white/15 shadow-[0_14px_28px_-6px_rgba(0,0,0,0.55)]"
         }`}>
             <ParticlesContainer />
-            <div className="text-secondary max-w-[1400px] mx-auto pt-10 px-4 lg:px-10 relative">
+            <div className="text-secondary max-w-[1400px] mx-auto pt-10 pb-8 lg:pb-0 px-4 lg:px-10 relative">
             <Image
                className={`absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
                    scrolled ? "brightness-[2]" : ""
@@ -79,21 +79,21 @@ const Nav: React.FC = () => {
 
             <div className="relative flex items-center lg:justify-between">
 
-                <div className="flex absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 items-center">
-                            <Image
-                                className="w-32 h-9 object-contain mr-2"
+                <div className="flex flex-col absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 items-center lg:items-start">
+                            <span className="inline-flex items-center rounded-xl bg-white px-3.5 py-2 shadow-md shadow-black/25 ring-1 ring-black/5">
+                              <Image
+                                className="h-10 w-auto object-contain"
                                 src={logo}
-                                alt="logo"
-                                width={158}
-                                height={42}
+                                alt="WB Digital Solutions"
+                                width={207}
+                                height={36}
+                                priority
                                 />
+                            </span>
 
-                            <p className="text-white text-xs md:text-sm/4 tracking-wide font-light md:font-bold flex flex-col whitespace-nowrap">
-                                WB Digital Solutions &nbsp;
-                                <span className="sm:block hidden font-mono lowercase font-light tracking-wide text-secondary/85 mt-1">
-                                    {currentMessages.technology}
-                                </span>
-                            </p>
+                            <span className="hidden sm:block font-mono lowercase font-light tracking-wide text-secondary/85 mt-1.5 text-xs whitespace-nowrap">
+                                {currentMessages.technology}
+                            </span>
                 </div>
         
          

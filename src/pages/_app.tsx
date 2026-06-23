@@ -13,6 +13,7 @@ import { LanguageProvider } from '../contexts/LanguageContext';
 import { TranslationProvider } from '../contexts/TranslationContext';
 import Layout from '../components/Layout';
 import CookieConsent from '../components/CookieConsent';
+import Preloader from '../components/Preloader';
 
 const GA_TRACKING_ID = 'G-PZ3WX1KF35';
 
@@ -52,6 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <LanguageProvider>
       <TranslationProvider>
+        <Preloader />
         <Layout>
           <Component {...pageProps} />
         </Layout>
