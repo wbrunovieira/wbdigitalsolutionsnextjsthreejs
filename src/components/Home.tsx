@@ -20,9 +20,12 @@ const AppleCardsCarouselDemo = dynamic(
   }
 );
 
-// Import Portal3DSection with GSAP animations - no SSR to avoid hydration issues
+// Import Portal3DSection with GSAP animations - no SSR to avoid hydration issues.
+// Reserve its height with a placeholder so the section doesn't grow from 0 when the
+// chunk loads (that growth was a large cold-load CLS on desktop).
 const Portal3DSectionGSAP = dynamic(() => import('./home/Portal3DSectionGSAP'), {
-    ssr: false
+    ssr: false,
+    loading: () => <div className="min-h-screen w-full mt-32" aria-hidden="true" />,
 });
 
 // PROTOTYPE: persistent scroll-driven 3D computer (desktop only). Self-nullifies
