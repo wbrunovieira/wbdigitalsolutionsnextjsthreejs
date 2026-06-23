@@ -89,7 +89,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   // WhatsApp, X) do not render SVG, so the brand SVG logo would show no preview.
   const ogImage = customImage
     ? (customImage.startsWith("http") ? customImage : `${baseUrl}${customImage}`)
-    : "https://www.wbdigitalsolutions.com/img/herobg5-optimized.jpg";
+    : "https://www.wbdigitalsolutions.com/img/og-home.jpg";
 
   // Generate schemas based on page type
   const schemas = [];
