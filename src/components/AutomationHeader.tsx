@@ -21,27 +21,10 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
     const overlayRef = useRef<HTMLDivElement>(null);
     const disciplineRef = useRef<HTMLSpanElement>(null);
 
-    useGSAP(() => {
-        if (nameRef.current) {
-            const letters = nameRef.current.querySelectorAll('span');
-            gsap.to(letters, {
-                opacity: 1,
-                stagger: 0.1,
-                duration: 1.3,
-                ease: 'power2.inOut'
-            });
-            // Safety net: the GSAP stagger runs on requestAnimationFrame, so a heavy
-            // main-thread block (e.g. the 3D hero canvas initialising) can stall it
-            // and leave the last letters stuck at opacity 0. This real-time timeout
-            // is independent of GSAP's ticker and guarantees the title is fully shown.
-            const safety = setTimeout(() => {
-                letters.forEach((l) => {
-                    (l as HTMLElement).style.opacity = '1';
-                });
-            }, 4000);
-            return () => clearTimeout(safety);
-        }
-    }, []);
+    // NOTE: the per-letter GSAP opacity reveal was removed — it repeatedly stalled
+    // (tween interrupted by the 3D hero init) and left the last letters stuck at
+    // opacity 0 ("Automação Inteli…"). The title is now always visible and uses a
+    // CSS fade-up (see h1 className) that can never leave it invisible.
 
     useGSAP(() => {
         const timeline = gsap.timeline({
@@ -89,10 +72,10 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
 
     return (
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-4 text-white mb-8 bg-primary/70 md:bg-transparent ">
-              <h1 className="text-xl md:text-4xl" aria-label={currentMessages.headerTitle}>
+              <h1 className="text-xl md:text-4xl motion-safe:animate-[wb-fadeup_0.7s_ease-out_both]" aria-label={currentMessages.headerTitle}>
                   <span aria-hidden="true" ref={nameRef} className="flex flex-wrap space-x-0.5 md:space-x-1">
                     {currentMessages.headerTitle.split("").map((letter: string, index: number) => (
-                        <span key={index} className="inline-block opacity-0">
+                        <span key={index} className="inline-block">
                             {letter}
                         </span>
                     ))}

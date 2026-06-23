@@ -186,8 +186,8 @@ const Contact: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col md:flex-row gap-2 mt-32 md:overflow-hidden">
-      <div className="relative z-10 flex-1 text-white p-8">
+    <div className="relative flex flex-col md:flex-row gap-2 mt-32 md:overflow-hidden overflow-x-clip">
+      <div className="relative z-10 flex-1 text-white p-5 pt-2 md:p-8">
         <motion.div
           initial="hidden"
           animate="show"
@@ -343,9 +343,17 @@ const Contact: React.FC = () => {
 
       <div
         ref={earthWrapRef}
-        className="relative z-0 flex-1 flex justify-center items-center min-h-[500px] md:min-h-[500px] will-change-transform"
+        className="relative z-0 flex-1 flex justify-center items-center will-change-transform
+                   h-[320px] -mb-[180px] order-first pointer-events-none
+                   md:order-none md:h-auto md:mb-0 md:min-h-[500px] md:pointer-events-auto"
         style={{ overflow: 'visible' }}
       >
+        {/* Brand scrim (mobile) — fades the globe into the page so it reads as an
+            intentional backdrop the frosted form sits over, not a lone planet. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1] md:hidden bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(26,8,38,0.45)_55%,#1a0826_100%)]"
+        />
         <EarthCanvas />
       </div>
       <ToastContainer />

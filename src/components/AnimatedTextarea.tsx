@@ -48,22 +48,35 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
         } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
         rows={4}
       />
-      <label htmlFor={name} className="absolute top-4 left-0 pointer-events-none">
-        {label.split("").map((char, index) => (
-          <span
-            key={index}
-            className={`inline-block transition-transform duration-300 ${
-              hasError ? "text-red-500" : "text-gray-300 peer-focus:text-yellowcustom"
-            } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
-            style={{ transitionDelay: `${Math.min(index, 10) * 35}ms` }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </span>
-        ))}
+      {/* Words are grouped (each an inline-flex that won't break mid-word); the
+          label flex-wraps only BETWEEN words. Keeps the per-letter float stagger. */}
+      <label htmlFor={name} className="absolute top-4 left-0 pointer-events-none flex flex-wrap gap-x-[0.3em]">
+        {(() => {
+          let gi = -1;
+          return label.split(" ").map((word, wi) => (
+            <span key={wi} className="inline-flex">
+              {word.split("").map((char) => {
+                gi += 1;
+                const idx = gi;
+                return (
+                  <span
+                    key={idx}
+                    className={`inline-block transition-transform duration-300 ${
+                      hasError ? "text-red-500" : "text-gray-300 peer-focus:text-yellowcustom"
+                    } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
+                    style={{ transitionDelay: `${Math.min(idx, 10) * 35}ms` }}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+            </span>
+          ));
+        })()}
         {required && (
           <span
             aria-hidden="true"
-            className={`ml-0.5 inline-block transition-transform duration-300 ${
+            className={`inline-block transition-transform duration-300 ${
               hasError ? "text-red-500" : "text-yellowcustom"
             } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
           >

@@ -190,7 +190,7 @@ const CookieConsent: React.FC = () => {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[60] p-3 sm:p-4">
-      <div className="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-[#1a0826]/97 shadow-2xl backdrop-blur-md">
+      <div className="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-[#1a0826] shadow-2xl backdrop-blur-md">
         {!expanded ? (
           <div className="p-4 sm:p-5 md:flex md:items-center md:gap-4">
             <p className="mb-3 text-sm leading-relaxed text-secondary md:mb-0 md:flex-1">{t.bannerText}</p>
