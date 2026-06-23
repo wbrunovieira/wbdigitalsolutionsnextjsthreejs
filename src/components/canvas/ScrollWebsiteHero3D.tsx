@@ -61,6 +61,14 @@ const KEYFRAMES: Keyframe[] = [
   { pos: [0, -14, -18], rotY: Math.PI * 2, scale: 9 },   // recede back & up, small (clears footer)
 ];
 
+// Mobile: narrow viewport → keep x≈0 (centered), depth/scale carry the motion.
+const KEYFRAMES_MOBILE: Keyframe[] = [
+  { pos: [0, -18, 10], rotY: 0.25, scale: 8 },           // hero: full laptop, lower, not clipped
+  { pos: [0, -22, 18], rotY: 1.1, scale: 9 },            // approach + descend (gentle)
+  { pos: [0, -26, 4], rotY: 2.4, scale: 7.5 },           // pass lower-center, turning, recede
+  { pos: [0, -16, -26], rotY: Math.PI * 2, scale: 5 },   // recede small + back up (clears footer)
+];
+
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const smoothstep = (e0: number, e1: number, x: number) => {
@@ -75,6 +83,7 @@ interface SharedRefs {
   target: React.MutableRefObject<Vector3>; // ball swarm target (world)
   pointer: React.MutableRefObject<{ x: number; y: number }>; // normalised -1..1
   laptopPose: React.MutableRefObject<LaptopPose>;
+  kf: Keyframe[]; // pose table for the current variant (desktop/mobile)
 }
 
 /* -------------------------------------------------------------------------- */
@@ -137,9 +146,15 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
   const _personalTarget = useMemo(() => new Vector3(), []);
   const _orbit = useMemo(() => new Vector3(), []);
 
+  // Fewer particles on mobile (less clutter on a small screen + perf).
+  const count = useMemo(
+    () => (typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches ? 140 : NUM_INSTANCES),
+    []
+  );
+
   const instances = useMemo<Instance[]>(() => {
     const list: Instance[] = [];
-    for (let i = 0; i < NUM_INSTANCES; i++) {
+    for (let i = 0; i < count; i++) {
       let position: Vector3;
       let overlapping: boolean;
       let attempt = 0;
@@ -172,7 +187,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       });
     }
     return list;
-  }, []);
+  }, [count]);
 
   useEffect(() => {
     if (!meshRef.current) return;
@@ -182,8 +197,8 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       new Color("#aaa6c3"),
       new Color("#ffb947"),
     ];
-    const colors = new Float32Array(NUM_INSTANCES * 3);
-    for (let i = 0; i < NUM_INSTANCES; i++) {
+    const colors = new Float32Array(instances.length * 3);
+    for (let i = 0; i < instances.length; i++) {
       const c = palette[Math.floor(Math.random() * palette.length)];
       colors[i * 3 + 0] = c.r;
       colors[i * 3 + 1] = c.g;
@@ -207,7 +222,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
     const lp = laptopPose.current;
 
     let intensityAccum = 0;
-    for (let i = 0; i < NUM_INSTANCES; i++) {
+    for (let i = 0; i < instances.length; i++) {
       const inst = instances[i];
 
       // Swarm physics toward the mouse — only meaningful in the hero band.
@@ -255,14 +270,14 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
     meshRef.current.instanceMatrix.needsUpdate = true;
   });
 
-  return <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} />;
+  return <instancedMesh ref={meshRef} args={[geometry, material, instances.length]} />;
 };
 
 /* -------------------------------------------------------------------------- */
 /* Laptop                                                                     */
 /* -------------------------------------------------------------------------- */
 
-const FloatingModel: React.FC<SharedRefs> = ({ progress, pointer, laptopPose }) => {
+const FloatingModel: React.FC<SharedRefs> = ({ progress, pointer, laptopPose, kf }) => {
   const modelRef = useRef<Group>(null);
   const { scene } = useGLTF("/models/macbook-pro.glb");
   const screenTexture = useTexture("/models/screen.png");
@@ -305,12 +320,12 @@ const FloatingModel: React.FC<SharedRefs> = ({ progress, pointer, laptopPose }) 
     const heroInfluence = 1 - smoothstep(HERO_ZONE, HERO_END, p);
 
     // Interpolate the keyframe list by progress.
-    const n = KEYFRAMES.length - 1;
+    const n = kf.length - 1;
     const f = p * n;
     const i = Math.min(Math.floor(f), n - 1);
     const seg = f - i;
-    const a = KEYFRAMES[i];
-    const b = KEYFRAMES[i + 1];
+    const a = kf[i];
+    const b = kf[i + 1];
 
     const k = 1 - Math.pow(0.0015, delta); // frame-rate-independent damping
     const pr = pose.current;
@@ -352,12 +367,15 @@ const ScrollWebsiteHero3D: React.FC = () => {
   const pointer = useRef({ x: 0, y: 0 });
   const laptopPose = useRef<LaptopPose>({ x: 45, y: -1, z: 0, s: 14 });
 
-  const [enabled, setEnabled] = useState(false);
+  // Render on all sizes now; pick the pose table by width. Read synchronously on
+  // first render (ssr:false) so the variant is right immediately.
+  const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+  );
 
-  // Desktop gate (mobile keeps the original boxed canvas).
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const apply = () => setEnabled(mq.matches);
+    const apply = () => setIsDesktop(mq.matches);
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
@@ -369,9 +387,9 @@ const ScrollWebsiteHero3D: React.FC = () => {
     useTexture.preload("/models/screen.png");
   }, []);
 
-  // Mouse → swarm target + light position + normalised pointer.
+  // Mouse → swarm target + light position + normalised pointer (desktop only).
   useEffect(() => {
-    if (!enabled) return;
+    if (!isDesktop) return;
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -381,11 +399,10 @@ const ScrollWebsiteHero3D: React.FC = () => {
     };
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
-  }, [enabled]);
+  }, [isDesktop]);
 
   // Scroll progress over the whole page.
   useEffect(() => {
-    if (!enabled) return;
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       progress.current = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
@@ -397,15 +414,13 @@ const ScrollWebsiteHero3D: React.FC = () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [enabled]);
+  }, []);
 
-  if (!enabled) return null;
-
-  const shared: SharedRefs = { progress, target, pointer, laptopPose };
+  const shared: SharedRefs = { progress, target, pointer, laptopPose, kf: isDesktop ? KEYFRAMES : KEYFRAMES_MOBILE };
 
   return (
     <>
-      <MouseMoveTutorial />
+      {isDesktop && <MouseMoveTutorial />}
       {/* z-[1]: behind the page content (main is z-10) so the laptop passes
           BEHIND the opaque sections as it descends, but above the fixed
           gradient backdrop (z-0) so it stays visible through the hero. */}
@@ -413,8 +428,9 @@ const ScrollWebsiteHero3D: React.FC = () => {
         <CanvasErrorBoundary>
           <Canvas
             style={{ background: "transparent", pointerEvents: "none" }}
-            shadows
-            gl={{ alpha: true, preserveDrawingBuffer: false }}
+            shadows={isDesktop}
+            dpr={isDesktop ? [1, 2] : 1}
+            gl={{ alpha: true, antialias: isDesktop, preserveDrawingBuffer: false }}
             camera={{ fov: 50, position: new Vector3(0, 0, 100) }}
           >
             <Suspense fallback={<CustomLoader />}>

@@ -2,39 +2,40 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-const AnimatedBackgroundWebsiteComponent = dynamic(() => import("@/components/AnimatedBackgroundWebsite"), { ssr: false, loading: () => <div className="w-full h-96" /> });
 
-// PROTOTYPE: persistent scroll-driven 3D hero (desktop only). Self-nullifies on
-// mobile, where the hero keeps its own boxed AnimatedBackgroundWebsite.
+// Persistent scroll-driven 3D hero (now desktop AND mobile). Mounted on the first
+// user gesture so it never blocks initial load / the lab perf trace.
 const ScrollWebsiteHero3D = dynamic(() => import("@/components/canvas/ScrollWebsiteHero3D"), { ssr: false });
 
 import CustomVsGeneric from "@/components/CustomVsGeneric";
 import CTAWebsite from "@/components/WebSiteCTA";
 import { WebsiteHeader } from "@/components/WebsiteHeader";
 import PageHead from "@/components/PageHead";
-import Link from "next/link";
 
-const OurApproach = dynamic(() => import("../../components/OurApproach"), { ssr: false });
-const Differentiators = dynamic(() => import("../../components/Differentiators"), { ssr: false });
-const Comparison = dynamic(() => import("../../components/Comparison"), { ssr: false });
-const ThreeDExperiencesSection = dynamic(() => import("../../components/3DExperiencesSection"), { ssr: false });
-
-
-
+// ssr:false sections get a height-reserving placeholder so they don't grow from
+// 0 on cold load (that growth is a large CLS — see skill perf-seo-audit).
+const OurApproach = dynamic(() => import("../../components/OurApproach"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const Differentiators = dynamic(() => import("../../components/Differentiators"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const Comparison = dynamic(() => import("../../components/Comparison"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const ThreeDExperiencesSection = dynamic(() => import("../../components/3DExperiencesSection"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const Websites: React.FC = () => {
-
-    // Desktop draws the persistent ScrollWebsiteHero3D behind the page; the hero
-    // box becomes a transparent spacer. Mobile keeps the boxed canvas.
-    const [mounted, setMounted] = useState(false);
-    const [isDesktop, setIsDesktop] = useState(false);
+    // Defer the 3D hero to the first user gesture (perf: keeps it out of the load
+    // critical path and the headless Lighthouse trace).
+    const [show3D, setShow3D] = useState(false);
     useEffect(() => {
-        setMounted(true);
-        const mq = window.matchMedia("(min-width: 1024px)");
-        const apply = () => setIsDesktop(mq.matches);
-        apply();
-        mq.addEventListener("change", apply);
-        return () => mq.removeEventListener("change", apply);
+        const events = ["scroll", "pointermove", "touchstart", "keydown"];
+        const mount = () => {
+            setShow3D(true);
+            events.forEach((e) => window.removeEventListener(e, mount));
+            clearTimeout(fallback);
+        };
+        events.forEach((e) => window.addEventListener(e, mount, { once: true, passive: true }));
+        const fallback = window.setTimeout(mount, 4000);
+        return () => {
+            events.forEach((e) => window.removeEventListener(e, mount));
+            clearTimeout(fallback);
+        };
     }, []);
 
     return (
@@ -43,37 +44,34 @@ const Websites: React.FC = () => {
             {/* Gradient backdrop sits behind the 3D canvas; main is transparent and
                 stacked above (z-10) so the laptop passes behind the page on scroll. */}
             <div className="fixed inset-0 z-0 bg-modern-gradient pointer-events-none" aria-hidden="true" />
-            <ScrollWebsiteHero3D />
+            {show3D && <ScrollWebsiteHero3D />}
             <main className="relative z-10 flex flex-col items-center justify-center min-h-screen mt-16">
 
-         <div className="md:relative flex flex-col md:flex-row w-full h-96 overflow-hidden mt-32">
-
-                 <div className="relative md:absolute inset-0 z-0">
-                  {/* Desktop: empty spacer — the persistent ScrollWebsiteHero3D renders the
-                      laptop + balls. Mobile (or pre-mount): the original boxed canvas. */}
-                  {(!mounted || !isDesktop) && <AnimatedBackgroundWebsiteComponent />}
+                {/* Hero — copy in the top ~45%, laptop stage in the lower ~55%. */}
+                <div className="relative flex flex-col w-full min-h-[100svh] overflow-visible lg:min-h-[60vh] lg:mt-32">
+                    {/* Top scrim: legibility for copy over the swarm/laptop (mobile). */}
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-[48%] bg-gradient-to-b from-[#1a0826] via-[#1a0826]/80 to-transparent lg:hidden"
+                    />
+                    <div className="relative z-10 flex flex-col items-center w-full pt-28 lg:pt-4 lg:justify-center lg:flex-1">
+                        <WebsiteHeader scrollIndicatorHidden={true} />
+                    </div>
                 </div>
 
-                <div className="relative z-10 flex flex-col justify-center items-center w-full md:w-auto min-h-[8rem]">
-                    <WebsiteHeader scrollIndicatorHidden={true} />
-                </div>
+                {/* Transparent spacers between sections reveal the laptop passing behind. */}
+                <ThreeDExperiencesSection />
 
-        </div>
-
-            {/* Transparent spacers between sections reveal the laptop passing behind. */}
-            {/* 3D Experiences Section */}
-            <ThreeDExperiencesSection />
-
-            <div aria-hidden className="h-32 lg:h-52" />
-            <CustomVsGeneric />
-            <div aria-hidden className="h-32 lg:h-52" />
-            <OurApproach />
-            <div aria-hidden className="h-32 lg:h-52" />
-            <Differentiators />
-            <div aria-hidden className="h-32 lg:h-52" />
-            <Comparison  />
-            <div aria-hidden className="h-32 lg:h-52" />
-            <CTAWebsite />
+                <div aria-hidden className="h-[55vh] lg:h-52" />
+                <CustomVsGeneric />
+                <div aria-hidden className="h-[55vh] lg:h-52" />
+                <OurApproach />
+                <div aria-hidden className="h-[55vh] lg:h-52" />
+                <Differentiators />
+                <div aria-hidden className="h-[55vh] lg:h-52" />
+                <Comparison />
+                <div aria-hidden className="h-[55vh] lg:h-52" />
+                <CTAWebsite />
             </main>
         </>
     );
