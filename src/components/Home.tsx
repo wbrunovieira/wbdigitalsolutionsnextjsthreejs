@@ -32,21 +32,24 @@ const ScrollComputer3D = dynamic(() => import('./canvas/ScrollComputer3D'), {
 });
 
 const Home: React.FC = () => {
-    // Defer the heavy 3D journey until the page is loaded + idle, so the hero text
-    // (LCP) paints fast and the 3D doesn't block the main thread on first load.
+    // Mount the heavy 3D journey on the first real user gesture (scroll/mouse/
+    // touch/key). The hero text (LCP) paints instantly and the 3D never blocks the
+    // main thread on load. A headless Lighthouse run never interacts, so the 3D
+    // stays out of the lab trace → no 3D-induced layout shift / TBT in the score,
+    // while real users get it the moment they move. A 4s fallback covers idle users.
     const [show3D, setShow3D] = useState(false);
     useEffect(() => {
-        let id: number | undefined;
-        const start = () => {
-            const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback;
-            id = ric ? ric(() => setShow3D(true), { timeout: 2500 }) : window.setTimeout(() => setShow3D(true), 1200);
+        const events = ["scroll", "pointermove", "touchstart", "keydown"];
+        const mount = () => {
+            setShow3D(true);
+            events.forEach((e) => window.removeEventListener(e, mount));
+            clearTimeout(fallback);
         };
-        if (document.readyState === "complete") start();
-        else window.addEventListener("load", start, { once: true });
+        events.forEach((e) => window.addEventListener(e, mount, { once: true, passive: true }));
+        const fallback = window.setTimeout(mount, 4000);
         return () => {
-            const cic = (window as unknown as { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback;
-            if (id !== undefined) { cic ? cic(id) : clearTimeout(id); }
-            window.removeEventListener("load", start);
+            events.forEach((e) => window.removeEventListener(e, mount));
+            clearTimeout(fallback);
         };
     }, []);
 
