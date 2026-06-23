@@ -104,7 +104,7 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
                 receiveShadow={!isMobile}
                 scale={2.75}
             >
-                <icosahedronGeometry args={[1, isMobile ? 0 : 1]} />
+                <icosahedronGeometry args={[1, 1]} />
                 <meshStandardMaterial
                     color="#DECBEF"
                     polygonOffsetFactor={-1}
@@ -172,8 +172,8 @@ const BallCanvas = ({
                 gl={{
                     preserveDrawingBuffer: false,
                     powerPreference: "low-power",
-                    antialias: !isMobile,
-                    pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1,
+                    antialias: true,
+                    pixelRatio: isMobile ? Math.min(window.devicePixelRatio, 2) : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1,
                 }}
                 className="w-full h-28"
                 style={{
