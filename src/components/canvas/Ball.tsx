@@ -148,11 +148,32 @@ const BallCanvas = ({
 }: BallCanvasProps) => {
     const [hasError, setHasError] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
+    const [inView, setInView] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const floatDuration = useMemo(() => 2.2 + Math.random() * 1.2, []);
 
     const adjustedWidth = isMobile ? width / 2 : width;
     const adjustedHeight = isMobile ? height / 2 : height;
+
+    // Lazy-mount the WebGL canvas only when the ball is near the viewport. Keeps
+    // the full drag-to-rotate interaction but avoids creating ~10 GL contexts at
+    // page load (huge TBT/LCP win). A static icon stands in until then.
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el || inView) return;
+        const io = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setInView(true);
+                    io.disconnect();
+                }
+            },
+            { rootMargin: "300px" }
+        );
+        io.observe(el);
+        return () => io.disconnect();
+    }, [inView]);
 
     if (hasError && skipIfError) {
         return null;
@@ -160,13 +181,23 @@ const BallCanvas = ({
 
     return (
         <motion.div
+            ref={containerRef}
             animate={isDragging ? { y: 0 } : { y: [0, -8, 0] }}
             transition={{ duration: floatDuration, repeat: Infinity, ease: "easeInOut" }}
             onPointerDown={() => setIsDragging(true)}
             onPointerUp={() => setIsDragging(false)}
             onPointerLeave={() => setIsDragging(false)}
-            style={{ display: "inline-block" }}
+            style={{ display: "inline-block", width: `${adjustedWidth}px`, height: `${adjustedHeight}px` }}
         >
+            {!inView ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                    src={icon}
+                    alt=""
+                    aria-hidden="true"
+                    style={{ width: "100%", height: "100%", objectFit: "contain", opacity: 0.9 }}
+                />
+            ) : (
             <PauseableCanvas
                 frameloop="demand"
                 gl={{
@@ -193,6 +224,7 @@ const BallCanvas = ({
                 </Suspense>
                 <Preload all />
             </PauseableCanvas>
+            )}
         </motion.div>
     );
 };
