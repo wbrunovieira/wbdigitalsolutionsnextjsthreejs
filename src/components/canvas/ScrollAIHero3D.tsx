@@ -57,6 +57,14 @@ const KEYFRAMES: Keyframe[] = [
   { pos: [0, -16, -8], scale: 7 },      // recede & shrink (clears footer)
 ];
 
+// Mobile: centered (x≈0), staged lower; depth/scale carry the motion.
+const KEYFRAMES_MOBILE: Keyframe[] = [
+  { pos: [0, -16, 8], scale: 7 },       // hero: centered, lower
+  { pos: [0, -22, 18], scale: 8 },      // approach + descend
+  { pos: [0, -26, 2], scale: 6 },       // recede, lower
+  { pos: [0, -16, -12], scale: 4 },     // recede small (clears footer)
+];
+
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const smoothstep = (e0: number, e1: number, x: number) => {
@@ -70,6 +78,7 @@ interface SharedRefs {
   progress: React.MutableRefObject<number>;
   target: React.MutableRefObject<Vector3>;
   modelPose: React.MutableRefObject<ModelPose>;
+  kf: Keyframe[]; // pose table for the current variant
 }
 
 const CustomLoader: React.FC = () => {
@@ -223,7 +232,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
   return <instancedMesh ref={meshRef} args={[geometry, material, NUM_INSTANCES]} />;
 };
 
-const FloatingModel: React.FC<SharedRefs> = ({ progress, modelPose }) => {
+const FloatingModel: React.FC<SharedRefs> = ({ progress, modelPose, kf }) => {
   const modelRef = useRef<Group>(null);
   const { scene } = useGLTF("/models/ai/ai_opt.glb");
   const pose = useRef({ x: 40, y: 4, z: 0, s: 12 });
@@ -248,12 +257,12 @@ const FloatingModel: React.FC<SharedRefs> = ({ progress, modelPose }) => {
     const p = clamp(progress.current, 0, 1);
     const heroInfluence = 1 - smoothstep(HERO_ZONE, HERO_END, p);
 
-    const n = KEYFRAMES.length - 1;
+    const n = kf.length - 1;
     const f = p * n;
     const i = Math.min(Math.floor(f), n - 1);
     const seg = f - i;
-    const a = KEYFRAMES[i];
-    const b = KEYFRAMES[i + 1];
+    const a = kf[i];
+    const b = kf[i + 1];
 
     const k = 1 - Math.pow(0.0015, delta);
     const pr = pose.current;
@@ -281,11 +290,13 @@ const ScrollAIHero3D: React.FC = () => {
   const target = useRef(new Vector3());
   const modelPose = useRef<ModelPose>({ x: 40, y: 4, z: 0, s: 12 });
 
-  const [enabled, setEnabled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+  );
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const apply = () => setEnabled(mq.matches);
+    const apply = () => setIsDesktop(mq.matches);
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
@@ -296,7 +307,7 @@ const ScrollAIHero3D: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!isDesktop) return;
     const onMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -305,10 +316,9 @@ const ScrollAIHero3D: React.FC = () => {
     };
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
-  }, [enabled]);
+  }, [isDesktop]);
 
   useEffect(() => {
-    if (!enabled) return;
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       progress.current = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
@@ -320,22 +330,21 @@ const ScrollAIHero3D: React.FC = () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [enabled]);
+  }, []);
 
-  if (!enabled) return null;
-
-  const shared: SharedRefs = { progress, target, modelPose };
+  const shared: SharedRefs = { progress, target, modelPose, kf: isDesktop ? KEYFRAMES : KEYFRAMES_MOBILE };
 
   return (
     <>
-      <MouseMoveTutorial />
+      {isDesktop && <MouseMoveTutorial />}
       {/* z-[1]: behind the page content (main is z-10), above the gradient backdrop (z-0). */}
       <div className="fixed inset-0 z-[1]" style={{ pointerEvents: "none" }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
             style={{ background: "transparent", pointerEvents: "none" }}
-            shadows
-            gl={{ alpha: true, preserveDrawingBuffer: false }}
+            shadows={isDesktop}
+            dpr={isDesktop ? [1, 2] : 1}
+            gl={{ alpha: true, antialias: isDesktop, preserveDrawingBuffer: false }}
             camera={{ fov: 50, position: new Vector3(0, 0, 100) }}
           >
             <Suspense fallback={<CustomLoader />}>

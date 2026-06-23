@@ -42,7 +42,7 @@ const CallToAction = () => {
             href="https://wa.me/5511982864581"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-6 py-3 bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg hover:bg-green-700 transform hover:scale-105 transition-transform duration-300"
+            className="flex items-center gap-3 px-6 py-3 bg-green-700 text-white text-lg font-semibold rounded-lg shadow-md hover:shadow-lg hover:bg-green-800 transform hover:scale-105 transition-transform duration-300"
           >
             <FaWhatsapp aria-hidden="true" className="text-2xl" /> {currentMessages.ctaWhatsapp}
           </a>
