@@ -35,6 +35,16 @@ const KEYFRAMES: Keyframe[] = [
   { pos: [0, 1.6, -5], rotY: Math.PI * 2, scale: 0.78 }, // recede up & small (clears footer)
 ];
 
+// Mobile: centered (x≈0), staged lower + smaller so the network globe fits the
+// narrow viewport with the header on top.
+const KEYFRAMES_MOBILE: Keyframe[] = [
+  { pos: [0, -2.5, 0], rotY: 0, scale: 0.6 },           // hero: lower-center globe
+  { pos: [0, -3, 1], rotY: 1.4, scale: 0.66 },          // turn
+  { pos: [0, -3.4, 2], rotY: 3.0, scale: 0.62 },        // closer
+  { pos: [0, -2.8, 0], rotY: 4.4, scale: 0.58 },        // angled
+  { pos: [0, 1.4, -5], rotY: Math.PI * 2, scale: 0.42 }, // recede small (clears footer)
+];
+
 const HERO_ZONE = 0.08;
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
@@ -93,9 +103,10 @@ interface NetworkProps {
   dragRot: React.MutableRefObject<{ x: number; y: number }>;
   dragging: React.MutableRefObject<boolean>;
   inHero: React.MutableRefObject<boolean>;
+  kf: Keyframe[]; // pose table for the current variant
 }
 
-const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero }) => {
+const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero, kf }) => {
   const group = useRef<THREE.Group>(null);
   const nodesRef = useRef<THREE.InstancedMesh>(null);
   const pulsesRef = useRef<THREE.InstancedMesh>(null);
@@ -169,12 +180,12 @@ const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero }
     const time = state.clock.elapsedTime;
 
     // Group pose from keyframes.
-    const n = KEYFRAMES.length - 1;
+    const n = kf.length - 1;
     const f = p * n;
     const i = Math.min(Math.floor(f), n - 1);
     const t = f - i;
-    const a = KEYFRAMES[i];
-    const b = KEYFRAMES[i + 1];
+    const a = kf[i];
+    const b = kf[i + 1];
     const k = 1 - Math.pow(0.0018, delta);
     const pr = pose.current;
     pr.x = lerp(pr.x, lerp(a.pos[0], b.pos[0], t), k);
@@ -250,19 +261,20 @@ const ScrollSystems3D: React.FC = () => {
   const last = useRef({ x: 0, y: 0 });
   const inHeroRef = useRef(true);
 
-  const [enabled, setEnabled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+  );
   const [inHero, setInHero] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const apply = () => setEnabled(mq.matches);
+    const apply = () => setIsDesktop(mq.matches);
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
   }, []);
 
   useEffect(() => {
-    if (!enabled) return;
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const p = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
@@ -278,7 +290,7 @@ const ScrollSystems3D: React.FC = () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [enabled]);
+  }, []);
 
   const onMove = useCallback((e: PointerEvent) => {
     if (!dragging.current) return;
@@ -305,24 +317,22 @@ const ScrollSystems3D: React.FC = () => {
     [onMove, onUp]
   );
 
-  if (!enabled) return null;
-
   return (
     <>
       {/* z-[1]: behind the page content (main is z-10), above the gradient backdrop (z-0). */}
       <div className="fixed inset-0 z-[1]" style={{ pointerEvents: "none" }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
-            dpr={[1, 2]}
+            dpr={isDesktop ? [1, 2] : 1}
             camera={{ position: [0, 0, 12], fov: 45 }}
-            gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+            gl={{ alpha: true, antialias: isDesktop, powerPreference: "high-performance" }}
             style={{ background: "transparent", pointerEvents: "none" }}
           >
             <ambientLight intensity={0.7} />
             <directionalLight position={[5, 8, 6]} intensity={1.3} />
             <directionalLight position={[-6, 2, -4]} intensity={0.6} color="#aaa6c3" />
             <pointLight position={[0, 0, 9]} intensity={0.8} />
-            <Network progress={progress} dragRot={dragRot} dragging={dragging} inHero={inHeroRef} />
+            <Network progress={progress} dragRot={dragRot} dragging={dragging} inHero={inHeroRef} kf={isDesktop ? KEYFRAMES : KEYFRAMES_MOBILE} />
           </Canvas>
         </CanvasErrorBoundary>
       </div>
