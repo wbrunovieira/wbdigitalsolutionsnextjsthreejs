@@ -38,13 +38,22 @@ const KEYFRAMES: Keyframe[] = [
   { pos: [0, -4, 0], rot: [0.05, -0.35, 0], scale: 1.0 }, // after apple cards: in the gap between cards and footer
 ];
 
-const HERO_ZONE = 0.08;
+// Mobile (≤lg) pose table — narrow viewport, so keep x≈0 and use z (dolly) + scale.
+const KEYFRAMES_MOBILE: Keyframe[] = [
+  { pos: [0, -1.6, -1.0], rot: [-0.04, -0.30, -0.06], scale: 1.55 }, // hero: centered, lower
+  { pos: [-1.2, 0.2, -3.0], rot: [0.05, -0.45, 0], scale: 1.05 },    // portal: slight left, back
+  { pos: [0, 0.0, -1.5], rot: [0.05, -0.30, 0], scale: 1.2 },        // tags: centered behind text
+  { pos: [1.0, 0.8, -2.5], rot: [0.22, 0.85, 0.08], scale: 1.15 },   // toolbox: nudged right, angled
+  { pos: [0, -3.5, -2.0], rot: [0.05, -0.30, 0], scale: 0.7 },       // final: small, low
+];
 
 // World units the model rises per scroll pixel while a section is on screen.
-// ~0.03 ≈ 1:1 with the page, so the model stays glued to a point in the section
-// and rides it upward; when the section leaves, the target jumps to the next stop
-// and the damping below plays the descent.
+// ~0.03 ≈ 1:1 with the page on desktop; mobile is gentler (taller sections, closer cam).
 const GLUE = 0.03;
+const GLUE_MOBILE = 0.018;
+
+const CAMERA_DESKTOP = { position: [20, 3, 25] as [number, number, number], fov: 45 };
+const CAMERA_MOBILE = { position: [20, 4, 26] as [number, number, number], fov: 40 };
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
@@ -114,7 +123,6 @@ const Computer: React.FC<ComputerProps> = ({ target, dragRot, dragging, inHero }
 };
 
 const ScrollComputer3D: React.FC = () => {
-  const progress = useRef(0);
   const dragRot = useRef({ x: 0, y: 0 });
   const dragging = useRef(false);
   const last = useRef({ x: 0, y: 0 });
@@ -125,13 +133,16 @@ const ScrollComputer3D: React.FC = () => {
     rx: KEYFRAMES[0].rot[0], ry: KEYFRAMES[0].rot[1], rz: KEYFRAMES[0].rot[2], s: KEYFRAMES[0].scale,
   });
 
-  const [enabled, setEnabled] = useState(false);
+  // Read synchronously on first render (component is ssr:false) so the Canvas gets
+  // the right camera immediately — no desktop-cam flash on phones.
+  const [isDesktop, setIsDesktop] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+  );
   const [inHero, setInHero] = useState(true);
 
-  // Desktop gate.
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const apply = () => setEnabled(mq.matches);
+    const apply = () => setIsDesktop(mq.matches);
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
@@ -143,7 +154,8 @@ const ScrollComputer3D: React.FC = () => {
   // fully leaves does the active index advance, so the target jumps to the next
   // stop and the model descends (eased in the Computer's useFrame).
   useEffect(() => {
-    if (!enabled) return;
+    const KF = isDesktop ? KEYFRAMES : KEYFRAMES_MOBILE;
+    const glueFactor = isDesktop ? GLUE : GLUE_MOBILE;
 
     const readStops = () => {
       stopsRef.current = Array.from(
@@ -152,15 +164,7 @@ const ScrollComputer3D: React.FC = () => {
     };
 
     const onScroll = () => {
-      const vh = window.innerHeight;
       const S = window.scrollY;
-      const max = document.documentElement.scrollHeight - vh;
-      const p = max > 0 ? clamp(S / max, 0, 1) : 0;
-      progress.current = p;
-      const nextHero = p < HERO_ZONE;
-      inHeroRef.current = nextHero;
-      setInHero((prev) => (prev === nextHero ? prev : nextHero));
-
       if (stopsRef.current.length < 2) readStops();
       const stops = stopsRef.current;
       if (!stops.length) return;
@@ -173,12 +177,17 @@ const ScrollComputer3D: React.FC = () => {
           break;
         }
       }
-      i = Math.min(i, KEYFRAMES.length - 1);
-      // Last stop parks low (between the cards and the footer) — no glue, so it
-      // doesn't ride up and out as you scroll to the bottom.
+      i = Math.min(i, KF.length - 1);
+
+      // Hero state is section-aware (robust to page height across desktop/mobile).
+      const nextHero = i === 0;
+      inHeroRef.current = nextHero;
+      setInHero((prev) => (prev === nextHero ? prev : nextHero));
+
+      // Last stop parks low (between the cards and the footer) — no glue.
       const isLast = i === stops.length - 1;
-      const glueY = isLast ? 0 : (S - stops[i].offsetTop) * GLUE;
-      const kf = KEYFRAMES[i];
+      const glueY = isLast ? 0 : (S - stops[i].offsetTop) * glueFactor;
+      const kf = KF[i];
       const t = target.current;
       t.x = kf.pos[0];
       t.y = kf.pos[1] + glueY;
@@ -204,7 +213,7 @@ const ScrollComputer3D: React.FC = () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("load", onResize);
     };
-  }, [enabled]);
+  }, [isDesktop]);
 
   const onMove = useCallback((e: PointerEvent) => {
     if (!dragging.current) return;
@@ -231,24 +240,22 @@ const ScrollComputer3D: React.FC = () => {
     [onMove, onUp]
   );
 
-  if (!enabled) return null;
-
   return (
     <>
       {/* Canvas layer — behind the page content, never blocks (pointer-events none). */}
       <div className="fixed inset-0 z-[5]" style={{ pointerEvents: "none" }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
-            shadows
-            dpr={[1, 2]}
-            camera={{ position: [20, 3, 25], fov: 45 }}
-            gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+            shadows={isDesktop}
+            dpr={isDesktop ? [1, 2] : 1}
+            camera={isDesktop ? CAMERA_DESKTOP : CAMERA_MOBILE}
+            gl={{ alpha: true, antialias: isDesktop, powerPreference: "high-performance" }}
             style={{ background: "transparent", pointerEvents: "none" }}
           >
             <Suspense fallback={<CanvasLoader />}>
               <hemisphereLight intensity={2.5} groundColor="black" />
-              <spotLight position={[-10, 20, 10]} angle={0.12} penumbra={1} intensity={4} castShadow />
-              <pointLight intensity={1} />
+              <spotLight position={[-10, 20, 10]} angle={0.12} penumbra={1} intensity={isDesktop ? 4 : 2} castShadow={isDesktop} />
+              {isDesktop && <pointLight intensity={1} />}
               <Computer target={target} dragRot={dragRot} dragging={dragging} inHero={inHeroRef} />
               <Preload all />
             </Suspense>
