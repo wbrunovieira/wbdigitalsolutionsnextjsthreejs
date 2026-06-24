@@ -80,7 +80,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, postId }) => {
       <div className="bg-modern-gradient min-h-screen py-12 mt-32">
         <div className="mt-10 mb-10 text-center">
           <Link href="/blog">
-            <button className="px-6 py-2 bg-yellowcustom text-white font-semibold rounded-lg shadow-md hover:bg-yellowcustom/70 transition duration-300">
+            <button className="px-6 py-2 bg-yellowcustom text-primary font-semibold rounded-lg shadow-md hover:bg-yellowcustom/70 transition duration-300">
               ← {language === 'pt' || language === 'ptbr' ? 'Voltar ao Blog' : 
                   language === 'es' ? 'Volver al Blog' :
                   language === 'it' ? 'Torna al Blog' :

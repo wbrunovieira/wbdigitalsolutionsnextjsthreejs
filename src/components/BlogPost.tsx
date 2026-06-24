@@ -95,7 +95,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ title, text, images, category, auth
 
       <div className="mt-10 text-center">
         <Link href="/blog">
-          <button className="px-6 py-2 bg-yellowcustom text-white font-semibold rounded-lg shadow-md hover:bg-yellowcustom/70 transition duration-300">
+          <button className="px-6 py-2 bg-yellowcustom text-primary font-semibold rounded-lg shadow-md hover:bg-yellowcustom/70 transition duration-300">
             ← Voltar ao Blog
           </button>
         </Link>

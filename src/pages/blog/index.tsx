@@ -73,7 +73,7 @@ const BlogIndexPage: React.FC = () => {
             onClick={() => setSelectedCategory(null)}
             className={`px-2 py-1 text-xs font-medium rounded-lg transition-all duration-300 ${
               selectedCategory === null
-                ? "bg-yellowcustom text-white shadow-md scale-105"
+                ? "bg-yellowcustom text-primary shadow-md scale-105"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
             whileHover={{ scale: 1.05 }}
@@ -90,7 +90,7 @@ const BlogIndexPage: React.FC = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-2 py-1 text-xs font-medium rounded-lg transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-yellowcustom text-white shadow-md scale-105"
+                  ? "bg-yellowcustom text-primary shadow-md scale-105"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
               whileHover={{ scale: 1.05 }}

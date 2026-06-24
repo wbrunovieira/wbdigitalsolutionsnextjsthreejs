@@ -78,4 +78,34 @@ Juries score Design / Usability / Creativity / Content. Checklist:
 4. If `.next` build errors with `PageNotFoundError`/`required-server-files` ENOENT (stale/concurrent), `rm -rf .next && pnpm build`.
 
 ## Pages to cover
-Home `/`, `/websites`, `/systems`, `/ai`, `/automation`, `/projects`, `/contact`, `/blog`. Each service page has its own scroll-3D hero — apply the §3 deferral patterns to each (several still mount their hero 3D eagerly → low mobile Perf, e.g. `/websites`).
+Home `/`, `/websites`, `/systems`, `/ai`, `/automation`, `/projects`, `/contact`, `/blog`. Each service page has its own scroll-3D hero — apply the §3 deferral patterns to each.
+
+## 8. The rigorous full per-page sweep
+Run BOTH form factors on EVERY page and build one scorecard. Targets: Perf ≥90 (sub-90 acceptable only when LCP/TBT-bound by an unavoidable heavy GLTF), SEO/A11y/BP = 100.
+
+```bash
+# Per page, MOBILE then DESKTOP. (home path = "")
+lighthouse "https://www.wbdigitalsolutions.com/PATH" --form-factor=mobile --screenEmulation.mobile \
+  --only-categories=performance,seo,best-practices,accessibility \
+  --output=json --output-path=/tmp/lh.json --chrome-flags="--headless=new --no-sandbox" --quiet 2>/dev/null
+lighthouse "https://www.wbdigitalsolutions.com/PATH" --preset=desktop \
+  --only-categories=performance,seo,best-practices,accessibility \
+  --output=json --output-path=/tmp/lh.json --chrome-flags="--headless=new --no-sandbox" --quiet 2>/dev/null
+```
+
+**GOTCHA — don't naively loop all 16 runs.** Mobile runs use 4× CPU throttling (slower) and the launched Chrome doesn't always close before the next launches → port/profile collision → **mobile runs silently produce no JSON ("FALHOU"), desktop ones in the same loop still pass**. Mitigations: run pages **one at a time** (most reliable), or space iterations and clean up between. Do NOT `pkill -f chrome` — it kills the chrome-devtools MCP browser and the user's browser too. Also: this sandboxed shell intermittently loses `rm`/`sleep` from PATH inside multi-line `declare -a` loops — prefer simple per-page commands over a big loop.
+
+Parse + guard (the JSON may be missing on a failed run):
+```bash
+node -e 'const r=require("/tmp/lh.json");const c=r.categories;const m=id=>r.audits[id]&&r.audits[id].displayValue;
+console.log("Perf "+Math.round(c.performance.score*100)+" | SEO "+Math.round(c.seo.score*100)+" | A11y "+Math.round(c.accessibility.score*100)+" | BP "+Math.round(c["best-practices"].score*100)+" || LCP "+m("largest-contentful-paint")+" TBT "+m("total-blocking-time")+" CLS "+m("cumulative-layout-shift"));' 2>/dev/null || echo FALHOU
+```
+
+**Recurring A11y offenders to grep + fix before/after the sweep** (each cost a point on some page):
+- Green WhatsApp CTA `bg-green-600 text-white` → still fails at 18px; use **`bg-green-700`** (AICTA, AutomationCTA).
+- **White-on-yellow** `bg-yellowcustom text-white` (= #fff on #ffb947 ≈ 1.7) → use **`text-primary`** (blog category buttons in `blog/index.tsx`, `BlogPost.tsx`, `blog/[id].tsx`).
+- Consent banner must have an **opaque bg** (`bg-[#1a0826]`) or contrast resolves against white (2.34) and drops A11y on whatever page captures the banner that run.
+- Icon-only buttons need `aria-label`; decorative icons `aria-hidden`.
+- Per-letter GSAP title reveal stalls → letters stuck invisible (see `3d-performance.md`).
+
+To know WHICH element failed a category: `node -e 'const r=require("/tmp/lh.json");r.categories.accessibility.auditRefs.map(x=>r.audits[x.id]).filter(a=>a&&a.score<1).forEach(a=>{console.log("• "+a.title);(a.details?.items||[]).slice(0,3).forEach(it=>console.log("   "+((it.node?.explanation||it.node?.snippet)||"").slice(0,130)))})'`
