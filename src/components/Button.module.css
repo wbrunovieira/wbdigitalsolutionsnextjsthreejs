@@ -1,0 +1,154 @@
+/* Bright CTA button — scoped styles (migrated out of global.css).
+   The yellow neon-glow hover animation is preserved exactly; keyboard focus now
+   mirrors it for a11y parity, plus an active/pressed state and reduced-motion. */
+
+.container {
+    width: fit-content;
+    display: inline-flex;
+}
+
+.btn {
+    position: relative;
+    display: inline-flex;
+    margin: 20px;
+}
+
+/* The visible pill — soft yellow resting fill (legible), dark text for AAA contrast. */
+.btn a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Padding-based sizing → adapts to label length across the 4 locales (was fixed 155px). */
+    padding: 15px 36px;
+    min-height: 50px;
+    white-space: nowrap;
+    background: #ffc862;
+    box-shadow: 0 4px 16px rgba(255, 185, 71, 0.25);
+    z-index: 10;
+    color: #350545;
+    border-radius: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+/* Idle diagonal shine — a slow, periodic glare that keeps the CTA alive at rest. */
+.btn a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.35) 50%, transparent 100%);
+    transform: translateX(-220%) skewX(-20deg);
+    pointer-events: none;
+    animation: btnShineIdle 5s ease-in-out infinite;
+}
+
+/* Brighter diagonal sweep on hover/focus — the interaction reward. */
+.btn a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    transform: translateX(-220%) skewX(-20deg);
+    pointer-events: none;
+}
+
+.btn:hover a::after,
+.btn:focus-within a::after {
+    animation: btnShineSweep 0.8s ease;
+}
+
+@keyframes btnShineIdle {
+    0% { transform: translateX(-220%) skewX(-20deg); }
+    18% { transform: translateX(320%) skewX(-20deg); }
+    100% { transform: translateX(320%) skewX(-20deg); }
+}
+
+@keyframes btnShineSweep {
+    from { transform: translateX(-220%) skewX(-20deg); }
+    to { transform: translateX(320%) skewX(-20deg); }
+}
+
+/* Neon yellow glow bars (bottom + top). Glow lives here directly — no nth-child needed. */
+.btn::before,
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--yellowcustom);
+    width: 30px;
+    height: 10px;
+    border-radius: 10px;
+    opacity: 0;
+    transition: 0.5s;
+    box-shadow: 0 0 5px var(--yellowcustom), 0 0 15px var(--yellowcustom),
+        0 0 30px var(--yellowcustom), 0 0 60px var(--yellowcustom);
+}
+
+.btn::before { bottom: -5px; }
+.btn::after { top: -5px; }
+
+/* Hover AND keyboard focus fire the same animation (a11y parity). */
+.btn:hover a,
+.btn:focus-within a {
+    letter-spacing: 3px;
+}
+
+.btn:hover::before,
+.btn:focus-within::before {
+    bottom: 0;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+.btn:hover::after,
+.btn:focus-within::after {
+    top: 0;
+    height: 50%;
+    width: 80%;
+    border-radius: 30px;
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+/* Visible focus ring for keyboard users. */
+.btn a:focus-visible {
+    outline: 2px solid #350545;
+    outline-offset: 3px;
+}
+
+/* Pressed feedback. */
+.btn a:active {
+    transform: scale(0.97);
+}
+
+/* Respect users who prefer less motion: keep the color, drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+    .btn a,
+    .btn::before,
+    .btn::after {
+        transition: none;
+    }
+    .btn a::before,
+    .btn:hover a::after,
+    .btn:focus-within a::after {
+        animation: none;
+    }
+    .btn:hover a,
+    .btn:focus-within a {
+        letter-spacing: 1px;
+    }
+}

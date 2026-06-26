@@ -79,7 +79,16 @@ const Computer: React.FC<ComputerProps> = ({ target, dragRot, dragging, inHero }
     const box = new THREE.Box3().setFromObject(inner.current);
     const center = box.getCenter(new THREE.Vector3());
     inner.current.position.sub(center);
-  }, []);
+    // Enable real self-shadowing: the tower/monitor cast onto their own desk, and
+    // since the shadow light is world-fixed, the shadow sweeps the desk as it spins.
+    scene.traverse((o) => {
+      const m = o as THREE.Mesh;
+      if (m.isMesh) {
+        m.castShadow = true;
+        m.receiveShadow = true;
+      }
+    });
+  }, [scene]);
 
   useFrame((state, delta) => {
     if (!group.current) return;
@@ -253,9 +262,27 @@ const ScrollComputer3D: React.FC = () => {
             style={{ background: "transparent", pointerEvents: "none" }}
           >
             <Suspense fallback={<CanvasLoader />}>
-              <hemisphereLight intensity={2.5} groundColor="black" />
-              <spotLight position={[-10, 20, 10]} angle={0.12} penumbra={1} intensity={isDesktop ? 4 : 2} castShadow={isDesktop} />
+              {/* Lower ambient on desktop so the cast shadow has contrast (high fill washes shadows out). */}
+              <hemisphereLight intensity={isDesktop ? 1.8 : 2.5} groundColor="black" />
+              {/* Key/fill spot — no longer the shadow caster (its narrow cone barely covers the model). */}
+              <spotLight position={[-10, 20, 10]} angle={0.12} penumbra={1} intensity={isDesktop ? 4 : 2} />
               {isDesktop && <pointLight intensity={1} />}
+              {/* World-fixed shadow key: the model spins under it, so its shadow rakes across the desk. */}
+              {isDesktop && (
+                <directionalLight
+                  position={[7, 13, 6]}
+                  intensity={1.5}
+                  castShadow
+                  shadow-mapSize={[1024, 1024]}
+                  shadow-bias={-0.0004}
+                  shadow-camera-near={1}
+                  shadow-camera-far={45}
+                  shadow-camera-left={-12}
+                  shadow-camera-right={12}
+                  shadow-camera-top={12}
+                  shadow-camera-bottom={-12}
+                />
+              )}
               <Computer target={target} dragRot={dragRot} dragging={dragging} inHero={inHeroRef} />
               <Preload all />
             </Suspense>
