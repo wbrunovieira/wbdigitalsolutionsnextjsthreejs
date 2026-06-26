@@ -155,9 +155,9 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
                             fontSize: 'clamp(0.7rem, 1.3vw, 0.8rem)',
                             fontWeight: 500,
                             letterSpacing: '0.06em',
-                            border: '1px solid rgba(121,41,144,0.6)',
-                            background: 'rgba(121,41,144,0.15)',
-                            color: 'rgba(255,255,255,0.8)',
+                            border: '1px solid rgba(170,166,195,0.45)',
+                            background: 'rgba(53,5,69,0.65)',
+                            color: '#fff',
                         }}
                     >
                         {pill}
