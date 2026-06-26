@@ -92,6 +92,12 @@ Frontend sends enriched context to backend API:
 - `bg-custom-gradient` - Radial gradient for backgrounds
 - `bg-modern-gradient` - Linear purple gradient
 
+### Styling / CSS Architecture
+- **Component styles live in co-located CSS Modules** (`Component.module.css`), imported as `import styles from './Component.module.css'`. Examples: `Button.module.css`, `Nav.module.css`, `InfiniteScrollHash.module.css`.
+- **`src/styles/global.css` is base-only** (~55 lines): `@tailwind` directives, `:root` tokens (`--yellowcustom`, `--purplecustom`, `--purplecustondark`), `html/body` base, canvas-transparent helpers, and shared keyframes referenced via Tailwind arbitrary animations (e.g. `animate-[wb-fadeup_...]`, `animate-[wb-loadbar_...]`).
+- **Never add component styles to `global.css`.** New styling goes in a CSS Module or Tailwind. Complex pseudo-element/keyframe animations (too unwieldy inline) belong in the module.
+- Prefer dark text (`#350545`) on yellow fills for AAA contrast; mirror `:hover` affordances with `:focus-visible` and gate motion behind `prefers-reduced-motion`.
+
 ## Development Notes
 
 1. **3D Performance**: Dispose Three.js geometries/materials to prevent memory leaks. Test on mobile.
