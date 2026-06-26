@@ -167,32 +167,6 @@ html, body {
             hsla(38, 100%, 35%, 0) 70%);
 }
 
-.high-tech-minimalist-line-light {
-    position: relative;
-    width: 100%;
-    height: 1px;
-    background-color: #350545;
-}
-
-.line {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background-color: #792990;
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: transform 2s;
-    z-index: 1000;
-}
-
-.line.animate {
-    transform: scaleX(1);
-}
-
-.high-tech-minimalist-line-light:hover .line {
-    transform: scaleX(1);
-}
-
 @keyframes wb-loadbar {
     0% { transform: translateX(-120%); }
     100% { transform: translateX(360%); }
@@ -205,66 +179,3 @@ html, body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* .container-bright / .btn-bright moved to src/components/Button.module.css (scoped). */
-
-.tag-list {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.inner {
-    width: fit-content;
-    display: flex;
-    gap: 1rem;
-    animation: loop 40s linear infinite;
-}
-
-.tag {
-    display: flex;
-    white-space: nowrap;
-    align-items: center;
-    gap: 0 0.2rem;
-    color: #e2e8f0;
-    font-size: 0.9rem;
-    background-color: var(--purplecustondark);
-    padding: 0.7rem 1rem;
-    border-radius: 0.4rem;
-    box-shadow: 0 0.1rem 0.2rem #00000033, 0 0.1rem 0.5rem #0000004d,
-        0 0.1rem 1.5rem #00000066;
-}
-
-.tag span {
-    font-size: 1.2rem;
-    color: var(--purplecustom);
-}
-
-.fade {
-    position: absolute;
-    background: linear-gradient(90deg,
-            var(--purplecustondark),
-            transparent 30%,
-            transparent 70%,
-            var(--purplecustondark));
-    inset: 0;
-    pointer-events: none;
-}
-
-@keyframes loop {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
