@@ -1,0 +1,116 @@
+/* Language switcher (custom radio + tooltip) and nav link glow.
+   Migrated out of global.css. Sibling/adjacent combinators are preserved — in a
+   CSS Module the same `styles.input` maps to one scoped name, so they still match. */
+
+.input {
+    -webkit-appearance: none;
+    /* remove default */
+    display: flex;
+    margin-right: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    vertical-align: middle;
+    box-shadow: hsla(0, 0%, 100%, 0.15) 0 1px 1px,
+        inset hsla(0, 0%, 0%, 0.5) 0 0 0 1px;
+    background-color: hsla(0, 0%, 0%, 0.2);
+    background-image: -webkit-radial-gradient(hsla(38, 100%, 70%, 1) 0%,
+            hsla(38, 100%, 55%, 1) 15%,
+            hsla(38, 100%, 45%, 0.3) 28%,
+            hsla(38, 100%, 25%, 0) 70%);
+    background-repeat: no-repeat;
+    -webkit-transition: background-position 0.15s cubic-bezier(0.8, 0, 1, 1),
+        -webkit-transform 0.25s cubic-bezier(0.8, 0, 1, 1);
+    outline: none;
+}
+
+.input:checked {
+    -webkit-transition: background-position 0.2s 0.15s cubic-bezier(0, 0, 0.2, 1),
+        -webkit-transform 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.input:active {
+    -webkit-transform: scale(1.5);
+    -webkit-transition: -webkit-transform 0.1s cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* The up/down direction logic */
+.input,
+.input:active {
+    background-position: 0 24px;
+}
+
+.input:checked {
+    background-position: 0 0;
+}
+
+.input:checked ~ .input,
+.input:checked ~ .input:active {
+    background-position: 0 -24px;
+}
+
+.radioInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radioCustomLabel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0 6px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+.radioCustom:checked + .radioCustomLabel {
+    width: 16px;
+    height: 16px;
+}
+
+.tooltipText {
+    visibility: hidden;
+    width: 120px;
+    background-color: #350545;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.radioCustomLabel:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}
+
+.link {
+    transition: background 0.3s ease;
+    background-size: 25% 25%;
+    background-repeat: no-repeat;
+    background-position-x: 60%;
+    background-position-y: 90%;
+}
+
+.link:hover {
+    color: var(--yellowcustom);
+    background-size: 25% 25%;
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    background-position-y: 90%;
+    background-image: -webkit-radial-gradient(hsla(38, 100%, 80%, 1) 0%,
+            hsla(38, 100%, 65%, 1) 15%,
+            hsla(38, 100%, 55%, 0.5) 28%,
+            hsla(38, 100%, 35%, 0) 70%);
+}

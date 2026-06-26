@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import logo from "/public/svg/logo.svg";
+import styles from "./Nav.module.css";
 
 const ParticlesContainer = dynamic(() => import("./ParticlesContainer"), { ssr: false });
 const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
@@ -100,7 +101,7 @@ const Nav: React.FC = () => {
           <div className="ml-auto lg:ml-0 lg:flex flex-col text text-xs justify-end items-end">
                 <div className="hidden lg:flex items-center z-50">
                 {!isLoaded && (
-                    <div className="radio-input opacity-50">
+                    <div className={`${styles.radioInput} opacity-50`}>
                         <span className="text-white text-xs">...</span>
                     </div>
                 )}
@@ -119,11 +120,11 @@ const Nav: React.FC = () => {
                         { id: "es", display: "es", tooltip: currentMessages.spanish },
                     ];
                     return (
-                        <div className="radio-input">
+                        <div className={styles.radioInput}>
                             {labels.map((lang, i) => (
                                 <React.Fragment key={lang.id}>
                                     <input
-                                        className="input radio-custom"
+                                        className={`${styles.input} ${styles.radioCustom}`}
                                         type="radio"
                                         name="radio"
                                         id={lang.id}
@@ -134,9 +135,9 @@ const Nav: React.FC = () => {
                                     />
                                     <label
                                         htmlFor={lang.id}
-                                        className={`radio-custom-label ${lang.id} btn hover:text-gray-300`}
+                                        className={`${styles.radioCustomLabel} ${lang.id} btn hover:text-gray-300`}
                                     >{lang.display}
-                                        <span className="tooltip-text">{lang.tooltip}</span>
+                                        <span className={styles.tooltipText}>{lang.tooltip}</span>
                                     </label>
                                     {i < labels.length - 1 && (
                                         <span className="w-px h-3 bg-white/20 mx-3 self-center" />
@@ -178,7 +179,7 @@ const Nav: React.FC = () => {
 
                         return (
                             <div
-                                className="hidden lg:flex relative link"
+                                className={`hidden lg:flex relative ${styles.link}`}
                                 onMouseEnter={() => setActiveMenu(link.name)}
                                 onMouseLeave={() => setActiveMenu(null)}
                                 key={index}
