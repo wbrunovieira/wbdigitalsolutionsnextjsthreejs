@@ -31,7 +31,7 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({ value, onChange, labels
               aria-pressed={active}
               className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-all duration-300 ${
                 active
-                  ? 'bg-gradient-to-r from-custom-purple to-yellowcustom text-white shadow-lg shadow-custom-purple/30 scale-105'
+                  ? 'bg-custom-purple text-white shadow-lg shadow-custom-purple/30 scale-105'
                   : 'border border-custom-purple/30 bg-primary/40 text-secondary hover:border-custom-purple/70 hover:text-white'
               }`}
             >

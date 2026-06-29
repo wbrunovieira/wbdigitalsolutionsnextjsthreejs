@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { type Project, type ProjectsPageContent } from './types';
+import { ProjectButton } from './ProjectButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +18,7 @@ interface FeaturedProjectProps {
 
 const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onSelect }) => {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageWrapRef = useRef<HTMLDivElement>(null);
+  const imageWrapRef = useRef<HTMLButtonElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -25,9 +26,14 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onS
     () => {
       if (typeof window === 'undefined') return;
 
-      // Content rise-in.
+      // Content rise-in — reveal text + pills, but EXCLUDE the CTA (.js-cta).
+      // A primary action must stay visible even if this scroll-trigger stalls;
+      // animating it was leaving the button stuck at opacity 0.
       if (contentRef.current) {
-        gsap.from(contentRef.current.children, {
+        const revealItems = Array.from(contentRef.current.children).filter(
+          (el) => !el.classList.contains('js-cta')
+        );
+        gsap.from(revealItems, {
           opacity: 0,
           y: 40,
           duration: 0.9,
@@ -64,9 +70,12 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onS
     <section ref={sectionRef} className="px-6 py-16 lg:py-24">
       <div className="container mx-auto grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Image */}
-        <div
+        <button
+          type="button"
           ref={imageWrapRef}
-          className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-custom-purple/30 shadow-2xl shadow-custom-purple/20 lg:aspect-[5/4]"
+          onClick={() => onSelect(project)}
+          aria-label={`${content.viewProject}: ${project.title}`}
+          className="group relative isolate aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-3xl border border-custom-purple/30 shadow-2xl shadow-custom-purple/20 transition-shadow duration-300 hover:shadow-custom-purple/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary lg:aspect-[5/4]"
         >
           <div ref={imageRef} className="absolute inset-x-0 -inset-y-[14%]">
             {project.imageUrl ? (
@@ -77,16 +86,26 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onS
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 quality={90}
                 priority
-                className="object-cover"
+                className="object-cover blur-sm transition-[transform,filter] duration-500 ease-out group-hover:scale-105 group-hover:blur-0 motion-reduce:group-hover:scale-100"
               />
             ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-custom-purple/50 via-primary to-primary">
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-custom-purple/50 via-primary to-primary transition-transform duration-500 ease-out group-hover:scale-105 motion-reduce:group-hover:scale-100">
                 <span className="text-7xl">{project.icon ?? '🗂️'}</span>
               </div>
             )}
           </div>
+          {/* Brand-purple tint at rest; hover reveals the photo's original colors. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-custom-purple mix-blend-color transition-opacity duration-500 ease-out group-hover:opacity-0"
+          />
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/60 via-transparent to-transparent" />
-        </div>
+          {/* Hover hint so it's obvious the whole image opens the project. */}
+          <span className="pointer-events-none absolute bottom-4 left-4 inline-flex translate-y-2 items-center gap-2 rounded-full bg-primary/80 px-4 py-2 text-sm font-semibold text-white opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            {content.viewProject}
+            <span aria-hidden>→</span>
+          </span>
+        </button>
 
         {/* Content */}
         <div ref={contentRef}>
@@ -119,13 +138,9 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onS
             ))}
           </div>
 
-          <button
-            onClick={() => onSelect(project)}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-custom-purple to-yellowcustom px-7 py-3 font-semibold text-white shadow-lg shadow-custom-purple/30 transition-transform duration-300 hover:scale-105"
-          >
+          <ProjectButton onClick={() => onSelect(project)} className="mt-8 js-cta">
             {content.viewProject}
-            <span aria-hidden>→</span>
-          </button>
+          </ProjectButton>
         </div>
       </div>
     </section>

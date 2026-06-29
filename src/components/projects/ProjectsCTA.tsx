@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Link from 'next/link';
+import { ProjectButton } from './ProjectButton';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -39,13 +39,9 @@ const ProjectsCTA: React.FC<ProjectsCTAProps> = ({ content }) => {
       >
         <h2 className="text-3xl font-bold leading-tight text-white lg:text-4xl">{content.title}</h2>
         <p className="mt-4 max-w-xl text-base text-secondary lg:text-lg">{content.subtitle}</p>
-        <Link
-          href="/contact"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-yellowcustom to-custom-purple px-8 py-3.5 font-semibold text-white shadow-lg shadow-custom-purple/30 transition-transform duration-300 hover:scale-105"
-        >
+        <ProjectButton href="/contact" className="mt-8">
           {content.button}
-          <span aria-hidden>→</span>
-        </Link>
+        </ProjectButton>
       </div>
     </section>
   );

@@ -15,6 +15,7 @@ import {
 import { EffectComposer, Bloom, Vignette, DepthOfField } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { ProjectButton } from './ProjectButton';
 
 // Brand palette only.
 const ACCENT = '#ffb947'; // yellow
@@ -490,15 +491,17 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
 
         {/* Explore CTA */}
         <div className="pointer-events-none absolute inset-x-0 bottom-8 z-10 flex justify-center">
-          <button
+          <ProjectButton
             onClick={scrollToGrid}
-            className="pointer-events-auto group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-yellowcustom to-custom-purple px-8 py-4 font-semibold text-white shadow-lg shadow-custom-purple/30 transition-transform duration-300 hover:scale-105"
+            className="pointer-events-auto"
+            icon={
+              <svg className="h-4 w-4 animate-bounce motion-reduce:animate-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            }
           >
             {content.explore}
-            <svg className="h-4 w-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </button>
+          </ProjectButton>
         </div>
       </div>
     </section>
