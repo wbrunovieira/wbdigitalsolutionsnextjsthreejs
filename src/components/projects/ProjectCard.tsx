@@ -20,7 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, content, priority, o
       className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-custom-purple/20 bg-primary/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-custom-purple/60 hover:shadow-2xl hover:shadow-custom-purple/20"
     >
       {/* Full-bleed cover */}
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative isolate aspect-[4/3] overflow-hidden">
         {project.imageUrl ? (
           <Image
             src={project.imageUrl}
@@ -29,13 +29,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, content, priority, o
             sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 30vw"
             quality={85}
             priority={priority}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            className="object-cover blur-sm transition-[transform,filter] duration-700 ease-out group-hover:scale-110 group-hover:blur-0"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-custom-purple/50 via-primary to-primary">
             <span className="text-6xl">{project.icon ?? '🗂️'}</span>
           </div>
         )}
+        {/* Brand-purple tint + soft blur at rest; hover reveals the original sharp photo. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-custom-purple mix-blend-color transition-opacity duration-500 ease-out group-hover:opacity-0"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent" />
         <span
           className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-xs font-semibold capitalize backdrop-blur-sm ${accent}`}
