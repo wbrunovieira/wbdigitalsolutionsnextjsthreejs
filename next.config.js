@@ -37,12 +37,23 @@ const nextConfig = {
   },
 
   async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap.xml',
-      },
-    ];
+    return {
+      // beforeFiles runs before filesystem/page resolution — required so the
+      // bruno subdomain root maps to /cv even though pages/index.tsx exists.
+      beforeFiles: [
+        {
+          source: '/',
+          has: [{ type: 'host', value: 'bruno.wbdigitalsolutions.com' }],
+          destination: '/cv',
+        },
+      ],
+      afterFiles: [
+        {
+          source: '/sitemap.xml',
+          destination: '/api/sitemap.xml',
+        },
+      ],
+    };
   },
 
   async headers() {
