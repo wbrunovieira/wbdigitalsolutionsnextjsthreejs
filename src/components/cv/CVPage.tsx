@@ -132,7 +132,6 @@ const CVPage: React.FC = () => {
               {t.name}
             </h1>
             <p className="mt-2 text-xs font-medium uppercase tracking-[0.22em] text-white/45 sm:text-sm">{t.fullName}</p>
-            <p className="mt-3 text-base font-semibold text-yellowcustom sm:text-lg">{t.headline}</p>
 
             {/* Audience toggle — the page rewrites itself per track, so make it obvious */}
             <div className="mb-8 mt-8">
