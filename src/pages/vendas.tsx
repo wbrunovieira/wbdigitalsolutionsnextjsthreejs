@@ -5,6 +5,7 @@ import SalesSkills from "@/components/cv/SalesSkills";
 import SalesEducation from "@/components/cv/SalesEducation";
 import SalesLanguages from "@/components/cv/SalesLanguages";
 import SalesAbout from "@/components/cv/SalesAbout";
+import SalesContact from "@/components/cv/SalesContact";
 
 const TITLE = "Bruno Vieira — Vendas Técnicas & Desenvolvimento Comercial B2B";
 const DESCRIPTION =
@@ -36,6 +37,7 @@ export default function SalesCV() {
       <SalesEducation />
       <SalesLanguages />
       <SalesAbout />
+      <SalesContact />
     </>
   );
 }

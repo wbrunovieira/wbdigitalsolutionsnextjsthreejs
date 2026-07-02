@@ -209,6 +209,15 @@ const SalesHero: React.FC = () => {
             </a>
           ))}
         </nav>
+        <div className="flex items-center gap-3">
+        <a
+          href="#contato"
+          onClick={scrollTo("contato")}
+          className="hidden rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
+          style={{ background: AMBER, color: INK, boxShadow: "0 6px 16px rgba(224,145,47,0.3)" }}
+        >
+          {t.nav.contact}
+        </a>
         <div className="flex items-center gap-1 rounded-full border bg-white/70 p-1 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm" style={{ borderColor: "rgba(28,28,30,0.12)" }}>
           {LANGS.map((l) => {
             const isActive = lang === l.code;
@@ -231,6 +240,7 @@ const SalesHero: React.FC = () => {
               </button>
             );
           })}
+        </div>
         </div>
         </div>
       </header>

@@ -125,7 +125,7 @@ export interface CVContent {
   /** Personal greeting prefix shown before the name (e.g. "Olá, sou o"). */
   heroGreeting: string;
   /** Header nav labels for the sales page sections. */
-  nav: { start: string; timeline: string; skills: string; education: string; languages: string; about: string };
+  nav: { start: string; timeline: string; skills: string; education: string; languages: string; about: string; contact: string };
 }
 
 /** Non-translatable shared data. */
@@ -325,7 +325,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     ],
     contact: {
       ctaTitle: "Let's build — or close — something.",
-      ctaSub: "Open to senior engineering and commercial roles. The fastest way to reach me:",
+      ctaSub: "The fastest way to reach me:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
@@ -352,7 +352,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Product", "Need", "Person"],
     taglinePayoff: ["the product,", "the need,", "and the person."],
     heroGreeting: "Hi, I'm",
-    nav: { start: "Home", timeline: "Journey", skills: "Skills", education: "Education", languages: "Languages", about: "About" },
+    nav: { start: "Home", timeline: "Journey", skills: "Skills", education: "Education", languages: "Languages", about: "About", contact: "Contact" },
   },
 
   "pt-BR": {
@@ -540,7 +540,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     ],
     contact: {
       ctaTitle: "Vamos construir — ou fechar — algo.",
-      ctaSub: "Aberto a vagas sênior de engenharia e comerciais. O jeito mais rápido de falar comigo:",
+      ctaSub: "O jeito mais rápido de falar comigo:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
@@ -567,7 +567,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Produto", "Necessidade", "Pessoa"],
     taglinePayoff: ["o produto,", "a necessidade", "e a pessoa."],
     heroGreeting: "Olá, sou o",
-    nav: { start: "Início", timeline: "Trajetória", skills: "Competências", education: "Formação", languages: "Idiomas", about: "Sobre" },
+    nav: { start: "Início", timeline: "Trajetória", skills: "Competências", education: "Formação", languages: "Idiomas", about: "Sobre", contact: "Contato" },
   },
 
   it: {
@@ -755,7 +755,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     ],
     contact: {
       ctaTitle: "Costruiamo — o chiudiamo — qualcosa.",
-      ctaSub: "Disponibile per ruoli senior di engineering e commerciali. Il modo più rapido per contattarmi:",
+      ctaSub: "Il modo più rapido per contattarmi:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
@@ -782,7 +782,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Prodotto", "Bisogno", "Persona"],
     taglinePayoff: ["il prodotto,", "il bisogno", "e la persona."],
     heroGreeting: "Ciao, sono",
-    nav: { start: "Inizio", timeline: "Percorso", skills: "Competenze", education: "Formazione", languages: "Lingue", about: "Chi sono" },
+    nav: { start: "Inizio", timeline: "Percorso", skills: "Competenze", education: "Formazione", languages: "Lingue", about: "Chi sono", contact: "Contatti" },
   },
 
   es: {
@@ -970,7 +970,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     ],
     contact: {
       ctaTitle: "Construyamos — o cerremos — algo.",
-      ctaSub: "Abierto a roles senior de ingeniería y comerciales. La forma más rápida de contactarme:",
+      ctaSub: "La forma más rápida de contactarme:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
       githubLabel: "GitHub",
@@ -997,6 +997,6 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Producto", "Necesidad", "Persona"],
     taglinePayoff: ["el producto,", "la necesidad", "y la persona."],
     heroGreeting: "Hola, soy",
-    nav: { start: "Inicio", timeline: "Trayectoria", skills: "Competencias", education: "Formación", languages: "Idiomas", about: "Sobre mí" },
+    nav: { start: "Inicio", timeline: "Trayectoria", skills: "Competencias", education: "Formación", languages: "Idiomas", about: "Sobre mí", contact: "Contacto" },
   },
 };
