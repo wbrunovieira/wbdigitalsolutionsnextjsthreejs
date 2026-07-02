@@ -1,6 +1,7 @@
 import Head from "next/head";
 import SalesHero from "@/components/cv/SalesHero";
 import SalesTimeline from "@/components/cv/SalesTimeline";
+import SalesEducation from "@/components/cv/SalesEducation";
 
 const TITLE = "Bruno Vieira — Vendas Técnicas & Desenvolvimento Comercial B2B";
 const DESCRIPTION =
@@ -28,6 +29,7 @@ export default function SalesCV() {
       </Head>
       <SalesHero />
       <SalesTimeline />
+      <SalesEducation />
     </>
   );
 }

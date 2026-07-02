@@ -65,7 +65,7 @@ const SalesHero: React.FC = () => {
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-45% 0px -50% 0px" },
     );
-    ["inicio", "trajetoria"].forEach((id) => {
+    ["inicio", "trajetoria", "formacao"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -105,6 +105,7 @@ const SalesHero: React.FC = () => {
   const navItems = [
     { id: "inicio", label: t.nav.start },
     { id: "trajetoria", label: t.nav.timeline },
+    { id: "formacao", label: t.nav.education },
   ];
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();

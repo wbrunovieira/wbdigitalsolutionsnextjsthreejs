@@ -125,7 +125,7 @@ export interface CVContent {
   /** Personal greeting prefix shown before the name (e.g. "Olá, sou o"). */
   heroGreeting: string;
   /** Header nav labels for the sales page sections. */
-  nav: { start: string; timeline: string };
+  nav: { start: string; timeline: string; education: string };
 }
 
 /** Non-translatable shared data. */
@@ -352,7 +352,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Product", "Need", "Person"],
     taglinePayoff: ["the product,", "the need,", "and the person."],
     heroGreeting: "Hi, I'm",
-    nav: { start: "Home", timeline: "Journey" },
+    nav: { start: "Home", timeline: "Journey", education: "Education" },
   },
 
   "pt-BR": {
@@ -567,7 +567,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Produto", "Necessidade", "Pessoa"],
     taglinePayoff: ["o produto,", "a necessidade", "e a pessoa."],
     heroGreeting: "Olá, sou o",
-    nav: { start: "Início", timeline: "Trajetória" },
+    nav: { start: "Início", timeline: "Trajetória", education: "Formação" },
   },
 
   it: {
@@ -782,7 +782,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Prodotto", "Bisogno", "Persona"],
     taglinePayoff: ["il prodotto,", "il bisogno", "e la persona."],
     heroGreeting: "Ciao, sono",
-    nav: { start: "Inizio", timeline: "Percorso" },
+    nav: { start: "Inizio", timeline: "Percorso", education: "Formazione" },
   },
 
   es: {
@@ -997,6 +997,6 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Producto", "Necesidad", "Persona"],
     taglinePayoff: ["el producto,", "la necesidad", "y la persona."],
     heroGreeting: "Hola, soy",
-    nav: { start: "Inicio", timeline: "Trayectoria" },
+    nav: { start: "Inicio", timeline: "Trayectoria", education: "Formación" },
   },
 };
