@@ -20,10 +20,10 @@ const toCVLang = (lang: string): CVLang =>
   lang === "pt-BR" || lang === "it" || lang === "es" ? lang : "en";
 
 const CLIENTS_LABEL: Record<CVLang, string> = {
-  "pt-BR": "Marcas que atendi",
-  en: "Brands I've served",
-  it: "Marchi che ho servito",
-  es: "Marcas que atendí",
+  "pt-BR": "Alguns clientes conhecidos",
+  en: "Some notable clients",
+  it: "Alcuni clienti noti",
+  es: "Algunos clientes conocidos",
 };
 
 const SalesSkills: React.FC = () => {
@@ -54,7 +54,7 @@ const SalesSkills: React.FC = () => {
           </h2>
         </motion.header>
 
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2">
           {salesSkills.map((g, i) => (
             <motion.div key={g.label} {...reveal(i * 0.06)}>
               <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: AMBER }}>{g.label}</h3>

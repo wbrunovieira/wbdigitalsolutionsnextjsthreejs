@@ -155,7 +155,7 @@ const SalesHero: React.FC = () => {
       />
 
       {/* Hairline frame + corner ticks */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-4 z-[1] rounded-[4px] border sm:inset-6" style={{ borderColor: "rgba(28,28,30,0.10)" }}>
+      <div aria-hidden="true" className="pointer-events-none absolute left-4 right-4 bottom-4 top-20 z-[1] rounded-[4px] border sm:left-6 sm:right-6 sm:bottom-6 sm:top-24" style={{ borderColor: "rgba(28,28,30,0.10)" }}>
         <span className="absolute left-0 top-0 h-3 w-px" style={{ background: AMBER }} />
         <span className="absolute left-0 top-0 h-px w-3" style={{ background: AMBER }} />
         <span className="absolute bottom-0 right-0 h-3 w-px" style={{ background: AMBER }} />
@@ -246,7 +246,7 @@ const SalesHero: React.FC = () => {
       </header>
 
       {/* ===== Center: oversized role lockup (photo-less centerpiece) ===== */}
-      <div className="relative z-10 flex flex-1 items-center justify-center px-6 py-[4vh]">
+      <div className="relative z-10 flex flex-1 items-center justify-center px-6 py-[2vh]">
         <motion.div
           style={{ x: reduce ? 0 : wordX, y: reduce ? 0 : wordY }}
           className="flex items-center justify-center"

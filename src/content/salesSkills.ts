@@ -14,12 +14,23 @@ export const salesSkills: SkillGroup[] = [
     items: ["SPIN Selling", "SPICED", "Venda consultiva", "Solution Selling"],
   },
   {
+    label: "Prospecção",
+    items: ["Porta a porta / campo", "SDR", "ICP (perfil de cliente ideal)", "Construção de listas", "Discovery"],
+  },
+  {
     label: "Ciclo de vendas",
-    items: ["Prospecção", "Discovery", "Negociação", "Fechamento", "Pós-venda & upsell"],
+    items: ["Negociação", "Fechamento", "Pós-venda & upsell", "Ciclo comercial completo"],
   },
   {
     label: "Gestão comercial",
-    items: ["Contas enterprise / Key accounts", "Ciclo comercial completo", "CRM", "Forecast", "Abertura de mercado"],
+    items: [
+      "Contas enterprise / Key accounts",
+      "Gestão de carteira (farmer)",
+      "Relacionamento & fidelização",
+      "Abertura de mercado (hunter)",
+      "CRM",
+      "Forecast",
+    ],
   },
 ];
 
@@ -30,7 +41,6 @@ export const salesClients: string[] = [
   "Colgate",
   "Perdigão",
   "Droga Raia",
-  "Adobe",
   "Friozem",
   "Refrio",
 ];

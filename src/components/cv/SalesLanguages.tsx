@@ -50,7 +50,7 @@ const SalesLanguages: React.FC = () => {
             {t.nav.languages}
           </span>
           <h2 className="mt-2 text-balance text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl" style={{ color: INK }}>
-            Fluência para negociar em qualquer mercado.
+            Quatro idiomas a favor do seu negócio.
           </h2>
         </motion.header>
 

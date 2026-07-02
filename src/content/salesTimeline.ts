@@ -84,10 +84,13 @@ export const salesTimeline: TimelineEntry[] = [
     age: "23 anos",
     company: "Estados Unidos",
     role: "Auxiliar de jardinagem",
-    location: "EUA",
+    location: "Flórida, EUA",
     bullets: [
-      "Morei um ano nos EUA trabalhando como auxiliar de jardinagem.",
+      "Morei um ano na Flórida trabalhando como auxiliar de jardinagem.",
+      "Primeira vez que saí do Brasil: mergulhei numa cultura nova, longe de tudo que conhecia.",
+      "Meu primeiro trabalho braçal, sob o calor da Flórida: aprendi na pele a disciplina do esforço físico e o valor de começar de baixo.",
       "Foi onde aprendi inglês, na prática, imerso no dia a dia.",
+      "Me adaptar a um país, uma língua e um ofício totalmente novos me deu a resiliência e a abertura que uso até hoje com qualquer cliente ou mercado.",
     ],
   },
   {
@@ -121,7 +124,7 @@ export const salesTimeline: TimelineEntry[] = [
     location: "São Paulo",
     bullets: [
       "Atendia grandes contas. A Adobe não vendia direto às empresas, apenas via distribuidores e revendedores.",
-      "Eu acompanhava o distribuidor e o revendedor local nas grandes contas, em nome da Adobe, apoiando a negociação.",
+      "Representava a Adobe nas grandes contas, conduzindo o relacionamento e a negociação; o distribuidor e o revendedor executavam a venda pelo canal.",
       "Oferecia benefícios como treinamentos com os principais especialistas de cada software, Photoshop, Acrobat, entre outros.",
     ],
   },
@@ -183,7 +186,7 @@ export const salesTimeline: TimelineEntry[] = [
     bullets: [
       "Morei 5 anos em Portugal.",
       "Comecei como motorista de app e montei minha própria operação, 4 carros e motoristas trabalhando comigo.",
-      "Atuei bastante com turismo de passageiros.",
+      "Atuei bastante com turismo de passageiros e transporte de executivos.",
     ],
   },
   {
@@ -193,7 +196,7 @@ export const salesTimeline: TimelineEntry[] = [
     role: "Fundador · Full-Stack & Comercial",
     location: "São Paulo · Remoto",
     bullets: [
-      "De volta ao Brasil, aprendi a programar e fundei meu estúdio, virei engenheiro full-stack e de IA.",
+      "De volta ao Brasil, aprendi a programar e fundei minha software house, virei engenheiro full-stack e de IA.",
       "Conduzo o ciclo comercial completo: prospecção, escopo, proposta, precificação, negociação e fechamento, clientes no Brasil, Itália e EUA.",
       "Construí um CRM com IA que automatiza o meu próprio processo de vendas.",
       "O ápice da jornada: vendo o que construo e construo o que vendo.",
