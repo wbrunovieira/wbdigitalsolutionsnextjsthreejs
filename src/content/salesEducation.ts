@@ -1,5 +1,5 @@
 /**
- * Education for the sales CV page (/vendas). WIP in pt-BR — localize with the
+ * Education for the sales CV page (/vendas). WIP in pt-BR, localize with the
  * rest of the sales content once finalized.
  */
 
@@ -16,7 +16,7 @@ export interface EducationEntry {
 
 export const salesEducation: EducationEntry[] = [
   {
-    institution: "FGV — Fundação Getulio Vargas",
+    institution: "Fundação Getulio Vargas (FGV)",
     level: "Especialização",
     course: "Vendas, Negociação e Marketing",
     period: "2013–2014",

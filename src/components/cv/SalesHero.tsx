@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Sales CV — hero only (served on brunov.wbdigitalsolutions.com → /vendas).
- * Full-screen, LIGHT theme (neutral off-white — not pure white). Photo-less,
+ * Sales CV, hero only (served on brunov.wbdigitalsolutions.com → /vendas).
+ * Full-screen, LIGHT theme (neutral off-white, not pure white). Photo-less,
  * typographic: an oversized role lockup as the centerpiece, a giant low-opacity
  * WBPV monogram, fine grain and a hairline frame. Graphite ink + a single amber
  * accent (CTA). Name shown once (top-left): full name over a "known-as" line.
@@ -28,7 +28,7 @@ const toCVLang = (lang: string): CVLang =>
 
 const CV_PDF = "#"; // set to /bruno-vieira-sales.pdf once the PDF exists
 
-// Palette (light theme — neutral off-white + graphite + a single amber accent)
+// Palette (light theme, neutral off-white + graphite + a single amber accent)
 const INK = "#1c1c1e"; // graphite ink
 const AMBER = "#e0912f"; // warm accent (used sparingly)
 
@@ -173,7 +173,7 @@ const SalesHero: React.FC = () => {
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
         <a href="#inicio" onClick={scrollTo("inicio")} className="flex items-center gap-3">
-          {/* Monogram mark — makes it read as Bruno's personal page */}
+          {/* Monogram mark, makes it read as Bruno's personal page */}
           <span
             className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-black"
             style={{ background: INK, color: "#ffffff", boxShadow: `inset 0 0 0 2px ${AMBER}` }}
@@ -311,7 +311,7 @@ const SalesHero: React.FC = () => {
               ))}
             </span>
           </h1>
-          {/* Three value pillars — tied to the tagline (product · need · person) */}
+          {/* Three value pillars, tied to the tagline (product · need · person) */}
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {[Package, Target, Handshake].map((Icon, i) => (
               <span key={i} className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: "rgba(28,28,30,0.66)" }}>

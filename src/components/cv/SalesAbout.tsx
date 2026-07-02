@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * "About me" section for the sales CV page — a human counterpoint that builds
+ * "About me" section for the sales CV page, a human counterpoint that builds
  * rapport. Light theme (graphite + amber). Copy in salesAbout.ts (pt-BR WIP);
  * the eyebrow label reuses the localized nav string.
  */
@@ -53,7 +53,7 @@ const SalesAbout: React.FC = () => {
           </h2>
         </motion.header>
 
-        {/* Lead — family & nomadic life */}
+        {/* Lead, family & nomadic life */}
         <motion.div {...reveal(0.05)} className="max-w-2xl space-y-4">
           {salesAbout.lead.map((p, i) => (
             <p key={i} className="text-base leading-relaxed sm:text-lg" style={{ color: "rgba(28,28,30,0.72)" }}>

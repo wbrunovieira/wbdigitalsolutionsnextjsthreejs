@@ -38,7 +38,7 @@ const SalesTimeline: React.FC = () => {
             Do balcão, aos 13, à mesa de negociação.
           </h2>
           <p className="mt-3 max-w-xl text-base leading-relaxed" style={{ color: "rgba(28,28,30,0.6)" }}>
-            Comecei a vender cedo — e cada passo somou repertório comercial.
+            Comecei a vender cedo, e cada passo somou repertório comercial.
           </p>
         </motion.header>
 

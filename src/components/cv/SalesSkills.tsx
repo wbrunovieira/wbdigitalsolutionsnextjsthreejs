@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Commercial skills section for the sales CV page — methodology/skill chips plus
+ * Commercial skills section for the sales CV page, methodology/skill chips plus
  * a "brands served" band (styled names, not logos, to avoid CSP/trademark
  * issues). Light theme. Copy in salesSkills.ts (pt-BR WIP); eyebrow localized.
  */

@@ -1,5 +1,5 @@
 /**
- * Commercial skills + clients for the sales CV page. WIP in pt-BR — localize
+ * Commercial skills + clients for the sales CV page. WIP in pt-BR, localize
  * with the rest of the sales content once finalized.
  */
 

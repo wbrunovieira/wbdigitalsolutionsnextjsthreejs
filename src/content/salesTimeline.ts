@@ -3,7 +3,7 @@
  *
  * WIP: authored in pt-BR while the content is being assembled. Once the full
  * timeline is finalized it should be localized to en / it / es like cv.ts.
- * Bruno was born in 1974 — ages and years are derived from that.
+ * Bruno was born in 1974, ages and years are derived from that.
  */
 
 export interface TimelineEntry {
@@ -30,7 +30,7 @@ export const salesTimeline: TimelineEntry[] = [
     location: "São Paulo",
     bullets: [
       "Primeiro emprego: no balcão de uma loja de materiais elétricos.",
-      "Atendimento e vendas desde cedo — o começo de tudo.",
+      "Atendimento e vendas desde cedo, o começo de tudo.",
     ],
   },
   {
@@ -87,7 +87,7 @@ export const salesTimeline: TimelineEntry[] = [
     location: "EUA",
     bullets: [
       "Morei um ano nos EUA trabalhando como auxiliar de jardinagem.",
-      "Foi onde aprendi inglês — na prática, imerso no dia a dia.",
+      "Foi onde aprendi inglês, na prática, imerso no dia a dia.",
     ],
   },
   {
@@ -99,7 +99,7 @@ export const salesTimeline: TimelineEntry[] = [
     bullets: [
       "Venda técnica de tubos termoplásticos (PVC, PP, PVDF) para indústrias que conduziam líquidos corrosivos.",
       "Visitava as fábricas, especificava o material conforme o ácido e a temperatura, vendia e negociava.",
-      "Abri mercado para o PVDF em águas injetáveis na indústria farmacêutica — um setor que até então usava só aço inoxidável.",
+      "Abri mercado para o PVDF em águas injetáveis na indústria farmacêutica, um setor que até então usava só aço inoxidável.",
     ],
   },
   {
@@ -110,7 +110,7 @@ export const salesTimeline: TimelineEntry[] = [
     location: "São Paulo",
     bullets: [
       "Representante de um software ERP para lojas e farmácias.",
-      "Atendia o mercado de São Paulo — prospecção, venda, implementação, treinamento e suporte.",
+      "Atendia o mercado de São Paulo, prospecção, venda, implementação, treinamento e suporte.",
     ],
   },
   {
@@ -120,9 +120,9 @@ export const salesTimeline: TimelineEntry[] = [
     role: "Especialista Comercial",
     location: "São Paulo",
     bullets: [
-      "Atendia grandes contas. A Adobe não vendia direto às empresas — apenas via distribuidores e revendedores.",
+      "Atendia grandes contas. A Adobe não vendia direto às empresas, apenas via distribuidores e revendedores.",
       "Eu acompanhava o distribuidor e o revendedor local nas grandes contas, em nome da Adobe, apoiando a negociação.",
-      "Oferecia benefícios como treinamentos com os principais especialistas de cada software — Photoshop, Acrobat, entre outros.",
+      "Oferecia benefícios como treinamentos com os principais especialistas de cada software, Photoshop, Acrobat, entre outros.",
     ],
   },
   {
@@ -154,35 +154,35 @@ export const salesTimeline: TimelineEntry[] = [
     role: "Especialista em Vendas Técnicas",
     location: "São Paulo",
     bullets: [
-      "Vendas técnicas B2B para uma marca líder de empilhadeiras na Grande São Paulo — o principal mercado da empresa.",
+      "Vendas técnicas B2B para uma marca líder de empilhadeiras na Grande São Paulo, o principal mercado da empresa.",
       "Vendi equipamentos novos e fechei contratos de locação de longo prazo em alto volume.",
       "Gerenciei contas de PME a enterprise: Reckitt Benckiser, Carrefour, Colgate e Droga Raia.",
-      "Venda consultiva e orientada a solução — dimensionamento técnico para centros de distribuição e redes de varejo.",
+      "Venda consultiva e orientada a solução, dimensionamento técnico para centros de distribuição e redes de varejo.",
       "Bati e superei metas de forma consistente.",
     ],
   },
   {
     year: "2017–2018",
     age: "43 anos",
-    company: "Itália — Cozinha profissional",
+    company: "Cozinha profissional",
     role: "Cozinheiro",
     location: "Itália",
     bullets: [
       "Depois da Retrak, mudei para a Itália, me formei cozinheiro e aprendi italiano imerso na cultura.",
-      "A cozinha profissional é escola de trabalho em equipe: numa brigada, cada estação depende da outra — comunicação clara, rápida e sem ego.",
-      "Mise en place, consistência e calma no auge do serviço — entregar experiência ao cliente sob pressão são as mesmas bases de um bom vendedor.",
+      "A cozinha profissional é escola de trabalho em equipe: numa brigada, cada estação depende da outra, comunicação clara, rápida e sem ego.",
+      "Mise en place, consistência e calma no auge do serviço, entregar experiência ao cliente sob pressão são as mesmas bases de um bom vendedor.",
       "Uma reinvenção completa: aprender um ofício e uma língua do zero, começando de baixo.",
     ],
   },
   {
     year: "2018–2023",
     age: "44 – 49 anos",
-    company: "Portugal — Transporte & Turismo",
+    company: "Transporte & Turismo",
     role: "Motorista Uber → Empreendedor (frota própria)",
     location: "Portugal",
     bullets: [
       "Morei 5 anos em Portugal.",
-      "Comecei como motorista de app e montei minha própria operação — 4 carros e motoristas trabalhando comigo.",
+      "Comecei como motorista de app e montei minha própria operação, 4 carros e motoristas trabalhando comigo.",
       "Atuei bastante com turismo de passageiros.",
     ],
   },
@@ -193,8 +193,8 @@ export const salesTimeline: TimelineEntry[] = [
     role: "Fundador · Full-Stack & Comercial",
     location: "São Paulo · Remoto",
     bullets: [
-      "De volta ao Brasil, aprendi a programar e fundei meu estúdio — virei engenheiro full-stack e de IA.",
-      "Conduzo o ciclo comercial completo: prospecção, escopo, proposta, precificação, negociação e fechamento — clientes no Brasil, Itália e EUA.",
+      "De volta ao Brasil, aprendi a programar e fundei meu estúdio, virei engenheiro full-stack e de IA.",
+      "Conduzo o ciclo comercial completo: prospecção, escopo, proposta, precificação, negociação e fechamento, clientes no Brasil, Itália e EUA.",
       "Construí um CRM com IA que automatiza o meu próprio processo de vendas.",
       "O ápice da jornada: vendo o que construo e construo o que vendo.",
     ],

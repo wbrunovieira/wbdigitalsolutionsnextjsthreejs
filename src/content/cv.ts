@@ -324,7 +324,7 @@ export const cvContent: Record<CVLang, CVContent> = {
       { code: "es", name: "Spanish", level: "Professional Working", proficiency: 75 },
     ],
     contact: {
-      ctaTitle: "Let's build — or close — something.",
+      ctaTitle: "Let's build or close something.",
       ctaSub: "The fastest way to reach me:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
@@ -539,7 +539,7 @@ export const cvContent: Record<CVLang, CVContent> = {
       { code: "es", name: "Espanhol", level: "Profissional", proficiency: 75 },
     ],
     contact: {
-      ctaTitle: "Vamos construir — ou fechar — algo.",
+      ctaTitle: "Vamos construir ou fechar algo.",
       ctaSub: "O jeito mais rápido de falar comigo:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
@@ -754,7 +754,7 @@ export const cvContent: Record<CVLang, CVContent> = {
       { code: "es", name: "Spagnolo", level: "Professionale", proficiency: 75 },
     ],
     contact: {
-      ctaTitle: "Costruiamo — o chiudiamo — qualcosa.",
+      ctaTitle: "Costruiamo o chiudiamo qualcosa.",
       ctaSub: "Il modo più rapido per contattarmi:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
@@ -969,7 +969,7 @@ export const cvContent: Record<CVLang, CVContent> = {
       { code: "es", name: "Español", level: "Profesional", proficiency: 75 },
     ],
     contact: {
-      ctaTitle: "Construyamos — o cerremos — algo.",
+      ctaTitle: "Construyamos o cerremos algo.",
       ctaSub: "La forma más rápida de contactarme:",
       emailLabel: "Email",
       linkedinLabel: "LinkedIn",
