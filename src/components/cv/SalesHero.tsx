@@ -65,7 +65,7 @@ const SalesHero: React.FC = () => {
       (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-45% 0px -50% 0px" },
     );
-    ["inicio", "trajetoria", "formacao"].forEach((id) => {
+    ["inicio", "trajetoria", "competencias", "formacao", "idiomas", "sobre"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -105,7 +105,10 @@ const SalesHero: React.FC = () => {
   const navItems = [
     { id: "inicio", label: t.nav.start },
     { id: "trajetoria", label: t.nav.timeline },
+    { id: "competencias", label: t.nav.skills },
     { id: "formacao", label: t.nav.education },
+    { id: "idiomas", label: t.nav.languages },
+    { id: "sobre", label: t.nav.about },
   ];
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -185,7 +188,7 @@ const SalesHero: React.FC = () => {
             </span>
           </span>
         </a>
-        <nav className="hidden items-center gap-8 sm:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {navItems.map((item) => (
             <a
               key={item.id}

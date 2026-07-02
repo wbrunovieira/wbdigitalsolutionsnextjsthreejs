@@ -125,7 +125,7 @@ export interface CVContent {
   /** Personal greeting prefix shown before the name (e.g. "Olá, sou o"). */
   heroGreeting: string;
   /** Header nav labels for the sales page sections. */
-  nav: { start: string; timeline: string; education: string };
+  nav: { start: string; timeline: string; skills: string; education: string; languages: string; about: string };
 }
 
 /** Non-translatable shared data. */
@@ -352,7 +352,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Product", "Need", "Person"],
     taglinePayoff: ["the product,", "the need,", "and the person."],
     heroGreeting: "Hi, I'm",
-    nav: { start: "Home", timeline: "Journey", education: "Education" },
+    nav: { start: "Home", timeline: "Journey", skills: "Skills", education: "Education", languages: "Languages", about: "About" },
   },
 
   "pt-BR": {
@@ -567,7 +567,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Produto", "Necessidade", "Pessoa"],
     taglinePayoff: ["o produto,", "a necessidade", "e a pessoa."],
     heroGreeting: "Olá, sou o",
-    nav: { start: "Início", timeline: "Trajetória", education: "Formação" },
+    nav: { start: "Início", timeline: "Trajetória", skills: "Competências", education: "Formação", languages: "Idiomas", about: "Sobre" },
   },
 
   it: {
@@ -782,7 +782,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Prodotto", "Bisogno", "Persona"],
     taglinePayoff: ["il prodotto,", "il bisogno", "e la persona."],
     heroGreeting: "Ciao, sono",
-    nav: { start: "Inizio", timeline: "Percorso", education: "Formazione" },
+    nav: { start: "Inizio", timeline: "Percorso", skills: "Competenze", education: "Formazione", languages: "Lingue", about: "Chi sono" },
   },
 
   es: {
@@ -997,6 +997,6 @@ export const cvContent: Record<CVLang, CVContent> = {
     heroPillars: ["Producto", "Necesidad", "Persona"],
     taglinePayoff: ["el producto,", "la necesidad", "y la persona."],
     heroGreeting: "Hola, soy",
-    nav: { start: "Inicio", timeline: "Trayectoria", education: "Formación" },
+    nav: { start: "Inicio", timeline: "Trayectoria", skills: "Competencias", education: "Formación", languages: "Idiomas", about: "Sobre mí" },
   },
 };
