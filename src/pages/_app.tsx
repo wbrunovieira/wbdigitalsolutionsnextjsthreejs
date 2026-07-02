@@ -35,6 +35,9 @@ export const event = ({ action, category, label, value }: {
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  // Personal CV subdomains (brunodev → /dev, brunov → /vendas) must NOT inherit
+  // the main site's preloader or cookie-consent modal.
+  const isCV = router.pathname === '/dev' || router.pathname === '/vendas';
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -51,10 +54,26 @@ function MyApp({ Component, pageProps }: AppProps) {
     return () => router.events.off('routeChangeComplete', handleRouteChange);
   }, [router.events]);
 
+  // On the CV subdomains, kill the overscroll bounce and paint the root
+  // background with the page's own colour — otherwise the rubber-band scroll
+  // briefly reveals the main site's (dark) html/body background.
+  useEffect(() => {
+    if (!isCV) return;
+    const el = document.documentElement;
+    const prevOverscroll = el.style.overscrollBehavior;
+    const prevBg = el.style.backgroundColor;
+    el.style.overscrollBehavior = 'none';
+    el.style.backgroundColor = router.pathname === '/vendas' ? '#f7f7f8' : '#1a0826';
+    return () => {
+      el.style.overscrollBehavior = prevOverscroll;
+      el.style.backgroundColor = prevBg;
+    };
+  }, [isCV, router.pathname]);
+
   return (
     <LanguageProvider>
       <TranslationProvider>
-        <Preloader />
+        {!isCV && <Preloader />}
         <Layout>
           {/* Page transition — OPACITY ONLY on purpose: a transform/filter on this
               ancestor would turn the home's fixed 3D canvas into a scrolling one. */}
@@ -67,8 +86,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </motion.div>
         </Layout>
-        {/* LGPD consent banner — inside the providers so it's localized */}
-        <CookieConsent />
+        {/* LGPD consent banner — inside the providers so it's localized.
+            Hidden on the personal CV subdomains. */}
+        {!isCV && <CookieConsent />}
       </TranslationProvider>
     </LanguageProvider>
   );
