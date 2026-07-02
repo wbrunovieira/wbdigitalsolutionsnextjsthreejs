@@ -50,6 +50,27 @@ const SalesHero: React.FC = () => {
     const id = setInterval(() => setIdx((i) => (i + 1) % rotation.length), 2800);
     return () => clearInterval(id);
   }, [reduce, rotation.length]);
+
+  // Fixed-header background on scroll + scroll-spy for the active section.
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("inicio");
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    ["inicio", "trajetoria"].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
   const parts = (rotation[idx] ?? rotation[0]).toUpperCase().split(" ");
   const filledLine = parts[0];
   const outlinedLine = parts.slice(1).join(" ");
@@ -81,8 +102,18 @@ const SalesHero: React.FC = () => {
           transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
         };
 
+  const navItems = [
+    { id: "inicio", label: t.nav.start },
+    { id: "trajetoria", label: t.nav.timeline },
+  ];
+  const scrollTo = (id: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <main
+      id="inicio"
       onPointerMove={handleMove}
       className="relative flex min-h-screen flex-col overflow-hidden"
       style={{ background: "linear-gradient(180deg,#f7f7f8 0%,#ececee 100%)", color: INK }}
@@ -128,8 +159,16 @@ const SalesHero: React.FC = () => {
       </div>
 
       {/* ===== Nav ===== */}
-      <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-6">
-        <a href="#top" className="flex items-center gap-3">
+      <header
+        className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+        style={
+          scrolled
+            ? { background: "rgba(247,247,248,0.82)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderBottom: "1px solid rgba(28,28,30,0.08)" }
+            : { background: "transparent" }
+        }
+      >
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
+        <a href="#inicio" onClick={scrollTo("inicio")} className="flex items-center gap-3">
           {/* Monogram mark — makes it read as Bruno's personal page */}
           <span
             className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-black"
@@ -145,17 +184,38 @@ const SalesHero: React.FC = () => {
             </span>
           </span>
         </a>
+        <nav className="hidden items-center gap-8 sm:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={scrollTo(item.id)}
+              aria-current={active === item.id ? "true" : undefined}
+              className="group relative py-1 text-sm font-medium transition-colors"
+              style={{ color: active === item.id ? INK : "rgba(28,28,30,0.6)" }}
+            >
+              {item.label}
+              <span
+                className={`absolute -bottom-0.5 left-0 h-[2px] w-full origin-left rounded-full transition-transform duration-300 ease-out ${
+                  active === item.id ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`}
+                style={{ background: AMBER }}
+                aria-hidden="true"
+              />
+            </a>
+          ))}
+        </nav>
         <div className="flex items-center gap-1 rounded-full border bg-white/70 p-1 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm" style={{ borderColor: "rgba(28,28,30,0.12)" }}>
           {LANGS.map((l) => {
-            const active = lang === l.code;
+            const isActive = lang === l.code;
             return (
               <button
                 key={l.code}
                 onClick={() => setLanguage(l.code)}
-                aria-pressed={active}
+                aria-pressed={isActive}
                 className="relative rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50"
               >
-                {active && (
+                {isActive && (
                   <motion.span
                     layoutId="cv-lang-pill"
                     className="absolute inset-0 rounded-full"
@@ -163,10 +223,11 @@ const SalesHero: React.FC = () => {
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
                   />
                 )}
-                <span className="relative z-10" style={{ color: active ? "#ffffff" : "rgba(28,28,30,0.6)" }}>{l.label}</span>
+                <span className="relative z-10" style={{ color: isActive ? "#ffffff" : "rgba(28,28,30,0.6)" }}>{l.label}</span>
               </button>
             );
           })}
+        </div>
         </div>
       </header>
 

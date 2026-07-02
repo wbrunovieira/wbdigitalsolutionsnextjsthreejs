@@ -1,5 +1,6 @@
 import Head from "next/head";
 import SalesHero from "@/components/cv/SalesHero";
+import SalesTimeline from "@/components/cv/SalesTimeline";
 
 const TITLE = "Bruno Vieira — Vendas Técnicas & Desenvolvimento Comercial B2B";
 const DESCRIPTION =
@@ -26,6 +27,7 @@ export default function SalesCV() {
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
       <SalesHero />
+      <SalesTimeline />
     </>
   );
 }
