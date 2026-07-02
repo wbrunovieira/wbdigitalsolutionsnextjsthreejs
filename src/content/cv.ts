@@ -1,10 +1,12 @@
 /**
- * Content for the personal CV page (served on bruno.wbdigitalsolutions.com → /cv).
- * Self-contained, NOT in the marketing locale JSON bundles. Three locales: en, pt-BR, it.
+ * Content for the personal CV pages. Self-contained, NOT in the marketing
+ * locale JSON bundles. Four locales: en, pt-BR, it, es.
  *
- * The page has a two-audience toggle (engineering | sales). Experiences and projects
- * carry an `audience` tag so sections can reorder/emphasize per the selected track;
- * `both` items always show.
+ * Rendered by two single-track pages (no toggle), one per subdomain:
+ *   engineering → brunodev.wbdigitalsolutions.com (/dev)
+ *   sales       → brunov.wbdigitalsolutions.com   (/vendas)
+ * Experiences/projects carry audience-keyed bullets + a `summary` fallback so
+ * each page shows the right depth for its track.
  */
 
 export type CVLang = "en" | "pt-BR" | "it" | "es";
@@ -104,7 +106,24 @@ export interface CVContent {
   education: CVEducation[];
   languages: CVLanguageSkill[];
 
-  contact: { ctaTitle: string; ctaSub: string; emailLabel: string; linkedinLabel: string; githubLabel: string; siteLabel: string; resumeLabel: string };
+  contact: { ctaTitle: string; ctaSub: string; emailLabel: string; linkedinLabel: string; githubLabel: string; siteLabel: string; resumeLabel: string; downloadCv: string };
+
+  /** One-line pitch about the OTHER career, shown as a differentiator band. Keyed by the CURRENT page's track. */
+  crossPitch: Record<Audience, string>;
+  /** Link label to the other track's page (other subdomain). Keyed by the CURRENT page's track. */
+  crossLinkLabel: Record<Audience, string>;
+  /** Short role word(s) rendered oversized behind the hero portrait, per track. */
+  bigRole: Record<Audience, string>;
+  /** Phrases the oversized sales hero headline cycles through. */
+  heroRotation: string[];
+  /** Short availability line for the sales hero chip. */
+  heroAvailable: string;
+  /** The three value-pillar labels (product / need / person). */
+  heroPillars: string[];
+  /** The tagline payoff pre-split into display lines (keeps commas/articles). */
+  taglinePayoff: string[];
+  /** Personal greeting prefix shown before the name (e.g. "Olá, sou o"). */
+  heroGreeting: string;
 }
 
 /** Non-translatable shared data. */
@@ -124,7 +143,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     fullName: "Walter Bruno Prado Vieira",
     headline: "Senior Full-Stack & AI Engineer · Technical Sales",
     location: "São Paulo, Brazil",
-    available: "Open to engineering & commercial roles — remote / Brazil · Italy · EU",
+    available: "Open to engineering & commercial roles — remote, or relocation with visa sponsorship",
     toggle: { intro: "What are you hiring for?", hint: "Switch anytime — the whole page adapts.", engineering: "Engineering", sales: "Sales" },
     hero: {
       engineering: {
@@ -132,14 +151,14 @@ export const cvContent: Record<CVLang, CVContent> = {
         sub: "Senior Full-Stack & AI Engineer",
         support:
           "Scalable platforms, AI-powered systems and interactive 3D — owning everything from architecture to deployment.",
-        pills: ["TypeScript", "React / Next.js", "Node / NestJS", "Python · Go · Rust", "AI · LangGraph", "AWS · Docker · K8s"],
+        pills: ["React / Next.js", "Node / NestJS", "AI · LangGraph", "AWS · Docker · K8s"],
       },
       sales: {
-        title: "I sell complex solutions — and I understand exactly what I sell.",
+        title: "Selling is understanding: the product, the need, and the person.",
         sub: "Technical Sales & Business Development",
         support:
           "25+ years in B2B sales — enterprise accounts, the full commercial cycle, and the technical depth that closes deals.",
-        pills: ["B2B Sales", "Enterprise Accounts", "Solution Consulting", "CRM", "Full Cycle", "BR · IT · US"],
+        pills: ["B2B Sales", "Enterprise Accounts", "Full Cycle", "BR · IT · US"],
       },
     },
     sections: {
@@ -310,7 +329,27 @@ export const cvContent: Record<CVLang, CVContent> = {
       githubLabel: "GitHub",
       siteLabel: "Studio",
       resumeLabel: "WhatsApp",
+      downloadCv: "Download CV",
     },
+    crossPitch: {
+      engineering:
+        "Beyond the code: 25+ years closing B2B sales — I speak the customer's and the business's language, not just the compiler's.",
+      sales:
+        "And I build what I sell: a full-stack engineer who ships the product himself — the technical depth that closes complex deals.",
+    },
+    crossLinkLabel: {
+      engineering: "See my sales profile",
+      sales: "See my engineering profile",
+    },
+    bigRole: {
+      engineering: "Software Engineer",
+      sales: "Technical Sales",
+    },
+    heroRotation: ["Technical Sales", "Solution Selling", "Enterprise Accounts", "Full Cycle"],
+    heroAvailable: "Open to commercial opportunities",
+    heroPillars: ["Product", "Need", "Person"],
+    taglinePayoff: ["the product,", "the need,", "and the person."],
+    heroGreeting: "Hi, I'm",
   },
 
   "pt-BR": {
@@ -318,7 +357,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     fullName: "Walter Bruno Prado Vieira",
     headline: "Engenheiro Full-Stack & IA Sênior · Vendas Técnicas",
     location: "São Paulo, Brasil",
-    available: "Aberto a vagas de engenharia e comerciais — remoto / Brasil · Itália · UE",
+    available: "Aberto a vagas de engenharia e comerciais — remoto, ou realocação com patrocínio de visto",
     toggle: { intro: "O que você está contratando?", hint: "Alterne quando quiser — a página inteira se adapta.", engineering: "Engenharia", sales: "Vendas" },
     hero: {
       engineering: {
@@ -326,14 +365,14 @@ export const cvContent: Record<CVLang, CVContent> = {
         sub: "Engenheiro Full-Stack & IA Sênior",
         support:
           "Plataformas escaláveis, sistemas com IA e 3D interativo — dono de tudo, da arquitetura ao deploy.",
-        pills: ["TypeScript", "React / Next.js", "Node / NestJS", "Python · Go · Rust", "IA · LangGraph", "AWS · Docker · K8s"],
+        pills: ["React / Next.js", "Node / NestJS", "IA · LangGraph", "AWS · Docker · K8s"],
       },
       sales: {
-        title: "Eu vendo soluções complexas — e entendo a fundo o que vendo.",
+        title: "Vender é entender: o produto, a necessidade e a pessoa.",
         sub: "Vendas Técnicas & Desenvolvimento Comercial",
         support:
           "25+ anos em vendas B2B — contas enterprise, ciclo comercial completo e a profundidade técnica que fecha negócio.",
-        pills: ["Vendas B2B", "Contas Enterprise", "Consultoria de Solução", "CRM", "Ciclo Completo", "BR · IT · US"],
+        pills: ["Vendas B2B", "Contas Enterprise", "Ciclo Completo", "BR · IT · US"],
       },
     },
     sections: {
@@ -504,7 +543,27 @@ export const cvContent: Record<CVLang, CVContent> = {
       githubLabel: "GitHub",
       siteLabel: "Estúdio",
       resumeLabel: "WhatsApp",
+      downloadCv: "Baixar CV",
     },
+    crossPitch: {
+      engineering:
+        "Além do código: 25+ anos fechando vendas B2B — eu falo a língua do cliente e do negócio, não só a do compilador.",
+      sales:
+        "E eu construo o que vendo: um engenheiro full-stack que entrega o próprio produto — a profundidade técnica que fecha negócios complexos.",
+    },
+    crossLinkLabel: {
+      engineering: "Ver meu perfil de vendas",
+      sales: "Ver meu perfil técnico",
+    },
+    bigRole: {
+      engineering: "Engenheiro de Software",
+      sales: "Vendas Técnicas",
+    },
+    heroRotation: ["Vendas Técnicas", "Venda de Soluções", "Contas Enterprise", "Ciclo Completo"],
+    heroAvailable: "Aberto a oportunidades comerciais",
+    heroPillars: ["Produto", "Necessidade", "Pessoa"],
+    taglinePayoff: ["o produto,", "a necessidade", "e a pessoa."],
+    heroGreeting: "Olá, sou o",
   },
 
   it: {
@@ -512,7 +571,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     fullName: "Walter Bruno Prado Vieira",
     headline: "Senior Full-Stack & AI Engineer · Vendite Tecniche",
     location: "San Paolo, Brasile",
-    available: "Disponibile per ruoli di engineering e commerciali — remoto / Brasile · Italia · UE",
+    available: "Disponibile per ruoli di engineering e commerciali — remoto, o trasferimento con sponsorship del visto",
     toggle: { intro: "Per cosa stai assumendo?", hint: "Cambia quando vuoi — l'intera pagina si adatta.", engineering: "Engineering", sales: "Vendite" },
     hero: {
       engineering: {
@@ -520,14 +579,14 @@ export const cvContent: Record<CVLang, CVContent> = {
         sub: "Senior Full-Stack & AI Engineer",
         support:
           "Piattaforme scalabili, sistemi con AI e 3D interattivo — dall'architettura al deploy, tutto in prima persona.",
-        pills: ["TypeScript", "React / Next.js", "Node / NestJS", "Python · Go · Rust", "AI · LangGraph", "AWS · Docker · K8s"],
+        pills: ["React / Next.js", "Node / NestJS", "AI · LangGraph", "AWS · Docker · K8s"],
       },
       sales: {
-        title: "Vendo soluzioni complesse — e capisco a fondo ciò che vendo.",
+        title: "Vendere è capire: il prodotto, il bisogno e la persona.",
         sub: "Vendite Tecniche & Sviluppo Commerciale",
         support:
           "25+ anni di vendite B2B — clienti enterprise, ciclo commerciale completo e la profondità tecnica che chiude le trattative.",
-        pills: ["Vendite B2B", "Clienti Enterprise", "Solution Consulting", "CRM", "Ciclo Completo", "BR · IT · US"],
+        pills: ["Vendite B2B", "Clienti Enterprise", "Ciclo Completo", "BR · IT · US"],
       },
     },
     sections: {
@@ -698,7 +757,27 @@ export const cvContent: Record<CVLang, CVContent> = {
       githubLabel: "GitHub",
       siteLabel: "Studio",
       resumeLabel: "WhatsApp",
+      downloadCv: "Scarica il CV",
     },
+    crossPitch: {
+      engineering:
+        "Oltre il codice: 25+ anni a chiudere vendite B2B — parlo la lingua del cliente e del business, non solo quella del compilatore.",
+      sales:
+        "E costruisco ciò che vendo: un ingegnere full-stack che consegna il prodotto in prima persona — la profondità tecnica che chiude trattative complesse.",
+    },
+    crossLinkLabel: {
+      engineering: "Vedi il mio profilo vendite",
+      sales: "Vedi il mio profilo tecnico",
+    },
+    bigRole: {
+      engineering: "Software Engineer",
+      sales: "Vendite Tecniche",
+    },
+    heroRotation: ["Vendite Tecniche", "Vendita di Soluzioni", "Clienti Enterprise", "Ciclo Completo"],
+    heroAvailable: "Aperto a opportunità commerciali",
+    heroPillars: ["Prodotto", "Bisogno", "Persona"],
+    taglinePayoff: ["il prodotto,", "il bisogno", "e la persona."],
+    heroGreeting: "Ciao, sono",
   },
 
   es: {
@@ -706,7 +785,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     fullName: "Walter Bruno Prado Vieira",
     headline: "Ingeniero Full-Stack & IA Senior · Ventas Técnicas",
     location: "São Paulo, Brasil",
-    available: "Abierto a vacantes de ingeniería y comerciales — remoto / Brasil · Italia · UE",
+    available: "Abierto a vacantes de ingeniería y comerciales — remoto, o reubicación con patrocinio de visa",
     toggle: { intro: "¿Para qué estás contratando?", hint: "Cambia cuando quieras — la página entera se adapta.", engineering: "Ingeniería", sales: "Ventas" },
     hero: {
       engineering: {
@@ -714,14 +793,14 @@ export const cvContent: Record<CVLang, CVContent> = {
         sub: "Ingeniero Full-Stack & IA Senior",
         support:
           "Plataformas escalables, sistemas con IA y 3D interactivo — dueño de todo, de la arquitectura al despliegue.",
-        pills: ["TypeScript", "React / Next.js", "Node / NestJS", "Python · Go · Rust", "IA · LangGraph", "AWS · Docker · K8s"],
+        pills: ["React / Next.js", "Node / NestJS", "IA · LangGraph", "AWS · Docker · K8s"],
       },
       sales: {
-        title: "Vendo soluciones complejas — y entiendo a fondo lo que vendo.",
+        title: "Vender es entender: el producto, la necesidad y la persona.",
         sub: "Ventas Técnicas & Desarrollo Comercial",
         support:
           "25+ años en ventas B2B — cuentas enterprise, el ciclo comercial completo y la profundidad técnica que cierra negocios.",
-        pills: ["Ventas B2B", "Cuentas Enterprise", "Consultoría de Solución", "CRM", "Ciclo Completo", "BR · IT · US"],
+        pills: ["Ventas B2B", "Cuentas Enterprise", "Ciclo Completo", "BR · IT · US"],
       },
     },
     sections: {
@@ -892,6 +971,26 @@ export const cvContent: Record<CVLang, CVContent> = {
       githubLabel: "GitHub",
       siteLabel: "Estudio",
       resumeLabel: "WhatsApp",
+      downloadCv: "Descargar CV",
     },
+    crossPitch: {
+      engineering:
+        "Más allá del código: 25+ años cerrando ventas B2B — hablo el idioma del cliente y del negocio, no solo el del compilador.",
+      sales:
+        "Y construyo lo que vendo: un ingeniero full-stack que entrega el propio producto — la profundidad técnica que cierra negocios complejos.",
+    },
+    crossLinkLabel: {
+      engineering: "Ver mi perfil de ventas",
+      sales: "Ver mi perfil técnico",
+    },
+    bigRole: {
+      engineering: "Ingeniero de Software",
+      sales: "Ventas Técnicas",
+    },
+    heroRotation: ["Ventas Técnicas", "Venta de Soluciones", "Cuentas Enterprise", "Ciclo Completo"],
+    heroAvailable: "Abierto a oportunidades comerciales",
+    heroPillars: ["Producto", "Necesidad", "Persona"],
+    taglinePayoff: ["el producto,", "la necesidad", "y la persona."],
+    heroGreeting: "Hola, soy",
   },
 };

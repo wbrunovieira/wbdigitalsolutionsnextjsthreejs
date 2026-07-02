@@ -38,13 +38,19 @@ const nextConfig = {
 
   async rewrites() {
     return {
-      // beforeFiles runs before filesystem/page resolution — required so the
-      // bruno subdomain root maps to /cv even though pages/index.tsx exists.
+      // beforeFiles runs before filesystem/page resolution — required so each
+      // personal-CV subdomain root maps to its page even though pages/index.tsx
+      // exists. brunodev → technical (/dev), brunov → sales (/vendas).
       beforeFiles: [
         {
           source: '/',
-          has: [{ type: 'host', value: 'bruno.wbdigitalsolutions.com' }],
-          destination: '/cv',
+          has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
+          destination: '/dev',
+        },
+        {
+          source: '/',
+          has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
+          destination: '/vendas',
         },
       ],
       afterFiles: [

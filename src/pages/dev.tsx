@@ -1,13 +1,13 @@
 import Head from "next/head";
-import CVPage from "@/components/cv/CVPage";
+import CVTrackPage from "@/components/cv/CVTrackPage";
 
-const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer · Technical Sales";
+const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer";
 const DESCRIPTION =
-  "Walter Bruno Prado Vieira — Senior Full-Stack & AI Engineer and Technical Sales leader. I build scalable platforms, AI systems and 3D experiences, and I run the full commercial cycle. 25+ years in B2B sales.";
-const URL = "https://bruno.wbdigitalsolutions.com/";
+  "Walter Bruno Prado Vieira — Senior Full-Stack & AI Engineer. I turn complex problems into scalable software: production platforms, AI systems (LangGraph, RAG) and interactive 3D, owned end to end from architecture to deploy.";
+const URL = "https://brunodev.wbdigitalsolutions.com/";
 const OG_IMAGE = "https://www.wbdigitalsolutions.com/img/herobg5-optimized.jpg";
 
-export default function CV() {
+export default function DevCV() {
   return (
     <>
       <Head>
@@ -25,7 +25,7 @@ export default function CV() {
         <meta name="twitter:description" content={DESCRIPTION} />
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
-      <CVPage />
+      <CVTrackPage track="engineering" />
     </>
   );
 }
