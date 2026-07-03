@@ -135,6 +135,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         "Deploy cloud-native na AWS com Docker, Terraform e Kubernetes, para clientes no Brasil, na Itália e nos EUA.",
       ],
     },
+    {
+      year: "2026–2027",
+      age: "52 anos",
+      title: "MBA em Engenharia de Software com IA",
+      subtitle: "Full Cycle · em andamento",
+      bullets: [
+        "MBA de 12 meses focado no novo perfil de desenvolvedor da era da IA.",
+        "Quatro pilares: arquitetura de software com IA, metodologia e workflow IA-driven, desenvolvimento de aplicações e agentes, DevOps & SRE com IA.",
+        "Agentes e orquestração (LangGraph, CrewAI, ADK do Google), protocolos MCP e A2A, RAG, segurança, custos e observabilidade em sistemas com IA.",
+        "A formalização do caminho que já pratico em produção: IA no workflow diário e agentes em sistemas reais.",
+      ],
+    },
   ],
   en: [
     {
@@ -241,6 +253,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         "An AI-powered CRM that automates my own sales process: lead qualification, proposals and financial analysis.",
         "Systems with AI agents (LangGraph, RAG) integrated into real products.",
         "Cloud-native deploys on AWS with Docker, Terraform and Kubernetes, for clients in Brazil, Italy and the USA.",
+      ],
+    },
+    {
+      year: "2026–2027",
+      age: "age 52",
+      title: "MBA in Software Engineering with AI",
+      subtitle: "Full Cycle · in progress",
+      bullets: [
+        "12-month MBA focused on the new developer profile of the AI era.",
+        "Four pillars: software architecture with AI, AI-driven methodology and workflow, development of AI applications and agents, DevOps & SRE with AI.",
+        "Agents and orchestration (LangGraph, CrewAI, Google's ADK), MCP and A2A protocols, RAG, security, cost control and observability in AI systems.",
+        "The formalization of a path I already practice in production: AI in the daily workflow and agents in real systems.",
       ],
     },
   ],
@@ -351,6 +375,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         "Deploy cloud-native su AWS con Docker, Terraform e Kubernetes, per clienti in Brasile, in Italia e negli USA.",
       ],
     },
+    {
+      year: "2026–2027",
+      age: "52 anni",
+      title: "MBA in Ingegneria del Software con IA",
+      subtitle: "Full Cycle · in corso",
+      bullets: [
+        "MBA di 12 mesi focalizzato sul nuovo profilo di sviluppatore dell'era dell'IA.",
+        "Quattro pilastri: architettura del software con IA, metodologia e workflow IA-driven, sviluppo di applicazioni e agenti, DevOps & SRE con IA.",
+        "Agenti e orchestrazione (LangGraph, CrewAI, ADK di Google), protocolli MCP e A2A, RAG, sicurezza, costi e observability nei sistemi con IA.",
+        "La formalizzazione di un percorso che già pratico in produzione: IA nel workflow quotidiano e agenti in sistemi reali.",
+      ],
+    },
   ],
   es: [
     {
@@ -457,6 +493,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         "CRM con IA que automatiza mi propio proceso comercial: calificación de leads, propuestas y análisis financiero.",
         "Sistemas con agentes de IA (LangGraph, RAG) integrados en productos reales.",
         "Deploy cloud-native en AWS con Docker, Terraform y Kubernetes, para clientes en Brasil, Italia y EE. UU.",
+      ],
+    },
+    {
+      year: "2026–2027",
+      age: "52 años",
+      title: "MBA en Ingeniería de Software con IA",
+      subtitle: "Full Cycle · en curso",
+      bullets: [
+        "MBA de 12 meses enfocado en el nuevo perfil de desarrollador de la era de la IA.",
+        "Cuatro pilares: arquitectura de software con IA, metodología y workflow IA-driven, desarrollo de aplicaciones y agentes, DevOps & SRE con IA.",
+        "Agentes y orquestación (LangGraph, CrewAI, ADK de Google), protocolos MCP y A2A, RAG, seguridad, costos y observabilidad en sistemas con IA.",
+        "La formalización de un camino que ya practico en producción: IA en el workflow diario y agentes en sistemas reales.",
       ],
     },
   ],

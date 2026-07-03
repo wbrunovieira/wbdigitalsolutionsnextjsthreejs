@@ -18,6 +18,7 @@
 - 2020-2024: frontend and design immersion (Rocketseat Ignite: Node, React, Next.js, React Native; Three.js Journey; GSAP)
 - 2023: founded WB Digital Solutions; Full Cycle (software architecture & DevOps); Data Science Academy (AI engineering)
 - 2023-today: products in production, from architecture to deploy
+- 2026-2027: MBA in Software Engineering with AI (Full Cycle, in progress): AI-era architecture, AI-driven workflows, agents (LangGraph, CrewAI, ADK), MCP and A2A protocols, DevOps & SRE with AI
 
 ## Featured work
 
