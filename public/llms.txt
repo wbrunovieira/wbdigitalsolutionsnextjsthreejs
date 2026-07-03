@@ -1,0 +1,41 @@
+# WB Digital Solutions
+
+> Software studio founded by Walter Bruno Prado Vieira (Bruno Vieira), a senior full-stack and AI engineer with 25+ years of B2B business background. We design, build and ship complete digital products: websites with interactive 3D, bespoke systems, AI-powered platforms and automation, owned end to end from architecture to deployment. Clients in Brazil, Italy and the US. Content available in English, Portuguese (BR), Italian and Spanish.
+
+Stack: TypeScript, React/Next.js, Node/NestJS, Python, Go, Rust, Three.js/WebGL, LangGraph/LangChain (RAG, AI agents), PostgreSQL, AWS, Docker, Terraform, Kubernetes.
+
+## Services
+
+- [Websites](https://www.wbdigitalsolutions.com/websites): high-performance marketing sites, interactive 3D and motion design
+- [Systems](https://www.wbdigitalsolutions.com/systems): bespoke platforms, CRMs, e-commerce and internal tools
+- [Automation](https://www.wbdigitalsolutions.com/automation): workflow automation and integrations
+- [AI](https://www.wbdigitalsolutions.com/ai): AI agents, RAG pipelines and AI-powered product features
+
+## Projects (case studies)
+
+- [Revalida Italia](https://www.wbdigitalsolutions.com/projects/revalida-italia): complete online learning platform built from scratch; video lessons, mock exams, smart flashcards, 3D anatomy environments, live Zoom sessions, verifiable certificates; Next.js, NestJS, PostgreSQL, AWS
+- [WB CRM](https://www.wbdigitalsolutions.com/projects/wb-crm): full sales CRM with kanban pipeline, cadences, email and AI-assisted workflows
+- [AI Agents](https://www.wbdigitalsolutions.com/projects/ai-agents): multi-agent AI system orchestrated with LangGraph (router + specialized agents)
+- [Vetor](https://www.wbdigitalsolutions.com/projects/vetor): desktop app (Tauri + Rust + React) for reviewing Brazilian income-tax returns
+- [Finances](https://www.wbdigitalsolutions.com/projects/financas): personal finance and investments system in Go with market integrations
+- [Stylos](https://www.wbdigitalsolutions.com/projects/stylos): complete online store with variants, cart and MercadoPago payments
+- [Manon Ruivo](https://www.wbdigitalsolutions.com/projects/manon-ruivo): trilingual consultant platform with Sanity CMS blog
+- [Flavia Guedes](https://www.wbdigitalsolutions.com/projects/flavia-guedes): brand site with gift-card e-commerce (Square, Stripe)
+- [Kundalini Activation](https://www.wbdigitalsolutions.com/projects/kundalini-activation): conversion site with gallery, videos and events
+- [Salto](https://www.wbdigitalsolutions.com/projects/salto): multilingual site with protected sales decks
+- [Konnen](https://www.wbdigitalsolutions.com/projects/konnen): fitness assessment app with performance tests and PDF reports
+- [Calendar](https://www.wbdigitalsolutions.com/projects/calendar): productivity app with recurring events, habits and goals
+- [WB Project Manager](https://www.wbdigitalsolutions.com/projects/wb-project-manager): Linear/Jira-style project management tool
+- [Salao Loha](https://www.wbdigitalsolutions.com/projects/salao-loha): marketing site for a beauty salon
+
+## People
+
+- [Bruno Vieira, engineering profile](https://brunodev.wbdigitalsolutions.com/): senior full-stack & AI engineer CV
+- [Bruno Vieira, sales profile](https://brunov.wbdigitalsolutions.com/): technical sales & business development CV
+
+## Contact
+
+- [Contact page](https://www.wbdigitalsolutions.com/contact)
+- [Blog](https://www.wbdigitalsolutions.com/blog)
+- [LinkedIn](https://www.linkedin.com/in/walter-bruno-vieira)
+- [GitHub](https://github.com/wbrunovieira)

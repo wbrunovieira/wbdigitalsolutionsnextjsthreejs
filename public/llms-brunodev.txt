@@ -1,0 +1,34 @@
+# Bruno Vieira, Senior Full-Stack & AI Engineer
+
+> Walter Bruno Prado Vieira (Bruno Vieira) is a senior full-stack and AI engineer and founder of WB Digital Solutions. Unusual path: 25+ years in B2B technical sales and own businesses before learning to code (Harvard CS50 and the TrueCoders bootcamp in 2020, studied between rides as an app driver in Portugal), so he understands the business problem before the first line of code. Today he architects, codes and ships complete products end to end for clients in Brazil, Italy and the US. Speaks Portuguese (native), English, Italian and Spanish. This page: https://brunodev.wbdigitalsolutions.com/
+
+## Stack
+
+- Languages: TypeScript, JavaScript, Python, Go, Rust, C#
+- Frontend: React, Next.js, React Native, Three.js/R3F & WebGL, GSAP, Tailwind CSS
+- Backend: Node.js/NestJS, Go, Rust, DDD & hexagonal architecture, REST APIs & integrations
+- AI & Data: machine learning, neural networks & transformers, LLMs & computer vision, LangGraph & LangChain, RAG & agents, statistics, time series (Spark, Databricks), SageMaker & Microsoft Fabric
+- Cloud & DevOps: AWS, Docker, Terraform, Kubernetes, Ansible, Linux, CI/CD, networking
+- Security: TLS/CSP headers, OWASP, authn/authz (JWT, OAuth, RBAC), IAM & least privilege, secrets management, LGPD
+
+## Journey highlights
+
+- 1987-2020: 25+ years of B2B technical sales, own companies and enterprise accounts across 4 countries
+- 2020: first lines of code (Harvard CS50, TrueCoders bootcamp, 500+ hours, C#/.NET)
+- 2020-2024: frontend and design immersion (Rocketseat Ignite: Node, React, Next.js, React Native; Three.js Journey; GSAP)
+- 2023: founded WB Digital Solutions; Full Cycle (software architecture & DevOps); Data Science Academy (AI engineering)
+- 2023-today: products in production, from architecture to deploy
+
+## Featured work
+
+- [Revalida Italia](https://www.wbdigitalsolutions.com/projects/revalida-italia): learning platform built from scratch, 3D lessons, AWS
+- [AI Agents](https://www.wbdigitalsolutions.com/projects/ai-agents): multi-agent system with LangGraph
+- [Vetor](https://www.wbdigitalsolutions.com/projects/vetor): Rust/Tauri desktop app
+- [All projects](https://www.wbdigitalsolutions.com/projects)
+
+## Links
+
+- [LinkedIn](https://www.linkedin.com/in/walter-bruno-vieira)
+- [GitHub](https://github.com/wbrunovieira)
+- [Studio](https://www.wbdigitalsolutions.com)
+- [Sales profile](https://brunov.wbdigitalsolutions.com/)

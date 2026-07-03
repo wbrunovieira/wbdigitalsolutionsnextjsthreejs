@@ -52,6 +52,18 @@ const nextConfig = {
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/vendas',
         },
+        // Per-host llms.txt (LLM-friendly site summary): each CV subdomain
+        // serves its own profile; the main domain falls through to public/llms.txt.
+        {
+          source: '/llms.txt',
+          has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
+          destination: '/llms-brunodev.txt',
+        },
+        {
+          source: '/llms.txt',
+          has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
+          destination: '/llms-brunov.txt',
+        },
       ],
       afterFiles: [
         {
