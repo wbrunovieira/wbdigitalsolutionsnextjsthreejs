@@ -197,7 +197,7 @@ const DevTimeline: React.FC = () => {
           }}
           aria-hidden="true"
         />
-        {devTimeline.map((e, i) => (
+        {devTimeline[cv].map((e, i) => (
           <TimelineItem key={e.title + e.year} e={e} index={i} showWatermark={mdUp && !reduce} />
         ))}
       </ol>

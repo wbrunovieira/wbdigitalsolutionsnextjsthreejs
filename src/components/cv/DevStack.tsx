@@ -35,7 +35,7 @@ const DevStack: React.FC = () => {
       <DevSectionHeader eyebrow={t.nav.skills} title={TITLE[cv]} />
 
       <div className="grid gap-8 sm:grid-cols-2">
-        {devStack.map((g, i) => (
+        {devStack[cv].map((g, i) => (
           <motion.div key={g.label} {...reveal(i * 0.06)} className={g.items.length > 8 ? "sm:col-span-2" : ""}>
             <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: AMBER }}>{g.label}</h3>
             <div className="flex flex-wrap gap-2">
