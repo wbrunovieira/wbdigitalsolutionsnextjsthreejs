@@ -114,7 +114,7 @@ const DevHero: React.FC = () => {
         <LockupHalo />
 
         {/* Terminal prompt */}
-        <motion.p {...fade(0.1)} className="relative mb-5 font-mono text-sm sm:text-base" style={{ color: light(0.55) }}>
+        <motion.p {...fade(0.1)} className="relative mb-7 font-mono text-sm sm:mb-5 sm:text-base" style={{ color: light(0.55) }}>
           <span style={{ color: AMBER }}>~</span> $ whoami
           <motion.span
             aria-hidden="true"

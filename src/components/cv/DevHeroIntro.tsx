@@ -41,7 +41,7 @@ const DevHeroIntro: React.FC = () => {
   return (
     <motion.div
       {...fade}
-      className="relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 pb-10 sm:flex-row sm:items-end sm:justify-between"
+      className="relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 pb-12 sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:pb-10"
     >
       <div className="max-w-lg">
         {/* Greeting written as a code comment */}
@@ -49,20 +49,20 @@ const DevHeroIntro: React.FC = () => {
           <span style={{ color: light(0.35) }}>{"// "}</span>
           {t.heroGreeting} <span className="font-bold" style={{ color: TEXT }}>{t.name}</span> 👋
         </p>
-        <p className="mt-1.5 max-w-md text-[13px] leading-relaxed" style={{ color: light(0.45) }}>
+        <p className="mt-2.5 max-w-md text-[13px] leading-relaxed sm:mt-1.5" style={{ color: light(0.45) }}>
           {WELCOME[cv]}
         </p>
-        <span className="my-5 block h-px w-10" style={{ background: `linear-gradient(90deg, ${AMBER}, transparent)` }} aria-hidden="true" />
+        <span className="my-6 block h-px w-10 sm:my-5" style={{ background: `linear-gradient(90deg, ${AMBER}, transparent)` }} aria-hidden="true" />
         <h1>
           <span className="block text-base font-medium leading-snug sm:text-lg" style={{ color: light(0.5) }}>
             {hero.sub}
           </span>
-          <span className="mt-1 block text-2xl font-black leading-[1.14] tracking-[-0.015em] sm:text-[2.15rem]" style={{ color: TEXT }}>
+          <span className="mt-2 block text-2xl font-black leading-[1.14] tracking-[-0.015em] sm:mt-1 sm:text-[2.15rem]" style={{ color: TEXT }}>
             {hero.title}
           </span>
         </h1>
         {/* Core stack, in mono (the dev twin of the sales pillars) */}
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-2 sm:mt-4">
           {hero.pills.map((p) => (
             <span
               key={p}

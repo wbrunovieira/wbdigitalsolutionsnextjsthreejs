@@ -92,7 +92,8 @@ export const LockupHalo: React.FC = () => (
     {/* Nested masks (they multiply): the outer fades the sides horizontally;
         the inner carves a clear horizontal BAND where the prompt + lockup sit,
         so the binary frames the word (above/below) but never crosses it.
-        Mobile gets a stronger ink (smaller glyphs read fainter); sm+ reverts. */}
+        Mobile gets a MUCH fainter ink (the whole hero fits one screen there,
+        so the binary must not compete with the texts); sm+ reverts. */}
     <div
       className="h-full w-full"
       style={{
@@ -101,7 +102,7 @@ export const LockupHalo: React.FC = () => (
       }}
     >
     <div
-      className="grid h-full w-full place-items-center text-center font-mono text-[11px] leading-[2.1] tracking-[0.35em] text-[rgba(244,244,245,0.28)] sm:text-sm sm:text-[rgba(244,244,245,0.18)]"
+      className="grid h-full w-full place-items-center text-center font-mono text-[11px] leading-[2.1] tracking-[0.35em] text-[rgba(244,244,245,0.07)] sm:text-sm sm:text-[rgba(244,244,245,0.18)]"
       style={{
         maskImage: "linear-gradient(180deg, transparent 2%, black 14%, black 28%, transparent 38%, transparent 66%, black 76%, black 88%, transparent 98%)",
         WebkitMaskImage: "linear-gradient(180deg, transparent 2%, black 14%, black 28%, transparent 38%, transparent 66%, black 76%, black 88%, transparent 98%)",
