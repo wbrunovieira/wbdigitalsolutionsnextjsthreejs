@@ -18,6 +18,10 @@ export default function SalesCV() {
   return (
     <>
       <Head>
+        {/* CV pages bypass Layout/PageHead, so the full viewport meta must be
+            set here; Next's default lacks initial-scale and Safari renders
+            the page zoomed-out without it. */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <meta name="robots" content="index,follow" />
