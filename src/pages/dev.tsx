@@ -22,6 +22,10 @@ export default function DevCV() {
             set here; Next's default lacks initial-scale and Safari renders
             the page zoomed-out without it. */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Exclusive favicon: amber </> on graphite (SVG + PNG/apple fallbacks) */}
+        <link rel="icon" type="image/svg+xml" href="/favicon-dev.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-dev-32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-dev.png" />
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <meta name="robots" content="index,follow" />
