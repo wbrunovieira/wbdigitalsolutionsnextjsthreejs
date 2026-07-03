@@ -1,5 +1,6 @@
 import Head from "next/head";
 import SalesHero from "@/components/cv/SalesHero";
+import SalesPhilosophy from "@/components/cv/SalesPhilosophy";
 import SalesTimeline from "@/components/cv/SalesTimeline";
 import SalesSkills from "@/components/cv/SalesSkills";
 import SalesEducation from "@/components/cv/SalesEducation";
@@ -32,11 +33,13 @@ export default function SalesCV() {
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
       <SalesHero />
+      <SalesPhilosophy variant="decide" id="filosofia" />
       <SalesTimeline />
       <SalesSkills />
       <SalesEducation />
       <SalesLanguages />
       <SalesAbout />
+      <SalesPhilosophy variant="clarity" id="clareza" />
       <SalesContact />
     </>
   );
