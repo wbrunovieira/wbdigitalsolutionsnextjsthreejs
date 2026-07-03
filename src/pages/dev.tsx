@@ -4,6 +4,9 @@ import DevTimeline from "@/components/cv/DevTimeline";
 import DevStack from "@/components/cv/DevStack";
 import DevProjects from "@/components/cv/DevProjects";
 import DevPhilosophy from "@/components/cv/DevPhilosophy";
+import DevLanguages from "@/components/cv/DevLanguages";
+import DevAbout from "@/components/cv/DevAbout";
+import DevContact from "@/components/cv/DevContact";
 
 const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer";
 const DESCRIPTION =
@@ -34,7 +37,10 @@ export default function DevCV() {
       <DevTimeline />
       <DevStack />
       <DevProjects />
+      <DevLanguages />
+      <DevAbout />
       <DevPhilosophy variant="people" id="oficio" />
+      <DevContact />
     </>
   );
 }

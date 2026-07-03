@@ -31,6 +31,8 @@ export const DEV_NAV_SECTIONS = [
   { id: "trajetoria", navKey: "timeline" },
   { id: "competencias", navKey: "skills" },
   { id: "projetos", navKey: "projects" },
+  { id: "idiomas", navKey: "languages" },
+  { id: "sobre", navKey: "about" },
 ] as const;
 
 /** Anchor of the contact section (nav CTA button, not a menu item). */
