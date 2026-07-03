@@ -118,6 +118,8 @@ Frontend sends enriched context to backend API:
 
 9. **Typography of copy**: no em-dashes (—) in any user-facing text; use commas, colons or periods.
 
+10. **English for engineering artifacts**: code comments, commit messages and skills (`.claude/skills/*/SKILL.md`) are ALWAYS written in English. User-facing copy follows the 4-locale i18n rule instead.
+
 ## Development Notes
 
 1. **3D Performance**: Dispose Three.js geometries/materials to prevent memory leaks. Test on mobile.
