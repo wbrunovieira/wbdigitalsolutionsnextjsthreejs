@@ -18,12 +18,21 @@ import { salesAbout, type AboutInterest } from "@/content/salesAbout";
 import { AMBER, BG_DEV_ALT, TEXT, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection, DevSectionHeader } from "./DevSection";
+import DevCodeDeco from "./DevCodeDeco";
 
 const TITLE: Record<CVLang, string> = {
   "pt-BR": "Por trás do terminal.",
   en: "Behind the terminal.",
   it: "Dietro il terminale.",
   es: "Detrás de la terminal.",
+};
+
+/** Corner easter egg, localized (the poetic spread deserves the visitor's language). */
+const DECO: Record<CVLang, string> = {
+  "pt-BR": 'weekend.push("jiu-jitsu", "parapente", ...tudoQueMeFazBem)',
+  en: 'weekend.push("jiu-jitsu", "paragliding", ...everythingThatDoesMeGood)',
+  it: 'weekend.push("jiu-jitsu", "parapendio", ...tuttoQuelloCheMiFaBene)',
+  es: 'weekend.push("jiu-jitsu", "parapente", ...todoLoQueMeHaceBien)',
 };
 
 const ICONS: Record<AboutInterest["icon"], LucideIcon> = {
@@ -97,6 +106,7 @@ const DevAbout: React.FC = () => {
 
   return (
     <DevSection id="sobre" bg={BG_DEV_ALT}>
+      <DevCodeDeco code={DECO[cv]} />
       <DevSectionHeader eyebrow={t.nav.about} title={TITLE[cv]} className="mb-10" />
 
       {/* Lead: family & nomadic life (same human story as the sales page) */}

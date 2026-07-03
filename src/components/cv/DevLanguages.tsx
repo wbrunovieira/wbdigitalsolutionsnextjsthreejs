@@ -15,6 +15,17 @@ import { LANG_FLAG } from "./cvIcons";
 import { AMBER, BG_DEV, TEXT, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection, DevSectionHeader } from "./DevSection";
+import DevCodeDeco from "./DevCodeDeco";
+import DevBinary from "./DevBinary";
+
+/** Side binary halo decoding "PT EN IT ES DE" (one language per row). */
+const BINARY_LANGS = [
+  "01010000 01010100",
+  "01000101 01001110",
+  "01001001 01010100",
+  "01000101 01010011",
+  "01000100 01000101",
+];
 
 const TITLE: Record<CVLang, string> = {
   "pt-BR": "Quatro idiomas para trabalhar em qualquer time.",
@@ -41,6 +52,8 @@ const DevLanguages: React.FC = () => {
 
   return (
     <DevSection id="idiomas" bg={BG_DEV} width="3xl">
+      <DevCodeDeco code={'const langs = ["pt", "en", "it", "es"]  // next: "de"'} />
+      <DevBinary rows={BINARY_LANGS} className="right-12 top-1/2 hidden -translate-y-1/2 lg:block" alpha={0.26} />
       <DevSectionHeader eyebrow={t.nav.languages} title={TITLE[cv]} />
 
       <ul className="grid gap-x-12 gap-y-6 sm:grid-cols-2">

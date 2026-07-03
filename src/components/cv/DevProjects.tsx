@@ -28,6 +28,7 @@ import type { Project, ProjectsPageContent } from "@/components/projects/types";
 import { AMBER, BG_DEV_ALT, TEXT, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection, DevSectionHeader } from "./DevSection";
+import DevCodeDeco from "./DevCodeDeco";
 
 /** Hand-picked subset showing breadth: edu platform, CRM, AI, Rust desktop, Go backend, motion-rich web. */
 const FEATURED_SLUGS = ["revalida-italia", "wb-crm", "ai-agents", "vetor", "financas", "salto"];
@@ -265,6 +266,7 @@ const DevProjects: React.FC = () => {
 
   return (
     <DevSection id="projetos" bg={BG_DEV_ALT}>
+      <DevCodeDeco code="$ docker compose up -d  # production" />
       <DevSectionHeader eyebrow={t.nav.projects} title={copy.title} intro={copy.intro} />
 
       <div className="grid gap-5 sm:grid-cols-2">

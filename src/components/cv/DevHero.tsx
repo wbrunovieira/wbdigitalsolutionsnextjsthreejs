@@ -137,6 +137,30 @@ const DevHero: React.FC = () => {
         {"</>"}
       </motion.span>
 
+      {/* Binary layers at different depths/opacities (each spells something):
+          right edge "BRUNO", left edge "DEV", top band "WB CODE". */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute right-3 top-1/2 z-[1] hidden -translate-y-1/2 select-none font-mono text-[10px] tracking-[0.3em] md:block"
+        style={{ writingMode: "vertical-rl", color: light(0.14) }}
+      >
+        01000010 01010010 01010101 01001110 01001111
+      </span>
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[18%] left-3 z-[1] hidden select-none font-mono text-[10px] tracking-[0.3em] md:block"
+        style={{ writingMode: "vertical-rl", color: light(0.07) }}
+      >
+        01000100 01000101 01010110
+      </span>
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-8 top-24 z-[1] hidden select-none font-mono text-[10px] tracking-[0.24em] lg:block"
+        style={{ color: light(0.1) }}
+      >
+        01010111 01000010 · 01000011 01001111 01000100 01000101
+      </span>
+
       {/* Film grain */}
       <div
         aria-hidden="true"
@@ -163,6 +187,27 @@ const DevHero: React.FC = () => {
         className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-[2vh]"
         style={{ y: reduce ? 0 : lockupY, opacity: reduce ? 1 : lockupOpacity }}
       >
+        {/* Binary halo behind the giant letters: denser near them, gradually
+            dissolving to opacity 0 via a radial mask */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid select-none place-items-center overflow-hidden">
+          <div
+            className="text-center font-mono text-[11px] leading-[2.1] tracking-[0.35em] sm:text-sm"
+            style={{
+              color: light(0.18),
+              maskImage: "radial-gradient(55% 55% at 50% 50%, black 20%, transparent 72%)",
+              WebkitMaskImage: "radial-gradient(55% 55% at 50% 50%, black 20%, transparent 72%)",
+            }}
+          >
+            <div>01010111 01000010 00100000 01000100 01001001 01000111 01001001</div>
+            <div>01010100 01000001 01001100 00100000 01010011 01001111 01001100</div>
+            <div>01010101 01010100 01001001 01001111 01001110 01010011 00100000</div>
+            <div>01000010 01010010 01010101 01001110 01001111 00100000 01000100</div>
+            <div>01000101 01010110 00100000 01000011 01001111 01000100 01000101</div>
+            <div>01000110 01010101 01001100 01001100 00101101 01010011 01010100</div>
+            <div>01000001 01000011 01001011 00100000 00100110 00100000 01000001</div>
+            <div>01001001 00100000 00110001 00111001 00111000 00110111 00101110</div>
+          </div>
+        </div>
         {/* Terminal prompt */}
         <motion.p {...fade(0.1)} className="mb-5 font-mono text-sm sm:text-base" style={{ color: light(0.55) }}>
           <span style={{ color: AMBER }}>~</span> $ whoami

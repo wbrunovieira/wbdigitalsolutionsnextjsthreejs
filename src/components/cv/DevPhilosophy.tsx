@@ -19,8 +19,38 @@ import type { CVLang } from "@/content/cv";
 import { AMBER, BG_DEV, TEXT, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection } from "./DevSection";
+import DevCodeDeco from "./DevCodeDeco";
+import DevBinary from "./DevBinary";
 
 type Variant = "problem" | "people";
+
+/** Corner easter egg per variant: the section's message, in code. */
+const DECO: Record<Variant, string> = {
+  problem: "if (!problem.understood) return listen();",
+  people: "// readable > clever",
+};
+
+/** Side binary halo per variant, decoding the section's keyword (repeated). */
+const BINARY: Record<Variant, string[]> = {
+  // "LISTEN" (x2)
+  problem: [
+    "01001100 01001001",
+    "01010011 01010100",
+    "01000101 01001110",
+    "01001100 01001001",
+    "01010011 01010100",
+    "01000101 01001110",
+  ],
+  // "PEOPLE" (x2)
+  people: [
+    "01010000 01000101",
+    "01001111 01010000",
+    "01001100 01000101",
+    "01010000 01000101",
+    "01001111 01010000",
+    "01001100 01000101",
+  ],
+};
 
 const COPY: Record<Variant, Record<CVLang, { eyebrow: string; lead: string; statement: string }>> = {
   problem: {
@@ -80,6 +110,8 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
 
   return (
     <DevSection id={id} bg={BG_DEV} width="3xl" padding="roomy">
+      <DevCodeDeco code={DECO[variant]} position="bottom-left" />
+      <DevBinary rows={BINARY[variant]} className="right-10 top-1/2 hidden -translate-y-1/2 lg:block" />
       <motion.div {...reveal()}>
         <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: AMBER }}>
           {copy.eyebrow}

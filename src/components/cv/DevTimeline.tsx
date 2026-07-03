@@ -25,6 +25,7 @@ import { cvContent, type CVLang } from "@/content/cv";
 import { AMBER, BG_DEV_ALT, TEXT, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection, DevSectionHeader } from "./DevSection";
+import DevCodeDeco from "./DevCodeDeco";
 
 const COPY: Record<CVLang, { title: string; intro: string }> = {
   "pt-BR": {
@@ -177,6 +178,7 @@ const DevTimeline: React.FC = () => {
 
   return (
     <DevSection id="trajetoria" bg={BG_DEV_ALT} width="3xl">
+      <DevCodeDeco code="$ git log --reverse  # 1987..today" />
       <DevSectionHeader eyebrow={t.nav.timeline} title={copy.title} intro={copy.intro} className="mb-14" />
 
       <ol ref={listRef} className="relative">

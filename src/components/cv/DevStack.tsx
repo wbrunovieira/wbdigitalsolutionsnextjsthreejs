@@ -14,6 +14,7 @@ import { devStack } from "@/content/devStack";
 import { AMBER, BG_DEV, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection, DevSectionHeader } from "./DevSection";
+import DevCodeDeco from "./DevCodeDeco";
 
 const TITLE: Record<CVLang, string> = {
   "pt-BR": "Como eu construo.",
@@ -30,6 +31,7 @@ const DevStack: React.FC = () => {
 
   return (
     <DevSection id="competencias" bg={BG_DEV}>
+      <DevCodeDeco code={'import { web, ai, cloud } from "experience"'} />
       <DevSectionHeader eyebrow={t.nav.skills} title={TITLE[cv]} />
 
       <div className="grid gap-8 sm:grid-cols-2">

@@ -16,6 +16,17 @@ import { AMBER, BG_DEV_ALT, DEV_CONTACT_ID, DEV_CV_PDF, DEV_SECONDARY_CTA, TEXT,
 import { useDevReveal } from "./useDevReveal";
 import { DevSection } from "./DevSection";
 import DevMagnetic from "./DevMagnetic";
+import DevCodeDeco from "./DevCodeDeco";
+import DevBinary from "./DevBinary";
+
+/** Side binary halo decoding "HELLO" (repeated). */
+const BINARY_HELLO = [
+  "01001000 01000101",
+  "01001100 01001100",
+  "01001111 01001000",
+  "01000101 01001100",
+  "01001100 01001111",
+];
 
 /** Dev-specific CTA title ("fechar" is sales language; here we only build). */
 const CTA_TITLE: Record<CVLang, string> = {
@@ -41,6 +52,8 @@ const DevContact: React.FC = () => {
 
   return (
     <DevSection id={DEV_CONTACT_ID} bg={BG_DEV_ALT} padding="roomy">
+      <DevCodeDeco code="await bruno.reply()  // fast" />
+      <DevBinary rows={BINARY_HELLO} className="left-10 top-1/2 hidden -translate-y-1/2 lg:block" mask="fade-b" />
       <motion.div
         {...reveal()}
         className="relative overflow-hidden rounded-[2rem] border px-6 py-12 text-center sm:px-12 sm:py-14"
