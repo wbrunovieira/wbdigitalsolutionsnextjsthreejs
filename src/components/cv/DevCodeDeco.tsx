@@ -45,7 +45,9 @@ const DevCodeDeco: React.FC<{ code: string; position?: keyof typeof POSITIONS }>
               key={i}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
+              // Vertical-only margin: a horizontal one would keep edge
+              // characters permanently out of view (they'd never type).
+              viewport={{ once: true, margin: "-60px 0px -60px 0px" }}
               transition={{ duration: 0.01, delay: 0.3 + i * TYPE_STEP_S }}
               style={c === "$" || c === "~" ? { color: AMBER } : undefined}
             >
