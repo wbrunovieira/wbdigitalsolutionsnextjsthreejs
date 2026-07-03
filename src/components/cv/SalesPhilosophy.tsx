@@ -9,7 +9,7 @@
  */
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { CVLang } from "@/content/cv";
 import { AMBER, BG_A, INK, ink, toCVLang } from "./salesTheme";
@@ -65,10 +65,14 @@ const COPY: Record<Variant, Record<CVLang, { eyebrow: string; lead: string; stat
   },
 };
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 const SalesPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id }) => {
   const { language } = useLanguage();
+  const reduce = useReducedMotion();
   const copy = COPY[variant][toCVLang(language)];
   const reveal = useReveal({ margin: "-80px", duration: 0.7 });
+  const words = copy.lead.split(" ");
 
   return (
     <SalesSection id={id} bg={BG_A} width="3xl" padding="roomy">
@@ -76,9 +80,40 @@ const SalesPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, 
         <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: AMBER }}>
           {copy.eyebrow}
         </span>
-        <div className="mt-6 border-l-2 pl-6 sm:pl-8" style={{ borderColor: AMBER }}>
-          <p className="text-3xl font-black leading-[1.08] tracking-[-0.02em] sm:text-[2.6rem]" style={{ color: INK }}>
-            {copy.lead}
+        <div className="relative mt-6 pl-6 sm:pl-8">
+          {/* Amber border drawing itself top-down, in sync with the word stagger */}
+          <motion.span
+            aria-hidden="true"
+            className="absolute left-0 top-0 h-full w-[2px] origin-top"
+            style={{ background: AMBER }}
+            initial={reduce ? { scaleY: 1 } : { scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: EASE }}
+          />
+          {/* Word-level stagger (never per character); screen readers get the
+              whole sentence via aria-label. */}
+          <p
+            aria-label={copy.lead}
+            className="text-3xl font-black leading-[1.08] tracking-[-0.02em] sm:text-[2.6rem]"
+            style={{ color: INK }}
+          >
+            {reduce
+              ? copy.lead
+              : words.map((w, i) => (
+                  <React.Fragment key={i}>
+                    <motion.span
+                      aria-hidden="true"
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ duration: 0.5, delay: 0.1 + i * 0.05, ease: EASE }}
+                    >
+                      {w}
+                    </motion.span>{" "}
+                  </React.Fragment>
+                ))}
           </p>
           <p className="mt-5 text-xl font-medium leading-relaxed sm:text-2xl" style={{ color: ink(0.68) }}>
             {copy.statement}

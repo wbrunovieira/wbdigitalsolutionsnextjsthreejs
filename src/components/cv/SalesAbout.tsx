@@ -56,8 +56,8 @@ const SalesAbout: React.FC = () => {
             <motion.div
               key={it.title}
               {...reveal(0.1 + i * 0.06)}
-              className="flex flex-col rounded-2xl border p-6"
-              style={{ borderColor: ink(0.1), background: "rgba(255,255,255,0.6)" }}
+              className="flex flex-col rounded-2xl border border-[rgba(28,28,30,0.1)] p-6 transition-all duration-300 hover:border-[rgba(224,145,47,0.35)] motion-safe:hover:-translate-y-0.5"
+              style={{ background: "rgba(255,255,255,0.6)" }}
             >
               <span
                 className="mb-4 grid h-10 w-10 place-items-center rounded-xl"

@@ -44,14 +44,19 @@ const SalesSkills: React.FC = () => {
           <motion.div key={g.label} {...reveal(i * 0.06)}>
             <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: AMBER }}>{g.label}</h3>
             <div className="flex flex-wrap gap-2">
-              {g.items.map((it) => (
-                <span
+              {/* Micro-stagger per chip (capped) for texture without delay */}
+              {g.items.map((it, j) => (
+                <motion.span
                   key={it}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.4, delay: i * 0.06 + Math.min(j, 8) * 0.02, ease: [0.22, 1, 0.36, 1] }}
                   className="rounded-full border px-3 py-1 text-sm font-medium"
                   style={{ borderColor: ink(0.14), color: ink(0.8), background: "rgba(255,255,255,0.6)" }}
                 >
                   {it}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.div>

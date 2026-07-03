@@ -10,13 +10,14 @@
  * A portrait can be re-introduced later (see git history / PHOTO_SRC pattern).
  */
 
-import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { Download, Linkedin, MessageCircle, Package, Target, Handshake } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, cvLinks } from "@/content/cv";
 import { AMBER, CV_PDF, INK, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
 import SalesNav from "./SalesNav";
+import Magnetic from "./Magnetic";
 
 const ROTATION_MS = 2800;
 
@@ -58,6 +59,17 @@ const SalesHero: React.FC = () => {
   // Lead-in (setup, before the colon); the payoff lines come pre-split from content.
   const taglineLead = hero.title.split(":")[0].trim();
 
+  // Exit parallax: as the hero scrolls away, the WBPV watermark drifts slower
+  // (down) while the lockup rises and fades, adding depth on the way out.
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: exitProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const watermarkY = useTransform(exitProgress, [0, 1], [0, 60]);
+  const lockupY = useTransform(exitProgress, [0, 1], [0, -40]);
+  const lockupOpacity = useTransform(exitProgress, [0, 1], [1, 0.35]);
+
   // Pointer parallax: the oversized word drifts slightly toward the cursor.
   const px = useMotionValue(0);
   const py = useMotionValue(0);
@@ -85,6 +97,7 @@ const SalesHero: React.FC = () => {
   return (
     <main
       id="inicio"
+      ref={heroRef}
       onPointerMove={handleMove}
       className="relative flex min-h-screen flex-col overflow-hidden"
       style={{ background: "linear-gradient(180deg,#f7f7f8 0%,#ececee 100%)", color: INK }}
@@ -105,14 +118,14 @@ const SalesHero: React.FC = () => {
         />
       </div>
 
-      {/* Giant low-opacity monogram */}
-      <span
+      {/* Giant low-opacity monogram (drifts slower on exit for depth) */}
+      <motion.span
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[8%] -right-[4%] z-0 select-none font-black leading-none text-transparent"
-        style={{ fontSize: "clamp(12rem, 34vw, 34rem)", WebkitTextStroke: `1px ${ink(0.05)}` }}
+        style={{ y: reduce ? 0 : watermarkY, fontSize: "clamp(12rem, 34vw, 34rem)", WebkitTextStroke: `1px ${ink(0.05)}` }}
       >
         WBPV
-      </span>
+      </motion.span>
 
       {/* Film grain */}
       <div
@@ -136,7 +149,10 @@ const SalesHero: React.FC = () => {
       <SalesNav />
 
       {/* ===== Center: oversized role lockup (photo-less centerpiece) ===== */}
-      <div className="relative z-10 flex flex-1 items-center justify-center px-6 py-[2vh]">
+      <motion.div
+        className="relative z-10 flex flex-1 items-center justify-center px-6 py-[2vh]"
+        style={{ y: reduce ? 0 : lockupY, opacity: reduce ? 1 : lockupOpacity }}
+      >
         <motion.div
           style={{ x: reduce ? 0 : wordX, y: reduce ? 0 : wordY }}
           className="flex items-center justify-center"
@@ -165,7 +181,7 @@ const SalesHero: React.FC = () => {
             </motion.div>
           </AnimatePresence>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* ===== Bottom bar: greeting + welcome, tagline, pillars, CTAs ===== */}
       <motion.div
@@ -204,14 +220,16 @@ const SalesHero: React.FC = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-          <a
-            href={CV_PDF}
-            className="col-span-2 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2 sm:col-span-1"
-            style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
-          >
-            <Download aria-hidden="true" className="h-4 w-4" />
-            {t.contact.downloadCv}
-          </a>
+          <Magnetic className="col-span-2 flex sm:col-span-1">
+            <a
+              href={CV_PDF}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2 sm:w-auto"
+              style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
+            >
+              <Download aria-hidden="true" className="h-4 w-4" />
+              {t.contact.downloadCv}
+            </a>
+          </Magnetic>
           <a
             href={cvLinks.linkedin}
             target="_blank"

@@ -13,7 +13,7 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, type CVLang } from "@/content/cv";
@@ -78,6 +78,10 @@ const SalesNav: React.FC = () => {
     });
     return () => observer.disconnect();
   }, []);
+
+  // Reading progress (2px amber line under the header once scrolled).
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
 
   // Mobile menu (hamburger) + body scroll lock while open.
   const [menuOpen, setMenuOpen] = useState(false);
@@ -203,6 +207,15 @@ const SalesNav: React.FC = () => {
             </button>
           </div>
         </div>
+        {/* Reading progress: information (how far along), so it stays in RM
+            (direct mapping, no spring) instead of being removed. */}
+        {scrolled && (
+          <motion.div
+            aria-hidden="true"
+            className="absolute inset-x-0 bottom-0 h-[2px] origin-left"
+            style={{ background: AMBER, scaleX: reduce ? scrollYProgress : progress, opacity: 0.9 }}
+          />
+        )}
       </header>
 
       {/* Mobile menu (hamburger overlay) */}

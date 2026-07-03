@@ -53,13 +53,14 @@ const SalesLanguages: React.FC = () => {
               <span className="text-xs font-semibold" style={{ color: AMBER }}>{l.level}</span>
             </div>
             <div className="h-1.5 w-full overflow-hidden rounded-full" style={{ background: ink(0.1) }}>
+              {/* Static width + animated scaleX: transform-only (no layout per frame) */}
               <motion.div
-                initial={reduce ? { width: `${l.proficiency}%` } : { width: 0 }}
-                whileInView={{ width: `${l.proficiency}%` }}
+                initial={reduce ? { scaleX: 1 } : { scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.9, delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full rounded-full"
-                style={{ background: `linear-gradient(90deg, ${AMBER}, #b26f1f)` }}
+                className="h-full origin-left rounded-full"
+                style={{ width: `${l.proficiency}%`, background: `linear-gradient(90deg, ${AMBER}, #b26f1f)` }}
               />
             </div>
           </motion.li>
