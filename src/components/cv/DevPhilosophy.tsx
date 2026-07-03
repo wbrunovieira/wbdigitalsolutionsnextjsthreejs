@@ -110,7 +110,7 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
 
   return (
     <DevSection id={id} bg={BG_DEV} width="3xl" padding="roomy">
-      <DevCodeDeco code={DECO[variant]} position="bottom-left" />
+      <DevCodeDeco code={DECO[variant]} />
       <DevBinary rows={BINARY[variant]} className="right-10 top-1/2 hidden -translate-y-1/2 lg:block" />
       <motion.div {...reveal()}>
         <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: AMBER }}>

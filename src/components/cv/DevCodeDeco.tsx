@@ -6,8 +6,9 @@
  * TYPES itself when scrolled into view, with prompt glyphs ($, ~) in amber
  * and a forever-blinking amber block cursor. Each snippet echoes the
  * section's message in code. Decorative only: aria-hidden,
- * pointer-events-none, desktop-only (md+). Reduced motion: full static text,
- * solid cursor.
+ * pointer-events-none. On mobile it shrinks (10px) and may wrap within the
+ * section's padding band; md+ keeps the single-line 13px version. Reduced
+ * motion: full static text, solid cursor.
  */
 
 import React from "react";
@@ -15,8 +16,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { AMBER, light } from "./devTheme";
 
 const POSITIONS = {
-  "top-left": "left-6 top-8",
-  "bottom-left": "bottom-8 left-6",
+  "top-left": "left-4 right-4 top-6 md:left-6 md:right-auto md:top-8",
+  "bottom-left": "bottom-6 left-4 right-4 md:bottom-8 md:left-6 md:right-auto",
 } as const;
 
 const TYPE_STEP_S = 0.022; // per-character typing cadence
@@ -31,8 +32,8 @@ const DevCodeDeco: React.FC<{ code: string; position?: keyof typeof POSITIONS }>
   return (
     <span
       aria-hidden="true"
-      className={`pointer-events-none absolute hidden select-none font-mono text-[13px] md:block ${POSITIONS[position]}`}
-      style={{ color: light(0.5), whiteSpace: "pre" }}
+      className={`pointer-events-none absolute select-none font-mono text-[10px] leading-relaxed md:text-[13px] ${POSITIONS[position]}`}
+      style={{ color: light(0.5), whiteSpace: "pre-wrap" }}
     >
       {reduce
         ? chars.map((c, i) => (
