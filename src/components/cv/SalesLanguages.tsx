@@ -26,6 +26,13 @@ const LEARNING: Record<CVLang, { label: string; german: string; level: string }>
   es: { label: "Aprendiendo ahora", german: "Alemán", level: "principiante" },
 };
 
+const TITLE: Record<CVLang, string> = {
+  "pt-BR": "Quatro idiomas a favor do seu negócio.",
+  en: "Four languages working for your business.",
+  it: "Quattro lingue al servizio del tuo business.",
+  es: "Cuatro idiomas a favor de tu negocio.",
+};
+
 const SalesLanguages: React.FC = () => {
   const { language } = useLanguage();
   const reduce = useReducedMotion();
@@ -50,7 +57,7 @@ const SalesLanguages: React.FC = () => {
             {t.nav.languages}
           </span>
           <h2 className="mt-2 text-balance text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl" style={{ color: INK }}>
-            Quatro idiomas a favor do seu negócio.
+            {TITLE[toCVLang(language)]}
           </h2>
         </motion.header>
 

@@ -9,13 +9,28 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { GraduationCap, MapPin } from "lucide-react";
 import { salesEducation } from "@/content/salesEducation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { cvContent, type CVLang } from "@/content/cv";
 
 const INK = "#1c1c1e";
 const AMBER = "#e0912f";
 const BG = "#f7f7f8";
 
+const toCVLang = (lang: string): CVLang =>
+  lang === "pt-BR" || lang === "it" || lang === "es" ? lang : "en";
+
+const TITLE: Record<CVLang, string> = {
+  "pt-BR": "Base comercial e acadêmica.",
+  en: "Commercial and academic foundation.",
+  it: "Basi commerciali e accademiche.",
+  es: "Base comercial y académica.",
+};
+
 const SalesEducation: React.FC = () => {
   const reduce = useReducedMotion();
+  const { language } = useLanguage();
+  const cv = toCVLang(language);
+  const t = cvContent[cv];
   const reveal = (delay = 0) =>
     reduce
       ? { initial: { opacity: 0 }, whileInView: { opacity: 1 }, viewport: { once: true }, transition: { duration: 0.4, delay } }
@@ -31,15 +46,15 @@ const SalesEducation: React.FC = () => {
       <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
         <motion.header {...reveal()} className="mb-12">
           <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: AMBER }}>
-            Formação
+            {t.nav.education}
           </span>
           <h2 className="mt-2 text-balance text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl" style={{ color: INK }}>
-            Base comercial e acadêmica.
+            {TITLE[cv]}
           </h2>
         </motion.header>
 
         <div className="grid gap-5 sm:grid-cols-3">
-          {salesEducation.map((e, i) => (
+          {salesEducation[cv].map((e, i) => (
             <motion.div
               key={e.institution}
               {...reveal(i * 0.06)}

@@ -26,6 +26,13 @@ const ICONS: Record<AboutInterest["icon"], LucideIcon> = {
   mountain: Mountain,
 };
 
+const TITLE: Record<CVLang, string> = {
+  "pt-BR": "Um pouco além do trabalho.",
+  en: "A little beyond work.",
+  it: "Un po' oltre il lavoro.",
+  es: "Un poco más allá del trabajo.",
+};
+
 const SalesAbout: React.FC = () => {
   const { language } = useLanguage();
   const reduce = useReducedMotion();
@@ -49,13 +56,13 @@ const SalesAbout: React.FC = () => {
             {t.nav.about}
           </span>
           <h2 className="mt-2 text-balance text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl" style={{ color: INK }}>
-            Um pouco além do trabalho.
+            {TITLE[toCVLang(language)]}
           </h2>
         </motion.header>
 
         {/* Lead, family & nomadic life */}
         <motion.div {...reveal(0.05)} className="max-w-2xl space-y-4">
-          {salesAbout.lead.map((p, i) => (
+          {salesAbout[toCVLang(language)].lead.map((p, i) => (
             <p key={i} className="text-base leading-relaxed sm:text-lg" style={{ color: "rgba(28,28,30,0.72)" }}>
               {p}
             </p>
@@ -64,7 +71,7 @@ const SalesAbout: React.FC = () => {
 
         {/* Interests */}
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
-          {salesAbout.interests.map((it, i) => {
+          {salesAbout[toCVLang(language)].interests.map((it, i) => {
             const Icon = ICONS[it.icon];
             return (
               <motion.div

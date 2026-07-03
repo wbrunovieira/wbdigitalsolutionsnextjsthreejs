@@ -9,13 +9,41 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { salesTimeline } from "@/content/salesTimeline";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { cvContent, type CVLang } from "@/content/cv";
 
 const INK = "#1c1c1e";
 const AMBER = "#e0912f";
 const BG = "#f1f1f3";
 
+const toCVLang = (lang: string): CVLang =>
+  lang === "pt-BR" || lang === "it" || lang === "es" ? lang : "en";
+
+const COPY: Record<CVLang, { title: string; intro: string }> = {
+  "pt-BR": {
+    title: "Do balcão, aos 13, à mesa de negociação.",
+    intro: "Comecei a vender cedo, e cada passo somou repertório comercial.",
+  },
+  en: {
+    title: "From the shop counter at 13 to the negotiation table.",
+    intro: "I started selling young, and every step added to my commercial range.",
+  },
+  it: {
+    title: "Dal bancone, a 13 anni, al tavolo delle trattative.",
+    intro: "Ho iniziato a vendere presto, e ogni passo ha aggiunto repertorio commerciale.",
+  },
+  es: {
+    title: "Del mostrador, a los 13, a la mesa de negociación.",
+    intro: "Empecé a vender temprano, y cada paso sumó repertorio comercial.",
+  },
+};
+
 const SalesTimeline: React.FC = () => {
   const reduce = useReducedMotion();
+  const { language } = useLanguage();
+  const cv = toCVLang(language);
+  const t = cvContent[cv];
+  const copy = COPY[cv];
   const reveal = (delay = 0) =>
     reduce
       ? { initial: { opacity: 0 }, whileInView: { opacity: 1 }, viewport: { once: true }, transition: { duration: 0.4, delay } }
@@ -32,13 +60,13 @@ const SalesTimeline: React.FC = () => {
         {/* Header */}
         <motion.header {...reveal()} className="mb-14">
           <span className="font-mono text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: AMBER }}>
-            Trajetória
+            {t.nav.timeline}
           </span>
           <h2 className="mt-2 text-balance text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl" style={{ color: INK }}>
-            Do balcão, aos 13, à mesa de negociação.
+            {copy.title}
           </h2>
           <p className="mt-3 max-w-xl text-base leading-relaxed" style={{ color: "rgba(28,28,30,0.6)" }}>
-            Comecei a vender cedo, e cada passo somou repertório comercial.
+            {copy.intro}
           </p>
         </motion.header>
 
@@ -50,7 +78,7 @@ const SalesTimeline: React.FC = () => {
             style={{ background: "linear-gradient(180deg, #e0912f 0%, rgba(28,28,30,0.18) 70%, transparent 100%)" }}
             aria-hidden="true"
           />
-          {salesTimeline.map((e, i) => (
+          {salesTimeline[cv].map((e, i) => (
             <motion.li key={e.company + e.year} {...reveal(i * 0.05)} className="relative mb-11 pl-8 last:mb-0">
               {/* Node */}
               <span

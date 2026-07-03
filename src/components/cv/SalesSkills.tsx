@@ -26,6 +26,13 @@ const CLIENTS_LABEL: Record<CVLang, string> = {
   es: "Algunos clientes conocidos",
 };
 
+const TITLE: Record<CVLang, string> = {
+  "pt-BR": "Como eu vendo.",
+  en: "How I sell.",
+  it: "Come vendo.",
+  es: "Cómo vendo.",
+};
+
 const SalesSkills: React.FC = () => {
   const { language } = useLanguage();
   const reduce = useReducedMotion();
@@ -50,12 +57,12 @@ const SalesSkills: React.FC = () => {
             {t.nav.skills}
           </span>
           <h2 className="mt-2 text-balance text-3xl font-black leading-[1.05] tracking-[-0.02em] sm:text-4xl" style={{ color: INK }}>
-            Como eu vendo.
+            {TITLE[toCVLang(language)]}
           </h2>
         </motion.header>
 
         <div className="grid gap-8 sm:grid-cols-2">
-          {salesSkills.map((g, i) => (
+          {salesSkills[toCVLang(language)].map((g, i) => (
             <motion.div key={g.label} {...reveal(i * 0.06)}>
               <h3 className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: AMBER }}>{g.label}</h3>
               <div className="flex flex-wrap gap-2">
