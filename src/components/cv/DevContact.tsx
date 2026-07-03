@@ -111,7 +111,7 @@ const DevContact: React.FC = () => {
         {CLOSING[cv]} <span aria-hidden="true" style={{ color: AMBER }}>♥</span>
       </motion.p>
 
-      <p className="mt-10 text-center text-xs" style={{ color: light(0.45) }}>
+      <p className="mt-10 text-center text-xs" style={{ color: light(0.6) }}>
         © {t.name} ·{" "}
         <a href={cvLinks.site} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-[#f4f4f5]">
           wbdigitalsolutions.com

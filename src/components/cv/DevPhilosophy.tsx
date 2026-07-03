@@ -128,15 +128,18 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
             transition={{ duration: 0.7, ease: EASE }}
           />
           {/* Word-level stagger (never per character); screen readers get the
-              whole sentence via aria-label. */}
+              whole sentence via a visually-hidden span (aria-label is not
+              allowed on <p>). */}
           <p
-            aria-label={copy.lead}
             className="text-3xl font-black leading-[1.08] tracking-[-0.02em] sm:text-[2.6rem]"
             style={{ color: TEXT }}
           >
-            {reduce
-              ? copy.lead
-              : words.map((w, i) => (
+            {reduce ? (
+              copy.lead
+            ) : (
+              <>
+                <span className="sr-only">{copy.lead}</span>
+                {words.map((w, i) => (
                   <React.Fragment key={i}>
                     <motion.span
                       aria-hidden="true"
@@ -150,6 +153,8 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
                     </motion.span>{" "}
                   </React.Fragment>
                 ))}
+              </>
+            )}
           </p>
           <p className="mt-5 text-xl font-medium leading-relaxed sm:text-2xl" style={{ color: light(0.68) }}>
             {copy.statement}

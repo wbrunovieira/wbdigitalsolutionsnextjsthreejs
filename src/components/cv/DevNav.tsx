@@ -75,7 +75,9 @@ const DevNav: React.FC = () => {
         }
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
-          <a href="#inicio" onClick={navigateTo("inicio")} className="flex items-center gap-3">
+          {/* aria-label: on mobile the name span is display:none and the
+              monogram is aria-hidden, so the link needs its own name */}
+          <a href="#inicio" onClick={navigateTo("inicio")} aria-label={t.name} className="flex items-center gap-3">
             {/* Monogram mark, makes it read as Bruno's personal page */}
             <Monogram />
             <span className="hidden flex-col leading-tight sm:flex">
