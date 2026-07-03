@@ -12,7 +12,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Download, Linkedin, MessageCircle, Package, Target, Handshake } from "lucide-react";
+import { Download, Linkedin, MessageCircle, Package, Target, Handshake, Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, cvLinks, type CVLang } from "@/content/cv";
 
@@ -71,6 +71,18 @@ const SalesHero: React.FC = () => {
     });
     return () => observer.disconnect();
   }, []);
+
+  // Mobile menu (hamburger) + body scroll lock while open.
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
   const parts = (rotation[idx] ?? rotation[0]).toUpperCase().split(" ");
   const filledLine = parts[0];
   const outlinedLine = parts.slice(1).join(" ");
@@ -181,7 +193,7 @@ const SalesHero: React.FC = () => {
           >
             BV
           </span>
-          <span className="flex flex-col leading-tight">
+          <span className="hidden flex-col leading-tight sm:flex">
             <span className="text-[15px] font-black tracking-[-0.01em] sm:text-base" style={{ color: INK }}>{t.name}</span>
             <span className="font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: "rgba(28,28,30,0.5)" }}>
               {t.fullName}
@@ -241,9 +253,85 @@ const SalesHero: React.FC = () => {
             );
           })}
         </div>
+        <button
+          onClick={() => setMenuOpen(true)}
+          aria-label="Abrir menu"
+          aria-expanded={menuOpen}
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors lg:hidden"
+          style={{ borderColor: "rgba(28,28,30,0.14)", background: "rgba(255,255,255,0.7)" }}
+        >
+          <Menu className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
+        </button>
         </div>
         </div>
       </header>
+
+      {/* ===== Mobile menu (hamburger overlay) ===== */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex flex-col lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            style={{ background: "rgba(247,247,248,0.98)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
+          >
+            <div className="flex items-center justify-between px-6 py-4">
+              <span className="flex items-center gap-3">
+                <span
+                  className="grid h-10 w-10 place-items-center rounded-full text-sm font-black"
+                  style={{ background: INK, color: "#ffffff", boxShadow: `inset 0 0 0 2px ${AMBER}` }}
+                  aria-hidden="true"
+                >
+                  BV
+                </span>
+                <span className="text-base font-black" style={{ color: INK }}>{t.name}</span>
+              </span>
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Fechar menu"
+                className="grid h-10 w-10 place-items-center rounded-full border"
+                style={{ borderColor: "rgba(28,28,30,0.14)" }}
+              >
+                <X className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
+              </button>
+            </div>
+            <nav className="flex flex-1 flex-col justify-center gap-1 px-6">
+              {navItems.map((item, i) => (
+                <motion.a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    scrollTo(item.id)(e);
+                    setMenuOpen(false);
+                  }}
+                  initial={reduce ? { opacity: 1 } : { opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: reduce ? 0 : 0.06 + i * 0.04 }}
+                  className="py-2 text-3xl font-black tracking-[-0.02em]"
+                  style={{ color: active === item.id ? AMBER : INK }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </nav>
+            <div className="px-6 pb-10">
+              <a
+                href="#contato"
+                onClick={(e) => {
+                  scrollTo("contato")(e);
+                  setMenuOpen(false);
+                }}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold"
+                style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
+              >
+                {t.nav.contact}
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ===== Center: oversized role lockup (photo-less centerpiece) ===== */}
       <div className="relative z-10 flex flex-1 items-center justify-center px-6 py-[2vh]">
@@ -261,16 +349,15 @@ const SalesHero: React.FC = () => {
               className="flex flex-col items-center text-center"
             >
               <span
-                className="font-black uppercase leading-[0.84] tracking-[-0.02em]"
-                style={{ fontSize: "clamp(3rem, 14vw, 11rem)", color: "rgba(28,28,30,0.92)" }}
+                className="max-w-[94vw] break-words font-black uppercase leading-[0.84] tracking-[-0.02em] text-[clamp(1.9rem,11vw,4rem)] sm:text-[clamp(3rem,13vw,11rem)]"
+                style={{ color: "rgba(28,28,30,0.92)" }}
               >
                 {filledLine}
               </span>
               {outlinedLine && (
                 <span
-                  className="mt-[0.12em] font-black uppercase leading-[0.84] tracking-[-0.02em]"
+                  className="mt-[0.12em] max-w-[94vw] break-words font-black uppercase leading-[0.84] tracking-[-0.02em] text-[clamp(1.9rem,11vw,4rem)] sm:text-[clamp(3rem,13vw,11rem)]"
                   style={{
-                    fontSize: "clamp(3rem, 14vw, 11rem)",
                     color: "transparent",
                     WebkitTextStroke: "2.2px rgba(28,28,30,0.62)",
                   }}

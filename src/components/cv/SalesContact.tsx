@@ -42,7 +42,7 @@ const SalesContact: React.FC = () => {
       <div className="mx-auto max-w-4xl px-6 py-24 sm:py-32">
         <motion.div
           {...reveal()}
-          className="relative overflow-hidden rounded-[2rem] border px-8 py-14 text-center sm:px-12"
+          className="relative overflow-hidden rounded-[2rem] border px-6 py-12 text-center sm:px-12 sm:py-14"
           style={{ borderColor: "rgba(224,145,47,0.35)", background: "rgba(224,145,47,0.06)" }}
         >
           <div
