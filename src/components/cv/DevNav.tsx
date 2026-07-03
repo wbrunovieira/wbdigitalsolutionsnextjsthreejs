@@ -63,7 +63,14 @@ const DevNav: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>(DEV_NAV_SECTIONS[0].id);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 20);
+      // Bottom-of-page guard: the last section may be too short to ever reach
+      // the observer's center band, so force-activate it at the end of scroll.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        setActive(DEV_NAV_SECTIONS[DEV_NAV_SECTIONS.length - 1].id);
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -135,7 +142,10 @@ const DevNav: React.FC = () => {
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    onClick={scrollTo(item.id)}
+                    onClick={(e) => {
+                      scrollTo(item.id)(e);
+                      setActive(item.id); // selection moves immediately, not only when the observer catches up
+                    }}
                     aria-current={isActive ? "true" : undefined}
                     className={`relative rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
                       isActive ? "text-[#0e0e11]" : "text-[#f4f4f5]/55 hover:text-[#f4f4f5]/90"
@@ -251,6 +261,7 @@ const DevNav: React.FC = () => {
                   href={`#${item.id}`}
                   onClick={(e) => {
                     scrollTo(item.id)(e);
+                    setActive(item.id);
                     setMenuOpen(false);
                   }}
                   initial={reduce ? { opacity: 1 } : { opacity: 0, x: -16 }}

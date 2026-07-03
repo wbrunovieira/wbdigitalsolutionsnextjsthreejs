@@ -127,7 +127,7 @@ export interface CVContent {
   /** Soft welcome line under the greeting: what this page is + thanks. */
   heroWelcome: string;
   /** Header nav labels for the sales page sections. */
-  nav: { start: string; timeline: string; skills: string; education: string; languages: string; about: string; contact: string };
+  nav: { start: string; timeline: string; skills: string; projects: string; education: string; languages: string; about: string; contact: string };
 }
 
 /** Non-translatable shared data. */
@@ -355,7 +355,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     taglinePayoff: ["the product,", "the need,", "and the person."],
     heroGreeting: "Hi, I'm",
     heroWelcome: "This page was made with care so you can get to know your future sales guy. Thanks for visiting.",
-    nav: { start: "Home", timeline: "Journey", skills: "Skills", education: "Education", languages: "Languages", about: "About", contact: "Contact" },
+    nav: { start: "Home", timeline: "Journey", skills: "Skills", projects: "Projects", education: "Education", languages: "Languages", about: "About", contact: "Contact" },
   },
 
   "pt-BR": {
@@ -571,7 +571,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     taglinePayoff: ["o produto,", "a necessidade", "e a pessoa."],
     heroGreeting: "Olá, sou o",
     heroWelcome: "Esta página foi feita com carinho para você conhecer melhor o seu futuro homem de vendas. Obrigado pela visita.",
-    nav: { start: "Início", timeline: "Trajetória", skills: "Competências", education: "Formação", languages: "Idiomas", about: "Sobre", contact: "Contato" },
+    nav: { start: "Início", timeline: "Trajetória", skills: "Competências", projects: "Projetos", education: "Formação", languages: "Idiomas", about: "Sobre", contact: "Contato" },
   },
 
   it: {
@@ -787,7 +787,7 @@ export const cvContent: Record<CVLang, CVContent> = {
     taglinePayoff: ["il prodotto,", "il bisogno", "e la persona."],
     heroGreeting: "Ciao, sono",
     heroWelcome: "Questa pagina è stata fatta con cura perché tu possa conoscere meglio il tuo futuro uomo delle vendite. Grazie della visita.",
-    nav: { start: "Inizio", timeline: "Percorso", skills: "Competenze", education: "Formazione", languages: "Lingue", about: "Chi sono", contact: "Contatti" },
+    nav: { start: "Inizio", timeline: "Percorso", skills: "Competenze", projects: "Progetti", education: "Formazione", languages: "Lingue", about: "Chi sono", contact: "Contatti" },
   },
 
   es: {
@@ -1003,6 +1003,6 @@ export const cvContent: Record<CVLang, CVContent> = {
     taglinePayoff: ["el producto,", "la necesidad", "y la persona."],
     heroGreeting: "Hola, soy",
     heroWelcome: "Esta página fue hecha con cariño para que conozcas mejor a tu futuro hombre de ventas. Gracias por la visita.",
-    nav: { start: "Inicio", timeline: "Trayectoria", skills: "Competencias", education: "Formación", languages: "Idiomas", about: "Sobre mí", contact: "Contacto" },
+    nav: { start: "Inicio", timeline: "Trayectoria", skills: "Competencias", projects: "Proyectos", education: "Formación", languages: "Idiomas", about: "Sobre mí", contact: "Contacto" },
   },
 };
