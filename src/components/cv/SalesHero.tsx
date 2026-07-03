@@ -1,45 +1,42 @@
 "use client";
 
 /**
- * Sales CV, hero only (served on brunov.wbdigitalsolutions.com → /vendas).
+ * Sales CV hero (served on brunov.wbdigitalsolutions.com → /vendas).
  * Full-screen, LIGHT theme (neutral off-white, not pure white). Photo-less,
  * typographic: an oversized role lockup as the centerpiece, a giant low-opacity
  * WBPV monogram, fine grain and a hairline frame. Graphite ink + a single amber
- * accent (CTA). Name shown once (top-left): full name over a "known-as" line.
+ * accent (CTA). The fixed nav lives in SalesNav.tsx.
  *
  * A portrait can be re-introduced later (see git history / PHOTO_SRC pattern).
  */
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Download, Linkedin, MessageCircle, Package, Target, Handshake, Menu, X } from "lucide-react";
+import { Download, Linkedin, MessageCircle, Package, Target, Handshake } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, cvLinks, type CVLang } from "@/content/cv";
+import { cvContent, cvLinks } from "@/content/cv";
+import { AMBER, CV_PDF, INK, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
+import SalesNav from "./SalesNav";
 
-const LANGS: { code: CVLang; label: string }[] = [
-  { code: "en", label: "EN" },
-  { code: "pt-BR", label: "PT" },
-  { code: "it", label: "IT" },
-  { code: "es", label: "ES" },
-];
+const ROTATION_MS = 2800;
 
-const toCVLang = (lang: string): CVLang =>
-  lang === "pt-BR" || lang === "it" || lang === "es" ? lang : "en";
-
-const CV_PDF = "#"; // set to /bruno-vieira-sales.pdf once the PDF exists
-
-// Palette (light theme, neutral off-white + graphite + a single amber accent)
-const INK = "#1c1c1e"; // graphite ink
-const AMBER = "#e0912f"; // warm accent (used sparingly)
+/**
+ * Average glyph width (em) of the display face in black uppercase; used to cap
+ * the lockup font-size so the longest line (e.g. RELACIONAMENTO) always fits.
+ */
+const GLYPH_EM = 0.68;
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
 
+/** Shared classes of both lockup lines: responsive clamp capped by --fit. */
+const LOCKUP_CLASSES =
+  "max-w-[94vw] font-black uppercase leading-[0.84] tracking-[-0.02em] text-[min(clamp(1.9rem,11vw,4rem),var(--fit))] sm:text-[min(clamp(3rem,13vw,11rem),var(--fit))]";
+
 const SalesHero: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const reduce = useReducedMotion();
-  const lang = toCVLang(language);
-  const t = cvContent[lang];
+  const t = cvContent[toCVLang(language)];
   const hero = t.hero.sales;
 
   // Oversized headline cycles through the sales facets.
@@ -47,45 +44,16 @@ const SalesHero: React.FC = () => {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
     if (reduce || rotation.length < 2) return;
-    const id = setInterval(() => setIdx((i) => (i + 1) % rotation.length), 2800);
+    const id = setInterval(() => setIdx((i) => (i + 1) % rotation.length), ROTATION_MS);
     return () => clearInterval(id);
   }, [reduce, rotation.length]);
-
-  // Fixed-header background on scroll + scroll-spy for the active section.
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("inicio");
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    ["inicio", "trajetoria", "competencias", "formacao", "idiomas", "sobre"].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  // Mobile menu (hamburger) + body scroll lock while open.
-  const [menuOpen, setMenuOpen] = useState(false);
-  useEffect(() => {
-    if (!menuOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [menuOpen]);
 
   const parts = (rotation[idx] ?? rotation[0]).toUpperCase().split(" ");
   const filledLine = parts[0];
   const outlinedLine = parts.slice(1).join(" ");
+  // Cap the font-size so the longest line always fits the viewport width.
+  const longestLine = Math.max(filledLine.length, outlinedLine.length);
+  const fitVW = (94 / (GLYPH_EM * longestLine)).toFixed(2);
 
   // Lead-in (setup, before the colon); the payoff lines come pre-split from content.
   const taglineLead = hero.title.split(":")[0].trim();
@@ -114,19 +82,6 @@ const SalesHero: React.FC = () => {
           transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
         };
 
-  const navItems = [
-    { id: "inicio", label: t.nav.start },
-    { id: "trajetoria", label: t.nav.timeline },
-    { id: "competencias", label: t.nav.skills },
-    { id: "formacao", label: t.nav.education },
-    { id: "idiomas", label: t.nav.languages },
-    { id: "sobre", label: t.nav.about },
-  ];
-  const scrollTo = (id: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <main
       id="inicio"
@@ -137,11 +92,11 @@ const SalesHero: React.FC = () => {
       {/* Depth: soft neutral bloom, gentle edge falloff, dot field (no warm tint) */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <div style={{ background: "radial-gradient(60% 55% at 50% 34%, rgba(255,255,255,0.7) 0%, transparent 70%)" }} className="absolute inset-0" />
-        <div style={{ background: "radial-gradient(120% 120% at 50% 42%, transparent 58%, rgba(28,28,30,0.06) 100%)" }} className="absolute inset-0" />
+        <div style={{ background: `radial-gradient(120% 120% at 50% 42%, transparent 58%, ${ink(0.06)} 100%)` }} className="absolute inset-0" />
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(rgba(28,28,30,0.9) 1px, transparent 1px)",
+            backgroundImage: `radial-gradient(${ink(0.9)} 1px, transparent 1px)`,
             backgroundSize: "28px 28px",
             opacity: 0.05,
             maskImage: "radial-gradient(70% 60% at 50% 45%, black, transparent)",
@@ -154,7 +109,7 @@ const SalesHero: React.FC = () => {
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-[8%] -right-[4%] z-0 select-none font-black leading-none text-transparent"
-        style={{ fontSize: "clamp(12rem, 34vw, 34rem)", WebkitTextStroke: "1px rgba(28,28,30,0.05)" }}
+        style={{ fontSize: "clamp(12rem, 34vw, 34rem)", WebkitTextStroke: `1px ${ink(0.05)}` }}
       >
         WBPV
       </span>
@@ -166,190 +121,19 @@ const SalesHero: React.FC = () => {
         style={{ backgroundImage: GRAIN }}
       />
 
-      {/* Hairline frame + corner ticks */}
-      <div aria-hidden="true" className="pointer-events-none absolute left-4 right-4 bottom-4 top-20 z-[1] rounded-[4px] border sm:left-6 sm:right-6 sm:bottom-6 sm:top-24" style={{ borderColor: "rgba(28,28,30,0.10)" }}>
+      {/* Hairline frame + corner ticks (starts below the fixed header) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-4 left-4 right-4 top-20 z-[1] rounded-[4px] border sm:bottom-6 sm:left-6 sm:right-6 sm:top-24"
+        style={{ borderColor: ink(0.1) }}
+      >
         <span className="absolute left-0 top-0 h-3 w-px" style={{ background: AMBER }} />
         <span className="absolute left-0 top-0 h-px w-3" style={{ background: AMBER }} />
         <span className="absolute bottom-0 right-0 h-3 w-px" style={{ background: AMBER }} />
         <span className="absolute bottom-0 right-0 h-px w-3" style={{ background: AMBER }} />
       </div>
 
-      {/* ===== Nav ===== */}
-      <header
-        className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-        style={
-          scrolled
-            ? { background: "rgba(247,247,248,0.82)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", borderBottom: "1px solid rgba(28,28,30,0.08)" }
-            : { background: "transparent" }
-        }
-      >
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
-        <a href="#inicio" onClick={scrollTo("inicio")} className="flex items-center gap-3">
-          {/* Monogram mark, makes it read as Bruno's personal page */}
-          <span
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-black"
-            style={{ background: INK, color: "#ffffff", boxShadow: `inset 0 0 0 2px ${AMBER}` }}
-            aria-hidden="true"
-          >
-            BV
-          </span>
-          <span className="hidden flex-col leading-tight sm:flex">
-            <span className="text-[15px] font-black tracking-[-0.01em] sm:text-base" style={{ color: INK }}>{t.name}</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: "rgba(28,28,30,0.5)" }}>
-              {t.fullName}
-            </span>
-          </span>
-        </a>
-        {/* Desktop nav: graphite capsule with a sliding amber pill (animated
-            tab-bar style) + a small downward notch that follows the active item. */}
-        <nav className="hidden xl:block">
-          <div
-            className="relative flex items-center gap-0.5 rounded-full border bg-white/70 p-1.5 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm"
-            style={{ borderColor: "rgba(28,28,30,0.12)" }}
-          >
-            {navItems.map((item) => {
-              const isActive = active === item.id;
-              return (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={scrollTo(item.id)}
-                  aria-current={isActive ? "true" : undefined}
-                  className={`relative rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
-                    isActive ? "text-[#1c1c1e]" : "text-[#1c1c1e]/55 hover:text-[#1c1c1e]/90"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="cv-nav-pill"
-                      className="absolute inset-0 rounded-full"
-                      style={{ background: AMBER }}
-                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
-                    >
-                      <span
-                        className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 rotate-45 rounded-[3px]"
-                        style={{ background: AMBER, marginTop: "1px" }}
-                        aria-hidden="true"
-                      />
-                    </motion.span>
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </a>
-              );
-            })}
-          </div>
-        </nav>
-        <div className="flex items-center gap-3">
-        <a
-          href="#contato"
-          onClick={scrollTo("contato")}
-          className="hidden rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
-          style={{ background: AMBER, color: INK, boxShadow: "0 6px 16px rgba(224,145,47,0.3)" }}
-        >
-          {t.nav.contact}
-        </a>
-        <div className="flex items-center gap-1 rounded-full border bg-white/70 p-1 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm" style={{ borderColor: "rgba(28,28,30,0.12)" }}>
-          {LANGS.map((l) => {
-            const isActive = lang === l.code;
-            return (
-              <button
-                key={l.code}
-                onClick={() => setLanguage(l.code)}
-                aria-pressed={isActive}
-                className="relative rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50"
-              >
-                {isActive && (
-                  <motion.span
-                    layoutId="cv-lang-pill"
-                    className="absolute inset-0 rounded-full"
-                    style={{ background: INK }}
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
-                <span className="relative z-10" style={{ color: isActive ? "#ffffff" : "rgba(28,28,30,0.6)" }}>{l.label}</span>
-              </button>
-            );
-          })}
-        </div>
-        <button
-          onClick={() => setMenuOpen(true)}
-          aria-label="Abrir menu"
-          aria-expanded={menuOpen}
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors xl:hidden"
-          style={{ borderColor: "rgba(28,28,30,0.14)", background: "rgba(255,255,255,0.7)" }}
-        >
-          <Menu className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
-        </button>
-        </div>
-        </div>
-      </header>
-
-      {/* ===== Mobile menu (hamburger overlay) ===== */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex flex-col xl:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            style={{ background: "rgba(247,247,248,0.98)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
-          >
-            <div className="flex items-center justify-between px-6 py-4">
-              <span className="flex items-center gap-3">
-                <span
-                  className="grid h-10 w-10 place-items-center rounded-full text-sm font-black"
-                  style={{ background: INK, color: "#ffffff", boxShadow: `inset 0 0 0 2px ${AMBER}` }}
-                  aria-hidden="true"
-                >
-                  BV
-                </span>
-                <span className="text-base font-black" style={{ color: INK }}>{t.name}</span>
-              </span>
-              <button
-                onClick={() => setMenuOpen(false)}
-                aria-label="Fechar menu"
-                className="grid h-10 w-10 place-items-center rounded-full border"
-                style={{ borderColor: "rgba(28,28,30,0.14)" }}
-              >
-                <X className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
-              </button>
-            </div>
-            <nav className="flex flex-1 flex-col justify-center gap-1 px-6">
-              {navItems.map((item, i) => (
-                <motion.a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    scrollTo(item.id)(e);
-                    setMenuOpen(false);
-                  }}
-                  initial={reduce ? { opacity: 1 } : { opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: reduce ? 0 : 0.06 + i * 0.04 }}
-                  className="py-2 text-3xl font-black tracking-[-0.02em]"
-                  style={{ color: active === item.id ? AMBER : INK }}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </nav>
-            <div className="px-6 pb-10">
-              <a
-                href="#contato"
-                onClick={(e) => {
-                  scrollTo("contato")(e);
-                  setMenuOpen(false);
-                }}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold"
-                style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
-              >
-                {t.nav.contact}
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SalesNav />
 
       {/* ===== Center: oversized role lockup (photo-less centerpiece) ===== */}
       <div className="relative z-10 flex flex-1 items-center justify-center px-6 py-[2vh]">
@@ -365,20 +149,15 @@ const SalesHero: React.FC = () => {
               exit={reduce ? { opacity: 0 } : { opacity: 0, y: -18 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col items-center text-center"
+              style={{ "--fit": `${fitVW}vw` } as React.CSSProperties}
             >
-              <span
-                className="max-w-[94vw] break-words font-black uppercase leading-[0.84] tracking-[-0.02em] text-[clamp(1.9rem,11vw,4rem)] sm:text-[clamp(3rem,13vw,11rem)]"
-                style={{ color: "rgba(28,28,30,0.92)" }}
-              >
+              <span className={LOCKUP_CLASSES} style={{ color: ink(0.92) }}>
                 {filledLine}
               </span>
               {outlinedLine && (
                 <span
-                  className="mt-[0.12em] max-w-[94vw] break-words font-black uppercase leading-[0.84] tracking-[-0.02em] text-[clamp(1.9rem,11vw,4rem)] sm:text-[clamp(3rem,13vw,11rem)]"
-                  style={{
-                    color: "transparent",
-                    WebkitTextStroke: "2.2px rgba(28,28,30,0.62)",
-                  }}
+                  className={`mt-[0.12em] ${LOCKUP_CLASSES}`}
+                  style={{ color: "transparent", WebkitTextStroke: `2.2px ${ink(0.62)}` }}
                 >
                   {outlinedLine}
                 </span>
@@ -388,27 +167,25 @@ const SalesHero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* ===== Bottom bar: intro + CTAs ===== */}
+      {/* ===== Bottom bar: greeting + welcome, tagline, pillars, CTAs ===== */}
       <motion.div
         {...fade(0.25)}
         className="relative z-20 mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 pb-10 sm:flex-row sm:items-end sm:justify-between"
       >
         <div className="max-w-lg">
-          <p className="text-sm font-medium sm:text-base" style={{ color: "rgba(28,28,30,0.55)" }}>
+          <p className="text-sm font-medium sm:text-base" style={{ color: ink(0.55) }}>
             {t.heroGreeting} <span className="font-bold" style={{ color: INK }}>{t.name}</span> 👋
+          </p>
+          {/* Soft welcome: what this page is + thanks (whisper, below the greeting) */}
+          <p className="mt-1.5 max-w-md text-[13px] leading-relaxed" style={{ color: ink(0.45) }}>
+            {t.heroWelcome}
           </p>
           <span className="my-5 block h-px w-10" style={{ background: `linear-gradient(90deg, ${AMBER}, transparent)` }} aria-hidden="true" />
           <h1>
-            <span
-              className="block text-base font-medium leading-snug sm:text-lg"
-              style={{ color: "rgba(28,28,30,0.5)" }}
-            >
-              {taglineLead.trim()}:
+            <span className="block text-base font-medium leading-snug sm:text-lg" style={{ color: ink(0.5) }}>
+              {taglineLead}:
             </span>
-            <span
-              className="mt-1 block text-2xl font-black leading-[1.14] tracking-[-0.015em] sm:text-[2.15rem]"
-              style={{ color: INK }}
-            >
+            <span className="mt-1 block text-2xl font-black leading-[1.14] tracking-[-0.015em] sm:text-[2.15rem]" style={{ color: INK }}>
               {t.taglinePayoff.map((line, i) => (
                 <span key={i} className="block">
                   {line}
@@ -419,7 +196,7 @@ const SalesHero: React.FC = () => {
           {/* Three value pillars, tied to the tagline (product · need · person) */}
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {[Package, Target, Handshake].map((Icon, i) => (
-              <span key={i} className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: "rgba(28,28,30,0.66)" }}>
+              <span key={i} className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: ink(0.66) }}>
                 <Icon aria-hidden="true" className="h-4 w-4" style={{ color: AMBER }} />
                 {t.heroPillars[i]}
               </span>
@@ -439,8 +216,8 @@ const SalesHero: React.FC = () => {
             href={cvLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition-colors hover:bg-[rgba(28,28,30,0.04)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50"
-            style={{ borderColor: "rgba(28,28,30,0.2)", color: INK }}
+            className={SECONDARY_CTA}
+            style={{ borderColor: ink(0.2), color: INK }}
           >
             <Linkedin aria-hidden="true" className="h-4 w-4" />
             {t.contact.linkedinLabel}
@@ -449,8 +226,8 @@ const SalesHero: React.FC = () => {
             href={cvLinks.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition-colors hover:bg-[rgba(28,28,30,0.04)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50"
-            style={{ borderColor: "rgba(28,28,30,0.2)", color: INK }}
+            className={SECONDARY_CTA}
+            style={{ borderColor: ink(0.2), color: INK }}
           >
             <MessageCircle aria-hidden="true" className="h-4 w-4" />
             WhatsApp
