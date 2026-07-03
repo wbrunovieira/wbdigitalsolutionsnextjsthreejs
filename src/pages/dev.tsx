@@ -1,6 +1,7 @@
 import Head from "next/head";
 import DevHero from "@/components/cv/DevHero";
 import DevTimeline from "@/components/cv/DevTimeline";
+import DevStack from "@/components/cv/DevStack";
 
 const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer";
 const DESCRIPTION =
@@ -28,6 +29,7 @@ export default function DevCV() {
       </Head>
       <DevHero />
       <DevTimeline />
+      <DevStack />
     </>
   );
 }

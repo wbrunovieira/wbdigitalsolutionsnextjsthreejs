@@ -29,6 +29,7 @@ export const toCVLang = (lang: string): CVLang =>
 export const DEV_NAV_SECTIONS = [
   { id: "inicio", navKey: "start" },
   { id: "trajetoria", navKey: "timeline" },
+  { id: "competencias", navKey: "skills" },
 ] as const;
 
 /** Anchor of the contact section (nav CTA button, not a menu item). */
