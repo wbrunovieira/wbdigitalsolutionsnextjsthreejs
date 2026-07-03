@@ -1,5 +1,5 @@
 import Head from "next/head";
-import CVTrackPage from "@/components/cv/CVTrackPage";
+import DevHero from "@/components/cv/DevHero";
 
 const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer";
 const DESCRIPTION =
@@ -25,7 +25,7 @@ export default function DevCV() {
         <meta name="twitter:description" content={DESCRIPTION} />
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
-      <CVTrackPage track="engineering" />
+      <DevHero />
     </>
   );
 }

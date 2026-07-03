@@ -63,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const prevOverscroll = el.style.overscrollBehavior;
     const prevBg = el.style.backgroundColor;
     el.style.overscrollBehavior = 'none';
-    el.style.backgroundColor = router.pathname === '/vendas' ? '#f7f7f8' : '#1a0826';
+    el.style.backgroundColor = router.pathname === '/vendas' ? '#f7f7f8' : '#0e0e11';
     return () => {
       el.style.overscrollBehavior = prevOverscroll;
       el.style.backgroundColor = prevBg;
