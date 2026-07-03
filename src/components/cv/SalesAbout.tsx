@@ -11,7 +11,7 @@ import { BookOpen, Clapperboard, Mountain, type LucideIcon } from "lucide-react"
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, type CVLang } from "@/content/cv";
 import { salesAbout, type AboutInterest } from "@/content/salesAbout";
-import { AMBER, BG_A, INK, ink, toCVLang } from "./salesTheme";
+import { AMBER, BG_B, INK, ink, toCVLang } from "./salesTheme";
 import { useReveal } from "./useReveal";
 import { SalesSection, SectionHeader } from "./SalesSection";
 
@@ -36,7 +36,7 @@ const SalesAbout: React.FC = () => {
   const reveal = useReveal();
 
   return (
-    <SalesSection id="sobre" bg={BG_A}>
+    <SalesSection id="sobre" bg={BG_B}>
       <SectionHeader eyebrow={t.nav.about} title={TITLE[cv]} className="mb-10" />
 
       {/* Lead: family & nomadic life */}

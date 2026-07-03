@@ -11,7 +11,7 @@ import { GraduationCap, MapPin } from "lucide-react";
 import { salesEducation } from "@/content/salesEducation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, type CVLang } from "@/content/cv";
-import { AMBER, BG_A, INK, ink, toCVLang } from "./salesTheme";
+import { AMBER, BG_B, INK, ink, toCVLang } from "./salesTheme";
 import { useReveal } from "./useReveal";
 import { SalesSection, SectionHeader } from "./SalesSection";
 
@@ -29,7 +29,7 @@ const SalesEducation: React.FC = () => {
   const reveal = useReveal();
 
   return (
-    <SalesSection id="formacao" bg={BG_A}>
+    <SalesSection id="formacao" bg={BG_B}>
       <SectionHeader eyebrow={t.nav.education} title={TITLE[cv]} />
 
       <div className="grid gap-5 sm:grid-cols-3">

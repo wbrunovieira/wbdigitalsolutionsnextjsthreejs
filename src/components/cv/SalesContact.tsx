@@ -9,14 +9,23 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, MessageCircle, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, cvLinks } from "@/content/cv";
+import { cvContent, cvLinks, type CVLang } from "@/content/cv";
 import { AMBER, BG_B, CV_PDF, INK, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
 import { useReveal } from "./useReveal";
 import { SalesSection } from "./SalesSection";
 
+/** Warm sign-off shown above the footer line. */
+const CLOSING: Record<CVLang, string> = {
+  "pt-BR": "Acima de tudo, o que sempre dá certo: trabalho duro, feito com muito amor.",
+  en: "Above all, what always works: hard work, done with a lot of love.",
+  it: "Sopra ogni cosa, ciò che funziona sempre: duro lavoro, fatto con tanto amore.",
+  es: "Por encima de todo, lo que siempre funciona: trabajo duro, hecho con mucho amor.",
+};
+
 const SalesContact: React.FC = () => {
   const { language } = useLanguage();
-  const t = cvContent[toCVLang(language)];
+  const cv = toCVLang(language);
+  const t = cvContent[cv];
   const reveal = useReveal();
 
   return (
@@ -66,6 +75,11 @@ const SalesContact: React.FC = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Warm sign-off */}
+      <motion.p {...reveal(0.1)} className="mx-auto mt-14 max-w-md text-center text-base font-medium leading-relaxed" style={{ color: ink(0.6) }}>
+        {CLOSING[cv]} <span aria-hidden="true" style={{ color: AMBER }}>♥</span>
+      </motion.p>
 
       <p className="mt-10 text-center text-xs" style={{ color: ink(0.45) }}>
         © {t.name} ·{" "}

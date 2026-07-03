@@ -11,7 +11,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, type CVLang } from "@/content/cv";
 import { LANG_FLAG } from "./cvIcons";
-import { AMBER, BG_B, INK, ink, toCVLang } from "./salesTheme";
+import { AMBER, BG_A, INK, ink, toCVLang } from "./salesTheme";
 import { useReveal } from "./useReveal";
 import { SalesSection, SectionHeader } from "./SalesSection";
 
@@ -39,7 +39,7 @@ const SalesLanguages: React.FC = () => {
   const reveal = useReveal();
 
   return (
-    <SalesSection id="idiomas" bg={BG_B} width="3xl">
+    <SalesSection id="idiomas" bg={BG_A} width="3xl">
       <SectionHeader eyebrow={t.nav.languages} title={TITLE[cv]} />
 
       <ul className="grid gap-x-12 gap-y-6 sm:grid-cols-2">
