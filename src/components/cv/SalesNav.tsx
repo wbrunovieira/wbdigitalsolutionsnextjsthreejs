@@ -1,23 +1,24 @@
 "use client";
 
 /**
- * Fixed navigation for the sales CV page, extracted from SalesHero:
+ * Fixed navigation for the sales CV page:
  * - BV monogram + name lockup (name hidden on small screens; it re-appears
- *   inside the mobile menu).
+ *   inside the mobile menu, see SalesNavMobile).
  * - Desktop (xl+): translucent capsule tab bar where the active item is an
  *   amber pill sliding between items (framer layoutId spring) with a small
- *   downward notch. Driven by an IntersectionObserver scroll-spy.
- * - Below xl: hamburger button opening a full-screen animated overlay with
- *   the nav links + Contato CTA (body scroll locked while open).
- * - Amber "Contato" pill + language switcher.
+ *   downward notch. Driven by the scroll-spy in useSalesScrollSpy.
+ * - Below xl: hamburger button opening SalesNavMobile (body scroll locked).
+ * - Amber "Contato" pill + language switcher + reading-progress bar.
  */
 
-import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { Menu } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, type CVLang } from "@/content/cv";
 import { AMBER, CONTACT_ID, INK, NAV_SECTIONS, ink, toCVLang } from "./salesTheme";
+import { useSalesScrollSpy } from "./useSalesScrollSpy";
+import SalesNavMobile, { Monogram } from "./SalesNavMobile";
 
 const LANGS: { code: CVLang; label: string }[] = [
   { code: "en", label: "EN" },
@@ -33,22 +34,6 @@ const MENU_ARIA: Record<CVLang, { open: string; close: string }> = {
   es: { open: "Abrir menú", close: "Cerrar menú" },
 };
 
-const scrollTo = (id: string) => (e: React.MouseEvent) => {
-  e.preventDefault();
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
-/** BV monogram disc (used in the header and the mobile-menu top bar). */
-const Monogram: React.FC = () => (
-  <span
-    className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-black"
-    style={{ background: INK, color: "#ffffff", boxShadow: `inset 0 0 0 2px ${AMBER}` }}
-    aria-hidden="true"
-  >
-    BV
-  </span>
-);
-
 const SalesNav: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const reduce = useReducedMotion();
@@ -57,71 +42,7 @@ const SalesNav: React.FC = () => {
   const aria = MENU_ARIA[lang];
 
   const navItems = NAV_SECTIONS.map(({ id, navKey }) => ({ id, label: t.nav[navKey] }));
-
-  // Fixed-header background on scroll + scroll-spy for the active section.
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<string>(NAV_SECTIONS[0].id);
-  // While a click-initiated smooth scroll travels, the observer is suppressed
-  // (otherwise the pill dances through every section it passes). Cleared on
-  // arrival, on user interruption (wheel/touch) or by a safety timeout.
-  const scrollTarget = useRef<string | null>(null);
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-      // Bottom-of-page guard: the last section may be too short to ever reach
-      // the observer's center band, so force-activate it at the end of scroll.
-      if (
-        !scrollTarget.current &&
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
-      ) {
-        setActive(NAV_SECTIONS[NAV_SECTIONS.length - 1].id);
-      }
-    };
-    const cancelTravel = () => {
-      scrollTarget.current = null;
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("wheel", cancelTravel, { passive: true });
-    window.addEventListener("touchstart", cancelTravel, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", cancelTravel);
-      window.removeEventListener("touchstart", cancelTravel);
-    };
-  }, []);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          if (scrollTarget.current) {
-            // Traveling: ignore passing sections; release when we arrive.
-            if (e.target.id === scrollTarget.current) scrollTarget.current = null;
-            return;
-          }
-          setActive(e.target.id);
-        }),
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    NAV_SECTIONS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
-
-  /** Click navigation: activate immediately and suppress the spy while traveling. */
-  const navigateTo = (id: string) => (e: React.MouseEvent) => {
-    scrollTo(id)(e);
-    if (NAV_SECTIONS.some((s) => s.id === id)) setActive(id);
-    scrollTarget.current = id;
-    // Safety: if arrival is never observed (e.g. contact isn't in the spy
-    // list), resume the spy after the smooth scroll surely finished.
-    window.setTimeout(() => {
-      if (scrollTarget.current === id) scrollTarget.current = null;
-    }, 1500);
-  };
+  const { scrolled, active, navigateTo } = useSalesScrollSpy(NAV_SECTIONS);
 
   // Reading progress (2px amber line under the header once scrolled).
   const { scrollYProgress } = useScroll();
@@ -262,66 +183,16 @@ const SalesNav: React.FC = () => {
         )}
       </header>
 
-      {/* Mobile menu (hamburger overlay) */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex flex-col xl:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            style={{ background: "rgba(247,247,248,0.98)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
-          >
-            <div className="flex items-center justify-between px-6 py-4">
-              <span className="flex items-center gap-3">
-                <Monogram />
-                <span className="text-base font-black" style={{ color: INK }}>{t.name}</span>
-              </span>
-              <button
-                onClick={() => setMenuOpen(false)}
-                aria-label={aria.close}
-                className="grid h-10 w-10 place-items-center rounded-full border"
-                style={{ borderColor: ink(0.14) }}
-              >
-                <X className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
-              </button>
-            </div>
-            <nav className="flex flex-1 flex-col justify-center gap-1 px-6">
-              {navItems.map((item, i) => (
-                <motion.a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    navigateTo(item.id)(e);
-                    setMenuOpen(false);
-                  }}
-                  initial={reduce ? { opacity: 1 } : { opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: reduce ? 0 : 0.06 + i * 0.04 }}
-                  className="py-2 text-3xl font-black tracking-[-0.02em]"
-                  style={{ color: active === item.id ? AMBER : INK }}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </nav>
-            <div className="px-6 pb-10">
-              <a
-                href={`#${CONTACT_ID}`}
-                onClick={(e) => {
-                  navigateTo(CONTACT_ID)(e);
-                  setMenuOpen(false);
-                }}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold"
-                style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
-              >
-                {t.nav.contact}
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SalesNavMobile
+        open={menuOpen}
+        name={t.name}
+        closeLabel={aria.close}
+        contactLabel={t.nav.contact}
+        items={navItems}
+        active={active}
+        navigateTo={navigateTo}
+        onClose={() => setMenuOpen(false)}
+      />
     </>
   );
 };

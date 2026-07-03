@@ -41,6 +41,20 @@ const ICONS: Record<AboutInterest["icon"], LucideIcon> = {
   mountain: Mountain,
 };
 
+/** Shared card treatment for interests and dev extras (icon + title + text). */
+const AboutCard: React.FC<{ icon: LucideIcon; title: string; text: string }> = ({ icon: Icon, title, text }) => (
+  <div
+    className="flex flex-col rounded-2xl border border-[rgba(244,244,245,0.1)] p-6 transition-all duration-300 hover:border-[rgba(224,145,47,0.4)] motion-safe:hover:-translate-y-0.5"
+    style={{ background: "rgba(244,244,245,0.04)" }}
+  >
+    <span className="mb-4 grid h-10 w-10 place-items-center rounded-xl" style={{ background: "rgba(224,145,47,0.12)", color: AMBER }}>
+      <Icon aria-hidden="true" className="h-5 w-5" />
+    </span>
+    <h3 className="text-base font-black tracking-[-0.01em]" style={{ color: TEXT }}>{title}</h3>
+    <p className="mt-1.5 text-sm leading-relaxed" style={{ color: light(0.66) }}>{text}</p>
+  </div>
+);
+
 /** Dev-flavored extras: the traveling office + the daily study habit. */
 const DEV_EXTRAS: Record<CVLang, { icon: LucideIcon; title: string; text: string }[]> = {
   "pt-BR": [
@@ -101,9 +115,6 @@ const DevAbout: React.FC = () => {
   const extras = DEV_EXTRAS[cv];
   const reveal = useDevReveal();
 
-  const card =
-    "flex flex-col rounded-2xl border border-[rgba(244,244,245,0.1)] p-6 transition-all duration-300 hover:border-[rgba(224,145,47,0.4)] motion-safe:hover:-translate-y-0.5";
-
   return (
     <DevSection id="sobre" bg={BG_DEV_ALT}>
       <DevCodeDeco code={DECO[cv]} />
@@ -120,32 +131,18 @@ const DevAbout: React.FC = () => {
 
       {/* Interests + dev extras */}
       <div className="mt-12 grid gap-5 sm:grid-cols-3">
-        {about.interests.map((it, i) => {
-          const Icon = ICONS[it.icon];
-          return (
-            <motion.div key={it.title} {...reveal(0.1 + i * 0.06)} className={card} style={{ background: "rgba(244,244,245,0.04)" }}>
-              <span className="mb-4 grid h-10 w-10 place-items-center rounded-xl" style={{ background: "rgba(224,145,47,0.12)", color: AMBER }}>
-                <Icon aria-hidden="true" className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-black tracking-[-0.01em]" style={{ color: TEXT }}>{it.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed" style={{ color: light(0.66) }}>{it.text}</p>
-            </motion.div>
-          );
-        })}
+        {about.interests.map((it, i) => (
+          <motion.div key={it.title} {...reveal(0.1 + i * 0.06)}>
+            <AboutCard icon={ICONS[it.icon]} title={it.title} text={it.text} />
+          </motion.div>
+        ))}
       </div>
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        {extras.map((it, i) => {
-          const Icon = it.icon;
-          return (
-            <motion.div key={it.title} {...reveal(0.25 + i * 0.06)} className={card} style={{ background: "rgba(244,244,245,0.04)" }}>
-              <span className="mb-4 grid h-10 w-10 place-items-center rounded-xl" style={{ background: "rgba(224,145,47,0.12)", color: AMBER }}>
-                <Icon aria-hidden="true" className="h-5 w-5" />
-              </span>
-              <h3 className="text-base font-black tracking-[-0.01em]" style={{ color: TEXT }}>{it.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed" style={{ color: light(0.66) }}>{it.text}</p>
-            </motion.div>
-          );
-        })}
+        {extras.map((it, i) => (
+          <motion.div key={it.title} {...reveal(0.25 + i * 0.06)}>
+            <AboutCard icon={it.icon} title={it.title} text={it.text} />
+          </motion.div>
+        ))}
       </div>
     </DevSection>
   );

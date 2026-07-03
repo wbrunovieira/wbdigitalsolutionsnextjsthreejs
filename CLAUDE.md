@@ -98,6 +98,26 @@ Frontend sends enriched context to backend API:
 - **Never add component styles to `global.css`.** New styling goes in a CSS Module or Tailwind. Complex pseudo-element/keyframe animations (too unwieldy inline) belong in the module.
 - Prefer dark text (`#350545`) on yellow fills for AAA contrast; mirror `:hover` affordances with `:focus-visible` and gate motion behind `prefers-reduced-motion`.
 
+## Code Quality (Clean Code)
+
+1. **Max 200 lines per file** for pages, components and logic (hooks, utils). When a file grows past that, split by responsibility: extract subcomponents (`*Backdrop`, `*Item`, `*Card`, `*Intro`, `*Mobile`), hooks (`use*`) or local pieces — pixel-identical, no behavior change. **Exempt: pure data/content files** (`src/content/*.ts`, locale JSONs) — they are Records, not complexity.
+
+2. **Single responsibility per file/component.** A nav shouldn't also own its mobile overlay and scroll-spy logic; a hero shouldn't own its decorative background. Name extractions after what they are.
+
+3. **No duplication.** Repeated markup inside a file becomes a local subcomponent; repeated values become named tokens/constants (palettes, class strings, magic numbers like intervals live in `const NAME`). Never leave dead code — delete orphaned files (git keeps history).
+
+4. **Tokens over magic values.** Colors/alphas via theme helpers (e.g. `ink(alpha)`, `light(alpha)` in the CV themes), shared class strings exported once, stable ids/keys in a single source (e.g. `NAV_SECTIONS` drives nav + scroll-spy + anchors).
+
+5. **i18n completeness.** Any user-facing string lives in a `Record<CVLang, ...>` (or locale JSON) covering ALL 4 locales — including `aria-label`s. TypeScript's `Record` catches missing locales at compile time.
+
+6. **A11y & motion.** `aria-hidden` on decorations, `aria-label`/`aria-current`/`aria-pressed` where relevant, visible `focus-visible` rings; every animation gated by `useReducedMotion`/`motion-safe` with an information-preserving fallback; animate transform/opacity only (never layout props like `width`).
+
+7. **CV pages independence** (`/vendas` = `Sales*` files, `/dev` = `Dev*` files): copy patterns between them, never share modules — a change in one page must never affect the other. Shared *content* (`src/content/cv.ts`, locale JSONs) is fine.
+
+8. **Validation**: `npx tsc --noEmit` after every change. NEVER run `pnpm build` while a dev server may be running (corrupts `.next`).
+
+9. **Typography of copy**: no em-dashes (—) in any user-facing text; use commas, colons or periods.
+
 ## Development Notes
 
 1. **3D Performance**: Dispose Three.js geometries/materials to prevent memory leaks. Test on mobile.
