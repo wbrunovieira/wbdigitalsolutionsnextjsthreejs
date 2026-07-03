@@ -1,5 +1,6 @@
 import Head from "next/head";
 import DevHero from "@/components/cv/DevHero";
+import DevTimeline from "@/components/cv/DevTimeline";
 
 const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer";
 const DESCRIPTION =
@@ -26,6 +27,7 @@ export default function DevCV() {
         <meta name="twitter:image" content={OG_IMAGE} />
       </Head>
       <DevHero />
+      <DevTimeline />
     </>
   );
 }

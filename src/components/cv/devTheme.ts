@@ -26,7 +26,10 @@ export const toCVLang = (lang: string): CVLang =>
 
 // ── Section anchors (single source for section ids, the nav and the scroll-spy)
 /** Sections in the nav menu, in page order (grows as sections are built). */
-export const DEV_NAV_SECTIONS = [{ id: "inicio", navKey: "start" }] as const;
+export const DEV_NAV_SECTIONS = [
+  { id: "inicio", navKey: "start" },
+  { id: "trajetoria", navKey: "timeline" },
+] as const;
 
 /** Anchor of the contact section (nav CTA button, not a menu item). */
 export const DEV_CONTACT_ID = "contato";
