@@ -8,11 +8,11 @@ import DevLanguages from "@/components/cv/DevLanguages";
 import DevAbout from "@/components/cv/DevAbout";
 import DevContact from "@/components/cv/DevContact";
 
-const TITLE = "Bruno Vieira — Senior Full-Stack & AI Engineer";
+const TITLE = "Bruno Vieira · Senior Full-Stack & AI Engineer";
 const DESCRIPTION =
-  "Walter Bruno Prado Vieira — Senior Full-Stack & AI Engineer. I turn complex problems into scalable software: production platforms, AI systems (LangGraph, RAG) and interactive 3D, owned end to end from architecture to deploy.";
+  "Walter Bruno Prado Vieira, Senior Full-Stack & AI Engineer. I turn complex problems into scalable software: production platforms, AI systems (LangGraph, RAG) and interactive 3D, owned end to end from architecture to deploy.";
 const URL = "https://brunodev.wbdigitalsolutions.com/";
-const OG_IMAGE = "https://www.wbdigitalsolutions.com/img/herobg5-optimized.jpg";
+const OG_IMAGE = "https://brunodev.wbdigitalsolutions.com/img/og-dev.jpg";
 
 export default function DevCV() {
   return (

@@ -8,11 +8,11 @@ import SalesLanguages from "@/components/cv/SalesLanguages";
 import SalesAbout from "@/components/cv/SalesAbout";
 import SalesContact from "@/components/cv/SalesContact";
 
-const TITLE = "Bruno Vieira — Vendas Técnicas & Desenvolvimento Comercial B2B";
+const TITLE = "Bruno Vieira · Vendas Técnicas & Desenvolvimento Comercial B2B";
 const DESCRIPTION =
-  "Walter Bruno Prado Vieira — líder de vendas técnicas e desenvolvimento comercial com 25+ anos em B2B: contas enterprise, ciclo comercial completo e a profundidade técnica de quem constrói o próprio produto e fecha negócios complexos.";
+  "Walter Bruno Prado Vieira, vendedor com 25+ anos em B2B: do balcão às grandes contas, venda técnica e consultiva, abertura de mercados e relacionamento que fideliza. Vender é entender: o produto, a necessidade e a pessoa.";
 const URL = "https://brunov.wbdigitalsolutions.com/";
-const OG_IMAGE = "https://www.wbdigitalsolutions.com/img/herobg5-optimized.jpg";
+const OG_IMAGE = "https://brunov.wbdigitalsolutions.com/img/og-vendas.jpg";
 
 export default function SalesCV() {
   return (
