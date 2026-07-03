@@ -200,26 +200,44 @@ const SalesHero: React.FC = () => {
             </span>
           </span>
         </a>
-        <nav className="hidden items-center gap-6 lg:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={scrollTo(item.id)}
-              aria-current={active === item.id ? "true" : undefined}
-              className="group relative py-1 text-sm font-medium transition-colors"
-              style={{ color: active === item.id ? INK : "rgba(28,28,30,0.6)" }}
-            >
-              {item.label}
-              <span
-                className={`absolute -bottom-0.5 left-0 h-[2px] w-full origin-left rounded-full transition-transform duration-300 ease-out ${
-                  active === item.id ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                }`}
-                style={{ background: AMBER }}
-                aria-hidden="true"
-              />
-            </a>
-          ))}
+        {/* Desktop nav: graphite capsule with a sliding amber pill (animated
+            tab-bar style) + a small downward notch that follows the active item. */}
+        <nav className="hidden xl:block">
+          <div
+            className="relative flex items-center gap-0.5 rounded-full border bg-white/70 p-1.5 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm"
+            style={{ borderColor: "rgba(28,28,30,0.12)" }}
+          >
+            {navItems.map((item) => {
+              const isActive = active === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={scrollTo(item.id)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`relative rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
+                    isActive ? "text-[#1c1c1e]" : "text-[#1c1c1e]/55 hover:text-[#1c1c1e]/90"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="cv-nav-pill"
+                      className="absolute inset-0 rounded-full"
+                      style={{ background: AMBER }}
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    >
+                      <span
+                        className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 rotate-45 rounded-[3px]"
+                        style={{ background: AMBER, marginTop: "1px" }}
+                        aria-hidden="true"
+                      />
+                    </motion.span>
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
         </nav>
         <div className="flex items-center gap-3">
         <a
@@ -257,7 +275,7 @@ const SalesHero: React.FC = () => {
           onClick={() => setMenuOpen(true)}
           aria-label="Abrir menu"
           aria-expanded={menuOpen}
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors lg:hidden"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors xl:hidden"
           style={{ borderColor: "rgba(28,28,30,0.14)", background: "rgba(255,255,255,0.7)" }}
         >
           <Menu className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
@@ -270,7 +288,7 @@ const SalesHero: React.FC = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-[60] flex flex-col lg:hidden"
+            className="fixed inset-0 z-[60] flex flex-col xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
