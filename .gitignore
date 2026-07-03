@@ -36,3 +36,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 scripts/convert-webp-to-jpeg.mjs
+
+# Playwright deps of the test-pages skill (installed on demand)
+.claude/skills/**/node_modules/
+.claude/skills/**/package-lock.json
+.claude/skills/**/package.json
