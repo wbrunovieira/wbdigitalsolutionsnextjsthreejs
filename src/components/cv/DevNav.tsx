@@ -13,7 +13,7 @@
  * - Amber "Contato" pill + language switcher + reading-progress bar.
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -62,22 +62,47 @@ const DevNav: React.FC = () => {
   // Fixed-header background on scroll + scroll-spy for the active section.
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>(DEV_NAV_SECTIONS[0].id);
+  // While a click-initiated smooth scroll travels, the observer is suppressed
+  // (otherwise the pill dances through every section it passes). Cleared on
+  // arrival, on user interruption (wheel/touch) or by a safety timeout.
+  const scrollTarget = useRef<string | null>(null);
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
       // Bottom-of-page guard: the last section may be too short to ever reach
       // the observer's center band, so force-activate it at the end of scroll.
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+      if (
+        !scrollTarget.current &&
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
+      ) {
         setActive(DEV_NAV_SECTIONS[DEV_NAV_SECTIONS.length - 1].id);
       }
     };
+    const cancelTravel = () => {
+      scrollTarget.current = null;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("wheel", cancelTravel, { passive: true });
+    window.addEventListener("touchstart", cancelTravel, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", cancelTravel);
+      window.removeEventListener("touchstart", cancelTravel);
+    };
   }, []);
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          if (scrollTarget.current) {
+            // Traveling: ignore passing sections; release when we arrive.
+            if (e.target.id === scrollTarget.current) scrollTarget.current = null;
+            return;
+          }
+          setActive(e.target.id);
+        }),
       { rootMargin: "-45% 0px -50% 0px" },
     );
     DEV_NAV_SECTIONS.forEach(({ id }) => {
@@ -86,6 +111,18 @@ const DevNav: React.FC = () => {
     });
     return () => observer.disconnect();
   }, []);
+
+  /** Click navigation: activate immediately and suppress the spy while traveling. */
+  const navigateTo = (id: string) => (e: React.MouseEvent) => {
+    scrollTo(id)(e);
+    if (DEV_NAV_SECTIONS.some((s) => s.id === id)) setActive(id);
+    scrollTarget.current = id;
+    // Safety: if arrival is never observed (e.g. contact isn't in the spy
+    // list), resume the spy after the smooth scroll surely finished.
+    window.setTimeout(() => {
+      if (scrollTarget.current === id) scrollTarget.current = null;
+    }, 1500);
+  };
 
   // Reading progress (2px amber line under the header once scrolled).
   const { scrollYProgress } = useScroll();
@@ -118,7 +155,7 @@ const DevNav: React.FC = () => {
         }
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
-          <a href="#inicio" onClick={scrollTo("inicio")} className="flex items-center gap-3">
+          <a href="#inicio" onClick={navigateTo("inicio")} className="flex items-center gap-3">
             {/* Monogram mark, makes it read as Bruno's personal page */}
             <Monogram />
             <span className="hidden flex-col leading-tight sm:flex">
@@ -142,10 +179,7 @@ const DevNav: React.FC = () => {
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    onClick={(e) => {
-                      scrollTo(item.id)(e);
-                      setActive(item.id); // selection moves immediately, not only when the observer catches up
-                    }}
+                    onClick={navigateTo(item.id)}
                     aria-current={isActive ? "true" : undefined}
                     className={`relative rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
                       isActive ? "text-[#0e0e11]" : "text-[#f4f4f5]/55 hover:text-[#f4f4f5]/90"
@@ -175,7 +209,7 @@ const DevNav: React.FC = () => {
           <div className="flex items-center gap-3">
             <a
               href={`#${DEV_CONTACT_ID}`}
-              onClick={scrollTo(DEV_CONTACT_ID)}
+              onClick={navigateTo(DEV_CONTACT_ID)}
               className="hidden rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
               style={{ background: AMBER, color: "#0e0e11", boxShadow: "0 6px 16px rgba(224,145,47,0.3)" }}
             >
@@ -260,8 +294,7 @@ const DevNav: React.FC = () => {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={(e) => {
-                    scrollTo(item.id)(e);
-                    setActive(item.id);
+                    navigateTo(item.id)(e);
                     setMenuOpen(false);
                   }}
                   initial={reduce ? { opacity: 1 } : { opacity: 0, x: -16 }}
@@ -278,7 +311,7 @@ const DevNav: React.FC = () => {
               <a
                 href={`#${DEV_CONTACT_ID}`}
                 onClick={(e) => {
-                  scrollTo(DEV_CONTACT_ID)(e);
+                  navigateTo(DEV_CONTACT_ID)(e);
                   setMenuOpen(false);
                 }}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold"
