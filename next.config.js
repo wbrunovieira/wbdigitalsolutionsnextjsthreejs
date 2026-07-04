@@ -79,6 +79,29 @@ const nextConfig = {
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/llms-brunov.txt',
         },
+        // Per-host sitemap + robots for the CV subdomains (the sitemap
+        // protocol is same-host only, and the shared robots.txt advertised
+        // the WB sitemap). The www host falls through to /api/sitemap.xml.
+        {
+          source: '/sitemap.xml',
+          has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
+          destination: '/sitemap-brunodev.xml',
+        },
+        {
+          source: '/sitemap.xml',
+          has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
+          destination: '/sitemap-brunov.xml',
+        },
+        {
+          source: '/robots.txt',
+          has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
+          destination: '/robots-brunodev.txt',
+        },
+        {
+          source: '/robots.txt',
+          has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
+          destination: '/robots-brunov.txt',
+        },
       ],
       afterFiles: [
         {

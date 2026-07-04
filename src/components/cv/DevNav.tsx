@@ -103,7 +103,7 @@ const DevNav: React.FC = () => {
                     href={`#${item.id}`}
                     onClick={navigateTo(item.id)}
                     aria-current={isActive ? "true" : undefined}
-                    className={`relative rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
+                    className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
                       isActive ? "text-[#0e0e11]" : "text-[#f4f4f5]/55 hover:text-[#f4f4f5]/90"
                     }`}
                   >
