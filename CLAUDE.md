@@ -52,7 +52,18 @@ No test suite exists in this project.
 
 `Layout.tsx` wraps all pages with Nav + Footer + ChatBot (max-width: 1400px).
 
-**Exceptions**: `/3d-showcase` and `/3d-tunnel` bypass layout entirely for full-screen 3D experiences. To add new exceptions, modify the pathname check in `Layout.tsx`.
+**Exceptions**: `/3d-showcase` and `/3d-tunnel` bypass layout entirely for full-screen 3D experiences. The personal CV routes (`/dev`, `/vendas` and their locale subpaths) also bypass Layout AND the main site's Preloader/CookieConsent (`pathname.startsWith` checks in `Layout.tsx` and `_app.tsx`). To add new exceptions, modify those checks.
+
+### Personal CV Subdomains (brunodev / brunov)
+
+Two standalone CV pages served on subdomains via host rewrites in `next.config.js`:
+`brunodev.wbdigitalsolutions.com` → `/dev` (engineering, dark theme, root = EN) and
+`brunov.wbdigitalsolutions.com` → `/vendas` (sales, light theme, root = pt-BR).
+
+- **Per-locale URLs (SSG)**: `pages/dev/[[...lang]].tsx` and `pages/vendas/[[...lang]].tsx` render one static page per language (`/pt|/it|/es` on brunodev, `/en|/it|/es` on brunov) with self canonical, full hreflang matrix and localized title/description/og:image. The page nests an exported `LanguageContext.Provider` pinning the route locale; the language switcher persists the choice and full-navigates to the sibling URL (host rewrites are edge-side, the client router can't resolve them). This is the blueprint for a future site-wide i18n-URL migration.
+- **Per-host assets** (same rewrite pattern): `llms.txt`, `sitemap.xml` and `robots.txt` are host-scoped; the www versions are untouched. The legacy `/es|it|pt-BR` kill-redirects are scoped to the www host — do not un-scope them, they would hijack the subdomain locale routes.
+- **Component families**: `Sales*` and `Dev*` in `src/components/cv/` (see Code Quality rule 7 — never share modules between them). Themes: `salesTheme.ts` / `devTheme.ts` hold tokens, `CV_PDF`/`DEV_CV_PDF` (localized PDFs in `public/cv/`), `LINKEDIN_BY_LANG` maps and shared class strings.
+- **Header width rule**: before adding menu items, measure header overflow at 1280px (xl) in ALL 4 locales with Playwright; es/it labels are the widest.
 
 ### 3D Experience Module
 
