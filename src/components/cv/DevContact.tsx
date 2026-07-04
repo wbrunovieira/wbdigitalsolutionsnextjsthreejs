@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, MessageCircle, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, BG_DEV_ALT, DEV_CONTACT_ID, DEV_CV_PDF, DEV_SECONDARY_CTA, TEXT, light, toCVLang } from "./devTheme";
+import { AMBER, BG_DEV_ALT, DEV_CONTACT_ID, DEV_CV_HINT, DEV_CV_PDF, DEV_LINKEDIN_BY_LANG, DEV_SECONDARY_CTA, TEXT, light, toCVLang } from "./devTheme";
 import { useDevReveal } from "./useDevReveal";
 import { DevSection } from "./DevSection";
 import DevMagnetic from "./DevMagnetic";
@@ -78,12 +78,23 @@ const DevContact: React.FC = () => {
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <DevMagnetic>
               <a
-                href={DEV_CV_PDF}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2"
+                href={DEV_CV_PDF[cv]}
+                aria-describedby="cv-tip-contact"
+                className="group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2"
                 style={{ background: AMBER, color: "#0e0e11", boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
               >
                 <Download aria-hidden="true" className="h-4 w-4" />
                 {t.contact.downloadCv}
+                {/* Hover/focus tooltip: the PDF matches the page language */}
+                <span
+                  id="cv-tip-contact"
+                  role="tooltip"
+                  className="pointer-events-none absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg border px-3 py-1.5 font-mono text-[11px] font-medium opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  style={{ background: "#131318", borderColor: light(0.18), color: TEXT }}
+                >
+                  {DEV_CV_HINT[cv]}
+                  <span aria-hidden="true" className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45" style={{ background: "#131318" }} />
+                </span>
               </a>
             </DevMagnetic>
             <a href={`mailto:${cvLinks.email}`} className={DEV_SECONDARY_CTA} style={{ borderColor: light(0.2), color: TEXT }}>
@@ -94,7 +105,7 @@ const DevContact: React.FC = () => {
               <Github aria-hidden="true" className="h-4 w-4" />
               GitHub
             </a>
-            <a href={cvLinks.linkedin} target="_blank" rel="noopener noreferrer" className={DEV_SECONDARY_CTA} style={{ borderColor: light(0.2), color: TEXT }}>
+            <a href={DEV_LINKEDIN_BY_LANG[cv]} target="_blank" rel="noopener noreferrer" className={DEV_SECONDARY_CTA} style={{ borderColor: light(0.2), color: TEXT }}>
               <Linkedin aria-hidden="true" className="h-4 w-4" />
               {t.contact.linkedinLabel}
             </a>

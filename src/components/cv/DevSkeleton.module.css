@@ -1,0 +1,77 @@
+/* Identity-matched loading skeleton for the DEV CV (dark graphite + amber).
+   Shown from the first SSR paint; an inline script fades it out as soon as
+   fonts are ready (independent of React hydration, so it never lingers). */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 clamp(24px, 8vw, 120px);
+  background: #0e0e11;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* Grace period: stay invisible for 300ms so fast loads never flash a
+     skeleton; slow loads get it after the delay. (The solid page bg is
+     already guaranteed by the SSR-inline html/body style.) */
+  opacity: 0;
+  animation: wb-sk-appear 0.25s ease 0.3s forwards;
+}
+
+@keyframes wb-sk-appear {
+  to { opacity: 1; }
+}
+
+.overlay[data-done="true"] {
+  opacity: 0 !important;
+  visibility: hidden;
+  animation: none;
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono, ui-monospace, Menlo, monospace);
+  font-size: 14px;
+  color: rgba(244, 244, 245, 0.5);
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: #e0912f;
+  animation: wb-sk-blink 1.1s steps(1) infinite;
+}
+
+.bar {
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(
+    100deg,
+    rgba(244, 244, 245, 0.06) 40%,
+    rgba(244, 244, 245, 0.12) 50%,
+    rgba(244, 244, 245, 0.06) 60%
+  );
+  background-size: 220% 100%;
+  animation: wb-sk-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes wb-sk-shimmer {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+
+@keyframes wb-sk-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar { animation: none; }
+  .cursor { animation: none; }
+  .overlay { transition: none; }
+}

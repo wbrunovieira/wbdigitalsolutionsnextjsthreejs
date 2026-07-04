@@ -15,12 +15,20 @@ import DevProjects from "@/components/cv/DevProjects";
 import DevLanguages from "@/components/cv/DevLanguages";
 import DevAbout from "@/components/cv/DevAbout";
 import DevContact from "@/components/cv/DevContact";
+import DevSkeleton from "@/components/cv/DevSkeleton";
 
 // URL-localized routes (SEO pilot): / = en + x-default, /pt /it /es localized.
 const BASE = "https://brunodev.wbdigitalsolutions.com";
 const SLUG: Record<CVLang, string> = { en: "", "pt-BR": "/pt", it: "/it", es: "/es" };
 const SLUG_TO_LANG: Record<string, CVLang> = { pt: "pt-BR", it: "it", es: "es" };
 const LOCALE_FILE: Record<Exclude<CVLang, "en">, string> = { "pt-BR": "ptbr", it: "it", es: "es" };
+/** One OG card per locale URL (same identity, localized role line). */
+const OG_IMG: Record<CVLang, string> = {
+  en: "/img/og-dev.jpg",
+  "pt-BR": "/img/og-dev-pt.jpg",
+  it: "/img/og-dev-it.jpg",
+  es: "/img/og-dev-es.jpg",
+};
 
 const SEO: Record<CVLang, { title: string; description: string }> = {
   en: {
@@ -87,6 +95,10 @@ export default function DevCV({ lang, projectsPage }: Props) {
               set here; Next's default lacks initial-scale and Safari renders
               the page zoomed-out without it. */}
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          {/* SSR-inline background: kills the WB purple flash (global.css paints
+              html #350545 + a body gradient and can land AFTER this style in
+              the cascade, hence the !important). */}
+          <style dangerouslySetInnerHTML={{ __html: "html,body{background:#0e0e11!important}" }} />
           <link rel="icon" type="image/svg+xml" href="/favicon-dev.svg" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-dev-32.png" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-dev.png" />
@@ -103,12 +115,13 @@ export default function DevCV({ lang, projectsPage }: Props) {
           <meta property="og:title" content={seo.title} />
           <meta property="og:description" content={seo.description} />
           <meta property="og:url" content={canonical} />
-          <meta property="og:image" content={`${BASE}/img/og-dev.jpg`} />
+          <meta property="og:image" content={`${BASE}${OG_IMG[lang]}`} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:description" content={seo.description} />
-          <meta name="twitter:image" content={`${BASE}/img/og-dev.jpg`} />
+          <meta name="twitter:image" content={`${BASE}${OG_IMG[lang]}`} />
         </Head>
+        <DevSkeleton />
         <DevHero />
         <DevPhilosophy variant="problem" id="filosofia" />
         <DevTimeline />

@@ -11,6 +11,7 @@ import SalesEducation from "@/components/cv/SalesEducation";
 import SalesLanguages from "@/components/cv/SalesLanguages";
 import SalesAbout from "@/components/cv/SalesAbout";
 import SalesContact from "@/components/cv/SalesContact";
+import SalesSkeleton from "@/components/cv/SalesSkeleton";
 
 // URL-localized routes (SEO pilot). Audience-first default: the sales
 // profile leads in Portuguese (Brazil-first market), so / = pt-BR +
@@ -19,6 +20,13 @@ import SalesContact from "@/components/cv/SalesContact";
 const BASE = "https://brunov.wbdigitalsolutions.com";
 const SLUG: Record<CVLang, string> = { "pt-BR": "", en: "/en", it: "/it", es: "/es" };
 const SLUG_TO_LANG: Record<string, CVLang> = { en: "en", it: "it", es: "es" };
+/** One OG card per locale URL (same identity, localized eyebrow + role). */
+const OG_IMG: Record<CVLang, string> = {
+  "pt-BR": "/img/og-vendas.jpg",
+  en: "/img/og-vendas-en.jpg",
+  it: "/img/og-vendas-it.jpg",
+  es: "/img/og-vendas-es.jpg",
+};
 
 const SEO: Record<CVLang, { title: string; description: string }> = {
   en: {
@@ -80,6 +88,10 @@ export default function SalesCV({ lang }: Props) {
             set here; Next's default lacks initial-scale and Safari renders
             the page zoomed-out without it. */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* SSR-inline background: kills the WB purple flash (global.css paints
+            html #350545 + a body gradient and can land AFTER this style in
+            the cascade, hence the !important). */}
+        <style dangerouslySetInnerHTML={{ __html: "html,body{background:#f7f7f8!important}" }} />
         <link rel="icon" type="image/svg+xml" href="/favicon-vendas.svg" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-vendas-32.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-vendas.png" />
@@ -96,12 +108,13 @@ export default function SalesCV({ lang }: Props) {
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />
         <meta property="og:url" content={canonical} />
-        <meta property="og:image" content={`${BASE}/img/og-vendas.jpg`} />
+        <meta property="og:image" content={`${BASE}${OG_IMG[lang]}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
-        <meta name="twitter:image" content={`${BASE}/img/og-vendas.jpg`} />
+        <meta name="twitter:image" content={`${BASE}${OG_IMG[lang]}`} />
       </Head>
+      <SalesSkeleton />
       <SalesHero />
       <SalesPhilosophy variant="decide" id="filosofia" />
       <SalesTimeline />

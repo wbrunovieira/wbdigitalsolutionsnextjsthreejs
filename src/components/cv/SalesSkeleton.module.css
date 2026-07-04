@@ -1,0 +1,69 @@
+/* Identity-matched loading skeleton for the SALES CV (off-white + graphite +
+   amber). Shown from the first SSR paint; an inline script fades it out as
+   soon as fonts are ready (independent of React hydration). */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 clamp(24px, 8vw, 120px);
+  background: #f7f7f8;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* Grace period: stay invisible for 300ms so fast loads never flash a
+     skeleton; slow loads get it after the delay. (The solid page bg is
+     already guaranteed by the SSR-inline html/body style.) */
+  opacity: 0;
+  animation: wb-sk-appear-light 0.25s ease 0.3s forwards;
+}
+
+@keyframes wb-sk-appear-light {
+  to { opacity: 1; }
+}
+
+.overlay[data-done="true"] {
+  opacity: 0 !important;
+  visibility: hidden;
+  animation: none;
+}
+
+.monogram {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 6px;
+  border-radius: 9999px;
+  border: 2px solid #e0912f;
+  font-family: var(--font-mono, ui-monospace, Menlo, monospace);
+  font-size: 15px;
+  font-weight: 700;
+  color: #1c1c1e;
+}
+
+.bar {
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(
+    100deg,
+    rgba(28, 28, 30, 0.07) 40%,
+    rgba(28, 28, 30, 0.13) 50%,
+    rgba(28, 28, 30, 0.07) 60%
+  );
+  background-size: 220% 100%;
+  animation: wb-sk-shimmer-light 1.4s ease-in-out infinite;
+}
+
+@keyframes wb-sk-shimmer-light {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar { animation: none; }
+  .overlay { transition: none; }
+}

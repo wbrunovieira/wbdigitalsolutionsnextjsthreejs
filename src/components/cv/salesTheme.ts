@@ -42,7 +42,29 @@ export const CONTACT_ID = "contato";
 export const PHILOSOPHY_IDS = { decide: "filosofia", clarity: "clareza" } as const;
 
 // ── Assets
-export const CV_PDF = "#"; // set to /bruno-vieira-sales.pdf once the PDF exists
+/** One PDF per language (files pending; drop them in public/cv/ with these names). */
+export const CV_PDF: Record<CVLang, string> = {
+  "pt-BR": "/cv/bruno-vieira-vendas-pt.pdf",
+  en: "/cv/bruno-vieira-vendas-en.pdf",
+  it: "/cv/bruno-vieira-vendas-it.pdf",
+  es: "/cv/bruno-vieira-vendas-es.pdf",
+};
+
+/** Subtle note under the download CTA: the PDF matches the page language. */
+export const CV_HINT: Record<CVLang, string> = {
+  "pt-BR": "Currículo em português. Para outro idioma, troque o idioma da página.",
+  en: "CV in English. For another language, switch the page language.",
+  it: "CV in italiano. Per un'altra lingua, cambia la lingua della pagina.",
+  es: "CV en español. Para otro idioma, cambia el idioma de la página.",
+};
+
+/** LinkedIn public profile localized per page language. */
+export const LINKEDIN_BY_LANG: Record<CVLang, string> = {
+  "pt-BR": "https://www.linkedin.com/in/walter-bruno-vieira/?locale=pt_BR",
+  en: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=en_US",
+  it: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=it_IT",
+  es: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=es_ES",
+};
 
 // ── Shared class strings (kept literal for Tailwind JIT)
 /** Outlined pill CTA (LinkedIn/WhatsApp/Email buttons in the hero and contact). */

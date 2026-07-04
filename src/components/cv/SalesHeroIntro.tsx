@@ -12,13 +12,14 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Download, Linkedin, MessageCircle, Package, Target, Handshake } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, cvLinks } from "@/content/cv";
-import { AMBER, CV_PDF, INK, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
+import { AMBER, CV_HINT, CV_PDF, INK, LINKEDIN_BY_LANG, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
 import Magnetic from "./Magnetic";
 
 const SalesHeroIntro: React.FC = () => {
   const { language } = useLanguage();
   const reduce = useReducedMotion();
-  const t = cvContent[toCVLang(language)];
+  const cv = toCVLang(language);
+  const t = cvContent[cv];
   // Lead-in (setup, before the colon); the payoff lines come pre-split from content.
   const taglineLead = t.hero.sales.title.split(":")[0].trim();
 
@@ -69,16 +70,27 @@ const SalesHeroIntro: React.FC = () => {
       <div className="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
         <Magnetic className="col-span-2 flex sm:col-span-1">
           <a
-            href={CV_PDF}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2 sm:w-auto"
+            href={CV_PDF[cv]}
+            aria-describedby="cv-tip-hero"
+            className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2 sm:w-auto"
             style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
           >
             <Download aria-hidden="true" className="h-4 w-4" />
             {t.contact.downloadCv}
+            {/* Hover/focus tooltip: the PDF matches the page language */}
+            <span
+              id="cv-tip-hero"
+              role="tooltip"
+              className="pointer-events-none absolute -top-2 left-0 -translate-y-full whitespace-nowrap rounded-lg px-3 py-1.5 text-[11px] font-medium normal-case opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+              style={{ background: INK, color: "#f7f7f8" }}
+            >
+              {CV_HINT[cv]}
+              <span aria-hidden="true" className="absolute left-7 top-full h-2 w-2 -translate-y-1 rotate-45" style={{ background: INK }} />
+            </span>
           </a>
         </Magnetic>
         <a
-          href={cvLinks.linkedin}
+          href={LINKEDIN_BY_LANG[cv]}
           target="_blank"
           rel="noopener noreferrer"
           className={SECONDARY_CTA}

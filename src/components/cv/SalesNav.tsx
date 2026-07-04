@@ -13,10 +13,10 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { Menu } from "lucide-react";
+import { Menu, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import { AMBER, CONTACT_ID, INK, NAV_SECTIONS, ink, toCVLang } from "./salesTheme";
+import { cvContent, cvLinks, type CVLang } from "@/content/cv";
+import { AMBER, INK, NAV_SECTIONS, ink, toCVLang } from "./salesTheme";
 import { useSalesScrollSpy } from "./useSalesScrollSpy";
 import SalesNavMobile, { Monogram } from "./SalesNavMobile";
 
@@ -129,13 +129,17 @@ const SalesNav: React.FC = () => {
           </nav>
 
           <div className="flex items-center gap-3">
+            {/* Header CTA goes straight to WhatsApp: inverted pill (graphite
+                on the light theme) + the green lives only in the icon. */}
             <a
-              href={`#${CONTACT_ID}`}
-              onClick={navigateTo(CONTACT_ID)}
-              className="hidden rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
-              style={{ background: AMBER, color: INK, boxShadow: "0 6px 16px rgba(224,145,47,0.3)" }}
+              href={cvLinks.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden items-center gap-1.5 rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
+              style={{ background: INK, color: "#f7f7f8", boxShadow: "0 6px 16px rgba(28,28,30,0.28)" }}
             >
-              {t.nav.contact}
+              <MessageCircle aria-hidden="true" className="h-4 w-4" style={{ color: "#25D366" }} />
+              WhatsApp
             </a>
             <div
               className="flex items-center gap-1 rounded-full border bg-white/70 p-1 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm"

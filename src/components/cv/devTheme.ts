@@ -39,7 +39,29 @@ export const DEV_NAV_SECTIONS = [
 export const DEV_CONTACT_ID = "contato";
 
 // ── Assets
-export const DEV_CV_PDF = "#"; // set to /bruno-vieira-dev.pdf once the PDF exists
+/** One PDF per language (files pending; drop them in public/cv/ with these names). */
+export const DEV_CV_PDF: Record<CVLang, string> = {
+  en: "/cv/bruno-vieira-dev-en.pdf",
+  "pt-BR": "/cv/bruno-vieira-dev-pt.pdf",
+  it: "/cv/bruno-vieira-dev-it.pdf",
+  es: "/cv/bruno-vieira-dev-es.pdf",
+};
+
+/** Subtle note under the download CTA: the PDF matches the page language. */
+export const DEV_CV_HINT: Record<CVLang, string> = {
+  en: "CV in English. For another language, switch the page language.",
+  "pt-BR": "Currículo em português. Para outro idioma, troque o idioma da página.",
+  it: "CV in italiano. Per un'altra lingua, cambia la lingua della pagina.",
+  es: "CV en español. Para otro idioma, cambia el idioma de la página.",
+};
+
+/** LinkedIn public profile localized per page language. */
+export const DEV_LINKEDIN_BY_LANG: Record<CVLang, string> = {
+  en: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=en_US",
+  "pt-BR": "https://www.linkedin.com/in/walter-bruno-vieira/?locale=pt_BR",
+  it: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=it_IT",
+  es: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=es_ES",
+};
 
 /** Film-grain SVG tile for the hero background. */
 export const GRAIN =

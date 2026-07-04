@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { Mail, Linkedin, MessageCircle, Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, BG_B, CV_PDF, INK, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
+import { AMBER, BG_B, CV_HINT, CV_PDF, INK, LINKEDIN_BY_LANG, SECONDARY_CTA, ink, toCVLang } from "./salesTheme";
 import { useReveal } from "./useReveal";
 import { SalesSection } from "./SalesSection";
 import Magnetic from "./Magnetic";
@@ -55,19 +55,30 @@ const SalesContact: React.FC = () => {
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Magnetic>
               <a
-                href={CV_PDF}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2"
+                href={CV_PDF[cv]}
+                aria-describedby="cv-tip-contact"
+                className="group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2"
                 style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
               >
                 <Download aria-hidden="true" className="h-4 w-4" />
                 {t.contact.downloadCv}
+                {/* Hover/focus tooltip: the PDF matches the page language */}
+                <span
+                  id="cv-tip-contact"
+                  role="tooltip"
+                  className="pointer-events-none absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg px-3 py-1.5 text-[11px] font-medium opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  style={{ background: INK, color: "#f7f7f8" }}
+                >
+                  {CV_HINT[cv]}
+                  <span aria-hidden="true" className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45" style={{ background: INK }} />
+                </span>
               </a>
             </Magnetic>
             <a href={`mailto:${cvLinks.email}`} className={SECONDARY_CTA} style={{ borderColor: ink(0.2), color: INK }}>
               <Mail aria-hidden="true" className="h-4 w-4" />
               {t.contact.emailLabel}
             </a>
-            <a href={cvLinks.linkedin} target="_blank" rel="noopener noreferrer" className={SECONDARY_CTA} style={{ borderColor: ink(0.2), color: INK }}>
+            <a href={LINKEDIN_BY_LANG[cv]} target="_blank" rel="noopener noreferrer" className={SECONDARY_CTA} style={{ borderColor: ink(0.2), color: INK }}>
               <Linkedin aria-hidden="true" className="h-4 w-4" />
               {t.contact.linkedinLabel}
             </a>
