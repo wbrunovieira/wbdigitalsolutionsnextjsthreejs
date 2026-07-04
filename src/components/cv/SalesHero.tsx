@@ -47,7 +47,9 @@ const SalesHero: React.FC = () => {
     return () => clearInterval(id);
   }, [reduce, rotation.length]);
 
-  const parts = (rotation[idx] ?? rotation[0]).toUpperCase().split(" ");
+  // No toUpperCase here: strings come hand-capitalized from cv.ts so
+  // acronyms keep their lowercase plural "s" (PMEs, SMBs, PYMEs).
+  const parts = (rotation[idx] ?? rotation[0]).split(" ");
   const filledLine = parts[0];
   const outlinedLine = parts.slice(1).join(" ");
   // Cap the font-size so the longest line always fits the viewport width.
