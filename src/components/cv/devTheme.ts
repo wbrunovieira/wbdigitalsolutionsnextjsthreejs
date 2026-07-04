@@ -39,12 +39,13 @@ export const DEV_NAV_SECTIONS = [
 export const DEV_CONTACT_ID = "contato";
 
 // ── Assets
-/** One PDF per language (files pending; drop them in public/cv/ with these names). */
+/** One PDF per language (owner-provided files in public/cv/; the localized
+    filename is what recruiters see when saving). */
 export const DEV_CV_PDF: Record<CVLang, string> = {
-  en: "/cv/bruno-vieira-dev-en.pdf",
-  "pt-BR": "/cv/bruno-vieira-dev-pt.pdf",
-  it: "/cv/bruno-vieira-dev-it.pdf",
-  es: "/cv/bruno-vieira-dev-es.pdf",
+  en: "/cv/Walter-Bruno-Vieira-CV-Dev-EN.pdf",
+  "pt-BR": "/cv/Walter-Bruno-Vieira-CV-Dev-PT.pdf",
+  it: "/cv/Walter-Bruno-Vieira-CV-Dev-IT.pdf",
+  es: "/cv/Walter-Bruno-Vieira-CV-Dev-ES.pdf",
 };
 
 /** Subtle note under the download CTA: the PDF matches the page language. */
