@@ -56,6 +56,8 @@ const SalesContact: React.FC = () => {
             <Magnetic>
               <a
                 href={CV_PDF[cv]}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-describedby="cv-tip-contact"
                 className="group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2"
                 style={{ background: AMBER, color: INK, boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}

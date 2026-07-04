@@ -78,6 +78,8 @@ const DevHeroIntro: React.FC = () => {
         <DevMagnetic className="col-span-2 flex sm:col-span-1">
           <a
             href={DEV_CV_PDF[cv]}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-describedby="cv-tip-hero"
             className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2 sm:w-auto"
             style={{ background: AMBER, color: "#0e0e11", boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
