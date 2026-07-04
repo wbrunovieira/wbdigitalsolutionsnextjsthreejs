@@ -13,12 +13,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { Menu, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cvContent, cvLinks, type CVLang } from "@/content/cv";
 import { AMBER, INK, NAV_SECTIONS, ink, toCVLang } from "./salesTheme";
 import { useSalesScrollSpy } from "./useSalesScrollSpy";
-import SalesNavMobile, { Monogram } from "./SalesNavMobile";
+import SalesNavMobile, { BurgerLines, MENU_ARIA, Monogram } from "./SalesNavMobile";
 
 const LANGS: { code: CVLang; label: string }[] = [
   { code: "en", label: "EN" },
@@ -26,13 +26,6 @@ const LANGS: { code: CVLang; label: string }[] = [
   { code: "it", label: "IT" },
   { code: "es", label: "ES" },
 ];
-
-const MENU_ARIA: Record<CVLang, { open: string; close: string }> = {
-  "pt-BR": { open: "Abrir menu", close: "Fechar menu" },
-  en: { open: "Open menu", close: "Close menu" },
-  it: { open: "Apri il menu", close: "Chiudi il menu" },
-  es: { open: "Abrir menú", close: "Cerrar menú" },
-};
 
 const SalesNav: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -167,14 +160,15 @@ const SalesNav: React.FC = () => {
                 );
               })}
             </div>
+            {/* Custom burger: asymmetric lines that swap widths on hover */}
             <button
               onClick={() => setMenuOpen(true)}
               aria-label={aria.open}
               aria-expanded={menuOpen}
-              className="grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors xl:hidden"
+              className="group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors xl:hidden"
               style={{ borderColor: ink(0.14), background: "rgba(255,255,255,0.7)" }}
             >
-              <Menu className="h-5 w-5" style={{ color: INK }} aria-hidden="true" />
+              <BurgerLines color={INK} />
             </button>
           </div>
         </div>
@@ -193,7 +187,6 @@ const SalesNav: React.FC = () => {
         open={menuOpen}
         name={t.name}
         closeLabel={aria.close}
-        contactLabel={t.nav.contact}
         items={navItems}
         active={active}
         navigateTo={navigateTo}
