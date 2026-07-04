@@ -58,12 +58,13 @@ export const CV_HINT: Record<CVLang, string> = {
   es: "CV en español. Para otro idioma, cambia el idioma de la página.",
 };
 
-/** LinkedIn public profile localized per page language. */
+/** LinkedIn public profile localized per page language (owner-confirmed
+    URLs; the profile has no Spanish version yet, so es falls back to en). */
 export const LINKEDIN_BY_LANG: Record<CVLang, string> = {
-  "pt-BR": "https://www.linkedin.com/in/walter-bruno-vieira/?locale=pt_BR",
-  en: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=en_US",
-  it: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=it_IT",
-  es: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=es_ES",
+  "pt-BR": "https://www.linkedin.com/in/walter-bruno-vieira/?locale=pt-BR",
+  en: "https://www.linkedin.com/in/walter-bruno-vieira/",
+  it: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=it-IT",
+  es: "https://www.linkedin.com/in/walter-bruno-vieira/",
 };
 
 // ── Shared class strings (kept literal for Tailwind JIT)

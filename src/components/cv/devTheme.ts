@@ -55,12 +55,13 @@ export const DEV_CV_HINT: Record<CVLang, string> = {
   es: "CV en español. Para otro idioma, cambia el idioma de la página.",
 };
 
-/** LinkedIn public profile localized per page language. */
+/** LinkedIn public profile localized per page language (owner-confirmed
+    URLs; the profile has no Spanish version yet, so es falls back to en). */
 export const DEV_LINKEDIN_BY_LANG: Record<CVLang, string> = {
-  en: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=en_US",
-  "pt-BR": "https://www.linkedin.com/in/walter-bruno-vieira/?locale=pt_BR",
-  it: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=it_IT",
-  es: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=es_ES",
+  en: "https://www.linkedin.com/in/walter-bruno-vieira/",
+  "pt-BR": "https://www.linkedin.com/in/walter-bruno-vieira/?locale=pt-BR",
+  it: "https://www.linkedin.com/in/walter-bruno-vieira/?locale=it-IT",
+  es: "https://www.linkedin.com/in/walter-bruno-vieira/",
 };
 
 /** Film-grain SVG tile for the hero background. */
