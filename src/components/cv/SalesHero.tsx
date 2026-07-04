@@ -27,9 +27,11 @@ const ROTATION_MS = 2800;
  */
 const GLYPH_EM = 0.68;
 
-/** Shared classes of both lockup lines: responsive clamp capped by --fit. */
+/** Shared classes of both lockup lines: responsive clamp capped by --fit.
+    No CSS uppercase: the rotation strings are hand-capitalized in cv.ts so
+    acronyms keep their lowercase plural "s" (PMEs, SMBs, PYMEs). */
 const LOCKUP_CLASSES =
-  "max-w-[94vw] font-black uppercase leading-[0.84] tracking-[-0.02em] text-[min(clamp(1.9rem,11vw,4rem),var(--fit))] sm:text-[min(clamp(3rem,13vw,11rem),var(--fit))]";
+  "max-w-[94vw] font-black leading-[0.84] tracking-[-0.02em] text-[min(clamp(1.9rem,11vw,4rem),var(--fit))] sm:text-[min(clamp(3rem,13vw,11rem),var(--fit))]";
 
 const SalesHero: React.FC = () => {
   const { language } = useLanguage();
