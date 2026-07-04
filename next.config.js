@@ -17,16 +17,19 @@ const nextConfig = {
         destination: 'https://www.wbdigitalsolutions.com/:path*',
         permanent: true,
       },
-      // Legacy language-prefixed URLs (the site is single-locale by path now)
+      // Legacy language-prefixed URLs (the main site is single-locale by path)
       // were advertised by an old sitemap and now 404. Redirect to the canonical
-      // page so Google consolidates instead of seeing 404s.
+      // page so Google consolidates instead of seeing 404s. Scoped to the www
+      // host: the CV subdomains DO serve real /pt /it /es locale routes.
       {
         source: '/:locale(es|it|pt-BR)',
+        has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
         destination: '/',
         permanent: true,
       },
       {
         source: '/:locale(es|it|pt-BR)/:path*',
+        has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
         destination: '/:path*',
         permanent: true,
       },
@@ -51,6 +54,18 @@ const nextConfig = {
           source: '/',
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/vendas',
+        },
+        // Locale routes on the CV subdomains: /pt /it /es map to the page's
+        // [[...lang]] catch-all (the root stays en + x-default).
+        {
+          source: '/:lang(pt|it|es)',
+          has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
+          destination: '/dev/:lang',
+        },
+        {
+          source: '/:lang(en|it|es)',
+          has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
+          destination: '/vendas/:lang',
         },
         // Per-host llms.txt (LLM-friendly site summary): each CV subdomain
         // serves its own profile; the main domain falls through to public/llms.txt.

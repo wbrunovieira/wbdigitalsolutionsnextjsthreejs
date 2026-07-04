@@ -37,7 +37,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   // Personal CV subdomains (brunodev → /dev, brunov → /vendas) must NOT inherit
   // the main site's preloader or cookie-consent modal.
-  const isCV = router.pathname === '/dev' || router.pathname === '/vendas';
+  // startsWith covers the per-locale routes (/dev/[[...lang]], /vendas/[[...lang]]).
+  const isCV = router.pathname.startsWith('/dev') || router.pathname.startsWith('/vendas');
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
@@ -63,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const prevOverscroll = el.style.overscrollBehavior;
     const prevBg = el.style.backgroundColor;
     el.style.overscrollBehavior = 'none';
-    el.style.backgroundColor = router.pathname === '/vendas' ? '#f7f7f8' : '#0e0e11';
+    el.style.backgroundColor = router.pathname.startsWith('/vendas') ? '#f7f7f8' : '#0e0e11';
     return () => {
       el.style.overscrollBehavior = prevOverscroll;
       el.style.backgroundColor = prevBg;

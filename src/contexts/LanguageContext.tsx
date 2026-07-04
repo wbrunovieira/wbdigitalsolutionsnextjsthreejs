@@ -15,7 +15,9 @@ type LanguageContextType = {
 };
 
 
-const LanguageContext = createContext<LanguageContextType>({
+// Exported so URL-localized pages (e.g. the CV subdomains' /pt /it /es
+// routes) can nest a Provider that pins the language from the route.
+export const LanguageContext = createContext<LanguageContextType>({
   language: "en",
   setLanguage: () => {},
   isLoaded: false,

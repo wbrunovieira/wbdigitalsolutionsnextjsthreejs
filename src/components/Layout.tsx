@@ -16,7 +16,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     const is3DShowcase = router.pathname === '/3d-showcase';
     const is3DTunnel = router.pathname === '/3d-tunnel';
     // Standalone personal CV pages — brunodev.* → /dev, brunov.* → /vendas — no Nav/Footer/ChatBot.
-    const isCV = router.pathname === '/dev' || router.pathname === '/vendas';
+    // startsWith covers the per-locale routes (/dev/[[...lang]], /vendas/[[...lang]]).
+    const isCV = router.pathname.startsWith('/dev') || router.pathname.startsWith('/vendas');
 
     // For these full-screen pages, render only the children without layout
     if (is3DShowcase || is3DTunnel || isCV) {

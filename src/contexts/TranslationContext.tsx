@@ -11,7 +11,8 @@ import { MessageFormat } from "../types/messages";
 
 import en from "../locales/en.json";
 
-const TranslationContext = createContext<MessageFormat>(en);
+// Exported so URL-localized pages can nest a Provider with route-locale messages.
+export const TranslationContext = createContext<MessageFormat>(en);
 
 type TranslationProviderProps = {
     children: React.ReactNode;
