@@ -57,18 +57,20 @@ const YearWatermark: React.FC<{
   );
 };
 
-const DevTimelineItem: React.FC<{ e: DevTimelineEntry; index: number; showWatermark: boolean }> = ({
-  e,
-  index,
-  showWatermark,
-}) => {
+const DevTimelineItem: React.FC<{
+  e: DevTimelineEntry;
+  index: number;
+  showWatermark: boolean;
+  /** Optional in-page anchor (e.g. #formacao on the first study milestone). */
+  anchorId?: string;
+}> = ({ e, index, showWatermark, anchorId }) => {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLLIElement>(null);
   const reveal = useDevReveal();
   const isActive = useInView(ref, { margin: "-42% 0px -48% 0px" });
 
   return (
-    <motion.li ref={ref} {...reveal(Math.min(index, 3) * 0.05)} className="relative mb-11 pl-8 last:mb-0">
+    <motion.li ref={ref} id={anchorId} {...reveal(Math.min(index, 3) * 0.05)} className="relative mb-11 scroll-mt-24 pl-8 last:mb-0">
       {showWatermark && <YearWatermark year={e.year} container={ref} />}
 
       {/* Node: lights up crossing the center (scale + fill + halo) */}

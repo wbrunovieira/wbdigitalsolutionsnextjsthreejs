@@ -44,9 +44,9 @@ const DevNavMobile: React.FC<{
   open: boolean;
   name: string;
   closeLabel: string;
-  items: { id: string; label: string }[];
+  items: { id: string; label: string; activeAs?: string }[];
   active: string;
-  navigateTo: (id: string) => (e: React.MouseEvent) => void;
+  navigateTo: (id: string, activeAs?: string) => (e: React.MouseEvent) => void;
   onClose: () => void;
 }> = ({ open, name, closeLabel, items, active, navigateTo, onClose }) => {
   const reduce = useReducedMotion();
@@ -98,7 +98,7 @@ const DevNavMobile: React.FC<{
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => {
-                  navigateTo(item.id)(e);
+                  navigateTo(item.id, item.activeAs)(e);
                   onClose();
                 }}
                 initial={reduce ? { opacity: 1 } : { opacity: 0, y: 18 }}
@@ -112,7 +112,7 @@ const DevNavMobile: React.FC<{
                 </span>
                 <span
                   className="text-3xl font-black tracking-[-0.02em] transition-transform duration-300 group-hover/item:translate-x-1"
-                  style={{ color: active === item.id ? AMBER : TEXT }}
+                  style={{ color: active === item.id && !item.activeAs ? AMBER : TEXT }}
                 >
                   {item.label}
                 </span>

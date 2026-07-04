@@ -80,7 +80,15 @@ const DevTimeline: React.FC = () => {
           aria-hidden="true"
         />
         {devTimeline[cv].map((e, i) => (
-          <DevTimelineItem key={e.title + e.year} e={e} index={i} showWatermark={mdUp && !reduce} />
+          // i === 1 (CS50, 2020) is where formal education starts: it carries
+          // the #formacao anchor targeted by the menu's education shortcut.
+          <DevTimelineItem
+            key={e.title + e.year}
+            e={e}
+            index={i}
+            showWatermark={mdUp && !reduce}
+            anchorId={i === 1 ? "formacao" : undefined}
+          />
         ))}
       </ol>
     </DevSection>

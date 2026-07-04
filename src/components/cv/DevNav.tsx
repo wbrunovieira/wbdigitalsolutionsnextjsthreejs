@@ -34,7 +34,14 @@ const DevNav: React.FC = () => {
   const t = cvContent[lang];
   const aria = MENU_ARIA[lang];
 
-  const navItems = DEV_NAV_SECTIONS.map(({ id, navKey }) => ({ id, label: t.nav[navKey] }));
+  // Menu = spy sections + the education SHORTCUT after Trajetória: courses
+  // live inside the timeline (#formacao anchor on the CS50 node), so the
+  // shortcut lights up the timeline's pill via activeAs instead of its own.
+  // "Stack" replaces the localized skills label: universal in all 4 locales
+  // and it buys the width the 7th item needs at the xl breakpoint.
+  const navItems: { id: string; label: string; activeAs?: string }[] =
+    DEV_NAV_SECTIONS.map(({ id, navKey }) => ({ id, label: navKey === "skills" ? "Stack" : t.nav[navKey] }));
+  navItems.splice(2, 0, { id: "formacao", label: t.nav.education, activeAs: "trajetoria" });
   const { scrolled, active, navigateTo } = useDevScrollSpy(DEV_NAV_SECTIONS);
 
   // Reading progress (2px amber line under the header once scrolled).
@@ -73,9 +80,11 @@ const DevNav: React.FC = () => {
           <a href="#inicio" onClick={navigateTo("inicio")} aria-label={t.name} className="flex items-center gap-3">
             {/* Monogram mark, makes it read as Bruno's personal page */}
             <Monogram />
-            <span className="hidden flex-col leading-tight sm:flex">
+            <span className="hidden shrink-0 flex-col whitespace-nowrap leading-tight sm:flex">
               <span className="text-[15px] font-black tracking-[-0.01em] sm:text-base" style={{ color: TEXT }}>{t.name}</span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: light(0.5) }}>
+              {/* Full name hides in the tight xl→2xl window: the 7-item
+                  capsule needs the width there. */}
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] xl:hidden 2xl:block" style={{ color: light(0.5) }}>
                 {t.fullName}
               </span>
             </span>
@@ -89,12 +98,12 @@ const DevNav: React.FC = () => {
               style={{ borderColor: light(0.12), background: "rgba(244,244,245,0.06)" }}
             >
               {navItems.map((item) => {
-                const isActive = active === item.id;
+                const isActive = active === item.id && !item.activeAs;
                 return (
                   <a
                     key={item.id}
                     href={`#${item.id}`}
-                    onClick={navigateTo(item.id)}
+                    onClick={navigateTo(item.id, item.activeAs)}
                     aria-current={isActive ? "true" : undefined}
                     className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
                       isActive ? "text-[#0e0e11]" : "text-[#f4f4f5]/55 hover:text-[#f4f4f5]/90"

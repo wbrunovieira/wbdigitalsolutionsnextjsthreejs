@@ -73,9 +73,11 @@ const SalesNav: React.FC = () => {
           <a href="#inicio" onClick={navigateTo("inicio")} aria-label={t.name} className="flex items-center gap-3">
             {/* Monogram mark, makes it read as Bruno's personal page */}
             <Monogram />
-            <span className="hidden flex-col leading-tight sm:flex">
+            <span className="hidden shrink-0 flex-col whitespace-nowrap leading-tight sm:flex">
               <span className="text-[15px] font-black tracking-[-0.01em] sm:text-base" style={{ color: INK }}>{t.name}</span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.16em]" style={{ color: ink(0.5) }}>
+              {/* Full name hides in the tight xl→2xl window: the capsule +
+                  WhatsApp CTA need the width there (es labels are the widest). */}
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] xl:hidden 2xl:block" style={{ color: ink(0.5) }}>
                 {t.fullName}
               </span>
             </span>

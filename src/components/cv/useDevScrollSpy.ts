@@ -67,10 +67,13 @@ export function useDevScrollSpy(sections: readonly { id: string }[]) {
     return () => observer.disconnect();
   }, [sections]);
 
-  /** Click navigation: activate immediately and suppress the spy while traveling. */
-  const navigateTo = (id: string) => (e: React.MouseEvent) => {
+  /** Click navigation: activate immediately and suppress the spy while
+      traveling. `activeAs` lets shortcut anchors that live INSIDE a section
+      (e.g. #formacao inside the timeline) light up their host section's pill. */
+  const navigateTo = (id: string, activeAs?: string) => (e: React.MouseEvent) => {
     scrollTo(id)(e);
-    if (sections.some((s) => s.id === id)) setActive(id);
+    const highlight = activeAs ?? id;
+    if (sections.some((s) => s.id === highlight)) setActive(highlight);
     scrollTarget.current = id;
     window.setTimeout(() => {
       if (scrollTarget.current === id) scrollTarget.current = null;
