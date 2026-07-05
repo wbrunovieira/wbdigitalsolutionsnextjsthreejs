@@ -93,12 +93,15 @@ const PageHead: React.FC<PageHeadProps> = ({
   const { canonicalUrl, hreflangs, ogLocale, ogLocaleAlternates } =
     buildSeoUrls(router.locale ?? router.defaultLocale, router.asPath);
 
-  // Per-page social image when provided, else a raster default. NOTE: og/twitter
-  // images must be raster (JPG/PNG) — social platforms (Facebook, LinkedIn,
-  // WhatsApp, X) do not render SVG, so the brand SVG logo would show no preview.
+  // Per-page social image when provided, else the LOCALIZED raster default
+  // (og-home.jpg = en; og-home-{pt,it,es}.jpg carry the services strip in
+  // each language). NOTE: og/twitter images must be raster (JPG/PNG) — social
+  // platforms do not render SVG, so the brand SVG logo would show no preview.
+  const urlLocale = router.locale ?? router.defaultLocale ?? "en";
+  const localizedDefaultOg = `${baseUrl}/img/og-home${urlLocale === "en" ? "" : `-${urlLocale}`}.jpg`;
   const ogImage = customImage
     ? (customImage.startsWith("http") ? customImage : `${baseUrl}${customImage}`)
-    : "https://www.wbdigitalsolutions.com/img/og-home.jpg";
+    : localizedDefaultOg;
 
   // Generate schemas based on page type
   const schemas = [];
