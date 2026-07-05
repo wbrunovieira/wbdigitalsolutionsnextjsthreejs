@@ -55,11 +55,22 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     router.push(router.asPath, router.asPath, { locale: toUrlLocale(lang) });
   };
 
-  // Keep <html lang> in sync with the rendered language.
+  // Keep <html lang> in sync with the rendered language. The SSR HTML ships
+  // the right value (_document), but Next's client overwrites it with the
+  // raw URL locale ("pt") at unpredictable moments (hydration, navigations),
+  // so a MutationObserver guards the attribute and restores the proper
+  // BCP 47 value whenever anything rewrites it. No loop: we only write when
+  // the value differs.
   useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = language;
-    }
+    const apply = () => {
+      if (document.documentElement.lang !== language) {
+        document.documentElement.lang = language;
+      }
+    };
+    apply();
+    const observer = new MutationObserver(apply);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    return () => observer.disconnect();
   }, [language]);
 
   return (

@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
+import { toAppLang } from '@/lib/i18n';
 
 interface MyDocumentProps extends DocumentInitialProps {
   lang: string;
@@ -7,15 +8,10 @@ interface MyDocumentProps extends DocumentInitialProps {
 class MyDocument extends Document<MyDocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<MyDocumentProps> {
     const initialProps = await Document.getInitialProps(ctx);
-    const acceptLanguage = ctx.req?.headers?.['accept-language'] ?? '';
-    const primary = acceptLanguage.split(',')[0].split(';')[0].trim().toLowerCase();
-
-    let lang = 'en';
-    if (primary.startsWith('pt')) lang = 'pt-BR';
-    else if (primary.startsWith('es')) lang = 'es';
-    else if (primary.startsWith('it')) lang = 'it';
-
-    return { ...initialProps, lang };
+    // URL-driven i18n: the html lang mirrors the route locale (mapped to the
+    // proper BCP 47 value, e.g. /pt -> pt-BR). Accept-Language detection is
+    // gone with the single-URL model.
+    return { ...initialProps, lang: toAppLang(ctx.locale) };
   }
 
   render() {
