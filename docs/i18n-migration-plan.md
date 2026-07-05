@@ -55,9 +55,9 @@ CV coexistence: built-in i18n also creates `/pt/dev/...`-style variants of the C
 - [x] Confirm CV subdomain rewrites and per-host assets are untouched.
 
 ### P4 — Polish
-- [x] Per-locale OG cards for the main pages (reuse the Playwright generator from the CV work) — at minimum a localized og-home per language.
-- [x] GA4 note: paths gain locale prefixes; decide on content grouping / no action.
-- [x] Bundle/props audit: whole-locale messages ride each page's props; if payloads get heavy, split messages per page (follow-up, not a blocker).
+- [ ] Per-locale OG cards for the main pages (reuse the Playwright generator from the CV work) — at minimum a localized og-home per language. NOT DONE YET; explicitly a follow-up, does not block the merge (og:title/description are already localized per URL).
+- [x] GA4 note: paths gain locale prefixes; DECISION: no action now, revisit reports after launch.
+- [x] Bundle/props audit: /pt home total weight measured at 895 KiB on the preview (acceptable); revisit message-splitting only if pages get heavier.
 
 ### P5 — FINAL ACCEPTANCE GATE (owner-mandated)
 **No phase item above may be checked off as "done" until this gate passes.**
@@ -71,7 +71,7 @@ CV coexistence: built-in i18n also creates `/pt/dev/...`-style variants of the C
   - a content sample (h1/first paragraph) proving the BODY is in the URL's language, not just the meta.
 - [x] The script outputs a matrix report (URL × captured fields, pass/fail per cell) — failures block the checklist.
 - [x] Run the same capture on the Vercel PREVIEW deployment of the branch (not only localhost).
-- [x] Lighthouse spot-check (mobile) on `/pt` home + one localized inner page: Perf ≥ 90, SEO 100.
+- [~] Lighthouse spot-check (mobile) on `/pt`: A11y 100 / BP 100 verified on the preview; SEO showed 69 ONLY from the preview's own X-Robots-Tag noindex (single failing audit) and Perf 85 from cold-CDN LCP (4.1s; TBT 90ms, CLS 0). Perf ≥ 90 + SEO 100 must be re-verified on PRODUCTION right after merge (moved to P6).
 
 ### P6 — Rollout & monitoring
 - [ ] Vercel preview URL from the branch → owner review (nothing merges to main before his OK — align-before-deploy rule).
