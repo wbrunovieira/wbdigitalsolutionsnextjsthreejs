@@ -88,5 +88,36 @@ CV coexistence: built-in i18n also creates `/pt/dev/...`-style variants of the C
 | Analytics path fragmentation | GA4 note in P4. |
 | CV route variants | Hygiene redirects in P3. |
 
+## Execution model: parallel sub-agent waves
+
+Phases don't map 1:1 to execution. Work is grouped by FILE OWNERSHIP so agents
+never collide, and everything independent runs in parallel:
+
+- **Wave 0 — shared core (sequential, main session).** The pieces every agent
+  depends on and that touch shared files: `next.config.js` i18n block,
+  `src/lib/i18n.ts` (locale maps + `getI18nStaticProps`), `LanguageContext`
+  (router.locale-driven), `TranslationProvider` (initialMessages). Small but
+  load-bearing; done centrally, validated with tsc before fanning out.
+- **Wave 1 — seven agents in parallel** (each owns disjoint files):
+  A) pages home+websites+systems · B) pages ai+automation+contact+newsletter ·
+  C) projects index+[slug] (locale-aware paths) · D) blog index+[id]
+  (getStaticPaths × locales, messages merged into existing props) ·
+  E) PageHead SEO layer (locale canonical, hreflang matrix, og:locale) ·
+  F) sitemap API × 4 locales with hreflang alternates ·
+  G) the P5 validation script `scripts/i18n-seo-check.mjs` (spec is known,
+  needs nothing from waves 0-1).
+- **Wave 2 — integration (main session).** P3 redirects in next.config
+  (untouched by wave 1), tsc, resolve any agent overlaps.
+- **Wave 3 — gate run.** Execute the P5 capture matrix on localhost; fan out
+  FIX agents per failing page if needed; re-run until green. P4 OG-card agent
+  runs in parallel with this wave.
+- **Wave 4 — preview.** Push the branch (Vercel builds a PREVIEW, production
+  untouched), re-run the capture against the preview URL, Lighthouse spot,
+  then owner review before any merge.
+
+Agent ground rules (in every prompt): English comments/commits, 200-line file
+cap, `npx tsc --noEmit` must pass, NEVER run `pnpm build` or restart the dev
+server, no em-dashes in user-facing copy, all 4 locales or none.
+
 ## Estimated effort
-P1–P2: ~1 focused day. P3–P5: ~half day + the validation script. P6: monitoring over weeks.
+Wave 0: ~1h. Waves 1-3: the wall-clock of the slowest agent (~1-2h) instead of a serial day. Wave 4 + monitoring: preview review + weeks of GSC watching.
