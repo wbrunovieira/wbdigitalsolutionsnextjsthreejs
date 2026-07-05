@@ -10,6 +10,7 @@ const ScrollAutomationHero3D = dynamic(() => import('@/components/canvas/ScrollA
 import CallToActionAutomation from '@/components/AutomationCTA';
 import { AutomationHeader } from '@/components/AutomationHeader';
 import PageHead from '@/components/PageHead';
+import { makeI18nStaticProps } from '@/lib/i18n';
 
 // ssr:false sections get a height-reserving placeholder (avoids cold-load CLS).
 const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
@@ -70,5 +71,9 @@ const ai: React.FC = () => {
     </>
   )
 };
+
+// Per-locale static generation: prerender this page for every locale with
+// the right messages available during SSR.
+export const getStaticProps = makeI18nStaticProps();
 
 export default ai;

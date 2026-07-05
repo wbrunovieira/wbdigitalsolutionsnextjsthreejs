@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import { makeI18nStaticProps } from '@/lib/i18n';
 import { useTranslations } from '@/contexts/TranslationContext';
 import PageHead from '@/components/PageHead';
 import ProjectFilters from '@/components/projects/ProjectFilters';
@@ -71,5 +72,8 @@ const ProjectsPage: React.FC = () => {
     </>
   );
 };
+
+// Prerender per locale with SSR-correct messages (built-in Next i18n).
+export const getStaticProps = makeI18nStaticProps();
 
 export default ProjectsPage;

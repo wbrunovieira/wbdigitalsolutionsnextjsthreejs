@@ -1,6 +1,9 @@
 import React from 'react';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { i18nProps } from '@/lib/i18n';
+import { PROJECT_DETAILS } from '@/data/projectDetails';
 import { useTranslations } from '@/contexts/TranslationContext';
 import PageHead from '@/components/PageHead';
 import ProjectDetail from '@/components/projects/ProjectDetail';
@@ -44,5 +47,19 @@ const ProjectDetailPage: React.FC = () => {
     </>
   );
 };
+
+// One path per project slug x locale so every locale variant is prerendered.
+// PROJECT_DETAILS is the single source of slugs (also used by the sitemap API).
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => ({
+  paths: Object.keys(PROJECT_DETAILS).flatMap((slug) =>
+    (locales ?? []).map((locale) => ({ params: { slug }, locale }))
+  ),
+  fallback: false,
+});
+
+// Slug resolution stays client-side; props only carry the locale's messages.
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: { ...(await i18nProps(locale)) },
+});
 
 export default ProjectDetailPage;

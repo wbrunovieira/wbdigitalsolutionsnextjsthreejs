@@ -3,6 +3,17 @@ import { PROJECT_DETAILS } from '@/data/projectDetails';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
 
+// URL locales served by Next.js built-in i18n routing.
+// The default locale (en) lives at the unprefixed root; the others are
+// path-prefixed (/pt, /it, /es). hreflang uses the full language tags
+// (pt-BR for /pt), matching public/sitemap-brunodev.xml.
+const URL_LOCALES = [
+  { prefix: '', hreflang: 'en' },
+  { prefix: '/pt', hreflang: 'pt-BR' },
+  { prefix: '/it', hreflang: 'it' },
+  { prefix: '/es', hreflang: 'es' },
+] as const;
+
 // Static pages that exist in the application
 const STATIC_PAGES = [
   '',  // Homepage
@@ -13,7 +24,6 @@ const STATIC_PAGES = [
   'contact',
   'websites',
   'systems',
-  'experience',
 ];
 
 // Project detail pages (/projects/[slug]) — kept in sync with projectDetails.ts
@@ -28,30 +38,45 @@ const BLOG_POSTS = [
   'increase-pme-sales',
 ];
 
+interface HreflangAlternate {
+  hreflang: string;
+  href: string;
+}
+
 interface SitemapUrl {
   loc: string;
   lastmod: string;
   changefreq: string;
   priority: number;
+  alternates: HreflangAlternate[];
 }
 
-// The site serves every language from a single URL (client-side i18n), so we
-// emit ONE canonical URL per page — no /es, /it, /pt-BR variants (those routes
-// don't exist → 404) and no hreflang (which requires distinct per-language URLs).
+// Every page now exists at 4 URLs (en unprefixed + /pt + /it + /es), so we
+// emit one <url> entry per locale, each carrying the full set of xhtml:link
+// hreflang alternates plus x-default pointing at the en URL.
+const buildAlternates = (path: string): HreflangAlternate[] => {
+  const alternates: HreflangAlternate[] = URL_LOCALES.map(locale => ({
+    hreflang: locale.hreflang,
+    href: `${SITE_URL}${locale.prefix}${path}`,
+  }));
+  alternates.push({ hreflang: 'x-default', href: `${SITE_URL}${path}` });
+  return alternates;
+};
+
 const generateSitemapUrl = (
   path: string,
   changefreq: string = 'weekly',
   priority: number = 0.8
 ): SitemapUrl[] => {
   const lastmod = new Date().toISOString().split('T')[0];
-  return [
-    {
-      loc: `${SITE_URL}${path}`,
-      lastmod,
-      changefreq,
-      priority,
-    },
-  ];
+  const alternates = buildAlternates(path);
+  return URL_LOCALES.map(locale => ({
+    loc: `${SITE_URL}${locale.prefix}${path}`,
+    lastmod,
+    changefreq,
+    priority,
+    alternates,
+  }));
 };
 
 const generateXmlUrl = (url: SitemapUrl): string => {
@@ -60,6 +85,9 @@ const generateXmlUrl = (url: SitemapUrl): string => {
   xml += `    <lastmod>${url.lastmod}</lastmod>\n`;
   xml += `    <changefreq>${url.changefreq}</changefreq>\n`;
   xml += `    <priority>${url.priority}</priority>\n`;
+  url.alternates.forEach(alt => {
+    xml += `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${alt.href}"/>\n`;
+  });
   xml += `  </url>\n`;
   return xml;
 };
@@ -91,14 +119,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     urls.push(...generateSitemapUrl(`/blog/${post}`, 'monthly', 0.7));
   });
 
-  // Generate XML
+  // Generate XML (xhtml namespace required for the hreflang alternates)
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-  
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
+  xml += '        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n';
+
   urls.forEach(url => {
     xml += generateXmlUrl(url);
   });
-  
+
   xml += '</urlset>';
 
   res.setHeader('Content-Type', 'application/xml');

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import PageHead from "@/components/PageHead";
+import { makeI18nStaticProps } from "@/lib/i18n";
 import logo from "/public/svg/logo-white.svg";
 
 const content = {
@@ -84,6 +85,10 @@ const content = {
     emailRequired: "L'email è obbligatoria",
   },
 };
+
+// Per-locale static generation: prerender this page for every locale with
+// the right messages available during SSR.
+export const getStaticProps = makeI18nStaticProps();
 
 export default function NewsletterPage() {
   const { language } = useLanguage();

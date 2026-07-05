@@ -6,14 +6,28 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import SchemaMarkup from "./SchemaMarkup";
-import { 
-  getOrganizationSchema, 
+import {
+  getOrganizationSchema,
   getWebSiteSchema,
   getServiceSchema,
   getBreadcrumbSchema,
   getBlogPostSchema,
   getLocalBusinessSchema
 } from "@/utils/schemaHelpers";
+import { SITE_BASE_URL, buildSeoUrls } from "@/lib/seoUrls";
+
+/** JSON-LD Service schema name per service page key. */
+const SERVICE_NAME_BY_PAGE: Record<string, string> = {
+  websites: "Web Development", automation: "Digital Automation",
+  ai: "Artificial Intelligence", systems: "Custom Systems",
+  experience: "3D Experience Platform",
+};
+
+/** Breadcrumb label per page key (URL segment equals the page key). */
+const BREADCRUMB_LABEL_BY_PAGE: Record<string, string> = {
+  contact: "Contact", websites: "Websites", automation: "Automation",
+  ai: "AI", systems: "Systems", experience: "3D Experience",
+};
 
 interface PageHeadProps {
   pageKey?: string;
@@ -42,20 +56,13 @@ const PageHead: React.FC<PageHeadProps> = ({
   const { language } = useLanguage();
   const router = useRouter();
 
-  // Determine the title based on priority: customTitle > dynamicTitle > pageKey > default
-  let title = "";
-  
-  if (customTitle) {
-    title = customTitle;
-  } else if (dynamicTitle) {
-    title = dynamicTitle;
-  } else if (pageKey) {
-    // Look for specific page title translation
-    const titleKey = `metaTitle_${pageKey}`;
-    title = (t as any)[titleKey] || t.metaTitle || "WB Digital Solutions";
-  } else {
-    title = t.metaTitle || "WB Digital Solutions";
-  }
+  // Title priority: customTitle > dynamicTitle > localized pageKey > default
+  const title =
+    customTitle ||
+    dynamicTitle ||
+    (pageKey && (t as any)[`metaTitle_${pageKey}`]) ||
+    t.metaTitle ||
+    "WB Digital Solutions";
 
   // Get description based on page
   const descriptionKey = pageKey ? `metaDescription_${pageKey}` : "metaDescription";
@@ -80,9 +87,11 @@ const PageHead: React.FC<PageHeadProps> = ({
     }
   }, [title, router.asPath]);
 
-  // Build the canonical URL
-  const baseUrl = "https://www.wbdigitalsolutions.com";
-  const canonicalUrl = `${baseUrl}${router.asPath}`;
+  // Locale-aware URLs: canonical is the SELF locale URL (router.asPath has
+  // no locale prefix under built-in i18n, so the prefix is added here).
+  const baseUrl = SITE_BASE_URL;
+  const { canonicalUrl, hreflangs, ogLocale, ogLocaleAlternates } =
+    buildSeoUrls(router.locale ?? router.defaultLocale, router.asPath);
 
   // Per-page social image when provided, else a raster default. NOTE: og/twitter
   // images must be raster (JPG/PNG) — social platforms (Facebook, LinkedIn,
@@ -96,42 +105,28 @@ const PageHead: React.FC<PageHeadProps> = ({
   
   // Add Organization schema on homepage
   if (!pageKey || pageKey === 'home') {
-    schemas.push(getOrganizationSchema(language));
-    schemas.push(getWebSiteSchema(language));
+    schemas.push(getOrganizationSchema(language), getWebSiteSchema(language));
     schemas.push(getLocalBusinessSchema(language));
   }
 
   // Add Service schema for service pages
-  if (pageKey === 'websites') {
-    schemas.push(getServiceSchema('Web Development', 'Web Development', language));
-  } else if (pageKey === 'automation') {
-    schemas.push(getServiceSchema('Digital Automation', 'Digital Automation', language));
-  } else if (pageKey === 'ai') {
-    schemas.push(getServiceSchema('Artificial Intelligence', 'Artificial Intelligence', language));
-  } else if (pageKey === 'systems') {
-    schemas.push(getServiceSchema('Custom Systems', 'Custom Systems', language));
-  } else if (pageKey === 'experience') {
-    schemas.push(getServiceSchema('3D Experience Platform', '3D Experience Platform', language));
+  const serviceName = pageKey ? SERVICE_NAME_BY_PAGE[pageKey] : undefined;
+  if (serviceName) {
+    schemas.push(getServiceSchema(serviceName, serviceName, language));
   }
 
   // Add BlogPosting schema for blog posts
   if (blogPost) {
     schemas.push(getBlogPostSchema(
-      blogPost.title,
-      blogPost.description,
-      blogPost.author,
-      blogPost.datePublished,
-      canonicalUrl,
-      blogPost.images
+      blogPost.title, blogPost.description, blogPost.author,
+      blogPost.datePublished, canonicalUrl, blogPost.images
     ));
   }
 
   // Add Breadcrumb schema for all pages except homepage
   if (pageKey && pageKey !== 'home') {
-    const breadcrumbItems = [
-      { name: 'Home', url: baseUrl }
-    ];
-    
+    const breadcrumbItems = [{ name: 'Home', url: baseUrl }];
+
     if (pageKey === 'blog') {
       breadcrumbItems.push({ name: 'Blog', url: `${baseUrl}/blog` });
     } else if (blogPost) {
@@ -139,18 +134,11 @@ const PageHead: React.FC<PageHeadProps> = ({
         { name: 'Blog', url: `${baseUrl}/blog` },
         { name: blogPost.title, url: canonicalUrl }
       );
-    } else if (pageKey === 'contact') {
-      breadcrumbItems.push({ name: 'Contact', url: `${baseUrl}/contact` });
-    } else if (pageKey === 'websites') {
-      breadcrumbItems.push({ name: 'Websites', url: `${baseUrl}/websites` });
-    } else if (pageKey === 'automation') {
-      breadcrumbItems.push({ name: 'Automation', url: `${baseUrl}/automation` });
-    } else if (pageKey === 'ai') {
-      breadcrumbItems.push({ name: 'AI', url: `${baseUrl}/ai` });
-    } else if (pageKey === 'systems') {
-      breadcrumbItems.push({ name: 'Systems', url: `${baseUrl}/systems` });
-    } else if (pageKey === 'experience') {
-      breadcrumbItems.push({ name: '3D Experience', url: `${baseUrl}/experience` });
+    } else if (BREADCRUMB_LABEL_BY_PAGE[pageKey]) {
+      breadcrumbItems.push({
+        name: BREADCRUMB_LABEL_BY_PAGE[pageKey],
+        url: `${baseUrl}/${pageKey}`,
+      });
     }
 
     schemas.push(getBreadcrumbSchema(breadcrumbItems, language));
@@ -177,7 +165,10 @@ const PageHead: React.FC<PageHeadProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:locale" content={language === "pt-BR" ? "pt_BR" : language} />
+      <meta property="og:locale" content={ogLocale} />
+      {ogLocaleAlternates.map((altLocale) => (
+        <meta key={altLocale} property="og:locale:alternate" content={altLocale} />
+      ))}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -192,10 +183,12 @@ const PageHead: React.FC<PageHeadProps> = ({
       {/* Favicon */}
       <link rel="icon" href="/img/favicon.png" />
 
-      {/* Single-URL multilingual site (client-side i18n): the language-prefixed
-          routes (/es, /it, /pt-BR) don't exist — they redirect to the canonical
-          URL — so we only emit x-default to avoid hreflang pointing at redirects. */}
-      <link rel="alternate" hrefLang="x-default" href={`${baseUrl}${router.pathname}`} />
+      {/* Full hreflang matrix: every page exists per locale (built-in Next
+          i18n), so each alternate points at that locale's URL for the same
+          path; x-default points at the unprefixed en URL. */}
+      {hreflangs.map(({ hrefLang, href }) => (
+        <link key={hrefLang} rel="alternate" hrefLang={hrefLang} href={href} />
+      ))}
       </Head>
     </>
   );

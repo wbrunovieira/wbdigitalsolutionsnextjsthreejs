@@ -7,6 +7,7 @@ import PageHead from "@/components/PageHead";
 import { useLanguage } from "@/contexts/LanguageContext";
 import fs from 'fs';
 import path from 'path';
+import { i18nProps, I18nPageProps } from "@/lib/i18n";
 
 // List of all blog post IDs
 const blogPostIds = [
@@ -19,6 +20,14 @@ const blogPostIds = [
 
 // List of supported languages
 const languages = ['en', 'es', 'it', 'ptbr'];
+
+// URL locale -> blog content folder under src/locales/blog/
+const URL_LOCALE_TO_BLOG_FOLDER: Record<string, string> = {
+  en: 'en',
+  pt: 'ptbr',
+  it: 'it',
+  es: 'es'
+};
 
 interface BlogTranslation {
   title: string;
@@ -34,12 +43,16 @@ interface BlogTranslation {
 interface BlogPageProps {
   translations: Record<string, BlogTranslation>;
   postId: string;
+  ssrLangKey: string;
 }
 
-const BlogPage: React.FC<BlogPageProps> = ({ translations, postId }) => {
+const BlogPage: React.FC<BlogPageProps> = ({ translations, postId, ssrLangKey }) => {
   const router = useRouter();
   const { language } = useLanguage();
-  const [translation, setTranslation] = useState<BlogTranslation | null>(null);
+  // Start from the URL locale's content so the SSR HTML is in the right language.
+  const [translation, setTranslation] = useState<BlogTranslation | null>(
+    () => translations?.[ssrLangKey] || translations?.['en'] || null
+  );
 
   useEffect(() => {
     // Get the translation for the current language
@@ -100,11 +113,15 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, postId }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  // Generate paths for all blog posts
-  const paths = blogPostIds.map(id => ({
-    params: { id }
-  }));
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  // With built-in i18n, paths without a locale only build the default locale,
+  // so emit every post id for every configured locale.
+  const paths = blogPostIds.flatMap(id =>
+    (locales ?? [undefined]).map(locale => ({
+      params: { id },
+      locale
+    }))
+  );
 
   return {
     paths,
@@ -112,7 +129,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<BlogPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<BlogPageProps & I18nPageProps> = async ({
+  params,
+  locale
+}) => {
   const postId = params?.id as string;
 
   // Validate that the post ID exists
@@ -143,10 +163,16 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async ({ params }) 
     };
   }
 
+  // Resolve the URL locale to its content folder key (en/es/it/ptbr) so the
+  // server render carries the right language; client language switch still works.
+  const ssrLangKey = URL_LOCALE_TO_BLOG_FOLDER[locale ?? 'en'] ?? 'en';
+
   return {
     props: {
       translations,
-      postId
+      postId,
+      ssrLangKey,
+      ...(await i18nProps(locale))
     },
     revalidate: 3600 // Revalidate every hour
   };

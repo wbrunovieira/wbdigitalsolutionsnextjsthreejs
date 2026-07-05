@@ -29,22 +29,48 @@ const nextConfig = {
         destination: 'https://www.wbdigitalsolutions.com/:path*',
         permanent: true,
       },
-      // Legacy language-prefixed URLs (the main site is single-locale by path)
-      // were advertised by an old sitemap and now 404. Redirect to the canonical
-      // page so Google consolidates instead of seeing 404s. Scoped to the www
-      // host: the CV subdomains DO serve real /pt /it /es locale routes.
+      // Old-sitemap /pt-BR URLs finally get a real destination: the new /pt
+      // locale routes (/es and /it old URLs now ARE live locale routes, so
+      // their kill-redirects are gone). Scoped to www like before.
       {
-        source: '/:locale(es|it|pt-BR)',
+        source: '/pt-BR',
         locale: false,
         has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
-        destination: '/',
+        destination: '/pt',
         permanent: true,
       },
       {
-        source: '/:locale(es|it|pt-BR)/:path*',
+        source: '/pt-BR/:path*',
         locale: false,
         has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
-        destination: '/:path*',
+        destination: '/pt/:path*',
+        permanent: true,
+      },
+      // Hygiene: built-in i18n also mints locale-prefixed variants of the CV
+      // routes; collapse them to the unprefixed pages (their canonicals live
+      // on the personal subdomains).
+      {
+        source: '/:l(pt|it|es)/dev/:path*',
+        locale: false,
+        destination: '/dev/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:l(pt|it|es)/dev',
+        locale: false,
+        destination: '/dev',
+        permanent: true,
+      },
+      {
+        source: '/:l(pt|it|es)/vendas/:path*',
+        locale: false,
+        destination: '/vendas/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:l(pt|it|es)/vendas',
+        locale: false,
+        destination: '/vendas',
         permanent: true,
       },
       // Old static files from the previous site.
