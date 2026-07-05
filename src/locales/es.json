@@ -8,22 +8,58 @@
   "systemsWhatTitle": "Cualquier sistema. Cualquier plataforma.",
   "systemsWhatSubtitle": "No trabajamos con plantillas. Cada sistema se diseña a medida para tu flujo, tus datos y tu crecimiento.",
   "systemsCapabilities": [
-    { "icon": "🎓", "title": "Plataformas de Enseñanza (LMS)", "desc": "Cursos, clases en vídeo, simulacros, comunidad, sesiones en vivo y certificados verificables." },
-    { "icon": "🗂️", "title": "Sistemas de Gestión (ERP/CRM)", "desc": "Procesos internos, automatizaciones, informes y control a medida de tu negocio." },
-    { "icon": "☁️", "title": "Plataformas SaaS multiusuario", "desc": "Suscripciones, arquitectura multi-tenant, facturación y paneles administrativos." },
-    { "icon": "🛒", "title": "Marketplaces y E-commerce", "desc": "Catálogos, pagos, logística e integraciones de venta." },
-    { "icon": "📊", "title": "Dashboards y BI", "desc": "Datos en tiempo real, métricas y visualizaciones que guían decisiones." },
-    { "icon": "🔌", "title": "APIs e Integraciones", "desc": "Conectamos sistemas, microservicios y automatización entre tus herramientas." }
+    {
+      "icon": "🎓",
+      "title": "Plataformas de Enseñanza (LMS)",
+      "desc": "Cursos, clases en vídeo, simulacros, comunidad, sesiones en vivo y certificados verificables."
+    },
+    {
+      "icon": "🗂️",
+      "title": "Sistemas de Gestión (ERP/CRM)",
+      "desc": "Procesos internos, automatizaciones, informes y control a medida de tu negocio."
+    },
+    {
+      "icon": "☁️",
+      "title": "Plataformas SaaS multiusuario",
+      "desc": "Suscripciones, arquitectura multi-tenant, facturación y paneles administrativos."
+    },
+    {
+      "icon": "🛒",
+      "title": "Marketplaces y E-commerce",
+      "desc": "Catálogos, pagos, logística e integraciones de venta."
+    },
+    {
+      "icon": "📊",
+      "title": "Dashboards y BI",
+      "desc": "Datos en tiempo real, métricas y visualizaciones que guían decisiones."
+    },
+    {
+      "icon": "🔌",
+      "title": "APIs e Integraciones",
+      "desc": "Conectamos sistemas, microservicios y automatización entre tus herramientas."
+    }
   ],
   "systemsTechTitle": "El stack adecuado para cada desafío",
   "systemsTechSubtitle": "Elegimos la tecnología según la necesidad del proyecto — rendimiento, escala y seguridad primero.",
   "systemsProcessTitle": "Cómo construimos",
   "systemsProcessSubtitle": "Un proceso claro, desde el primer diagnóstico hasta la evolución continua del sistema.",
   "systemsProcessSteps": [
-    { "title": "Descubrimiento y Arquitectura", "desc": "Entendemos el negocio, modelamos los datos y diseñamos la arquitectura antes de escribir código." },
-    { "title": "Desarrollo Ágil", "desc": "Entregas incrementales, código testeable y visibilidad del progreso en cada etapa." },
-    { "title": "Escala y Seguridad", "desc": "Rendimiento, infraestructura y protección de datos pensados para crecer contigo." },
-    { "title": "Evolución Continua", "desc": "Monitoreo, soporte y mejoras continuas tras el lanzamiento." }
+    {
+      "title": "Descubrimiento y Arquitectura",
+      "desc": "Entendemos el negocio, modelamos los datos y diseñamos la arquitectura antes de escribir código."
+    },
+    {
+      "title": "Desarrollo Ágil",
+      "desc": "Entregas incrementales, código testeable y visibilidad del progreso en cada etapa."
+    },
+    {
+      "title": "Escala y Seguridad",
+      "desc": "Rendimiento, infraestructura y protección de datos pensados para crecer contigo."
+    },
+    {
+      "title": "Evolución Continua",
+      "desc": "Monitoreo, soporte y mejoras continuas tras el lanzamiento."
+    }
   ],
   "systemsCtaTitle": "¿Tienes un sistema en mente?",
   "systemsCtaDesc": "Cuéntanos el desafío. Diseñamos la solución técnica ideal y el camino para hacerla realidad.",
@@ -566,6 +602,8 @@
   "ctaHeading": "Hablemos Sobre Sus Procesos",
   "ctaMessage": "Cuéntenos cómo funciona su día a día. Juntos podemos identificar oportunidades de automatización, IA u optimizaciones que marquen la diferencia en su negocio.",
   "metaTitle": "WB - Digital Solutions | Inicio",
+  "metaTitle_home": "WB Digital Solutions | Webs, Sistemas, Automatización e IA",
+  "metaDescription_home": "Webs a medida, sistemas, automatización e inteligencia artificial que convierten la tecnología en resultados para tu empresa.",
   "metaDescription": "WB Digital Solutions se especializa en ofrecer soluciones digitales innovadoras y personalizadas para empresas. Transforma tu negocio con nuestra expertise en desarrollo web, IA y automatización.",
   "metaOgTitle": "WB Digital Solutions | Soluciones Digitales para Empresas",
   "metaTwitterTitle": "Soluciones Digitales para Empresas",

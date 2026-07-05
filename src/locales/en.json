@@ -8,22 +8,58 @@
   "systemsWhatTitle": "Any system. Any platform.",
   "systemsWhatSubtitle": "We don't work with templates. Every system is architected to fit your workflow, your data and your growth.",
   "systemsCapabilities": [
-    { "icon": "🎓", "title": "Learning Platforms (LMS)", "desc": "Courses, video lessons, mock exams, community, live sessions and verifiable certificates." },
-    { "icon": "🗂️", "title": "Management Systems (ERP/CRM)", "desc": "Internal processes, automations, reports and tailor-made control of your business." },
-    { "icon": "☁️", "title": "Multi-tenant SaaS platforms", "desc": "Subscriptions, multi-tenant architecture, billing and admin dashboards." },
-    { "icon": "🛒", "title": "Marketplaces & E-commerce", "desc": "Catalogs, payments, logistics and sales integrations." },
-    { "icon": "📊", "title": "Dashboards & BI", "desc": "Real-time data, metrics and visualizations that drive decisions." },
-    { "icon": "🔌", "title": "APIs & Integrations", "desc": "Connecting systems, microservices and automation across your tools." }
+    {
+      "icon": "🎓",
+      "title": "Learning Platforms (LMS)",
+      "desc": "Courses, video lessons, mock exams, community, live sessions and verifiable certificates."
+    },
+    {
+      "icon": "🗂️",
+      "title": "Management Systems (ERP/CRM)",
+      "desc": "Internal processes, automations, reports and tailor-made control of your business."
+    },
+    {
+      "icon": "☁️",
+      "title": "Multi-tenant SaaS platforms",
+      "desc": "Subscriptions, multi-tenant architecture, billing and admin dashboards."
+    },
+    {
+      "icon": "🛒",
+      "title": "Marketplaces & E-commerce",
+      "desc": "Catalogs, payments, logistics and sales integrations."
+    },
+    {
+      "icon": "📊",
+      "title": "Dashboards & BI",
+      "desc": "Real-time data, metrics and visualizations that drive decisions."
+    },
+    {
+      "icon": "🔌",
+      "title": "APIs & Integrations",
+      "desc": "Connecting systems, microservices and automation across your tools."
+    }
   ],
   "systemsTechTitle": "The right stack for every challenge",
   "systemsTechSubtitle": "We pick the technology based on the project's needs — performance, scale and security first.",
   "systemsProcessTitle": "How we build",
   "systemsProcessSubtitle": "A clear process, from the first diagnosis to the system's continuous evolution.",
   "systemsProcessSteps": [
-    { "title": "Discovery & Architecture", "desc": "We understand the business, model the data and design the architecture before writing code." },
-    { "title": "Agile Development", "desc": "Incremental delivery, testable code and visibility of progress at every step." },
-    { "title": "Scale & Security", "desc": "Performance, infrastructure and data protection designed to grow with you." },
-    { "title": "Continuous Evolution", "desc": "Monitoring, support and ongoing improvements after launch." }
+    {
+      "title": "Discovery & Architecture",
+      "desc": "We understand the business, model the data and design the architecture before writing code."
+    },
+    {
+      "title": "Agile Development",
+      "desc": "Incremental delivery, testable code and visibility of progress at every step."
+    },
+    {
+      "title": "Scale & Security",
+      "desc": "Performance, infrastructure and data protection designed to grow with you."
+    },
+    {
+      "title": "Continuous Evolution",
+      "desc": "Monitoring, support and ongoing improvements after launch."
+    }
   ],
   "systemsCtaTitle": "Got a system in mind?",
   "systemsCtaDesc": "Tell us the challenge. We'll design the ideal technical solution and the path to make it real.",
@@ -577,6 +613,8 @@
   "ctaHeading": "Let's Talk About Your Processes",
   "ctaMessage": "Tell us about your day-to-day operations. Together, we can identify automation, AI, or optimization opportunities that make a real difference for your business.",
   "metaTitle": "WB - Digital Solutions | Home",
+  "metaTitle_home": "WB Digital Solutions | Websites, Systems, Automation & AI",
+  "metaDescription_home": "Custom websites, business systems, automation and AI solutions that turn technology into results for your company.",
   "metaDescription": "WB Digital Solutions specializes in providing innovative and personalized digital solutions for businesses. Transform your company with our expertise in web development, AI, and automation.",
   "metaOgTitle": "WB Digital Solutions | Digital Solutions for Businesses",
   "metaTwitterTitle": "Digital Solutions for Businesses",

@@ -11,7 +11,7 @@ export const getStaticProps = makeI18nStaticProps();
 function Index() {
     return (
         <div className="w-full">
-          <PageHead />
+          <PageHead pageKey="home" />
             <LanguageRouter />
             <Home />
         </div>

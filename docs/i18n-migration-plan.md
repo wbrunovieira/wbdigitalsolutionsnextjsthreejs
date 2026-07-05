@@ -55,7 +55,7 @@ CV coexistence: built-in i18n also creates `/pt/dev/...`-style variants of the C
 - [x] Confirm CV subdomain rewrites and per-host assets are untouched.
 
 ### P4 — Polish
-- [ ] Per-locale OG cards for the main pages (reuse the Playwright generator from the CV work) — at minimum a localized og-home per language. NOT DONE YET; explicitly a follow-up, does not block the merge (og:title/description are already localized per URL).
+- [x] Per-locale OG cards: og-home{,-pt,-it,-es}.jpg rebuilt with the official circles mark and the services strip localized; PageHead picks the default og:image by locale. Owner approved the sheet.
 - [x] GA4 note: paths gain locale prefixes; DECISION: no action now, revisit reports after launch.
 - [x] Bundle/props audit: /pt home total weight measured at 895 KiB on the preview (acceptable); revisit message-splitting only if pages get heavier.
 
