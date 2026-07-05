@@ -129,7 +129,7 @@ export default function NewsletterPage() {
 
   return (
     <>
-      <PageHead customTitle="Newsletter | WB Digital Solutions" />
+      <PageHead pageKey="newsletter" customTitle="Newsletter | WB Digital Solutions" />
 
       <div className="min-h-screen bg-custom-gradient flex flex-col items-center justify-center px-4 py-16 relative overflow-hidden">
 

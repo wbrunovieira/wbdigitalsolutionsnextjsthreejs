@@ -14,7 +14,7 @@ import {
   getBlogPostSchema,
   getLocalBusinessSchema
 } from "@/utils/schemaHelpers";
-import { SITE_BASE_URL, buildSeoUrls } from "@/lib/seoUrls";
+import { SITE_BASE_URL, buildSeoUrls, defaultOgImage } from "@/lib/seoUrls";
 
 /** JSON-LD Service schema name per service page key. */
 const SERVICE_NAME_BY_PAGE: Record<string, string> = {
@@ -93,15 +93,13 @@ const PageHead: React.FC<PageHeadProps> = ({
   const { canonicalUrl, hreflangs, ogLocale, ogLocaleAlternates } =
     buildSeoUrls(router.locale ?? router.defaultLocale, router.asPath);
 
-  // Per-page social image when provided, else the LOCALIZED raster default
-  // (og-home.jpg = en; og-home-{pt,it,es}.jpg carry the services strip in
-  // each language). NOTE: og/twitter images must be raster (JPG/PNG) — social
-  // platforms do not render SVG, so the brand SVG logo would show no preview.
-  const urlLocale = router.locale ?? router.defaultLocale ?? "en";
-  const localizedDefaultOg = `${baseUrl}/img/og-home${urlLocale === "en" ? "" : `-${urlLocale}`}.jpg`;
+  // Explicit social image when provided (e.g. project screenshots), else the
+  // page's own localized card (og-<pageKey>[-<locale>].jpg, home as fallback).
+  // NOTE: og/twitter images must be raster (JPG/PNG) — social platforms do
+  // not render SVG, so the brand SVG logo would show no preview.
   const ogImage = customImage
     ? (customImage.startsWith("http") ? customImage : `${baseUrl}${customImage}`)
-    : localizedDefaultOg;
+    : defaultOgImage(pageKey, router.locale ?? router.defaultLocale);
 
   // Generate schemas based on page type
   const schemas = [];

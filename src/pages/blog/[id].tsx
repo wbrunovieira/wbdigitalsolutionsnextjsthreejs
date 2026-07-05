@@ -80,7 +80,8 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, postId, ssrLangKey })
 
   return (
     <>
-      <PageHead 
+      <PageHead
+        pageKey="blog"
         customTitle={`${translation.title} | WB Blog`}
         blogPost={{
           title: translation.title,
