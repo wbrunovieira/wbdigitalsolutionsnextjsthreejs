@@ -1,6 +1,6 @@
 # i18n URL Migration Plan (www.wbdigitalsolutions.com)
 
-Branch: `feat/i18n-locale-urls` · Status: WAVES 0-4 DONE, gate green on localhost AND preview; awaiting owner review for merge (P6)
+Branch: `feat/i18n-locale-urls` · Status: SHIPPED 2026-07-05. Gate 100% green in PRODUCTION (56 URLs x 7 checks); Lighthouse /pt mobile Perf 93 / SEO 100 / A11y 100 / BP 100. Includes the post-merge incident fix (host rewrites vs locale:false, see scripts/cv-host-check.sh); GSC sitemap resubmission pending (owner).
 
 ## Why
 
@@ -74,9 +74,9 @@ CV coexistence: built-in i18n also creates `/pt/dev/...`-style variants of the C
 - [~] Lighthouse spot-check (mobile) on `/pt`: A11y 100 / BP 100 verified on the preview; SEO showed 69 ONLY from the preview's own X-Robots-Tag noindex (single failing audit) and Perf 85 from cold-CDN LCP (4.1s; TBT 90ms, CLS 0). Perf ≥ 90 + SEO 100 must be re-verified on PRODUCTION right after merge (moved to P6).
 
 ### P6 — Rollout & monitoring
-- [ ] Vercel preview URL from the branch → owner review (nothing merges to main before his OK — align-before-deploy rule).
-- [ ] Merge → deploy → re-run the P5 capture against production.
-- [ ] GSC: resubmit sitemap, then monitor Indexing → Pages weekly; expect ranking flux for 2–6 weeks while hreflang settles.
+- [x] Owner reviewed and approved; production build ran before the merge.
+- [x] Merged + deployed (one incident: CV host rewrites broke under i18n; rolled back in ~3 min, fixed with internal locale-prefixed sources, redeployed). Gate + Lighthouse green in production; CV hosts verified (now scripted in scripts/cv-host-check.sh).
+- [ ] GSC: owner resubmits the sitemap, then monitor Indexing → Pages weekly; expect ranking flux for 2-6 weeks while hreflang settles.
 
 ## Risks
 
