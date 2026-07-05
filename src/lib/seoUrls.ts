@@ -27,6 +27,28 @@ export const OG_LOCALE_BY_URL_LOCALE: Record<UrlLocale, string> = {
 const isUrlLocale = (value: string): value is UrlLocale =>
   (URL_LOCALES as readonly string[]).includes(value);
 
+/** Pages that have their own localized og card set (og-<key>[-<locale>].jpg). */
+const OG_CARD_KEYS = new Set([
+  "home",
+  "websites",
+  "systems",
+  "ai",
+  "automation",
+  "projects",
+  "contact",
+  "blog",
+  "newsletter",
+]);
+
+/** Localized default social image: the page's own card when it has one,
+    else the home card, always in the URL's language. */
+export function defaultOgImage(pageKey: string | undefined, routerLocale: string | undefined): string {
+  const locale = routerLocale && isUrlLocale(routerLocale) ? routerLocale : DEFAULT_URL_LOCALE;
+  const key = pageKey && OG_CARD_KEYS.has(pageKey) ? pageKey : "home";
+  const suffix = locale === DEFAULT_URL_LOCALE ? "" : `-${locale}`;
+  return `${SITE_BASE_URL}/img/og-${key}${suffix}.jpg`;
+}
+
 /** Normalize a router.asPath to a clean path: no query string, no hash. */
 export function stripQueryAndHash(asPath: string): string {
   return asPath.split(/[?#]/)[0] || "/";
