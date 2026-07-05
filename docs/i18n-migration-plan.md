@@ -1,6 +1,6 @@
 # i18n URL Migration Plan (www.wbdigitalsolutions.com)
 
-Branch: `feat/i18n-locale-urls` · Status: PLANNED (investigation done, implementation not started)
+Branch: `feat/i18n-locale-urls` · Status: WAVES 0-4 DONE, gate green on localhost AND preview; awaiting owner review for merge (P6)
 
 ## Why
 
@@ -36,42 +36,42 @@ CV coexistence: built-in i18n also creates `/pt/dev/...`-style variants of the C
 ## Phases
 
 ### P1 — Foundation (make SSR speak all 4 languages)
-- [ ] `next.config.js`: add the `i18n` block (locales, defaultLocale en, localeDetection false).
-- [ ] `src/lib/i18n.ts`: URL locale ↔ app lang maps (`pt` ↔ `pt-BR`) + `getI18nStaticProps(locale)` helper that loads the locale's messages server-side and returns them as pageProps.
-- [ ] `LanguageContext`: language derives from `router.locale` (fallback to stored preference off-route); `setLanguage` = `router.push(asPath, undefined, { locale })` + persist. Public API (`language`, `setLanguage`, `isLoaded`) unchanged so consumers stay untouched.
-- [ ] `TranslationProvider`: accept `initialMessages` from pageProps (SSR-correct), keep the dynamic import as client-side fallback.
-- [ ] Add `getStaticProps` via the helper to all static pages (required: without it, Next only prerenders the default locale).
-- [ ] `blog/[id]` + `projects/[slug]`: `getStaticPaths` must emit paths × locales (`locales.flatMap`); merge messages into their existing props.
+- [x] `next.config.js`: add the `i18n` block (locales, defaultLocale en, localeDetection false).
+- [x] `src/lib/i18n.ts`: URL locale ↔ app lang maps (`pt` ↔ `pt-BR`) + `getI18nStaticProps(locale)` helper that loads the locale's messages server-side and returns them as pageProps.
+- [x] `LanguageContext`: language derives from `router.locale` (fallback to stored preference off-route); `setLanguage` = `router.push(asPath, undefined, { locale })` + persist. Public API (`language`, `setLanguage`, `isLoaded`) unchanged so consumers stay untouched.
+- [x] `TranslationProvider`: accept `initialMessages` from pageProps (SSR-correct), keep the dynamic import as client-side fallback.
+- [x] Add `getStaticProps` via the helper to all static pages (required: without it, Next only prerenders the default locale).
+- [x] `blog/[id]` + `projects/[slug]`: `getStaticPaths` must emit paths × locales (`locales.flatMap`); merge messages into their existing props.
 
 ### P2 — SEO layer
-- [ ] `PageHead`: locale-aware canonical (self URL with prefix), full hreflang matrix (en, pt-BR, it, es + x-default → en) on every page, `og:locale`, localized og:title/description (already localized once SSR is per-locale).
-- [ ] `/api/sitemap.xml`: emit all 4 URL variants per page (with `xhtml:link` hreflang alternates, as in the CV sitemaps).
-- [ ] `_document` lang: verify it picks the request locale.
+- [x] `PageHead`: locale-aware canonical (self URL with prefix), full hreflang matrix (en, pt-BR, it, es + x-default → en) on every page, `og:locale`, localized og:title/description (already localized once SSR is per-locale).
+- [x] `/api/sitemap.xml`: emit all 4 URL variants per page (with `xhtml:link` hreflang alternates, as in the CV sitemaps).
+- [x] `_document` lang: verify it picks the request locale.
 
 ### P3 — Redirects & routing hygiene
-- [ ] REMOVE the legacy www kill-redirects for `/es|it|pt-BR`.
-- [ ] ADD mapping redirects `/pt-BR/:path*` → `/pt/:path*` (the old sitemap URLs finally resolve to real pages; ends the GSC "Página com redirecionamento" saga cleanly).
-- [ ] Collapse locale-prefixed CV variants: `/:locale(pt|it|es)/dev/:path*` → `/dev/:path*` (idem vendas).
-- [ ] Confirm CV subdomain rewrites and per-host assets are untouched.
+- [x] REMOVE the legacy www kill-redirects for `/es|it|pt-BR`.
+- [x] ADD mapping redirects `/pt-BR/:path*` → `/pt/:path*` (the old sitemap URLs finally resolve to real pages; ends the GSC "Página com redirecionamento" saga cleanly).
+- [x] Collapse locale-prefixed CV variants: `/:locale(pt|it|es)/dev/:path*` → `/dev/:path*` (idem vendas).
+- [x] Confirm CV subdomain rewrites and per-host assets are untouched.
 
 ### P4 — Polish
-- [ ] Per-locale OG cards for the main pages (reuse the Playwright generator from the CV work) — at minimum a localized og-home per language.
-- [ ] GA4 note: paths gain locale prefixes; decide on content grouping / no action.
-- [ ] Bundle/props audit: whole-locale messages ride each page's props; if payloads get heavy, split messages per page (follow-up, not a blocker).
+- [x] Per-locale OG cards for the main pages (reuse the Playwright generator from the CV work) — at minimum a localized og-home per language.
+- [x] GA4 note: paths gain locale prefixes; decide on content grouping / no action.
+- [x] Bundle/props audit: whole-locale messages ride each page's props; if payloads get heavy, split messages per page (follow-up, not a blocker).
 
 ### P5 — FINAL ACCEPTANCE GATE (owner-mandated)
 **No phase item above may be checked off as "done" until this gate passes.**
 
-- [ ] Build the validation script `scripts/i18n-seo-check.mjs` (Playwright): for EVERY page × EVERY locale URL (11 pages × 4 locales = 44 URLs + 6 blog posts × 4 = up to 68), render the page and CAPTURE:
+- [x] Build the validation script `scripts/i18n-seo-check.mjs` (Playwright): for EVERY page × EVERY locale URL (11 pages × 4 locales = 44 URLs + 6 blog posts × 4 = up to 68), render the page and CAPTURE:
   - `<title>` and `meta[name=description]` — must be in the URL's language;
   - `link[rel=canonical]` — must be the self locale URL;
   - the full hreflang set — must list all 4 + x-default;
   - `og:title`, `og:description`, `og:image`, `og:url`, `og:locale` and twitter equivalents;
   - `<html lang>` attribute;
   - a content sample (h1/first paragraph) proving the BODY is in the URL's language, not just the meta.
-- [ ] The script outputs a matrix report (URL × captured fields, pass/fail per cell) — failures block the checklist.
-- [ ] Run the same capture on the Vercel PREVIEW deployment of the branch (not only localhost).
-- [ ] Lighthouse spot-check (mobile) on `/pt` home + one localized inner page: Perf ≥ 90, SEO 100.
+- [x] The script outputs a matrix report (URL × captured fields, pass/fail per cell) — failures block the checklist.
+- [x] Run the same capture on the Vercel PREVIEW deployment of the branch (not only localhost).
+- [x] Lighthouse spot-check (mobile) on `/pt` home + one localized inner page: Perf ≥ 90, SEO 100.
 
 ### P6 — Rollout & monitoring
 - [ ] Vercel preview URL from the branch → owner review (nothing merges to main before his OK — align-before-deploy rule).
