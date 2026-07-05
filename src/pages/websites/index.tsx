@@ -11,6 +11,10 @@ import CustomVsGeneric from "@/components/CustomVsGeneric";
 import CTAWebsite from "@/components/WebSiteCTA";
 import { WebsiteHeader } from "@/components/WebsiteHeader";
 import PageHead from "@/components/PageHead";
+import { makeI18nStaticProps } from "@/lib/i18n";
+
+// Per-locale prerender with SSR-correct messages (built-in Next i18n).
+export const getStaticProps = makeI18nStaticProps();
 
 // ssr:false sections get a height-reserving placeholder so they don't grow from
 // 0 on cold load (that growth is a large CLS — see skill perf-seo-audit).

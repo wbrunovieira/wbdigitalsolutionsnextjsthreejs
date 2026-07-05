@@ -6,6 +6,10 @@ import useBlogTranslation from "@/contexts/useBlogTranslation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import PageHead from "@/components/PageHead";
+import { makeI18nStaticProps } from "@/lib/i18n";
+
+// Per-locale prerender with SSR-correct messages (built-in Next i18n).
+export const getStaticProps = makeI18nStaticProps();
 
 const blogList = [
   { id: "do-i-need-a-website" },

@@ -4,6 +4,10 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import PageHead from "@/components/PageHead";
 import SystemsHeader from "@/components/systems/SystemsHeader";
+import { makeI18nStaticProps } from "@/lib/i18n";
+
+// Per-locale prerender with SSR-correct messages (built-in Next i18n).
+export const getStaticProps = makeI18nStaticProps();
 
 // Persistent scroll-driven 3D network (now desktop AND mobile), mounted on the
 // first user gesture so it never blocks initial load / the lab perf trace.

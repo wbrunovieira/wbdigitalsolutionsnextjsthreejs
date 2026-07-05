@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import CTAInvitation from '@/components/AICTA';
 import { AIHeader } from '@/components/AIHeader';
 import PageHead from '@/components/PageHead';
+import { makeI18nStaticProps } from '@/lib/i18n';
 
 // Persistent scroll-driven 3D hero (now desktop AND mobile), mounted on the first
 // user gesture so it never blocks initial load / the lab perf trace.
@@ -80,5 +81,9 @@ const ai: React.FC = () => {
     </main>
   </>)
 };
+
+// Per-locale static generation: prerender this page for every locale with
+// the right messages available during SSR.
+export const getStaticProps = makeI18nStaticProps();
 
 export default ai;
