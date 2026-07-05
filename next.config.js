@@ -9,10 +9,22 @@ const nextConfig = {
     webVitalsAttribution: ['CLS', 'LCP'],
   },
 
+  // URL-locale i18n (see docs/i18n-migration-plan.md): root = en (continuity
+  // with what search engines already indexed), /pt /it /es are additive.
+  // localeDetection off per Google guidance (no Accept-Language redirects);
+  // the language switcher navigates instead. NOTE: every rewrite/redirect
+  // below uses `locale: false` so their sources keep matching raw paths.
+  i18n: {
+    locales: ['en', 'pt', 'it', 'es'],
+    defaultLocale: 'en',
+    localeDetection: false,
+  },
+
   async redirects() {
     return [
       {
         source: '/:path*',
+        locale: false,
         has: [{ type: 'host', value: 'wbdigitalsolutions.com' }],
         destination: 'https://www.wbdigitalsolutions.com/:path*',
         permanent: true,
@@ -23,19 +35,23 @@ const nextConfig = {
       // host: the CV subdomains DO serve real /pt /it /es locale routes.
       {
         source: '/:locale(es|it|pt-BR)',
+        locale: false,
         has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
         destination: '/',
         permanent: true,
       },
       {
         source: '/:locale(es|it|pt-BR)/:path*',
+        locale: false,
         has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
         destination: '/:path*',
         permanent: true,
       },
       // Old static files from the previous site.
-      { source: '/index.html', destination: '/', permanent: true },
-      { source: '/site.html', destination: '/', permanent: true },
+      { source: '/index.html',
+        locale: false, destination: '/', permanent: true },
+      { source: '/site.html',
+        locale: false, destination: '/', permanent: true },
     ];
   },
 
@@ -47,11 +63,13 @@ const nextConfig = {
       beforeFiles: [
         {
           source: '/',
+        locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/dev',
         },
         {
           source: '/',
+        locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/vendas',
         },
@@ -59,11 +77,13 @@ const nextConfig = {
         // [[...lang]] catch-all (the root stays en + x-default).
         {
           source: '/:lang(pt|it|es)',
+        locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/dev/:lang',
         },
         {
           source: '/:lang(en|it|es)',
+        locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/vendas/:lang',
         },
@@ -71,11 +91,13 @@ const nextConfig = {
         // serves its own profile; the main domain falls through to public/llms.txt.
         {
           source: '/llms.txt',
+        locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/llms-brunodev.txt',
         },
         {
           source: '/llms.txt',
+        locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/llms-brunov.txt',
         },
@@ -84,21 +106,25 @@ const nextConfig = {
         // the WB sitemap). The www host falls through to /api/sitemap.xml.
         {
           source: '/sitemap.xml',
+        locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/sitemap-brunodev.xml',
         },
         {
           source: '/sitemap.xml',
+        locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/sitemap-brunov.xml',
         },
         {
           source: '/robots.txt',
+        locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/robots-brunodev.txt',
         },
         {
           source: '/robots.txt',
+        locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/robots-brunov.txt',
         },
@@ -106,6 +132,7 @@ const nextConfig = {
       afterFiles: [
         {
           source: '/sitemap.xml',
+        locale: false,
           destination: '/api/sitemap.xml',
         },
       ],
@@ -117,6 +144,7 @@ const nextConfig = {
       // Long-term cache for immutable 3D models and textures
       {
         source: '/models/:path*',
+        locale: false,
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
@@ -124,6 +152,7 @@ const nextConfig = {
       // Long-term cache for static images
       {
         source: '/img/:path*',
+        locale: false,
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],

@@ -16,15 +16,27 @@ export const TranslationContext = createContext<MessageFormat>(en);
 
 type TranslationProviderProps = {
     children: React.ReactNode;
+    /** Locale messages loaded server-side (pageProps.i18n.messages) so the
+        SSR/SSG HTML is in the URL's language; crawlers never see EN-only. */
+    initialMessages?: MessageFormat;
 };
 
 export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     children,
+    initialMessages,
 }) => {
     const { language } = useLanguage();
-    const [currentMessages, setCurrentMessages] = useState<MessageFormat>(en);
+    const [currentMessages, setCurrentMessages] = useState<MessageFormat>(initialMessages ?? en);
 
+    // Route changes deliver fresh initialMessages via pageProps.
     useEffect(() => {
+        if (initialMessages) setCurrentMessages(initialMessages);
+    }, [initialMessages]);
+
+    // Client-side fallback for pages WITHOUT getStaticProps (e.g. the 3D
+    // experiences): load the locale bundle dynamically as before.
+    useEffect(() => {
+        if (initialMessages) return;
         const langKey = language === "pt" ? "pt-BR" : language;
 
         if (!langKey || langKey === "en") {
@@ -53,7 +65,7 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
         };
 
         loadLocale();
-    }, [language]);
+    }, [language, initialMessages]);
 
     return (
         <TranslationContext.Provider value={currentMessages}>

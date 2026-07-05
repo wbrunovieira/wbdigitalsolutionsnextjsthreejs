@@ -73,7 +73,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <LanguageProvider>
-      <TranslationProvider>
+      {/* SSR-correct messages: pages with getStaticProps ship their locale's
+          messages via pageProps.i18n (see src/lib/i18n.ts). */}
+      <TranslationProvider initialMessages={pageProps.i18n?.messages}>
         {!isCV && <Preloader />}
         <Layout>
           {/* Page transition — OPACITY ONLY on purpose: a transform/filter on this
