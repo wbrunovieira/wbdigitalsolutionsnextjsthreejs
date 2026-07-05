@@ -12,8 +12,10 @@ const nextConfig = {
   // URL-locale i18n (see docs/i18n-migration-plan.md): root = en (continuity
   // with what search engines already indexed), /pt /it /es are additive.
   // localeDetection off per Google guidance (no Accept-Language redirects);
-  // the language switcher navigates instead. NOTE: every rewrite/redirect
-  // below uses `locale: false` so their sources keep matching raw paths.
+  // the language switcher navigates instead. NOTE: with i18n enabled,
+  // `locale: false` rules match the INTERNAL locale-prefixed path: public
+  // '/x' arrives as '/en/x' (default locale gets prefixed internally) and
+  // '/pt/x' stays '/pt/x'. Sources below are written in that internal form.
   i18n: {
     locales: ['en', 'pt', 'it', 'es'],
     defaultLocale: 'en',
@@ -33,14 +35,14 @@ const nextConfig = {
       // locale routes (/es and /it old URLs now ARE live locale routes, so
       // their kill-redirects are gone). Scoped to www like before.
       {
-        source: '/pt-BR',
+        source: '/en/pt-BR',
         locale: false,
         has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
         destination: '/pt',
         permanent: true,
       },
       {
-        source: '/pt-BR/:path*',
+        source: '/en/pt-BR/:path*',
         locale: false,
         has: [{ type: 'host', value: 'www.wbdigitalsolutions.com' }],
         destination: '/pt/:path*',
@@ -74,10 +76,8 @@ const nextConfig = {
         permanent: true,
       },
       // Old static files from the previous site.
-      { source: '/index.html',
-        locale: false, destination: '/', permanent: true },
-      { source: '/site.html',
-        locale: false, destination: '/', permanent: true },
+      { source: '/en/index.html', locale: false, destination: '/', permanent: true },
+      { source: '/en/site.html', locale: false, destination: '/', permanent: true },
     ];
   },
 
@@ -86,44 +86,57 @@ const nextConfig = {
       // beforeFiles runs before filesystem/page resolution — required so each
       // personal-CV subdomain root maps to its page even though pages/index.tsx
       // exists. brunodev → technical (/dev), brunov → sales (/vendas).
+      // i18n GOTCHA (took production down once): with the i18n block enabled,
+      // `locale: false` sources are matched against the INTERNAL locale-
+      // prefixed path — the public "/" arrives as "/en", "/pt" stays "/pt",
+      // and destinations must be locale-prefixed too. Every source below
+      // therefore carries the locale segment explicitly.
       beforeFiles: [
         {
-          source: '/',
-        locale: false,
+          source: '/en',
+          locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
-          destination: '/dev',
+          destination: '/en/dev',
         },
         {
-          source: '/',
-        locale: false,
+          source: '/en',
+          locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
-          destination: '/vendas',
+          destination: '/en/vendas',
         },
-        // Locale routes on the CV subdomains: /pt /it /es map to the page's
-        // [[...lang]] catch-all (the root stays en + x-default).
+        // Locale routes on the CV subdomains map to the pages' own
+        // [[...lang]] catch-alls under the default site locale.
         {
           source: '/:lang(pt|it|es)',
-        locale: false,
+          locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
-          destination: '/dev/:lang',
+          destination: '/en/dev/:lang',
         },
         {
-          source: '/:lang(en|it|es)',
-        locale: false,
+          source: '/:lang(pt|it|es)',
+          locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
-          destination: '/vendas/:lang',
+          destination: '/en/vendas/:lang',
+        },
+        // brunov's English slug (public /en): with the default locale
+        // unprefixed, the public "/en" path arrives internally as "/en/en".
+        {
+          source: '/en/en',
+          locale: false,
+          has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
+          destination: '/en/vendas/en',
         },
         // Per-host llms.txt (LLM-friendly site summary): each CV subdomain
         // serves its own profile; the main domain falls through to public/llms.txt.
         {
-          source: '/llms.txt',
-        locale: false,
+          source: '/en/llms.txt',
+          locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/llms-brunodev.txt',
         },
         {
-          source: '/llms.txt',
-        locale: false,
+          source: '/en/llms.txt',
+          locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/llms-brunov.txt',
         },
@@ -131,34 +144,34 @@ const nextConfig = {
         // protocol is same-host only, and the shared robots.txt advertised
         // the WB sitemap). The www host falls through to /api/sitemap.xml.
         {
-          source: '/sitemap.xml',
-        locale: false,
+          source: '/en/sitemap.xml',
+          locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/sitemap-brunodev.xml',
         },
         {
-          source: '/sitemap.xml',
-        locale: false,
+          source: '/en/sitemap.xml',
+          locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/sitemap-brunov.xml',
         },
         {
-          source: '/robots.txt',
-        locale: false,
+          source: '/en/robots.txt',
+          locale: false,
           has: [{ type: 'host', value: 'brunodev.wbdigitalsolutions.com' }],
           destination: '/robots-brunodev.txt',
         },
         {
-          source: '/robots.txt',
-        locale: false,
+          source: '/en/robots.txt',
+          locale: false,
           has: [{ type: 'host', value: 'brunov.wbdigitalsolutions.com' }],
           destination: '/robots-brunov.txt',
         },
       ],
       afterFiles: [
         {
-          source: '/sitemap.xml',
-        locale: false,
+          source: '/en/sitemap.xml',
+          locale: false,
           destination: '/api/sitemap.xml',
         },
       ],
@@ -170,7 +183,6 @@ const nextConfig = {
       // Long-term cache for immutable 3D models and textures
       {
         source: '/models/:path*',
-        locale: false,
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
@@ -178,7 +190,6 @@ const nextConfig = {
       // Long-term cache for static images
       {
         source: '/img/:path*',
-        locale: false,
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
