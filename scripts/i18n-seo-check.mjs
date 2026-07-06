@@ -73,8 +73,72 @@ function readBlogPostIds() {
   return ['do-i-need-a-website', 'how-emotional-design-can', 'digital-can-transform-company', 'chatgpt-for-smes', 'increase-pme-sales'];
 }
 
-const STATIC_PAGES = ['', '/websites', '/systems', '/ai', '/automation', '/projects', '/contact', '/blog', '/newsletter'];
-const PAGES = [...STATIC_PAGES, ...readBlogPostIds().map((id) => `/blog/${id}`)];
+/**
+ * AUTO-DISCOVERY (owner-mandated): the page list is derived from the
+ * filesystem + data sources so a NEW page/post/project enters the gate the
+ * day it is born; nothing is silently out of coverage. CV subdomain routes,
+ * full-screen 3D pages and API routes are excluded by design.
+ */
+const SKIP_DIRS = new Set(['api', 'dev', 'vendas', '3d-showcase', '3d-tunnel']);
+
+function discoverStaticPages() {
+  const pages = [];
+  const walk = (dir, route) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (e.isDirectory()) {
+        if (SKIP_DIRS.has(e.name)) continue;
+        walk(path.join(dir, e.name), `${route}/${e.name}`);
+      } else if (e.name.endsWith('.tsx') && !e.name.startsWith('_') && !e.name.includes('[')) {
+        const base = e.name.replace(/\.tsx$/, '');
+        pages.push(base === 'index' ? route : `${route}/${base}`);
+      }
+    }
+  };
+  walk(path.join(ROOT, 'src/pages'), '');
+  return pages.sort();
+}
+
+function readProjectSlugs() {
+  try {
+    const src = fs.readFileSync(path.join(ROOT, 'src/data/projectDetails.ts'), 'utf8');
+    const body = src.split(/export const PROJECT_DETAILS[^{]*\{/)[1] ?? '';
+    return [...body.matchAll(/^\s{2}['"]?([a-z0-9-]+)['"]?:/gm)].map((m) => m[1]);
+  } catch {
+    return [];
+  }
+}
+
+const STATIC_PAGES = discoverStaticPages();
+const PAGES = [
+  ...STATIC_PAGES,
+  ...readBlogPostIds().map((id) => `/blog/${id}`),
+  ...readProjectSlugs().map((slug) => `/projects/${slug}`),
+];
+
+/** Page <-> sitemap parity: a page missing from the sitemap or a sitemap URL
+    with no page behind it (like the old dead /experience entry) is a failure. */
+async function sitemapParityFailures() {
+  try {
+    const res = await fetch(BASE + '/sitemap.xml');
+    if (!res.ok) return [{ url: '/sitemap.xml', check: 'sitemap', detail: `HTTP ${res.status}` }];
+    const xml = await res.text();
+    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) =>
+      new URL(m[1]).pathname.replace(/\/$/, '').replace(/^\/(pt|it|es)(?=\/|$)/, '')
+    );
+    const inSitemap = new Set(locs);
+    const expected = new Set(PAGES);
+    const failures = [];
+    for (const p of expected) {
+      if (!inSitemap.has(p)) failures.push({ url: p || '/', check: 'sitemap', detail: 'page exists but is MISSING from sitemap.xml' });
+    }
+    for (const p of inSitemap) {
+      if (!expected.has(p)) failures.push({ url: p || '/', check: 'sitemap', detail: 'sitemap URL has no page behind it (dead entry)' });
+    }
+    return failures;
+  } catch (err) {
+    return [{ url: '/sitemap.xml', check: 'sitemap', detail: `fetch failed: ${err.message}` }];
+  }
+}
 
 const LOCALES = [
   { url: '', hreflang: 'en', htmlLang: 'en' },
@@ -87,7 +151,11 @@ const REQUIRED_HREFLANGS = [...LOCALES.map((l) => l.hreflang), 'x-default'];
 // ---------- Capture (runs in the browser) ----------
 const CAPTURE_FN = () => {
   const meta = (sel) => document.querySelector(sel)?.getAttribute('content')?.trim() ?? '';
-  const sampleEl = document.querySelector('h1') || document.querySelector('h2') || document.querySelector('p');
+  // Body-language sample: prefer the first real paragraph. An h1 is often a
+  // proper noun (project/brand names) that is legitimately identical across
+  // languages and would false-positive the SAME_AS_EN check.
+  const paragraphs = [...document.querySelectorAll('p')].filter((p) => (p.textContent ?? '').trim().length > 40);
+  const sampleEl = paragraphs[0] || document.querySelector('h2') || document.querySelector('h1');
   return {
     title: document.title.trim(),
     description: meta('meta[name="description"]'),
@@ -195,6 +263,9 @@ async function main() {
   const failures = rows.flatMap((r) =>
     CHECKS.filter((c) => !r.checks[c].pass).map((c) => ({ url: r.url, check: c, detail: r.checks[c].detail }))
   );
+  const parity = await sitemapParityFailures();
+  if (parity.length === 0) console.log(`\nsitemap parity: ${PAGES.length} pages <-> sitemap.xml ✓`);
+  failures.push(...parity);
   if (failures.length) {
     console.log(`\n${failures.length} FAILURE(S):`);
     for (const f of failures) console.log(`  ✗ ${f.url} [${f.check}] ${f.detail}`);

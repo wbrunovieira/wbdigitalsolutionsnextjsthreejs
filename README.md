@@ -4,6 +4,8 @@ An **interactive 3D marketing site** built with Next.js and React Three Fiber â€
 
 ðŸ”— **Live demo:** https://wbdigitalsolutionsnextjsthreejs.vercel.app
 
+[![CI](https://github.com/wbrunovieira/wbdigitalsolutionsnextjsthreejs/actions/workflows/ci.yml/badge.svg)](https://github.com/wbrunovieira/wbdigitalsolutionsnextjsthreejs/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)
 ![Three.js](https://img.shields.io/badge/Three.js-000000?logo=three.js&logoColor=white)
 ![React Three Fiber](https://img.shields.io/badge/React_Three_Fiber-black?logo=react&logoColor=61DAFB)

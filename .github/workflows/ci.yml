@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  deployment_status:
+
+jobs:
+  # Build + SEO gate BEFORE anything ships: lint, typecheck, production build,
+  # then the auto-discovered i18n gate (every page x 4 locales: title/
+  # description/canonical/hreflang/og/html-lang/content language + sitemap
+  # parity) and the CV host-rewrite matrix (the layer that once broke
+  # production silently). A new page/post/project is covered automatically.
+  quality:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: npx next lint
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: pnpm build
+
+      - name: Install Playwright (gate browser)
+        run: |
+          npm i --no-save playwright@1.61.1
+          npx playwright install --with-deps chromium
+
+      - name: Start production server
+        run: |
+          pnpm start &
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://localhost:3000/ && break
+            sleep 2
+          done
+
+      - name: SEO gate (all pages x locales + sitemap parity)
+        run: node scripts/i18n-seo-check.mjs
+
+      - name: CV host-rewrite matrix
+        run: bash scripts/cv-host-check.sh
+
+  # After Vercel promotes a production deployment, verify the LIVE site:
+  # the same gate against www + the CV subdomains over real DNS.
+  production-check:
+    if: >-
+      github.event_name == 'deployment_status' &&
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment_status.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright (gate browser)
+        run: |
+          npm i --no-save playwright@1.61.1
+          npx playwright install --with-deps chromium
+
+      - name: SEO gate against production
+        run: node scripts/i18n-seo-check.mjs --base=https://www.wbdigitalsolutions.com
+
+      - name: CV subdomains in production
+        run: bash scripts/cv-prod-check.sh
