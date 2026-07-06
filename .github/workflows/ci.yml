@@ -63,12 +63,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: pnpm
 
       - name: SEO gate against production
         run: node scripts/i18n-seo-check.mjs --base=https://www.wbdigitalsolutions.com
 
       - name: CV subdomains in production
         run: bash scripts/cv-prod-check.sh
+
+      # Client-side check: the CV subdomains' locale URLs must not be erased
+      # back to '/' by Next i18n on hydration (needs a real browser; the fetch
+      # gates only see the correct SSR). Playwright installs via pnpm, not npm.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: CV locale-URL stability (browser)
+        run: node scripts/cv-locale-url-check.mjs
