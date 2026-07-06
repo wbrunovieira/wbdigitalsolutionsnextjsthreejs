@@ -38,11 +38,6 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Install Playwright (gate browser)
-        run: |
-          npm i --no-save playwright@1.61.1
-          npx playwright install --with-deps chromium
-
       - name: Start production server
         run: |
           pnpm start &
@@ -71,11 +66,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Install Playwright (gate browser)
-        run: |
-          npm i --no-save playwright@1.61.1
-          npx playwright install --with-deps chromium
 
       - name: SEO gate against production
         run: node scripts/i18n-seo-check.mjs --base=https://www.wbdigitalsolutions.com

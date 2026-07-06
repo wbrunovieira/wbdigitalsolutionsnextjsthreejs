@@ -2,31 +2,28 @@
 /**
  * i18n SEO acceptance gate (docs/i18n-migration-plan.md, P5).
  *
- * For EVERY page x locale URL, renders the page with Playwright and verifies:
+ * For EVERY page x locale URL, fetches the server-rendered HTML and verifies:
  *   canonical = self locale URL, full hreflang set (4 locales + x-default),
  *   og:url = canonical, <html lang> matches, non-empty title/description,
  *   and that pt/it/es title+description+body sample DIFFER from the EN render.
+ *
+ * All checked tags are emitted server-side (next/head), so a plain fetch sees
+ * everything a browser would: no Playwright, no browser binary, zero deps.
  *
  * Usage:
  *   node scripts/i18n-seo-check.mjs [--base=http://localhost:3000]
  *                                   [--json=report.json]
  *                                   [--blog=id1,id2]        (override blog post ids)
- *                                   [--pw-path=/abs/node_modules]  (playwright location)
  *
  * Exit code: 0 = all green, 1 = at least one failure.
- * Dependency-free besides Playwright (resolved from local node_modules or --pw-path).
+ * Zero runtime dependencies (Node 18+ global fetch).
  */
-import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const require = createRequire(import.meta.url);
-// Fallback Playwright install used during the migration work sessions.
-const PW_FALLBACK =
-  '/private/tmp/claude-501/-Users-brunovieira-projects-wbdigitalsolutionsnextjsthreejs/ecb46dd9-1853-4e88-82f3-77f7e5938774/scratchpad/pw/node_modules';
 
 // ---------- CLI ----------
 const args = Object.fromEntries(
@@ -36,27 +33,6 @@ const args = Object.fromEntries(
   })
 );
 const BASE = String(args.base || 'http://localhost:3000').replace(/\/$/, '');
-
-// ---------- Playwright resolution ----------
-function loadChromium() {
-  const candidates = [];
-  if (args['pw-path']) candidates.push(String(args['pw-path']));
-  try {
-    return require('playwright').chromium;
-  } catch {
-    /* not installed locally, try candidates */
-  }
-  candidates.push(PW_FALLBACK);
-  for (const dir of candidates) {
-    try {
-      return createRequire(path.join(dir, 'noop.js'))('playwright').chromium;
-    } catch {
-      /* try next */
-    }
-  }
-  console.error('Could not resolve Playwright. Install it or pass --pw-path=/abs/path/to/node_modules');
-  process.exit(2);
-}
 
 // ---------- Pages & locales ----------
 function readBlogPostIds() {
@@ -148,34 +124,53 @@ const LOCALES = [
 ];
 const REQUIRED_HREFLANGS = [...LOCALES.map((l) => l.hreflang), 'x-default'];
 
-// ---------- Capture (runs in the browser) ----------
-const CAPTURE_FN = () => {
-  const meta = (sel) => document.querySelector(sel)?.getAttribute('content')?.trim() ?? '';
+// ---------- Capture (parsed from the server-rendered HTML, no browser) ----------
+const ENTITIES = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&#x27;': "'", '&apos;': "'", '&nbsp;': ' ' };
+const decode = (s) => s.replace(/&(?:amp|lt|gt|quot|apos|nbsp|#39|#x27);/g, (m) => ENTITIES[m] ?? m);
+const stripTags = (s) => decode(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+
+// Find a <meta> tag identified by attr=val (order-agnostic), then read its content.
+function metaContent(html, attr, val) {
+  const tag = html.match(new RegExp(`<meta[^>]*\\b${attr}=["']${val}["'][^>]*>`, 'i'))?.[0];
+  return tag ? decode((tag.match(/\bcontent=["']([^"']*)["']/i)?.[1] ?? '').trim()) : '';
+}
+// Find a <link rel="relVal"> tag and read its href.
+function linkHref(html, relVal) {
+  const tag = html.match(new RegExp(`<link[^>]*\\brel=["']${relVal}["'][^>]*>`, 'i'))?.[0];
+  return tag ? (tag.match(/\bhref=["']([^"']*)["']/i)?.[1] ?? '') : '';
+}
+
+// Mirror of the old browser capture, read straight from the SSR markup.
+// hreflang is matched case-insensitively (next/head emits it as `hrefLang`).
+function captureFromHtml(html) {
   // Body-language sample: prefer the first real paragraph. An h1 is often a
   // proper noun (project/brand names) that is legitimately identical across
   // languages and would false-positive the SAME_AS_EN check.
-  const paragraphs = [...document.querySelectorAll('p')].filter((p) => (p.textContent ?? '').trim().length > 40);
-  const sampleEl = paragraphs[0] || document.querySelector('h2') || document.querySelector('h1');
+  const sample =
+    [...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map((m) => stripTags(m[1])).find((t) => t.length > 40) ||
+    stripTags(html.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] ?? '');
   return {
-    title: document.title.trim(),
-    description: meta('meta[name="description"]'),
-    canonical: document.querySelector('link[rel="canonical"]')?.getAttribute('href') ?? '',
-    hreflangs: [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) => ({
-      hreflang: l.getAttribute('hreflang'),
-      href: l.getAttribute('href'),
-    })),
-    ogTitle: meta('meta[property="og:title"]'),
-    ogDescription: meta('meta[property="og:description"]'),
-    ogImage: meta('meta[property="og:image"]'),
-    ogUrl: meta('meta[property="og:url"]'),
-    ogLocale: meta('meta[property="og:locale"]'),
-    twitterTitle: meta('meta[name="twitter:title"]') || meta('meta[property="twitter:title"]'),
-    twitterDescription: meta('meta[name="twitter:description"]') || meta('meta[property="twitter:description"]'),
-    twitterImage: meta('meta[name="twitter:image"]') || meta('meta[property="twitter:image"]'),
-    htmlLang: document.documentElement.getAttribute('lang') ?? '',
-    contentSample: (sampleEl?.textContent ?? '').trim().replace(/\s+/g, ' ').slice(0, 200),
+    title: decode((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? '').trim()),
+    description: metaContent(html, 'name', 'description'),
+    canonical: linkHref(html, 'canonical'),
+    hreflangs: [...html.matchAll(/<link[^>]*\brel=["']alternate["'][^>]*>/gi)]
+      .map((m) => ({
+        hreflang: m[0].match(/\bhreflang=["']([^"']*)["']/i)?.[1] ?? '',
+        href: m[0].match(/\bhref=["']([^"']*)["']/i)?.[1] ?? '',
+      }))
+      .filter((h) => h.hreflang),
+    ogTitle: metaContent(html, 'property', 'og:title'),
+    ogDescription: metaContent(html, 'property', 'og:description'),
+    ogImage: metaContent(html, 'property', 'og:image'),
+    ogUrl: metaContent(html, 'property', 'og:url'),
+    ogLocale: metaContent(html, 'property', 'og:locale'),
+    twitterTitle: metaContent(html, 'name', 'twitter:title') || metaContent(html, 'property', 'twitter:title'),
+    twitterDescription: metaContent(html, 'name', 'twitter:description') || metaContent(html, 'property', 'twitter:description'),
+    twitterImage: metaContent(html, 'name', 'twitter:image') || metaContent(html, 'property', 'twitter:image'),
+    htmlLang: html.match(/<html[^>]*\blang=["']([^"']*)["']/i)?.[1] ?? '',
+    contentSample: sample.slice(0, 200),
   };
-};
+}
 
 // Normalize a URL to its pathname without trailing slash ('' for root).
 function pathOf(url) {
@@ -225,10 +220,19 @@ function runChecks(cap, page, locale, enCap) {
 }
 
 // ---------- Main ----------
+async function fetchHtml(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 30000);
+  try {
+    const res = await fetch(url, { redirect: 'follow', signal: ctrl.signal, headers: { 'user-agent': 'i18n-seo-gate' } });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.text();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function main() {
-  const chromium = loadChromium();
-  const browser = await chromium.launch();
-  const bpage = await (await browser.newContext()).newPage();
   const rows = [];
 
   for (const page of PAGES) {
@@ -238,9 +242,7 @@ async function main() {
       const url = BASE + locale.url + (page || (locale.url ? '' : '/'));
       const row = { url: (locale.url + page) || '/', page, locale: locale.hreflang, fullUrl: url };
       try {
-        await bpage.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-        await bpage.waitForTimeout(600); // small settle wait for client hydration
-        row.capture = await bpage.evaluate(CAPTURE_FN);
+        row.capture = captureFromHtml(await fetchHtml(url));
         if (locale === enLocale) enCap = row.capture;
         row.checks = runChecks(row.capture, page, locale, enCap);
       } catch (err) {
@@ -250,7 +252,6 @@ async function main() {
       rows.push(row);
     }
   }
-  await browser.close();
 
   // ---------- Terminal matrix ----------
   const urlWidth = Math.max(...rows.map((r) => r.url.length), 4) + 2;
