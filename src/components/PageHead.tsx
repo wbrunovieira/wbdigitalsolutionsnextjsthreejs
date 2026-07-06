@@ -35,6 +35,9 @@ interface PageHeadProps {
   customTitle?: string;
   customDescription?: string;
   customImage?: string;
+  // Explicit unprefixed path for canonical/hreflang. Dynamic routes ([slug])
+  // can't rely on router.asPath during SSR prerender, so they pass it straight.
+  canonicalPath?: string;
   blogPost?: {
     title: string;
     description: string;
@@ -50,6 +53,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   customTitle,
   customDescription,
   customImage,
+  canonicalPath,
   blogPost,
 }) => {
   const t = useTranslations();
@@ -99,7 +103,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   // no locale prefix under built-in i18n, so the prefix is added here).
   const baseUrl = SITE_BASE_URL;
   const { canonicalUrl, hreflangs, ogLocale, ogLocaleAlternates } =
-    buildSeoUrls(router.locale ?? router.defaultLocale, router.asPath);
+    buildSeoUrls(router.locale ?? router.defaultLocale, canonicalPath ?? router.asPath);
 
   // Explicit social image when provided (e.g. project screenshots), else the
   // page's own localized card (og-<pageKey>[-<locale>].jpg, home as fallback).
