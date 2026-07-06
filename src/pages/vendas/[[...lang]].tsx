@@ -14,19 +14,21 @@ import SalesContact from '@/components/cv/SalesContact';
 import SalesSkeleton from '@/components/cv/SalesSkeleton';
 
 // URL-localized routes (SEO pilot). Audience-first default: the sales
-// profile leads in Portuguese (Brazil-first market), so / = pt-BR +
-// x-default and /en /it /es are the localized variants. (The dev page is
-// the mirror case: its root is en.)
+// Root = en + x-default, consistent with the dev page and the main site:
+// Next's defaultLocale is 'en', which must live at the unprefixed root, so
+// /pt /it /es are the localized variants.
 const BASE = 'https://brunov.wbdigitalsolutions.com';
-const SLUG: Record<CVLang, string> = { 'pt-BR': '', en: '/en', it: '/it', es: '/es' };
-const SLUG_TO_LANG: Record<string, CVLang> = { en: 'en', it: 'it', es: 'es' };
-/** One OG card per locale URL (same identity, localized eyebrow + role). */
+const SLUG: Record<CVLang, string> = { en: '', 'pt-BR': '/pt', it: '/it', es: '/es' };
+const SLUG_TO_LANG: Record<string, CVLang> = { pt: 'pt-BR', it: 'it', es: 'es' };
+/** One OG card per locale URL (same identity, localized eyebrow + role).
+    Unsuffixed = the en root, matching the dev page and the main site. */
 const OG_IMG: Record<CVLang, string> = {
-  'pt-BR': '/img/og-vendas.jpg',
-  en: '/img/og-vendas-en.jpg',
+  en: '/img/og-vendas.jpg',
+  'pt-BR': '/img/og-vendas-pt.jpg',
   it: '/img/og-vendas-it.jpg',
   es: '/img/og-vendas-es.jpg',
 };
+const OG_LOCALE: Record<CVLang, string> = { en: 'en_US', 'pt-BR': 'pt_BR', it: 'it_IT', es: 'es_ES' };
 
 const SEO: Record<CVLang, { title: string; description: string }> = {
   en: {
@@ -68,6 +70,28 @@ export default function SalesCV({ lang }: Props) {
     } catch {
       /* storage unavailable (private mode) */
     }
+  }, [lang]);
+
+  // Built-in Next i18n treats the subdomain's locale prefix (/pt /it /es) as a
+  // locale and, since the client router can't see the edge host-rewrite, it
+  // reconciles the URL back to '/' on hydration, erasing the locale. Re-assert
+  // the intended URL with a raw replaceState (no router nav, so it can't
+  // re-trigger the reconciliation); a short re-check window beats Next's async
+  // pass, then stops. The root locale (SLUG '') is already correct.
+  useEffect(() => {
+    const want = SLUG[lang];
+    if (!want) return;
+    if (window.location.pathname.startsWith('/vendas')) return; // internal www/localhost path
+    let tries = 0;
+    let id = 0;
+    const restore = () => {
+      if (window.location.pathname !== want) {
+        window.history.replaceState(window.history.state, '', want + window.location.search + window.location.hash);
+      }
+      if (++tries < 10) id = window.setTimeout(restore, 100);
+    };
+    id = window.setTimeout(restore, 0);
+    return () => window.clearTimeout(id);
   }, [lang]);
 
   // Pin the language from the URL for every CV component (they all consume
@@ -120,6 +144,12 @@ export default function SalesCV({ lang }: Props) {
         <meta property="og:description" content={seo.description} />
         <meta property="og:url" content={canonical} />
         <meta property="og:image" content={`${BASE}${OG_IMG[lang]}`} />
+        <meta property="og:locale" content={OG_LOCALE[lang]} />
+        {(Object.keys(OG_LOCALE) as CVLang[])
+          .filter((l) => l !== lang)
+          .map((l) => (
+            <meta key={l} property="og:locale:alternate" content={OG_LOCALE[l]} />
+          ))}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
@@ -140,12 +170,12 @@ export default function SalesCV({ lang }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: ['/vendas', '/vendas/en', '/vendas/it', '/vendas/es'],
+  paths: ['/vendas', '/vendas/pt', '/vendas/it', '/vendas/es'],
   fallback: false,
 });
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = (params?.lang as string[] | undefined)?.[0];
-  const lang: CVLang = slug ? SLUG_TO_LANG[slug] : 'pt-BR';
+  const lang: CVLang = slug ? SLUG_TO_LANG[slug] : 'en';
   return { props: { lang } };
 };

@@ -29,6 +29,7 @@ const OG_IMG: Record<CVLang, string> = {
   it: '/img/og-dev-it.jpg',
   es: '/img/og-dev-es.jpg',
 };
+const OG_LOCALE: Record<CVLang, string> = { en: 'en_US', 'pt-BR': 'pt_BR', it: 'it_IT', es: 'es_ES' };
 
 const SEO: Record<CVLang, { title: string; description: string }> = {
   en: {
@@ -70,6 +71,28 @@ export default function DevCV({ lang, projectsPage }: Props) {
     } catch {
       /* storage unavailable (private mode) */
     }
+  }, [lang]);
+
+  // Built-in Next i18n treats the subdomain's locale prefix (/pt /it /es) as a
+  // locale and, since the client router can't see the edge host-rewrite, it
+  // reconciles the URL back to '/' on hydration, erasing the locale. Re-assert
+  // the intended URL with a raw replaceState (no router nav, so it can't
+  // re-trigger the reconciliation); a short re-check window beats Next's async
+  // pass, then stops. The root locale (SLUG '') is already correct.
+  useEffect(() => {
+    const want = SLUG[lang];
+    if (!want) return;
+    if (window.location.pathname.startsWith('/dev')) return; // internal www/localhost path
+    let tries = 0;
+    let id = 0;
+    const restore = () => {
+      if (window.location.pathname !== want) {
+        window.history.replaceState(window.history.state, '', want + window.location.search + window.location.hash);
+      }
+      if (++tries < 10) id = window.setTimeout(restore, 100);
+    };
+    id = window.setTimeout(restore, 0);
+    return () => window.clearTimeout(id);
   }, [lang]);
 
   // Pin the language from the URL for every CV component (they all consume
@@ -127,6 +150,12 @@ export default function DevCV({ lang, projectsPage }: Props) {
           <meta property="og:description" content={seo.description} />
           <meta property="og:url" content={canonical} />
           <meta property="og:image" content={`${BASE}${OG_IMG[lang]}`} />
+          <meta property="og:locale" content={OG_LOCALE[lang]} />
+          {(Object.keys(OG_LOCALE) as CVLang[])
+            .filter((l) => l !== lang)
+            .map((l) => (
+              <meta key={l} property="og:locale:alternate" content={OG_LOCALE[l]} />
+            ))}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:description" content={seo.description} />
