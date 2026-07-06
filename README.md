@@ -2,7 +2,7 @@
 
 An **interactive 3D marketing site** built with Next.js and React Three Fiber — custom GLSL shaders, GLTF scenes, post-processing and physics, choreographed with GSAP.
 
-🔗 **Live demo:** https://wbdigitalsolutionsnextjsthreejs.vercel.app
+🔗 **Live demo:** https://www.wbdigitalsolutions.com
 
 [![CI](https://github.com/wbrunovieira/wbdigitalsolutionsnextjsthreejs/actions/workflows/ci.yml/badge.svg)](https://github.com/wbrunovieira/wbdigitalsolutionsnextjsthreejs/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
