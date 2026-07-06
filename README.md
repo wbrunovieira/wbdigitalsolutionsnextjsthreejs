@@ -13,6 +13,14 @@ An **interactive 3D marketing site** built with Next.js and React Three Fiber �
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
+## ✨ 3D in motion
+
+| Home — orbiting hero | Hyperspace tunnel | Virtual 3D office |
+|:--:|:--:|:--:|
+| ![Home 3D hero](docs/media/hero-3d.gif) | ![Hyperspace tunnel](docs/media/tunnel-3d.gif) | ![Virtual 3D office](docs/media/office-3d.gif) |
+
+> Live: **[wbdigitalsolutions.com](https://www.wbdigitalsolutions.com)** · immersive routes `/3d-tunnel` and `/3d-showcase`
+
 ## Highlights
 
 - **React Three Fiber + Three.js** — declarative 3D scenes: an office showcase, an animated tunnel (with an enhanced variant), and a "canvas text masterclass" scene.
