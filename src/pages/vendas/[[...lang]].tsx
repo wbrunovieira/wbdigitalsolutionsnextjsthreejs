@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useEffect, useMemo } from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { LanguageContext, useLanguage } from '@/contexts/LanguageContext';
+import { LanguageContext } from '@/contexts/LanguageContext';
 import type { CVLang } from '@/content/cv';
 import SalesHero from '@/components/cv/SalesHero';
 import SalesPhilosophy from '@/components/cv/SalesPhilosophy';
@@ -54,15 +54,20 @@ const SEO: Record<CVLang, { title: string; description: string }> = {
 type Props = { lang: CVLang };
 
 export default function SalesCV({ lang }: Props) {
-  const globalLang = useLanguage();
   const seo = SEO[lang];
   const canonical = `${BASE}${SLUG[lang]}`;
 
-  // Keep the site-wide language (localStorage) in sync with the route locale.
-  // Deps intentionally limited to lang: re-running on globalLang identity
-  // changes would loop the sync.
+  // Persist the route locale for the main site's "continue in your language"
+  // hint. Write localStorage directly: the global setLanguage now NAVIGATES
+  // (router.push with a locale), and on this subdomain router.locale is always
+  // the internal 'en', so calling it fired on every non-en page and looped the
+  // UI (rapid language flicker).
   useEffect(() => {
-    if (globalLang.language !== lang) globalLang.setLanguage(lang);
+    try {
+      localStorage.setItem('language', lang);
+    } catch {
+      /* storage unavailable (private mode) */
+    }
   }, [lang]);
 
   // Pin the language from the URL for every CV component (they all consume
@@ -73,7 +78,11 @@ export default function SalesCV({ lang }: Props) {
       language: lang as string,
       isLoaded: true,
       setLanguage: (l: string) => {
-        globalLang.setLanguage(l);
+        try {
+          localStorage.setItem('language', l);
+        } catch {
+          /* storage unavailable (private mode) */
+        }
         const base = window.location.pathname.startsWith('/vendas') ? '/vendas' : '';
         window.location.assign(base + SLUG[(l as CVLang) ?? 'en'] || '/');
       },

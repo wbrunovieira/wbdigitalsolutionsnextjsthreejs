@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useEffect, useMemo } from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { LanguageContext, useLanguage } from '@/contexts/LanguageContext';
+import { LanguageContext } from '@/contexts/LanguageContext';
 import { TranslationContext } from '@/contexts/TranslationContext';
 import en from '@/locales/en.json';
 import type { MessageFormat } from '@/types/messages';
@@ -42,9 +42,9 @@ const SEO: Record<CVLang, { title: string; description: string }> = {
       'Walter Bruno Prado Vieira, Engenheiro Full-Stack & IA Sênior. Transformo problemas complexos em software escalável: plataformas em produção, sistemas de IA (LangGraph, RAG) e 3D interativo, da arquitetura ao deploy.',
   },
   it: {
-    title: 'Bruno Vieira · Senior Full-Stack & AI Engineer',
+    title: 'Bruno Vieira · Ingegnere Full-Stack & IA Senior',
     description:
-      "Walter Bruno Prado Vieira, Senior Full-Stack & AI Engineer. Trasformo problemi complessi in software scalabile: piattaforme in produzione, sistemi di IA (LangGraph, RAG) e 3D interattivo, dall'architettura al deploy.",
+      "Walter Bruno Prado Vieira, Ingegnere Full-Stack & IA Senior. Trasformo problemi complessi in software scalabile: piattaforme in produzione, sistemi di IA (LangGraph, RAG) e 3D interattivo, dall'architettura al deploy.",
   },
   es: {
     title: 'Bruno Vieira · Ingeniero Full-Stack & IA Senior',
@@ -56,15 +56,20 @@ const SEO: Record<CVLang, { title: string; description: string }> = {
 type Props = { lang: CVLang; projectsPage: ProjectsPageContent };
 
 export default function DevCV({ lang, projectsPage }: Props) {
-  const globalLang = useLanguage();
   const seo = SEO[lang];
   const canonical = `${BASE}${SLUG[lang]}`;
 
-  // Keep the site-wide language (localStorage) in sync with the route locale.
-  // Deps intentionally limited to lang: re-running on globalLang identity
-  // changes would loop the sync.
+  // Persist the route locale for the main site's "continue in your language"
+  // hint. Write localStorage directly: the global setLanguage now NAVIGATES
+  // (router.push with a locale), and on this subdomain router.locale is always
+  // the internal 'en', so calling it fired on every non-en page and looped the
+  // UI (rapid language flicker).
   useEffect(() => {
-    if (globalLang.language !== lang) globalLang.setLanguage(lang);
+    try {
+      localStorage.setItem('language', lang);
+    } catch {
+      /* storage unavailable (private mode) */
+    }
   }, [lang]);
 
   // Pin the language from the URL for every CV component (they all consume
@@ -75,7 +80,11 @@ export default function DevCV({ lang, projectsPage }: Props) {
       language: lang as string,
       isLoaded: true,
       setLanguage: (l: string) => {
-        globalLang.setLanguage(l);
+        try {
+          localStorage.setItem('language', l);
+        } catch {
+          /* storage unavailable (private mode) */
+        }
         const base = window.location.pathname.startsWith('/dev') ? '/dev' : '';
         window.location.assign(base + SLUG[(l as CVLang) ?? 'en'] || '/');
       },
