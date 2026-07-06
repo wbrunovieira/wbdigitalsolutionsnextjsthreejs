@@ -5,10 +5,26 @@ import useBlogTranslation from '@/contexts/useBlogTranslation';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageHead from '@/components/PageHead';
-import { makeI18nStaticProps } from '@/lib/i18n';
+import type { GetStaticProps } from 'next';
+import { i18nProps } from '@/lib/i18n';
+import type { BlogTranslation } from '@/contexts/useBlogTranslation';
 
-// Per-locale prerender with SSR-correct messages (built-in Next i18n).
-export const getStaticProps = makeI18nStaticProps();
+// Blog folder names don't match the URL locales (pt -> ptbr).
+const BLOG_FOLDER: Record<string, string> = { en: 'en', pt: 'ptbr', it: 'it', es: 'es' };
+
+type BlogIndexStrings = Pick<
+  BlogTranslation,
+  'title' | 'subtitle' | 'filterLabel' | 'allCategories' | 'loading' | 'noPosts'
+>;
+
+// The blog-index UI strings must be server-rendered: useBlogTranslation loads
+// them async on the client, so SSR otherwise fell back to a single language
+// for every locale (the EN page even shipped pt-BR copy).
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const folder = BLOG_FOLDER[locale ?? 'en'] ?? 'en';
+  const blogIndex = (await import(`@/locales/blog/${folder}/blog-index.json`)).default;
+  return { props: { ...(await i18nProps(locale)), blogIndex } };
+};
 
 const blogList = [
   { id: 'do-i-need-a-website' },
@@ -18,10 +34,8 @@ const blogList = [
   { id: 'increase-pme-sales' },
 ];
 
-const BlogIndexPage: React.FC = () => {
+const BlogIndexPage: React.FC<{ blogIndex: BlogIndexStrings }> = ({ blogIndex }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  const pageTranslation = useBlogTranslation('blog-index');
 
   const blogTranslations = blogList.map(({ id }) => ({
     id,
@@ -48,10 +62,10 @@ const BlogIndexPage: React.FC = () => {
 
       <div className="text-center mb-8 p-2">
         <h1 className="text-5xl font-extrabold text-yellowcustom mt-16">
-          {pageTranslation?.title || 'Explore Nossos Artigos'}
+          {blogIndex?.title || 'Explore Our Articles'}
         </h1>
         <p className="text-white mt-2 text-lg">
-          {pageTranslation?.subtitle || 'Descubra insights valiosos sobre tecnologia, marketing digital e experiência do usuário.'}
+          {blogIndex?.subtitle || 'Discover valuable insights on technology, digital marketing, and user experience.'}
         </p>
       </div>
 
@@ -62,7 +76,7 @@ const BlogIndexPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-white font-semibold text-sm uppercase tracking-wide mb-2"
         >
-          {pageTranslation?.filterLabel || 'Filtrar por categoria:'}
+          {blogIndex?.filterLabel || 'Filter by category:'}
         </motion.p>
         <motion.div 
           className="flex flex-wrap justify-center gap-3"
@@ -83,7 +97,7 @@ const BlogIndexPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {pageTranslation?.allCategories || 'Todos'}
+            {blogIndex?.allCategories || 'All'}
           </motion.button>
           {[...allCategories].map((category, index) => (
             <motion.button
@@ -178,7 +192,7 @@ const BlogIndexPage: React.FC = () => {
                         </div>
                       </>
                     ) : (
-                      <p className="text-gray-500">{pageTranslation?.loading || 'Carregando...'}</p>
+                      <p className="text-gray-500">{blogIndex?.loading || 'Loading...'}</p>
                     )}
                   </motion.div>
                 </Link>
@@ -190,7 +204,7 @@ const BlogIndexPage: React.FC = () => {
               animate={{ opacity: 1 }}
               className="text-center text-gray-500 col-span-3"
             >
-              {pageTranslation?.noPosts || 'Nenhum post encontrado para esta categoria.'}
+              {blogIndex?.noPosts || 'No posts found for this category.'}
             </motion.p>
           )}
         </AnimatePresence>
