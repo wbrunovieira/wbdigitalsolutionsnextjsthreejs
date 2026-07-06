@@ -30,7 +30,7 @@ const ProjectsStats: React.FC<ProjectsStatsProps> = ({ content }) => {
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (

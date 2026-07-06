@@ -4,7 +4,7 @@ import {
   ServiceSchema, 
   BlogPostingSchema, 
   BreadcrumbSchema,
-  LocalBusinessSchema 
+  LocalBusinessSchema, 
 } from '@/components/SchemaMarkup';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
@@ -30,7 +30,9 @@ export const getOrganizationSchema = (language: string): OrganizationSchema => (
   },
 });
 
-export const getWebSiteSchema = (language: string): WebSiteSchema => ({
+// `_language` is unused (no localized content here) but kept for signature
+// parity with the other schema getters; callers pass the active language.
+export const getWebSiteSchema = (_language: string): WebSiteSchema => ({
   type: 'WebSite',
   name: COMPANY_NAME,
   url: SITE_URL,
@@ -59,7 +61,7 @@ export const getLocalBusinessSchema = (language: string): LocalBusinessSchema =>
 export const getServiceSchema = (
   serviceName: string, 
   serviceType: string, 
-  language: string
+  language: string,
 ): ServiceSchema => ({
   type: 'Service',
   name: serviceName,
@@ -79,7 +81,7 @@ export const getBlogPostSchema = (
   author: string,
   datePublished: string,
   url: string,
-  images?: string[]
+  images?: string[],
 ): BlogPostingSchema => ({
   type: 'BlogPosting',
   headline: title,
@@ -102,9 +104,11 @@ export const getBlogPostSchema = (
   },
 });
 
+// `_language` is unused (item names arrive already localized) but kept for
+// signature parity with the other schema getters.
 export const getBreadcrumbSchema = (
   items: Array<{ name: string; url?: string }>,
-  language: string
+  _language: string,
 ): BreadcrumbSchema => ({
   type: 'BreadcrumbList',
   itemListElement: items.map((item, index) => ({

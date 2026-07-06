@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const AnimatedGearIcon = () => {
-    return (
+const AnimatedGearIcon = () => (
         <div className="relative w-6 h-6 group">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,6 +122,5 @@ const AnimatedGearIcon = () => {
             </svg>
         </div>
     );
-};
 
 export default AnimatedGearIcon;

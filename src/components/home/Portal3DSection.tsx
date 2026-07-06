@@ -1,9 +1,8 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Box, Sphere, Torus, Text } from '@react-three/drei';
 import * as THREE from 'three';
-import { useTranslations } from '@/contexts/TranslationContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // Floating 3D Elements
@@ -163,7 +162,6 @@ const ParticleSystem: React.FC = () => {
 
 // Main Portal Section Component
 const Portal3DSection: React.FC = () => {
-  const t = useTranslations();
   const { language } = useLanguage();
   
   // Get translated content
@@ -178,7 +176,7 @@ const Portal3DSection: React.FC = () => {
           showcaseBtn: '🏢 Escritório Virtual 3D',
           showcaseDesc: 'Explore nosso escritório interativo',
           tunnelBtn: '🌀 Túnel Digital',
-          tunnelDesc: 'Viaje pelo espaço tecnológico'
+          tunnelDesc: 'Viaje pelo espaço tecnológico',
         };
       case 'es':
         return {
@@ -188,7 +186,7 @@ const Portal3DSection: React.FC = () => {
           showcaseBtn: '🏢 Oficina Virtual 3D',
           showcaseDesc: 'Explora nuestra oficina interactiva',
           tunnelBtn: '🌀 Túnel Digital',
-          tunnelDesc: 'Viaja por el espacio tecnológico'
+          tunnelDesc: 'Viaja por el espacio tecnológico',
         };
       case 'it':
         return {
@@ -198,7 +196,7 @@ const Portal3DSection: React.FC = () => {
           showcaseBtn: '🏢 Ufficio Virtuale 3D',
           showcaseDesc: 'Esplora il nostro ufficio interattivo',
           tunnelBtn: '🌀 Tunnel Digitale',
-          tunnelDesc: 'Viaggia nello spazio tecnologico'
+          tunnelDesc: 'Viaggia nello spazio tecnologico',
         };
       default:
         return {
@@ -208,7 +206,7 @@ const Portal3DSection: React.FC = () => {
           showcaseBtn: '🏢 3D Virtual Office',
           showcaseDesc: 'Explore our interactive office',
           tunnelBtn: '🌀 Digital Tunnel',
-          tunnelDesc: 'Travel through tech space'
+          tunnelDesc: 'Travel through tech space',
         };
     }
   };

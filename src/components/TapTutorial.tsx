@@ -51,7 +51,7 @@ const TapTutorial: React.FC = () => {
                             </svg>
                         </div>
                         <span className="text-sm whitespace-nowrap">
-                            {currentMessages.tapToSpeed || "Tap to speed up rotation"}
+                            {currentMessages.tapToSpeed || 'Tap to speed up rotation'}
                         </span>
                     </div>
                 </motion.div>

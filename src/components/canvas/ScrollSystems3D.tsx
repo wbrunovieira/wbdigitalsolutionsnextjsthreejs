@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Scroll-driven procedural NETWORK for the /systems page (desktop only).
@@ -12,15 +12,15 @@
  * brand palette, drag-to-rotate in the hero. KEYFRAMES are placeholders to tune.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
-import CanvasErrorBoundary from "../CanvasErrorBoundary";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
+import CanvasErrorBoundary from '../CanvasErrorBoundary';
 
 // Brand palette (same colours as the website/automation balls).
-const NODE_PALETTE = ["#792990", "#350545", "#aaa6c3"];
-const PULSE_COLOR = "#ffb947";
-const EDGE_COLOR = "#b083d6"; // brighter lilac so the thin connecting lines read on dark
+const NODE_PALETTE = ['#792990', '#350545', '#aaa6c3'];
+const PULSE_COLOR = '#ffb947';
+const EDGE_COLOR = '#b083d6'; // brighter lilac so the thin connecting lines read on dark
 
 const NODE_COUNT = 48;
 const PULSE_COUNT = 42;
@@ -66,7 +66,7 @@ function buildGraph() {
       pos: new THREE.Vector3(
         Math.cos(theta) * ring * r,
         y * r * 0.92,
-        Math.sin(theta) * ring * r
+        Math.sin(theta) * ring * r,
       ),
       size: 0.18 + Math.random() * 0.09,
       spin: 0.3 + Math.random() * 0.6,
@@ -121,7 +121,7 @@ const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero, 
         speed: 0.25 + Math.random() * 0.45,
         spin: 0.5 + Math.random() * 0.8,
       })),
-    [edges.length]
+    [edges.length],
   );
 
   // Crystalline dodecahedron balls (same family as the websites/automation pages).
@@ -134,7 +134,7 @@ const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero, 
         clearcoat: 0.6,
         clearcoatRoughness: 0.3,
       }),
-    []
+    [],
   );
   const pulseMat = useMemo(
     () =>
@@ -145,7 +145,7 @@ const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero, 
         clearcoat: 0.7,
         clearcoatRoughness: 0.25,
       }),
-    []
+    [],
   );
 
   const lineGeo = useMemo(() => {
@@ -155,7 +155,7 @@ const Network: React.FC<NetworkProps> = ({ progress, dragRot, dragging, inHero, 
       positions.set([nodes[b].pos.x, nodes[b].pos.y, nodes[b].pos.z], e * 6 + 3);
     });
     const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    g.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     return g;
   }, [nodes, edges]);
 
@@ -262,16 +262,16 @@ const ScrollSystems3D: React.FC = () => {
   const inHeroRef = useRef(true);
 
   const [isDesktop, setIsDesktop] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true,
   );
   const [inHero, setInHero] = useState(true);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia('(min-width: 1024px)');
     const apply = () => setIsDesktop(mq.matches);
     apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
   }, []);
 
   useEffect(() => {
@@ -284,11 +284,11 @@ const ScrollSystems3D: React.FC = () => {
       setInHero((prev) => (prev === next ? prev : next));
     };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, []);
 
@@ -303,30 +303,30 @@ const ScrollSystems3D: React.FC = () => {
 
   const onUp = useCallback(() => {
     dragging.current = false;
-    window.removeEventListener("pointermove", onMove);
-    window.removeEventListener("pointerup", onUp);
+    window.removeEventListener('pointermove', onMove);
+    window.removeEventListener('pointerup', onUp);
   }, [onMove]);
 
   const onDown = useCallback(
     (e: React.PointerEvent) => {
       dragging.current = true;
       last.current = { x: e.clientX, y: e.clientY };
-      window.addEventListener("pointermove", onMove);
-      window.addEventListener("pointerup", onUp);
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
     },
-    [onMove, onUp]
+    [onMove, onUp],
   );
 
   return (
     <>
       {/* z-[1]: behind the page content (main is z-10), above the gradient backdrop (z-0). */}
-      <div className="fixed inset-0 z-[1]" style={{ pointerEvents: "none" }} aria-hidden="true">
+      <div className="fixed inset-0 z-[1]" style={{ pointerEvents: 'none' }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
             dpr={isDesktop ? [1, 2] : 1}
             camera={{ position: [0, 0, 12], fov: 45 }}
-            gl={{ alpha: true, antialias: isDesktop, powerPreference: "high-performance" }}
-            style={{ background: "transparent", pointerEvents: "none" }}
+            gl={{ alpha: true, antialias: isDesktop, powerPreference: 'high-performance' }}
+            style={{ background: 'transparent', pointerEvents: 'none' }}
           >
             <ambientLight intensity={0.7} />
             <directionalLight position={[5, 8, 6]} intensity={1.3} />
@@ -345,10 +345,10 @@ const ScrollSystems3D: React.FC = () => {
           style={{
             top: 150,
             right: 72,
-            width: "46%",
+            width: '46%',
             height: 540,
-            cursor: dragging.current ? "grabbing" : "grab",
-            touchAction: "none",
+            cursor: dragging.current ? 'grabbing' : 'grab',
+            touchAction: 'none',
           }}
           aria-hidden="true"
         />

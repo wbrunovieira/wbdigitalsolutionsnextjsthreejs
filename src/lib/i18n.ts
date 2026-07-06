@@ -11,46 +11,46 @@
  * and the old client-side message loading left crawlers seeing EN only).
  */
 
-import type { GetStaticProps } from "next";
-import type { MessageFormat } from "@/types/messages";
+import type { GetStaticProps } from 'next';
+import type { MessageFormat } from '@/types/messages';
 
-export const URL_LOCALES = ["en", "pt", "it", "es"] as const;
+export const URL_LOCALES = ['en', 'pt', 'it', 'es'] as const;
 export type UrlLocale = (typeof URL_LOCALES)[number];
 
-export const DEFAULT_URL_LOCALE: UrlLocale = "en";
+export const DEFAULT_URL_LOCALE: UrlLocale = 'en';
 
 const URL_TO_APP: Record<UrlLocale, string> = {
-  en: "en",
-  pt: "pt-BR",
-  it: "it",
-  es: "es",
+  en: 'en',
+  pt: 'pt-BR',
+  it: 'it',
+  es: 'es',
 };
 
 const APP_TO_URL: Record<string, UrlLocale> = {
-  en: "en",
-  "pt-BR": "pt",
-  pt: "pt",
-  it: "it",
-  es: "es",
+  en: 'en',
+  'pt-BR': 'pt',
+  pt: 'pt',
+  it: 'it',
+  es: 'es',
 };
 
 /** hreflang values per URL locale (pt URL advertises pt-BR content). */
 export const HREFLANG_BY_URL_LOCALE: Record<UrlLocale, string> = {
-  en: "en",
-  pt: "pt-BR",
-  it: "it",
-  es: "es",
+  en: 'en',
+  pt: 'pt-BR',
+  it: 'it',
+  es: 'es',
 };
 
 const LOCALE_FILE: Record<UrlLocale, string> = {
-  en: "en",
-  pt: "ptbr",
-  it: "it",
-  es: "es",
+  en: 'en',
+  pt: 'ptbr',
+  it: 'it',
+  es: 'es',
 };
 
 export const toAppLang = (urlLocale: string | undefined): string =>
-  URL_TO_APP[(urlLocale as UrlLocale) ?? DEFAULT_URL_LOCALE] ?? "en";
+  URL_TO_APP[(urlLocale as UrlLocale) ?? DEFAULT_URL_LOCALE] ?? 'en';
 
 export const toUrlLocale = (appLang: string): UrlLocale =>
   APP_TO_URL[appLang] ?? DEFAULT_URL_LOCALE;
@@ -61,7 +61,7 @@ export type I18nPageProps = {
 
 /** Server-side message loading for a URL locale (getStaticProps context). */
 export async function loadMessages(urlLocale: string | undefined): Promise<MessageFormat> {
-  const file = LOCALE_FILE[(urlLocale as UrlLocale) ?? DEFAULT_URL_LOCALE] ?? "en";
+  const file = LOCALE_FILE[(urlLocale as UrlLocale) ?? DEFAULT_URL_LOCALE] ?? 'en';
   return (await import(`@/locales/${file}.json`)).default as MessageFormat;
 }
 

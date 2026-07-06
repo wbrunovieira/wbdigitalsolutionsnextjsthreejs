@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Shared section shell + header for the DEV CV page (independent dark copy of
@@ -7,20 +7,20 @@
  * intro) lockup used by the list-style sections.
  */
 
-import React from "react";
-import { motion } from "framer-motion";
-import { AMBER, TEXT, light } from "./devTheme";
-import { useDevReveal } from "./useDevReveal";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { AMBER, TEXT, light } from './devTheme';
+import { useDevReveal } from './useDevReveal';
 
 // Full literal class strings (not interpolated) so Tailwind JIT keeps them.
 const WIDTHS = {
-  "3xl": "mx-auto max-w-3xl px-6",
-  "4xl": "mx-auto max-w-4xl px-6",
+  '3xl': 'mx-auto max-w-3xl px-6',
+  '4xl': 'mx-auto max-w-4xl px-6',
 } as const;
 
 const PADDINGS = {
-  default: "py-20 sm:py-28",
-  roomy: "py-24 sm:py-32",
+  default: 'py-20 sm:py-28',
+  roomy: 'py-24 sm:py-32',
 } as const;
 
 export const DevSection: React.FC<{
@@ -29,7 +29,7 @@ export const DevSection: React.FC<{
   width?: keyof typeof WIDTHS;
   padding?: keyof typeof PADDINGS;
   children: React.ReactNode;
-}> = ({ id, bg, width = "4xl", padding = "default", children }) => (
+}> = ({ id, bg, width = '4xl', padding = 'default', children }) => (
   <section id={id} className="relative scroll-mt-24" style={{ background: bg, color: TEXT }}>
     <div className={`${WIDTHS[width]} ${PADDINGS[padding]}`}>{children}</div>
   </section>
@@ -41,7 +41,7 @@ export const DevSectionHeader: React.FC<{
   intro?: string;
   /** Bottom margin of the header block. */
   className?: string;
-}> = ({ eyebrow, title, intro, className = "mb-12" }) => {
+}> = ({ eyebrow, title, intro, className = 'mb-12' }) => {
   const reveal = useDevReveal();
   return (
     <motion.header {...reveal()} className={className}>

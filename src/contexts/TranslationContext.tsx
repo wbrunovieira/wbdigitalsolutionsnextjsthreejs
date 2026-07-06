@@ -1,15 +1,15 @@
-"use client";
+'use client';
 import React, {
     createContext,
     useContext,
     useState,
     useEffect,
-} from "react";
-import { useLanguage } from "./LanguageContext";
+} from 'react';
+import { useLanguage } from './LanguageContext';
 
-import { MessageFormat } from "../types/messages";
+import { MessageFormat } from '../types/messages';
 
-import en from "../locales/en.json";
+import en from '../locales/en.json';
 
 // Exported so URL-localized pages can nest a Provider with route-locale messages.
 export const TranslationContext = createContext<MessageFormat>(en);
@@ -37,34 +37,38 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
     // experiences): load the locale bundle dynamically as before.
     useEffect(() => {
         if (initialMessages) return;
-        const langKey = language === "pt" ? "pt-BR" : language;
+        const langKey = language === 'pt' ? 'pt-BR' : language;
 
-        if (!langKey || langKey === "en") {
+        if (!langKey || langKey === 'en') {
             setCurrentMessages(en);
             return;
         }
 
         const loadLocale = async () => {
             switch (langKey) {
-                case "es": {
-                    const mod = await import("../locales/es.json");
+                case 'es': {
+                    const mod = await import('../locales/es.json');
                     setCurrentMessages(mod.default as MessageFormat);
                     break;
                 }
-                case "it": {
-                    const mod = await import("../locales/it.json");
+                case 'it': {
+                    const mod = await import('../locales/it.json');
                     setCurrentMessages(mod.default as MessageFormat);
                     break;
                 }
-                case "pt-BR": {
-                    const mod = await import("../locales/ptbr.json");
-                    setCurrentMessages(mod.default as MessageFormat);
+                case 'pt-BR': {
+                    const mod = await import('../locales/ptbr.json');
+                    // ptbr.json's key set has drifted slightly from en.json
+                    // (a few extra/missing keys), so the assertion must go
+                    // through `unknown`; runtime behavior is unchanged.
+                    setCurrentMessages(mod.default as unknown as MessageFormat);
                     break;
                 }
             }
         };
 
-        loadLocale();
+        // Fire-and-forget: failures leave the previous messages in place.
+        void loadLocale();
     }, [language, initialMessages]);
 
     return (

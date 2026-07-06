@@ -1,6 +1,6 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Box, Sphere, Torus, Text, Image, Center, Text3D } from '@react-three/drei';
+import { Box, Torus, Text, Image } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface TunnelSceneEnhancedProps {
@@ -71,28 +71,28 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
               title: 'SITES MODERNOS',
               subtitle: 'Experiências Digitais Únicas',
               features: ['React & Next.js', '3D & Animações', 'AWS Cloud'],
-              color: '#792990'
+              color: '#792990',
             };
           case 'es':
             return {
               title: 'SITIOS MODERNOS',
               subtitle: 'Experiencias Digitales Únicas',
               features: ['React y Next.js', '3D y Animaciones', 'AWS Cloud'],
-              color: '#792990'
+              color: '#792990',
             };
           case 'it':
             return {
               title: 'SITI MODERNI',
               subtitle: 'Esperienze Digitali Uniche',
               features: ['React e Next.js', '3D e Animazioni', 'AWS Cloud'],
-              color: '#792990'
+              color: '#792990',
             };
           default:
             return {
               title: 'MODERN WEBSITES',
               subtitle: 'Unique Digital Experiences',
               features: ['React & Next.js', '3D & Animations', 'AWS Cloud'],
-              color: '#792990'
+              color: '#792990',
             };
         }
       case 'automation':
@@ -103,28 +103,28 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
               title: 'AUTOMAÇÃO INTELIGENTE',
               subtitle: 'Eficiência Sem Limites',
               features: ['Zero Erros', 'Integração Total', '24/7 Operação'],
-              color: '#ffb947'
+              color: '#ffb947',
             };
           case 'es':
             return {
               title: 'AUTOMATIZACIÓN INTELIGENTE',
               subtitle: 'Eficiencia Sin Límites',
               features: ['Cero Errores', 'Integración Total', '24/7 Operación'],
-              color: '#ffb947'
+              color: '#ffb947',
             };
           case 'it':
             return {
               title: 'AUTOMAZIONE INTELLIGENTE',
               subtitle: 'Efficienza Senza Limiti',
               features: ['Zero Errori', 'Integrazione Totale', '24/7 Operazione'],
-              color: '#ffb947'
+              color: '#ffb947',
             };
           default:
             return {
               title: 'SMART AUTOMATION',
               subtitle: 'Limitless Efficiency',
               features: ['Zero Errors', 'Full Integration', '24/7 Operation'],
-              color: '#ffb947'
+              color: '#ffb947',
             };
         }
       case 'ai':
@@ -135,28 +135,28 @@ const HolographicMessage: React.FC<HolographicMessageProps> = ({ position, langu
               title: 'INTELIGÊNCIA ARTIFICIAL',
               subtitle: 'O Futuro é Agora',
               features: ['Machine Learning', 'Análise Preditiva', 'IA Personalizada'],
-              color: '#4a90e2'
+              color: '#4a90e2',
             };
           case 'es':
             return {
               title: 'INTELIGENCIA ARTIFICIAL',
               subtitle: 'El Futuro es Ahora',
               features: ['Machine Learning', 'Análisis Predictivo', 'IA Personalizada'],
-              color: '#4a90e2'
+              color: '#4a90e2',
             };
           case 'it':
             return {
               title: 'INTELLIGENZA ARTIFICIALE',
               subtitle: 'Il Futuro è Ora',
               features: ['Machine Learning', 'Analisi Predittiva', 'IA Personalizzata'],
-              color: '#4a90e2'
+              color: '#4a90e2',
             };
           default:
             return {
               title: 'ARTIFICIAL INTELLIGENCE',
               subtitle: 'The Future is Now',
               features: ['Machine Learning', 'Predictive Analytics', 'Custom AI'],
-              color: '#4a90e2'
+              color: '#4a90e2',
             };
         }
     }
@@ -278,28 +278,28 @@ const PortalMessage: React.FC<PortalMessageProps> = ({ language }) => {
           'BEM-VINDO AO FUTURO',
           'TRANSFORMANDO IDEIAS',
           'EM REALIDADE DIGITAL',
-          'INOVAÇÃO CONSTANTE'
+          'INOVAÇÃO CONSTANTE',
         ];
       case 'es':
         return [
           'BIENVENIDO AL FUTURO',
           'TRANSFORMANDO IDEAS',
           'EN REALIDAD DIGITAL',
-          'INNOVACIÓN CONSTANTE'
+          'INNOVACIÓN CONSTANTE',
         ];
       case 'it':
         return [
           'BENVENUTO NEL FUTURO',
           'TRASFORMANDO IDEE',
           'IN REALTÀ DIGITALE',
-          'INNOVAZIONE COSTANTE'
+          'INNOVAZIONE COSTANTE',
         ];
       default:
         return [
           'WELCOME TO THE FUTURE',
           'TRANSFORMING IDEAS',
           'INTO DIGITAL REALITY',
-          'CONSTANT INNOVATION'
+          'CONSTANT INNOVATION',
         ];
     }
   }, [language]);
@@ -486,7 +486,7 @@ const TunnelSceneEnhanced: React.FC<TunnelSceneEnhancedProps> = ({ language = 'e
           key={`ring-${i}`}
           position={[0, 0, -i * 4]}
           delay={i * 0.2}
-        />
+        />,
       );
     }
     return rings;
@@ -513,12 +513,12 @@ const TunnelSceneEnhanced: React.FC<TunnelSceneEnhancedProps> = ({ language = 'e
     <Canvas
       camera={{
         position: [0, 0, isMobile ? 8 : 5],
-        fov: isMobile ? 80 : 75
+        fov: isMobile ? 80 : 75,
       }}
       gl={{
         antialias: !isMobile,
         alpha: true,
-        powerPreference: isMobile ? 'low-power' : 'high-performance'
+        powerPreference: isMobile ? 'low-power' : 'high-performance',
       }}
       dpr={isMobile ? [1, 1.5] : [1, 2]}
     >

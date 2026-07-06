@@ -1,34 +1,34 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 
 // Persistent scroll-driven 3D hero (now desktop AND mobile). Mounted on the first
 // user gesture so it never blocks initial load / the lab perf trace.
-const ScrollWebsiteHero3D = dynamic(() => import("@/components/canvas/ScrollWebsiteHero3D"), { ssr: false });
+const ScrollWebsiteHero3D = dynamic(() => import('@/components/canvas/ScrollWebsiteHero3D'), { ssr: false });
 
-import CustomVsGeneric from "@/components/CustomVsGeneric";
-import CTAWebsite from "@/components/WebSiteCTA";
-import { WebsiteHeader } from "@/components/WebsiteHeader";
-import PageHead from "@/components/PageHead";
-import { makeI18nStaticProps } from "@/lib/i18n";
+import CustomVsGeneric from '@/components/CustomVsGeneric';
+import CTAWebsite from '@/components/WebSiteCTA';
+import { WebsiteHeader } from '@/components/WebsiteHeader';
+import PageHead from '@/components/PageHead';
+import { makeI18nStaticProps } from '@/lib/i18n';
 
 // Per-locale prerender with SSR-correct messages (built-in Next i18n).
 export const getStaticProps = makeI18nStaticProps();
 
 // ssr:false sections get a height-reserving placeholder so they don't grow from
 // 0 on cold load (that growth is a large CLS — see skill perf-seo-audit).
-const OurApproach = dynamic(() => import("../../components/OurApproach"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const Differentiators = dynamic(() => import("../../components/Differentiators"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const Comparison = dynamic(() => import("../../components/Comparison"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const ThreeDExperiencesSection = dynamic(() => import("../../components/3DExperiencesSection"), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const OurApproach = dynamic(() => import('../../components/OurApproach'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const Differentiators = dynamic(() => import('../../components/Differentiators'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const Comparison = dynamic(() => import('../../components/Comparison'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+const ThreeDExperiencesSection = dynamic(() => import('../../components/3DExperiencesSection'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const Websites: React.FC = () => {
     // Defer the 3D hero to the first user gesture (perf: keeps it out of the load
     // critical path and the headless Lighthouse trace).
     const [show3D, setShow3D] = useState(false);
     useEffect(() => {
-        const events = ["scroll", "pointermove", "touchstart", "keydown"];
+        const events = ['scroll', 'pointermove', 'touchstart', 'keydown'];
         const mount = () => {
             setShow3D(true);
             events.forEach((e) => window.removeEventListener(e, mount));

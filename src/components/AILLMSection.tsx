@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   FaRobot,
   FaFileAlt,
@@ -12,9 +12,8 @@ import {
   FaCode,
   FaMoneyBillWave,
   FaShieldAlt,
-} from "react-icons/fa";
-import { useTranslations } from "@/contexts/TranslationContext";  
-import { useLanguage } from "@/contexts/LanguageContext";      
+} from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,43 +23,49 @@ interface ExampleCard {
   icon: React.ReactNode;
 }
 
+interface ExampleMessage {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 const AdvancedLLMSection: React.FC = () => {
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const examples: ExampleCard[] = currentMessages.advancedLLMExamples.map(
-    (item: any, index: number) => ({
+  const exampleMessages: ExampleMessage[] = currentMessages.advancedLLMExamples;
+  const examples: ExampleCard[] = exampleMessages.map(
+    (item) => ({
       title: item.title,
       description: item.description,
       icon: (() => {
         switch (item.icon) {
-          case "FaRobot":
+          case 'FaRobot':
             return <FaRobot className="text-5xl text-blue-500 mb-4" />;
-          case "FaFileAlt":
+          case 'FaFileAlt':
             return <FaFileAlt className="text-5xl text-green-500 mb-4" />;
-          case "FaChartLine":
+          case 'FaChartLine':
             return <FaChartLine className="text-5xl text-pink-500 mb-4" />;
-          case "FaBullhorn":
+          case 'FaBullhorn':
             return <FaBullhorn className="text-5xl text-yellow-400 mb-4" />;
-          case "FaBook":
+          case 'FaBook':
             return <FaBook className="text-5xl text-red-500 mb-4" />;
-          case "FaUsers":
+          case 'FaUsers':
             return <FaUsers className="text-5xl text-blue-400 mb-4" />;
-          case "FaCode":
+          case 'FaCode':
             return <FaCode className="text-5xl text-purple-400 mb-4" />;
-          case "FaMoneyBillWave":
+          case 'FaMoneyBillWave':
             return <FaMoneyBillWave className="text-5xl text-green-400 mb-4" />;
-          case "FaShieldAlt":
+          case 'FaShieldAlt':
             return <FaShieldAlt className="text-5xl text-indigo-400 mb-4" />;
           default:
             return <FaRobot className="text-5xl text-blue-500 mb-4" />;
         }
       })(),
-    })
+    }),
   );
 
   useGSAP(() => {
@@ -73,14 +78,14 @@ const AdvancedLLMSection: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          ease: "power2.out",
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: headingRef.current,
-            start: "top bottom",
-            end: "top center",
-            toggleActions: "play none none reverse",
+            start: 'top bottom',
+            end: 'top center',
+            toggleActions: 'play none none reverse',
           },
-        }
+        },
       );
 
 
@@ -94,14 +99,14 @@ const AdvancedLLMSection: React.FC = () => {
             y: 0,
             duration: 0.6,
             delay: index * 0.1,
-            ease: "power2.out",
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: card,
-              start: "top bottom-=100",
-              end: "top center",
-              toggleActions: "play none none reverse",
+              start: 'top bottom-=100',
+              end: 'top center',
+              toggleActions: 'play none none reverse',
             },
-          }
+          },
         );
       });
     }, sectionRef);

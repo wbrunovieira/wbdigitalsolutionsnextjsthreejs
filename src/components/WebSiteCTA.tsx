@@ -1,18 +1,16 @@
-"use client";
+'use client';
 
 import React, { useRef } from 'react';
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaRocket, FaArrowRight, FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaRocket, FaArrowRight, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CTAWebsite = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   useGSAP(() => {
@@ -21,36 +19,36 @@ const CTAWebsite = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 70%",
-      }
+        start: 'top 70%',
+      },
     });
 
     // Only animate if elements exist
-    if (containerRef.current.querySelector(".cta-content")) {
-      tl.from(".cta-content", {
+    if (containerRef.current.querySelector('.cta-content')) {
+      tl.from('.cta-content', {
         opacity: 0,
         y: 50,
         duration: 1,
-        ease: "power3.out"
+        ease: 'power3.out',
       });
     }
     
-    if (containerRef.current.querySelector(".cta-button")) {
-      tl.from(".cta-button", {
+    if (containerRef.current.querySelector('.cta-button')) {
+      tl.from('.cta-button', {
         scale: 0.8,
         opacity: 0,
         duration: 0.6,
-        ease: "back.out(1.7)"
-      }, "-=0.4");
+        ease: 'back.out(1.7)',
+      }, '-=0.4');
     }
     
-    if (containerRef.current.querySelector(".floating-icon")) {
-      tl.from(".floating-icon", {
+    if (containerRef.current.querySelector('.floating-icon')) {
+      tl.from('.floating-icon', {
         x: -30,
         opacity: 0,
         duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.3");
+        ease: 'power2.out',
+      }, '-=0.3');
     }
   }, { scope: containerRef });
 

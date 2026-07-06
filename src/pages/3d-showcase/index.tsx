@@ -3,16 +3,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useTranslations } from '@/contexts/TranslationContext';
 
 // Import with no SSR to avoid hydration issues
 const OfficeScene = dynamic(() => import('@/components/3d-showcase/OfficeScene'), { 
-  ssr: false 
+  ssr: false, 
 });
 
 const ThreeDShowcase: React.FC = () => {
   const { language, setLanguage } = useLanguage();
-  const t = useTranslations();
   const [isMobile, setIsMobile] = useState(false);
   const [showControls, setShowControls] = useState(false);
 
@@ -37,7 +35,7 @@ const ThreeDShowcase: React.FC = () => {
           scroll: 'Scroll: Zoom in/out',
           click: 'Clique nos botões nas mesas',
           watch: 'Observe a bola quicar!',
-          loading: 'Carregando Ambiente 3D...'
+          loading: 'Carregando Ambiente 3D...',
         };
       case 'es':
         return {
@@ -47,7 +45,7 @@ const ThreeDShowcase: React.FC = () => {
           scroll: 'Scroll: Acercar/Alejar',
           click: 'Haz clic en los botones de los escritorios',
           watch: '¡Mira la pelota rebotar!',
-          loading: 'Cargando Entorno 3D...'
+          loading: 'Cargando Entorno 3D...',
         };
       case 'it':
         return {
@@ -57,7 +55,7 @@ const ThreeDShowcase: React.FC = () => {
           scroll: 'Scroll: Zoom avanti/indietro',
           click: 'Clicca sui pulsanti sulle scrivanie',
           watch: 'Guarda la palla rimbalzare!',
-          loading: 'Caricamento Ambiente 3D...'
+          loading: 'Caricamento Ambiente 3D...',
         };
       default: // 'en'
         return {
@@ -67,7 +65,7 @@ const ThreeDShowcase: React.FC = () => {
           scroll: 'Scroll: Zoom in/out',
           click: 'Click buttons on desks',
           watch: 'Watch the ball bounce!',
-          loading: 'Loading 3D Environment...'
+          loading: 'Loading 3D Environment...',
         };
     }
   };

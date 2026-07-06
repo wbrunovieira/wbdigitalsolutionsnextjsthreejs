@@ -1,13 +1,13 @@
-"use client";
+'use client';
 import React, {
   createContext,
   useState,
   useContext,
   ReactNode,
   useEffect,
-} from "react";
-import { useRouter } from "next/router";
-import { toAppLang, toUrlLocale } from "@/lib/i18n";
+} from 'react';
+import { useRouter } from 'next/router';
+import { toAppLang, toUrlLocale } from '@/lib/i18n';
 
 
 type LanguageContextType = {
@@ -20,7 +20,7 @@ type LanguageContextType = {
 // Exported so URL-localized pages (e.g. the CV subdomains' /pt /it /es
 // routes) can nest a Provider that pins the language from the route.
 export const LanguageContext = createContext<LanguageContextType>({
-  language: "en",
+  language: 'en',
   setLanguage: () => {},
   isLoaded: false,
 });
@@ -48,11 +48,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 
   const setLanguage = (lang: string) => {
     try {
-      localStorage.setItem("language", lang === "pt" ? "pt-BR" : lang);
+      localStorage.setItem('language', lang === 'pt' ? 'pt-BR' : lang);
     } catch {
       /* storage unavailable (private mode); navigation still works */
     }
-    router.push(router.asPath, router.asPath, { locale: toUrlLocale(lang) });
+    // Fire-and-forget navigation; Next surfaces routing errors itself.
+    void router.push(router.asPath, router.asPath, { locale: toUrlLocale(lang) });
   };
 
   // Keep <html lang> in sync with the rendered language. The SSR HTML ships
@@ -69,7 +70,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
     };
     apply();
     const observer = new MutationObserver(apply);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     return () => observer.disconnect();
   }, [language]);
 

@@ -7,8 +7,8 @@
  * Decorative only: aria-hidden, no text (language-neutral by design).
  */
 
-import React, { useEffect, useState } from "react";
-import styles from "./DevSkeleton.module.css";
+import React, { useEffect, useState } from 'react';
+import styles from './DevSkeleton.module.css';
 
 /* Pre-hydration fast path only; the React effect below is the reliable
    hide (a hydration remount would otherwise drop the attribute and leave
@@ -19,10 +19,10 @@ var done=function(){el.setAttribute("data-done","true")};
 setTimeout(done,1500);})();`;
 
 const BARS = [
-  { width: "34%", height: 14 },
-  { width: "72%", height: 42 },
-  { width: "58%", height: 42 },
-  { width: "44%", height: 14 },
+  { width: '34%', height: 14 },
+  { width: '72%', height: 42 },
+  { width: '58%', height: 42 },
+  { width: '44%', height: 14 },
 ];
 
 const DevSkeleton: React.FC = () => {
@@ -32,7 +32,8 @@ const DevSkeleton: React.FC = () => {
     let alive = true;
     const finish = () => alive && setDone(true);
     const ready = document.fonts?.ready ?? Promise.resolve();
-    ready.then(() => requestAnimationFrame(finish));
+    // Fire-and-forget: fonts.ready never rejects, and the setTimeout below is the safety net.
+    void ready.then(() => requestAnimationFrame(finish));
     const cap = setTimeout(finish, 1500);
     return () => {
       alive = false;
@@ -44,7 +45,7 @@ const DevSkeleton: React.FC = () => {
     <>
       <div id="dev-skeleton" aria-hidden="true" className={styles.overlay} data-done={done || undefined}>
         <div className={styles.prompt}>
-          <span style={{ color: "#e0912f" }}>$</span>
+          <span style={{ color: '#e0912f' }}>$</span>
           <span className={styles.cursor} />
         </div>
         {BARS.map((b, i) => (

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Mobile hamburger overlay for the sales nav (extracted from SalesNav):
@@ -6,18 +6,18 @@
  * the BV Monogram disc (shared by the header and this overlay's top bar).
  */
 
-import React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
-import { cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, INK, ink } from "./salesTheme";
+import React from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { MessageCircle, X } from 'lucide-react';
+import { cvLinks, type CVLang } from '@/content/cv';
+import { AMBER, INK, ink } from './salesTheme';
 
 /** Localized aria labels for the hamburger open/close buttons. */
 export const MENU_ARIA: Record<CVLang, { open: string; close: string }> = {
-  "pt-BR": { open: "Abrir menu", close: "Fechar menu" },
-  en: { open: "Open menu", close: "Close menu" },
-  it: { open: "Apri il menu", close: "Chiudi il menu" },
-  es: { open: "Abrir menú", close: "Cerrar menú" },
+  'pt-BR': { open: 'Abrir menu', close: 'Fechar menu' },
+  en: { open: 'Open menu', close: 'Close menu' },
+  it: { open: 'Apri il menu', close: 'Chiudi il menu' },
+  es: { open: 'Abrir menú', close: 'Cerrar menú' },
 };
 
 /** Asymmetric 3-line burger glyph (widths swap on the parent's hover). */
@@ -33,7 +33,7 @@ export const BurgerLines: React.FC<{ color: string }> = ({ color }) => (
 export const Monogram: React.FC = () => (
   <span
     className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-black"
-    style={{ background: INK, color: "#ffffff", boxShadow: `inset 0 0 0 2px ${AMBER}` }}
+    style={{ background: INK, color: '#ffffff', boxShadow: `inset 0 0 0 2px ${AMBER}` }}
     aria-hidden="true"
   >
     BV
@@ -61,9 +61,9 @@ const SalesNavMobile: React.FC<{
         transition: { duration: 0.25 },
       }
     : {
-        initial: { clipPath: "circle(0% at calc(100% - 44px) 44px)" },
-        animate: { clipPath: "circle(150% at calc(100% - 44px) 44px)" },
-        exit: { clipPath: "circle(0% at calc(100% - 44px) 44px)" },
+        initial: { clipPath: 'circle(0% at calc(100% - 44px) 44px)' },
+        animate: { clipPath: 'circle(150% at calc(100% - 44px) 44px)' },
+        exit: { clipPath: 'circle(0% at calc(100% - 44px) 44px)' },
         transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
       };
 
@@ -73,7 +73,7 @@ const SalesNavMobile: React.FC<{
         <motion.div
           className="fixed inset-0 z-[60] flex flex-col xl:hidden"
           {...reveal}
-          style={{ background: "rgba(247,247,248,0.99)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
+          style={{ background: 'rgba(247,247,248,0.99)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
         >
           <div className="flex items-center justify-between px-6 py-4">
             <span className="flex items-center gap-3">
@@ -108,7 +108,7 @@ const SalesNavMobile: React.FC<{
               >
                 {/* Mono index: editorial touch matching the amber eyebrows */}
                 <span className="w-6 shrink-0 font-mono text-xs font-semibold" style={{ color: AMBER }}>
-                  {String(i + 1).padStart(2, "0")}
+                  {String(i + 1).padStart(2, '0')}
                 </span>
                 <span
                   className="text-3xl font-black tracking-[-0.02em] transition-transform duration-300 group-hover/item:translate-x-1"
@@ -133,9 +133,9 @@ const SalesNavMobile: React.FC<{
               rel="noopener noreferrer"
               onClick={onClose}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold"
-              style={{ background: INK, color: "#f7f7f8", boxShadow: "0 10px 24px rgba(28,28,30,0.28)" }}
+              style={{ background: INK, color: '#f7f7f8', boxShadow: '0 10px 24px rgba(28,28,30,0.28)' }}
             >
-              <MessageCircle aria-hidden="true" className="h-5 w-5" style={{ color: "#25D366" }} />
+              <MessageCircle aria-hidden="true" className="h-5 w-5" style={{ color: '#25D366' }} />
               WhatsApp
             </a>
           </motion.div>

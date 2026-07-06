@@ -3,7 +3,7 @@
  * the sales pattern, see devTheme.ts). Respects prefers-reduced-motion.
  */
 
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from 'framer-motion';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -15,7 +15,7 @@ export interface DevRevealOptions {
 }
 
 /** Returns a `reveal(delay?)` prop factory for framer-motion elements. */
-export function useDevReveal({ margin = "-60px", duration = 0.6 }: DevRevealOptions = {}) {
+export function useDevReveal({ margin = '-60px', duration = 0.6 }: DevRevealOptions = {}) {
   const reduce = useReducedMotion();
   return (delay = 0) =>
     reduce

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Binary texture block for the DEV CV page: rows of binary that dissolve to
@@ -9,13 +9,13 @@
  * empty side areas (lg+) so it never sits over text.
  */
 
-import React from "react";
-import { light } from "./devTheme";
+import React from 'react';
+import { light } from './devTheme';
 
 const MASKS = {
-  radial: "radial-gradient(65% 65% at 50% 50%, black 45%, transparent 90%)",
-  "fade-b": "linear-gradient(180deg, black 30%, transparent 95%)",
-  "fade-t": "linear-gradient(0deg, black 30%, transparent 95%)",
+  radial: 'radial-gradient(65% 65% at 50% 50%, black 45%, transparent 90%)',
+  'fade-b': 'linear-gradient(180deg, black 30%, transparent 95%)',
+  'fade-t': 'linear-gradient(0deg, black 30%, transparent 95%)',
 } as const;
 
 const DevBinary: React.FC<{
@@ -24,7 +24,7 @@ const DevBinary: React.FC<{
   /** Base ink alpha before the mask fades it out (default 0.3). */
   alpha?: number;
   className?: string;
-}> = ({ rows, mask = "radial", alpha = 0.3, className = "" }) => (
+}> = ({ rows, mask = 'radial', alpha = 0.3, className = '' }) => (
   <div aria-hidden="true" className={`pointer-events-none absolute select-none ${className}`}>
     <div
       className="font-mono text-sm leading-[2.1] tracking-[0.35em]"

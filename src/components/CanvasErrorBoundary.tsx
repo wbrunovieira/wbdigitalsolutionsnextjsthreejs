@@ -30,7 +30,7 @@ class CanvasErrorBoundary extends React.Component<Props, State> {
 
   componentDidCatch(error: unknown) {
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
+       
       console.warn('[CanvasErrorBoundary] 3D canvas error suppressed:', error);
     }
   }

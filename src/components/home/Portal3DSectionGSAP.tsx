@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Box, Sphere, Torus, Text } from '@react-three/drei';
+import { Box, Sphere, Torus } from '@react-three/drei';
 import * as THREE from 'three';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -205,7 +205,7 @@ const ConvergingParticles: React.FC = () => {
     return { positions, colors };
   }, []);
   
-  useFrame((state) => {
+  useFrame(() => {
     if (ref.current && velocitiesRef.current) {
       const positions = ref.current.geometry.attributes.position.array as Float32Array;
       const velocities = velocitiesRef.current;
@@ -313,7 +313,7 @@ const Portal3DSectionGSAP: React.FC = () => {
       rotation: 360,
       duration: 20,
       repeat: -1,
-      ease: "none"
+      ease: 'none',
     });
     
     // Pulsating energy borders
@@ -322,27 +322,27 @@ const Portal3DSectionGSAP: React.FC = () => {
       .to([topGlowRef.current, bottomGlowRef.current], {
         opacity: 0.3,
         duration: 2,
-        ease: "power2.inOut"
+        ease: 'power2.inOut',
       })
       .to([topGlowRef.current, bottomGlowRef.current], {
         opacity: 1,
         duration: 2,
-        ease: "power2.inOut"
+        ease: 'power2.inOut',
       });
     
     // Energy flow animation
     gsap.to(topGlowRef.current, {
-      backgroundPosition: "200% 0",
+      backgroundPosition: '200% 0',
       duration: 3,
       repeat: -1,
-      ease: "none"
+      ease: 'none',
     });
     
     gsap.to(bottomGlowRef.current, {
-      backgroundPosition: "-200% 0",
+      backgroundPosition: '-200% 0',
       duration: 3,
       repeat: -1,
-      ease: "none"
+      ease: 'none',
     });
     
     // Title animation
@@ -350,40 +350,40 @@ const Portal3DSectionGSAP: React.FC = () => {
       {
         opacity: 0,
         y: 50,
-        scale: 0.8
+        scale: 0.8,
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
         duration: 1.5,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: titleRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+      },
     );
     
     // Subtitle animation
     gsap.fromTo(subtitleRef.current,
       {
         opacity: 0,
-        y: 30
+        y: 30,
       },
       {
         opacity: 1,
         y: 0,
         duration: 1.5,
         delay: 0.3,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: subtitleRef.current,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      },
     );
     
     // Cards stagger animation
@@ -394,7 +394,7 @@ const Portal3DSectionGSAP: React.FC = () => {
           opacity: 0,
           y: 60,
           scale: 0.9,
-          rotateY: -30
+          rotateY: -30,
         },
         {
           opacity: 1,
@@ -403,13 +403,13 @@ const Portal3DSectionGSAP: React.FC = () => {
           rotateY: 0,
           duration: 1,
           stagger: 0.2,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: cardsRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+          },
+        },
       );
     }
     
@@ -418,10 +418,10 @@ const Portal3DSectionGSAP: React.FC = () => {
       scale: 1.2,
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: 1
-      }
+        start: 'top center',
+        end: 'bottom center',
+        scrub: 1,
+      },
     });
   }, { scope: sectionRef }); // Scope animations to this component
   
@@ -441,7 +441,7 @@ const Portal3DSectionGSAP: React.FC = () => {
           tunnelBtn: 'Túnel Hiperespacial',
           tunnelDesc: 'Viaje através de dimensões tecnológicas infinitas',
           enterText: 'ENTRAR',
-          featuresTitle: 'Experiências Únicas'
+          featuresTitle: 'Experiências Únicas',
         };
       case 'es':
         return {
@@ -453,7 +453,7 @@ const Portal3DSectionGSAP: React.FC = () => {
           tunnelBtn: 'Túnel Hiperespacial',
           tunnelDesc: 'Viaja a través de dimensiones tecnológicas infinitas',
           enterText: 'ENTRAR',
-          featuresTitle: 'Experiencias Únicas'
+          featuresTitle: 'Experiencias Únicas',
         };
       case 'it':
         return {
@@ -465,7 +465,7 @@ const Portal3DSectionGSAP: React.FC = () => {
           tunnelBtn: 'Tunnel Iperspaziale',
           tunnelDesc: 'Viaggia attraverso dimensioni tecnologiche infinite',
           enterText: 'ENTRA',
-          featuresTitle: 'Esperienze Uniche'
+          featuresTitle: 'Esperienze Uniche',
         };
       default:
         return {
@@ -477,7 +477,7 @@ const Portal3DSectionGSAP: React.FC = () => {
           tunnelBtn: 'Hyperspace Tunnel',
           tunnelDesc: 'Travel through infinite technological dimensions',
           enterText: 'ENTER',
-          featuresTitle: 'Unique Experiences'
+          featuresTitle: 'Unique Experiences',
         };
     }
   };
@@ -542,7 +542,7 @@ const Portal3DSectionGSAP: React.FC = () => {
             inset 0 -60px 120px -10px rgba(0, 0, 0, 0.9),
             inset 0 30px 60px -5px rgba(121, 41, 144, 0.3),
             inset 0 -30px 60px -5px rgba(255, 185, 71, 0.3)
-          `
+          `,
         }}
       />
       
@@ -593,7 +593,7 @@ const Portal3DSectionGSAP: React.FC = () => {
             className="text-5xl md:text-7xl font-bold text-white mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent"
             style={{
               backgroundSize: '200% 200%',
-              animation: 'gradient 5s ease infinite'
+              animation: 'gradient 5s ease infinite',
             }}
           >
             {content.title}

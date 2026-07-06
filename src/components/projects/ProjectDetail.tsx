@@ -80,7 +80,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, content }) => {
               <a
                 href={project.liveUrl}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-yellowcustom/60 px-6 py-3 text-sm font-semibold text-yellowcustom transition-colors duration-300 hover:bg-yellowcustom hover:text-primary"
               >
                 {ui.visit}

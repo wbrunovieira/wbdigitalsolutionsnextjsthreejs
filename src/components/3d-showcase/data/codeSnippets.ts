@@ -53,7 +53,7 @@ async function generateContent(prompt) {
   });
   
   return completion.choices[0].message;
-}`
+}`,
 };
 
 export type ServiceType = keyof typeof codeSnippets;

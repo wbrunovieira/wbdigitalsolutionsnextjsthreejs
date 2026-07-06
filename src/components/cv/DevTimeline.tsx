@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Journey timeline section for the DEV CV page (independent dark copy of the
@@ -9,32 +9,32 @@
  * Entries come localized from devTimeline.ts.
  */
 
-import React, { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { devTimeline } from "@/content/devTimeline";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import { AMBER, BG_DEV_ALT, light, toCVLang } from "./devTheme";
-import { DevSection, DevSectionHeader } from "./DevSection";
-import DevCodeDeco from "./DevCodeDeco";
-import DevTimelineItem, { useMdUp } from "./DevTimelineItem";
+import React, { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
+import { devTimeline } from '@/content/devTimeline';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, type CVLang } from '@/content/cv';
+import { AMBER, BG_DEV_ALT, light, toCVLang } from './devTheme';
+import { DevSection, DevSectionHeader } from './DevSection';
+import DevCodeDeco from './DevCodeDeco';
+import DevTimelineItem, { useMdUp } from './DevTimelineItem';
 
 const COPY: Record<CVLang, { title: string; intro: string }> = {
-  "pt-BR": {
-    title: "Programo desde 2020. Resolvo problemas desde 1987.",
-    intro: "Comecei a programar depois de 25 anos entendendo negócios por dentro. Cada marco abaixo foi construído em cima dessa base.",
+  'pt-BR': {
+    title: 'Programo desde 2020. Resolvo problemas desde 1987.',
+    intro: 'Comecei a programar depois de 25 anos entendendo negócios por dentro. Cada marco abaixo foi construído em cima dessa base.',
   },
   en: {
-    title: "Coding since 2020. Solving problems since 1987.",
-    intro: "I started coding after 25 years understanding business from the inside. Every milestone below was built on that foundation.",
+    title: 'Coding since 2020. Solving problems since 1987.',
+    intro: 'I started coding after 25 years understanding business from the inside. Every milestone below was built on that foundation.',
   },
   it: {
-    title: "Programmo dal 2020. Risolvo problemi dal 1987.",
+    title: 'Programmo dal 2020. Risolvo problemi dal 1987.',
     intro: "Ho iniziato a programmare dopo 25 anni passati a capire il business dall'interno. Ogni tappa qui sotto è costruita su quella base.",
   },
   es: {
-    title: "Programo desde 2020. Resuelvo problemas desde 1987.",
-    intro: "Empecé a programar después de 25 años entendiendo los negocios desde dentro. Cada hito de abajo se construyó sobre esa base.",
+    title: 'Programo desde 2020. Resuelvo problemas desde 1987.',
+    intro: 'Empecé a programar después de 25 años entendiendo los negocios desde dentro. Cada hito de abajo se construyó sobre esa base.',
   },
 };
 
@@ -50,7 +50,7 @@ const DevTimeline: React.FC = () => {
   const listRef = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({
     target: listRef,
-    offset: ["start 0.7", "end 0.5"],
+    offset: ['start 0.7', 'end 0.5'],
   });
   const spineScale = useSpring(scrollYProgress, {
     stiffness: 90,
@@ -87,7 +87,7 @@ const DevTimeline: React.FC = () => {
             e={e}
             index={i}
             showWatermark={mdUp && !reduce}
-            anchorId={i === 1 ? "formacao" : undefined}
+            anchorId={i === 1 ? 'formacao' : undefined}
           />
         ))}
       </ol>

@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
  * the last card stuck at opacity 0).
  */
 export function useStaggerReveal<T extends HTMLElement = HTMLDivElement>(
-  deps: unknown[] = []
+  deps: unknown[] = [],
 ) {
   const ref = useRef<T>(null);
 
@@ -39,10 +39,10 @@ export function useStaggerReveal<T extends HTMLElement = HTMLDivElement>(
           ease: 'power3.out',
           stagger: 0.12,
           clearProps: 'opacity,transform',
-        }
+        },
       );
     },
-    { scope: ref, dependencies: deps }
+    { scope: ref, dependencies: deps },
   );
 
   return ref;

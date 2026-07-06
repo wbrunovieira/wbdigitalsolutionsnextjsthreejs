@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * PROTOTYPE — scroll-driven 3D website hero (desktop only).
@@ -18,8 +18,8 @@
  * KEYFRAMES are placeholders to iterate on (the "choreography").
  */
 
-import React, { useMemo, useEffect, useRef, Suspense, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useMemo, useEffect, useRef, Suspense, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   RectAreaLight,
   Color,
@@ -32,12 +32,12 @@ import {
   Group,
   Mesh,
   MeshStandardMaterial,
-} from "three";
-import { useGLTF, useTexture, Html, useProgress } from "@react-three/drei";
-import { animate } from "framer-motion";
-import CanvasErrorBoundary from "../CanvasErrorBoundary";
-import Loader from "../Loader";
-import MouseMoveTutorial from "../MouseMoveTutorial";
+} from 'three';
+import { useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
+import { animate } from 'framer-motion';
+import CanvasErrorBoundary from '../CanvasErrorBoundary';
+import Loader from '../Loader';
+import MouseMoveTutorial from '../MouseMoveTutorial';
 
 const NUM_INSTANCES = 400;
 const MIN_DISTANCE = 4;
@@ -104,7 +104,7 @@ const CustomLoader: React.FC = () => {
   if (showFallback || errors.length > 0) {
     return (
       <Html center>
-        <div style={{ color: "white", textAlign: "center" }}>
+        <div style={{ color: 'white', textAlign: 'center' }}>
           <p>Loading 3D models...</p>
         </div>
       </Html>
@@ -138,7 +138,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
   const geometry = useMemo(() => new DodecahedronGeometry(0.85), []);
   const material = useMemo(
     () => new MeshPhysicalMaterial({ vertexColors: true, transparent: true }),
-    []
+    [],
   );
   const dummy = useMemo(() => new Object3D(), []);
   const meshRef = useRef<InstancedMesh>(null);
@@ -148,8 +148,8 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
 
   // Fewer particles on mobile (less clutter on a small screen + perf).
   const count = useMemo(
-    () => (typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches ? 140 : NUM_INSTANCES),
-    []
+    () => (typeof window !== 'undefined' && window.matchMedia('(max-width: 1023px)').matches ? 140 : NUM_INSTANCES),
+    [],
   );
 
   const instances = useMemo<Instance[]>(() => {
@@ -167,7 +167,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
         position = new Vector3(
           Math.cos(theta) * sp * rad * 34,
           Math.sin(theta) * sp * rad * 22,
-          Math.cos(phi) * rad * 12
+          Math.cos(phi) * rad * 12,
         );
         overlapping = list.some((e) => position.distanceTo(e.position) < MIN_DISTANCE);
         attempt++;
@@ -192,10 +192,10 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
   useEffect(() => {
     if (!meshRef.current) return;
     const palette = [
-      new Color("#792990"),
-      new Color("#350545"),
-      new Color("#aaa6c3"),
-      new Color("#ffb947"),
+      new Color('#792990'),
+      new Color('#350545'),
+      new Color('#aaa6c3'),
+      new Color('#ffb947'),
     ];
     const colors = new Float32Array(instances.length * 3);
     for (let i = 0; i < instances.length; i++) {
@@ -207,7 +207,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);
     }
-    geometry.setAttribute("color", new InstancedBufferAttribute(colors, 3));
+    geometry.setAttribute('color', new InstancedBufferAttribute(colors, 3));
     geometry.attributes.color.needsUpdate = true;
     meshRef.current.instanceMatrix.needsUpdate = true;
   }, [geometry, dummy, instances]);
@@ -239,7 +239,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
         _orbit.set(
           lp.x + Math.cos(ang) * r,
           lp.y + Math.sin(ang) * r * 0.6,
-          lp.z + Math.sin(ang + inst.orbitTilt) * r * 0.5
+          lp.z + Math.sin(ang + inst.orbitTilt) * r * 0.5,
         );
         inst.position.lerp(_orbit, gather * 0.12 + 0.02);
       } else if (!inst.companion) {
@@ -257,7 +257,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       if (d < MIN_DISTANCE) {
         intensityAccum = Math.max(
           intensityAccum,
-          Math.max(MIN_INTENSITY_CLOSE, (INTENSITY_SCALE * (MIN_DISTANCE - d)) / MIN_DISTANCE)
+          Math.max(MIN_INTENSITY_CLOSE, (INTENSITY_SCALE * (MIN_DISTANCE - d)) / MIN_DISTANCE),
         );
       } else if (d < INTERACTION_DISTANCE) {
         intensityAccum = Math.max(intensityAccum, (MIN_INTENSITY_CLOSE * (INTERACTION_DISTANCE - d)) / INTERACTION_DISTANCE);
@@ -279,8 +279,8 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
 
 const FloatingModel: React.FC<SharedRefs> = ({ progress, pointer, laptopPose, kf }) => {
   const modelRef = useRef<Group>(null);
-  const { scene } = useGLTF("/models/macbook-pro.glb");
-  const screenTexture = useTexture("/models/screen.png");
+  const { scene } = useGLTF('/models/macbook-pro.glb');
+  const screenTexture = useTexture('/models/screen.png');
   screenTexture.flipY = false;
 
   // Lerped base pose driven by scroll.
@@ -289,7 +289,7 @@ const FloatingModel: React.FC<SharedRefs> = ({ progress, pointer, laptopPose, kf
   useMemo(() => {
     scene.traverse((node) => {
       if (node instanceof Mesh) {
-        if (node.name === "Screen") {
+        if (node.name === 'Screen') {
           node.material = new MeshStandardMaterial({ map: screenTexture, metalness: 0.2, roughness: 0.9 });
         } else {
           node.material = new MeshStandardMaterial({ color: new Color(0xa9a9a9), metalness: 0.3, roughness: 0.5 });
@@ -300,11 +300,11 @@ const FloatingModel: React.FC<SharedRefs> = ({ progress, pointer, laptopPose, kf
 
   // Open the lid on mount.
   useEffect(() => {
-    const frameNode = scene.children.find((node) => node.name === "Frame");
+    const frameNode = scene.children.find((node) => node.name === 'Frame');
     if (frameNode) {
       frameNode.rotation.x = Math.PI / 2;
       animate(frameNode.rotation.x, 0, {
-        type: "spring",
+        type: 'spring',
         stiffness: 80,
         damping: 20,
         onUpdate: (value) => {
@@ -370,21 +370,21 @@ const ScrollWebsiteHero3D: React.FC = () => {
   // Render on all sizes now; pick the pose table by width. Read synchronously on
   // first render (ssr:false) so the variant is right immediately.
   const [isDesktop, setIsDesktop] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true,
   );
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia('(min-width: 1024px)');
     const apply = () => setIsDesktop(mq.matches);
     apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
   }, []);
 
   // Preload assets.
   useEffect(() => {
-    useGLTF.preload("/models/macbook-pro.glb");
-    useTexture.preload("/models/screen.png");
+    useGLTF.preload('/models/macbook-pro.glb');
+    useTexture.preload('/models/screen.png');
   }, []);
 
   // Mouse → swarm target + light position + normalised pointer (desktop only).
@@ -397,8 +397,8 @@ const ScrollWebsiteHero3D: React.FC = () => {
       target.current.set(x * 50, y * 30, 0);
       if (lightRef.current) lightRef.current.position.copy(target.current);
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
   }, [isDesktop]);
 
   // Scroll progress over the whole page.
@@ -408,11 +408,11 @@ const ScrollWebsiteHero3D: React.FC = () => {
       progress.current = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
     };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, []);
 
@@ -424,10 +424,10 @@ const ScrollWebsiteHero3D: React.FC = () => {
       {/* z-[1]: behind the page content (main is z-10) so the laptop passes
           BEHIND the opaque sections as it descends, but above the fixed
           gradient backdrop (z-0) so it stays visible through the hero. */}
-      <div className="fixed inset-0 z-[1]" style={{ pointerEvents: "none" }} aria-hidden="true">
+      <div className="fixed inset-0 z-[1]" style={{ pointerEvents: 'none' }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
-            style={{ background: "transparent", pointerEvents: "none" }}
+            style={{ background: 'transparent', pointerEvents: 'none' }}
             shadows={isDesktop}
             dpr={isDesktop ? [1, 2] : 1}
             gl={{ alpha: true, antialias: isDesktop, preserveDrawingBuffer: false }}
@@ -454,5 +454,5 @@ const ScrollWebsiteHero3D: React.FC = () => {
 
 export default ScrollWebsiteHero3D;
 
-useGLTF.preload("/models/macbook-pro.glb");
-useTexture.preload("/models/screen.png");
+useGLTF.preload('/models/macbook-pro.glb');
+useTexture.preload('/models/screen.png');

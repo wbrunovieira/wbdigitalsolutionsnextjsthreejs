@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Html } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 
 interface MonitorProps {
   position: [number, number, number];
@@ -45,7 +45,7 @@ const Monitor: React.FC<MonitorProps> = ({ position, displayedCode, activeButton
           overflow: 'hidden',
           whiteSpace: 'pre-wrap',
           borderRadius: '0px',
-          boxShadow: 'inset 0 0 100px rgba(0, 255, 0, 0.1)'
+          boxShadow: 'inset 0 0 100px rgba(0, 255, 0, 0.1)',
         }}
       >
         <div style={{ position: 'relative' }}>
@@ -54,7 +54,7 @@ const Monitor: React.FC<MonitorProps> = ({ position, displayedCode, activeButton
             marginBottom: '50px',
             paddingBottom: '50px',
             borderBottom: '5px solid #333',
-            fontSize: '60px'
+            fontSize: '60px',
           }}>
             {getFileHeader()}
           </div>
@@ -64,7 +64,7 @@ const Monitor: React.FC<MonitorProps> = ({ position, displayedCode, activeButton
               animation: 'blink 1s infinite',
               color: '#00ff00',
               fontWeight: 'bold',
-              fontSize: '72px'
+              fontSize: '72px',
             }}>|</span>
           </div>
         </div>

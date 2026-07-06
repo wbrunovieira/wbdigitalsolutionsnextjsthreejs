@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useTranslations } from "@/contexts/TranslationContext";
-import styles from "./InfiniteScrollHash.module.css";
+import React from 'react';
+import { useTranslations } from '@/contexts/TranslationContext';
+import styles from './InfiniteScrollHash.module.css';
 
 const InfiniteScrollHash: React.FC = () => {
     const currentMessages = useTranslations();

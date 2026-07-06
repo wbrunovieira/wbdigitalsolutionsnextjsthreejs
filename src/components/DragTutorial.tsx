@@ -69,7 +69,7 @@ const DragTutorial: React.FC<DragTutorialProps> = ({ onInteraction }) => {
             transition={{
               duration: 3,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
             className="relative"
           >
@@ -135,12 +135,12 @@ const DragTutorial: React.FC<DragTutorialProps> = ({ onInteraction }) => {
               <motion.div
                 animate={{ 
                   opacity: [0.4, 0.8, 0.4],
-                  x: [-3, 3, -3]
+                  x: [-3, 3, -3],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 }}
                 className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
               >
@@ -175,8 +175,8 @@ const DragTutorial: React.FC<DragTutorialProps> = ({ onInteraction }) => {
                   />
                 </svg>
                 {isMobile 
-                  ? (t.dragTutorialTextMobile || "Touch and drag to interact")
-                  : (t.dragTutorialText || "Click and drag to interact")
+                  ? (t.dragTutorialTextMobile || 'Touch and drag to interact')
+                  : (t.dragTutorialText || 'Click and drag to interact')
                 }
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline">
                   <path

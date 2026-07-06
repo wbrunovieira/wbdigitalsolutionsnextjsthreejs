@@ -2,15 +2,13 @@ import React, { useRef } from 'react';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslations } from '@/contexts/TranslationContext';
 
 interface HeaderProps {
     scrollIndicatorHidden: boolean;
 }
 
-export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
-    const { language } = useLanguage();
+export const AutomationHeader: React.FC<HeaderProps> = () => {
     const currentMessages = useTranslations();
 
     const disciplines = currentMessages.disciplines;
@@ -47,22 +45,22 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
                 transformOrigin: 'left center',
                 duration: 1.2,
                 yoyo: true,
-                ease: 'power2.out'
+                ease: 'power2.out',
             })
             .to(
                 disciplineRef.current,
                 { opacity: 1, duration: 1 },
-                '-=1.2'
+                '-=1.2',
             )
             .to(
                 disciplineRef.current,
                 { opacity: 0, duration: 1 },
-                "+=1"
+                '+=1',
             )
             .to(
                 overlayRef.current,
                 { scaleX: 0, duration: 1, ease: 'power2.in' },
-                '-=0.8'
+                '-=0.8',
             );
 
         return () => {
@@ -74,7 +72,7 @@ export const AutomationHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden 
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-4 text-white mb-8 bg-primary/70 md:bg-transparent ">
               <h1 className="text-xl md:text-4xl motion-safe:animate-[wb-fadeup_0.7s_ease-out_both]" aria-label={currentMessages.headerTitle}>
                   <span aria-hidden="true" ref={nameRef} className="flex flex-wrap space-x-0.5 md:space-x-1">
-                    {currentMessages.headerTitle.split("").map((letter: string, index: number) => (
+                    {currentMessages.headerTitle.split('').map((letter: string, index: number) => (
                         <span key={index} className="inline-block">
                             {letter}
                         </span>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import styles from './ProjectModal.module.css';
 
 interface ProjectSlide {
   type: 'image' | 'video' | 'mixed';
@@ -38,8 +39,8 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
       title: 'Overview',
       description: project.description,
       imageUrl: '/images/placeholder.jpg',
-      features: project.technologies
-    }
+      features: project.technologies,
+    },
   ];
 
   const slides = project.slides || defaultSlides;
@@ -280,7 +281,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                     </div>
 
                     {/* Text Content with custom scroll */}
-                    <div className="h-[calc(100vh-600px)] md:h-[calc(100vh-520px)] lg:h-[400px] overflow-y-auto custom-scrollbar pr-2 md:pr-3 lg:pr-4 pb-20 md:pb-16 lg:pb-24">
+                    <div className={`h-[calc(100vh-600px)] md:h-[calc(100vh-520px)] lg:h-[400px] overflow-y-auto ${styles.customScrollbar} pr-2 md:pr-3 lg:pr-4 pb-20 md:pb-16 lg:pb-24`}>
                       <div className="space-y-3 md:space-y-4">
                         {currentSlideData.description && (
                           <p className="text-secondary text-sm md:text-base lg:text-lg leading-relaxed whitespace-pre-wrap">

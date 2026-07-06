@@ -13,14 +13,14 @@ const ThreeDExperiencesSection: React.FC = () => {
           subtitle: 'Descubra o futuro da web com ambientes interativos e imersivos',
           office: {
             title: 'Escritório 3D',
-            description: 'Navegue por um escritório virtual e conheça nossos serviços de forma interativa'
+            description: 'Navegue por um escritório virtual e conheça nossos serviços de forma interativa',
           },
           tunnel: {
             title: 'Túnel Digital',
-            description: 'Viaje através do espaço digital e explore nossas soluções tecnológicas'
+            description: 'Viaje através do espaço digital e explore nossas soluções tecnológicas',
           },
           buttonOffice: 'Explorar Escritório',
-          buttonTunnel: 'Entrar no Túnel'
+          buttonTunnel: 'Entrar no Túnel',
         };
       case 'es':
         return {
@@ -28,14 +28,14 @@ const ThreeDExperiencesSection: React.FC = () => {
           subtitle: 'Descubre el futuro de la web con ambientes interactivos e inmersivos',
           office: {
             title: 'Oficina 3D',
-            description: 'Navega por una oficina virtual y conoce nuestros servicios de forma interactiva'
+            description: 'Navega por una oficina virtual y conoce nuestros servicios de forma interactiva',
           },
           tunnel: {
             title: 'Túnel Digital',
-            description: 'Viaja a través del espacio digital y explora nuestras soluciones tecnológicas'
+            description: 'Viaja a través del espacio digital y explora nuestras soluciones tecnológicas',
           },
           buttonOffice: 'Explorar Oficina',
-          buttonTunnel: 'Entrar al Túnel'
+          buttonTunnel: 'Entrar al Túnel',
         };
       case 'it':
         return {
@@ -43,14 +43,14 @@ const ThreeDExperiencesSection: React.FC = () => {
           subtitle: 'Scopri il futuro del web con ambienti interattivi e immersivi',
           office: {
             title: 'Ufficio 3D',
-            description: 'Naviga in un ufficio virtuale e conosci i nostri servizi in modo interattivo'
+            description: 'Naviga in un ufficio virtuale e conosci i nostri servizi in modo interattivo',
           },
           tunnel: {
             title: 'Tunnel Digitale',
-            description: 'Viaggia attraverso lo spazio digitale ed esplora le nostre soluzioni tecnologiche'
+            description: 'Viaggia attraverso lo spazio digitale ed esplora le nostre soluzioni tecnologiche',
           },
           buttonOffice: 'Esplora Ufficio',
-          buttonTunnel: 'Entra nel Tunnel'
+          buttonTunnel: 'Entra nel Tunnel',
         };
       default:
         return {
@@ -58,14 +58,14 @@ const ThreeDExperiencesSection: React.FC = () => {
           subtitle: 'Discover the future of web with interactive and immersive environments',
           office: {
             title: '3D Office',
-            description: 'Navigate through a virtual office and learn about our services interactively'
+            description: 'Navigate through a virtual office and learn about our services interactively',
           },
           tunnel: {
             title: 'Digital Tunnel',
-            description: 'Travel through digital space and explore our technological solutions'
+            description: 'Travel through digital space and explore our technological solutions',
           },
           buttonOffice: 'Explore Office',
-          buttonTunnel: 'Enter Tunnel'
+          buttonTunnel: 'Enter Tunnel',
         };
     }
   };

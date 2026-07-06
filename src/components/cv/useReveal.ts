@@ -4,7 +4,7 @@
  * Respects prefers-reduced-motion (opacity-only, faster).
  */
 
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from 'framer-motion';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -16,7 +16,7 @@ export interface RevealOptions {
 }
 
 /** Returns a `reveal(delay?)` prop factory for framer-motion elements. */
-export function useReveal({ margin = "-60px", duration = 0.6 }: RevealOptions = {}) {
+export function useReveal({ margin = '-60px', duration = 0.6 }: RevealOptions = {}) {
   const reduce = useReducedMotion();
   return (delay = 0) =>
     reduce

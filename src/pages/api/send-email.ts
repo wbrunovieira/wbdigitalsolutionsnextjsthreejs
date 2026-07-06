@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 import { getContactEmails } from '@/lib/contactEmail';
 
 type Data = {
@@ -6,11 +7,16 @@ type Data = {
   message: string;
 };
 
+// Nodemailer transport errors are Error instances extended with SMTP details.
+type MailTransportError = Error & { code?: string; response?: string };
+
+const isMailTransportError = (e: unknown): e is MailTransportError => e instanceof Error;
+
 const SUPPORTED = ['en', 'pt-BR', 'es', 'it'];
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data>,
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
@@ -43,8 +49,6 @@ export default async function handler(
   const mail = getContactEmails(language, { name, email, message });
 
   try {
-    const nodemailer = require('nodemailer');
-
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -78,22 +82,27 @@ export default async function handler(
           html: mail.autoReplyHtml,
           text: mail.autoReplyText,
         });
-      } catch (autoReplyError: any) {
+      } catch (autoReplyError) {
         // Don't fail the main request if the auto-reply fails
-        console.error('Auto-reply failed (non-critical):', autoReplyError.message);
+        console.error(
+          'Auto-reply failed (non-critical):',
+          autoReplyError instanceof Error ? autoReplyError.message : autoReplyError,
+        );
       }
     }
 
     return res.status(200).json({ success: true, message: 'Email sent successfully' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error sending email:', error);
     let errorMessage = 'Failed to send email';
-    if (error.code === 'EAUTH') {
-      errorMessage = 'Authentication failed. Please check Gmail credentials.';
-    } else if (error.code === 'ECONNECTION') {
-      errorMessage = 'Connection failed. Please check internet connection.';
-    } else if (error.response) {
-      errorMessage = `Gmail error: ${error.response}`;
+    if (isMailTransportError(error)) {
+      if (error.code === 'EAUTH') {
+        errorMessage = 'Authentication failed. Please check Gmail credentials.';
+      } else if (error.code === 'ECONNECTION') {
+        errorMessage = 'Connection failed. Please check internet connection.';
+      } else if (error.response) {
+        errorMessage = `Gmail error: ${error.response}`;
+      }
     }
     return res.status(500).json({ success: false, message: errorMessage });
   }

@@ -2,8 +2,7 @@
 
 import React from 'react';
 
-const Lighting: React.FC = () => {
-  return (
+const Lighting: React.FC = () => (
     <>
       <hemisphereLight intensity={2.5} groundColor='black' />
       <spotLight
@@ -17,6 +16,5 @@ const Lighting: React.FC = () => {
       <pointLight intensity={1} />
     </>
   );
-};
 
 export default Lighting;

@@ -38,7 +38,7 @@ export function getImageSrcSet(imagePath: string): {
   if (optimized.endsWith('.webp') && !imagePath.endsWith('.webp')) {
     return {
       src: optimized,
-      fallback: imagePath
+      fallback: imagePath,
     };
   }
   

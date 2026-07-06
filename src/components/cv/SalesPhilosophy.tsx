@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Sales philosophy / manifesto pull-quote for the sales CV page. Rendered twice
@@ -8,59 +8,59 @@
  * Calm editorial contrast to the hero's display type.
  */
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import type { CVLang } from "@/content/cv";
-import { AMBER, BG_A, INK, ink, toCVLang } from "./salesTheme";
-import { useReveal } from "./useReveal";
-import { SalesSection } from "./SalesSection";
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import type { CVLang } from '@/content/cv';
+import { AMBER, BG_A, INK, ink, toCVLang } from './salesTheme';
+import { useReveal } from './useReveal';
+import { SalesSection } from './SalesSection';
 
-type Variant = "decide" | "clarity";
+type Variant = 'decide' | 'clarity';
 
 const COPY: Record<Variant, Record<CVLang, { eyebrow: string; lead: string; statement: string }>> = {
   decide: {
-    "pt-BR": {
-      eyebrow: "Filosofia",
-      lead: "Vender é ajudar a decidir.",
-      statement: "Começo entendendo o problema a fundo e só ofereço quando sei que posso ajudar de verdade.",
+    'pt-BR': {
+      eyebrow: 'Filosofia',
+      lead: 'Vender é ajudar a decidir.',
+      statement: 'Começo entendendo o problema a fundo e só ofereço quando sei que posso ajudar de verdade.',
     },
     en: {
-      eyebrow: "Philosophy",
-      lead: "Selling is helping people decide.",
-      statement: "I start by understanding the problem deeply, and only offer once I know I can genuinely help.",
+      eyebrow: 'Philosophy',
+      lead: 'Selling is helping people decide.',
+      statement: 'I start by understanding the problem deeply, and only offer once I know I can genuinely help.',
     },
     it: {
-      eyebrow: "Filosofia",
-      lead: "Vendere è aiutare a decidere.",
-      statement: "Parto dal capire il problema a fondo e propongo solo quando so di poter aiutare davvero.",
+      eyebrow: 'Filosofia',
+      lead: 'Vendere è aiutare a decidere.',
+      statement: 'Parto dal capire il problema a fondo e propongo solo quando so di poter aiutare davvero.',
     },
     es: {
-      eyebrow: "Filosofía",
-      lead: "Vender es ayudar a decidir.",
-      statement: "Empiezo entendiendo el problema a fondo y solo ofrezco cuando sé que puedo ayudar de verdad.",
+      eyebrow: 'Filosofía',
+      lead: 'Vender es ayudar a decidir.',
+      statement: 'Empiezo entendiendo el problema a fondo y solo ofrezco cuando sé que puedo ayudar de verdad.',
     },
   },
   clarity: {
-    "pt-BR": {
-      eyebrow: "Confiança",
-      lead: "Vender bem é dar clareza.",
-      statement: "Enxergo a dúvida que o cliente nem sempre diz, esclareço o que ficou no ar, e a decisão fica segura.",
+    'pt-BR': {
+      eyebrow: 'Confiança',
+      lead: 'Vender bem é dar clareza.',
+      statement: 'Enxergo a dúvida que o cliente nem sempre diz, esclareço o que ficou no ar, e a decisão fica segura.',
     },
     en: {
-      eyebrow: "Trust",
-      lead: "Selling well means giving clarity.",
+      eyebrow: 'Trust',
+      lead: 'Selling well means giving clarity.',
       statement: "I spot the doubt the client doesn't always voice, clear up what's left unsaid, and the decision becomes secure.",
     },
     it: {
-      eyebrow: "Fiducia",
-      lead: "Vendere bene è dare chiarezza.",
-      statement: "Colgo il dubbio che il cliente non sempre esprime, chiarisco ciò che resta in sospeso, e la decisione diventa sicura.",
+      eyebrow: 'Fiducia',
+      lead: 'Vendere bene è dare chiarezza.',
+      statement: 'Colgo il dubbio che il cliente non sempre esprime, chiarisco ciò che resta in sospeso, e la decisione diventa sicura.',
     },
     es: {
-      eyebrow: "Confianza",
-      lead: "Vender bien es dar claridad.",
-      statement: "Detecto la duda que el cliente no siempre expresa, aclaro lo que quedó en el aire, y la decisión se vuelve segura.",
+      eyebrow: 'Confianza',
+      lead: 'Vender bien es dar claridad.',
+      statement: 'Detecto la duda que el cliente no siempre expresa, aclaro lo que quedó en el aire, y la decisión se vuelve segura.',
     },
   },
 };
@@ -71,8 +71,8 @@ const SalesPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, 
   const { language } = useLanguage();
   const reduce = useReducedMotion();
   const copy = COPY[variant][toCVLang(language)];
-  const reveal = useReveal({ margin: "-80px", duration: 0.7 });
-  const words = copy.lead.split(" ");
+  const reveal = useReveal({ margin: '-80px', duration: 0.7 });
+  const words = copy.lead.split(' ');
 
   return (
     <SalesSection id={id} bg={BG_A} width="3xl" padding="roomy">
@@ -88,7 +88,7 @@ const SalesPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, 
             style={{ background: AMBER }}
             initial={reduce ? { scaleY: 1 } : { scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease: EASE }}
           />
           {/* Word-level stagger (never per character); screen readers get the
@@ -110,11 +110,11 @@ const SalesPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, 
                       className="inline-block"
                       initial={{ opacity: 0, y: 14 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-80px" }}
+                      viewport={{ once: true, margin: '-80px' }}
                       transition={{ duration: 0.5, delay: 0.1 + i * 0.05, ease: EASE }}
                     >
                       {w}
-                    </motion.span>{" "}
+                    </motion.span>{' '}
                   </React.Fragment>
                 ))}
               </>

@@ -51,7 +51,7 @@ const vesc = (s: string) =>
 
 // Build a vCard (.vcf) for the visitor so Bruno can save the contact in one tap.
 function buildVCard(
-  { name, phone, email, company, note }: { name: string; phone?: string; email?: string; company?: string; note?: string }
+  { name, phone, email, company, note }: { name: string; phone?: string; email?: string; company?: string; note?: string },
 ) {
   const parts = String(name).trim().split(/\s+/);
   const given = parts[0] || '';
@@ -168,7 +168,7 @@ function thankYouText(lang: Lang, name: string): string {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data>,
 ) {
   setCors(req, res);
 

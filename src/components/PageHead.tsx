@@ -1,32 +1,32 @@
-"use client";
+'use client';
 
-import { useTranslations } from "@/contexts/TranslationContext";
-import { useLanguage } from "@/contexts/LanguageContext";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import SchemaMarkup from "./SchemaMarkup";
+import { useTranslations } from '@/contexts/TranslationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import SchemaMarkup from './SchemaMarkup';
 import {
   getOrganizationSchema,
   getWebSiteSchema,
   getServiceSchema,
   getBreadcrumbSchema,
   getBlogPostSchema,
-  getLocalBusinessSchema
-} from "@/utils/schemaHelpers";
-import { SITE_BASE_URL, buildSeoUrls, defaultOgImage } from "@/lib/seoUrls";
+  getLocalBusinessSchema,
+} from '@/utils/schemaHelpers';
+import { SITE_BASE_URL, buildSeoUrls, defaultOgImage } from '@/lib/seoUrls';
 
 /** JSON-LD Service schema name per service page key. */
 const SERVICE_NAME_BY_PAGE: Record<string, string> = {
-  websites: "Web Development", automation: "Digital Automation",
-  ai: "Artificial Intelligence", systems: "Custom Systems",
-  experience: "3D Experience Platform",
+  websites: 'Web Development', automation: 'Digital Automation',
+  ai: 'Artificial Intelligence', systems: 'Custom Systems',
+  experience: '3D Experience Platform',
 };
 
 /** Breadcrumb label per page key (URL segment equals the page key). */
 const BREADCRUMB_LABEL_BY_PAGE: Record<string, string> = {
-  contact: "Contact", websites: "Websites", automation: "Automation",
-  ai: "AI", systems: "Systems", experience: "3D Experience",
+  contact: 'Contact', websites: 'Websites', automation: 'Automation',
+  ai: 'AI', systems: 'Systems', experience: '3D Experience',
 };
 
 interface PageHeadProps {
@@ -50,38 +50,46 @@ const PageHead: React.FC<PageHeadProps> = ({
   customTitle,
   customDescription,
   customImage,
-  blogPost
+  blogPost,
 }) => {
   const t = useTranslations();
   const { language } = useLanguage();
   const router = useRouter();
 
+  // Typed lookup for dynamic meta keys (metaTitle_<pageKey> etc.) on the
+  // locale messages; non-string/missing values fall through like before.
+  const metaString = (key: string): string | undefined => {
+    const value = (t as Record<string, unknown>)[key];
+    return typeof value === 'string' ? value : undefined;
+  };
+
   // Title priority: customTitle > dynamicTitle > localized pageKey > default
   const title =
     customTitle ||
     dynamicTitle ||
-    (pageKey && (t as any)[`metaTitle_${pageKey}`]) ||
+    (pageKey && metaString(`metaTitle_${pageKey}`)) ||
     t.metaTitle ||
-    "WB Digital Solutions";
+    'WB Digital Solutions';
 
   // Get description based on page
-  const descriptionKey = pageKey ? `metaDescription_${pageKey}` : "metaDescription";
-  const description = customDescription || (t as any)[descriptionKey] || t.metaDescription || "";
+  const descriptionKey = pageKey ? `metaDescription_${pageKey}` : 'metaDescription';
+  const description = customDescription || metaString(descriptionKey) || t.metaDescription || '';
 
   // Get keywords based on page
-  const keywordsKey = pageKey ? `metaKeywords_${pageKey}` : "metaKeywords";
-  const keywords = (t as any)[keywordsKey] || t.metaKeywords || "";
+  const keywordsKey = pageKey ? `metaKeywords_${pageKey}` : 'metaKeywords';
+  const keywords = metaString(keywordsKey) || t.metaKeywords || '';
 
   // Track page view when title is set
   useEffect(() => {
-    if (typeof window !== "undefined" && (window as any).gtag && title) {
+    // window.gtag is typed by the global Window augmentation in CookieConsent.tsx.
+    if (typeof window !== 'undefined' && window.gtag && title) {
       // Small delay to ensure DOM is ready
       setTimeout(() => {
-        (window as any).gtag('event', 'page_view', {
+        window.gtag?.('event', 'page_view', {
           page_title: title,
           page_location: window.location.href,
           page_path: router.asPath,
-          send_to: 'G-PZ3WX1KF35'
+          send_to: 'G-PZ3WX1KF35',
         });
       }, 0);
     }
@@ -98,7 +106,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   // NOTE: og/twitter images must be raster (JPG/PNG) — social platforms do
   // not render SVG, so the brand SVG logo would show no preview.
   const ogImage = customImage
-    ? (customImage.startsWith("http") ? customImage : `${baseUrl}${customImage}`)
+    ? (customImage.startsWith('http') ? customImage : `${baseUrl}${customImage}`)
     : defaultOgImage(pageKey, router.locale ?? router.defaultLocale);
 
   // Generate schemas based on page type
@@ -120,7 +128,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   if (blogPost) {
     schemas.push(getBlogPostSchema(
       blogPost.title, blogPost.description, blogPost.author,
-      blogPost.datePublished, canonicalUrl, blogPost.images
+      blogPost.datePublished, canonicalUrl, blogPost.images,
     ));
   }
 
@@ -133,7 +141,7 @@ const PageHead: React.FC<PageHeadProps> = ({
     } else if (blogPost) {
       breadcrumbItems.push(
         { name: 'Blog', url: `${baseUrl}/blog` },
-        { name: blogPost.title, url: canonicalUrl }
+        { name: blogPost.title, url: canonicalUrl },
       );
     } else if (BREADCRUMB_LABEL_BY_PAGE[pageKey]) {
       breadcrumbItems.push({

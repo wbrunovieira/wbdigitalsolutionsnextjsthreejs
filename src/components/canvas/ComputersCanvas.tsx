@@ -1,19 +1,20 @@
-import { Suspense, useState, useEffect, useRef } from "react";
-import * as THREE from "three";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import CanvasLoader from "../Loader";
-import { PreloadedCanvas } from "../PreloadedCanvas";
-import CanvasErrorBoundary from "../CanvasErrorBoundary";
-import DragTutorial from "../DragTutorial";
-import TapTutorial from "../TapTutorial";
+import { Suspense, useState, useEffect, useRef } from 'react';
+import * as THREE from 'three';
+import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import CanvasLoader from '../Loader';
+import { PreloadedCanvas } from '../PreloadedCanvas';
+import CanvasErrorBoundary from '../CanvasErrorBoundary';
+import DragTutorial from '../DragTutorial';
+import TapTutorial from '../TapTutorial';
 
 interface isMobileProps {
     isMobile: boolean;
 }
 
 const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
-    const computer = useGLTF("/models/desktop/scene.gltf");
+    const computer = useGLTF('/models/desktop/scene.gltf');
     const computerRef = useRef<THREE.Group | null>(null);
     const groupRef = useRef<THREE.Group | null>(null);
 
@@ -23,8 +24,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
     });
 
     // Cleanup on unmount
-    useEffect(() => {
-        return () => {
+    useEffect(() => () => {
             if (computer.scene) {
                 computer.scene.traverse((child) => {
                     if ((child as THREE.Mesh).isMesh) {
@@ -40,8 +40,7 @@ const Computers: React.FC<isMobileProps> = ({ isMobile }) => {
                     }
                 });
             }
-        };
-    }, [computer]);
+        }, [computer]);
 
     useEffect(() => {
         if (!computerRef.current) return;
@@ -96,10 +95,10 @@ const ComputersCanvas = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [isClient, setIsClient] = useState(false);
     const [rotationSpeed, setRotationSpeed] = useState(0.5);
-    const orbitControlsRef = useRef<any>(null);
+    const orbitControlsRef = useRef<OrbitControlsImpl | null>(null);
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia("(max-width: 500px)");
+        const mediaQuery = window.matchMedia('(max-width: 500px)');
         setIsMobile(mediaQuery.matches);
 
         const handleMediaQueryChange = (event: Event) => {
@@ -107,11 +106,11 @@ const ComputersCanvas = () => {
             setIsMobile(mediaQueryEvent.matches);
         };
 
-        mediaQuery.addEventListener("change", handleMediaQueryChange);
+        mediaQuery.addEventListener('change', handleMediaQueryChange);
         setIsClient(true);
 
         return () => {
-            mediaQuery.removeEventListener("change", handleMediaQueryChange);
+            mediaQuery.removeEventListener('change', handleMediaQueryChange);
         };
     }, []);
 
@@ -141,17 +140,17 @@ const ComputersCanvas = () => {
         <div className="relative w-full h-full canvas-container" onTouchEnd={handleTap}>
             <CanvasErrorBoundary>
             <PreloadedCanvas
-                preloadAssets={["/models/desktop/scene.gltf"]}
+                preloadAssets={['/models/desktop/scene.gltf']}
                 shadows={!isMobile} // Disable shadows on mobile
                 camera={{ position: isMobile ? [22, 6, 24] : [20, 3, 25], fov: isMobile ? 38 : 45 }}
                 gl={{
                     preserveDrawingBuffer: true,
-                    powerPreference: "high-performance",
+                    powerPreference: 'high-performance',
                     antialias: !isMobile, // Disable antialiasing on mobile
-                    pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? window.devicePixelRatio : 1 // Lower pixel ratio on mobile
+                    pixelRatio: isMobile ? 1 : typeof window !== 'undefined' ? window.devicePixelRatio : 1, // Lower pixel ratio on mobile
                 }}
                 frameloop="always"
-                className={`w-full h-full ${isMobile ? "z-[1] pointer-events-auto" : "z-10"}`}
+                className={`w-full h-full ${isMobile ? 'z-[1] pointer-events-auto' : 'z-10'}`}
             >
                 <Suspense fallback={<CanvasLoader />}>
                     <OrbitControls

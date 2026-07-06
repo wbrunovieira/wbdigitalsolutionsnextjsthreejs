@@ -11,75 +11,75 @@
 //    client is in light or dark mode — nothing light to invert badly.
 
 const C = {
-  bg: "#120a18", // page background
-  card: "#1f0f2e", // main card
-  inset: "#2a1740", // field boxes / insets
-  border: "rgba(255,255,255,0.10)",
-  head: "#ffffff",
-  text: "#e9e0f1",
-  muted: "#a896ba",
-  primary: "#350545",
-  purple: "#792990",
-  accent: "#ffb947",
-  footerBg: "#0d0713",
-  okBg: "rgba(74,222,128,0.16)",
-  ok: "#4ade80",
+  bg: '#120a18', // page background
+  card: '#1f0f2e', // main card
+  inset: '#2a1740', // field boxes / insets
+  border: 'rgba(255,255,255,0.10)',
+  head: '#ffffff',
+  text: '#e9e0f1',
+  muted: '#a896ba',
+  primary: '#350545',
+  purple: '#792990',
+  accent: '#ffb947',
+  footerBg: '#0d0713',
+  okBg: 'rgba(74,222,128,0.16)',
+  ok: '#4ade80',
 };
 
 const BRAND = {
-  site: "https://www.wbdigitalsolutions.com",
-  email: "bruno@wbdigitalsolutions.com",
-  whatsappLabel: "+55 11 98286-4581",
-  whatsappLink: "https://wa.me/5511982864581",
+  site: 'https://www.wbdigitalsolutions.com',
+  email: 'bruno@wbdigitalsolutions.com',
+  whatsappLabel: '+55 11 98286-4581',
+  whatsappLink: 'https://wa.me/5511982864581',
   year: 2026,
 };
 
 const STRINGS = {
-  "en": {
-    flag: "🇬🇧", langName: "English",
+  'en': {
+    flag: '🇬🇧', langName: 'English',
     subject: (name) => `New contact message — ${name}`,
-    autoReplySubject: "Thank you for reaching out — WB Digital Solutions",
-    tagline: "Websites, Systems, AI & Automation that drive results",
-    main: { eyebrow: "New contact message", name: "Name", email: "Email", message: "Message", via: "Sent via the WB Digital Solutions website" },
-    reply: { title: "Thank you for reaching out!", greeting: (n) => `Hello ${n},`, body: "We’ve received your message and our team will get back to you shortly. In the meantime, feel free to explore the work we do.", cta: "View our projects", signoff: "Warm regards,", team: "The WB Digital Solutions Team" },
-    footer: { reach: "Reach us", rights: "All rights reserved" },
+    autoReplySubject: 'Thank you for reaching out — WB Digital Solutions',
+    tagline: 'Websites, Systems, AI & Automation that drive results',
+    main: { eyebrow: 'New contact message', name: 'Name', email: 'Email', message: 'Message', via: 'Sent via the WB Digital Solutions website' },
+    reply: { title: 'Thank you for reaching out!', greeting: (n) => `Hello ${n},`, body: 'We’ve received your message and our team will get back to you shortly. In the meantime, feel free to explore the work we do.', cta: 'View our projects', signoff: 'Warm regards,', team: 'The WB Digital Solutions Team' },
+    footer: { reach: 'Reach us', rights: 'All rights reserved' },
   },
-  "pt-BR": {
-    flag: "🇧🇷", langName: "Português",
+  'pt-BR': {
+    flag: '🇧🇷', langName: 'Português',
     subject: (name) => `Nova mensagem de contato — ${name}`,
-    autoReplySubject: "Obrigado pelo seu contato — WB Digital Solutions",
-    tagline: "Sites, Sistemas, IA e Automação que geram resultados",
-    main: { eyebrow: "Nova mensagem de contato", name: "Nome", email: "Email", message: "Mensagem", via: "Enviado pelo site da WB Digital Solutions" },
-    reply: { title: "Obrigado pelo seu contato!", greeting: (n) => `Olá ${n},`, body: "Recebemos a sua mensagem e nossa equipe vai te retornar em breve. Enquanto isso, fique à vontade para conhecer os trabalhos que realizamos.", cta: "Ver nossos projetos", signoff: "Atenciosamente,", team: "Equipe WB Digital Solutions" },
-    footer: { reach: "Fale com a gente", rights: "Todos os direitos reservados" },
+    autoReplySubject: 'Obrigado pelo seu contato — WB Digital Solutions',
+    tagline: 'Sites, Sistemas, IA e Automação que geram resultados',
+    main: { eyebrow: 'Nova mensagem de contato', name: 'Nome', email: 'Email', message: 'Mensagem', via: 'Enviado pelo site da WB Digital Solutions' },
+    reply: { title: 'Obrigado pelo seu contato!', greeting: (n) => `Olá ${n},`, body: 'Recebemos a sua mensagem e nossa equipe vai te retornar em breve. Enquanto isso, fique à vontade para conhecer os trabalhos que realizamos.', cta: 'Ver nossos projetos', signoff: 'Atenciosamente,', team: 'Equipe WB Digital Solutions' },
+    footer: { reach: 'Fale com a gente', rights: 'Todos os direitos reservados' },
   },
-  "es": {
-    flag: "🇪🇸", langName: "Español",
+  'es': {
+    flag: '🇪🇸', langName: 'Español',
     subject: (name) => `Nuevo mensaje de contacto — ${name}`,
-    autoReplySubject: "Gracias por tu contacto — WB Digital Solutions",
-    tagline: "Sitios, Sistemas, IA y Automatización que generan resultados",
-    main: { eyebrow: "Nuevo mensaje de contacto", name: "Nombre", email: "Correo", message: "Mensaje", via: "Enviado desde el sitio de WB Digital Solutions" },
-    reply: { title: "¡Gracias por tu contacto!", greeting: (n) => `Hola ${n},`, body: "Hemos recibido tu mensaje y nuestro equipo te responderá muy pronto. Mientras tanto, te invitamos a conocer nuestro trabajo.", cta: "Ver nuestros proyectos", signoff: "Saludos cordiales,", team: "Equipo WB Digital Solutions" },
-    footer: { reach: "Habla con nosotros", rights: "Todos los derechos reservados" },
+    autoReplySubject: 'Gracias por tu contacto — WB Digital Solutions',
+    tagline: 'Sitios, Sistemas, IA y Automatización que generan resultados',
+    main: { eyebrow: 'Nuevo mensaje de contacto', name: 'Nombre', email: 'Correo', message: 'Mensaje', via: 'Enviado desde el sitio de WB Digital Solutions' },
+    reply: { title: '¡Gracias por tu contacto!', greeting: (n) => `Hola ${n},`, body: 'Hemos recibido tu mensaje y nuestro equipo te responderá muy pronto. Mientras tanto, te invitamos a conocer nuestro trabajo.', cta: 'Ver nuestros proyectos', signoff: 'Saludos cordiales,', team: 'Equipo WB Digital Solutions' },
+    footer: { reach: 'Habla con nosotros', rights: 'Todos los derechos reservados' },
   },
-  "it": {
-    flag: "🇮🇹", langName: "Italiano",
+  'it': {
+    flag: '🇮🇹', langName: 'Italiano',
     subject: (name) => `Nuovo messaggio di contatto — ${name}`,
-    autoReplySubject: "Grazie per il tuo contatto — WB Digital Solutions",
-    tagline: "Siti, Sistemi, IA e Automazione che generano risultati",
-    main: { eyebrow: "Nuovo messaggio di contatto", name: "Nome", email: "Email", message: "Messaggio", via: "Inviato dal sito di WB Digital Solutions" },
-    reply: { title: "Grazie per il tuo contatto!", greeting: (n) => `Ciao ${n},`, body: "Abbiamo ricevuto il tuo messaggio e il nostro team ti risponderà a breve. Nel frattempo, dai un’occhiata ai lavori che realizziamo.", cta: "Vedi i nostri progetti", signoff: "Cordiali saluti,", team: "Team WB Digital Solutions" },
-    footer: { reach: "Scrivici", rights: "Tutti i diritti riservati" },
+    autoReplySubject: 'Grazie per il tuo contatto — WB Digital Solutions',
+    tagline: 'Siti, Sistemi, IA e Automazione che generano risultati',
+    main: { eyebrow: 'Nuovo messaggio di contatto', name: 'Nome', email: 'Email', message: 'Messaggio', via: 'Inviato dal sito di WB Digital Solutions' },
+    reply: { title: 'Grazie per il tuo contatto!', greeting: (n) => `Ciao ${n},`, body: 'Abbiamo ricevuto il tuo messaggio e il nostro team ti risponderà a breve. Nel frattempo, dai un’occhiata ai lavori che realizziamo.', cta: 'Vedi i nostri progetti', signoff: 'Cordiali saluti,', team: 'Team WB Digital Solutions' },
+    footer: { reach: 'Scrivici', rights: 'Tutti i diritti riservati' },
   },
 };
 
 function escapeHtml(str) {
   return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 // Header: raster-free logo lockup (round "WB" badge + wordmark) on a brand
@@ -144,7 +144,7 @@ function shell(preheader, contentRows) {
 
 // Visitor auto-reply
 function buildAutoReply(lang, name) {
-  const s = STRINGS[lang] || STRINGS["pt-BR"];
+  const s = STRINGS[lang] || STRINGS['pt-BR'];
   const safeName = escapeHtml(name);
   const rows = `
   ${header(s)}
@@ -170,7 +170,7 @@ function buildAutoReply(lang, name) {
 
 // Internal notification (to the team)
 function buildMain(lang, name, email, message) {
-  const s = STRINGS[lang] || STRINGS["pt-BR"];
+  const s = STRINGS[lang] || STRINGS['pt-BR'];
   const field = (label, valueHtml) => `
     <tr><td style="padding:0 40px;">
       <p style="margin:18px 0 4px;color:${C.muted};font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;">${label}</p>
@@ -192,12 +192,12 @@ function buildMain(lang, name, email, message) {
 }
 
 function plain(lines) {
-  return lines.filter((l) => l !== null && l !== undefined).join("\n");
+  return lines.filter((l) => l !== null && l !== undefined).join('\n');
 }
 
 // Single entry point used by the API route.
 function getContactEmails(lang, { name, email, message }) {
-  const s = STRINGS[lang] || STRINGS["pt-BR"];
+  const s = STRINGS[lang] || STRINGS['pt-BR'];
   return {
     subject: s.subject(name),
     autoReplySubject: s.autoReplySubject,
@@ -206,25 +206,25 @@ function getContactEmails(lang, { name, email, message }) {
     mainText: plain([
       s.main.eyebrow,
       `${s.langName} (${lang})`,
-      "",
+      '',
       `${s.main.name}: ${name}`,
       `${s.main.email}: ${email}`,
-      "",
+      '',
       `${s.main.message}:`,
       message,
-      "",
-      "---",
+      '',
+      '---',
       s.main.via,
     ]),
     autoReplyText: plain([
       s.reply.title,
-      "",
+      '',
       s.reply.greeting(name),
       s.reply.body,
-      "",
+      '',
       s.reply.signoff,
       s.reply.team,
-      "",
+      '',
       `${BRAND.email} · ${BRAND.whatsappLabel} · ${BRAND.site}`,
     ]),
   };

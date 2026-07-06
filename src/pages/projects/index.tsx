@@ -36,7 +36,8 @@ const ProjectsPage: React.FC = () => {
 
   // Projects with a dedicated page navigate to it; the rest open the modal.
   const handleSelect = (project: Project) => {
-    if (project.slug) router.push(`/projects/${project.slug}`);
+    // void: fire-and-forget navigation; Next.js surfaces routing errors itself.
+    if (project.slug) void router.push(`/projects/${project.slug}`);
     else setSelected(project);
   };
 

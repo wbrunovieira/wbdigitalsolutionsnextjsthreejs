@@ -8,11 +8,11 @@
  * safety timeout (for targets outside the spy list, like the contact anchor).
  */
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 const scrollTo = (id: string) => (e: React.MouseEvent) => {
   e.preventDefault();
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 export function useDevScrollSpy(sections: readonly { id: string }[]) {
@@ -36,13 +36,13 @@ export function useDevScrollSpy(sections: readonly { id: string }[]) {
       scrollTarget.current = null;
     };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("wheel", cancelTravel, { passive: true });
-    window.addEventListener("touchstart", cancelTravel, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('wheel', cancelTravel, { passive: true });
+    window.addEventListener('touchstart', cancelTravel, { passive: true });
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", cancelTravel);
-      window.removeEventListener("touchstart", cancelTravel);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('wheel', cancelTravel);
+      window.removeEventListener('touchstart', cancelTravel);
     };
   }, [sections]);
 
@@ -58,7 +58,7 @@ export function useDevScrollSpy(sections: readonly { id: string }[]) {
           }
           setActive(e.target.id);
         }),
-      { rootMargin: "-45% 0px -50% 0px" },
+      { rootMargin: '-45% 0px -50% 0px' },
     );
     sections.forEach(({ id }) => {
       const el = document.getElementById(id);

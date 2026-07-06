@@ -1,13 +1,13 @@
-import React, { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 const Player = dynamic(
   () =>
-    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+    import('@lottiefiles/react-lottie-player').then((mod) => mod.Player),
   {
     ssr: false,
-  }
+  },
 );
 
 import {
@@ -21,10 +21,9 @@ import {
   FaUsers,
   FaStore,
   FaRobot,
-} from "react-icons/fa";
-import { useTranslations } from "@/contexts/TranslationContext";
-import { useLanguage } from "@/contexts/LanguageContext";
-import dynamic from "next/dynamic";
+} from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
+import dynamic from 'next/dynamic';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +31,12 @@ interface VisionOption {
   title: string;
   description: string;
   icon: React.ReactNode;
+}
+
+interface VisionOptionMessage {
+  title: string;
+  description: string;
+  icon: string;
 }
 
 const iconMapper: Record<string, React.ReactNode> = {
@@ -48,7 +53,6 @@ const iconMapper: Record<string, React.ReactNode> = {
 };
 
 const VisionComputationalSection: React.FC = () => {
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,12 +69,12 @@ const VisionComputationalSection: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: headingRef.current,
-            start: "top 90%",
+            start: 'top 90%',
           },
-        }
+        },
       );
 
 
@@ -84,12 +88,12 @@ const VisionComputationalSection: React.FC = () => {
             y: 0,
             duration: 1,
             delay: index * 0.1,
-            ease: "power3.out",
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: card,
-              start: "top 95%",
+              start: 'top 95%',
             },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -98,13 +102,12 @@ const VisionComputationalSection: React.FC = () => {
   }, []);
 
 
-  const visionOptions: VisionOption[] = currentMessages.visionOptions.map((option: any) => {
-    return {
+  const visionOptionMessages: VisionOptionMessage[] = currentMessages.visionOptions;
+  const visionOptions: VisionOption[] = visionOptionMessages.map((option) => ({
       title: option.title,
       description: option.description,
       icon: iconMapper[option.icon] || <FaSearch className="text-4xl text-blue-400" />,
-    };
-  });
+    }));
 
   return (
     <section

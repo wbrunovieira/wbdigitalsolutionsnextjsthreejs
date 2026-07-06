@@ -4,8 +4,7 @@ import React from 'react';
  * Lighting setup for the 3D office scene
  * Provides ambient, directional and point lights for realistic illumination
  */
-const Lighting: React.FC = () => {
-  return (
+const Lighting: React.FC = () => (
     <>
       {/* Global ambient light for base illumination */}
       <ambientLight intensity={0.8} />
@@ -32,6 +31,5 @@ const Lighting: React.FC = () => {
       <pointLight position={[5, 5, -5]} intensity={1} color="#792990" />
     </>
   );
-};
 
 export default Lighting;

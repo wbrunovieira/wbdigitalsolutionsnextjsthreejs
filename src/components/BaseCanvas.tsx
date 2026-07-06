@@ -1,6 +1,7 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import type { CanvasProps } from '@react-three/fiber';
 
 
 // Interface base para props do Canvas
@@ -9,8 +10,8 @@ export interface BaseCanvasProps {
   className?: string;
   frameloop?: 'always' | 'demand' | 'never';
   shadows?: boolean;
-  camera?: any;
-  gl?: any;
+  camera?: CanvasProps['camera'];
+  gl?: CanvasProps['gl'];
   style?: React.CSSProperties;
 }
 
@@ -24,7 +25,7 @@ export const useIsVisible = (ref: React.RefObject<HTMLDivElement>) => {
         setIsVisible(entry.isIntersecting);
       }, {
         threshold: 0.1,
-        rootMargin: '100px'
+        rootMargin: '100px',
       });
   
       observer.observe(ref.current);

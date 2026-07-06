@@ -1,9 +1,9 @@
-import Card from "./Card";
-import { useTranslations } from "@/contexts/TranslationContext";
-import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import AnimatedGearIcon from "./AnimatedGearIcon";
-import CardSmallToBig from "./CardSmallToBig";
+import Card from './Card';
+import { useTranslations } from '@/contexts/TranslationContext';
+import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import AnimatedGearIcon from './AnimatedGearIcon';
+import CardSmallToBig from './CardSmallToBig';
 
 const SectionDaHome: React.FC = () => {
     const currentMessages = useTranslations();
@@ -11,17 +11,17 @@ const SectionDaHome: React.FC = () => {
 
     useEffect(() => {
         const loadGSAP = async () => {
-            const gsap = (await import("gsap")).default;
-            const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
+            const gsap = (await import('gsap')).default;
+            const ScrollTrigger = (await import('gsap/ScrollTrigger')).default;
             gsap.registerPlugin(ScrollTrigger);
-            const cards = gsap.utils.toArray(".card");
+            const cards = gsap.utils.toArray('.card');
 
             gsap.set(cards, { opacity: 0.3, x: -2000 });
 
             ScrollTrigger.create({
                 trigger: containerRef.current,
-                start: "top 60%",
-                end: "bottom top",
+                start: 'top 60%',
+                end: 'bottom top',
                 scrub: true,
 
                 onEnter: () => {
@@ -29,7 +29,7 @@ const SectionDaHome: React.FC = () => {
                         opacity: 1,
                         x: 0,
                         duration: 1.5,
-                        ease: "power1.inOut",
+                        ease: 'power1.inOut',
                         stagger: {
                             each: 0.5,
                         },
@@ -40,7 +40,7 @@ const SectionDaHome: React.FC = () => {
                         opacity: 0.3,
                         x: -1800,
                         duration: 1.5,
-                        ease: "power1.inOut",
+                        ease: 'power1.inOut',
                         stagger: {
                             each: 0.5,
                         },
@@ -51,7 +51,7 @@ const SectionDaHome: React.FC = () => {
                         opacity: 1,
                         x: 0,
                         duration: 1.5,
-                        ease: "power1.inOut",
+                        ease: 'power1.inOut',
                         stagger: {
                             each: 0.5,
                         },
@@ -62,7 +62,7 @@ const SectionDaHome: React.FC = () => {
                         opacity: 0.3,
                         x: -1800,
                         duration: 1.5,
-                        ease: "power1.inOut",
+                        ease: 'power1.inOut',
                         stagger: {
                             each: 0.5,
                         },
@@ -71,7 +71,8 @@ const SectionDaHome: React.FC = () => {
             });
         };
 
-        loadGSAP();
+        // Fire-and-forget: dynamic GSAP import runs client-side only.
+        void loadGSAP();
     }, []);
 
     return (
@@ -84,10 +85,10 @@ const SectionDaHome: React.FC = () => {
                 <CardSmallToBig
                     // key={index}
                     // index={index + 1}
-                    name={"Salão Loha"}
-                    subTitle={"Site desenvolvido para um salao de beleza, no intuito de apresenta"}
-                    description={"Professional website development"}
-                    image={"/img/projects/salao-loha.jpeg"}
+                    name={'Salão Loha'}
+                    subTitle={'Site desenvolvido para um salao de beleza, no intuito de apresenta'}
+                    description={'Professional website development'}
+                    image={'/img/projects/salao-loha.jpeg'}
                     // className="card"
                 />
             </div>

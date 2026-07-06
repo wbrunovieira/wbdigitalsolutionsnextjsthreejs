@@ -1,18 +1,11 @@
-"use client";
+'use client';
 
-import React, { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Html, PerspectiveCamera } from "@react-three/drei";
-import { useSpring, animated as a3 } from "@react-spring/three";
-import { useSpring as useWebSpring, animated } from "@react-spring/web";
-import * as THREE from "three";
-
-// Debug logging — silenced in production to avoid console noise.
-const devLog = (...args: unknown[]) => {
-  if (process.env.NODE_ENV !== "production") console.log(...args);
-};
-
-type Direction = "up" | "down" | "left" | "right" | "forward" | "backward";
+import React, { useRef, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls, Html, PerspectiveCamera } from '@react-three/drei';
+import { useSpring, animated as a3 } from '@react-spring/three';
+import { useSpring as useWebSpring, animated } from '@react-spring/web';
+import * as THREE from 'three';
 
 interface BaseElementData {
     id: string;
@@ -21,30 +14,30 @@ interface BaseElementData {
 }
 
 interface VideoElementData extends BaseElementData {
-    type: "video";
+    type: 'video';
     videoUrl: string;
     description?: string;
 }
 
 interface CardElementData extends BaseElementData {
-    type: "card";
+    type: 'card';
     content: string;
     imageUrl?: string;
 }
 
 interface TextElementData extends BaseElementData {
-    type: "text";
+    type: 'text';
     content: string;
 }
 
 interface ImageElementData extends BaseElementData {
-    type: "image";
+    type: 'image';
     imageUrl: string;
     altText?: string;
 }
 
 interface LinkElementData extends BaseElementData {
-    type: "link";
+    type: 'link';
     url: string;
     text: string;
 }
@@ -56,7 +49,7 @@ type ElementData =
     | TextElementData
     | LinkElementData;
 
-type LayoutType = "tabela" | "esfera" | "hélice" | "grade";
+type LayoutType = 'tabela' | 'esfera' | 'hélice' | 'grade';
 
 interface SceneProps {
     layout: LayoutType;
@@ -69,7 +62,6 @@ interface SceneProps {
 
 interface ElementProps {
     data: ElementData;
-    layout: LayoutType;
     index: number;
     onClick: (data: ElementData, position: { x: number; y: number }) => void;
 }
@@ -82,22 +74,22 @@ interface ModalProps {
 
 const elements: ElementData[] = [
     {
-        id: "video-apresentacao",
-        title: "WB Web",
-        type: "card",
-        content: "Sistema para Lojas, Industrias, Servicos em Geral.",
+        id: 'video-apresentacao',
+        title: 'WB Web',
+        type: 'card',
+        content: 'Sistema para Lojas, Industrias, Servicos em Geral.',
     },
     {
-        id: "video-apresentacao",
-        title: "Vídeo WB Web",
-        type: "video",
-        videoUrl: "https://www.youtube.com/embed/up7kmO4Ys5M",
-        description: "Vídeo de apresentação WB Web.",
+        id: 'video-apresentacao',
+        title: 'Vídeo WB Web',
+        type: 'video',
+        videoUrl: 'https://www.youtube.com/embed/up7kmO4Ys5M',
+        description: 'Vídeo de apresentação WB Web.',
     },
     {
-        id: "site-topicos",
-        title: "Site - Tópicos",
-        type: "card",
+        id: 'site-topicos',
+        title: 'Site - Tópicos',
+        type: 'card',
         content: `Benefícios de um Website Personalizado
 O Poder de UI/UX
 A Vantagem de Código
@@ -115,16 +107,16 @@ Suporte
 Tecnologia, Hospedagem e Atualizações`,
     },
     {
-        id: "catalogo-download",
-        title: "Catálogo - Download",
-        type: "card",
-        content: "Download\nCatálogo Sites",
-        imageUrl: "path_to_catalog_image",
+        id: 'catalogo-download',
+        title: 'Catálogo - Download',
+        type: 'card',
+        content: 'Download\nCatálogo Sites',
+        imageUrl: 'path_to_catalog_image',
     },
     {
-        id: "websites-personalizados",
-        title: "Websites Personalizados de Ponta para o Seu Negócio",
-        type: "card",
+        id: 'websites-personalizados',
+        title: 'Websites Personalizados de Ponta para o Seu Negócio',
+        type: 'card',
         content: `Somos especialistas em criar websites totalmente customizados com tecnologia de ponta e designs modernos. Entregamos sites exclusivos para impulsionar os seus resultados online.
 
 Na WB Digital Solutions, desenvolvemos websites 100% personalizados para atender às necessidades únicas do seu negócio. Nossa equipe utiliza as tecnologias mais recentes como NodeJS e React para criar sites rápidos, seguros e com uma experiência incrível para os usuários.
@@ -132,9 +124,9 @@ Na WB Digital Solutions, desenvolvemos websites 100% personalizados para atender
 Confie em nós para potencializar a presença digital da sua empresa.`,
     },
     {
-        id: "beneficios-website",
-        title: "Benefícios de um Website Personalizado",
-        type: "card",
+        id: 'beneficios-website',
+        title: 'Benefícios de um Website Personalizado',
+        type: 'card',
         content: `- Layout moderno e adequado à sua marca
 - Site otimizado para buscadores, aumentando seu alcance
 - Carregamento rápido, melhorando a experiência do usuário
@@ -147,9 +139,9 @@ Confie em nós para potencializar a presença digital da sua empresa.`,
 - Qualidade superior, destacando você da concorrência`,
     },
     {
-        id: "poder-ui-ux",
-        title: "Transforme Seu Site em um Sucesso: O Poder de UI/UX",
-        type: "card",
+        id: 'poder-ui-ux',
+        title: 'Transforme Seu Site em um Sucesso: O Poder de UI/UX',
+        type: 'card',
         content: `Por que investir em UI/UX é essencial para o sucesso do seu site
 
 Um site bem-sucedido hoje depende de uma interface (UI) intuitiva e agradável, junto com uma experiência de usuário (UX) de alta qualidade. Os usuários online estão mais exigentes do que nunca, e um site com navegação confusa simplesmente afasta visitantes.
@@ -161,9 +153,9 @@ Investir em UI e UX superiores é a chave para destacar seu site na concorrênci
 Na WB Digital Solutions, estamos aqui para transformar sua presença online em um sucesso notável.`,
     },
     {
-        id: "vantagem-codigo",
-        title: "Sites Personalizados: A Vantagem de Código Sobre Templates Prontos",
-        type: "card",
+        id: 'vantagem-codigo',
+        title: 'Sites Personalizados: A Vantagem de Código Sobre Templates Prontos',
+        type: 'card',
         content: `Por que investir em um site feito sob medida pode impulsionar o seu negócio online
 
 Quando se trata de criar uma presença online eficaz, a escolha entre usar templates prontos e investir em um site personalizado é crucial. Na WB Digital Solutions, desenvolvemos sites do zero, garantindo um desempenho superior, carregamento rápido e maior segurança. Além disso, sites personalizados são otimizados para SEO, melhorando a visibilidade nos mecanismos de busca.
@@ -173,9 +165,9 @@ Outro benefício fundamental é a liberdade no design, permitindo que sua marca 
 Vamos transformar sua visão em realidade digital!`,
     },
     {
-        id: "alcance-seo",
-        title: "Alcance o Topo com o SEO",
-        type: "card",
+        id: 'alcance-seo',
+        title: 'Alcance o Topo com o SEO',
+        type: 'card',
         content: `Você já ouviu falar em SEO? Trata-se de otimizar seu site para aparecer nos primeiros resultados do Google.
 
 Na WB Digital Solutions, nossa equipe aplica estratégias avançadas de SEO desde o início do desenvolvimento do seu site. Isso significa que seu site será facilmente encontrado por clientes em potencial, aumentando o tráfego e as vendas.
@@ -183,27 +175,27 @@ Na WB Digital Solutions, nossa equipe aplica estratégias avançadas de SEO desd
 Vamos trabalhar juntos para garantir que sua presença online seja notada pelos mecanismos de busca e pelos seus futuros clientes.`,
     },
     {
-        id: "poder-copywriting",
-        title: "O Poder do Copywriting",
-        type: "card",
+        id: 'poder-copywriting',
+        title: 'O Poder do Copywriting',
+        type: 'card',
         content: `Copywriting é a arte de criar textos persuasivos que conquistam. Na WB Digital Solutions, nossa equipe de copywriters trabalha para criar conteúdo envolvente que transforma visitantes em clientes e transmite sua mensagem com clareza e persuasão.
 
 Vamos criar uma narrativa poderosa para o seu site, garantindo o sucesso online que você deseja.`,
     },
 
     {
-        id: "contato_2",
-        title: "CONTATE",
-        type: "card",
+        id: 'contato_2',
+        title: 'CONTATE',
+        type: 'card',
         content: `Não perca mais tempo. Mande já uma mensagem.
 O seu novo site espera por você!
 
 Agende uma reunião.`,
     },
     {
-        id: "formulario-contato",
-        title: "Formulário de Contato",
-        type: "card",
+        id: 'formulario-contato',
+        title: 'Formulário de Contato',
+        type: 'card',
         content: `Seu Nome
 Seu Email
 Seu Telefone
@@ -211,9 +203,9 @@ Assunto
 Mensagem`,
     },
     {
-        id: "rodape",
-        title: "WB Digital Solutions",
-        type: "card",
+        id: 'rodape',
+        title: 'WB Digital Solutions',
+        type: 'card',
         content: `O seu parceiro ideal para tecnologia e marketing digital
 
 Brasil: +55 11 5026-4203
@@ -221,9 +213,9 @@ Portugal: +351 30 880 8015
 contato@wbdigitalsolutions.com`,
     },
     {
-        id: "blogs-recentes",
-        title: "Blogs Recentes",
-        type: "card",
+        id: 'blogs-recentes',
+        title: 'Blogs Recentes',
+        type: 'card',
         content: `27 de out, 2023
 Por que eu ainda preciso de um site?
 
@@ -231,19 +223,19 @@ Por que eu ainda preciso de um site?
 Como o Sistema de Gestão Transforma Empresas`,
     },
     {
-        id: "direitos-reservados",
-        title: "Direitos Reservados",
-        type: "text",
-        content: "©WBDIGITALSOLUTIONS | Todos os direitos reservados.",
+        id: 'direitos-reservados',
+        title: 'Direitos Reservados',
+        type: 'text',
+        content: '©WBDIGITALSOLUTIONS | Todos os direitos reservados.',
     },
 ];
 
-const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
+const Element: React.FC<ElementProps> = ({ data, index, onClick }) => {
     const [hovered, setHovered] = useState(false);
     const groupRef = useRef<THREE.Group>(null);
 
     const { pos } = useSpring({
-        pos: data.position || [0, 0, 0],
+        pos: (data.position || [0, 0, 0]) as [number, number, number],
         config: { mass: 1, tension: 170, friction: 26 },
         delay: index * 50,
     });
@@ -261,14 +253,13 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
             x: rect.left + rect.width / 2,
             y: rect.top + rect.height / 2,
         };
-        devLog("Posição do elemento clicado:", elementPosition);
         onClick(data, elementPosition);
     };
 
     return (
         <a3.group
             ref={groupRef}
-            position={pos as any}
+            position={pos}
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
         >
@@ -278,12 +269,12 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                 position={[0, 0, 0]}
                 center
                 style={{
-                    transition: "transform 0.3s ease",
+                    transition: 'transform 0.3s ease',
                     opacity: 1,
                     transform: `scale(${hovered ? 1.1 : 1})`,
                     zIndex: 1,
-                    cursor: "pointer",
-                    pointerEvents: "auto",
+                    cursor: 'pointer',
+                    pointerEvents: 'auto',
                 }}
             >
                 <div
@@ -296,7 +287,7 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                     <div className="w-full h-full flex items-center justify-center overflow-y-auto">
                         {(() => {
                             switch (data.type) {
-                                case "video":
+                                case 'video':
                                     return (
                                         <iframe
                                             className="w-full h-full rounded"
@@ -305,7 +296,7 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                                             allowFullScreen
                                         />
                                     );
-                                case "image":
+                                case 'image':
                                     return (
                                         <img
                                             className="w-full h-full object-cover rounded"
@@ -313,13 +304,13 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
                                             alt={data.altText || data.title}
                                         />
                                     );
-                                case "card":
+                                case 'card':
                                     return (
                                         <div className="text-sm text-center overflow-hidden text-ellipsis p-2 line-clamp-5">
                                             <p>{data.content}</p>
                                         </div>
                                     );
-                                case "link":
+                                case 'link':
                                     return (
                                         <a
                                             href={data.url}
@@ -341,17 +332,17 @@ const Element: React.FC<ElementProps> = ({ data, layout, index, onClick }) => {
 
 const getPosition = (
     index: number,
-    layout: LayoutType
+    layout: LayoutType,
 ): [number, number, number] => {
     switch (layout) {
-        case "tabela":
+        case 'tabela':
             const columns = 5;
             const spacing = 4;
             const x = (index % columns) * spacing - (columns * spacing) / 2;
             const y = -Math.floor(index / columns) * spacing + 5;
             const z = 0;
             return [x, y, z];
-        case "esfera": {
+        case 'esfera': {
             const phi = Math.acos(-1 + (2 * index) / elements.length);
             const theta = Math.sqrt(elements.length * Math.PI) * phi;
             return [
@@ -360,12 +351,12 @@ const getPosition = (
                 15 * Math.cos(phi),
             ];
         }
-        case "hélice": {
+        case 'hélice': {
             const theta = index * 0.175 + Math.PI;
             const y = -(index * 2) + 20;
             return [20 * Math.cos(theta), y, 20 * Math.sin(theta)];
         }
-        case "grade": {
+        case 'grade': {
             const columnsGrid = 5;
             const spacingGrid = 10;
             const xGrid = (index % columnsGrid) * spacingGrid - 2;
@@ -379,8 +370,7 @@ const getPosition = (
     }
 };
 
-const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
-    return (
+const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => (
         <>
             <PerspectiveCamera
                 ref={cameraRef}
@@ -398,7 +388,6 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
                         ...data,
                         position: getPosition(index, layout),
                     }}
-                    layout={layout}
                     index={index}
                     onClick={onElementClick}
                 />
@@ -412,7 +401,6 @@ const Scene: React.FC<SceneProps> = ({ layout, cameraRef, onElementClick }) => {
             />
         </>
     );
-};
 
 const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
     const overlaySpring = useWebSpring({
@@ -428,36 +416,16 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                 ? `translate(${elementPosition.x - window.innerWidth / 2 - 150
                 }px, ${elementPosition.y - window.innerHeight / 2 - 100
                 }px) scale(0.5)`
-                : "translate(-50%, -50%) scale(0.5)",
+                : 'translate(-50%, -50%) scale(0.5)',
         },
         to: {
             opacity: 1,
-            transform: "translate(-50%, -50%) scale(1)",
+            transform: 'translate(-50%, -50%) scale(1)',
         },
         config: {
             mass: 1,
             tension: 200,
             friction: 26,
-        },
-        onStart: () => {
-            if (elementPosition) {
-                const initialX =
-                    elementPosition.x - window.innerWidth / 2 - 150;
-                const initialY =
-                    elementPosition.y - window.innerHeight / 2 - 100;
-
-                devLog(
-                    "Posição inicial ajustada para a animação do modal (com offset):",
-                    {
-                        x: initialX,
-                        y: initialY,
-                    }
-                );
-            } else {
-                devLog(
-                    "Posição inicial da animação do modal não disponível"
-                );
-            }
         },
     });
 
@@ -465,12 +433,12 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
         <animated.div
             style={{
                 ...overlaySpring,
-                position: "fixed",
+                position: 'fixed',
                 inset: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 zIndex: 1000,
             }}
             onClick={onClose}
@@ -478,15 +446,15 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
             <animated.div
                 style={{
                     ...modalSpring,
-                    position: "fixed",
-                    left: "50%",
-                    top: "50%",
-                    backgroundColor: "#1a1a1a",
-                    padding: "20rem",
-                    borderRadius: "0.5rem",
-                    maxWidth: "90vw",
-                    maxHeight: "90vh",
-                    overflow: "auto",
+                    position: 'fixed',
+                    left: '50%',
+                    top: '50%',
+                    backgroundColor: '#1a1a1a',
+                    padding: '20rem',
+                    borderRadius: '0.5rem',
+                    maxWidth: '90vw',
+                    maxHeight: '90vh',
+                    overflow: 'auto',
                 }}
                 onClick={(e) => e.stopPropagation()}
                 className="bg-custom-gradient"
@@ -502,7 +470,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                     {data.title}
                 </h2>
 
-                {data.type === "video" && (
+                {data.type === 'video' && (
                     <iframe
                         width="560"
                         height="315"
@@ -514,17 +482,17 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                     />
                 )}
 
-                {data.type === "link" && (
+                {data.type === 'link' && (
                     <a href={data.url} className="text-blue-500 underline">
                         {data.text}
                     </a>
                 )}
 
-                {data.type === "card" && (
+                {data.type === 'card' && (
                     <p className="text-white mt-4">{data.content}</p>
                 )}
 
-                {data.type === "image" && (
+                {data.type === 'image' && (
                     <img
                         src={data.imageUrl}
                         alt={data.altText || data.title}
@@ -532,7 +500,7 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
                     />
                 )}
 
-                {data.type === "text" && (
+                {data.type === 'text' && (
                     <p className="text-white mt-4">{data.content}</p>
                 )}
             </animated.div>
@@ -541,9 +509,9 @@ const Modal: React.FC<ModalProps> = ({ data, onClose, elementPosition }) => {
 };
 
 const PeriodicTableClient = () => {
-    const [layout, setLayout] = useState<LayoutType>("tabela");
+    const [layout, setLayout] = useState<LayoutType>('tabela');
     const [selectedElement, setSelectedElement] = useState<ElementData | null>(
-        null
+        null,
     );
     const [elementPosition, setElementPosition] = useState<{
         x: number;
@@ -553,7 +521,7 @@ const PeriodicTableClient = () => {
 
     const handleElementClick = (
         data: ElementData,
-        position: { x: number; y: number }
+        position: { x: number; y: number },
     ) => {
         setElementPosition(position);
         setSelectedElement(data);
@@ -574,7 +542,7 @@ const PeriodicTableClient = () => {
                 </div>
                 <div className="flex items-center justify-center gap-2">
                     {(
-                        ["tabela", "esfera", "hélice", "grade"] as LayoutType[]
+                        ['tabela', 'esfera', 'hélice', 'grade'] as LayoutType[]
                     ).map((l) => (
                         <button
                             key={l}
@@ -584,8 +552,8 @@ const PeriodicTableClient = () => {
                                 transition-colors hover:bg-primary transition duration-300 ease-in-out
                                  z-[1001]
                                 ${layout === l
-                                    ? "bg-yellowcustom"
-                                    : "bg-transparent"
+                                    ? 'bg-yellowcustom'
+                                    : 'bg-transparent'
                                 }
                             `}
                         >

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { FaBalanceScale, FaChartLine, FaCopy, FaPaintBrush, FaRocket, FaStar } from "react-icons/fa";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaChartLine, FaCopy, FaPaintBrush, FaRocket, FaStar } from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 const CustomVsGeneric: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -10,12 +10,11 @@ const CustomVsGeneric: React.FC = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
 
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const ScrollTrigger = require("gsap/ScrollTrigger").default;
+    if (typeof window !== 'undefined') {
+      // Register on the client only; the static import itself is SSR-safe.
       gsap.registerPlugin(ScrollTrigger);
 
 
@@ -23,10 +22,10 @@ const CustomVsGeneric: React.FC = () => {
         opacity: 0,
         y: -50,
         duration: 1,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: titleRef.current,
-          start: "top 80%",
+          start: 'top 80%',
         },
       });
 
@@ -36,10 +35,10 @@ const CustomVsGeneric: React.FC = () => {
         y: 30,
         duration: 1,
         delay: 0.3,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: subtitleRef.current,
-          start: "top 80%",
+          start: 'top 80%',
         },
       });
 
@@ -48,10 +47,10 @@ const CustomVsGeneric: React.FC = () => {
         opacity: 0,
         scale: 0.9,
         duration: 1,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: comparisonRef.current,
-          start: "top 90%",
+          start: 'top 90%',
         },
       });
     }

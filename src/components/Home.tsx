@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
-import HeroSection from "./HeroSection";
-import InfiniteScrollHash from "./InfiniteScrollHash";
-import { ToolBoxSkeleton, CarouselSkeleton } from "./LoadingSkeletons";
+import HeroSection from './HeroSection';
+import InfiniteScrollHash from './InfiniteScrollHash';
+import { ToolBoxSkeleton, CarouselSkeleton } from './LoadingSkeletons';
 
 // Lazy load heavy components
-const ToolBox = dynamic(() => import("./ToolBox"), {
+const ToolBox = dynamic(() => import('./ToolBox'), {
   loading: () => <ToolBoxSkeleton />,
-  ssr: true
+  ssr: true,
 });
 
 const AppleCardsCarouselDemo = dynamic(
-  () => import("./CardCarrosel").then((mod) => ({ default: mod.AppleCardsCarouselDemo })),
+  () => import('./CardCarrosel').then((mod) => ({ default: mod.AppleCardsCarouselDemo })),
   {
     loading: () => <CarouselSkeleton />,
-    ssr: false // Disable SSR for carousel to improve initial load
-  }
+    ssr: false, // Disable SSR for carousel to improve initial load
+  },
 );
 
 // Import Portal3DSection with GSAP animations - no SSR to avoid hydration issues.
@@ -31,7 +31,7 @@ const Portal3DSectionGSAP = dynamic(() => import('./home/Portal3DSectionGSAP'), 
 // PROTOTYPE: persistent scroll-driven 3D computer (desktop only). Self-nullifies
 // on mobile, where the hero keeps its own ComputersCanvas.
 const ScrollComputer3D = dynamic(() => import('./canvas/ScrollComputer3D'), {
-    ssr: false
+    ssr: false,
 });
 
 const Home: React.FC = () => {
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
     // while real users get it the moment they move. A 4s fallback covers idle users.
     const [show3D, setShow3D] = useState(false);
     useEffect(() => {
-        const events = ["scroll", "pointermove", "touchstart", "keydown"];
+        const events = ['scroll', 'pointermove', 'touchstart', 'keydown'];
         const mount = () => {
             setShow3D(true);
             events.forEach((e) => window.removeEventListener(e, mount));

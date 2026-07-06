@@ -13,7 +13,7 @@ const config = {
     disciplines: ['Motion', 'Experience', 'Accessibility'],
 };
 
-export const DesignHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) => {
+export const DesignHeader: React.FC<HeaderProps> = () => {
     const disciplines = config.disciplines;
     let disciplineIndex = 0;
 
@@ -65,17 +65,17 @@ export const DesignHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) =
             .to(
                 disciplineRef.current,
                 { opacity: 1, duration: 1 },
-                '-=1.2'
+                '-=1.2',
             )
             .to(
                 disciplineRef.current,
                 { opacity: 0, duration: 1 },
-                "+=1"
+                '+=1',
             )
             .to(
                 overlayRef.current,
                 { scaleX: 0, duration: 1, ease: 'power2.in' },
-                '-=0.8'
+                '-=0.8',
             );
 
         return () => {
@@ -87,7 +87,7 @@ export const DesignHeader: React.FC<HeaderProps> = ({ scrollIndicatorHidden }) =
         <header ref={headerRef} className="relative flex flex-col items-start space-y-4 p-8 text-white">
             <h1 className="text-6xl">
                 <span aria-hidden="true" ref={nameRef} className="flex space-x-1">
-                    {config.name.split("").map((letter, index) => (
+                    {config.name.split('').map((letter, index) => (
                         <span key={index} className="inline-block opacity-0">
                             {letter}
                         </span>

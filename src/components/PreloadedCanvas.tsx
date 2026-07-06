@@ -1,25 +1,25 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, useRef, Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
-import { BaseCanvasProps, useIsVisible } from "./BaseCanvas";
+import React, { useEffect, useState, useRef, Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import { BaseCanvasProps, useIsVisible } from './BaseCanvas';
 
 export interface PreloadedCanvasProps extends BaseCanvasProps {
     preloadAssets?: string[];
     
 }
 
-const loadAsset = async (url: string): Promise<any> => {
-    if (url.endsWith(".gltf")) {
-        return new Promise((resolve) => {
+const loadAsset = async (url: string): Promise<HTMLImageElement | undefined> => {
+    if (url.endsWith('.gltf')) {
+        return new Promise<undefined>((resolve) => {
             useGLTF.preload(url);
             setTimeout(resolve, 100);
         });
     }
 
-    if (url.endsWith(".jpg") || url.endsWith(".png")) {
-        return new Promise((resolve, reject) => {
+    if (url.endsWith('.jpg') || url.endsWith('.png')) {
+        return new Promise<HTMLImageElement>((resolve, reject) => {
             const img = new Image();
             img.onload = () => resolve(img);
             img.onerror = reject;
@@ -27,21 +27,20 @@ const loadAsset = async (url: string): Promise<any> => {
         });
     }
 
-    return Promise.resolve();
+    return Promise.resolve(undefined);
 };
 
 export const PreloadedCanvas: React.FC<PreloadedCanvasProps> = ({
     children,
-    className = "",
+    className = '',
     preloadAssets = [],
-    frameloop = "demand",
     ...canvasProps
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const isVisible = useIsVisible(containerRef);
     const [isPreloaded, setIsPreloaded] = useState(false);
-    const assetsCache = useRef<Map<string, any>>(new Map());
+    const assetsCache = useRef<Map<string, HTMLImageElement | undefined>>(new Map());
 
     useEffect(() => {
         const preloadAll = async () => {
@@ -52,16 +51,17 @@ export const PreloadedCanvas: React.FC<PreloadedCanvasProps> = ({
                             const asset = await loadAsset(url);
                             assetsCache.current.set(url, asset);
                         }
-                    })
+                    }),
                 );
                 setIsPreloaded(true);
             } catch (error) {
-                console.error("Failed to preload assets:", error);
+                console.error('Failed to preload assets:', error);
                 setIsPreloaded(true);
             }
         };
 
-        preloadAll();
+        // Fire-and-forget: errors are handled inside preloadAll.
+        void preloadAll();
 
         return () => {
             assetsCache.current.clear();
@@ -76,10 +76,10 @@ export const PreloadedCanvas: React.FC<PreloadedCanvasProps> = ({
            
         };
 
-        window.addEventListener("resize", handleResize);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            window.removeEventListener("resize", handleResize); 
+            window.removeEventListener('resize', handleResize); 
         };
     }, [canvasRef]);
 
@@ -101,7 +101,7 @@ export const PreloadedCanvas: React.FC<PreloadedCanvasProps> = ({
                     ref={canvasRef}
                     frameloop="demand"
                     style={{
-                        visibility: isVisible ? "visible" : "hidden",
+                        visibility: isVisible ? 'visible' : 'hidden',
                         ...canvasProps.style,
                     }}
                 >

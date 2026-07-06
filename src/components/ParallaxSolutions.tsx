@@ -1,5 +1,5 @@
-import { useGSAP } from "@gsap/react";
-import React, { useRef, useEffect } from "react";
+import { useGSAP } from '@gsap/react';
+import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -17,16 +17,16 @@ const ParallaxSolutions: React.FC = () => {
       if (containerRef.current) {
         gsap.fromTo(
           containerRef.current,
-          { backgroundPosition: "50% 0%" },
+          { backgroundPosition: '50% 0%' },
           {
-            backgroundPosition: "50% 50%",
+            backgroundPosition: '50% 50%',
             scrollTrigger: {
               trigger: containerRef.current,
-              start: "top bottom",
-              end: "bottom top",
+              start: 'top bottom',
+              end: 'bottom top',
               scrub: true,
             },
-          }
+          },
         );
       }
 
@@ -39,13 +39,13 @@ const ParallaxSolutions: React.FC = () => {
             opacity: 1,
             y: 0,
             duration: 1,
-            ease: "power3.out",
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: titleRef.current,
-              start: "top 80%",
-              end: "top 50%",
+              start: 'top 80%',
+              end: 'top 50%',
             },
-          }
+          },
         );
       }
 
@@ -58,13 +58,13 @@ const ParallaxSolutions: React.FC = () => {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: "power3.out",
+            ease: 'power3.out',
             stagger: 0.2,
             scrollTrigger: {
               trigger: containerRef.current,
-              start: "top 90%",
+              start: 'top 90%',
             },
-          }
+          },
         );
       }
     
@@ -85,7 +85,7 @@ const ParallaxSolutions: React.FC = () => {
 
         {/* Lista de itens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {["Item 1", "Item 2", "Item 3", "Item 4"].map((item, index) => (
+          {['Item 1', 'Item 2', 'Item 3', 'Item 4'].map((item, index) => (
             <div
               key={index}
               ref={(el) => {

@@ -1,15 +1,15 @@
-import { Suspense, useState, useEffect, useRef, useMemo } from "react";
+import { Suspense, useState, useEffect, useRef, useMemo } from 'react';
 import {
     Decal,
     OrbitControls,
     Preload,
     useTexture,
-} from "@react-three/drei";
-import { motion } from "framer-motion";
-import { Texture, Mesh } from "three";
-import CanvasLoader from "../Loader";
-import { PauseableCanvas } from "../PauseableCanvas";
-import { useMediaQuery } from "react-responsive";
+} from '@react-three/drei';
+import { motion } from 'framer-motion';
+import { Texture, Mesh } from 'three';
+import CanvasLoader from '../Loader';
+import { PauseableCanvas } from '../PauseableCanvas';
+import { useMediaQuery } from 'react-responsive';
 
 type BallProps = {
     imgUrl: string;
@@ -41,13 +41,13 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
     const applyRetryOrFallback = () => {
         if (retryCount === 0) {
             setRetryCount(1);
-            setTimeout(() => setCurrentUrl((url) => url + "?retry=1"), 500);
+            setTimeout(() => setCurrentUrl((url) => url + '?retry=1'), 500);
         } else if (fallbackUrl && currentUrl !== fallbackUrl) {
             setCurrentUrl(fallbackUrl);
         } else {
             setError(true);
             onError?.(
-                `Erro ao carregar textura de ${imgUrl} com fallback ${fallbackUrl}`
+                `Erro ao carregar textura de ${imgUrl} com fallback ${fallbackUrl}`,
             );
         }
     };
@@ -74,8 +74,7 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
         }
     }, [decal]);
 
-    useEffect(() => {
-        return () => {
+    useEffect(() => () => {
             if (meshRef.current) {
                 meshRef.current.geometry?.dispose();
                 if (meshRef.current.material) {
@@ -87,8 +86,7 @@ const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
                 }
             }
             decal?.dispose();
-        };
-    }, [decal]);
+        }, [decal]);
 
     if ((error && !fallbackUrl) || !decal?.image) {
         return null;
@@ -169,7 +167,7 @@ const BallCanvas = ({
                     io.disconnect();
                 }
             },
-            { rootMargin: "300px" }
+            { rootMargin: '300px' },
         );
         io.observe(el);
         return () => io.disconnect();
@@ -183,26 +181,26 @@ const BallCanvas = ({
         <motion.div
             ref={containerRef}
             animate={isDragging ? { y: 0 } : { y: [0, -8, 0] }}
-            transition={{ duration: floatDuration, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: floatDuration, repeat: Infinity, ease: 'easeInOut' }}
             onPointerDown={() => setIsDragging(true)}
             onPointerUp={() => setIsDragging(false)}
             onPointerLeave={() => setIsDragging(false)}
-            style={{ display: "inline-block", width: `${adjustedWidth}px`, height: `${adjustedHeight}px` }}
+            style={{ display: 'inline-block', width: `${adjustedWidth}px`, height: `${adjustedHeight}px` }}
         >
             {!inView ? (
-                // eslint-disable-next-line @next/next/no-img-element
+                // Plain <img> on purpose: decorative placeholder shown before the 3D canvas mounts
                 <img
                     src={icon}
                     alt=""
                     aria-hidden="true"
-                    style={{ width: "100%", height: "100%", objectFit: "contain", opacity: 0.9 }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.9 }}
                 />
             ) : (
             <PauseableCanvas
                 frameloop="demand"
                 gl={{
                     preserveDrawingBuffer: false,
-                    powerPreference: "low-power",
+                    powerPreference: 'low-power',
                     antialias: true,
                     pixelRatio: isMobile ? Math.min(window.devicePixelRatio, 2) : typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 2) : 1,
                 }}
@@ -210,7 +208,7 @@ const BallCanvas = ({
                 style={{
                     width: `${adjustedWidth}px`,
                     height: `${adjustedHeight}px`,
-                    display: "block",
+                    display: 'block',
                 }}
             >
                 <Suspense fallback={<CanvasLoader />}>

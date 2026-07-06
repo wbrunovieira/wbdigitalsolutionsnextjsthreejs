@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Living-terminal decoration for the DEV CV sections (same energy as the
@@ -13,19 +13,19 @@
  * full static text, solid cursor.
  */
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { AMBER, light } from "./devTheme";
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { AMBER, light } from './devTheme';
 
 const POSITIONS = {
-  "top-left": "md:left-6 md:top-8",
+  'top-left': 'md:left-6 md:top-8',
 } as const;
 
 const TYPE_STEP_S = 0.022; // per-character typing cadence
 
 const DevCodeDeco: React.FC<{ code: string; position?: keyof typeof POSITIONS }> = ({
   code,
-  position = "top-left",
+  position = 'top-left',
 }) => {
   const reduce = useReducedMotion();
   const chars = Array.from(code);
@@ -34,11 +34,11 @@ const DevCodeDeco: React.FC<{ code: string; position?: keyof typeof POSITIONS }>
     <span
       aria-hidden="true"
       className={`pointer-events-none relative mb-8 block select-none font-mono text-[10px] leading-relaxed md:absolute md:mb-0 md:text-[13px] ${POSITIONS[position]}`}
-      style={{ color: light(0.5), whiteSpace: "pre-wrap" }}
+      style={{ color: light(0.5), whiteSpace: 'pre-wrap' }}
     >
       {reduce
         ? chars.map((c, i) => (
-            <span key={i} style={c === "$" || c === "~" ? { color: AMBER } : undefined}>
+            <span key={i} style={c === '$' || c === '~' ? { color: AMBER } : undefined}>
               {c}
             </span>
           ))
@@ -49,9 +49,9 @@ const DevCodeDeco: React.FC<{ code: string; position?: keyof typeof POSITIONS }>
               whileInView={{ opacity: 1 }}
               // Vertical-only margin: a horizontal one would keep edge
               // characters permanently out of view (they'd never type).
-              viewport={{ once: true, margin: "-60px 0px -60px 0px" }}
+              viewport={{ once: true, margin: '-60px 0px -60px 0px' }}
               transition={{ duration: 0.01, delay: 0.3 + i * TYPE_STEP_S }}
-              style={c === "$" || c === "~" ? { color: AMBER } : undefined}
+              style={c === '$' || c === '~' ? { color: AMBER } : undefined}
             >
               {c}
             </motion.span>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Bottom bar of the DEV hero (extracted from DevHero): the greeting written
@@ -7,20 +7,20 @@
  * hover, GitHub, LinkedIn). Self-contained: reads the locale itself.
  */
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { Download, Github, Linkedin, MessageCircle } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, DEV_CV_HINT, DEV_CV_PDF, DEV_LINKEDIN_BY_LANG, DEV_SECONDARY_CTA, TEXT, light, toCVLang } from "./devTheme";
-import DevMagnetic from "./DevMagnetic";
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Download, Github, Linkedin, MessageCircle } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, cvLinks, type CVLang } from '@/content/cv';
+import { AMBER, DEV_CV_HINT, DEV_CV_PDF, DEV_LINKEDIN_BY_LANG, DEV_SECONDARY_CTA, TEXT, light, toCVLang } from './devTheme';
+import DevMagnetic from './DevMagnetic';
 
 /** Soft welcome line under the greeting (dev twin of the sales heroWelcome). */
 const WELCOME: Record<CVLang, string> = {
-  "pt-BR": "Esta página foi feita com carinho para você conhecer melhor o seu futuro engenheiro. Obrigado pela visita.",
-  en: "This page was made with care so you can get to know your future engineer. Thanks for visiting.",
-  it: "Questa pagina è stata fatta con cura perché tu possa conoscere meglio il tuo futuro ingegnere. Grazie della visita.",
-  es: "Esta página fue hecha con cariño para que conozcas mejor a tu futuro ingeniero. Gracias por la visita.",
+  'pt-BR': 'Esta página foi feita com carinho para você conhecer melhor o seu futuro engenheiro. Obrigado pela visita.',
+  en: 'This page was made with care so you can get to know your future engineer. Thanks for visiting.',
+  it: 'Questa pagina è stata fatta con cura perché tu possa conoscere meglio il tuo futuro ingegnere. Grazie della visita.',
+  es: 'Esta página fue hecha con cariño para que conozcas mejor a tu futuro ingeniero. Gracias por la visita.',
 };
 
 const DevHeroIntro: React.FC = () => {
@@ -46,7 +46,7 @@ const DevHeroIntro: React.FC = () => {
       <div className="max-w-lg">
         {/* Greeting written as a code comment */}
         <p className="font-mono text-sm sm:text-[15px]" style={{ color: light(0.55) }}>
-          <span style={{ color: light(0.35) }}>{"// "}</span>
+          <span style={{ color: light(0.35) }}>{'// '}</span>
           {t.heroGreeting} <span className="font-bold" style={{ color: TEXT }}>{t.name}</span> 👋
         </p>
         <p className="mt-2.5 max-w-md text-[13px] leading-relaxed sm:mt-1.5" style={{ color: light(0.45) }}>
@@ -67,7 +67,7 @@ const DevHeroIntro: React.FC = () => {
             <span
               key={p}
               className="rounded-md border px-2.5 py-1 font-mono text-xs font-medium"
-              style={{ borderColor: light(0.15), color: light(0.72), background: "rgba(244,244,245,0.04)" }}
+              style={{ borderColor: light(0.15), color: light(0.72), background: 'rgba(244,244,245,0.04)' }}
             >
               {p}
             </span>
@@ -82,7 +82,7 @@ const DevHeroIntro: React.FC = () => {
             rel="noopener noreferrer"
             aria-describedby="cv-tip-hero"
             className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2 sm:w-auto"
-            style={{ background: AMBER, color: "#0e0e11", boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
+            style={{ background: AMBER, color: '#0e0e11', boxShadow: '0 10px 24px rgba(224,145,47,0.32)' }}
           >
             <Download aria-hidden="true" className="h-4 w-4" />
             {t.contact.downloadCv}
@@ -91,10 +91,10 @@ const DevHeroIntro: React.FC = () => {
               id="cv-tip-hero"
               role="tooltip"
               className="pointer-events-none absolute -top-2 left-0 -translate-y-full whitespace-nowrap rounded-lg border px-3 py-1.5 font-mono text-[11px] font-medium opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
-              style={{ background: "#131318", borderColor: light(0.18), color: TEXT }}
+              style={{ background: '#131318', borderColor: light(0.18), color: TEXT }}
             >
               {DEV_CV_HINT[cv]}
-              <span aria-hidden="true" className="absolute left-7 top-full h-2 w-2 -translate-y-1 rotate-45" style={{ background: "#131318" }} />
+              <span aria-hidden="true" className="absolute left-7 top-full h-2 w-2 -translate-y-1 rotate-45" style={{ background: '#131318' }} />
             </span>
           </a>
         </DevMagnetic>

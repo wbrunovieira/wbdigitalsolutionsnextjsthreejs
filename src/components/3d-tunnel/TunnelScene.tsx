@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { Box, Sphere, Torus, Cone, Text3D, Center, Image, MeshWobbleMaterial } from '@react-three/drei';
+import { Box, Sphere, Torus, Cone, Text3D, Center, Image } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Tunnel Ring Component
@@ -378,7 +378,7 @@ const TunnelScene: React.FC = () => {
         <TunnelRing 
           key={`ring-${i}`} 
           position={[0, 0, -i * 5]} 
-        />
+        />,
       );
     }
     return rings;
@@ -397,12 +397,12 @@ const TunnelScene: React.FC = () => {
           position={[
             (Math.random() - 0.5) * 10,
             (Math.random() - 0.5) * 10,
-            -10 - Math.random() * 90
+            -10 - Math.random() * 90,
           ]}
           type={types[Math.floor(Math.random() * types.length)]}
           color={colors[Math.floor(Math.random() * colors.length)]}
           speed={0.1 + Math.random() * 0.05}
-        />
+        />,
       );
     }
     return elements;

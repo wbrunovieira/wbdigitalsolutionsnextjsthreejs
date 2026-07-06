@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Contact / closing CTA section for the DEV CV page (independent dark copy of
@@ -7,41 +7,41 @@
  * (same person, same signature) and the © footer line.
  */
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, MessageCircle, Download } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, BG_DEV_ALT, DEV_CONTACT_ID, DEV_CV_HINT, DEV_CV_PDF, DEV_LINKEDIN_BY_LANG, DEV_SECONDARY_CTA, TEXT, light, toCVLang } from "./devTheme";
-import { useDevReveal } from "./useDevReveal";
-import { DevSection } from "./DevSection";
-import DevMagnetic from "./DevMagnetic";
-import DevCodeDeco from "./DevCodeDeco";
-import DevBinary from "./DevBinary";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Linkedin, Github, MessageCircle, Download } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, cvLinks, type CVLang } from '@/content/cv';
+import { AMBER, BG_DEV_ALT, DEV_CONTACT_ID, DEV_CV_HINT, DEV_CV_PDF, DEV_LINKEDIN_BY_LANG, DEV_SECONDARY_CTA, TEXT, light, toCVLang } from './devTheme';
+import { useDevReveal } from './useDevReveal';
+import { DevSection } from './DevSection';
+import DevMagnetic from './DevMagnetic';
+import DevCodeDeco from './DevCodeDeco';
+import DevBinary from './DevBinary';
 
 /** Side binary halo decoding "HELLO" (repeated). */
 const BINARY_HELLO = [
-  "01001000 01000101",
-  "01001100 01001100",
-  "01001111 01001000",
-  "01000101 01001100",
-  "01001100 01001111",
+  '01001000 01000101',
+  '01001100 01001100',
+  '01001111 01001000',
+  '01000101 01001100',
+  '01001100 01001111',
 ];
 
 /** Dev-specific CTA title ("fechar" is sales language; here we only build). */
 const CTA_TITLE: Record<CVLang, string> = {
-  "pt-BR": "Vamos construir algo juntos.",
+  'pt-BR': 'Vamos construir algo juntos.',
   en: "Let's build something together.",
-  it: "Costruiamo qualcosa insieme.",
-  es: "Construyamos algo juntos.",
+  it: 'Costruiamo qualcosa insieme.',
+  es: 'Construyamos algo juntos.',
 };
 
 /** Warm sign-off shown above the footer line (same signature as the sales page). */
 const CLOSING: Record<CVLang, string> = {
-  "pt-BR": "Acima de tudo, o que sempre dá certo: trabalho duro, feito com muito amor.",
-  en: "Above all, what always works: hard work, done with a lot of love.",
-  it: "Sopra ogni cosa, ciò che funziona sempre: duro lavoro, fatto con tanto amore.",
-  es: "Por encima de todo, lo que siempre funciona: trabajo duro, hecho con mucho amor.",
+  'pt-BR': 'Acima de tudo, o que sempre dá certo: trabalho duro, feito com muito amor.',
+  en: 'Above all, what always works: hard work, done with a lot of love.',
+  it: 'Sopra ogni cosa, ciò che funziona sempre: duro lavoro, fatto con tanto amore.',
+  es: 'Por encima de todo, lo que siempre funciona: trabajo duro, hecho con mucho amor.',
 };
 
 const DevContact: React.FC = () => {
@@ -57,11 +57,11 @@ const DevContact: React.FC = () => {
       <motion.div
         {...reveal()}
         className="relative overflow-hidden rounded-[2rem] border px-6 py-12 text-center sm:px-12 sm:py-14"
-        style={{ borderColor: "rgba(224,145,47,0.35)", background: "rgba(224,145,47,0.06)" }}
+        style={{ borderColor: 'rgba(224,145,47,0.35)', background: 'rgba(224,145,47,0.06)' }}
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-40"
-          style={{ background: "radial-gradient(50% 100% at 50% 0%, rgba(224,145,47,0.14) 0%, transparent 70%)" }}
+          style={{ background: 'radial-gradient(50% 100% at 50% 0%, rgba(224,145,47,0.14) 0%, transparent 70%)' }}
           aria-hidden="true"
         />
         <div className="relative">
@@ -83,7 +83,7 @@ const DevContact: React.FC = () => {
                 rel="noopener noreferrer"
                 aria-describedby="cv-tip-contact"
                 className="group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 focus-visible:ring-offset-2"
-                style={{ background: AMBER, color: "#0e0e11", boxShadow: "0 10px 24px rgba(224,145,47,0.32)" }}
+                style={{ background: AMBER, color: '#0e0e11', boxShadow: '0 10px 24px rgba(224,145,47,0.32)' }}
               >
                 <Download aria-hidden="true" className="h-4 w-4" />
                 {t.contact.downloadCv}
@@ -92,10 +92,10 @@ const DevContact: React.FC = () => {
                   id="cv-tip-contact"
                   role="tooltip"
                   className="pointer-events-none absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg border px-3 py-1.5 font-mono text-[11px] font-medium opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
-                  style={{ background: "#131318", borderColor: light(0.18), color: TEXT }}
+                  style={{ background: '#131318', borderColor: light(0.18), color: TEXT }}
                 >
                   {DEV_CV_HINT[cv]}
-                  <span aria-hidden="true" className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45" style={{ background: "#131318" }} />
+                  <span aria-hidden="true" className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45" style={{ background: '#131318' }} />
                 </span>
               </a>
             </DevMagnetic>
@@ -125,7 +125,7 @@ const DevContact: React.FC = () => {
       </motion.p>
 
       <p className="mt-10 text-center text-xs" style={{ color: light(0.6) }}>
-        © {t.name} ·{" "}
+        © {t.name} ·{' '}
         <a href={cvLinks.site} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-[#f4f4f5]">
           wbdigitalsolutions.com
         </a>

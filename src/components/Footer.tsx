@@ -1,12 +1,12 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import logo from "/public/svg/logo-white.svg";
-import { useTranslations } from "@/contexts/TranslationContext";
-import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from "react-icons/fa";
-import { FiPhone, FiMail } from "react-icons/fi";
-import { SiWhatsapp } from "react-icons/si";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import logo from '/public/svg/logo-white.svg';
+import { useTranslations } from '@/contexts/TranslationContext';
+import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from 'react-icons/fa';
+import { FiPhone, FiMail } from 'react-icons/fi';
+import { SiWhatsapp } from 'react-icons/si';
 
 const Footer: React.FC = () => {
   const currentMessages = useTranslations();

@@ -5,10 +5,7 @@ import { RigidBody } from '@react-three/rapier';
 interface DeskProps {
   position: [number, number, number];
   service: string;
-  deskSize?: [number, number, number];
-  logoScale?: [number, number];
   textColor?: string;
-  textSize?: number;
   children?: React.ReactNode;
 }
 
@@ -24,17 +21,13 @@ type BoxArgs = [
 /**
  * Reusable Desk component with physics, logo and 3D text
  */
-const Desk: React.FC<DeskProps> = ({ 
-  position, 
-  service, 
-  deskSize = [4, 0.2, 2.4],
-  logoScale = [1.2, 0.5],
-  textColor = "#792990",
-  textSize = 0.3,
-  children 
+const Desk: React.FC<DeskProps> = ({
+  position,
+  service,
+  textColor = '#792990',
+  children,
 }) => {
   // Check service type based on content (works for any language)
-  const isWebsites = service.includes('SITE') || service.includes('WEB');
   const isAutomation = service.includes('AUTOMA');
   const isAI = service.includes('I.A') || service.includes('A.I');
   

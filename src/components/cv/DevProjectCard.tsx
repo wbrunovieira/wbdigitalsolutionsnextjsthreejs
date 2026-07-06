@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * One project card of the DEV projects section (extracted from DevProjects).
@@ -11,20 +11,20 @@
  * lift and a 1.04 image zoom, all transform/opacity-only and motion-safe.
  */
 
-import React from "react";
-import { ArrowUpRight, Globe } from "lucide-react";
-import type { Project } from "@/components/projects/types";
-import { AMBER, TEXT, light } from "./devTheme";
-import DevProjectCardMedia from "./DevProjectCardMedia";
+import React from 'react';
+import { ArrowUpRight, Globe } from 'lucide-react';
+import type { Project } from '@/components/projects/types';
+import { AMBER, TEXT, light } from './devTheme';
+import DevProjectCardMedia from './DevProjectCardMedia';
 
-export const STUDIO_PROJECTS_URL = "https://www.wbdigitalsolutions.com/projects";
+export const STUDIO_PROJECTS_URL = 'https://www.wbdigitalsolutions.com/projects';
 
 /**
  * Layout: Revalida Italia gets the full-width flagship slot (largest scope in
  * the set); Salto also spans full width as the closing card so the 6-item
  * grid resolves cleanly (1 wide + 2x2 + 1 wide).
  */
-export const WIDE_SLUGS = new Set(["revalida-italia", "salto"]);
+export const WIDE_SLUGS = new Set(['revalida-italia', 'salto']);
 
 export interface ProjectCardCopy {
   caseStudy: string;
@@ -32,7 +32,7 @@ export interface ProjectCardCopy {
 }
 
 /** Desaturated editor traffic lights: instantly read as a window. */
-const TRAFFIC_LIGHTS = ["rgba(255,95,86,0.65)", "rgba(255,189,46,0.65)", "rgba(39,201,63,0.55)"];
+const TRAFFIC_LIGHTS = ['rgba(255,95,86,0.65)', 'rgba(255,189,46,0.65)', 'rgba(39,201,63,0.55)'];
 
 /** Inset amber corner brackets (echoing the hero frame); revealed on hover/focus. */
 const CornerTicks: React.FC = () => (
@@ -53,13 +53,13 @@ const DevProjectCard: React.FC<{
   /** Localized "Featured" label; set only on the flagship card. */
   flagshipLabel?: string;
 }> = ({ project: p, copy, flagshipLabel }) => {
-  const wide = WIDE_SLUGS.has(p.slug ?? "");
+  const wide = WIDE_SLUGS.has(p.slug ?? '');
   const maxChips = wide ? 8 : 6;
 
   return (
     <div
       className="group/card relative flex h-full flex-col overflow-hidden rounded-xl border border-[rgba(244,244,245,0.1)] transition-[border-color,box-shadow,transform] duration-300 hover:border-[rgba(224,145,47,0.45)] hover:shadow-[0_18px_50px_-18px_rgba(224,145,47,0.3)] focus-within:border-[rgba(224,145,47,0.45)] motion-safe:hover:-translate-y-1"
-      style={{ background: "rgba(244,244,245,0.03)" }}
+      style={{ background: 'rgba(244,244,245,0.03)' }}
     >
       <CornerTicks />
 
@@ -67,7 +67,7 @@ const DevProjectCard: React.FC<{
       <div
         aria-hidden="true"
         className="flex items-center gap-3 border-b px-4 py-2.5"
-        style={{ borderColor: light(0.08), background: "rgba(244,244,245,0.02)" }}
+        style={{ borderColor: light(0.08), background: 'rgba(244,244,245,0.02)' }}
       >
         <span className="flex shrink-0 gap-1.5">
           {TRAFFIC_LIGHTS.map((c) => (
@@ -80,13 +80,13 @@ const DevProjectCard: React.FC<{
         {flagshipLabel ? (
           <span
             className="shrink-0 rounded border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em]"
-            style={{ color: AMBER, borderColor: "rgba(224,145,47,0.35)", background: "rgba(224,145,47,0.08)" }}
+            style={{ color: AMBER, borderColor: 'rgba(224,145,47,0.35)', background: 'rgba(224,145,47,0.08)' }}
           >
             {flagshipLabel}
           </span>
         ) : (
           <span className="hidden shrink-0 font-mono text-[10px] sm:block" style={{ color: light(0.3) }}>
-            {"# "}{p.category}
+            {'# '}{p.category}
           </span>
         )}
       </div>
@@ -94,7 +94,7 @@ const DevProjectCard: React.FC<{
       <DevProjectCardMedia project={p} wide={wide} />
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className={`font-black tracking-[-0.01em] ${wide ? "text-xl" : "text-lg"}`} style={{ color: TEXT }}>
+        <h3 className={`font-black tracking-[-0.01em] ${wide ? 'text-xl' : 'text-lg'}`} style={{ color: TEXT }}>
           {p.title}
         </h3>
         {p.subtitle && (
@@ -110,7 +110,7 @@ const DevProjectCard: React.FC<{
             <span
               key={tech}
               className="rounded-md border px-2 py-0.5 font-mono text-[11px] font-medium"
-              style={{ borderColor: light(0.13), color: light(0.68), background: "rgba(244,244,245,0.03)" }}
+              style={{ borderColor: light(0.13), color: light(0.68), background: 'rgba(244,244,245,0.03)' }}
             >
               {tech}
             </span>

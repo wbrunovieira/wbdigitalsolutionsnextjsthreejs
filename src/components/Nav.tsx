@@ -1,20 +1,20 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/contexts/TranslationContext';
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import logo from "/public/svg/logo.svg";
-import styles from "./Nav.module.css";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import logo from '/public/svg/logo.svg';
+import styles from './Nav.module.css';
 
-const ParticlesContainer = dynamic(() => import("./ParticlesContainer"), { ssr: false });
-const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
-import SideSocial from "./SideSocial";
-import HamburgerMenu from "./MenuAnimatedBuguer";
+const ParticlesContainer = dynamic(() => import('./ParticlesContainer'), { ssr: false });
+const MobileMenu = dynamic(() => import('./MobileMenu'), { ssr: false });
+import SideSocial from './SideSocial';
+import HamburgerMenu from './MenuAnimatedBuguer';
 
 const Nav: React.FC = () => {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -26,8 +26,8 @@ const Nav: React.FC = () => {
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 80);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
     
 
@@ -36,7 +36,7 @@ const Nav: React.FC = () => {
     const navData = [
         {
             name: currentMessages.home,
-            path: "/",
+            path: '/',
           
         },
 
@@ -44,33 +44,33 @@ const Nav: React.FC = () => {
 
         {
             name: currentMessages.websites,
-            path: "/websites",
+            path: '/websites',
 
         },
 
-        { name: currentMessages.systems || "Plataformas e Sistemas", path: "/systems", subItems: [] },
+        { name: currentMessages.systems || 'Plataformas e Sistemas', path: '/systems', subItems: [] },
 
-        { name: currentMessages.automation, path: "/automation", subItems: [] },
+        { name: currentMessages.automation, path: '/automation', subItems: [] },
 
-        { name: currentMessages.ai, path: "/ai", subItems: [] },
+        { name: currentMessages.ai, path: '/ai', subItems: [] },
 
-        { name: currentMessages.projects || "Projects", path: "/projects", subItems: [] },
+        { name: currentMessages.projects || 'Projects', path: '/projects', subItems: [] },
 
-        { name: currentMessages.blog, path: "/blog", subItems: [] },
-        { name: currentMessages.contact, path: "/contact", subItems: [] },
+        { name: currentMessages.blog, path: '/blog', subItems: [] },
+        { name: currentMessages.contact, path: '/contact', subItems: [] },
     ];
 
     return (
         <nav className={`fixed left-0 right-0 top-0 z-20 transition-all duration-500 ${
             scrolled
-                ? "bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/40 border-b border-purple-700/40"
-                : "bg-modern-gradient backdrop-blur-3xl border-b border-white/15 shadow-[0_14px_28px_-6px_rgba(0,0,0,0.55)]"
+                ? 'bg-[#1a0826]/95 backdrop-blur-md shadow-lg shadow-black/40 border-b border-purple-700/40'
+                : 'bg-modern-gradient backdrop-blur-3xl border-b border-white/15 shadow-[0_14px_28px_-6px_rgba(0,0,0,0.55)]'
         }`}>
             <ParticlesContainer />
             <div className="text-secondary max-w-[1400px] mx-auto pt-10 pb-8 lg:pb-0 px-4 lg:px-10 relative">
             <Image
                className={`absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
-                   scrolled ? "brightness-[2]" : ""
+                   scrolled ? 'brightness-[2]' : ''
                }`}
                 width={300}
                 height={60}
@@ -106,18 +106,18 @@ const Nav: React.FC = () => {
                     </div>
                 )}
                 {isLoaded && (() => {
-                    const langs = ["en", "pt-BR", "it", "es"] as const;
+                    const langs = ['en', 'pt-BR', 'it', 'es'] as const;
                     const selectedIdx = langs.indexOf(language as typeof langs[number]);
                     const ballPos = (i: number) => {
-                        if (i === selectedIdx) return "0 0";
-                        if (i < selectedIdx) return "0 24px";
-                        return "0 -24px";
+                        if (i === selectedIdx) return '0 0';
+                        if (i < selectedIdx) return '0 24px';
+                        return '0 -24px';
                     };
                     const labels = [
-                        { id: "en", display: "en", tooltip: currentMessages.english },
-                        { id: "pt-BR", display: "pt", tooltip: currentMessages.portuguese },
-                        { id: "it", display: "it", tooltip: currentMessages.italian },
-                        { id: "es", display: "es", tooltip: currentMessages.spanish },
+                        { id: 'en', display: 'en', tooltip: currentMessages.english },
+                        { id: 'pt-BR', display: 'pt', tooltip: currentMessages.portuguese },
+                        { id: 'it', display: 'it', tooltip: currentMessages.italian },
+                        { id: 'es', display: 'es', tooltip: currentMessages.spanish },
                     ];
                     return (
                         <div className={styles.radioInput}>
@@ -175,7 +175,7 @@ const Nav: React.FC = () => {
 
                         const isActive =
                             pathname === link.path ||
-                            (link.path !== "/" && pathname.startsWith(link.path + "/"));
+                            (link.path !== '/' && pathname.startsWith(link.path + '/'));
 
                         return (
                             <div
@@ -187,7 +187,7 @@ const Nav: React.FC = () => {
                                 <Link
                                     href={link.path}
                                     className={`relative flex p-3 text-xs mt-2 tracking-widest no-underline font-light lowercase whitespace-nowrap cursor-pointer transition-colors duration-300 ${
-                                        isActive ? "text-white" : "text-slate-300/90 hover:text-white"
+                                        isActive ? 'text-white' : 'text-slate-300/90 hover:text-white'
                                     }`}
                                 >
                                     <span className="relative z-10">{link.name}</span>
@@ -198,8 +198,8 @@ const Nav: React.FC = () => {
                                         <motion.span
                                             layoutId="nav-active-indicator"
                                             className="pointer-events-none absolute inset-x-2 -bottom-0.5 h-[3px] rounded-full bg-yellowcustom"
-                                            style={{ boxShadow: "0 0 10px 1px rgba(255,185,71,0.7)" }}
-                                            transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                                            style={{ boxShadow: '0 0 10px 1px rgba(255,185,71,0.7)' }}
+                                            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                                         />
                                     )}
                                 </Link>

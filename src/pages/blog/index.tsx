@@ -1,34 +1,31 @@
-"use client";
-import { useState } from "react";
-import Link from "next/link";
-import { useLanguage } from "@/contexts/LanguageContext";
-import useBlogTranslation from "@/contexts/useBlogTranslation";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import PageHead from "@/components/PageHead";
-import { makeI18nStaticProps } from "@/lib/i18n";
+'use client';
+import { useState } from 'react';
+import Link from 'next/link';
+import useBlogTranslation from '@/contexts/useBlogTranslation';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import PageHead from '@/components/PageHead';
+import { makeI18nStaticProps } from '@/lib/i18n';
 
 // Per-locale prerender with SSR-correct messages (built-in Next i18n).
 export const getStaticProps = makeI18nStaticProps();
 
 const blogList = [
-  { id: "do-i-need-a-website" },
-  { id: "how-emotional-design-can" },
-  { id: "digital-can-transform-company" },
-  { id: "chatgpt-for-smes" },
-  { id: "increase-pme-sales" }
+  { id: 'do-i-need-a-website' },
+  { id: 'how-emotional-design-can' },
+  { id: 'digital-can-transform-company' },
+  { id: 'chatgpt-for-smes' },
+  { id: 'increase-pme-sales' },
 ];
 
 const BlogIndexPage: React.FC = () => {
-  const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-
-  const pageTranslation = useBlogTranslation("blog-index");
+  const pageTranslation = useBlogTranslation('blog-index');
 
   const blogTranslations = blogList.map(({ id }) => ({
     id,
-    translation: useBlogTranslation(id)
+    translation: useBlogTranslation(id),
   }));
 
   const allCategories = new Set<string>();
@@ -51,10 +48,10 @@ const BlogIndexPage: React.FC = () => {
 
       <div className="text-center mb-8 p-2">
         <h1 className="text-5xl font-extrabold text-yellowcustom mt-16">
-          {pageTranslation?.title || "Explore Nossos Artigos"}
+          {pageTranslation?.title || 'Explore Nossos Artigos'}
         </h1>
         <p className="text-white mt-2 text-lg">
-          {pageTranslation?.subtitle || "Descubra insights valiosos sobre tecnologia, marketing digital e experiência do usuário."}
+          {pageTranslation?.subtitle || 'Descubra insights valiosos sobre tecnologia, marketing digital e experiência do usuário.'}
         </p>
       </div>
 
@@ -65,7 +62,7 @@ const BlogIndexPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-white font-semibold text-sm uppercase tracking-wide mb-2"
         >
-          {pageTranslation?.filterLabel || "Filtrar por categoria:"}
+          {pageTranslation?.filterLabel || 'Filtrar por categoria:'}
         </motion.p>
         <motion.div 
           className="flex flex-wrap justify-center gap-3"
@@ -77,8 +74,8 @@ const BlogIndexPage: React.FC = () => {
             onClick={() => setSelectedCategory(null)}
             className={`px-2 py-1 text-xs font-medium rounded-lg transition-all duration-300 ${
               selectedCategory === null
-                ? "bg-yellowcustom text-primary shadow-md scale-105"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                ? 'bg-yellowcustom text-primary shadow-md scale-105'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -86,7 +83,7 @@ const BlogIndexPage: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {pageTranslation?.allCategories || "Todos"}
+            {pageTranslation?.allCategories || 'Todos'}
           </motion.button>
           {[...allCategories].map((category, index) => (
             <motion.button
@@ -94,8 +91,8 @@ const BlogIndexPage: React.FC = () => {
               onClick={() => setSelectedCategory(category)}
               className={`px-2 py-1 text-xs font-medium rounded-lg transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-yellowcustom text-primary shadow-md scale-105"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  ? 'bg-yellowcustom text-primary shadow-md scale-105'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -126,7 +123,7 @@ const BlogIndexPage: React.FC = () => {
                 transition={{ 
                   duration: 0.4,
                   delay: index * 0.1,
-                  ease: "easeInOut"
+                  ease: 'easeInOut',
                 }}
               >
                 <Link href={`/blog/${id}`} className="group">
@@ -135,7 +132,7 @@ const BlogIndexPage: React.FC = () => {
                     whileHover={{ 
                       y: -8,
                       scale: 1.02,
-                      transition: { duration: 0.3, ease: "easeOut" }
+                      transition: { duration: 0.3, ease: 'easeOut' },
                     }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -181,7 +178,7 @@ const BlogIndexPage: React.FC = () => {
                         </div>
                       </>
                     ) : (
-                      <p className="text-gray-500">{pageTranslation?.loading || "Carregando..."}</p>
+                      <p className="text-gray-500">{pageTranslation?.loading || 'Carregando...'}</p>
                     )}
                   </motion.div>
                 </Link>
@@ -193,7 +190,7 @@ const BlogIndexPage: React.FC = () => {
               animate={{ opacity: 1 }}
               className="text-center text-gray-500 col-span-3"
             >
-              {pageTranslation?.noPosts || "Nenhum post encontrado para esta categoria."}
+              {pageTranslation?.noPosts || 'Nenhum post encontrado para esta categoria.'}
             </motion.p>
           )}
         </AnimatePresence>

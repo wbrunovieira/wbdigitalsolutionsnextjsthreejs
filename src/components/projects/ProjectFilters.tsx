@@ -18,8 +18,7 @@ const FILTERS: { key: ProjectCategory; labelKey: keyof ProjectsPageContent['filt
   { key: 'education', labelKey: 'education' },
 ];
 
-const ProjectFilters: React.FC<ProjectFiltersProps> = ({ value, onChange, labels }) => {
-  return (
+const ProjectFilters: React.FC<ProjectFiltersProps> = ({ value, onChange, labels }) => (
     <section className="px-6 py-10">
       <div className="container mx-auto flex flex-wrap justify-center gap-3">
         {FILTERS.map(({ key, labelKey }) => {
@@ -42,6 +41,5 @@ const ProjectFilters: React.FC<ProjectFiltersProps> = ({ value, onChange, labels
       </div>
     </section>
   );
-};
 
 export default ProjectFilters;

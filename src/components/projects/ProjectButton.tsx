@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 interface ProjectButtonProps {
   /** Visible label. */
@@ -22,12 +22,12 @@ interface ProjectButtonProps {
  * motion handled. Use across project CTAs for one consistent standard.
  */
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full bg-yellowcustom px-8 py-3.5 font-semibold text-primary " +
-  "shadow-lg shadow-yellowcustom/30 transition-all duration-300 ease-out " +
-  "hover:-translate-y-0.5 hover:bg-[#ffc24d] hover:shadow-xl hover:shadow-yellowcustom/40 " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary " +
-  "active:translate-y-0 active:scale-95 " +
-  "motion-reduce:transition-none motion-reduce:hover:translate-y-0";
+  'group inline-flex items-center justify-center gap-2 rounded-full bg-yellowcustom px-8 py-3.5 font-semibold text-primary ' +
+  'shadow-lg shadow-yellowcustom/30 transition-all duration-300 ease-out ' +
+  'hover:-translate-y-0.5 hover:bg-[#ffc24d] hover:shadow-xl hover:shadow-yellowcustom/40 ' +
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary ' +
+  'active:translate-y-0 active:scale-95 ' +
+  'motion-reduce:transition-none motion-reduce:hover:translate-y-0';
 
 const DefaultArrow = (
   <span
@@ -43,7 +43,7 @@ export const ProjectButton: React.FC<ProjectButtonProps> = ({
   href,
   onClick,
   icon = DefaultArrow,
-  className = "",
+  className = '',
   ariaLabel,
 }) => {
   const cls = `${base} ${className}`.trim();

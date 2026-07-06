@@ -25,7 +25,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
             tl.fromTo(statementRef.current,
                 { clipPath: 'inset(0 0 100% 0)' },
                 { clipPath: 'inset(0 0 -30% 0)', duration: 0.85 },
-                0.1
+                0.1,
             );
         }
 
@@ -34,7 +34,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
             tl.fromTo(glowRef.current,
                 { filter: 'drop-shadow(0 0 0px rgba(255,185,71,0))' },
                 { filter: 'drop-shadow(0 0 28px rgba(255,185,71,0.55))', duration: 0.6, ease: 'power2.inOut' },
-                0.8
+                0.8,
             );
         }
 
@@ -43,7 +43,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
             tl.fromTo(subRef.current,
                 { opacity: 0, y: 10 },
                 { opacity: 1, y: 0, duration: 0.6 },
-                0.7
+                0.7,
             );
         }
 
@@ -52,13 +52,13 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
             tl.fromTo(accentRef.current,
                 { width: 0 },
                 { width: '80px', duration: 0.55 },
-                1.0
+                1.0,
             );
             // shimmer pass after draw
             tl.fromTo(accentRef.current,
                 { backgroundPosition: '-80px 0' },
                 { backgroundPosition: '160px 0', duration: 0.7, ease: 'power1.inOut' },
-                1.55
+                1.55,
             );
         }
 
@@ -67,7 +67,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
             tl.fromTo(supportRef.current,
                 { opacity: 0, y: 8 },
                 { opacity: 1, y: 0, duration: 0.65 },
-                1.1
+                1.1,
             );
         }
 
@@ -77,7 +77,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementSub,
             tl.fromTo(pillEls,
                 { opacity: 0, scale: 0.78, y: 8 },
                 { opacity: 1, scale: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'back.out(1.8)' },
-                1.3
+                1.3,
             );
         }
 

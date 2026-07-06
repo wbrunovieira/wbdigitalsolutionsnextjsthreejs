@@ -11,11 +11,9 @@ import {
   MeshPhysicalMaterial,
   InstancedBufferAttribute,
   Group,
-  Mesh,
-  MeshStandardMaterial,
   PointLight,
 } from 'three';
-import { useGLTF, Html, useProgress } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { animate } from 'framer-motion';
 import Loader from './Loader';
 import MouseMoveTutorial from './MouseMoveTutorial';
@@ -77,7 +75,7 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
         vertexColors: true,
         transparent: true,
       }),
-    []
+    [],
   );
 
   const dummy = useMemo(() => new Object3D(), []);
@@ -85,7 +83,7 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
   const target = useRef(new Vector3());
   const instances = useMemo(
     () => generateNonOverlappingPositions(NUM_INSTANCES, MIN_DISTANCE),
-    []
+    [],
   );
   const _dir = useMemo(() => new Vector3(), []);
   const _personalTarget = useMemo(() => new Vector3(), []);
@@ -102,7 +100,7 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
         position = new Vector3(
           Math.random() * 60 - 30,
           Math.random() * 40 - 20,
-          Math.random() * 20 - 10
+          Math.random() * 20 - 10,
         );
 
         isOverlapping = positions.some(existingPos => position.distanceTo(existingPos.position) < minDistance);
@@ -115,7 +113,7 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
         velocity: new Vector3(
           Math.random() * 0.2 - 0.1,
           Math.random() * 0.2 - 0.1,
-          Math.random() * 0.2 - 0.1
+          Math.random() * 0.2 - 0.1,
         ),
         attraction: 0.01,
         vlimit: 0.2,

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * PROTOTYPE — scroll-driven 3D AI hero (desktop only).
@@ -17,8 +17,8 @@
  * KEYFRAMES are placeholders to iterate on.
  */
 
-import React, { useMemo, useEffect, useRef, Suspense, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useMemo, useEffect, useRef, Suspense, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
   RectAreaLight,
   Color,
@@ -29,12 +29,12 @@ import {
   MeshPhysicalMaterial,
   InstancedBufferAttribute,
   Group,
-} from "three";
-import { useGLTF, Html, useProgress } from "@react-three/drei";
-import { animate } from "framer-motion";
-import CanvasErrorBoundary from "../CanvasErrorBoundary";
-import Loader from "../Loader";
-import MouseMoveTutorial from "../MouseMoveTutorial";
+} from 'three';
+import { useGLTF, Html, useProgress } from '@react-three/drei';
+import { animate } from 'framer-motion';
+import CanvasErrorBoundary from '../CanvasErrorBoundary';
+import Loader from '../Loader';
+import MouseMoveTutorial from '../MouseMoveTutorial';
 
 const NUM_INSTANCES = 8;
 const MIN_DISTANCE = 8;
@@ -93,7 +93,7 @@ const CustomLoader: React.FC = () => {
   if (showFallback || errors.length > 0) {
     return (
       <Html center>
-        <div style={{ color: "white", textAlign: "center" }}>
+        <div style={{ color: 'white', textAlign: 'center' }}>
           <p>Loading 3D models...</p>
         </div>
       </Html>
@@ -138,7 +138,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
         position = new Vector3(
           Math.random() * 60 - 30,
           Math.random() * 40 - 20,
-          Math.random() * 20 - 10
+          Math.random() * 20 - 10,
         );
         overlapping = list.some((e) => position.distanceTo(e.position) < MIN_DISTANCE);
         attempt++;
@@ -162,7 +162,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
 
   useEffect(() => {
     if (!meshRef.current) return;
-    const palette = [new Color("#792990"), new Color("#350545"), new Color("#aaa6c3"), new Color("#ffb947")];
+    const palette = [new Color('#792990'), new Color('#350545'), new Color('#aaa6c3'), new Color('#ffb947')];
     const colors = new Float32Array(NUM_INSTANCES * 3);
     for (let i = 0; i < NUM_INSTANCES; i++) {
       const c = palette[Math.floor(Math.random() * palette.length)];
@@ -173,7 +173,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
       dummy.updateMatrix();
       meshRef.current.setMatrixAt(i, dummy.matrix);
     }
-    geometry.setAttribute("color", new InstancedBufferAttribute(colors, 3));
+    geometry.setAttribute('color', new InstancedBufferAttribute(colors, 3));
     geometry.attributes.color.needsUpdate = true;
     meshRef.current.instanceMatrix.needsUpdate = true;
   }, [geometry, dummy, instances]);
@@ -202,7 +202,7 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
         _orbit.set(
           mp.x + Math.cos(ang) * r,
           mp.y + Math.sin(ang) * r * 0.6,
-          mp.z + Math.sin(ang + inst.orbitTilt) * r * 0.5
+          mp.z + Math.sin(ang + inst.orbitTilt) * r * 0.5,
         );
         inst.position.lerp(_orbit, gather * 0.12 + 0.02);
       } else if (!inst.companion) {
@@ -234,15 +234,15 @@ const AnimatedInstancedMesh: React.FC<BallsProps> = ({ lightRef, progress, targe
 
 const FloatingModel: React.FC<SharedRefs> = ({ progress, modelPose, kf }) => {
   const modelRef = useRef<Group>(null);
-  const { scene } = useGLTF("/models/ai/ai_opt.glb");
+  const { scene } = useGLTF('/models/ai/ai_opt.glb');
   const pose = useRef({ x: 40, y: 4, z: 0, s: 12 });
 
   useEffect(() => {
-    const frameNode = scene.children.find((node) => node.name === "Frame");
+    const frameNode = scene.children.find((node) => node.name === 'Frame');
     if (frameNode) {
       frameNode.rotation.x = Math.PI / 2;
       animate(frameNode.rotation.x, 0, {
-        type: "spring",
+        type: 'spring',
         stiffness: 80,
         damping: 20,
         onUpdate: (value) => {
@@ -291,19 +291,19 @@ const ScrollAIHero3D: React.FC = () => {
   const modelPose = useRef<ModelPose>({ x: 40, y: 4, z: 0, s: 12 });
 
   const [isDesktop, setIsDesktop] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true,
   );
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia('(min-width: 1024px)');
     const apply = () => setIsDesktop(mq.matches);
     apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
   }, []);
 
   useEffect(() => {
-    useGLTF.preload("/models/ai/ai_opt.glb");
+    useGLTF.preload('/models/ai/ai_opt.glb');
   }, []);
 
   useEffect(() => {
@@ -314,8 +314,8 @@ const ScrollAIHero3D: React.FC = () => {
       target.current.set(x * 50, y * 30, 0);
       if (lightRef.current) lightRef.current.position.copy(target.current);
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
   }, [isDesktop]);
 
   useEffect(() => {
@@ -324,11 +324,11 @@ const ScrollAIHero3D: React.FC = () => {
       progress.current = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
     };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, []);
 
@@ -338,10 +338,10 @@ const ScrollAIHero3D: React.FC = () => {
     <>
       {isDesktop && <MouseMoveTutorial />}
       {/* z-[1]: behind the page content (main is z-10), above the gradient backdrop (z-0). */}
-      <div className="fixed inset-0 z-[1]" style={{ pointerEvents: "none" }} aria-hidden="true">
+      <div className="fixed inset-0 z-[1]" style={{ pointerEvents: 'none' }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
-            style={{ background: "transparent", pointerEvents: "none" }}
+            style={{ background: 'transparent', pointerEvents: 'none' }}
             shadows={isDesktop}
             dpr={isDesktop ? [1, 2] : 1}
             gl={{ alpha: true, antialias: isDesktop, preserveDrawingBuffer: false }}
@@ -368,4 +368,4 @@ const ScrollAIHero3D: React.FC = () => {
 
 export default ScrollAIHero3D;
 
-useGLTF.preload("/models/ai/ai_opt.glb");
+useGLTF.preload('/models/ai/ai_opt.glb');

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Mobile hamburger overlay for the DEV nav (extracted from DevNav): dark
@@ -6,18 +6,18 @@
  * the BV Monogram disc (shared by the header and this overlay's top bar).
  */
 
-import React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
-import { cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, BG_DEV, TEXT, light } from "./devTheme";
+import React from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { MessageCircle, X } from 'lucide-react';
+import { cvLinks, type CVLang } from '@/content/cv';
+import { AMBER, BG_DEV, TEXT, light } from './devTheme';
 
 /** Localized aria labels for the hamburger open/close buttons. */
 export const MENU_ARIA: Record<CVLang, { open: string; close: string }> = {
-  "pt-BR": { open: "Abrir menu", close: "Fechar menu" },
-  en: { open: "Open menu", close: "Close menu" },
-  it: { open: "Apri il menu", close: "Chiudi il menu" },
-  es: { open: "Abrir menú", close: "Cerrar menú" },
+  'pt-BR': { open: 'Abrir menu', close: 'Fechar menu' },
+  en: { open: 'Open menu', close: 'Close menu' },
+  it: { open: 'Apri il menu', close: 'Chiudi il menu' },
+  es: { open: 'Abrir menú', close: 'Cerrar menú' },
 };
 
 /** Asymmetric 3-line burger glyph (widths swap on the parent's hover). */
@@ -61,9 +61,9 @@ const DevNavMobile: React.FC<{
         transition: { duration: 0.25 },
       }
     : {
-        initial: { clipPath: "circle(0% at calc(100% - 44px) 44px)" },
-        animate: { clipPath: "circle(150% at calc(100% - 44px) 44px)" },
-        exit: { clipPath: "circle(0% at calc(100% - 44px) 44px)" },
+        initial: { clipPath: 'circle(0% at calc(100% - 44px) 44px)' },
+        animate: { clipPath: 'circle(150% at calc(100% - 44px) 44px)' },
+        exit: { clipPath: 'circle(0% at calc(100% - 44px) 44px)' },
         transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
       };
 
@@ -73,7 +73,7 @@ const DevNavMobile: React.FC<{
         <motion.div
           className="fixed inset-0 z-[60] flex flex-col xl:hidden"
           {...reveal}
-          style={{ background: "rgba(14,14,17,0.99)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
+          style={{ background: 'rgba(14,14,17,0.99)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
         >
           <div className="flex items-center justify-between px-6 py-4">
             <span className="flex items-center gap-3">
@@ -108,7 +108,7 @@ const DevNavMobile: React.FC<{
               >
                 {/* Mono index in amber: the dev twin keeps the terminal accent */}
                 <span className="w-6 shrink-0 font-mono text-xs font-semibold" style={{ color: AMBER }}>
-                  {String(i + 1).padStart(2, "0")}
+                  {String(i + 1).padStart(2, '0')}
                 </span>
                 <span
                   className="text-3xl font-black tracking-[-0.02em] transition-transform duration-300 group-hover/item:translate-x-1"
@@ -133,9 +133,9 @@ const DevNavMobile: React.FC<{
               rel="noopener noreferrer"
               onClick={onClose}
               className="inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold"
-              style={{ background: "#f4f4f5", color: "#0e0e11", boxShadow: "0 10px 24px rgba(244,244,245,0.14)" }}
+              style={{ background: '#f4f4f5', color: '#0e0e11', boxShadow: '0 10px 24px rgba(244,244,245,0.14)' }}
             >
-              <MessageCircle aria-hidden="true" className="h-5 w-5" style={{ color: "#1faa53" }} />
+              <MessageCircle aria-hidden="true" className="h-5 w-5" style={{ color: '#1faa53' }} />
               WhatsApp
             </a>
           </motion.div>

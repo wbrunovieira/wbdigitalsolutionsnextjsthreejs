@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { FaRocket, FaChartLine, FaBolt, FaExpand } from "react-icons/fa";
-import dynamic from "next/dynamic";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { FaRocket, FaChartLine, FaBolt, FaExpand } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,16 +19,16 @@ const Differentiators: React.FC = () => {
   const currentMessages = useTranslations();
 
   useGSAP(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
 
     gsap.from(titleRef.current, {
       opacity: 0,
       y: -50,
       duration: 1,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: titleRef.current,
-        start: "top 80%",
+        start: 'top 80%',
       },
     });
 
@@ -38,10 +37,10 @@ const Differentiators: React.FC = () => {
       y: 30,
       duration: 1,
       delay: 0.3,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: subtitleRef.current,
-        start: "top 80%",
+        start: 'top 80%',
       },
     });
 
@@ -54,13 +53,13 @@ const Differentiators: React.FC = () => {
           x: 0,
           rotate: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           stagger: 0.3,
           scrollTrigger: {
             trigger: highlightsRef.current,
-            start: "top 80%",
+            start: 'top 80%',
           },
-        }
+        },
       );
     }
   }, []);
@@ -117,7 +116,7 @@ const Differentiators: React.FC = () => {
           <div
             key={index}
             className={`relative flex flex-col items-center text-center bg-white shadow-lg p-8 rounded-lg ${
-              index % 2 === 0 ? "lg:ml-auto" : "lg:mr-auto"
+              index % 2 === 0 ? 'lg:ml-auto' : 'lg:mr-auto'
             }`}
             style={{ transform: `rotate(${index % 2 === 0 ? -5 : 5}deg)` }}
           >

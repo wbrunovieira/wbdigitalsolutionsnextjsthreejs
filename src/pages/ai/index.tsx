@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -22,7 +22,7 @@ const ai: React.FC = () => {
   // Defer the 3D hero to the first user gesture (perf).
   const [show3D, setShow3D] = useState(false);
   useEffect(() => {
-    const events = ["scroll", "pointermove", "touchstart", "keydown"];
+    const events = ['scroll', 'pointermove', 'touchstart', 'keydown'];
     const mount = () => {
       setShow3D(true);
       events.forEach((e) => window.removeEventListener(e, mount));
@@ -79,7 +79,7 @@ const ai: React.FC = () => {
         <CTAInvitation />
       </div>
     </main>
-  </>)
+  </>);
 };
 
 // Per-locale static generation: prerender this page for every locale with

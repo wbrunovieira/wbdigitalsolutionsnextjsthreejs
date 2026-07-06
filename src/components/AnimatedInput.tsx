@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface AnimatedInputProps {
   label: string;
@@ -6,7 +6,7 @@ interface AnimatedInputProps {
   onChange: (value: string) => void;
   errorMessage?: string;
   required?: boolean;
-  type?: "text" | "email";
+  type?: 'text' | 'email';
   name: string;
   disabled?: boolean;
   skipValidation?: boolean;
@@ -18,7 +18,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   onChange,
   errorMessage,
   required = false,
-  type = "text",
+  type = 'text',
   name,
   disabled = false,
   skipValidation = false,
@@ -26,7 +26,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
 
-  const isEmail = type === "email";
+  const isEmail = type === 'email';
   const isValidEmail = isEmail
     ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
     : true;
@@ -53,28 +53,28 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
           setIsTouched(true);
         }}
         className={`peer bg-transparent border-b-2 w-full py-4 text-lg text-white placeholder-transparent focus:outline-none transition-colors duration-300 ${
-          hasError ? "border-red-500" : "border-white/40 focus:border-yellowcustom"
-        } ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+          hasError ? 'border-red-500' : 'border-white/40 focus:border-yellowcustom'
+        } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       />
       <label htmlFor={name} className="absolute top-4 left-0 pointer-events-none">
-        {label.split("").map((char, index) => (
+        {label.split('').map((char, index) => (
           <span
             key={index}
             className={`inline-block transition-transform duration-300 ${
-              hasError ? "text-red-500" : "text-gray-300 peer-focus:text-yellowcustom"
-            } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
+              hasError ? 'text-red-500' : 'text-gray-300 peer-focus:text-yellowcustom'
+            } ${floated ? 'text-sm -translate-y-6' : 'text-lg translate-y-0'}`}
             // Cap the per-letter stagger so long labels don't lag on focus.
             style={{ transitionDelay: `${Math.min(index, 10) * 35}ms` }}
           >
-            {char === " " ? " " : char}
+            {char === ' ' ? ' ' : char}
           </span>
         ))}
         {required && (
           <span
             aria-hidden="true"
             className={`ml-0.5 inline-block transition-transform duration-300 ${
-              hasError ? "text-red-500" : "text-yellowcustom"
-            } ${floated ? "text-sm -translate-y-6" : "text-lg translate-y-0"}`}
+              hasError ? 'text-red-500' : 'text-yellowcustom'
+            } ${floated ? 'text-sm -translate-y-6' : 'text-lg translate-y-0'}`}
           >
             *
           </span>

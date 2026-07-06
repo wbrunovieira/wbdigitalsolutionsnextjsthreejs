@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Fixed navigation for the sales CV page:
@@ -11,20 +11,20 @@
  * - Amber "Contato" pill + language switcher + reading-progress bar.
  */
 
-import React, { useEffect, useState } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { MessageCircle } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, cvLinks, type CVLang } from "@/content/cv";
-import { AMBER, INK, NAV_SECTIONS, ink, toCVLang } from "./salesTheme";
-import { useSalesScrollSpy } from "./useSalesScrollSpy";
-import SalesNavMobile, { BurgerLines, MENU_ARIA, Monogram } from "./SalesNavMobile";
+import React, { useEffect, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, cvLinks, type CVLang } from '@/content/cv';
+import { AMBER, INK, NAV_SECTIONS, ink, toCVLang } from './salesTheme';
+import { useSalesScrollSpy } from './useSalesScrollSpy';
+import SalesNavMobile, { BurgerLines, MENU_ARIA, Monogram } from './SalesNavMobile';
 
 const LANGS: { code: CVLang; label: string }[] = [
-  { code: "en", label: "EN" },
-  { code: "pt-BR", label: "PT" },
-  { code: "it", label: "IT" },
-  { code: "es", label: "ES" },
+  { code: 'en', label: 'EN' },
+  { code: 'pt-BR', label: 'PT' },
+  { code: 'it', label: 'IT' },
+  { code: 'es', label: 'ES' },
 ];
 
 const SalesNav: React.FC = () => {
@@ -46,7 +46,7 @@ const SalesNav: React.FC = () => {
   useEffect(() => {
     if (!menuOpen) return;
     const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = prev;
     };
@@ -59,18 +59,18 @@ const SalesNav: React.FC = () => {
         style={
           scrolled
             ? {
-                background: "rgba(247,247,248,0.82)",
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
+                background: 'rgba(247,247,248,0.82)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 borderBottom: `1px solid ${ink(0.08)}`,
               }
-            : { background: "transparent" }
+            : { background: 'transparent' }
         }
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
           {/* aria-label: on mobile the name span is display:none and the
               monogram is aria-hidden, so the link needs its own name */}
-          <a href="#inicio" onClick={navigateTo("inicio")} aria-label={t.name} className="flex items-center gap-3">
+          <a href="#inicio" onClick={navigateTo('inicio')} aria-label={t.name} className="flex items-center gap-3">
             {/* Monogram mark, makes it read as Bruno's personal page */}
             <Monogram />
             <span className="hidden shrink-0 flex-col whitespace-nowrap leading-tight sm:flex">
@@ -97,9 +97,9 @@ const SalesNav: React.FC = () => {
                     key={item.id}
                     href={`#${item.id}`}
                     onClick={navigateTo(item.id)}
-                    aria-current={isActive ? "true" : undefined}
+                    aria-current={isActive ? 'true' : undefined}
                     className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
-                      isActive ? "text-[#1c1c1e]" : "text-[#1c1c1e]/55 hover:text-[#1c1c1e]/90"
+                      isActive ? 'text-[#1c1c1e]' : 'text-[#1c1c1e]/55 hover:text-[#1c1c1e]/90'
                     }`}
                   >
                     {isActive && (
@@ -107,11 +107,11 @@ const SalesNav: React.FC = () => {
                         layoutId="cv-nav-pill"
                         className="absolute inset-0 rounded-full"
                         style={{ background: AMBER }}
-                        transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                        transition={{ type: 'spring', stiffness: 420, damping: 34 }}
                       >
                         <span
                           className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 rotate-45 rounded-[3px]"
-                          style={{ background: AMBER, marginTop: "1px" }}
+                          style={{ background: AMBER, marginTop: '1px' }}
                           aria-hidden="true"
                         />
                       </motion.span>
@@ -131,9 +131,9 @@ const SalesNav: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hidden items-center gap-1.5 rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
-              style={{ background: INK, color: "#f7f7f8", boxShadow: "0 6px 16px rgba(28,28,30,0.28)" }}
+              style={{ background: INK, color: '#f7f7f8', boxShadow: '0 6px 16px rgba(28,28,30,0.28)' }}
             >
-              <MessageCircle aria-hidden="true" className="h-4 w-4" style={{ color: "#25D366" }} />
+              <MessageCircle aria-hidden="true" className="h-4 w-4" style={{ color: '#25D366' }} />
               WhatsApp
             </a>
             <div
@@ -154,10 +154,10 @@ const SalesNav: React.FC = () => {
                         layoutId="cv-lang-pill"
                         className="absolute inset-0 rounded-full"
                         style={{ background: INK }}
-                        transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                       />
                     )}
-                    <span className="relative z-10" style={{ color: isActive ? "#ffffff" : ink(0.6) }}>{l.label}</span>
+                    <span className="relative z-10" style={{ color: isActive ? '#ffffff' : ink(0.6) }}>{l.label}</span>
                   </button>
                 );
               })}
@@ -168,7 +168,7 @@ const SalesNav: React.FC = () => {
               aria-label={aria.open}
               aria-expanded={menuOpen}
               className="group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors xl:hidden"
-              style={{ borderColor: ink(0.14), background: "rgba(255,255,255,0.7)" }}
+              style={{ borderColor: ink(0.14), background: 'rgba(255,255,255,0.7)' }}
             >
               <BurgerLines color={INK} />
             </button>

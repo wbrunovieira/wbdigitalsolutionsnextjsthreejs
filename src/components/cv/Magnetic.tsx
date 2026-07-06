@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Contained magnetic hover for the primary amber CTAs: the wrapped element
@@ -7,8 +7,8 @@
  * prefers-reduced-motion.
  */
 
-import React from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import React from 'react';
+import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
 
 const Magnetic: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
   const reduce = useReducedMotion();
@@ -18,7 +18,7 @@ const Magnetic: React.FC<{ children: React.ReactNode; className?: string }> = ({
   const sy = useSpring(y, { stiffness: 260, damping: 22 });
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (reduce || e.pointerType !== "mouse") return;
+    if (reduce || e.pointerType !== 'mouse') return;
     const r = e.currentTarget.getBoundingClientRect();
     x.set(((e.clientX - r.left) / r.width - 0.5) * 8); // max 4px
     y.set(((e.clientY - r.top) / r.height - 0.5) * 6); // max 3px
@@ -33,7 +33,7 @@ const Magnetic: React.FC<{ children: React.ReactNode; className?: string }> = ({
       style={{ x: sx, y: sy }}
       onPointerMove={onMove}
       onPointerLeave={onLeave}
-      className={className ?? "inline-flex"}
+      className={className ?? 'inline-flex'}
     >
       {children}
     </motion.div>

@@ -1,6 +1,6 @@
-import { useTranslations } from "@/contexts/TranslationContext";
-import { Button } from "./Button";
-import { AnimatedTextHero } from "./AnimatedTextHero";
+import { useTranslations } from '@/contexts/TranslationContext';
+import { Button } from './Button';
+import { AnimatedTextHero } from './AnimatedTextHero';
 
 const HeroSection: React.FC = () => {
   const currentMessages = useTranslations();

@@ -1,6 +1,6 @@
-"use client";
-import React, { useState } from "react";
-import { useTranslations } from "@/contexts/TranslationContext";
+'use client';
+import React, { useState } from 'react';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 interface EmailInputProps {
   value: string;
@@ -40,11 +40,11 @@ const EmailInput: React.FC<EmailInputProps> = ({ value, onChange, disabled = fal
           onChange={handleChange}
           onBlur={handleBlur}
           className={`flex-grow lg:w-[500px] xl:w-[400px] p-3 rounded-lg border ${
-            isEmailValid ? "border-gray-300" : "border-red-500"
+            isEmailValid ? 'border-gray-300' : 'border-red-500'
           } text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 ${
-            isEmailValid ? "focus:ring-yellowcustom" : "focus:ring-red-500"
+            isEmailValid ? 'focus:ring-yellowcustom' : 'focus:ring-red-500'
           } focus:border-transparent transition-colors duration-200 ease-in-out shadow-sm h-12 ${
-            disabled ? "opacity-50 cursor-not-allowed" : ""
+            disabled ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         />
       </div>

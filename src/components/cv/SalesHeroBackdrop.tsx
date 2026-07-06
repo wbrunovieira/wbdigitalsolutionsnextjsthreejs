@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Decorative background stack of the sales hero (extracted from SalesHero):
@@ -7,9 +7,9 @@
  * frame with amber corner ticks. All layers aria-hidden / pointer-events-none.
  */
 
-import React from "react";
-import { motion, type MotionValue } from "framer-motion";
-import { AMBER, ink } from "./salesTheme";
+import React from 'react';
+import { motion, type MotionValue } from 'framer-motion';
+import { AMBER, ink } from './salesTheme';
 
 const GRAIN =
   "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";
@@ -18,16 +18,16 @@ const SalesHeroBackdrop: React.FC<{ watermarkY: MotionValue<number> | number }> 
   <>
     {/* Depth: soft neutral bloom, gentle edge falloff, dot field (no warm tint) */}
     <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-      <div style={{ background: "radial-gradient(60% 55% at 50% 34%, rgba(255,255,255,0.7) 0%, transparent 70%)" }} className="absolute inset-0" />
+      <div style={{ background: 'radial-gradient(60% 55% at 50% 34%, rgba(255,255,255,0.7) 0%, transparent 70%)' }} className="absolute inset-0" />
       <div style={{ background: `radial-gradient(120% 120% at 50% 42%, transparent 58%, ${ink(0.06)} 100%)` }} className="absolute inset-0" />
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `radial-gradient(${ink(0.9)} 1px, transparent 1px)`,
-          backgroundSize: "28px 28px",
+          backgroundSize: '28px 28px',
           opacity: 0.05,
-          maskImage: "radial-gradient(70% 60% at 50% 45%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(70% 60% at 50% 45%, black, transparent)",
+          maskImage: 'radial-gradient(70% 60% at 50% 45%, black, transparent)',
+          WebkitMaskImage: 'radial-gradient(70% 60% at 50% 45%, black, transparent)',
         }}
       />
     </div>
@@ -36,7 +36,7 @@ const SalesHeroBackdrop: React.FC<{ watermarkY: MotionValue<number> | number }> 
     <motion.span
       aria-hidden="true"
       className="pointer-events-none absolute -bottom-[8%] -right-[4%] z-0 select-none font-black leading-none text-transparent"
-      style={{ y: watermarkY, fontSize: "clamp(12rem, 34vw, 34rem)", WebkitTextStroke: `1px ${ink(0.05)}` }}
+      style={{ y: watermarkY, fontSize: 'clamp(12rem, 34vw, 34rem)', WebkitTextStroke: `1px ${ink(0.05)}` }}
     >
       WBPV
     </motion.span>

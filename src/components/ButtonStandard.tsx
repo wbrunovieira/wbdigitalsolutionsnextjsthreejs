@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface ButtonStandardProps {
   buttonText: string;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   isLoading?: boolean;
 }
 
 const ButtonStandard: React.FC<ButtonStandardProps> = ({
   buttonText,
-  type = "submit",
+  type = 'submit',
   disabled = false,
   isLoading = false,
 }) => {
@@ -23,7 +23,7 @@ const ButtonStandard: React.FC<ButtonStandardProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`group relative flex justify-center gap-2 items-center shadow-xl text-md text-primary bg-yellowcustom backdrop-blur-md lg:font-semibold isolation-auto px-4 py-1 overflow-hidden border-2 border-transparent rounded-lg whitespace-nowrap min-w-[180px] h-12 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary ${
-        disabled ? "opacity-60 cursor-not-allowed hover:translate-y-0 hover:shadow-xl" : ""
+        disabled ? 'opacity-60 cursor-not-allowed hover:translate-y-0 hover:shadow-xl' : ''
       }`}
     >
       {isLoading && (
@@ -36,7 +36,7 @@ const ButtonStandard: React.FC<ButtonStandardProps> = ({
       <div className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-700 transition-all duration-300 group-hover:border-transparent group-hover:bg-primary/10">
         <svg
           className={`w-4 h-4 transition-transform duration-300 ${
-            isHovered ? "rotate-90" : "rotate-45"
+            isHovered ? 'rotate-90' : 'rotate-45'
           }`}
           viewBox="0 0 16 19"
           xmlns="http://www.w3.org/2000/svg"

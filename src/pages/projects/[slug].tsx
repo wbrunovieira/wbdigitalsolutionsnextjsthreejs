@@ -52,7 +52,7 @@ const ProjectDetailPage: React.FC = () => {
 // PROJECT_DETAILS is the single source of slugs (also used by the sitemap API).
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => ({
   paths: Object.keys(PROJECT_DETAILS).flatMap((slug) =>
-    (locales ?? []).map((locale) => ({ params: { slug }, locale }))
+    (locales ?? []).map((locale) => ({ params: { slug }, locale })),
   ),
   fallback: false,
 });

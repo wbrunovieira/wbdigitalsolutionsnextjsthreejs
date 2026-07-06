@@ -1,5 +1,4 @@
-export const textVariant = (delay) => {
-    return {
+export const textVariant = (delay) => ({
       hidden: {
         y: -50,
         opacity: 0,
@@ -13,11 +12,9 @@ export const textVariant = (delay) => {
           delay: delay,
         },
       },
-    };
-  };
+    });
   
-  export const fadeIn = (direction, type, delay, duration) => {
-    return {
+  export const fadeIn = (direction, type, delay, duration) => ({
       hidden: {
         x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
         y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
@@ -34,11 +31,9 @@ export const textVariant = (delay) => {
           ease: 'easeOut',
         },
       },
-    };
-  };
+    });
   
-  export const zoomIn = (delay, duration) => {
-    return {
+  export const zoomIn = (delay, duration) => ({
       hidden: {
         scale: 0,
         opacity: 0,
@@ -53,11 +48,9 @@ export const textVariant = (delay) => {
           ease: 'easeOut',
         },
       },
-    };
-  };
+    });
   
-  export const slideIn = (direction, type, delay, duration) => {
-    return {
+  export const slideIn = (direction, type, delay, duration) => ({
       hidden: {
         x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
         y: direction === 'up' ? '100%' : direction === 'down' ? '100%' : 0,
@@ -72,11 +65,9 @@ export const textVariant = (delay) => {
           ease: 'easeOut',
         },
       },
-    };
-  };
+    });
   
-  export const staggerContainer = (staggerChildren, delayChildren) => {
-    return {
+  export const staggerContainer = (staggerChildren, delayChildren) => ({
       hidden: {},
       show: {
         transition: {
@@ -84,5 +75,4 @@ export const textVariant = (delay) => {
           delayChildren: delayChildren || 0,
         },
       },
-    };
-  };
+    });

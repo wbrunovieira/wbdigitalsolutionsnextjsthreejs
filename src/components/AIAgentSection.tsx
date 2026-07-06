@@ -1,24 +1,25 @@
-import React, { useRef } from "react";
-import dynamic from "next/dynamic";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaNetworkWired, FaPeopleCarry, FaBrain, FaHandHoldingUsd } from "react-icons/fa";
-import { useTranslations } from "@/contexts/TranslationContext";
-import { useLanguage } from "@/contexts/LanguageContext";
+import React, { useRef } from 'react';
+import dynamic from 'next/dynamic';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaNetworkWired, FaPeopleCarry, FaBrain, FaHandHoldingUsd } from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 
 const Player = dynamic(
   () =>
-    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+    import('@lottiefiles/react-lottie-player').then((mod) => mod.Player),
   {
     ssr: false,
-  }
+  },
 );
 
 gsap.registerPlugin(ScrollTrigger);
 
-type IconKey = "FaNetworkWired" | "FaPeopleCarry" | "FaBrain" | "FaHandHoldingUsd";
+type IconKey = 'FaNetworkWired' | 'FaPeopleCarry' | 'FaBrain' | 'FaHandHoldingUsd';
+
+type AgentFlowMessage = { icon: string; title: string; description: string };
 
 const iconMapper: Record<IconKey, JSX.Element> = {
   FaNetworkWired: <FaNetworkWired className="text-4xl text-blue-400" />,
@@ -28,7 +29,6 @@ const iconMapper: Record<IconKey, JSX.Element> = {
 };
 
 const AIAgentFlowSection: React.FC = () => {
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -45,12 +45,12 @@ const AIAgentFlowSection: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: titleRef.current,
-            start: "top 90%",
+            start: 'top 90%',
           },
-        }
+        },
       );
 
       gsap.fromTo(
@@ -60,12 +60,12 @@ const AIAgentFlowSection: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: textRef.current,
-            start: "top 90%",
+            start: 'top 90%',
           },
-        }
+        },
       );
 
       // Animação dos cards
@@ -79,12 +79,12 @@ const AIAgentFlowSection: React.FC = () => {
             y: 0,
             duration: 1,
             delay: index * 0.1,
-            ease: "power3.out",
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: card,
-              start: "top 95%",
+              start: 'top 95%',
             },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -92,7 +92,8 @@ const AIAgentFlowSection: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const agentFlowItems = (currentMessages.agentFlowItems || []).map((item: any) => {
+  const agentFlowMessages: AgentFlowMessage[] = currentMessages.agentFlowItems || [];
+  const agentFlowItems = agentFlowMessages.map((item) => {
     const iconKey = item.icon as IconKey;
     return {
       icon: iconMapper[iconKey] || <FaNetworkWired className="text-4xl text-blue-400" />,
@@ -136,7 +137,7 @@ const AIAgentFlowSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {agentFlowItems.map((item: any, index: number) => (
+          {agentFlowItems.map((item, index) => (
             <div
               key={index}
               ref={(el) => {

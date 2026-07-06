@@ -4,14 +4,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 const Player = dynamic(
   () =>
-    import("@lottiefiles/react-lottie-player").then((mod) => mod.Player),
+    import('@lottiefiles/react-lottie-player').then((mod) => mod.Player),
   {
     ssr: false,
-  }
+  },
 );
 
 import { FaCogs, FaClock, FaChartLine, FaSmile } from 'react-icons/fa';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslations } from '@/contexts/TranslationContext';
 import dynamic from 'next/dynamic';
 
@@ -21,7 +20,6 @@ const AnimatedBenefits: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   useGSAP(() => {
@@ -40,7 +38,7 @@ const AnimatedBenefits: React.FC = () => {
             end: 'top 50%',
             scrub: 1,
           },
-        }
+        },
       );
     }
 
@@ -60,7 +58,7 @@ const AnimatedBenefits: React.FC = () => {
             end: 'bottom 60%',
             scrub: 1,
           },
-        }
+        },
       );
     }
   }, []);

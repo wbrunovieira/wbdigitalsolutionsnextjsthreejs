@@ -28,7 +28,7 @@ const ProjectsCTA: React.FC<ProjectsCTAProps> = ({ content }) => {
         scrollTrigger: { trigger: ref.current, start: 'top 85%' },
       });
     },
-    { scope: ref }
+    { scope: ref },
   );
 
   return (

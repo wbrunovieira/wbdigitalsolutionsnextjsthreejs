@@ -59,7 +59,7 @@ const MouseMoveTutorial: React.FC<MouseMoveTutorialProps> = ({ onInteraction }) 
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
             className="relative"
           >
@@ -112,12 +112,12 @@ const MouseMoveTutorial: React.FC<MouseMoveTutorialProps> = ({ onInteraction }) 
               <motion.div
                 animate={{ 
                   opacity: [0, 0.6, 0],
-                  scale: [0.8, 1.2, 0.8]
+                  scale: [0.8, 1.2, 0.8],
                 }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeOut",
+                  ease: 'easeOut',
                 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
@@ -132,7 +132,7 @@ const MouseMoveTutorial: React.FC<MouseMoveTutorialProps> = ({ onInteraction }) 
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "linear",
+                  ease: 'linear',
                 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
@@ -165,7 +165,7 @@ const MouseMoveTutorial: React.FC<MouseMoveTutorialProps> = ({ onInteraction }) 
                 >
                   ✨
                 </motion.span>
-                {t.mouseMoveTutorialText || "Move your mouse to interact with particles"}
+                {t.mouseMoveTutorialText || 'Move your mouse to interact with particles'}
                 <motion.span
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}

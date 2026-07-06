@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Dev philosophy / manifesto pull-quote (independent dark copy of the sales
@@ -12,89 +12,89 @@
  * gated, a11y preserved via aria-label.
  */
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import type { CVLang } from "@/content/cv";
-import { AMBER, BG_DEV, TEXT, light, toCVLang } from "./devTheme";
-import { useDevReveal } from "./useDevReveal";
-import { DevSection } from "./DevSection";
-import DevCodeDeco from "./DevCodeDeco";
-import DevBinary from "./DevBinary";
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import type { CVLang } from '@/content/cv';
+import { AMBER, BG_DEV, TEXT, light, toCVLang } from './devTheme';
+import { useDevReveal } from './useDevReveal';
+import { DevSection } from './DevSection';
+import DevCodeDeco from './DevCodeDeco';
+import DevBinary from './DevBinary';
 
-type Variant = "problem" | "people";
+type Variant = 'problem' | 'people';
 
 /** Corner easter egg per variant: the section's message, in code. */
 const DECO: Record<Variant, string> = {
-  problem: "if (!problem.understood) return listen();",
-  people: "// readable > clever",
+  problem: 'if (!problem.understood) return listen();',
+  people: '// readable > clever',
 };
 
 /** Side binary halo per variant, decoding the section's keyword (repeated). */
 const BINARY: Record<Variant, string[]> = {
   // "LISTEN" (x2)
   problem: [
-    "01001100 01001001",
-    "01010011 01010100",
-    "01000101 01001110",
-    "01001100 01001001",
-    "01010011 01010100",
-    "01000101 01001110",
+    '01001100 01001001',
+    '01010011 01010100',
+    '01000101 01001110',
+    '01001100 01001001',
+    '01010011 01010100',
+    '01000101 01001110',
   ],
   // "PEOPLE" (x2)
   people: [
-    "01010000 01000101",
-    "01001111 01010000",
-    "01001100 01000101",
-    "01010000 01000101",
-    "01001111 01010000",
-    "01001100 01000101",
+    '01010000 01000101',
+    '01001111 01010000',
+    '01001100 01000101',
+    '01010000 01000101',
+    '01001111 01010000',
+    '01001100 01000101',
   ],
 };
 
 const COPY: Record<Variant, Record<CVLang, { eyebrow: string; lead: string; statement: string }>> = {
   problem: {
-    "pt-BR": {
-      eyebrow: "Filosofia",
-      lead: "Código bom resolve problema de verdade.",
-      statement: "Começo pelo problema do negócio e só escrevo a primeira linha quando sei o que ela precisa entregar. Hábito de quem passou 25 anos ouvindo clientes antes de propor soluções.",
+    'pt-BR': {
+      eyebrow: 'Filosofia',
+      lead: 'Código bom resolve problema de verdade.',
+      statement: 'Começo pelo problema do negócio e só escrevo a primeira linha quando sei o que ela precisa entregar. Hábito de quem passou 25 anos ouvindo clientes antes de propor soluções.',
     },
     en: {
-      eyebrow: "Philosophy",
-      lead: "Good code solves a real problem.",
-      statement: "I start from the business problem and only write the first line when I know what it must deliver. A habit built over 25 years of listening to clients before proposing solutions.",
+      eyebrow: 'Philosophy',
+      lead: 'Good code solves a real problem.',
+      statement: 'I start from the business problem and only write the first line when I know what it must deliver. A habit built over 25 years of listening to clients before proposing solutions.',
     },
     it: {
-      eyebrow: "Filosofia",
-      lead: "Il buon codice risolve un problema vero.",
+      eyebrow: 'Filosofia',
+      lead: 'Il buon codice risolve un problema vero.',
       statement: "Parto dal problema di business e scrivo la prima riga solo quando so cosa deve consegnare. Un'abitudine costruita in 25 anni passati ad ascoltare i clienti prima di proporre soluzioni.",
     },
     es: {
-      eyebrow: "Filosofía",
-      lead: "El buen código resuelve un problema real.",
-      statement: "Empiezo por el problema de negocio y solo escribo la primera línea cuando sé qué debe entregar. Un hábito construido en 25 años escuchando a clientes antes de proponer soluciones.",
+      eyebrow: 'Filosofía',
+      lead: 'El buen código resuelve un problema real.',
+      statement: 'Empiezo por el problema de negocio y solo escribo la primera línea cuando sé qué debe entregar. Un hábito construido en 25 años escuchando a clientes antes de proponer soluciones.',
     },
   },
   people: {
-    "pt-BR": {
-      eyebrow: "Ofício",
-      lead: "Código é para pessoas.",
-      statement: "A máquina executa qualquer coisa; quem lê, mantém e usa é gente. Escrevo para o usuário final e para o dev que vem depois de mim.",
+    'pt-BR': {
+      eyebrow: 'Ofício',
+      lead: 'Código é para pessoas.',
+      statement: 'A máquina executa qualquer coisa; quem lê, mantém e usa é gente. Escrevo para o usuário final e para o dev que vem depois de mim.',
     },
     en: {
-      eyebrow: "Craft",
-      lead: "Code is for people.",
-      statement: "A machine will run anything; the ones who read, maintain and use it are people. I write for the end user and for the next dev after me.",
+      eyebrow: 'Craft',
+      lead: 'Code is for people.',
+      statement: 'A machine will run anything; the ones who read, maintain and use it are people. I write for the end user and for the next dev after me.',
     },
     it: {
-      eyebrow: "Mestiere",
-      lead: "Il codice è per le persone.",
+      eyebrow: 'Mestiere',
+      lead: 'Il codice è per le persone.',
       statement: "La macchina esegue qualsiasi cosa; chi lo legge, mantiene e usa sono persone. Scrivo per l'utente finale e per il dev che viene dopo di me.",
     },
     es: {
-      eyebrow: "Oficio",
-      lead: "El código es para personas.",
-      statement: "La máquina ejecuta cualquier cosa; quienes lo leen, mantienen y usan son personas. Escribo para el usuario final y para el dev que viene después de mí.",
+      eyebrow: 'Oficio',
+      lead: 'El código es para personas.',
+      statement: 'La máquina ejecuta cualquier cosa; quienes lo leen, mantienen y usan son personas. Escribo para el usuario final y para el dev que viene después de mí.',
     },
   },
 };
@@ -105,8 +105,8 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
   const { language } = useLanguage();
   const reduce = useReducedMotion();
   const copy = COPY[variant][toCVLang(language)];
-  const reveal = useDevReveal({ margin: "-80px", duration: 0.7 });
-  const words = copy.lead.split(" ");
+  const reveal = useDevReveal({ margin: '-80px', duration: 0.7 });
+  const words = copy.lead.split(' ');
 
   return (
     <DevSection id={id} bg={BG_DEV} width="3xl" padding="roomy">
@@ -124,7 +124,7 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
             style={{ background: AMBER }}
             initial={reduce ? { scaleY: 1 } : { scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease: EASE }}
           />
           {/* Word-level stagger (never per character); screen readers get the
@@ -146,11 +146,11 @@ const DevPhilosophy: React.FC<{ variant: Variant; id: string }> = ({ variant, id
                       className="inline-block"
                       initial={{ opacity: 0, y: 14 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-80px" }}
+                      viewport={{ once: true, margin: '-80px' }}
                       transition={{ duration: 0.5, delay: 0.1 + i * 0.05, ease: EASE }}
                     >
                       {w}
-                    </motion.span>{" "}
+                    </motion.span>{' '}
                   </React.Fragment>
                 ))}
               </>

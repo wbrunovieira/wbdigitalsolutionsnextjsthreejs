@@ -53,25 +53,25 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         return {
           websites: 'SITES',
           automation: 'AUTOMAÇÃO',
-          ai: 'I.A.'
+          ai: 'I.A.',
         }[service.toLowerCase()] || service;
       case 'es':
         return {
           websites: 'SITIOS WEB',
           automation: 'AUTOMATIZACIÓN',
-          ai: 'I.A.'
+          ai: 'I.A.',
         }[service.toLowerCase()] || service;
       case 'it':
         return {
           websites: 'SITI WEB',
           automation: 'AUTOMAZIONE',
-          ai: 'I.A.'
+          ai: 'I.A.',
         }[service.toLowerCase()] || service;
       default:
         return {
           websites: 'WEBSITES',
           automation: 'AUTOMATION',
-          ai: 'A.I.'
+          ai: 'A.I.',
         }[service.toLowerCase()] || service;
     }
   };
@@ -124,7 +124,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
       shadows
       camera={{
         position: isMobile ? [0, 8, 12] : CAMERA.position,
-        fov: isMobile ? 60 : CAMERA.fov
+        fov: isMobile ? 60 : CAMERA.fov,
       }}
     >
       {/* Scene Lighting */}
@@ -172,7 +172,6 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('websites')}
             isActive={activeButton === 'websites'}
-            label={getServiceName('websites')}
             scale={3.5}
           />
           <HolographicInfo
@@ -188,7 +187,6 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('automation')}
             isActive={activeButton === 'automation'}
-            label={getServiceName('automation')}
             scale={3.5}
           />
           <HolographicInfo
@@ -212,7 +210,6 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
             position={[2.5, 0.95, 1]}
             onClick={() => setActiveButton('ai')}
             isActive={activeButton === 'ai'}
-            label={getServiceName('ai')}
             scale={3.5}
           />
           <HolographicInfo
@@ -242,7 +239,7 @@ const OfficeScene: React.FC<OfficeSceneProps> = ({ language = 'en' }) => {
         maxDistance={isMobile ? 25 : 30}
         touches={{
           ONE: THREE.TOUCH.ROTATE,
-          TWO: THREE.TOUCH.DOLLY_PAN
+          TWO: THREE.TOUCH.DOLLY_PAN,
         }}
         enableDamping={true}
         dampingFactor={0.05}

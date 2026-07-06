@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useEffect, useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const STORAGE_KEY = "wb-consent-v2"; // JSON: { analytics: bool, marketing: bool, ts }
-const FB_PIXEL_ID = "1261665671358254";
+const STORAGE_KEY = 'wb-consent-v2'; // JSON: { analytics: bool, marketing: bool, ts }
+const FB_PIXEL_ID = '1261665671358254';
 
 type Prefs = { analytics: boolean; marketing: boolean };
 
@@ -19,78 +19,88 @@ const UI: Record<string, {
   save: string;
   cats: { necessary: [string, string]; analytics: [string, string]; marketing: [string, string] };
 }> = {
-  "pt-BR": {
-    bannerText: "Usamos cookies para fazer o site funcionar, medir o tráfego e (com sua permissão) personalizar marketing. Você escolhe o que aceitar.",
-    title: "Suas preferências de privacidade",
-    intro: "Controle como coletamos e usamos seus dados neste site. Os cookies necessários são sempre ativos; os demais dependem da sua escolha.",
-    alwaysOn: "Sempre ativo",
-    acceptAll: "Aceitar tudo",
-    rejectAll: "Recusar",
-    customize: "Personalizar",
-    save: "Salvar preferências",
+  'pt-BR': {
+    bannerText: 'Usamos cookies para fazer o site funcionar, medir o tráfego e (com sua permissão) personalizar marketing. Você escolhe o que aceitar.',
+    title: 'Suas preferências de privacidade',
+    intro: 'Controle como coletamos e usamos seus dados neste site. Os cookies necessários são sempre ativos; os demais dependem da sua escolha.',
+    alwaysOn: 'Sempre ativo',
+    acceptAll: 'Aceitar tudo',
+    rejectAll: 'Recusar',
+    customize: 'Personalizar',
+    save: 'Salvar preferências',
     cats: {
-      necessary: ["Necessários", "Essenciais para o site funcionar: idioma, segurança e envio de formulários. Não identificam você."],
-      analytics: ["Análise", "Google Analytics e Vercel Analytics: páginas visitadas, dispositivo, origem do acesso e localização aproximada — para melhorar o site."],
-      marketing: ["Marketing", "Facebook Pixel e Google Ads: medem campanhas e ajudam a mostrar anúncios relevantes. Só com seu consentimento."],
+      necessary: ['Necessários', 'Essenciais para o site funcionar: idioma, segurança e envio de formulários. Não identificam você.'],
+      analytics: ['Análise', 'Google Analytics e Vercel Analytics: páginas visitadas, dispositivo, origem do acesso e localização aproximada — para melhorar o site.'],
+      marketing: ['Marketing', 'Facebook Pixel e Google Ads: medem campanhas e ajudam a mostrar anúncios relevantes. Só com seu consentimento.'],
     },
   },
   en: {
-    bannerText: "We use cookies to run the site, measure traffic and (with your permission) personalize marketing. You choose what to allow.",
-    title: "Your privacy preferences",
-    intro: "Control how we collect and use your data on this site. Necessary cookies are always on; the rest depend on your choice.",
-    alwaysOn: "Always on",
-    acceptAll: "Accept all",
-    rejectAll: "Decline",
-    customize: "Customize",
-    save: "Save preferences",
+    bannerText: 'We use cookies to run the site, measure traffic and (with your permission) personalize marketing. You choose what to allow.',
+    title: 'Your privacy preferences',
+    intro: 'Control how we collect and use your data on this site. Necessary cookies are always on; the rest depend on your choice.',
+    alwaysOn: 'Always on',
+    acceptAll: 'Accept all',
+    rejectAll: 'Decline',
+    customize: 'Customize',
+    save: 'Save preferences',
     cats: {
-      necessary: ["Necessary", "Essential for the site to work: language, security and form submissions. They don't identify you."],
-      analytics: ["Analytics", "Google Analytics & Vercel Analytics: pages visited, device, traffic source and approximate location — to improve the site."],
-      marketing: ["Marketing", "Facebook Pixel & Google Ads: measure campaigns and help show relevant ads. Only with your consent."],
+      necessary: ['Necessary', "Essential for the site to work: language, security and form submissions. They don't identify you."],
+      analytics: ['Analytics', 'Google Analytics & Vercel Analytics: pages visited, device, traffic source and approximate location — to improve the site.'],
+      marketing: ['Marketing', 'Facebook Pixel & Google Ads: measure campaigns and help show relevant ads. Only with your consent.'],
     },
   },
   es: {
-    bannerText: "Usamos cookies para que el sitio funcione, medir el tráfico y (con tu permiso) personalizar el marketing. Tú eliges qué aceptar.",
-    title: "Tus preferencias de privacidad",
-    intro: "Controla cómo recopilamos y usamos tus datos en este sitio. Las cookies necesarias siempre están activas; el resto depende de tu elección.",
-    alwaysOn: "Siempre activo",
-    acceptAll: "Aceptar todo",
-    rejectAll: "Rechazar",
-    customize: "Personalizar",
-    save: "Guardar preferencias",
+    bannerText: 'Usamos cookies para que el sitio funcione, medir el tráfico y (con tu permiso) personalizar el marketing. Tú eliges qué aceptar.',
+    title: 'Tus preferencias de privacidad',
+    intro: 'Controla cómo recopilamos y usamos tus datos en este sitio. Las cookies necesarias siempre están activas; el resto depende de tu elección.',
+    alwaysOn: 'Siempre activo',
+    acceptAll: 'Aceptar todo',
+    rejectAll: 'Rechazar',
+    customize: 'Personalizar',
+    save: 'Guardar preferencias',
     cats: {
-      necessary: ["Necesarias", "Esenciales para que el sitio funcione: idioma, seguridad y envío de formularios. No te identifican."],
-      analytics: ["Análisis", "Google Analytics y Vercel Analytics: páginas visitadas, dispositivo, origen del acceso y ubicación aproximada — para mejorar el sitio."],
-      marketing: ["Marketing", "Facebook Pixel y Google Ads: miden campañas y ayudan a mostrar anuncios relevantes. Solo con tu consentimiento."],
+      necessary: ['Necesarias', 'Esenciales para que el sitio funcione: idioma, seguridad y envío de formularios. No te identifican.'],
+      analytics: ['Análisis', 'Google Analytics y Vercel Analytics: páginas visitadas, dispositivo, origen del acceso y ubicación aproximada — para mejorar el sitio.'],
+      marketing: ['Marketing', 'Facebook Pixel y Google Ads: miden campañas y ayudan a mostrar anuncios relevantes. Solo con tu consentimiento.'],
     },
   },
   it: {
-    bannerText: "Usiamo i cookie per far funzionare il sito, misurare il traffico e (col tuo permesso) personalizzare il marketing. Scegli tu cosa accettare.",
-    title: "Le tue preferenze sulla privacy",
-    intro: "Controlla come raccogliamo e usiamo i tuoi dati su questo sito. I cookie necessari sono sempre attivi; gli altri dipendono dalla tua scelta.",
-    alwaysOn: "Sempre attivo",
-    acceptAll: "Accetta tutto",
-    rejectAll: "Rifiuta",
-    customize: "Personalizza",
-    save: "Salva preferenze",
+    bannerText: 'Usiamo i cookie per far funzionare il sito, misurare il traffico e (col tuo permesso) personalizzare il marketing. Scegli tu cosa accettare.',
+    title: 'Le tue preferenze sulla privacy',
+    intro: 'Controlla come raccogliamo e usiamo i tuoi dati su questo sito. I cookie necessari sono sempre attivi; gli altri dipendono dalla tua scelta.',
+    alwaysOn: 'Sempre attivo',
+    acceptAll: 'Accetta tutto',
+    rejectAll: 'Rifiuta',
+    customize: 'Personalizza',
+    save: 'Salva preferenze',
     cats: {
-      necessary: ["Necessari", "Essenziali per il funzionamento del sito: lingua, sicurezza e invio dei moduli. Non ti identificano."],
-      analytics: ["Analisi", "Google Analytics e Vercel Analytics: pagine visitate, dispositivo, origine del traffico e posizione approssimativa — per migliorare il sito."],
-      marketing: ["Marketing", "Facebook Pixel e Google Ads: misurano le campagne e aiutano a mostrare annunci pertinenti. Solo col tuo consenso."],
+      necessary: ['Necessari', 'Essenziali per il funzionamento del sito: lingua, sicurezza e invio dei moduli. Non ti identificano.'],
+      analytics: ['Analisi', 'Google Analytics e Vercel Analytics: pagine visitate, dispositivo, origine del traffico e posizione approssimativa — per migliorare il sito.'],
+      marketing: ['Marketing', 'Facebook Pixel e Google Ads: misurano le campagne e aiutano a mostrare annunci pertinenti. Solo col tuo consenso.'],
     },
   },
 };
 
+// Facebook Pixel command queue: callable, with bootstrap metadata attached.
+interface FacebookPixel {
+  (...args: unknown[]): void;
+  callMethod?: (...args: unknown[]) => void;
+  queue?: unknown[];
+  push?: FacebookPixel;
+  loaded?: boolean;
+  version?: string;
+}
+
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
-    fbq?: any;
-    _fbq?: any;
+    gtag?: (...args: unknown[]) => void;
+    fbq?: FacebookPixel;
+    _fbq?: FacebookPixel;
   }
 }
 
 function loadFacebookPixel() {
-  if (typeof window === "undefined" || window.fbq) return;
+  if (typeof window === 'undefined' || window.fbq) return;
   /* eslint-disable */
   (function (f: any, b, e, v, n?: any, t?: any, s?: any) {
     if (f.fbq) return;
@@ -101,17 +111,20 @@ function loadFacebookPixel() {
     s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
   })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
   /* eslint-enable */
-  window.fbq("init", FB_PIXEL_ID);
-  window.fbq("track", "PageView");
+  // The IIFE above defines fbq via the `any`-typed `f` alias, so TS still sees
+  // window.fbq as narrowed-away by the early guard; re-widen before invoking.
+  const fbq = window.fbq as FacebookPixel | undefined;
+  fbq?.('init', FB_PIXEL_ID);
+  fbq?.('track', 'PageView');
 }
 
 // Map granular prefs to Google Consent Mode v2 + load Pixel if marketing is on.
 function applyConsent(prefs: Prefs) {
-  window.gtag?.("consent", "update", {
-    analytics_storage: prefs.analytics ? "granted" : "denied",
-    ad_storage: prefs.marketing ? "granted" : "denied",
-    ad_user_data: prefs.marketing ? "granted" : "denied",
-    ad_personalization: prefs.marketing ? "granted" : "denied",
+  window.gtag?.('consent', 'update', {
+    analytics_storage: prefs.analytics ? 'granted' : 'denied',
+    ad_storage: prefs.marketing ? 'granted' : 'denied',
+    ad_user_data: prefs.marketing ? 'granted' : 'denied',
+    ad_personalization: prefs.marketing ? 'granted' : 'denied',
   });
   if (prefs.marketing) loadFacebookPixel();
 }
@@ -132,17 +145,17 @@ const Toggle: React.FC<{ checked: boolean; disabled?: boolean; onChange?: (v: bo
     disabled={disabled}
     onClick={() => onChange?.(!checked)}
     className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full px-0.5 transition-colors ${
-      checked ? "bg-yellowcustom" : "bg-white/20"
-    } ${disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70`}
+      checked ? 'bg-yellowcustom' : 'bg-white/20'
+    } ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70`}
   >
-    <span className={`inline-block h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${checked ? "translate-x-5" : "translate-x-0"}`} />
+    <span className={`inline-block h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${checked ? 'translate-x-5' : 'translate-x-0'}`} />
   </button>
 );
 
 const CookieConsent: React.FC = () => {
   const { language } = useLanguage();
-  const lang = language === "pt" ? "pt-BR" : language;
-  const t = UI[lang] ?? UI["pt-BR"];
+  const lang = language === 'pt' ? 'pt-BR' : language;
+  const t = UI[lang] ?? UI['pt-BR'];
 
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -172,7 +185,7 @@ const CookieConsent: React.FC = () => {
 
   if (!visible) return null;
 
-  const cat = (key: "necessary" | "analytics" | "marketing", checked: boolean, onChange?: (v: boolean) => void, locked?: boolean) => (
+  const cat = (key: 'necessary' | 'analytics' | 'marketing', checked: boolean, onChange?: (v: boolean) => void, locked?: boolean) => (
     <div className="flex items-start gap-3 border-t border-white/10 py-3">
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-white">{t.cats[key][0]}</p>
@@ -211,9 +224,9 @@ const CookieConsent: React.FC = () => {
             <h2 className="text-base font-bold text-white">{t.title}</h2>
             <p className="mt-1 text-xs leading-relaxed text-secondary/80">{t.intro}</p>
             <div className="mt-3">
-              {cat("necessary", true, undefined, true)}
-              {cat("analytics", analytics, setAnalytics)}
-              {cat("marketing", marketing, setMarketing)}
+              {cat('necessary', true, undefined, true)}
+              {cat('analytics', analytics, setAnalytics)}
+              {cat('marketing', marketing, setMarketing)}
             </div>
             <div className="mt-4 flex flex-wrap justify-end gap-2">
               <button type="button" onClick={() => commit({ analytics: false, marketing: false })} className="rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-secondary transition-colors hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">

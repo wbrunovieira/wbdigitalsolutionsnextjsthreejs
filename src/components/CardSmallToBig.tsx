@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface CardProps {
     // index: number;
@@ -9,8 +9,7 @@ interface CardProps {
     // className?: string;
 }
 
-const CardSmallToBig = ({ name, description, image,subTitle }: CardProps) => {
-    return (
+const CardSmallToBig = ({ name, description, image,subTitle }: CardProps) => (
         <div className="duration-300 font-mono text-white group cursor-pointer relative overflow-hidden bg-primary w-48 h-96  rounded-3xl p-4 hover:w-56 hover:bg-custom-purple">
             <h3 className="text-xl text-center">{name}</h3>
             <div className="gap-4 relative">
@@ -175,6 +174,5 @@ const CardSmallToBig = ({ name, description, image,subTitle }: CardProps) => {
             </div>
         </div>
     );
-};
 
 export default CardSmallToBig;

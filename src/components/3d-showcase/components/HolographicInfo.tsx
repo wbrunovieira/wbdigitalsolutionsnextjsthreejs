@@ -1,6 +1,6 @@
 // src/components/3d-showcase/components/HolographicInfo.tsx
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Text, Box } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -16,14 +16,14 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
   isActive, 
   serviceType, 
   language = 'en',
-  position = [0, 2.5, 0]
+  position = [0, 2.5, 0],
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const animationRef = useRef({ 
     opacity: 0, 
     scale: 0.5,
     height: 0,
-    glow: 0
+    glow: 0,
   });
 
   // Get service info based on type and language
@@ -41,9 +41,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '✦ Navegação simples e clara',
               '✦ Plataformas completas: e-commerce,',
               '   ensino online e soluções sob medida',
-              '✦ Publicação e suporte na nuvem'
+              '✦ Publicação e suporte na nuvem',
             ],
-            color: '#792990'
+            color: '#792990',
           };
         case 'es':
           return {
@@ -54,9 +54,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '✦ Navegación simple y clara',
               '✦ Plataformas completas: e-commerce,',
               '   enseñanza online y soluciones a medida',
-              '✦ Publicación y soporte en la nube'
+              '✦ Publicación y soporte en la nube',
             ],
-            color: '#792990'
+            color: '#792990',
           };
         case 'it':
           return {
@@ -67,9 +67,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '✦ Navigazione semplice e intuitiva',
               '✦ Piattaforme complete: e-commerce,',
               '   e-learning e soluzioni su misura',
-              '✦ Pubblicazione e supporto nel cloud'
+              '✦ Pubblicazione e supporto nel cloud',
             ],
-            color: '#792990'
+            color: '#792990',
           };
         default:
           return {
@@ -80,9 +80,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '✦ Easy, intuitive navigation',
               '✦ Complete platforms: e-commerce,',
               '   e-learning and custom solutions',
-              '✦ Cloud launch and support'
+              '✦ Cloud launch and support',
             ],
-            color: '#792990'
+            color: '#792990',
           };
       }
 
@@ -97,9 +97,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '⚡ Sistemas conversando entre si',
               '⚡ Rotinas confiáveis, com alertas',
               '⚡ Menos erros e retrabalho',
-              '⚡ Mais tempo para o que importa'
+              '⚡ Mais tempo para o que importa',
             ],
-            color: '#ffb947'
+            color: '#ffb947',
           };
         case 'es':
           return {
@@ -109,9 +109,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '⚡ Sistemas que se comunican entre sí',
               '⚡ Rutinas confiables con alertas',
               '⚡ Menos errores y retrabajo',
-              '⚡ Más tiempo para lo que importa'
+              '⚡ Más tiempo para lo que importa',
             ],
-            color: '#ffb947'
+            color: '#ffb947',
           };
         case 'it':
           return {
@@ -121,9 +121,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '⚡ Sistemi che parlano tra loro',
               '⚡ Routine affidabili con avvisi',
               '⚡ Meno errori e rilavorazioni',
-              '⚡ Più tempo per ciò che conta'
+              '⚡ Più tempo per ciò che conta',
             ],
-            color: '#ffb947'
+            color: '#ffb947',
           };
         default:
           return {
@@ -133,9 +133,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '⚡ Systems that talk to each other',
               '⚡ Reliable routines with alerts',
               '⚡ Fewer errors and rework',
-              '⚡ More time for what matters'
+              '⚡ More time for what matters',
             ],
-            color: '#ffb947'
+            color: '#ffb947',
           };
       }
 
@@ -150,9 +150,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '🤖 IA que usa seus próprios conteúdos (RAG)',
               '🤖 Organização e leitura de textos',
               '🤖 Previsões e segmentações',
-              '🤖 Métricas e melhoria contínua'
+              '🤖 Métricas e melhoria contínua',
             ],
-            color: '#4a90e2'
+            color: '#4a90e2',
           };
         case 'es':
           return {
@@ -162,9 +162,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '🤖 IA con tus propios contenidos (RAG)',
               '🤖 Organización y lectura de textos',
               '🤖 Predicciones y segmentación',
-              '🤖 Métricas y mejora continua'
+              '🤖 Métricas y mejora continua',
             ],
-            color: '#4a90e2'
+            color: '#4a90e2',
           };
         case 'it':
           return {
@@ -174,9 +174,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '🤖 IA sui tuoi contenuti (RAG)',
               '🤖 Organizzazione e lettura di testi',
               '🤖 Previsioni e segmentazioni',
-              '🤖 Metriche e miglioramento continuo'
+              '🤖 Metriche e miglioramento continuo',
             ],
-            color: '#4a90e2'
+            color: '#4a90e2',
           };
         default:
           return {
@@ -186,9 +186,9 @@ const HolographicInfo: React.FC<HolographicInfoProps> = ({
               '🤖 AI over your own content (RAG)',
               '🤖 Text organization & extraction',
               '🤖 Forecasting & segmentation',
-              '🤖 Metrics & continuous improvement'
+              '🤖 Metrics & continuous improvement',
             ],
-            color: '#4a90e2'
+            color: '#4a90e2',
           };
       }
   }

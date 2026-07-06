@@ -1,5 +1,5 @@
-"use client";
-import PeriodicTableClient from "./PeriodicTableClient";
+'use client';
+import PeriodicTableClient from './PeriodicTableClient';
 
 export default function PeriodicTablePage() {
     return (

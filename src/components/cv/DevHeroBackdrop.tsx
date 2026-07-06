@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Decorative background stack of the DEV hero (extracted from DevHero): amber
@@ -10,24 +10,24 @@
  * SOLUTIONS BRUNO DEV CODE FULL-STACK & AI 1987."). All aria-hidden.
  */
 
-import React from "react";
-import { motion, type MotionValue } from "framer-motion";
-import { AMBER, GRAIN, light } from "./devTheme";
+import React from 'react';
+import { motion, type MotionValue } from 'framer-motion';
+import { AMBER, GRAIN, light } from './devTheme';
 
 const DevHeroBackdrop: React.FC<{ watermarkY: MotionValue<number> | number }> = ({ watermarkY }) => (
   <>
     {/* Depth: soft amber-tinted bloom, gentle vignette, dot field */}
     <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-      <div style={{ background: "radial-gradient(60% 55% at 50% 32%, rgba(224,145,47,0.06) 0%, transparent 70%)" }} className="absolute inset-0" />
-      <div style={{ background: "radial-gradient(120% 120% at 50% 42%, transparent 58%, rgba(0,0,0,0.5) 100%)" }} className="absolute inset-0" />
+      <div style={{ background: 'radial-gradient(60% 55% at 50% 32%, rgba(224,145,47,0.06) 0%, transparent 70%)' }} className="absolute inset-0" />
+      <div style={{ background: 'radial-gradient(120% 120% at 50% 42%, transparent 58%, rgba(0,0,0,0.5) 100%)' }} className="absolute inset-0" />
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `radial-gradient(${light(0.9)} 1px, transparent 1px)`,
-          backgroundSize: "28px 28px",
+          backgroundSize: '28px 28px',
           opacity: 0.04,
-          maskImage: "radial-gradient(70% 60% at 50% 45%, black, transparent)",
-          WebkitMaskImage: "radial-gradient(70% 60% at 50% 45%, black, transparent)",
+          maskImage: 'radial-gradient(70% 60% at 50% 45%, black, transparent)',
+          WebkitMaskImage: 'radial-gradient(70% 60% at 50% 45%, black, transparent)',
         }}
       />
     </div>
@@ -36,9 +36,9 @@ const DevHeroBackdrop: React.FC<{ watermarkY: MotionValue<number> | number }> = 
     <motion.span
       aria-hidden="true"
       className="pointer-events-none absolute -bottom-[6%] -right-[2%] z-0 select-none font-mono font-bold leading-none text-transparent"
-      style={{ y: watermarkY, fontSize: "clamp(10rem, 30vw, 28rem)", WebkitTextStroke: `1px ${light(0.07)}` }}
+      style={{ y: watermarkY, fontSize: 'clamp(10rem, 30vw, 28rem)', WebkitTextStroke: `1px ${light(0.07)}` }}
     >
-      {"</>"}
+      {'</>'}
     </motion.span>
 
     {/* Binary layers at different depths/opacities (each spells something):
@@ -46,14 +46,14 @@ const DevHeroBackdrop: React.FC<{ watermarkY: MotionValue<number> | number }> = 
     <span
       aria-hidden="true"
       className="pointer-events-none absolute right-3 top-1/2 z-[1] hidden -translate-y-1/2 select-none font-mono text-[10px] tracking-[0.3em] md:block"
-      style={{ writingMode: "vertical-rl", color: light(0.14) }}
+      style={{ writingMode: 'vertical-rl', color: light(0.14) }}
     >
       01000010 01010010 01010101 01001110 01001111
     </span>
     <span
       aria-hidden="true"
       className="pointer-events-none absolute bottom-[18%] left-3 z-[1] hidden select-none font-mono text-[10px] tracking-[0.3em] md:block"
-      style={{ writingMode: "vertical-rl", color: light(0.07) }}
+      style={{ writingMode: 'vertical-rl', color: light(0.07) }}
     >
       01000100 01000101 01010110
     </span>
@@ -97,15 +97,15 @@ export const LockupHalo: React.FC = () => (
     <div
       className="h-full w-full"
       style={{
-        maskImage: "linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)",
+        maskImage: 'linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)',
+        WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)',
       }}
     >
     <div
       className="grid h-full w-full place-items-center text-center font-mono text-[11px] leading-[2.1] tracking-[0.35em] text-[rgba(244,244,245,0.07)] sm:text-sm sm:text-[rgba(244,244,245,0.18)]"
       style={{
-        maskImage: "linear-gradient(180deg, transparent 2%, black 14%, black 28%, transparent 38%, transparent 66%, black 76%, black 88%, transparent 98%)",
-        WebkitMaskImage: "linear-gradient(180deg, transparent 2%, black 14%, black 28%, transparent 38%, transparent 66%, black 76%, black 88%, transparent 98%)",
+        maskImage: 'linear-gradient(180deg, transparent 2%, black 14%, black 28%, transparent 38%, transparent 66%, black 76%, black 88%, transparent 98%)',
+        WebkitMaskImage: 'linear-gradient(180deg, transparent 2%, black 14%, black 28%, transparent 38%, transparent 66%, black 76%, black 88%, transparent 98%)',
       }}
     >
       <div>01010111 01000010 00100000 01000100 01001001 01000111 01001001</div>

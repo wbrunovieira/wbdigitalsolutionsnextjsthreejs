@@ -6,11 +6,6 @@ import { useTranslations } from '@/contexts/TranslationContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/router';
 
-// Debug logging — silenced in production to avoid console noise / info leakage.
-const devLog = (...args: unknown[]) => {
-  if (process.env.NODE_ENV !== 'production') console.log(...args);
-};
-
 interface Message {
   text: string;
   isUser: boolean;
@@ -21,11 +16,9 @@ const ChatBotButton: React.FC = () => {
   const { language } = useLanguage();
   const router = useRouter();
   const typingMessages = t.typingMessages;
-  const progressiveMessages = t.progressiveMessages;
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [typingText, setTypingText] = useState(typingMessages[0]);
@@ -88,7 +81,7 @@ const ChatBotButton: React.FC = () => {
       opacity: 0,
       scaleY: 0.5,
       scaleX: 0.7,
-      y: 200
+      y: 200,
     }, {
       opacity: 1,
       scaleY: 1,
@@ -96,8 +89,6 @@ const ChatBotButton: React.FC = () => {
       y: 0,
       duration: 1,
       ease: 'elastic.out(1, 0.5)',
-      onStart: () => setIsAnimating(true),
-      onComplete: () => setIsAnimating(false)
     });
   };
 
@@ -106,11 +97,11 @@ const ChatBotButton: React.FC = () => {
     if (!messageToSend.trim()) return;
 
     // Track chat interaction in Google Analytics
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'chat_message_sent', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'chat_message_sent', {
         event_category: 'chat',
         event_label: text ? 'quick_reply' : 'custom_message',
-        value: 1
+        value: 1,
       });
     }
 
@@ -121,19 +112,9 @@ const ChatBotButton: React.FC = () => {
       localStorage.setItem('chat_user_id', userId);
     }
 
-    // Log message send
-    const sendTime = new Date().toISOString();
-    devLog(`[${sendTime}] 📤 Sending message:`, {
-      message: messageToSend,
-      user_id: userId,
-      language: language,
-      page: router.pathname,
-      timestamp: sendTime
-    });
-
     setMessages(prev => [
       ...prev,
-      { text: messageToSend, isUser: true }
+      { text: messageToSend, isUser: true },
     ]);
 
     setInputValue('');
@@ -148,25 +129,19 @@ const ChatBotButton: React.FC = () => {
         ? 'https://chatbot.wbdigitalsolutions.com'
         : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000');
 
-      // Log which API URL is being used
-      devLog(`[${new Date().toISOString()}] 🌐 Using API URL:`, apiUrl, `(${process.env.NODE_ENV} mode)`);
-
       // Only try to fetch if API URL is configured
       if (apiUrl) {
-        const requestStartTime = new Date().toISOString();
-        
         // Check if backend supports streaming endpoint
         const useStreaming = false; // Use regular endpoint with response_parts
         
         if (useStreaming) {
-          devLog(`[${requestStartTime}] 🔄 Starting SSE connection to:`, `${apiUrl}/chat/stream`);
           
           // Since EventSource doesn't support POST, we'll use fetch with ReadableStream
           const response = await fetch(`${apiUrl}/chat/stream`, {
             method: 'POST',
             headers: { 
               'Content-Type': 'application/json',
-              'Accept': 'text/event-stream'
+              'Accept': 'text/event-stream',
             },
             body: JSON.stringify({
               message: messageToSend,
@@ -174,8 +149,8 @@ const ChatBotButton: React.FC = () => {
               language: language,
               current_page: router.pathname,
               page_url: window.location.href,
-              timestamp: new Date().toISOString()
-            })
+              timestamp: new Date().toISOString(),
+            }),
           });
 
           if (!response.ok) {
@@ -195,7 +170,6 @@ const ChatBotButton: React.FC = () => {
             const { done, value } = await reader.read();
             
             if (done) {
-              devLog(`[${new Date().toISOString()}] ✅ Stream complete`);
               break;
             }
             
@@ -212,26 +186,22 @@ const ChatBotButton: React.FC = () => {
                   const data = JSON.parse(dataStr);
                   const eventTime = new Date().toISOString();
             
-                  devLog(`[${eventTime}] 📨 SSE event:`, data);
                   
                   switch(data.type) {
                     case 'acknowledgment':
                       // Show initial acknowledgment
                       setIsTyping(true);
-                      devLog(`[${eventTime}] 👋 Acknowledgment:`, data.message);
                       break;
                       
                     case 'thinking':
                       // Update typing indicator
                       setIsTyping(true);
-                      devLog(`[${eventTime}] 🤔 Thinking:`, data.message);
                       break;
                       
                     case 'message':
                       // Show actual message part
                       setIsTyping(false);
                       setMessages(prev => [...prev, { text: data.content, isUser: false }]);
-                      devLog(`[${eventTime}] 💬 Message part:`, data.content);
                       break;
                       
                     case 'complete':
@@ -240,7 +210,6 @@ const ChatBotButton: React.FC = () => {
                       const end = performance.now();
                       const responseTimeMs = Math.round(end - start);
                       setResponseTime(responseTimeMs);
-                      devLog(`[${eventTime}] ✅ Stream complete, total time: ${responseTimeMs}ms`);
                       break;
                       
                     case 'error':
@@ -260,7 +229,6 @@ const ChatBotButton: React.FC = () => {
           
         } else {
           // Fallback to regular POST request
-          devLog(`[${requestStartTime}] 🔄 Making API request to:`, `${apiUrl}/chat`);
           
           const response = await fetch(`${apiUrl}/chat`, {
             method: 'POST',
@@ -271,15 +239,8 @@ const ChatBotButton: React.FC = () => {
               language: language,
               current_page: router.pathname,
               page_url: window.location.href,
-              timestamp: new Date().toISOString()
-            })
-          });
-
-          const responseReceivedTime = new Date().toISOString();
-          devLog(`[${responseReceivedTime}] 📨 Response received:`, {
-            status: response.status,
-            ok: response.ok,
-            statusText: response.statusText
+              timestamp: new Date().toISOString(),
+            }),
           });
 
           if (!response.ok) {
@@ -291,33 +252,15 @@ const ChatBotButton: React.FC = () => {
           setResponseTime(responseTimeMs);
 
           const data = await response.json();
-          const dataProcessedTime = new Date().toISOString();
-          
-          // Log the full response structure for debugging
-          devLog(`[${dataProcessedTime}] ✅ Response processed:`, {
-            responseTime: `${responseTimeMs}ms`,
-            hasResponseParts: !!data.response_parts,
-            partsCount: data.response_parts?.length || 0,
-            hasRawResponse: !!data.raw_response,
-            hasRevisedResponse: !!data.revised_response,
-            detectedIntent: data.detected_intent,
-            isGreeting: data.is_greeting,
-            cached: data.cached,
-            language: data.language_used,
-            contextPage: data.context_page,
-            fullResponse: data
-          });
 
           // Check if we have response_parts
           let messageParts = [];
           
           if (data.response_parts && data.response_parts.length > 0) {
-            devLog(`[${new Date().toISOString()}] 📊 Using response_parts from backend:`, data.response_parts);
             messageParts = data.response_parts;
           } else if (data.revised_response || data.raw_response) {
             // If no parts, split the response into sentences
             const fullResponse = data.revised_response || data.raw_response;
-            devLog(`[${new Date().toISOString()}] 📊 Splitting response into sentences`);
             
             // Split by sentence endings but keep the punctuation
             // Also split on exclamation with emoji
@@ -356,7 +299,6 @@ const ChatBotButton: React.FC = () => {
               }
             }
             
-            devLog(`[${new Date().toISOString()}] 📊 Split into ${messageParts.length} parts`);
           }
           
           if (messageParts.length > 0) {
@@ -366,7 +308,6 @@ const ChatBotButton: React.FC = () => {
             const initialDelay = 500; // Small initial delay
             const betweenDelay = isGreeting ? 400 : 700; // As specified by backend
             
-            devLog(`[${new Date().toISOString()}] 📝 Displaying ${messageParts.length} message parts, isGreeting: ${isGreeting}`);
             
             // Initial delay before first message
             await new Promise(resolve => setTimeout(resolve, initialDelay));
@@ -381,7 +322,6 @@ const ChatBotButton: React.FC = () => {
               
               // Calculate typing time (shorter for better UX)
               const typingTime = Math.min(part.length * 5, 800);
-              devLog(`[${new Date().toISOString()}] 💬 Typing part ${i+1}/${messageParts.length}: "${part.substring(0, 50)}..." (${typingTime}ms)`);
               
               // Simulate typing
               await new Promise(resolve => setTimeout(resolve, typingTime));
@@ -392,14 +332,12 @@ const ChatBotButton: React.FC = () => {
               
               // Wait before next message (if not last)
               if (i < messageParts.length - 1) {
-                devLog(`[${new Date().toISOString()}] ⏱️ Waiting ${betweenDelay}ms before next part`);
                 await new Promise(resolve => setTimeout(resolve, betweenDelay));
               }
             }
           } else {
             // Fallback to single message if no parts at all
-            devLog(`[${new Date().toISOString()}] ⚠️ No response found, using fallback`);
-            const reply = t.fallbackReply || "Desculpe, não consegui processar sua mensagem.";
+            const reply = t.fallbackReply || 'Desculpe, não consegui processar sua mensagem.';
             
             // Show typing briefly
             setIsTyping(true);
@@ -419,21 +357,14 @@ const ChatBotButton: React.FC = () => {
         error: error instanceof Error ? error.message : error,
         stack: error instanceof Error ? error.stack : undefined,
         apiUrl: process.env.NEXT_PUBLIC_API_URL,
-        fallbackMode: true
+        fallbackMode: true,
       });
       
       // Provide a helpful fallback message
       const fallbackMessage = t.fallbackReply || "I'm currently offline. Please contact us directly at bruno@wbdigitalsolutions.com";
       setMessages(prev => [...prev, { text: fallbackMessage, isUser: false }]);
       
-      devLog(`[${errorTime}] 🔄 Using fallback message:`, fallbackMessage);
     } finally {
-      const finalTime = new Date().toISOString();
-      const totalTime = Math.round(performance.now() - start);
-      devLog(`[${finalTime}] 🏁 Chat interaction completed:`, {
-        totalTime: `${totalTime}ms`,
-        isTyping: false
-      });
       setIsTyping(false);
     }
   };
@@ -442,7 +373,8 @@ const ChatBotButton: React.FC = () => {
     if (isTyping) return;
     if (e.key === 'Enter' && !e.shiftKey && !e.metaKey && !e.ctrlKey) {
       e.preventDefault();
-      sendMessage();
+      // Fire-and-forget: sendMessage handles its own errors.
+      void sendMessage();
     } else if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
       setInputValue(prev => prev + '\n');
     }
@@ -457,11 +389,11 @@ const ChatBotButton: React.FC = () => {
           setIsOpen(newState);
           
           // Track chat open/close in Google Analytics
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', newState ? 'chat_opened' : 'chat_closed', {
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', newState ? 'chat_opened' : 'chat_closed', {
               event_category: 'chat',
               event_label: 'chat_toggle',
-              value: newState ? 1 : 0
+              value: newState ? 1 : 0,
             });
           }
         }}

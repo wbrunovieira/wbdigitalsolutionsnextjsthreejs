@@ -9,12 +9,10 @@ interface ButtonProps {
   ariaLabel?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, href, ariaLabel }) => {
-  return (
+export const Button: React.FC<ButtonProps> = ({ text, href, ariaLabel }) => (
     <div className={`${styles.container} mb-4 z-50`}>
       <div className={styles.btn}>
         <a href={href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel ?? text}>{text}</a>
       </div>
     </div>
   );
-};

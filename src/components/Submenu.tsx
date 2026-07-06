@@ -5,8 +5,7 @@ interface SubMenuProps {
     subItems: { name: string; path: string }[];
 }
 
-const SubMenu: React.FC<SubMenuProps> = ({ subItems }) => {
-    return (
+const SubMenu: React.FC<SubMenuProps> = ({ subItems }) => (
         <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -29,6 +28,5 @@ const SubMenu: React.FC<SubMenuProps> = ({ subItems }) => {
             ))}
         </motion.div>
     );
-};
 
 export default SubMenu;

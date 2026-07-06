@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Career timeline section for the sales CV page. Scroll-driven storytelling:
@@ -7,31 +7,31 @@
  * the viewport center. Entries come localized from salesTimeline.ts.
  */
 
-import React, { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { salesTimeline } from "@/content/salesTimeline";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import { AMBER, BG_B, ink, toCVLang } from "./salesTheme";
-import { SalesSection, SectionHeader } from "./SalesSection";
-import SalesTimelineItem, { useMdUp } from "./SalesTimelineItem";
+import React, { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
+import { salesTimeline } from '@/content/salesTimeline';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, type CVLang } from '@/content/cv';
+import { AMBER, BG_B, ink, toCVLang } from './salesTheme';
+import { SalesSection, SectionHeader } from './SalesSection';
+import SalesTimelineItem, { useMdUp } from './SalesTimelineItem';
 
 const COPY: Record<CVLang, { title: string; intro: string }> = {
-  "pt-BR": {
-    title: "Do balcão, aos 13, à mesa de negociação.",
-    intro: "Comecei a vender cedo, e cada passo somou repertório comercial.",
+  'pt-BR': {
+    title: 'Do balcão, aos 13, à mesa de negociação.',
+    intro: 'Comecei a vender cedo, e cada passo somou repertório comercial.',
   },
   en: {
-    title: "From the shop counter at 13 to the negotiation table.",
-    intro: "I started selling young, and every step added to my commercial range.",
+    title: 'From the shop counter at 13 to the negotiation table.',
+    intro: 'I started selling young, and every step added to my commercial range.',
   },
   it: {
-    title: "Dal bancone, a 13 anni, al tavolo delle trattative.",
-    intro: "Ho iniziato a vendere presto, e ogni passo ha aggiunto repertorio commerciale.",
+    title: 'Dal bancone, a 13 anni, al tavolo delle trattative.',
+    intro: 'Ho iniziato a vendere presto, e ogni passo ha aggiunto repertorio commerciale.',
   },
   es: {
-    title: "Del mostrador, a los 13, a la mesa de negociación.",
-    intro: "Empecé a vender temprano, y cada paso sumó repertorio comercial.",
+    title: 'Del mostrador, a los 13, a la mesa de negociación.',
+    intro: 'Empecé a vender temprano, y cada paso sumó repertorio comercial.',
   },
 };
 
@@ -49,7 +49,7 @@ const SalesTimeline: React.FC = () => {
   const listRef = useRef<HTMLOListElement>(null);
   const { scrollYProgress } = useScroll({
     target: listRef,
-    offset: ["start 0.7", "end 0.5"],
+    offset: ['start 0.7', 'end 0.5'],
   });
   const spineScale = useSpring(scrollYProgress, {
     stiffness: 90,

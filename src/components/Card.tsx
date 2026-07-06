@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-import { fadeIn, textVariant } from "../utils/motion";
-import Image from "next/image";
+import { fadeIn } from '../utils/motion';
+import Image from 'next/image';
 
 interface CardProps {
     index: number;
@@ -11,10 +11,9 @@ interface CardProps {
     className?: string;
 }
 
-const Card = ({ index, name, description, image, className }: CardProps) => {
-    return (
+const Card = ({ index, name, description, image, className }: CardProps) => (
         <motion.div
-            variants={fadeIn("up", "spring", index * 0.5, 0.75)}
+            variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2 }}
@@ -45,6 +44,5 @@ const Card = ({ index, name, description, image, className }: CardProps) => {
             </div>
         </motion.div>
     );
-};
 
 export default Card;

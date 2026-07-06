@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   FaChartLine,
   FaLightbulb,
@@ -13,9 +13,8 @@ import {
   FaCog,
   FaCheckCircle,
   FaCalendarCheck,
-} from "react-icons/fa";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+} from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,21 +24,26 @@ interface MLService {
   icon: React.ReactNode;
 }
 
+interface MLServiceMessage {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 const iconMapper: Record<string, React.ReactNode> = {
-  "FaChartLine": <FaChartLine className="text-xl text-blue-400" />,
-  "FaLightbulb": <FaLightbulb className="text-xl text-yellow-400" />,
-  "FaUserCheck": <FaUserCheck className="text-xl text-green-400" />,
-  "FaShieldAlt": <FaShieldAlt className="text-xl text-red-400" />,
-  "FaMoneyBill": <FaMoneyBill className="text-xl text-green-500" />,
-  "FaRobot": <FaRobot className="text-xl text-indigo-400" />,
-  "FaEye": <FaEye className="text-xl text-purple-400" />,
-  "FaCog": <FaCog className="text-xl text-gray-300" />,
-  "FaCheckCircle": <FaCheckCircle className="text-xl text-green-300" />,
-  "FaCalendarCheck": <FaCalendarCheck className="text-xl text-blue-300" />,
+  'FaChartLine': <FaChartLine className="text-xl text-blue-400" />,
+  'FaLightbulb': <FaLightbulb className="text-xl text-yellow-400" />,
+  'FaUserCheck': <FaUserCheck className="text-xl text-green-400" />,
+  'FaShieldAlt': <FaShieldAlt className="text-xl text-red-400" />,
+  'FaMoneyBill': <FaMoneyBill className="text-xl text-green-500" />,
+  'FaRobot': <FaRobot className="text-xl text-indigo-400" />,
+  'FaEye': <FaEye className="text-xl text-purple-400" />,
+  'FaCog': <FaCog className="text-xl text-gray-300" />,
+  'FaCheckCircle': <FaCheckCircle className="text-xl text-green-300" />,
+  'FaCalendarCheck': <FaCalendarCheck className="text-xl text-blue-300" />,
 };
 
 const MachineLearningServices: React.FC = () => {
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -56,12 +60,12 @@ const MachineLearningServices: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: titleRef.current,
-            start: "top 80%",
+            start: 'top 80%',
           },
-        }
+        },
       );
 
 
@@ -75,12 +79,12 @@ const MachineLearningServices: React.FC = () => {
             x: 0,
             duration: 0.8,
             delay: index * 0.1,
-            ease: "power2.out",
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: service,
-              start: "top 85%",
+              start: 'top 85%',
             },
-          }
+          },
         );
       });
     }, sectionRef);
@@ -89,13 +93,12 @@ const MachineLearningServices: React.FC = () => {
   }, []);
 
 
-  const mlServices: MLService[] = currentMessages.mlServices.map((service: any) => {
-    return {
+  const mlServiceMessages: MLServiceMessage[] = currentMessages.mlServices;
+  const mlServices: MLService[] = mlServiceMessages.map((service) => ({
       title: service.title,
       description: service.description,
       icon: iconMapper[service.icon] || <FaChartLine className="text-xl text-blue-400" />,
-    };
-  });
+    }));
 
   return (
     <section

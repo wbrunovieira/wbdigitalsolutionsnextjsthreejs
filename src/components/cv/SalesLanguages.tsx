@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Languages section for the sales CV page. Reuses the localized `languages`
@@ -6,28 +6,28 @@
  * plus a "currently learning German" note.
  */
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import { LANG_FLAG } from "./cvIcons";
-import { AMBER, BG_A, INK, ink, toCVLang } from "./salesTheme";
-import { useReveal } from "./useReveal";
-import { SalesSection, SectionHeader } from "./SalesSection";
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, type CVLang } from '@/content/cv';
+import { LANG_FLAG } from './cvIcons';
+import { AMBER, BG_A, INK, ink, toCVLang } from './salesTheme';
+import { useReveal } from './useReveal';
+import { SalesSection, SectionHeader } from './SalesSection';
 
 const TITLE: Record<CVLang, string> = {
-  "pt-BR": "Quatro idiomas a favor do seu negócio.",
-  en: "Four languages working for your business.",
-  it: "Quattro lingue al servizio del tuo business.",
-  es: "Cuatro idiomas a favor de tu negocio.",
+  'pt-BR': 'Quatro idiomas a favor do seu negócio.',
+  en: 'Four languages working for your business.',
+  it: 'Quattro lingue al servizio del tuo business.',
+  es: 'Cuatro idiomas a favor de tu negocio.',
 };
 
 /** "Currently learning" note (German, beginner). */
 const LEARNING: Record<CVLang, { label: string; german: string; level: string }> = {
-  "pt-BR": { label: "Aprendendo agora", german: "Alemão", level: "iniciante" },
-  en: { label: "Currently learning", german: "German", level: "beginner" },
-  it: { label: "Sto imparando", german: "Tedesco", level: "base" },
-  es: { label: "Aprendiendo ahora", german: "Alemán", level: "principiante" },
+  'pt-BR': { label: 'Aprendendo agora', german: 'Alemão', level: 'iniciante' },
+  en: { label: 'Currently learning', german: 'German', level: 'beginner' },
+  it: { label: 'Sto imparando', german: 'Tedesco', level: 'base' },
+  es: { label: 'Aprendiendo ahora', german: 'Alemán', level: 'principiante' },
 };
 
 const SalesLanguages: React.FC = () => {
@@ -57,7 +57,7 @@ const SalesLanguages: React.FC = () => {
               <motion.div
                 initial={reduce ? { scaleX: 1 } : { scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.9, delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 className="h-full origin-left rounded-full"
                 style={{ width: `${l.proficiency}%`, background: `linear-gradient(90deg, ${AMBER}, #b26f1f)` }}
@@ -68,8 +68,8 @@ const SalesLanguages: React.FC = () => {
       </ul>
 
       <motion.p {...reveal(0.3)} className="mt-8 text-sm" style={{ color: ink(0.55) }}>
-        <span className="font-semibold" style={{ color: INK }}>{learning.label}:</span>{" "}
-        <span aria-hidden="true" className="text-base">🇩🇪</span> {learning.german}{" "}
+        <span className="font-semibold" style={{ color: INK }}>{learning.label}:</span>{' '}
+        <span aria-hidden="true" className="text-base">🇩🇪</span> {learning.german}{' '}
         <span style={{ color: ink(0.4) }}>({learning.level})</span>
       </motion.p>
     </SalesSection>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Commercial skills section for the sales CV page: methodology/skill chips plus
@@ -6,27 +6,27 @@
  * issues). Skill groups come localized from salesSkills.ts.
  */
 
-import React from "react";
-import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import { salesSkills, salesClients } from "@/content/salesSkills";
-import { AMBER, BG_A, ink, toCVLang } from "./salesTheme";
-import { useReveal } from "./useReveal";
-import { SalesSection, SectionHeader } from "./SalesSection";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, type CVLang } from '@/content/cv';
+import { salesSkills, salesClients } from '@/content/salesSkills';
+import { AMBER, BG_A, ink, toCVLang } from './salesTheme';
+import { useReveal } from './useReveal';
+import { SalesSection, SectionHeader } from './SalesSection';
 
 const TITLE: Record<CVLang, string> = {
-  "pt-BR": "Como eu vendo.",
-  en: "How I sell.",
-  it: "Come vendo.",
-  es: "Cómo vendo.",
+  'pt-BR': 'Como eu vendo.',
+  en: 'How I sell.',
+  it: 'Come vendo.',
+  es: 'Cómo vendo.',
 };
 
 const CLIENTS_LABEL: Record<CVLang, string> = {
-  "pt-BR": "Alguns clientes conhecidos",
-  en: "Some notable clients",
-  it: "Alcuni clienti noti",
-  es: "Algunos clientes conocidos",
+  'pt-BR': 'Alguns clientes conhecidos',
+  en: 'Some notable clients',
+  it: 'Alcuni clienti noti',
+  es: 'Algunos clientes conocidos',
 };
 
 const SalesSkills: React.FC = () => {
@@ -50,10 +50,10 @@ const SalesSkills: React.FC = () => {
                   key={it}
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  viewport={{ once: true, margin: '-60px' }}
                   transition={{ duration: 0.4, delay: i * 0.06 + Math.min(j, 8) * 0.02, ease: [0.22, 1, 0.36, 1] }}
                   className="rounded-full border px-3 py-1 text-sm font-medium"
-                  style={{ borderColor: ink(0.14), color: ink(0.8), background: "rgba(255,255,255,0.6)" }}
+                  style={{ borderColor: ink(0.14), color: ink(0.8), background: 'rgba(255,255,255,0.6)' }}
                 >
                   {it}
                 </motion.span>

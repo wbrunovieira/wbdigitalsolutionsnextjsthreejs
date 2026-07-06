@@ -1,55 +1,55 @@
-import Head from "next/head";
-import { useEffect, useMemo } from "react";
-import type { GetStaticPaths, GetStaticProps } from "next";
-import { LanguageContext, useLanguage } from "@/contexts/LanguageContext";
-import { TranslationContext } from "@/contexts/TranslationContext";
-import en from "@/locales/en.json";
-import type { MessageFormat } from "@/types/messages";
-import type { CVLang } from "@/content/cv";
-import type { ProjectsPageContent } from "@/components/projects/types";
-import DevHero from "@/components/cv/DevHero";
-import DevPhilosophy from "@/components/cv/DevPhilosophy";
-import DevTimeline from "@/components/cv/DevTimeline";
-import DevStack from "@/components/cv/DevStack";
-import DevProjects from "@/components/cv/DevProjects";
-import DevLanguages from "@/components/cv/DevLanguages";
-import DevAbout from "@/components/cv/DevAbout";
-import DevContact from "@/components/cv/DevContact";
-import DevSkeleton from "@/components/cv/DevSkeleton";
+import Head from 'next/head';
+import { useEffect, useMemo } from 'react';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import { LanguageContext, useLanguage } from '@/contexts/LanguageContext';
+import { TranslationContext } from '@/contexts/TranslationContext';
+import en from '@/locales/en.json';
+import type { MessageFormat } from '@/types/messages';
+import type { CVLang } from '@/content/cv';
+import type { ProjectsPageContent } from '@/components/projects/types';
+import DevHero from '@/components/cv/DevHero';
+import DevPhilosophy from '@/components/cv/DevPhilosophy';
+import DevTimeline from '@/components/cv/DevTimeline';
+import DevStack from '@/components/cv/DevStack';
+import DevProjects from '@/components/cv/DevProjects';
+import DevLanguages from '@/components/cv/DevLanguages';
+import DevAbout from '@/components/cv/DevAbout';
+import DevContact from '@/components/cv/DevContact';
+import DevSkeleton from '@/components/cv/DevSkeleton';
 
 // URL-localized routes (SEO pilot): / = en + x-default, /pt /it /es localized.
-const BASE = "https://brunodev.wbdigitalsolutions.com";
-const SLUG: Record<CVLang, string> = { en: "", "pt-BR": "/pt", it: "/it", es: "/es" };
-const SLUG_TO_LANG: Record<string, CVLang> = { pt: "pt-BR", it: "it", es: "es" };
-const LOCALE_FILE: Record<Exclude<CVLang, "en">, string> = { "pt-BR": "ptbr", it: "it", es: "es" };
+const BASE = 'https://brunodev.wbdigitalsolutions.com';
+const SLUG: Record<CVLang, string> = { en: '', 'pt-BR': '/pt', it: '/it', es: '/es' };
+const SLUG_TO_LANG: Record<string, CVLang> = { pt: 'pt-BR', it: 'it', es: 'es' };
+const LOCALE_FILE: Record<Exclude<CVLang, 'en'>, string> = { 'pt-BR': 'ptbr', it: 'it', es: 'es' };
 /** One OG card per locale URL (same identity, localized role line). */
 const OG_IMG: Record<CVLang, string> = {
-  en: "/img/og-dev.jpg",
-  "pt-BR": "/img/og-dev-pt.jpg",
-  it: "/img/og-dev-it.jpg",
-  es: "/img/og-dev-es.jpg",
+  en: '/img/og-dev.jpg',
+  'pt-BR': '/img/og-dev-pt.jpg',
+  it: '/img/og-dev-it.jpg',
+  es: '/img/og-dev-es.jpg',
 };
 
 const SEO: Record<CVLang, { title: string; description: string }> = {
   en: {
-    title: "Bruno Vieira · Senior Full-Stack & AI Engineer",
+    title: 'Bruno Vieira · Senior Full-Stack & AI Engineer',
     description:
-      "Walter Bruno Prado Vieira, Senior Full-Stack & AI Engineer. I turn complex problems into scalable software: production platforms, AI systems (LangGraph, RAG) and interactive 3D, owned end to end from architecture to deploy.",
+      'Walter Bruno Prado Vieira, Senior Full-Stack & AI Engineer. I turn complex problems into scalable software: production platforms, AI systems (LangGraph, RAG) and interactive 3D, owned end to end from architecture to deploy.',
   },
-  "pt-BR": {
-    title: "Bruno Vieira · Engenheiro Full-Stack & IA Sênior",
+  'pt-BR': {
+    title: 'Bruno Vieira · Engenheiro Full-Stack & IA Sênior',
     description:
-      "Walter Bruno Prado Vieira, Engenheiro Full-Stack & IA Sênior. Transformo problemas complexos em software escalável: plataformas em produção, sistemas de IA (LangGraph, RAG) e 3D interativo, da arquitetura ao deploy.",
+      'Walter Bruno Prado Vieira, Engenheiro Full-Stack & IA Sênior. Transformo problemas complexos em software escalável: plataformas em produção, sistemas de IA (LangGraph, RAG) e 3D interativo, da arquitetura ao deploy.',
   },
   it: {
-    title: "Bruno Vieira · Senior Full-Stack & AI Engineer",
+    title: 'Bruno Vieira · Senior Full-Stack & AI Engineer',
     description:
       "Walter Bruno Prado Vieira, Senior Full-Stack & AI Engineer. Trasformo problemi complessi in software scalabile: piattaforme in produzione, sistemi di IA (LangGraph, RAG) e 3D interattivo, dall'architettura al deploy.",
   },
   es: {
-    title: "Bruno Vieira · Ingeniero Full-Stack & IA Senior",
+    title: 'Bruno Vieira · Ingeniero Full-Stack & IA Senior',
     description:
-      "Walter Bruno Prado Vieira, Ingeniero Full-Stack & IA Senior. Transformo problemas complejos en software escalable: plataformas en producción, sistemas de IA (LangGraph, RAG) y 3D interactivo, de la arquitectura al deploy.",
+      'Walter Bruno Prado Vieira, Ingeniero Full-Stack & IA Senior. Transformo problemas complejos en software escalable: plataformas en producción, sistemas de IA (LangGraph, RAG) y 3D interactivo, de la arquitectura al deploy.',
   },
 };
 
@@ -61,9 +61,10 @@ export default function DevCV({ lang, projectsPage }: Props) {
   const canonical = `${BASE}${SLUG[lang]}`;
 
   // Keep the site-wide language (localStorage) in sync with the route locale.
+  // Deps intentionally limited to lang: re-running on globalLang identity
+  // changes would loop the sync.
   useEffect(() => {
     if (globalLang.language !== lang) globalLang.setLanguage(lang);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
   // Pin the language from the URL for every CV component (they all consume
@@ -75,11 +76,12 @@ export default function DevCV({ lang, projectsPage }: Props) {
       isLoaded: true,
       setLanguage: (l: string) => {
         globalLang.setLanguage(l);
-        const base = window.location.pathname.startsWith("/dev") ? "/dev" : "";
-        window.location.assign(base + SLUG[(l as CVLang) ?? "en"] || "/");
+        const base = window.location.pathname.startsWith('/dev') ? '/dev' : '';
+        window.location.assign(base + SLUG[(l as CVLang) ?? 'en'] || '/');
       },
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Deps intentionally limited to lang: the provider value must stay stable
+    // across globalLang identity changes.
     [lang],
   );
 
@@ -98,7 +100,7 @@ export default function DevCV({ lang, projectsPage }: Props) {
           {/* SSR-inline background: kills the WB purple flash (global.css paints
               html #350545 + a body gradient and can land AFTER this style in
               the cascade, hence the !important). */}
-          <style dangerouslySetInnerHTML={{ __html: "html,body{background:#0e0e11!important}" }} />
+          <style dangerouslySetInnerHTML={{ __html: 'html,body{background:#0e0e11!important}' }} />
           <link rel="icon" type="image/svg+xml" href="/favicon-dev.svg" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-dev-32.png" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-dev.png" />
@@ -137,16 +139,16 @@ export default function DevCV({ lang, projectsPage }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => ({
-  paths: ["/dev", "/dev/pt", "/dev/it", "/dev/es"],
+  paths: ['/dev', '/dev/pt', '/dev/it', '/dev/es'],
   fallback: false,
 });
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = (params?.lang as string[] | undefined)?.[0];
-  const lang: CVLang = slug ? SLUG_TO_LANG[slug] : "en";
+  const lang: CVLang = slug ? SLUG_TO_LANG[slug] : 'en';
   const messages =
-    lang === "en"
+    lang === 'en'
       ? (en as MessageFormat)
-      : ((await import(`@/locales/${LOCALE_FILE[lang as Exclude<CVLang, "en">]}.json`)).default as MessageFormat);
+      : ((await import(`@/locales/${LOCALE_FILE[lang as Exclude<CVLang, 'en'>]}.json`)).default as MessageFormat);
   return { props: { lang, projectsPage: messages.projectsPage as ProjectsPageContent } };
 };

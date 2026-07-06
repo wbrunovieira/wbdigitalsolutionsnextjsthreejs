@@ -1,10 +1,8 @@
-import React from "react";
-import { FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import React from 'react';
+import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 const CTAInvitationTranslated: React.FC = () => {
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   return (

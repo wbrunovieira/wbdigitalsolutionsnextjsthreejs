@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import dynamic from "next/dynamic";
-import { FaExclamationTriangle, FaCheckCircle } from "react-icons/fa";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import dynamic from 'next/dynamic';
+import { FaExclamationTriangle, FaCheckCircle } from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,20 +16,19 @@ const Comparison: React.FC = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   useGSAP(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
 
     gsap.from(titleRef.current, {
       opacity: 0,
       y: -50,
       duration: 1,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: titleRef.current,
-        start: "top 80%",
+        start: 'top 80%',
       },
     });
 
@@ -39,10 +37,10 @@ const Comparison: React.FC = () => {
       y: 30,
       duration: 1,
       delay: 0.3,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: subtitleRef.current,
-        start: "top 80%",
+        start: 'top 80%',
       },
     });
 
@@ -54,13 +52,13 @@ const Comparison: React.FC = () => {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power3.out",
+          ease: 'power3.out',
           stagger: 0.3,
           scrollTrigger: {
             trigger: contentRef.current,
-            start: "top 80%",
+            start: 'top 80%',
           },
-        }
+        },
       );
     }
   }, []);

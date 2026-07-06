@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useRef, Suspense, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import CanvasErrorBoundary from './CanvasErrorBoundary';
 import { RectAreaLight, Color, Vector3, InstancedMesh, DodecahedronGeometry, Object3D, MeshPhysicalMaterial, InstancedBufferAttribute, Group, Mesh, MeshStandardMaterial, PointLight } from 'three';
-import { useAnimations, useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
+import { useGLTF, useTexture, Html, useProgress } from '@react-three/drei';
 import { animate } from 'framer-motion';
 import Loader from './Loader';
 import MouseMoveTutorial from './MouseMoveTutorial';
@@ -16,7 +16,7 @@ const INTENSITY_SCALE = 3000;
 const MIN_INTENSITY_CLOSE = 1000;
 
 const CustomLoader: React.FC = () => {
-    const { active, progress, errors, item, loaded, total } = useProgress();
+    const { progress, errors } = useProgress();
     const [showFallback, setShowFallback] = useState(false);
 
     useEffect(() => {
@@ -44,18 +44,14 @@ const CustomLoader: React.FC = () => {
 
 const AnimatedBackgroundWebsiteComponent: React.FC = () => {
     const lightRef = useRef<RectAreaLight>(null);
-    const [assetsLoaded, setAssetsLoaded] = useState(false);
 
     useEffect(() => {
         // Force preload assets
         Promise.all([
-            useGLTF.preload("/models/macbook-pro.glb"),
-            useTexture.preload("/models/screen.png")
-        ]).then(() => {
-            setAssetsLoaded(true);
-        }).catch((error) => {
-            console.error("Error preloading assets:", error);
-            setAssetsLoaded(true); // Continue anyway
+            useGLTF.preload('/models/macbook-pro.glb'),
+            useTexture.preload('/models/screen.png'),
+        ]).catch((error) => {
+            console.error('Error preloading assets:', error);
         });
     }, []);
 
@@ -130,7 +126,7 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
                 position = new Vector3(
                     Math.cos(theta) * sp * rad * 34,
                     Math.sin(theta) * sp * rad * 22,
-                    Math.cos(phi) * rad * 12
+                    Math.cos(phi) * rad * 12,
                 );
 
                 isOverlapping = positions.some(existingPos => position.distanceTo(existingPos.position) < minDistance);
@@ -161,8 +157,8 @@ const AnimatedInstancedMesh: React.FC<AnimatedInstancedMeshProps> = ({ lightRef 
             }
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [lightRef]);
 
     useEffect(() => {
@@ -239,13 +235,13 @@ const FloatingModel: React.FC = () => {
     const modelRef = useRef<Group>(null);
     
     // Hooks must be called unconditionally
-    const { scene } = useGLTF("/models/macbook-pro.glb");
-    const screenTexture = useTexture("/models/screen.png");
+    const { scene } = useGLTF('/models/macbook-pro.glb');
+    const screenTexture = useTexture('/models/screen.png');
     screenTexture.flipY = false;
 
     scene.traverse((node) => {
         if (node instanceof Mesh) {
-            if (node.name === "Screen") {
+            if (node.name === 'Screen') {
                 node.material = new MeshStandardMaterial({
                     map: screenTexture,
                     metalness: 0.2,
@@ -262,7 +258,7 @@ const FloatingModel: React.FC = () => {
     });
 
     useEffect(() => {
-        const frameNode = scene.children.find(node => node.name === "Frame");
+        const frameNode = scene.children.find(node => node.name === 'Frame');
         if (frameNode) {
             frameNode.rotation.x = Math.PI / 2;
             animate(frameNode.rotation.x, 0, {
@@ -294,7 +290,7 @@ const FloatingModel: React.FC = () => {
 };
 
 // Preload assets
-useGLTF.preload("/models/macbook-pro.glb");
-useTexture.preload("/models/screen.png");
+useGLTF.preload('/models/macbook-pro.glb');
+useTexture.preload('/models/screen.png');
 
 export default AnimatedBackgroundWebsiteComponent;

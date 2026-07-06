@@ -3,43 +3,47 @@ import { useRouter } from 'next/router';
 
 const GA_TRACKING_ID = 'G-PZ3WX1KF35';
 
+// Minimal typing for the GA4 `gtag` command shape this hook sends. The
+// function itself is injected globally by the analytics setup in _document.
+type GtagFn = (
+  command: 'event',
+  eventName: string,
+  params: Record<string, unknown>,
+) => void;
+
+const getGtag = (): GtagFn | undefined => {
+  if (typeof window === 'undefined') return undefined;
+  return (window as Window & { gtag?: GtagFn }).gtag;
+};
+
 export const usePageTracking = () => {
   const router = useRouter();
 
   useEffect(() => {
     // Track current page on mount
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      const currentPath = router.asPath;
-      
-      console.log('[usePageTracking] Tracking page:', {
-        path: currentPath,
-        pathname: router.pathname,
-        query: router.query,
-        title: document.title
-      });
+    const gtag = getGtag();
+    if (!gtag) return;
 
-      // Send page view event
-      (window as any).gtag('event', 'page_view', {
-        page_path: currentPath,
-        page_title: document.title,
-        page_location: window.location.href,
-        send_to: GA_TRACKING_ID
-      });
-    }
+    // Send page view event
+    gtag('event', 'page_view', {
+      page_path: router.asPath,
+      page_title: document.title,
+      page_location: window.location.href,
+      send_to: GA_TRACKING_ID,
+    });
   }, [router.asPath, router.pathname]);
 };
 
 // Helper function to track custom events
 export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    console.log('[GA Event]', { action, category, label, value });
-    
-    (window as any).gtag('event', action, {
-      event_category: category,
-      event_label: label,
-      value: value,
-    });
-  }
+  const gtag = getGtag();
+  if (!gtag) return;
+
+  gtag('event', action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
 };
 
 // Track form submissions

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useRef, useEffect, useState } from "react";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { PerspectiveCamera, Html } from "@react-three/drei";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import React, { useRef, useEffect, useState } from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { PerspectiveCamera, Html } from '@react-three/drei';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 const PathNavigator: React.FC = () => {
@@ -33,13 +33,13 @@ const PathNavigator: React.FC = () => {
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <div className="relative min-h-[400vh] w-full">
-            s<div className={`w-full h-screen ${isFixed ? "fixed" : "relative"} top-0 left-0 pointer-events-none`}>
+            s<div className={`w-full h-screen ${isFixed ? 'fixed' : 'relative'} top-0 left-0 pointer-events-none`}>
                 <Canvas shadows>
                     <ScrollCamera pathPoints={pathPoints} scrollProgress={scrollProgress} />
                     <ambientLight intensity={0.5} />
@@ -99,7 +99,7 @@ const FloatingParticles: React.FC<{ count?: number }> = ({ count = 100 }) => {
                     i,
                     baseX + Math.sin(elapsedTime + i) * 0.5,
                     baseY + Math.sin(elapsedTime * 0.8 + i) * 0.5,
-                    baseZ + Math.sin(elapsedTime * 0.6 + i) * 0.5
+                    baseZ + Math.sin(elapsedTime * 0.6 + i) * 0.5,
                 );
             }
             mesh.current.geometry.attributes.position.needsUpdate = true;
@@ -146,7 +146,7 @@ const ScrollCamera: React.FC<ScrollCameraProps> = ({ pathPoints, scrollProgress 
 };
 
 const Road: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
-    const texture = useLoader(THREE.TextureLoader, "/textures/road.png");
+    const texture = useLoader(THREE.TextureLoader, '/textures/road.png');
 
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(3, 7);
@@ -169,7 +169,7 @@ const Road: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
 
 
 const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
-    const { scene } = useLoader(GLTFLoader, "/models/BillBoard.glb");
+    const { scene } = useLoader(GLTFLoader, '/models/BillBoard.glb');
 
 
     const billboardRotationY = THREE.MathUtils.lerp(Math.PI * 2, 0, scrollProgress * 0.5);
@@ -189,7 +189,7 @@ const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => 
                 scale={scale}
                 zIndexRange={[0, 1]}
                 style={{
-                    backfaceVisibility: "hidden",
+                    backfaceVisibility: 'hidden',
                 }}
             >
                 <iframe
@@ -201,9 +201,9 @@ const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => 
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                     style={{
-                        border: "none",
-                        objectFit: "cover",
-                        backfaceVisibility: "hidden",
+                        border: 'none',
+                        objectFit: 'cover',
+                        backfaceVisibility: 'hidden',
                     }}
                 ></iframe>
             </Html>
@@ -215,8 +215,8 @@ const Billboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => 
 
 const DigitalBillboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const messages = [
-        "Welcome to Our Virtual Tour!",
-        "Enjoy 50% Off on All Items!",
+        'Welcome to Our Virtual Tour!',
+        'Enjoy 50% Off on All Items!',
 
     ];
 
@@ -261,8 +261,8 @@ const DigitalBillboard: React.FC<{ scrollProgress: number }> = ({ scrollProgress
 
 const DigitalBillboard2: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const messages = [
-        "Welcome to Our Virtual Tour!",
-        "Enjoy 50% Off on All Items!",
+        'Welcome to Our Virtual Tour!',
+        'Enjoy 50% Off on All Items!',
     ];
 
     const messageIndex = Math.floor(scrollProgress * messages.length) % messages.length;
@@ -309,8 +309,8 @@ const DigitalBillboard2: React.FC<{ scrollProgress: number }> = ({ scrollProgres
 
 const DigitalBillboard3: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const messages = [
-        "Welcome to Our Virtual Tour!",
-        "Enjoy 50% Off on All Items!",
+        'Welcome to Our Virtual Tour!',
+        'Enjoy 50% Off on All Items!',
     ];
 
     const messageIndex = Math.floor(scrollProgress * messages.length) % messages.length;
@@ -353,8 +353,8 @@ const DigitalBillboard3: React.FC<{ scrollProgress: number }> = ({ scrollProgres
 
 const DigitalBillboard4: React.FC<{ scrollProgress: number }> = ({ scrollProgress }) => {
     const messages = [
-        "Welcome to Our Virtual Tour!",
-        "Enjoy 50% Off on All Items!",
+        'Welcome to Our Virtual Tour!',
+        'Enjoy 50% Off on All Items!',
     ];
 
     const messageIndex = Math.floor(scrollProgress * messages.length * 1.5) % messages.length;

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React, {
   useEffect,
   useRef,
@@ -6,19 +6,16 @@ import React, {
   createContext,
   useContext,
   useCallback,
-} from "react";
+} from 'react';
 import {
   IconArrowNarrowLeft,
   IconArrowNarrowRight,
   IconX,
-} from "@tabler/icons-react";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
-import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/hooks/use-outside-click";
-
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+} from '@tabler/icons-react';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image, { ImageProps } from 'next/image';
+import { useOutsideClick } from '@/hooks/use-outside-click';
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -66,13 +63,13 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
 
@@ -107,15 +104,13 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       const scrollPosition = (cardWidth + gap) * (index + 1);
       carouselRef.current.scrollTo({
         left: scrollPosition,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
       setCurrentIndex(index);
     }
   };
 
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
-  };
+  const isMobile = () => window && window.innerWidth < 768;
 
   return (
     <CarouselContext.Provider
@@ -131,21 +126,21 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
           style={{ 
-            cursor: isDragging ? "grabbing" : "grab",
-            userSelect: "none",
-            WebkitUserSelect: "none"
+            cursor: isDragging ? 'grabbing' : 'grab',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
           }}
         >
           <div
             className={cn(
-              "absolute right-0  z-[1000] h-auto  w-[5%] overflow-hidden bg-gradient-to-l"
+              'absolute right-0  z-[1000] h-auto  w-[5%] overflow-hidden bg-gradient-to-l',
             )}
           ></div>
 
           <div
             className={cn(
-              "flex flex-row justify-start gap-4 pl-4",
-              "max-w-7xl mx-auto"
+              'flex flex-row justify-start gap-4 pl-4',
+              'max-w-7xl mx-auto',
             )}
           >
             {items.map((item, index) => (
@@ -160,11 +155,11 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   transition: {
                     duration: 0.5,
                     delay: 0.2 * index,
-                    ease: "easeOut",
+                    ease: 'easeOut',
                     once: true,
                   },
                 }}
-                key={"card" + index}
+                key={'card' + index}
                 className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl"
               >
                 {item}
@@ -206,11 +201,9 @@ export const Card = ({
   index: number;
   layout?: boolean;
 }) => {
-  const { language } = useLanguage();
-  const currentMessages = useTranslations();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -219,21 +212,21 @@ export const Card = ({
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
       
       function onKeyDown(event: KeyboardEvent) {
-        if (event.key === "Escape") {
+        if (event.key === 'Escape') {
           handleClose();
         }
       }
       
-      window.addEventListener("keydown", onKeyDown);
+      window.addEventListener('keydown', onKeyDown);
       return () => {
-        window.removeEventListener("keydown", onKeyDown);
-        document.body.style.overflow = "auto";
+        window.removeEventListener('keydown', onKeyDown);
+        document.body.style.overflow = 'auto';
       };
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
   }, [open, handleClose]);
 
@@ -328,9 +321,9 @@ export const BlurImage = ({
   return (
     <Image
       className={cn(
-        "transition duration-300",
-        isLoading ? "blur-sm" : "blur-0",
-        className
+        'transition duration-300',
+        isLoading ? 'blur-sm' : 'blur-0',
+        className,
       )}
       onLoad={() => setLoading(false)}
       src={src}
@@ -338,8 +331,8 @@ export const BlurImage = ({
       height={height}
       loading="lazy"
       decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
+      blurDataURL={typeof src === 'string' ? src : undefined}
+      alt={alt ? alt : 'Background of a beautiful view'}
       {...rest}
     />
   );

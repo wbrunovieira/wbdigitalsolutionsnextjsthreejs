@@ -45,7 +45,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       {
         rootMargin: '50px', // Start loading 50px before entering viewport
         threshold: 0.01,
-      }
+      },
     );
 
     if (imgRef.current) {
@@ -134,7 +134,7 @@ export const OptimizedVideo: React.FC<{
       {
         rootMargin: '100px',
         threshold: 0.01,
-      }
+      },
     );
 
     if (videoRef.current) {
@@ -168,7 +168,8 @@ export const OptimizedVideo: React.FC<{
     } else {
       // Auto: check connection speed (if available)
       if (typeof navigator !== 'undefined' && 'connection' in navigator) {
-        const connection = (navigator as any).connection;
+        // Network Information API is not in the standard TS DOM lib yet.
+        const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection;
         if (connection && connection.effectiveType) {
           // Use low quality for slow connections
           if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {

@@ -31,7 +31,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onS
       // animating it was leaving the button stuck at opacity 0.
       if (contentRef.current) {
         const revealItems = Array.from(contentRef.current.children).filter(
-          (el) => !el.classList.contains('js-cta')
+          (el) => !el.classList.contains('js-cta'),
         );
         gsap.from(revealItems, {
           opacity: 0,
@@ -57,11 +57,11 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project, content, onS
               end: 'bottom top',
               scrub: true,
             },
-          }
+          },
         );
       }
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   const shortDescription = project.slides?.[0]?.description?.split('\n\n')[0] ?? project.description;

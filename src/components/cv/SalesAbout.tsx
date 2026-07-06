@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
 /**
  * "About me" section for the sales CV page: the human, rapport-building
  * counterpoint. Copy comes localized from salesAbout.ts.
  */
 
-import React from "react";
-import { motion } from "framer-motion";
-import { BookOpen, Clapperboard, Mountain, type LucideIcon } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import { salesAbout, type AboutInterest } from "@/content/salesAbout";
-import { AMBER, BG_B, INK, ink, toCVLang } from "./salesTheme";
-import { useReveal } from "./useReveal";
-import { SalesSection, SectionHeader } from "./SalesSection";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { BookOpen, Clapperboard, Mountain, type LucideIcon } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { cvContent, type CVLang } from '@/content/cv';
+import { salesAbout, type AboutInterest } from '@/content/salesAbout';
+import { AMBER, BG_B, INK, ink, toCVLang } from './salesTheme';
+import { useReveal } from './useReveal';
+import { SalesSection, SectionHeader } from './SalesSection';
 
 const TITLE: Record<CVLang, string> = {
-  "pt-BR": "Um pouco além do trabalho.",
-  en: "A little beyond work.",
+  'pt-BR': 'Um pouco além do trabalho.',
+  en: 'A little beyond work.',
   it: "Un po' oltre il lavoro.",
-  es: "Un poco más allá del trabajo.",
+  es: 'Un poco más allá del trabajo.',
 };
 
-const ICONS: Record<AboutInterest["icon"], LucideIcon> = {
+const ICONS: Record<AboutInterest['icon'], LucideIcon> = {
   book: BookOpen,
   film: Clapperboard,
   mountain: Mountain,
@@ -57,11 +57,11 @@ const SalesAbout: React.FC = () => {
               key={it.title}
               {...reveal(0.1 + i * 0.06)}
               className="flex flex-col rounded-2xl border border-[rgba(28,28,30,0.1)] p-6 transition-all duration-300 hover:border-[rgba(224,145,47,0.35)] motion-safe:hover:-translate-y-0.5"
-              style={{ background: "rgba(255,255,255,0.6)" }}
+              style={{ background: 'rgba(255,255,255,0.6)' }}
             >
               <span
                 className="mb-4 grid h-10 w-10 place-items-center rounded-xl"
-                style={{ background: "rgba(224,145,47,0.12)", color: AMBER }}
+                style={{ background: 'rgba(224,145,47,0.12)', color: AMBER }}
               >
                 <Icon aria-hidden="true" className="h-5 w-5" />
               </span>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useRef, useState, useEffect, Suspense } from 'react';
+import React, { useMemo, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import CanvasErrorBoundary from '@/components/CanvasErrorBoundary';
 import {
@@ -278,7 +278,7 @@ const Stage: React.FC<StageProps> = ({ projects, ctaLabel, onSelect, targetRotat
       ringRef.current.rotation.y = THREE.MathUtils.lerp(
         ringRef.current.rotation.y,
         targetRotation.current,
-        0.08
+        0.08,
       );
     }
   });
@@ -399,7 +399,7 @@ const ProjectsHero3D: React.FC<ProjectsHero3DProps> = ({ onCategorySelect }) => 
       { id: '5', category: 'sistemas', icon: '🖥️', title: lang === 'pt-BR' ? 'Sistemas' : lang === 'es' ? 'Sistemas' : lang === 'it' ? 'Sistemi' : 'Systems' },
       { id: '6', category: 'ecommerce', icon: '🛒', title: 'E-commerce' },
     ],
-    [lang]
+    [lang],
   );
 
   // Carousel rotation shared between DOM drag handlers and the R3F ring.

@@ -5,13 +5,12 @@ import dynamic from 'next/dynamic';
 
 // Import enhanced tunnel with no SSR to avoid hydration issues
 const TunnelSceneEnhanced = dynamic(() => import('@/components/3d-tunnel/TunnelSceneEnhanced'), {
-  ssr: false
+  ssr: false,
 });
 
 const ThreeDTunnel: React.FC = () => {
   // Use local state for language since this page might not have LanguageContext
   const [language, setLanguage] = useState('en');
-  const [useEnhanced, setUseEnhanced] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {

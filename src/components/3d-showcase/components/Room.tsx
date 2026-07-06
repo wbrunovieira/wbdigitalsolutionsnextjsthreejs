@@ -28,7 +28,7 @@ const Room: React.FC<RoomProps> = ({ language = 'en', displayedCode = '', active
     position: 0, 
     opacity: 1, 
     scale: 1,
-    rotation: 0 
+    rotation: 0, 
   });
   
   // Rotate between sections every 5 seconds
@@ -120,7 +120,7 @@ const getPhilosophyText = () => {
         value1: '• Inovar sempre com propósito',
         value2: '• Qualidade em cada detalhe',
         value3: '• Parceria de confiança',
-        value4: '• Impacto que pode ser medido'
+        value4: '• Impacto que pode ser medido',
       };
     case 'es':
       return {
@@ -132,7 +132,7 @@ const getPhilosophyText = () => {
         value1: '• Innovar siempre con propósito',
         value2: '• Calidad en cada detalle',
         value3: '• Alianza de confianza',
-        value4: '• Impacto que se puede medir'
+        value4: '• Impacto que se puede medir',
       };
     case 'it':
       return {
@@ -144,7 +144,7 @@ const getPhilosophyText = () => {
         value1: '• Innovare sempre con uno scopo',
         value2: '• Qualità in ogni dettaglio',
         value3: '• Partnership di fiducia',
-        value4: '• Impatto che può essere misurato'
+        value4: '• Impatto che può essere misurato',
       };
     default:
       return {
@@ -156,7 +156,7 @@ const getPhilosophyText = () => {
         value1: '• Innovate always with purpose',
         value2: '• Quality in every detail',
         value3: '• Trusted partnership',
-        value4: '• Impact that can be measured'
+        value4: '• Impact that can be measured',
       };
   }
 };

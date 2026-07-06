@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * PROTOTYPE v2 — scroll-driven 3D computer journey (desktop only).
@@ -16,12 +16,12 @@
  * KEYFRAMES are placeholders to iterate on (the "choreography").
  */
 
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
-import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Preload, useGLTF } from "@react-three/drei";
-import CanvasLoader from "../Loader";
-import CanvasErrorBoundary from "../CanvasErrorBoundary";
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Preload, useGLTF } from '@react-three/drei';
+import CanvasLoader from '../Loader';
+import CanvasErrorBoundary from '../CanvasErrorBoundary';
 
 type Keyframe = {
   pos: [number, number, number];
@@ -68,7 +68,7 @@ interface ComputerProps {
 }
 
 const Computer: React.FC<ComputerProps> = ({ target, dragRot, dragging, inHero }) => {
-  const { scene } = useGLTF("/models/desktop/scene.gltf");
+  const { scene } = useGLTF('/models/desktop/scene.gltf');
   const group = useRef<THREE.Group>(null);
   const inner = useRef<THREE.Group>(null);
   // Current (damped) pose, eased toward `target` (computed from scroll in parent).
@@ -145,16 +145,16 @@ const ScrollComputer3D: React.FC = () => {
   // Read synchronously on first render (component is ssr:false) so the Canvas gets
   // the right camera immediately — no desktop-cam flash on phones.
   const [isDesktop, setIsDesktop] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia("(min-width: 1024px)").matches : true
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true,
   );
   const [inHero, setInHero] = useState(true);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia('(min-width: 1024px)');
     const apply = () => setIsDesktop(mq.matches);
     apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
   }, []);
 
   // Scroll → target pose. Anchored to the REAL section positions (data-cpu-stop):
@@ -168,7 +168,7 @@ const ScrollComputer3D: React.FC = () => {
 
     const readStops = () => {
       stopsRef.current = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-cpu-stop]")
+        document.querySelectorAll<HTMLElement>('[data-cpu-stop]'),
       ).sort((a, b) => Number(a.dataset.cpuStop) - Number(b.dataset.cpuStop));
     };
 
@@ -214,13 +214,13 @@ const ScrollComputer3D: React.FC = () => {
 
     readStops();
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-    window.addEventListener("load", onResize);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    window.addEventListener('load', onResize);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("load", onResize);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('load', onResize);
     };
   }, [isDesktop]);
 
@@ -235,31 +235,31 @@ const ScrollComputer3D: React.FC = () => {
 
   const onUp = useCallback(() => {
     dragging.current = false;
-    window.removeEventListener("pointermove", onMove);
-    window.removeEventListener("pointerup", onUp);
+    window.removeEventListener('pointermove', onMove);
+    window.removeEventListener('pointerup', onUp);
   }, [onMove]);
 
   const onDown = useCallback(
     (e: React.PointerEvent) => {
       dragging.current = true;
       last.current = { x: e.clientX, y: e.clientY };
-      window.addEventListener("pointermove", onMove);
-      window.addEventListener("pointerup", onUp);
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
     },
-    [onMove, onUp]
+    [onMove, onUp],
   );
 
   return (
     <>
       {/* Canvas layer — behind the page content, never blocks (pointer-events none). */}
-      <div className="fixed inset-0 z-[5]" style={{ pointerEvents: "none" }} aria-hidden="true">
+      <div className="fixed inset-0 z-[5]" style={{ pointerEvents: 'none' }} aria-hidden="true">
         <CanvasErrorBoundary>
           <Canvas
             shadows={isDesktop}
             dpr={isDesktop ? [1, 2] : 1}
             camera={isDesktop ? CAMERA_DESKTOP : CAMERA_MOBILE}
-            gl={{ alpha: true, antialias: isDesktop, powerPreference: "high-performance" }}
-            style={{ background: "transparent", pointerEvents: "none" }}
+            gl={{ alpha: true, antialias: isDesktop, powerPreference: 'high-performance' }}
+            style={{ background: 'transparent', pointerEvents: 'none' }}
           >
             <Suspense fallback={<CanvasLoader />}>
               {/* Lower ambient on desktop so the cast shadow has contrast (high fill washes shadows out). */}
@@ -299,10 +299,10 @@ const ScrollComputer3D: React.FC = () => {
           style={{
             top: 150,
             right: 72,
-            width: "46%",
+            width: '46%',
             height: 540,
-            cursor: dragging.current ? "grabbing" : "grab",
-            touchAction: "none",
+            cursor: dragging.current ? 'grabbing' : 'grab',
+            touchAction: 'none',
           }}
           aria-hidden="true"
         />
@@ -313,4 +313,4 @@ const ScrollComputer3D: React.FC = () => {
 
 export default ScrollComputer3D;
 
-useGLTF.preload("/models/desktop/scene.gltf");
+useGLTF.preload('/models/desktop/scene.gltf');

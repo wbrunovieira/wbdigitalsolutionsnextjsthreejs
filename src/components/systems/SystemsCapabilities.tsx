@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { useTranslations } from "@/contexts/TranslationContext";
+import { useTranslations } from '@/contexts/TranslationContext';
 
 type Capability = { icon: string; title: string; desc: string };
 
 const FALLBACK: Capability[] = [
-  { icon: "🎓", title: "Plataformas de Ensino (EAD)", desc: "Cursos, vídeo-aulas, simulados, comunidade, sessões ao vivo e certificados." },
-  { icon: "🗂️", title: "Sistemas de Gestão (ERP/CRM)", desc: "Processos internos, automações, relatórios e controle sob medida." },
-  { icon: "☁️", title: "Plataformas SaaS multiusuário", desc: "Assinaturas, multi-tenant, billing e painéis administrativos." },
-  { icon: "🛒", title: "Marketplaces & E-commerce", desc: "Catálogos, pagamentos, logística e integrações de venda." },
-  { icon: "📊", title: "Dashboards & BI", desc: "Dados em tempo real, métricas e visualizações que orientam decisões." },
-  { icon: "🔌", title: "APIs & Integrações", desc: "Conectar sistemas, microsserviços e automação entre ferramentas." },
+  { icon: '🎓', title: 'Plataformas de Ensino (EAD)', desc: 'Cursos, vídeo-aulas, simulados, comunidade, sessões ao vivo e certificados.' },
+  { icon: '🗂️', title: 'Sistemas de Gestão (ERP/CRM)', desc: 'Processos internos, automações, relatórios e controle sob medida.' },
+  { icon: '☁️', title: 'Plataformas SaaS multiusuário', desc: 'Assinaturas, multi-tenant, billing e painéis administrativos.' },
+  { icon: '🛒', title: 'Marketplaces & E-commerce', desc: 'Catálogos, pagamentos, logística e integrações de venda.' },
+  { icon: '📊', title: 'Dashboards & BI', desc: 'Dados em tempo real, métricas e visualizações que orientam decisões.' },
+  { icon: '🔌', title: 'APIs & Integrações', desc: 'Conectar sistemas, microsserviços e automação entre ferramentas.' },
 ];
 
 const SystemsCapabilities: React.FC = () => {
-  const t = useTranslations() as any;
+  const t = useTranslations();
   const items: Capability[] = Array.isArray(t.systemsCapabilities) && t.systemsCapabilities.length
     ? t.systemsCapabilities
     : FALLBACK;
@@ -24,12 +24,12 @@ const SystemsCapabilities: React.FC = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold text-white md:text-4xl">
-            {t.systemsWhatTitle ?? "Qualquer sistema. Qualquer plataforma."}
+            {t.systemsWhatTitle ?? 'Qualquer sistema. Qualquer plataforma.'}
           </h2>
           <div className="mx-auto mt-3 h-1 w-40 bg-gradient-to-r from-yellowcustom to-transparent" />
           <p className="mx-auto mt-6 max-w-2xl text-secondary/90">
             {t.systemsWhatSubtitle ??
-              "Não trabalhamos com templates. Cada sistema é arquitetado sob medida para o seu fluxo, seus dados e o seu crescimento."}
+              'Não trabalhamos com templates. Cada sistema é arquitetado sob medida para o seu fluxo, seus dados e o seu crescimento.'}
           </p>
         </div>
 

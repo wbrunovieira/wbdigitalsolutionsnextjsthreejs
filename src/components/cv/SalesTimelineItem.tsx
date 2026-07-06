@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * One entry of the sales timeline (extracted from SalesTimeline): the node
@@ -8,22 +8,22 @@
  * useMdUp() SSR-safe media-query hook used by the parent.
  */
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { MapPin } from "lucide-react";
-import type { TimelineEntry } from "@/content/salesTimeline";
-import { AMBER, BG_B, INK, ink } from "./salesTheme";
-import { useReveal } from "./useReveal";
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { MapPin } from 'lucide-react';
+import type { TimelineEntry } from '@/content/salesTimeline';
+import { AMBER, BG_B, INK, ink } from './salesTheme';
+import { useReveal } from './useReveal';
 
 /** md+ without SSR mismatch: starts false on both sides, flips after mount. */
 export function useMdUp() {
   const [mdUp, setMdUp] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia('(min-width: 768px)');
     const update = () => setMdUp(mq.matches);
     update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
   return mdUp;
 }
@@ -38,7 +38,7 @@ const YearWatermark: React.FC<{
 }> = ({ year, container }) => {
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start end", "end start"],
+    offset: ['start end', 'end start'],
   });
   const y = useTransform(scrollYProgress, [0, 1], [28, -28]);
   return (
@@ -47,8 +47,8 @@ const YearWatermark: React.FC<{
       className="pointer-events-none absolute -right-2 top-0 select-none font-black leading-none"
       style={{
         y,
-        fontSize: "clamp(4rem, 8vw, 6.5rem)",
-        color: "transparent",
+        fontSize: 'clamp(4rem, 8vw, 6.5rem)',
+        color: 'transparent',
         WebkitTextStroke: `1px ${ink(0.07)}`,
       }}
     >
@@ -68,7 +68,7 @@ const SalesTimelineItem: React.FC<{ e: TimelineEntry; index: number; showWaterma
   // Central viewport window (~10% tall): the node "lights up" while its entry
   // crosses the reading zone. once:false on purpose, the reading cursor
   // follows the visitor up and down the page.
-  const isActive = useInView(ref, { margin: "-42% 0px -48% 0px" });
+  const isActive = useInView(ref, { margin: '-42% 0px -48% 0px' });
 
   return (
     <motion.li ref={ref} {...reveal(Math.min(index, 3) * 0.05)} className="relative mb-11 pl-8 last:mb-0">
@@ -83,7 +83,7 @@ const SalesTimelineItem: React.FC<{ e: TimelineEntry; index: number; showWaterma
           scale: reduce ? 1 : isActive ? 1.25 : 1,
           backgroundColor: isActive ? AMBER : BG_B,
         }}
-        transition={{ type: "spring", stiffness: 320, damping: 22 }}
+        transition={{ type: 'spring', stiffness: 320, damping: 22 }}
         aria-hidden="true"
       >
         <motion.span

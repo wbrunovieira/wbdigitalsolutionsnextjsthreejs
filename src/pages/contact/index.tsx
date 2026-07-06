@@ -3,14 +3,12 @@ import PageHead from '@/components/PageHead';
 import { makeI18nStaticProps } from '@/lib/i18n';
 
 
-const systems: React.FC = () => {
-  return (
+const systems: React.FC = () => (
     <>
       <PageHead pageKey="contact" />
       <Contact />
     </>
   );
-};
 
 // Per-locale static generation: prerender this page for every locale with
 // the right messages available during SSR.

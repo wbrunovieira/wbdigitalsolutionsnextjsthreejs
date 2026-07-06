@@ -1,87 +1,87 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { useLanguage } from "@/contexts/LanguageContext";
-import PageHead from "@/components/PageHead";
-import { makeI18nStaticProps } from "@/lib/i18n";
-import logo from "/public/svg/logo-white.svg";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
+import PageHead from '@/components/PageHead';
+import { makeI18nStaticProps } from '@/lib/i18n';
+import logo from '/public/svg/logo-white.svg';
 
 const content = {
-  "pt-BR": {
-    badge: "Newsletter",
-    headline: "Tecnologia e estratégia",
-    headlineSub: "a serviço do seu negócio.",
+  'pt-BR': {
+    badge: 'Newsletter',
+    headline: 'Tecnologia e estratégia',
+    headlineSub: 'a serviço do seu negócio.',
     description:
-      "Toda semana: insights sobre tecnologia, IA, automação e estratégia comercial para quem quer crescer sem complicar.",
-    namePlaceholder: "Seu nome",
-    companyPlaceholder: "Nome da empresa",
-    emailPlaceholder: "Seu melhor e-mail",
-    cta: "Quero receber",
-    loading: "Enviando...",
-    successTitle: "Obrigado! Você está dentro.",
-    successMsg: "Cadastro realizado com sucesso. Em breve você receberá nossos conteúdos na sua caixa de entrada.",
-    errorMsg: "Algo deu errado. Tente novamente.",
-    privacy: "Sem spam. Cancele quando quiser.",
-    backHome: "← Voltar para o site",
-    nameRequired: "Nome é obrigatório",
-    emailRequired: "E-mail é obrigatório",
+      'Toda semana: insights sobre tecnologia, IA, automação e estratégia comercial para quem quer crescer sem complicar.',
+    namePlaceholder: 'Seu nome',
+    companyPlaceholder: 'Nome da empresa',
+    emailPlaceholder: 'Seu melhor e-mail',
+    cta: 'Quero receber',
+    loading: 'Enviando...',
+    successTitle: 'Obrigado! Você está dentro.',
+    successMsg: 'Cadastro realizado com sucesso. Em breve você receberá nossos conteúdos na sua caixa de entrada.',
+    errorMsg: 'Algo deu errado. Tente novamente.',
+    privacy: 'Sem spam. Cancele quando quiser.',
+    backHome: '← Voltar para o site',
+    nameRequired: 'Nome é obrigatório',
+    emailRequired: 'E-mail é obrigatório',
   },
   en: {
-    badge: "Newsletter",
-    headline: "Technology and strategy",
-    headlineSub: "at the service of your business.",
+    badge: 'Newsletter',
+    headline: 'Technology and strategy',
+    headlineSub: 'at the service of your business.',
     description:
-      "Every week: insights on technology, AI, automation and commercial strategy for those who want to grow without the complexity.",
-    namePlaceholder: "Your name",
-    companyPlaceholder: "Company name",
-    emailPlaceholder: "Your best email",
-    cta: "Subscribe now",
-    loading: "Sending...",
+      'Every week: insights on technology, AI, automation and commercial strategy for those who want to grow without the complexity.',
+    namePlaceholder: 'Your name',
+    companyPlaceholder: 'Company name',
+    emailPlaceholder: 'Your best email',
+    cta: 'Subscribe now',
+    loading: 'Sending...',
     successTitle: "Thank you! You're in.",
     successMsg: "You're successfully subscribed. You'll receive our content in your inbox soon.",
-    errorMsg: "Something went wrong. Please try again.",
-    privacy: "No spam. Unsubscribe anytime.",
-    backHome: "← Back to website",
-    nameRequired: "Name is required",
-    emailRequired: "Email is required",
+    errorMsg: 'Something went wrong. Please try again.',
+    privacy: 'No spam. Unsubscribe anytime.',
+    backHome: '← Back to website',
+    nameRequired: 'Name is required',
+    emailRequired: 'Email is required',
   },
   es: {
-    badge: "Newsletter",
-    headline: "Tecnología y estrategia",
-    headlineSub: "al servicio de tu negocio.",
+    badge: 'Newsletter',
+    headline: 'Tecnología y estrategia',
+    headlineSub: 'al servicio de tu negocio.',
     description:
-      "Cada semana: insights sobre tecnología, IA, automatización y estrategia comercial para quienes quieren crecer sin complicaciones.",
-    namePlaceholder: "Tu nombre",
-    companyPlaceholder: "Nombre de la empresa",
-    emailPlaceholder: "Tu mejor correo",
-    cta: "Quiero recibirla",
-    loading: "Enviando...",
-    successTitle: "¡Gracias! Ya estás dentro.",
-    successMsg: "Registro exitoso. Pronto recibirás nuestros contenidos en tu bandeja de entrada.",
-    errorMsg: "Algo salió mal. Inténtalo de nuevo.",
-    privacy: "Sin spam. Cancela cuando quieras.",
-    backHome: "← Volver al sitio",
-    nameRequired: "El nombre es obligatorio",
-    emailRequired: "El correo es obligatorio",
+      'Cada semana: insights sobre tecnología, IA, automatización y estrategia comercial para quienes quieren crecer sin complicaciones.',
+    namePlaceholder: 'Tu nombre',
+    companyPlaceholder: 'Nombre de la empresa',
+    emailPlaceholder: 'Tu mejor correo',
+    cta: 'Quiero recibirla',
+    loading: 'Enviando...',
+    successTitle: '¡Gracias! Ya estás dentro.',
+    successMsg: 'Registro exitoso. Pronto recibirás nuestros contenidos en tu bandeja de entrada.',
+    errorMsg: 'Algo salió mal. Inténtalo de nuevo.',
+    privacy: 'Sin spam. Cancela cuando quieras.',
+    backHome: '← Volver al sitio',
+    nameRequired: 'El nombre es obligatorio',
+    emailRequired: 'El correo es obligatorio',
   },
   it: {
-    badge: "Newsletter",
-    headline: "Tecnologia e strategia",
-    headlineSub: "al servizio del tuo business.",
+    badge: 'Newsletter',
+    headline: 'Tecnologia e strategia',
+    headlineSub: 'al servizio del tuo business.',
     description:
-      "Ogni settimana: insight su tecnologia, IA, automazione e strategia commerciale per chi vuole crescere senza complicazioni.",
-    namePlaceholder: "Il tuo nome",
+      'Ogni settimana: insight su tecnologia, IA, automazione e strategia commerciale per chi vuole crescere senza complicazioni.',
+    namePlaceholder: 'Il tuo nome',
     companyPlaceholder: "Nome dell'azienda",
-    emailPlaceholder: "La tua migliore email",
-    cta: "Voglio riceverla",
-    loading: "Invio in corso...",
-    successTitle: "Grazie! Sei dentro.",
-    successMsg: "Iscrizione completata con successo. Presto riceverai i nostri contenuti nella tua casella di posta.",
-    errorMsg: "Qualcosa è andato storto. Riprova.",
-    privacy: "Niente spam. Cancellati quando vuoi.",
-    backHome: "← Torna al sito",
-    nameRequired: "Il nome è obbligatorio",
+    emailPlaceholder: 'La tua migliore email',
+    cta: 'Voglio riceverla',
+    loading: 'Invio in corso...',
+    successTitle: 'Grazie! Sei dentro.',
+    successMsg: 'Iscrizione completata con successo. Presto riceverai i nostri contenuti nella tua casella di posta.',
+    errorMsg: 'Qualcosa è andato storto. Riprova.',
+    privacy: 'Niente spam. Cancellati quando vuoi.',
+    backHome: '← Torna al sito',
+    nameRequired: 'Il nome è obbligatorio',
     emailRequired: "L'email è obbligatoria",
   },
 };
@@ -92,13 +92,13 @@ export const getStaticProps = makeI18nStaticProps();
 
 export default function NewsletterPage() {
   const { language } = useLanguage();
-  const lang = (language === "pt" ? "pt-BR" : language) as keyof typeof content;
-  const t = content[lang] || content["pt-BR"];
+  const lang = (language === 'pt' ? 'pt-BR' : language) as keyof typeof content;
+  const t = content[lang] || content['pt-BR'];
 
-  const [name, setName] = useState("");
-  const [company, setCompany] = useState("");
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
 
   const validate = () => {
@@ -113,17 +113,17 @@ export default function NewsletterPage() {
     e.preventDefault();
     if (!validate()) return;
 
-    setStatus("loading");
+    setStatus('loading');
     try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, company, email, language: lang }),
       });
       const data = await res.json();
-      setStatus(data.success ? "success" : "error");
+      setStatus(data.success ? 'success' : 'error');
     } catch {
-      setStatus("error");
+      setStatus('error');
     }
   };
 
@@ -188,7 +188,7 @@ export default function NewsletterPage() {
 
           {/* Form / Success */}
           <AnimatePresence mode="wait">
-            {status === "success" ? (
+            {status === 'success' ? (
               <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -217,7 +217,7 @@ export default function NewsletterPage() {
                     value={name}
                     onChange={(e) => { setName(e.target.value); setErrors(p => ({ ...p, name: undefined })); }}
                     placeholder={t.namePlaceholder}
-                    className={`w-full bg-white/5 border ${errors.name ? "border-red-400" : "border-white/10"} rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[#792990] transition-colors duration-200`}
+                    className={`w-full bg-white/5 border ${errors.name ? 'border-red-400' : 'border-white/10'} rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[#792990] transition-colors duration-200`}
                   />
                   {errors.name && <span className="text-red-400 text-xs pl-1">{errors.name}</span>}
                 </div>
@@ -238,7 +238,7 @@ export default function NewsletterPage() {
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); setErrors(p => ({ ...p, email: undefined })); }}
                     placeholder={t.emailPlaceholder}
-                    className={`w-full bg-white/5 border ${errors.email ? "border-red-400" : "border-white/10"} rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[#792990] transition-colors duration-200`}
+                    className={`w-full bg-white/5 border ${errors.email ? 'border-red-400' : 'border-white/10'} rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[#792990] transition-colors duration-200`}
                   />
                   {errors.email && <span className="text-red-400 text-xs pl-1">{errors.email}</span>}
                 </div>
@@ -246,15 +246,15 @@ export default function NewsletterPage() {
                 {/* Submit */}
                 <motion.button
                   type="submit"
-                  disabled={status === "loading"}
+                  disabled={status === 'loading'}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-[#ffb947] hover:bg-[#ffb947]/90 text-[#350545] font-bold py-4 rounded-xl text-base transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed mt-1"
                 >
-                  {status === "loading" ? t.loading : t.cta}
+                  {status === 'loading' ? t.loading : t.cta}
                 </motion.button>
 
-                {status === "error" && (
+                {status === 'error' && (
                   <p className="text-red-400 text-sm text-center">{t.errorMsg}</p>
                 )}
 

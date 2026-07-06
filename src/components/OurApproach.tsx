@@ -1,14 +1,13 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import dynamic from "next/dynamic";
-import { FaSearch, FaPencilRuler, FaTools, FaHandHolding } from "react-icons/fa";
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import dynamic from 'next/dynamic';
+import { FaSearch, FaPencilRuler, FaTools, FaHandHolding } from 'react-icons/fa';
 
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,11 +17,10 @@ const OurApproach: React.FC = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
 
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   useGSAP(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
 
     const stepsChildren = stepsRef.current?.children as HTMLCollection;
 
@@ -30,10 +28,10 @@ const OurApproach: React.FC = () => {
       opacity: 0,
       y: -50,
       duration: 1,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: titleRef.current,
-        start: "top 80%",
+        start: 'top 80%',
       },
     });
 
@@ -42,16 +40,16 @@ const OurApproach: React.FC = () => {
       y: 30,
       duration: 1,
       delay: 0.3,
-      ease: "power3.out",
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: subtitleRef.current,
-        start: "top 80%",
+        start: 'top 80%',
       },
     });
 
     if (stepsChildren) {
       Array.from(stepsChildren).forEach((child, index) => {
-        const nextLine = child.querySelector(".timeline-line") as HTMLDivElement;
+        const nextLine = child.querySelector('.timeline-line') as HTMLDivElement;
         const delay = index * 2;
 
         gsap.fromTo(
@@ -61,29 +59,29 @@ const OurApproach: React.FC = () => {
             opacity: 1,
             x: 0,
             duration: 1,
-            ease: "power3.out",
+            ease: 'power3.out',
             scrollTrigger: {
               trigger: stepsRef.current,
-              start: "top 80%",
+              start: 'top 80%',
             },
             delay: delay,
-          }
+          },
         );
 
         if (nextLine) {
           gsap.fromTo(
             nextLine,
-            { scaleX: 0, transformOrigin: "left center" },
+            { scaleX: 0, transformOrigin: 'left center' },
             {
               scaleX: 1,
               duration: 0.5,
-              ease: "power3.out",
+              ease: 'power3.out',
               scrollTrigger: {
                 trigger: stepsRef.current,
-                start: "top 80%",
+                start: 'top 80%',
               },
               delay: delay + 1,
-            }
+            },
           );
         }
       });
@@ -93,10 +91,10 @@ const OurApproach: React.FC = () => {
   const steps = currentMessages.steps || [];
 
   const icons = [
-    <FaSearch className="text-primary text-3xl mb-4" />,
-    <FaPencilRuler className="text-yellowcustom text-3xl mb-4" />,
-    <FaTools className="text-primary text-3xl mb-4" />,
-    <FaHandHolding className="text-yellowcustom text-3xl mb-4" />,
+    <FaSearch key="discover" className="text-primary text-3xl mb-4" />,
+    <FaPencilRuler key="design" className="text-yellowcustom text-3xl mb-4" />,
+    <FaTools key="build" className="text-primary text-3xl mb-4" />,
+    <FaHandHolding key="deliver" className="text-yellowcustom text-3xl mb-4" />,
   ];
 
   return (

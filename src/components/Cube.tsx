@@ -1,7 +1,7 @@
-import React from "react";
-import { Vector3 } from "three";
-import Lighting from "./Lighting";
-import CubeLabel from "./CubeLabel";
+import React from 'react';
+import { Vector3 } from 'three';
+import Lighting from './Lighting';
+import CubeLabel from './CubeLabel';
 
 interface CubeProps {
     position: Vector3 | [number, number, number];

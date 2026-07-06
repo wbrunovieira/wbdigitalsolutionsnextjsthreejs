@@ -1,15 +1,13 @@
-"use client";
-import Image from "next/image";
-import React from "react";
-import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+'use client';
+import Image from 'next/image';
+import React from 'react';
+import { Carousel, Card } from '@/components/ui/apple-cards-carousel';
 
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
-import CardClickTutorial from "./CardClickTutorial";
-import { getOptimizedImagePath } from "@/utils/imageOptimizer";
+import { useTranslations } from '@/contexts/TranslationContext';
+import CardClickTutorial from './CardClickTutorial';
+import { getOptimizedImagePath } from '@/utils/imageOptimizer';
 
 export function AppleCardsCarouselDemo() {
-    const { language } = useLanguage();
     const currentMessages = useTranslations();
 
 
@@ -19,8 +17,8 @@ export function AppleCardsCarouselDemo() {
             key={card.src}
             card={{
                 ...card,
-                category: currentMessages[card.category],
-                title: currentMessages[card.title],
+                category: currentMessages[card.category as keyof typeof currentMessages] as string,
+                title: currentMessages[card.title as keyof typeof currentMessages] as string,
             }}
             index={index}
         />
@@ -58,7 +56,7 @@ const WebContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/tech3d2.png")}
+                    src={getOptimizedImagePath('/img/tech3d2.png')}
                     alt="logo"
                     width={400}
                     height={400}
@@ -69,7 +67,7 @@ const WebContent = () => {
             {/* 🟢 Seção 2 */}
             <div className="flex flex-col md:flex-row bg-[#F5F5F7] dark:bg-neutral-800 p-6 md:p-12 rounded-3xl gap-6 items-center">
                 <Image
-                    src={getOptimizedImagePath("/img/7Site2.png")}
+                    src={getOptimizedImagePath('/img/7Site2.png')}
                     alt="logo"
                     width={800}
                     height={800}
@@ -117,7 +115,7 @@ const WebContent = () => {
                     <p className="mt-4 text-xl">{currentMessages.cardAppleContentWeb8}</p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/website-hands.png")}
+                    src={getOptimizedImagePath('/img/website-hands.png')}
                     alt="logo"
                     width={500}
                     height={500}
@@ -164,7 +162,7 @@ const MachineContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/machinelearning.jpeg")}
+                    src={getOptimizedImagePath('/img/machinelearning.jpeg')}
                     alt="Machine Learning"
                     width={500}
                     height={500}
@@ -175,7 +173,7 @@ const MachineContent = () => {
             {/* 🟢 Seção 2 */}
             <div className="flex flex-col md:flex-row bg-[#F5F5F7] dark:bg-neutral-800 p-6 md:p-12 rounded-3xl gap-6 items-center">
                 <Image
-                    src={getOptimizedImagePath("/img/machinelearning2.jpg")}
+                    src={getOptimizedImagePath('/img/machinelearning2.jpg')}
                     alt="Machine Learning 2"
                     width={500}
                     height={500}
@@ -249,7 +247,7 @@ const MachineContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/machine.png")}
+                    src={getOptimizedImagePath('/img/machine.png')}
                     alt="Machine"
                     width={500}
                     height={500}
@@ -268,7 +266,7 @@ const MachineContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/data.jpg")}
+                    src={getOptimizedImagePath('/img/data.jpg')}
                     alt="Data"
                     width={500}
                     height={500}
@@ -299,7 +297,7 @@ const AutomationContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/engrenagem.png")}
+                    src={getOptimizedImagePath('/img/engrenagem.png')}
                     alt="Engrenagem"
                     width={500}
                     height={500}
@@ -318,7 +316,7 @@ const AutomationContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/automation2.png")}
+                    src={getOptimizedImagePath('/img/automation2.png')}
                     alt="Automação 2"
                     width={500}
                     height={500}
@@ -337,7 +335,7 @@ const AutomationContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/automation3.png")}
+                    src={getOptimizedImagePath('/img/automation3.png')}
                     alt="Automação 3"
                     width={500}
                     height={500}
@@ -356,7 +354,7 @@ const AutomationContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/automation5.png")}
+                    src={getOptimizedImagePath('/img/automation5.png')}
                     alt="Automação 5"
                     width={500}
                     height={500}
@@ -369,11 +367,11 @@ const AutomationContent = () => {
                 <p className="text-neutral-600 dark:text-neutral-400 text-lg md:text-2xl font-sans">
                     <span className="font-bold text-neutral-700 dark:text-neutral-200">
                         {currentMessages.cardAppleContentMachine7}
-                    </span>{" "}
+                    </span>{' '}
                     {currentMessages.cardAppleContentMachine8}
                 </p>
                 <Image
-                    src={getOptimizedImagePath("/img/automation5.png")}
+                    src={getOptimizedImagePath('/img/automation5.png')}
                     alt="Automação 5"
                     width={500}
                     height={500}
@@ -428,7 +426,7 @@ const BotsContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/bot1.png")}
+                    src={getOptimizedImagePath('/img/bot1.png')}
                     alt="Bot"
                     width={500}
                     height={500}
@@ -439,7 +437,7 @@ const BotsContent = () => {
             {/* 🟢 Seção 2 */}
             <div className="flex flex-col md:flex-row bg-[#F5F5F7] dark:bg-neutral-800 p-6 md:p-12 rounded-3xl gap-6 items-center">
                 <Image
-                    src={getOptimizedImagePath("/img/bot3_converted.png")}
+                    src={getOptimizedImagePath('/img/bot3_converted.png')}
                     alt="Bot"
                     width={500}
                     height={500}
@@ -466,7 +464,7 @@ const BotsContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/bot2_converted.png")}
+                    src={getOptimizedImagePath('/img/bot2_converted.png')}
                     alt="Bot"
                     width={500}
                     height={500}
@@ -485,7 +483,7 @@ const BotsContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/bot4_nobackground.png")}
+                    src={getOptimizedImagePath('/img/bot4_nobackground.png')}
                     alt="Bot"
                     width={500}
                     height={500}
@@ -541,7 +539,7 @@ const AIContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/ai1_converted.png")}
+                    src={getOptimizedImagePath('/img/ai1_converted.png')}
                     alt="AI"
                     width={500}
                     height={500}
@@ -562,7 +560,7 @@ const AIContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/ai2_converted.png")}
+                    src={getOptimizedImagePath('/img/ai2_converted.png')}
                     alt="AI"
                     width={500}
                     height={500}
@@ -583,7 +581,7 @@ const AIContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/ai3_converted.png")}
+                    src={getOptimizedImagePath('/img/ai3_converted.png')}
                     alt="AI"
                     width={500}
                     height={500}
@@ -604,7 +602,7 @@ const AIContent = () => {
                     </p>
                 </div>
                 <Image
-                    src={getOptimizedImagePath("/img/ai4_converted.png")}
+                    src={getOptimizedImagePath('/img/ai4_converted.png')}
                     alt="AI"
                     width={500}
                     height={500}
@@ -649,33 +647,33 @@ export default AIContent;
 
 const data = [
     {
-        category: "cardAppleWebSite",
-        title: "createStunningWebsites",
-        src: "/img/web-site.jpg",
+        category: 'cardAppleWebSite',
+        title: 'createStunningWebsites',
+        src: '/img/web-site.jpg',
         content: <WebContent />,
     },
     {
-        category: "cardAppleMachineLearning",
-        title: "UnlockInsights",
-        src: "/img/machine-learning.jpg",
+        category: 'cardAppleMachineLearning',
+        title: 'UnlockInsights',
+        src: '/img/machine-learning.jpg',
         content: <MachineContent />,
     },
     {
-        category: "cardAppleAutomation",
-        title: "AutomateYour",
-        src: "/img/automation.jpg",
+        category: 'cardAppleAutomation',
+        title: 'AutomateYour',
+        src: '/img/automation.jpg',
         content: <AutomationContent />,
     },
     {
-        category: "cardAppleBots",
-        title: "IntegrateIntelligent",
-        src: "/img/chatbot.jpg",
+        category: 'cardAppleBots',
+        title: 'IntegrateIntelligent',
+        src: '/img/chatbot.jpg',
         content: <BotsContent />,
     },
     {
-        category: "cardAppleAI",
-        title: "LeverageAI",
-        src: "/img/ai.jpg",
+        category: 'cardAppleAI',
+        title: 'LeverageAI',
+        src: '/img/ai.jpg',
         content: <AIContent />,
     },
 

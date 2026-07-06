@@ -1,54 +1,54 @@
-"use client";
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import ButtonStandard from "./ButtonStandard";
-import dynamic from "next/dynamic";
-const EarthCanvas = dynamic(() => import("./canvas/Earth"), { ssr: false, loading: () => <div className="w-full h-full" /> });
-import { slideIn } from "../utils/motion";
-import { useTranslations } from "@/contexts/TranslationContext";
-import { useLanguage } from "@/contexts/LanguageContext";
-import AnimatedInput from "./AnimatedInput";
-import AnimatedTextarea from "./AnimatedTextarea";
-import { FiMail, FiPhone, FiCopy, FiCheck, FiCheckCircle } from "react-icons/fi";
-import { SiWhatsapp } from "react-icons/si";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+'use client';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import ButtonStandard from './ButtonStandard';
+import dynamic from 'next/dynamic';
+const EarthCanvas = dynamic(() => import('./canvas/Earth'), { ssr: false, loading: () => <div className="w-full h-full" /> });
+import { slideIn } from '../utils/motion';
+import { useTranslations } from '@/contexts/TranslationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import AnimatedInput from './AnimatedInput';
+import AnimatedTextarea from './AnimatedTextarea';
+import { FiMail, FiPhone, FiCopy, FiCheck, FiCheckCircle } from 'react-icons/fi';
+import { SiWhatsapp } from 'react-icons/si';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CONTACT_DIRECT: Record<string, string> = {
-  "pt-BR": "Ou fale direto com a gente",
-  en: "Or reach us directly",
-  es: "O habla directamente con nosotros",
-  it: "Oppure contattaci direttamente",
+  'pt-BR': 'Ou fale direto com a gente',
+  en: 'Or reach us directly',
+  es: 'O habla directamente con nosotros',
+  it: 'Oppure contattaci direttamente',
 };
 
 const PHONE_LABEL: Record<string, string> = {
-  "pt-BR": "Telefone",
-  en: "Phone",
-  es: "Teléfono",
-  it: "Telefono",
+  'pt-BR': 'Telefone',
+  en: 'Phone',
+  es: 'Teléfono',
+  it: 'Telefono',
 };
 
 const COPY_UI: Record<string, { copy: string; copied: string }> = {
-  "pt-BR": { copy: "Copiar", copied: "Copiado!" },
-  en: { copy: "Copy", copied: "Copied!" },
-  es: { copy: "Copiar", copied: "¡Copiado!" },
-  it: { copy: "Copia", copied: "Copiato!" },
+  'pt-BR': { copy: 'Copiar', copied: 'Copiado!' },
+  en: { copy: 'Copy', copied: 'Copied!' },
+  es: { copy: 'Copiar', copied: '¡Copiado!' },
+  it: { copy: 'Copia', copied: 'Copiato!' },
 };
 
 const SUCCESS_UI: Record<string, { title: string; body: string }> = {
-  "pt-BR": { title: "Mensagem enviada!", body: "Obrigado pelo contato. Retornaremos para você em breve." },
-  en: { title: "Message sent!", body: "Thanks for reaching out. We'll get back to you soon." },
-  es: { title: "¡Mensaje enviado!", body: "Gracias por contactarnos. Te responderemos muy pronto." },
-  it: { title: "Messaggio inviato!", body: "Grazie per averci contattato. Ti risponderemo a breve." },
+  'pt-BR': { title: 'Mensagem enviada!', body: 'Obrigado pelo contato. Retornaremos para você em breve.' },
+  en: { title: 'Message sent!', body: "Thanks for reaching out. We'll get back to you soon." },
+  es: { title: '¡Mensaje enviado!', body: 'Gracias por contactarnos. Te responderemos muy pronto.' },
+  it: { title: 'Messaggio inviato!', body: 'Grazie per averci contattato. Ti risponderemo a breve.' },
 };
 
 const Contact: React.FC = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [honeypot, setHoneypot] = useState("");
+  const [honeypot, setHoneypot] = useState('');
   const loadTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
@@ -57,11 +57,11 @@ const Contact: React.FC = () => {
 
   const currentMessages = useTranslations();
   const { language } = useLanguage();
-  const lang = language === "pt" ? "pt-BR" : language;
-  const directLabel = CONTACT_DIRECT[lang] ?? CONTACT_DIRECT["pt-BR"];
-  const copyUi = COPY_UI[lang] ?? COPY_UI["pt-BR"];
-  const phoneLabel = PHONE_LABEL[lang] ?? PHONE_LABEL["pt-BR"];
-  const successUi = SUCCESS_UI[lang] ?? SUCCESS_UI["pt-BR"];
+  const lang = language === 'pt' ? 'pt-BR' : language;
+  const directLabel = CONTACT_DIRECT[lang] ?? CONTACT_DIRECT['pt-BR'];
+  const copyUi = COPY_UI[lang] ?? COPY_UI['pt-BR'];
+  const phoneLabel = PHONE_LABEL[lang] ?? PHONE_LABEL['pt-BR'];
+  const successUi = SUCCESS_UI[lang] ?? SUCCESS_UI['pt-BR'];
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const handleCopy = async (key: string, text: string) => {
@@ -94,7 +94,7 @@ const Contact: React.FC = () => {
     }
 
     if (!name.trim() || !email.trim() || !message.trim()) {
-      toast.error(currentMessages.fillAllFields || "Por favor, preencha todos os campos corretamente.");
+      toast.error(currentMessages.fillAllFields || 'Por favor, preencha todos os campos corretamente.');
       return;
     }
 
@@ -102,18 +102,19 @@ const Contact: React.FC = () => {
 
     try {
       // Track form submission in Google Analytics
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'form_submit', {
+      // window.gtag is typed by the global Window augmentation in CookieConsent.tsx.
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'form_submit', {
           event_category: 'engagement',
           event_label: 'contact_form',
-          value: 1
+          value: 1,
         });
       }
 
-      const response = await fetch("/api/send-email", {
-        method: "POST",
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           name: name.trim(),
@@ -131,21 +132,21 @@ const Contact: React.FC = () => {
         // Mark as submitted to prevent validation issues
         setIsSubmitted(true);
         
-        toast.success(currentMessages.successSubmission || "Formulário enviado com sucesso!");
+        toast.success(currentMessages.successSubmission || 'Formulário enviado com sucesso!');
 
         // Clear the underlying field values; the inline success panel (driven by
         // isSubmitted) replaces the form so the user gets a clear confirmation
         // and stays on the page (no redirect).
-        setName("");
-        setEmail("");
-        setMessage("");
+        setName('');
+        setEmail('');
+        setMessage('');
       } else {
-        toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
+        toast.error(currentMessages.errorSubmission || 'Erro ao enviar o formulário. Tente novamente.');
         setIsSubmitting(false);
       }
     } catch (error) {
-      console.error("Erro ao enviar o formulário", error);
-      toast.error(currentMessages.errorSubmission || "Erro ao enviar o formulário. Tente novamente.");
+      console.error('Erro ao enviar o formulário', error);
+      toast.error(currentMessages.errorSubmission || 'Erro ao enviar o formulário. Tente novamente.');
       setIsSubmitting(false);
     }
   }
@@ -161,7 +162,7 @@ const Contact: React.FC = () => {
       const el = earthWrapRef.current;
       if (el) {
         if (window.innerWidth < 768) {
-          el.style.transform = "";
+          el.style.transform = '';
         } else {
           const t = performance.now() / 1000;
           // Map the page's (small) scroll range to a LARGE travel so it has impact.
@@ -191,7 +192,7 @@ const Contact: React.FC = () => {
         <motion.div
           initial="hidden"
           animate="show"
-          variants={slideIn("left", "tween", 0.2, 1)}
+          variants={slideIn('left', 'tween', 0.2, 1)}
           className="bg-primary/70 backdrop-blur-md border border-white/10 rounded-lg shadow-md p-6"
         >
           <div className="flex flex-col items-start">
@@ -281,9 +282,9 @@ const Contact: React.FC = () => {
           </p>
           <ul className="flex flex-col gap-3">
             {[
-              { key: "whatsapp", icon: <SiWhatsapp aria-hidden="true" />, label: "WhatsApp", value: "+55 11 98286-4581", href: "https://wa.me/5511982864581", external: true, primary: true },
-              { key: "email", icon: <FiMail aria-hidden="true" />, label: "Email", value: "bruno@wbdigitalsolutions.com", href: "mailto:bruno@wbdigitalsolutions.com" },
-              { key: "phone", icon: <FiPhone aria-hidden="true" />, label: phoneLabel, value: "+55 11 5026-4203", href: "tel:+551150264203" },
+              { key: 'whatsapp', icon: <SiWhatsapp aria-hidden="true" />, label: 'WhatsApp', value: '+55 11 98286-4581', href: 'https://wa.me/5511982864581', external: true, primary: true },
+              { key: 'email', icon: <FiMail aria-hidden="true" />, label: 'Email', value: 'bruno@wbdigitalsolutions.com', href: 'mailto:bruno@wbdigitalsolutions.com' },
+              { key: 'phone', icon: <FiPhone aria-hidden="true" />, label: phoneLabel, value: '+55 11 5026-4203', href: 'tel:+551150264203' },
             ].map((c) => {
               const copied = copiedKey === c.key;
               return (
@@ -291,22 +292,22 @@ const Contact: React.FC = () => {
                   key={c.key}
                   className={`group flex items-center gap-4 rounded-xl border p-3.5 transition-colors duration-300 ${
                     c.primary
-                      ? "border-yellowcustom/40 bg-yellowcustom/[0.07] hover:bg-yellowcustom/[0.12]"
-                      : "border-white/10 bg-white/5 hover:border-yellowcustom/30 hover:bg-white/[0.08]"
+                      ? 'border-yellowcustom/40 bg-yellowcustom/[0.07] hover:bg-yellowcustom/[0.12]'
+                      : 'border-white/10 bg-white/5 hover:border-yellowcustom/30 hover:bg-white/[0.08]'
                   }`}
                 >
                   <span
                     className={`grid h-12 w-12 shrink-0 place-items-center rounded-full text-xl transition-colors duration-300 ${
                       c.primary
-                        ? "bg-yellowcustom text-primary"
-                        : "bg-custom-purple/30 text-yellowcustom group-hover:bg-yellowcustom group-hover:text-primary"
+                        ? 'bg-yellowcustom text-primary'
+                        : 'bg-custom-purple/30 text-yellowcustom group-hover:bg-yellowcustom group-hover:text-primary'
                     }`}
                   >
                     {c.icon}
                   </span>
                   <a
                     href={c.href}
-                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="min-w-0 flex-1"
                   >
                     <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-secondary/60">
@@ -323,8 +324,8 @@ const Contact: React.FC = () => {
                     title={copied ? copyUi.copied : copyUi.copy}
                     className={`relative grid h-9 w-9 shrink-0 place-items-center rounded-lg border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 ${
                       copied
-                        ? "border-green-400/50 text-green-400"
-                        : "border-white/15 text-secondary hover:border-yellowcustom/50 hover:text-yellowcustom"
+                        ? 'border-green-400/50 text-green-400'
+                        : 'border-white/15 text-secondary hover:border-yellowcustom/50 hover:text-yellowcustom'
                     }`}
                   >
                     {copied ? <FiCheck /> : <FiCopy />}

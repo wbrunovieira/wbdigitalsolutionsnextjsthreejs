@@ -1,7 +1,5 @@
 import React from 'react';
 
-const Chat: React.FC = () => {
-  return <div></div>;
-};
+const Chat: React.FC = () => <div></div>;
 
 export default Chat;

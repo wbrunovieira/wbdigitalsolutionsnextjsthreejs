@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { FaQuoteLeft } from "react-icons/fa"; 
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaQuoteLeft } from 'react-icons/fa'; 
 
 interface Quote {
   text: string;

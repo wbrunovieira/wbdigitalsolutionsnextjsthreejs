@@ -6,14 +6,13 @@ interface Button3DProps {
   position: [number, number, number];
   onClick: () => void;
   isActive: boolean;
-  label: string;
   scale?: number;
 }
 
 /**
  * Interactive 3D button component for desk interactions
  */
-const Button3D: React.FC<Button3DProps> = ({ position, onClick, isActive, label, scale = 1 }) => {
+const Button3D: React.FC<Button3DProps> = ({ position, onClick, isActive, scale = 1 }) => {
   const [hovered, setHovered] = useState(false);
   
   return (

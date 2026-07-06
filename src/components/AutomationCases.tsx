@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { FaWarehouse, FaRobot, FaChartLine, FaNetworkWired, FaCheckCircle, FaBullhorn, FaTasks, FaUserTie } from "react-icons/fa";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
+import React, { useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { FaWarehouse, FaRobot, FaChartLine, FaNetworkWired, FaCheckCircle, FaBullhorn, FaTasks, FaUserTie } from 'react-icons/fa';
+import { useTranslations } from '@/contexts/TranslationContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +14,6 @@ const SuccessCases: React.FC = () => {
   const lineRef = useRef<HTMLParagraphElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const { language } = useLanguage();
   const currentMessages = useTranslations();
 
   useGSAP(() => {
@@ -25,14 +23,14 @@ const SuccessCases: React.FC = () => {
       {
         x: 0,
         y: 0,
-        ease: "power1.out",
+        ease: 'power1.out',
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 65%",
-          end: "bottom 50%",
+          start: 'top 65%',
+          end: 'bottom 50%',
           scrub: true,
         },
-      }
+      },
     );
 
     gsap.fromTo(
@@ -41,14 +39,14 @@ const SuccessCases: React.FC = () => {
       {
         x: 0,
         y: 0,
-        ease: "power1.out",
+        ease: 'power1.out',
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 100%",
-          end: "bottom 55%",
+          start: 'top 100%',
+          end: 'bottom 55%',
           scrub: true,
         },
-      }
+      },
     );
 
     gsap.fromTo(
@@ -56,20 +54,20 @@ const SuccessCases: React.FC = () => {
       { scaleX: 0 },
       {
         scaleX: 1,
-        ease: "power1.out",
+        ease: 'power1.out',
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 100%",
-          end: "bottom 20%",
+          start: 'top 100%',
+          end: 'bottom 20%',
           scrub: true,
         },
-      }
+      },
     );
 
     if (cardsRef.current) {
       cardsRef.current.forEach((card, index) => {
         if (card) {
-          const directions = ["-100%", "100%", "-50%", "50%"];
+          const directions = ['-100%', '100%', '-50%', '50%'];
           const xOffset = directions[index % directions.length];
           const zOffset = (index % 2 === 0 ? -150 : -50) + index * 10;
           const duration = 1.5 + index * 0.2;
@@ -81,18 +79,18 @@ const SuccessCases: React.FC = () => {
             {
               opacity: 1,
               z: 0,
-              x: "0%",
+              x: '0%',
               scale: 1,
               duration: duration,
-              ease: "power3.out",
+              ease: 'power3.out',
               scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top 100%",
-                end: "bottom 20%",
+                start: 'top 100%',
+                end: 'bottom 20%',
                 scrub: true,
-                toggleActions: "play reverse play reverse",
+                toggleActions: 'play reverse play reverse',
               },
-            }
+            },
           );
         }
       });

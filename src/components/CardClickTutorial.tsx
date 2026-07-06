@@ -55,7 +55,7 @@ const CardClickTutorial: React.FC<CardClickTutorialProps> = ({ onInteraction }) 
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
             className="relative"
           >
@@ -65,7 +65,7 @@ const CardClickTutorial: React.FC<CardClickTutorialProps> = ({ onInteraction }) 
               transition={{
                 duration: 0.8,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: 'easeInOut',
               }}
               className="relative"
             >
@@ -87,12 +87,12 @@ const CardClickTutorial: React.FC<CardClickTutorialProps> = ({ onInteraction }) 
                   initial={{ scale: 0.8, opacity: 1 }}
                   animate={{ 
                     scale: [0.8, 1.3, 1.5],
-                    opacity: [1, 0.5, 0]
+                    opacity: [1, 0.5, 0],
                   }}
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: "easeOut",
+                    ease: 'easeOut',
                   }}
                 />
                 
@@ -101,13 +101,13 @@ const CardClickTutorial: React.FC<CardClickTutorialProps> = ({ onInteraction }) 
                   initial={{ scale: 0.8, opacity: 1 }}
                   animate={{ 
                     scale: [0.8, 1.3, 1.5],
-                    opacity: [1, 0.5, 0]
+                    opacity: [1, 0.5, 0],
                   }}
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: "easeOut",
-                    delay: 0.5
+                    ease: 'easeOut',
+                    delay: 0.5,
                   }}
                 />
               </div>
@@ -118,7 +118,7 @@ const CardClickTutorial: React.FC<CardClickTutorialProps> = ({ onInteraction }) 
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 }}
                 className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg font-bold whitespace-nowrap"
               >
@@ -142,7 +142,7 @@ const CardClickTutorial: React.FC<CardClickTutorialProps> = ({ onInteraction }) 
                 >
                   👆
                 </motion.span>
-                {t.cardClickTutorialText || "Click on each card to explore our services"}
+                {t.cardClickTutorialText || 'Click on each card to explore our services'}
                 <motion.span
                   animate={{ rotate: [0, -15, 15, 0] }}
                   transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}

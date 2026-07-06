@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 /**
  * Projects section for the DEV CV page: a curated selection of shipped work.
@@ -9,45 +9,45 @@
  * editor-window card lives in DevProjectCard.
  */
 
-import React from "react";
-import { motion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useTranslations } from "@/contexts/TranslationContext";
-import { cvContent, type CVLang } from "@/content/cv";
-import type { Project, ProjectsPageContent } from "@/components/projects/types";
-import { BG_DEV_ALT, toCVLang } from "./devTheme";
-import { useDevReveal } from "./useDevReveal";
-import { DevSection, DevSectionHeader } from "./DevSection";
-import DevCodeDeco from "./DevCodeDeco";
-import DevProjectCard, { WIDE_SLUGS } from "./DevProjectCard";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslations } from '@/contexts/TranslationContext';
+import { cvContent, type CVLang } from '@/content/cv';
+import type { Project, ProjectsPageContent } from '@/components/projects/types';
+import { BG_DEV_ALT, toCVLang } from './devTheme';
+import { useDevReveal } from './useDevReveal';
+import { DevSection, DevSectionHeader } from './DevSection';
+import DevCodeDeco from './DevCodeDeco';
+import DevProjectCard, { WIDE_SLUGS } from './DevProjectCard';
 
 /** Hand-picked subset showing breadth: edu platform, CRM, AI, Rust desktop, Go backend, motion-rich web. */
-const FEATURED_SLUGS = ["revalida-italia", "wb-crm", "ai-agents", "vetor", "financas", "salto"];
+const FEATURED_SLUGS = ['revalida-italia', 'wb-crm', 'ai-agents', 'vetor', 'financas', 'salto'];
 
 const COPY: Record<CVLang, { title: string; intro: string; caseStudy: string; live: string }> = {
-  "pt-BR": {
-    title: "Construído e entregue.",
-    intro: "Uma seleção do que saiu das minhas mãos e está em produção. Cada projeto tem um estudo completo no site do estúdio.",
-    caseStudy: "Ver case",
-    live: "Site no ar",
+  'pt-BR': {
+    title: 'Construído e entregue.',
+    intro: 'Uma seleção do que saiu das minhas mãos e está em produção. Cada projeto tem um estudo completo no site do estúdio.',
+    caseStudy: 'Ver case',
+    live: 'Site no ar',
   },
   en: {
-    title: "Built and shipped.",
-    intro: "A selection of what left my hands and is running in production. Every project has a full case study on the studio site.",
-    caseStudy: "View case",
-    live: "Live site",
+    title: 'Built and shipped.',
+    intro: 'A selection of what left my hands and is running in production. Every project has a full case study on the studio site.',
+    caseStudy: 'View case',
+    live: 'Live site',
   },
   it: {
-    title: "Costruito e consegnato.",
-    intro: "Una selezione di ciò che è uscito dalle mie mani ed è in produzione. Ogni progetto ha un case study completo sul sito dello studio.",
-    caseStudy: "Vedi il case",
-    live: "Sito online",
+    title: 'Costruito e consegnato.',
+    intro: 'Una selezione di ciò che è uscito dalle mie mani ed è in produzione. Ogni progetto ha un case study completo sul sito dello studio.',
+    caseStudy: 'Vedi il case',
+    live: 'Sito online',
   },
   es: {
-    title: "Construido y entregado.",
-    intro: "Una selección de lo que salió de mis manos y está en producción. Cada proyecto tiene un case study completo en el sitio del estudio.",
-    caseStudy: "Ver el case",
-    live: "Sitio en línea",
+    title: 'Construido y entregado.',
+    intro: 'Una selección de lo que salió de mis manos y está en producción. Cada proyecto tiene un case study completo en el sitio del estudio.',
+    caseStudy: 'Ver el case',
+    live: 'Sitio en línea',
   },
 };
 
@@ -72,12 +72,12 @@ const DevProjects: React.FC = () => {
           <motion.article
             key={p.slug ?? p.id}
             {...reveal(Math.min(i, 3) * 0.06)}
-            className={WIDE_SLUGS.has(p.slug ?? "") ? "sm:col-span-2" : undefined}
+            className={WIDE_SLUGS.has(p.slug ?? '') ? 'sm:col-span-2' : undefined}
           >
             <DevProjectCard
               project={p}
               copy={copy}
-              flagshipLabel={p.slug === "revalida-italia" ? content?.featuredLabel : undefined}
+              flagshipLabel={p.slug === 'revalida-italia' ? content?.featuredLabel : undefined}
             />
           </motion.article>
         ))}

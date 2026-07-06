@@ -1,21 +1,21 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import BlogPost from "@/components/BlogPost";
-import Link from "next/link";
-import PageHead from "@/components/PageHead";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import BlogPost from '@/components/BlogPost';
+import Link from 'next/link';
+import PageHead from '@/components/PageHead';
+import { useLanguage } from '@/contexts/LanguageContext';
 import fs from 'fs';
 import path from 'path';
-import { i18nProps, I18nPageProps } from "@/lib/i18n";
+import { i18nProps, I18nPageProps } from '@/lib/i18n';
 
 // List of all blog post IDs
 const blogPostIds = [
-  "do-i-need-a-website",
-  "how-emotional-design-can",
-  "digital-can-transform-company",
-  "chatgpt-for-smes",
-  "increase-pme-sales"
+  'do-i-need-a-website',
+  'how-emotional-design-can',
+  'digital-can-transform-company',
+  'chatgpt-for-smes',
+  'increase-pme-sales',
 ];
 
 // List of supported languages
@@ -26,13 +26,20 @@ const URL_LOCALE_TO_BLOG_FOLDER: Record<string, string> = {
   en: 'en',
   pt: 'ptbr',
   it: 'it',
-  es: 'es'
+  es: 'es',
 };
+
+// Shape of one article section, matching the BlogPost component's text prop.
+interface BlogSection {
+  title: string;
+  content: string[];
+  quotes?: { text: string; author: string }[];
+}
 
 interface BlogTranslation {
   title: string;
   summary?: string;
-  text: any[];
+  text: BlogSection[];
   images?: string[];
   thumbnail?: string;
   category: string[];
@@ -46,12 +53,12 @@ interface BlogPageProps {
   ssrLangKey: string;
 }
 
-const BlogPage: React.FC<BlogPageProps> = ({ translations, postId, ssrLangKey }) => {
+const BlogPage: React.FC<BlogPageProps> = ({ translations, ssrLangKey }) => {
   const router = useRouter();
   const { language } = useLanguage();
   // Start from the URL locale's content so the SSR HTML is in the right language.
   const [translation, setTranslation] = useState<BlogTranslation | null>(
-    () => translations?.[ssrLangKey] || translations?.['en'] || null
+    () => translations?.[ssrLangKey] || translations?.['en'] || null,
   );
 
   useEffect(() => {
@@ -88,7 +95,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, postId, ssrLangKey })
           description: getDescription(),
           author: translation.author || 'WB Digital Solutions',
           datePublished: translation.datePublished || '2024-01-01T00:00:00Z',
-          images: translation.images || (translation.thumbnail ? [translation.thumbnail] : undefined)
+          images: translation.images || (translation.thumbnail ? [translation.thumbnail] : undefined),
         }}
       />
       <div className="bg-modern-gradient min-h-screen py-12 mt-32">
@@ -120,26 +127,26 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = blogPostIds.flatMap(id =>
     (locales ?? [undefined]).map(locale => ({
       params: { id },
-      locale
-    }))
+      locale,
+    })),
   );
 
   return {
     paths,
-    fallback: false // false means 404 for non-existent pages
+    fallback: false, // false means 404 for non-existent pages
   };
 };
 
 export const getStaticProps: GetStaticProps<BlogPageProps & I18nPageProps> = async ({
   params,
-  locale
+  locale,
 }) => {
   const postId = params?.id as string;
 
   // Validate that the post ID exists
   if (!blogPostIds.includes(postId)) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
@@ -160,7 +167,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps & I18nPageProps> = asy
   // Make sure we have at least English translation
   if (!translations['en']) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
@@ -173,9 +180,9 @@ export const getStaticProps: GetStaticProps<BlogPageProps & I18nPageProps> = asy
       translations,
       postId,
       ssrLangKey,
-      ...(await i18nProps(locale))
+      ...(await i18nProps(locale)),
     },
-    revalidate: 3600 // Revalidate every hour
+    revalidate: 3600, // Revalidate every hour
   };
 };
 

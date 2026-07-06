@@ -24,6 +24,7 @@ const STATIC_PAGES = [
   'contact',
   'websites',
   'systems',
+  'newsletter',
 ];
 
 // Project detail pages (/projects/[slug]) — kept in sync with projectDetails.ts
@@ -66,7 +67,7 @@ const buildAlternates = (path: string): HreflangAlternate[] => {
 const generateSitemapUrl = (
   path: string,
   changefreq: string = 'weekly',
-  priority: number = 0.8
+  priority: number = 0.8,
 ): SitemapUrl[] => {
   const lastmod = new Date().toISOString().split('T')[0];
   const alternates = buildAlternates(path);
@@ -80,7 +81,7 @@ const generateSitemapUrl = (
 };
 
 const generateXmlUrl = (url: SitemapUrl): string => {
-  let xml = `  <url>\n`;
+  let xml = '  <url>\n';
   xml += `    <loc>${url.loc}</loc>\n`;
   xml += `    <lastmod>${url.lastmod}</lastmod>\n`;
   xml += `    <changefreq>${url.changefreq}</changefreq>\n`;
@@ -88,7 +89,7 @@ const generateXmlUrl = (url: SitemapUrl): string => {
   url.alternates.forEach(alt => {
     xml += `    <xhtml:link rel="alternate" hreflang="${alt.hreflang}" href="${alt.href}"/>\n`;
   });
-  xml += `  </url>\n`;
+  xml += '  </url>\n';
   return xml;
 };
 

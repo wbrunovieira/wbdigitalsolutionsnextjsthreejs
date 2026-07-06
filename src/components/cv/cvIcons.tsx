@@ -5,9 +5,9 @@
  */
 
 /** Flag emoji per language code for the proficiency rows. */
-export const LANG_FLAG: Record<"pt" | "en" | "it" | "es", string> = {
-  pt: "🇧🇷",
-  en: "🇬🇧",
-  it: "🇮🇹",
-  es: "🇪🇸",
+export const LANG_FLAG: Record<'pt' | 'en' | 'it' | 'es', string> = {
+  pt: '🇧🇷',
+  en: '🇬🇧',
+  it: '🇮🇹',
+  es: '🇪🇸',
 };

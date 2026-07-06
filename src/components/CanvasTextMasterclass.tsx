@@ -136,7 +136,7 @@ class Effect {
       this.context.fillText(
         el,
         this.textX,
-        this.textY + index * this.lineHeight
+        this.textY + index * this.lineHeight,
       );
       //this.context.strokeText(el, this.textX, this.textY + (index * this.lineHeight));
     });
@@ -149,7 +149,7 @@ class Effect {
       0,
       0,
       this.canvasWidth,
-      this.canvasHeight
+      this.canvasHeight,
     ).data;
     this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     for (let y = 0; y < this.canvasHeight; y += this.gap) {
@@ -167,7 +167,7 @@ class Effect {
               x: x,
               y: y,
               color: color,
-            })
+            }),
           );
         }
       }
@@ -186,11 +186,11 @@ class Effect {
           this.context.beginPath();
           this.context.moveTo(
             this.particles[a].x + position,
-            this.particles[a].y + position
+            this.particles[a].y + position,
           );
           this.context.lineTo(
             this.particles[b].x + position,
-            this.particles[b].y + position
+            this.particles[b].y + position,
           );
           this.context.strokeStyle = this.particles[a].color;
           this.context.stroke();

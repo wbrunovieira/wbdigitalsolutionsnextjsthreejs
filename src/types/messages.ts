@@ -1,20 +1,6 @@
 // types/messages.ts
 
-export type MessagesType = {
-    [key: string]: MessageFormat;
-};
-
-export interface CardData {
-    name: string;
-    subtitle: string;
-    image: string;
-}
-
-export type MessageFormat = {
-    technology: string;
-    title: string;
-    description: string;
-    cards: CardData[];
-    [key: string]: any;
-};
-
+// The canonical message-bundle shape is the English locale file: every page
+// reads keys that must exist there, so deriving the type from en.json gives
+// real key-level type-safety instead of an `any` index signature.
+export type MessageFormat = typeof import('../locales/en.json');

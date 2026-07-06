@@ -20,7 +20,7 @@ const InteractiveBall: React.FC<BallProps> = ({
   velocity, 
   color, 
   emissive, 
-  delay = 0 
+  delay = 0, 
 }) => {
   const ballRef = useRef<THREE.Mesh>(null);
   const [isActive, setIsActive] = useState(false);

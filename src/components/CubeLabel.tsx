@@ -6,8 +6,7 @@ interface CubeLabelProps {
   text: string;
 }
 
-const CubeLabel: React.FC<CubeLabelProps> = ({ text }) => {
-  return (
+const CubeLabel: React.FC<CubeLabelProps> = ({ text }) => (
     <Html
       position={[-0.7, 0.5, 0.5]}
       wrapperClass='text'
@@ -17,6 +16,5 @@ const CubeLabel: React.FC<CubeLabelProps> = ({ text }) => {
       {text}
     </Html>
   );
-};
 
 export default CubeLabel;

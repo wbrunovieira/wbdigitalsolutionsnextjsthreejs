@@ -17,7 +17,7 @@ const PointerHand: React.FC<PointerHandProps> = ({
   rotation = [0, 0, 0],
   isVisible = true,
   delay = 0,
-  language = 'en'
+  language = 'en',
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const handRef = useRef<THREE.Group>(null);
@@ -93,20 +93,20 @@ const PointerHand: React.FC<PointerHandProps> = ({
           style={{
             opacity: opacity,
             transition: 'none',
-            pointerEvents: 'none'
+            pointerEvents: 'none',
           }}
         >
           <div style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '20px'
+            gap: '20px',
           }}>
             <div style={{
               fontSize: '192px',
               color: '#ffb947',
-              filter: `drop-shadow(0 0 20px rgba(255, 185, 71, 0.8))`,
-              animation: 'pulse 1s infinite'
+              filter: 'drop-shadow(0 0 20px rgba(255, 185, 71, 0.8))',
+              animation: 'pulse 1s infinite',
             }}>
               <FaHandPointDown />
             </div>
@@ -117,7 +117,7 @@ const PointerHand: React.FC<PointerHandProps> = ({
               textShadow: '0 0 10px rgba(255, 185, 71, 0.8)',
               whiteSpace: 'nowrap',
               letterSpacing: '1px',
-              animation: 'pulse 1s infinite'
+              animation: 'pulse 1s infinite',
             }}>
               {getText()}
             </div>

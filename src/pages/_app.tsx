@@ -24,8 +24,9 @@ export const event = ({ action, category, label, value }: {
   label?: string;
   value?: number;
 }) => {
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', action, {
+  // window.gtag/window.fbq are typed by the global Window augmentation in CookieConsent.tsx.
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', action, {
       event_category: category,
       event_label: label,
       value: value,
@@ -43,11 +44,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       // SPA page views (GA respects Consent Mode; Pixel only if consented/loaded).
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'page_view', { page_path: url });
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'page_view', { page_path: url });
       }
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'PageView');
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'PageView');
       }
     };
 
@@ -84,7 +85,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             key={router.asPath}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             <Component {...pageProps} />
           </motion.div>
