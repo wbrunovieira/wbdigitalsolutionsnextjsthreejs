@@ -35,11 +35,18 @@ const ParticlesContainer: React.FC = () => {
 
   const options: ISourceOptions = useMemo(
     () => ({
+      // Confine the canvas to the wrapper (default fullScreen mode renders a
+      // fixed viewport-wide canvas whose links cross OVER the nav items).
+      fullScreen: { enable: false },
       background: {
         color: { value: 'transparent' },
       },
       fpsLimit: isMobile ? 60 : 120,
       interactivity: {
+        // Pin pointer detection to the window: with the confined (fullScreen:false)
+        // canvas sitting under the nav's z-10 content, canvas-level detection
+        // would never receive events and hover-repulse would silently die.
+        detectsOn: 'window',
         events: {
           onClick: {
             enable: !isMobile,
@@ -102,7 +109,7 @@ const ParticlesContainer: React.FC = () => {
         id="tsparticles"
         options={options}
         particlesLoaded={particlesLoaded}
-        className="absolute inset-0 w-full h-full -z-10"
+        className="absolute inset-0 w-full h-full z-0"
       />
     );
   }

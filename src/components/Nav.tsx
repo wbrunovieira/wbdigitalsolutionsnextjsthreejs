@@ -67,7 +67,8 @@ const Nav: React.FC = () => {
                 : 'bg-modern-gradient backdrop-blur-3xl border-b border-white/15 shadow-[0_14px_28px_-6px_rgba(0,0,0,0.55)]'
         }`}>
             <ParticlesContainer />
-            <div className="text-secondary max-w-[1400px] mx-auto pt-10 pb-8 lg:pb-0 px-4 lg:px-10 relative">
+            {/* z-10 keeps every nav control above the particles canvas (z-0). */}
+            <div className="text-secondary max-w-[1400px] mx-auto pt-10 pb-8 lg:pb-0 px-4 lg:px-10 relative z-10">
             <Image
                className={`absolute -mt-1 top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${
                    scrolled ? 'brightness-[2]' : ''

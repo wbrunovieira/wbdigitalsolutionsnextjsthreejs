@@ -1,0 +1,33 @@
+/* Branded 3D loading state: amber ring + rounded percentage. Keyframes live
+   here (not inline) per the CSS-module rule; reduced-motion freezes the spin
+   while the percentage keeps carrying the information. */
+.spinner {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 185, 71, 0.22);
+    border-top-color: #ffb947;
+    box-shadow: 0 0 22px rgba(255, 185, 71, 0.18);
+    animation: wb-loader-spin 0.9s linear infinite;
+}
+
+@keyframes wb-loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spinner {
+        animation: none;
+    }
+}
+
+.label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.75);
+    font-variant-numeric: tabular-nums;
+}

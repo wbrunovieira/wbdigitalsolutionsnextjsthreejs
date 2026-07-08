@@ -58,6 +58,23 @@ const CAMERA_MOBILE = { position: [20, 4, 26] as [number, number, number], fov: 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 
+// De-brand decal (WB wordmark over the model's GIGABYTE logo planes). Lazy
+// module-level singleton, intentionally NEVER disposed: the swap mutates drei's
+// process-wide GLTF cache, so the material must outlive any single mount —
+// disposing it on unmount would leave the cached meshes pointing at a dead
+// material (black planes on remount or for any other consumer of this model).
+let wbDecalMaterial: THREE.MeshBasicMaterial | null = null;
+const getWbDecalMaterial = () => {
+  if (!wbDecalMaterial) {
+    const texture = new THREE.TextureLoader().load('/models/desktop/textures/wb-logo.png', (t) => {
+      t.flipY = false; // glTF UV convention
+      t.colorSpace = THREE.SRGBColorSpace;
+    });
+    wbDecalMaterial = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+  }
+  return wbDecalMaterial;
+};
+
 type TargetPose = { x: number; y: number; z: number; rx: number; ry: number; rz: number; s: number };
 
 interface ComputerProps {
@@ -73,19 +90,31 @@ const Computer: React.FC<ComputerProps> = ({ target, dragRot, dragging, inHero }
   const inner = useRef<THREE.Group>(null);
   // Current (damped) pose, eased toward `target` (computed from scroll in parent).
   const pose = useRef({ x: 4.5, y: -1, z: 0, rx: 0, ry: -0.35, rz: -0.05, s: 1.8 });
+  // Ambient-motion amplitude (sway + float), ramped in/out — and held at 0 for
+  // reduced-motion users (CLAUDE.md rule 6: every animation needs the gate).
+  const swayAmp = useRef(0);
+  const reducedMotion = useRef(false);
+  useEffect(() => {
+    reducedMotion.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }, []);
 
   useEffect(() => {
     if (!inner.current) return;
     const box = new THREE.Box3().setFromObject(inner.current);
     const center = box.getCenter(new THREE.Vector3());
     inner.current.position.sub(center);
+
     // Enable real self-shadowing: the tower/monitor cast onto their own desk, and
     // since the shadow light is world-fixed, the shadow sweeps the desk as it spins.
+    // Also de-brand: the model ships with GIGABYTE logo planes on the monitor
+    // backs — swap their material for the WB wordmark decal (unlit, so it reads
+    // like a printed logo regardless of the scene lights).
     scene.traverse((o) => {
       const m = o as THREE.Mesh;
       if (m.isMesh) {
         m.castShadow = true;
         m.receiveShadow = true;
+        if (/gigabyte-logo/i.test(m.name)) m.material = getWbDecalMaterial();
       }
     });
   }, [scene]);
@@ -108,17 +137,26 @@ const Computer: React.FC<ComputerProps> = ({ target, dragRot, dragging, inHero }
     pr.rz = lerp(pr.rz, tg.rz, k);
     pr.s = lerp(pr.s, tg.s, k);
 
-    // Idle auto-spin in hero; drag offset decays once we leave the hero.
-    if (inHero.current) {
-      if (!dragging.current) dragRot.current.y += delta * 0.25;
-    } else {
+    // Drag offset decays once we leave the hero (dragRot carries ONLY user input;
+    // a user's in-hero rotation persists until they scroll away).
+    if (!inHero.current) {
       const d = 1 - Math.pow(0.02, delta);
       dragRot.current.y = lerp(dragRot.current.y, 0, d);
       dragRot.current.x = lerp(dragRot.current.x, 0, d);
     }
 
-    group.current.position.set(pr.x, pr.y + Math.sin(state.clock.elapsedTime * 0.7) * 0.06, pr.z);
-    group.current.rotation.set(pr.rx + dragRot.current.x, pr.ry + dragRot.current.y, pr.rz);
+    // Ambient sway: a gentle ADDITIVE oscillation around the front-facing pose,
+    // so the lit monitor stays toward the viewer (the old full 360° auto-spin
+    // spent half its time showing the unlit backs). It lives in its own channel
+    // (never written into dragRot) and its amplitude ramps to 0 while dragging,
+    // outside the hero, or under prefers-reduced-motion.
+    const ambient = inHero.current && !dragging.current && !reducedMotion.current ? 1 : 0;
+    swayAmp.current = lerp(swayAmp.current, ambient, 1 - Math.pow(0.5, delta));
+    const sway = Math.sin(state.clock.elapsedTime * 0.35) * 0.22 * swayAmp.current;
+    const float = reducedMotion.current ? 0 : Math.sin(state.clock.elapsedTime * 0.7) * 0.06;
+
+    group.current.position.set(pr.x, pr.y + float, pr.z);
+    group.current.rotation.set(pr.rx + dragRot.current.x, pr.ry + dragRot.current.y + sway, pr.rz);
     group.current.scale.setScalar(pr.s);
   });
 
