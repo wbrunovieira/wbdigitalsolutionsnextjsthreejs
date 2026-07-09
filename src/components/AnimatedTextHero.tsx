@@ -12,7 +12,6 @@ interface TextProps {
 
 export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementAccent, statementSub, supportText, pills }) => {
     const rootRef      = useRef<HTMLElement>(null);
-    const glowRef      = useRef<HTMLDivElement>(null);
     const subRef       = useRef<HTMLParagraphElement>(null);
     const supportRef   = useRef<HTMLParagraphElement>(null);
     const pillsRef     = useRef<HTMLDivElement>(null);
@@ -36,16 +35,7 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementAcce
             0.1,
         );
 
-        // 2 — glow pulse once the statement has landed.
-        if (glowRef.current) {
-            tl.fromTo(glowRef.current,
-                { filter: 'drop-shadow(0 0 0px rgba(255,185,71,0))' },
-                { filter: 'drop-shadow(0 0 26px rgba(255,185,71,0.5))', duration: 0.6, ease: 'power2.inOut' },
-                0.75,
-            );
-        }
-
-        // 3 — sub-statement, accent line (transform-only scaleX draw), support, pills.
+        // 2 — sub-statement, accent line (transform-only scaleX draw), support, pills.
         if (subRef.current) tl.fromTo(subRef.current, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6 }, 0.65);
         if (lineRef.current) {
             tl.fromTo(lineRef.current, { scaleX: 0 }, { scaleX: 1, duration: 0.55 }, 0.95);
@@ -82,8 +72,12 @@ export const AnimatedTextHero: React.FC<TextProps> = ({ statement, statementAcce
     return (
         <header ref={rootRef} className="relative flex flex-col items-start p-8 text-white">
 
-            {/* Statement — glow on the outer wrapper, per-word clip reveal inside. */}
-            <div ref={glowRef}>
+            {/* Statement — glow on the outer wrapper, per-word clip reveal inside.
+                The glow is STATIC (not GSAP-pulsed): animating the drop-shadow made
+                the post-reveal repaint LARGER than the first paint, so a hero word
+                became a late LCP candidate (~6s in the mobile lab, Perf 96 → 54).
+                Painting at full glow size from SSR keeps LCP at first paint. */}
+            <div style={{ filter: 'drop-shadow(0 0 26px rgba(255,185,71,0.5))' }}>
                 <h1
                     className="font-black leading-[1.04]"
                     style={{
