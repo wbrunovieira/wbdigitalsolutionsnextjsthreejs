@@ -168,8 +168,53 @@ function buildAutoReply(lang, name) {
   return shell(s.reply.title, rows);
 }
 
+// Human-friendly active-time label ("45s", "2m 10s").
+function fmtDuration(sec) {
+  const s = Math.max(0, Math.round(sec));
+  if (s < 60) return `${s}s`;
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return r ? `${m}m ${r}s` : `${m}m`;
+}
+
+// Lead source from first-touch: UTM if present, else the referrer host, else Direct.
+function sourceLabel(ft) {
+  if (!ft) return 'Direct / unknown';
+  const u = ft.utm || {};
+  if (u.utm_source) {
+    return [u.utm_source, u.utm_medium].filter(Boolean).map(escapeHtml).join(' / ')
+      + (u.utm_campaign ? ` — ${escapeHtml(u.utm_campaign)}` : '');
+  }
+  if (ft.referrer) {
+    try { return escapeHtml(new URL(ft.referrer).hostname); } catch { return escapeHtml(ft.referrer); }
+  }
+  return 'Direct (no referrer)';
+}
+
+// Attribution block rows (ops-facing → fixed English labels, not user copy).
+function attributionRows(attr, field) {
+  if (!attr) return '';
+  const ft = attr.firstTouch;
+  const geo = attr.geo || {};
+  const journey = Array.isArray(attr.journey) ? attr.journey : [];
+  const journeyHtml = journey.length
+    ? journey
+        .map((h) => `<div>${escapeHtml(String(h.p || ''))} <span style="color:${C.muted};">&middot; ${fmtDuration(h.s)}</span></div>`)
+        .join('')
+    : `<em style="color:${C.muted};">${attr.consented ? 'no navigation recorded' : 'not tracked (no analytics consent)'}</em>`;
+  const location = [geo.city, geo.region, geo.country].filter(Boolean).map(escapeHtml).join(', ') || '&mdash;';
+  return `
+  <tr><td style="padding:22px 40px 0;"><div style="border-top:1px solid ${C.border};"></div></td></tr>
+  ${field('Source', sourceLabel(ft))}
+  ${field('Landing page', ft && ft.landing ? escapeHtml(ft.landing) : '&mdash;')}
+  ${field('Submitted from', attr.currentPage ? escapeHtml(attr.currentPage) : '&mdash;')}
+  ${field('Journey (page &middot; active time)', journeyHtml)}
+  ${field('Location', location)}
+  ${field('Device', attr.device ? escapeHtml(attr.device) : '&mdash;')}`;
+}
+
 // Internal notification (to the team)
-function buildMain(lang, name, email, message) {
+function buildMain(lang, name, email, message, attribution) {
   const s = STRINGS[lang] || STRINGS['pt-BR'];
   const field = (label, valueHtml) => `
     <tr><td style="padding:0 40px;">
@@ -184,6 +229,7 @@ function buildMain(lang, name, email, message) {
   ${field(s.main.name, escapeHtml(name))}
   ${field(s.main.email, `<a href="mailto:${escapeHtml(email)}" style="color:${C.accent};text-decoration:none;">${escapeHtml(email)}</a>`)}
   ${field(s.main.message, escapeHtml(message))}
+  ${attributionRows(attribution, field)}
   <tr><td style="padding:26px 40px 36px;">
     <p style="margin:0;color:${C.muted};font-family:Arial,Helvetica,sans-serif;font-size:11px;">${s.main.via}</p>
   </td></tr>
@@ -191,17 +237,44 @@ function buildMain(lang, name, email, message) {
   return shell(`${s.main.eyebrow}: ${name}`, rows);
 }
 
+// Plain-text attribution lines for the text/ part of the notification.
+function attributionText(attr) {
+  if (!attr) return [];
+  const ft = attr.firstTouch;
+  const geo = attr.geo || {};
+  const journey = Array.isArray(attr.journey) ? attr.journey : [];
+  const src = ft
+    ? (ft.utm && ft.utm.utm_source
+        ? [ft.utm.utm_source, ft.utm.utm_medium].filter(Boolean).join(' / ')
+        : ft.referrer || 'Direct')
+    : 'Direct / unknown';
+  return [
+    '',
+    '--- Attribution ---',
+    `Source: ${src}`,
+    `Landing page: ${ft && ft.landing ? ft.landing : '-'}`,
+    `Submitted from: ${attr.currentPage || '-'}`,
+    `Journey: ${journey.length ? journey.map((h) => `${h.p} (${fmtDuration(h.s)})`).join(' > ') : (attr.consented ? 'none' : 'not tracked (no consent)')}`,
+    `Location: ${[geo.city, geo.region, geo.country].filter(Boolean).join(', ') || '-'}`,
+    `Device: ${attr.device || '-'}`,
+  ];
+}
+
 function plain(lines) {
   return lines.filter((l) => l !== null && l !== undefined).join('\n');
 }
 
 // Single entry point used by the API route.
-function getContactEmails(lang, { name, email, message }) {
+/**
+ * @param {string} lang
+ * @param {{ name: string, email: string, message: string, attribution?: object | null }} fields
+ */
+function getContactEmails(lang, { name, email, message, attribution = null }) {
   const s = STRINGS[lang] || STRINGS['pt-BR'];
   return {
     subject: s.subject(name),
     autoReplySubject: s.autoReplySubject,
-    mainHtml: buildMain(lang, name, email, message),
+    mainHtml: buildMain(lang, name, email, message, attribution),
     autoReplyHtml: buildAutoReply(lang, name),
     mainText: plain([
       s.main.eyebrow,
@@ -212,6 +285,7 @@ function getContactEmails(lang, { name, email, message }) {
       '',
       `${s.main.message}:`,
       message,
+      ...attributionText(attribution),
       '',
       '---',
       s.main.via,

@@ -14,6 +14,46 @@ const isMailTransportError = (e: unknown): e is MailTransportError => e instance
 
 const SUPPORTED = ['en', 'pt-BR', 'es', 'it'];
 
+const header = (req: NextApiRequest, name: string): string | undefined => {
+  const v = req.headers[name];
+  return Array.isArray(v) ? v[0] : v;
+};
+
+// The client attribution is untrusted input: clip strings, cap the journey, and
+// coerce dwell to sane numbers. HTML escaping happens in the email builder.
+function sanitizeAttribution(a: unknown, req: NextApiRequest) {
+  const geo = {
+    city: (() => {
+      try {
+        return decodeURIComponent(header(req, 'x-vercel-ip-city') || '') || undefined;
+      } catch {
+        return undefined;
+      }
+    })(),
+    region: header(req, 'x-vercel-ip-country-region') || undefined,
+    country: header(req, 'x-vercel-ip-country') || undefined,
+  };
+  const clip = (v: unknown, n = 200) => (typeof v === 'string' ? v.slice(0, n) : undefined);
+  if (!a || typeof a !== 'object') return { firstTouch: null, journey: [], geo, consented: false };
+  const src = a as Record<string, unknown>;
+  const ft = src.firstTouch && typeof src.firstTouch === 'object' ? (src.firstTouch as Record<string, unknown>) : null;
+  const utm = ft && ft.utm && typeof ft.utm === 'object' ? (ft.utm as Record<string, string>) : {};
+  const journey = Array.isArray(src.journey)
+    ? src.journey.slice(0, 30).map((h) => {
+        const hop = (h ?? {}) as Record<string, unknown>;
+        return { p: clip(hop.p, 120) || '', s: Math.max(0, Math.min(86400, Number(hop.s) || 0)) };
+      })
+    : [];
+  return {
+    firstTouch: ft ? { referrer: clip(ft.referrer), landing: clip(ft.landing, 120), utm } : null,
+    journey,
+    currentPage: clip(src.currentPage, 120),
+    device: clip(src.device, 20),
+    consented: !!src.consented,
+    geo,
+  };
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
@@ -22,7 +62,7 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
-  const { name, email, message, language: rawLang = 'pt-BR', _hp, _t } = req.body;
+  const { name, email, message, language: rawLang = 'pt-BR', _hp, _t, attribution } = req.body;
   const language = SUPPORTED.includes(rawLang) ? rawLang : 'pt-BR';
 
   // Honeypot: bots fill this hidden field
@@ -46,7 +86,12 @@ export default async function handler(
     return res.status(200).json({ success: true, message: 'Email sent successfully' });
   }
 
-  const mail = getContactEmails(language, { name, email, message });
+  const mail = getContactEmails(language, {
+    name,
+    email,
+    message,
+    attribution: sanitizeAttribution(attribution, req),
+  });
 
   try {
     const transporter = nodemailer.createTransport({

@@ -15,6 +15,7 @@ import { TranslationProvider } from '../contexts/TranslationContext';
 import Layout from '../components/Layout';
 import CookieConsent from '../components/CookieConsent';
 import Preloader from '../components/Preloader';
+import { captureFirstTouch, enterPage, syncVisibility } from '@/lib/attribution';
 
 const GA_TRACKING_ID = 'G-PZ3WX1KF35';
 
@@ -50,11 +51,27 @@ function MyApp({ Component, pageProps }: AppProps) {
       if (typeof window !== 'undefined' && window.fbq) {
         window.fbq('track', 'PageView');
       }
+      // Contact-form lead attribution: record the page journey (not on CV routes,
+      // which are personal/cookieless). enterPage closes the previous page's dwell.
+      if (!isCV) enterPage(url.split('?')[0]);
     };
 
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => router.events.off('routeChangeComplete', handleRouteChange);
-  }, [router.events]);
+  }, [router.events, isCV]);
+
+  // Attribution: first-touch capture + start the journey on the entry page, and
+  // pause active-time while the tab is hidden. Skipped on the CV subdomains.
+  useEffect(() => {
+    if (isCV) return;
+    captureFirstTouch();
+    enterPage(window.location.pathname);
+    const onVis = () => syncVisibility();
+    document.addEventListener('visibilitychange', onVis);
+    return () => document.removeEventListener('visibilitychange', onVis);
+    // Runs once for the session entry (isCV is stable per page load); route
+    // changes are handled by the routeChangeComplete effect above.
+  }, []);
 
   // On the CV subdomains, kill the overscroll bounce and paint the root
   // background with the page's own colour — otherwise the rubber-band scroll

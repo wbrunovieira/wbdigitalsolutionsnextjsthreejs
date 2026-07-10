@@ -7,6 +7,7 @@ const EarthCanvas = dynamic(() => import('./canvas/Earth'), { ssr: false, loadin
 import { slideIn } from '../utils/motion';
 import { useTranslations } from '@/contexts/TranslationContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getAttribution } from '@/lib/attribution';
 import AnimatedInput from './AnimatedInput';
 import AnimatedTextarea from './AnimatedTextarea';
 import { FiMail, FiPhone, FiCopy, FiCheck, FiCheckCircle } from 'react-icons/fi';
@@ -123,6 +124,7 @@ const Contact: React.FC = () => {
           language: language,
           _hp: honeypot,
           _t: loadTimeRef.current,
+          attribution: getAttribution(),
         }),
       });
 
