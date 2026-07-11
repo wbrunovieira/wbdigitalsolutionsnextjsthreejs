@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ButtonStandard from './ButtonStandard';
 import dynamic from 'next/dynamic';
@@ -43,6 +44,16 @@ const SUCCESS_UI: Record<string, { title: string; body: string }> = {
   it: { title: 'Messaggio inviato!', body: 'Grazie per averci contattato. Ti risponderemo a breve.' },
 };
 
+// Consent/transparency note under the submit button: sending the form attaches
+// lead-source attribution (origin, navigation, approximate location) to the
+// message, so we point to the privacy policy at the point of collection.
+const PRIVACY_NOTICE: Record<string, { before: string; link: string; after: string }> = {
+  'pt-BR': { before: 'Ao enviar, você está ciente da nossa ', link: 'Política de Privacidade', after: '.' },
+  en: { before: 'By submitting, you acknowledge our ', link: 'Privacy Policy', after: '.' },
+  es: { before: 'Al enviar, reconoces nuestra ', link: 'Política de Privacidad', after: '.' },
+  it: { before: 'Inviando, prendi atto della nostra ', link: 'Informativa sulla Privacy', after: '.' },
+};
+
 const Contact: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -63,6 +74,7 @@ const Contact: React.FC = () => {
   const copyUi = COPY_UI[lang] ?? COPY_UI['pt-BR'];
   const phoneLabel = PHONE_LABEL[lang] ?? PHONE_LABEL['pt-BR'];
   const successUi = SUCCESS_UI[lang] ?? SUCCESS_UI['pt-BR'];
+  const privacyNotice = PRIVACY_NOTICE[lang] ?? PRIVACY_NOTICE['pt-BR'];
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const handleCopy = async (key: string, text: string) => {
@@ -271,6 +283,17 @@ const Contact: React.FC = () => {
                   isLoading={isSubmitting}
                 />
               </div>
+
+              <p className="mt-4 text-xs leading-relaxed text-secondary/70">
+                {privacyNotice.before}
+                <Link
+                  href="/privacy-policy"
+                  className="text-yellowcustom underline decoration-yellowcustom/40 underline-offset-2 transition-colors hover:decoration-yellowcustom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70"
+                >
+                  {privacyNotice.link}
+                </Link>
+                {privacyNotice.after}
+              </p>
             </form>
             </>
             )}

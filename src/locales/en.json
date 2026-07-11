@@ -664,6 +664,8 @@
   "you": "You:",
   "bot": "Bot:",
   "responseTime": "Response time",
+  "chatbotPrivacyNote": "Your messages are processed by our assistant to answer you. See our",
+  "chatbotPrivacyLink": "Privacy Policy",
   "mouseMoveTutorialText": "Move your mouse to interact with particles",
   "cardClickTutorialText": "Click on each card to explore our services",
   "heroStatement": "Websites, systems &",

@@ -30,14 +30,9 @@ class MyDocument extends Document<MyDocumentProps> {
         <body>
           <Main />
           <NextScript />
-          <noscript>
-            <img
-              height="1"
-              width="1"
-              src="https://www.facebook.com/tr?id=1261665671358254&ev=PageView&noscript=1"
-              alt="facebook pixel"
-            />
-          </noscript>
+          {/* Meta Pixel loads only via CookieConsent.tsx after marketing consent.
+              The former noscript <img> beacon was removed: it fired a PageView to
+              Meta on every load regardless of consent, bypassing the banner. */}
         </body>
       </Html>
     );

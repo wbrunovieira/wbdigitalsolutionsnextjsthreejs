@@ -657,6 +657,8 @@
   "you": "Tu:",
   "bot": "Bot:",
   "responseTime": "Tempo di risposta",
+  "chatbotPrivacyNote": "I tuoi messaggi sono elaborati dal nostro assistente per risponderti. Consulta la nostra",
+  "chatbotPrivacyLink": "Informativa sulla Privacy",
   "mouseMoveTutorialText": "Muovi il mouse per interagire con le particelle",
   "cardClickTutorialText": "Clicca su ogni scheda per esplorare i nostri servizi",
   "heroStatement": "Siti, sistemi &",

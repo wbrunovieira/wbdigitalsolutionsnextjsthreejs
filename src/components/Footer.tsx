@@ -4,12 +4,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '/public/svg/logo-white.svg';
 import { useTranslations } from '@/contexts/TranslationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok } from 'react-icons/fa';
 import { FiPhone, FiMail } from 'react-icons/fi';
 import { SiWhatsapp } from 'react-icons/si';
 
+const PRIVACY_LABEL: Record<string, string> = {
+  'pt-BR': 'Política de Privacidade',
+  en: 'Privacy Policy',
+  es: 'Política de Privacidad',
+  it: 'Informativa sulla Privacy',
+};
+
 const Footer: React.FC = () => {
   const currentMessages = useTranslations();
+  const { language } = useLanguage();
+  const privacyLabel = PRIVACY_LABEL[language === 'pt' ? 'pt-BR' : language] ?? PRIVACY_LABEL['pt-BR'];
 
   return (
     <footer className="bg-modern-gradient text-white px-6 py-10 lg:px-10 mt-32">
@@ -123,6 +133,9 @@ const Footer: React.FC = () => {
         <p className="text-secondary text-sm">
           © WBDIGITALSOLUTIONS | {currentMessages.allRightsReserved}
         </p>
+        <Link href="/privacy-policy" className="mt-1 inline-block text-secondary text-xs underline underline-offset-2 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">
+          {privacyLabel}
+        </Link>
       </div>
     </footer>
   );

@@ -653,6 +653,8 @@
   "you": "Tú:",
   "bot": "Bot:",
   "responseTime": "Tiempo de respuesta",
+  "chatbotPrivacyNote": "Tus mensajes son procesados por nuestro asistente para responderte. Consulta nuestra",
+  "chatbotPrivacyLink": "Política de Privacidad",
   "mouseMoveTutorialText": "Mueve el ratón para interactuar con las partículas",
   "cardClickTutorialText": "Haz clic en cada tarjeta para explorar nuestros servicios",
   "heroStatement": "Sitios, sistemas &",

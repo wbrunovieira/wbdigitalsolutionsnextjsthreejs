@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const STORAGE_KEY = 'wb-consent-v2'; // JSON: { analytics: bool, marketing: bool, ts }
@@ -12,6 +13,8 @@ const UI: Record<string, {
   bannerText: string;
   title: string;
   intro: string;
+  formNote: string;
+  policy: string;
   alwaysOn: string;
   acceptAll: string;
   rejectAll: string;
@@ -23,6 +26,8 @@ const UI: Record<string, {
     bannerText: 'Usamos cookies para fazer o site funcionar, medir o tráfego e (com sua permissão) personalizar marketing. Você escolhe o que aceitar.',
     title: 'Suas preferências de privacidade',
     intro: 'Controle como coletamos e usamos seus dados neste site. Os cookies necessários são sempre ativos; os demais dependem da sua escolha.',
+    formNote: 'Ao enviar o formulário de contato, anexamos à sua mensagem dados de navegação e origem (páginas visitadas, referência e localização aproximada) para entender e responder melhor sua solicitação.',
+    policy: 'Política de Privacidade',
     alwaysOn: 'Sempre ativo',
     acceptAll: 'Aceitar tudo',
     rejectAll: 'Recusar',
@@ -30,14 +35,16 @@ const UI: Record<string, {
     save: 'Salvar preferências',
     cats: {
       necessary: ['Necessários', 'Essenciais para o site funcionar: idioma, segurança e envio de formulários. Não identificam você.'],
-      analytics: ['Análise', 'Google Analytics e Vercel Analytics: páginas visitadas, dispositivo, origem do acesso e localização aproximada — para melhorar o site.'],
-      marketing: ['Marketing', 'Facebook Pixel e Google Ads: medem campanhas e ajudam a mostrar anúncios relevantes. Só com seu consentimento.'],
+      analytics: ['Análise', 'Google Analytics e Vercel Analytics: páginas visitadas, dispositivo, origem do acesso e localização aproximada, para melhorar o site.'],
+      marketing: ['Marketing', 'Facebook Pixel e, quando ativo, Google Ads: medem campanhas e ajudam a mostrar anúncios relevantes. Só com seu consentimento.'],
     },
   },
   en: {
     bannerText: 'We use cookies to run the site, measure traffic and (with your permission) personalize marketing. You choose what to allow.',
     title: 'Your privacy preferences',
     intro: 'Control how we collect and use your data on this site. Necessary cookies are always on; the rest depend on your choice.',
+    formNote: 'When you submit the contact form, we attach navigation and source data (pages visited, referrer and approximate location) to your message to understand and respond to your request better.',
+    policy: 'Privacy Policy',
     alwaysOn: 'Always on',
     acceptAll: 'Accept all',
     rejectAll: 'Decline',
@@ -45,14 +52,16 @@ const UI: Record<string, {
     save: 'Save preferences',
     cats: {
       necessary: ['Necessary', "Essential for the site to work: language, security and form submissions. They don't identify you."],
-      analytics: ['Analytics', 'Google Analytics & Vercel Analytics: pages visited, device, traffic source and approximate location — to improve the site.'],
-      marketing: ['Marketing', 'Facebook Pixel & Google Ads: measure campaigns and help show relevant ads. Only with your consent.'],
+      analytics: ['Analytics', 'Google Analytics & Vercel Analytics: pages visited, device, traffic source and approximate location, to improve the site.'],
+      marketing: ['Marketing', 'Facebook Pixel and, when active, Google Ads: measure campaigns and help show relevant ads. Only with your consent.'],
     },
   },
   es: {
     bannerText: 'Usamos cookies para que el sitio funcione, medir el tráfico y (con tu permiso) personalizar el marketing. Tú eliges qué aceptar.',
     title: 'Tus preferencias de privacidad',
     intro: 'Controla cómo recopilamos y usamos tus datos en este sitio. Las cookies necesarias siempre están activas; el resto depende de tu elección.',
+    formNote: 'Al enviar el formulario de contacto, adjuntamos a tu mensaje datos de navegación y origen (páginas visitadas, referencia y ubicación aproximada) para entender y responder mejor tu solicitud.',
+    policy: 'Política de Privacidad',
     alwaysOn: 'Siempre activo',
     acceptAll: 'Aceptar todo',
     rejectAll: 'Rechazar',
@@ -60,14 +69,16 @@ const UI: Record<string, {
     save: 'Guardar preferencias',
     cats: {
       necessary: ['Necesarias', 'Esenciales para que el sitio funcione: idioma, seguridad y envío de formularios. No te identifican.'],
-      analytics: ['Análisis', 'Google Analytics y Vercel Analytics: páginas visitadas, dispositivo, origen del acceso y ubicación aproximada — para mejorar el sitio.'],
-      marketing: ['Marketing', 'Facebook Pixel y Google Ads: miden campañas y ayudan a mostrar anuncios relevantes. Solo con tu consentimiento.'],
+      analytics: ['Análisis', 'Google Analytics y Vercel Analytics: páginas visitadas, dispositivo, origen del acceso y ubicación aproximada, para mejorar el sitio.'],
+      marketing: ['Marketing', 'Facebook Pixel y, cuando está activo, Google Ads: miden campañas y ayudan a mostrar anuncios relevantes. Solo con tu consentimiento.'],
     },
   },
   it: {
     bannerText: 'Usiamo i cookie per far funzionare il sito, misurare il traffico e (col tuo permesso) personalizzare il marketing. Scegli tu cosa accettare.',
     title: 'Le tue preferenze sulla privacy',
     intro: 'Controlla come raccogliamo e usiamo i tuoi dati su questo sito. I cookie necessari sono sempre attivi; gli altri dipendono dalla tua scelta.',
+    formNote: 'Quando invii il modulo di contatto, alleghiamo al tuo messaggio dati di navigazione e origine (pagine visitate, referrer e posizione approssimativa) per capire e rispondere meglio alla tua richiesta.',
+    policy: 'Informativa sulla Privacy',
     alwaysOn: 'Sempre attivo',
     acceptAll: 'Accetta tutto',
     rejectAll: 'Rifiuta',
@@ -75,8 +86,8 @@ const UI: Record<string, {
     save: 'Salva preferenze',
     cats: {
       necessary: ['Necessari', 'Essenziali per il funzionamento del sito: lingua, sicurezza e invio dei moduli. Non ti identificano.'],
-      analytics: ['Analisi', 'Google Analytics e Vercel Analytics: pagine visitate, dispositivo, origine del traffico e posizione approssimativa — per migliorare il sito.'],
-      marketing: ['Marketing', 'Facebook Pixel e Google Ads: misurano le campagne e aiutano a mostrare annunci pertinenti. Solo col tuo consenso.'],
+      analytics: ['Analisi', 'Google Analytics e Vercel Analytics: pagine visitate, dispositivo, origine del traffico e posizione approssimativa, per migliorare il sito.'],
+      marketing: ['Marketing', 'Facebook Pixel e, quando attivo, Google Ads: misurano le campagne e aiutano a mostrare annunci pertinenti. Solo col tuo consenso.'],
     },
   },
 };
@@ -206,7 +217,12 @@ const CookieConsent: React.FC = () => {
       <div className="mx-auto max-w-2xl rounded-2xl border border-white/10 bg-[#1a0826] shadow-2xl backdrop-blur-md">
         {!expanded ? (
           <div className="p-4 sm:p-5 md:flex md:items-center md:gap-4">
-            <p className="mb-3 text-sm leading-relaxed text-secondary md:mb-0 md:flex-1">{t.bannerText}</p>
+            <p className="mb-3 text-sm leading-relaxed text-secondary md:mb-0 md:flex-1">
+              {t.bannerText}{' '}
+              <Link href="/privacy-policy" className="text-yellowcustom underline underline-offset-2 hover:text-yellowcustom/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">
+                {t.policy}
+              </Link>
+            </p>
             <div className="flex shrink-0 flex-wrap gap-2">
               <button type="button" onClick={() => setExpanded(true)} className="rounded-lg border border-white/20 px-4 py-2 text-sm font-medium text-secondary transition-colors hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">
                 {t.customize}
@@ -223,6 +239,12 @@ const CookieConsent: React.FC = () => {
           <div className="max-h-[80vh] overflow-y-auto p-5">
             <h2 className="text-base font-bold text-white">{t.title}</h2>
             <p className="mt-1 text-xs leading-relaxed text-secondary/80">{t.intro}</p>
+            <p className="mt-2 text-xs leading-relaxed text-secondary/80">
+              {t.formNote}{' '}
+              <Link href="/privacy-policy" className="text-yellowcustom underline underline-offset-2 hover:text-yellowcustom/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">
+                {t.policy}
+              </Link>
+            </p>
             <div className="mt-3">
               {cat('necessary', true, undefined, true)}
               {cat('analytics', analytics, setAnalytics)}

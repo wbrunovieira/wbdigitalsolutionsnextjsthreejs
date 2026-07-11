@@ -23,6 +23,7 @@ const content = {
     successMsg: 'Cadastro realizado com sucesso. Em breve você receberá nossos conteúdos na sua caixa de entrada.',
     errorMsg: 'Algo deu errado. Tente novamente.',
     privacy: 'Sem spam. Cancele quando quiser.',
+    policyLink: 'Política de Privacidade',
     backHome: '← Voltar para o site',
     nameRequired: 'Nome é obrigatório',
     emailRequired: 'E-mail é obrigatório',
@@ -42,6 +43,7 @@ const content = {
     successMsg: "You're successfully subscribed. You'll receive our content in your inbox soon.",
     errorMsg: 'Something went wrong. Please try again.',
     privacy: 'No spam. Unsubscribe anytime.',
+    policyLink: 'Privacy Policy',
     backHome: '← Back to website',
     nameRequired: 'Name is required',
     emailRequired: 'Email is required',
@@ -61,6 +63,7 @@ const content = {
     successMsg: 'Registro exitoso. Pronto recibirás nuestros contenidos en tu bandeja de entrada.',
     errorMsg: 'Algo salió mal. Inténtalo de nuevo.',
     privacy: 'Sin spam. Cancela cuando quieras.',
+    policyLink: 'Política de Privacidad',
     backHome: '← Volver al sitio',
     nameRequired: 'El nombre es obligatorio',
     emailRequired: 'El correo es obligatorio',
@@ -80,6 +83,7 @@ const content = {
     successMsg: 'Iscrizione completata con successo. Presto riceverai i nostri contenuti nella tua casella di posta.',
     errorMsg: 'Qualcosa è andato storto. Riprova.',
     privacy: 'Niente spam. Cancellati quando vuoi.',
+    policyLink: 'Informativa sulla Privacy',
     backHome: '← Torna al sito',
     nameRequired: 'Il nome è obbligatorio',
     emailRequired: "L'email è obbligatoria",
@@ -258,7 +262,12 @@ export default function NewsletterPage() {
                   <p className="text-red-400 text-sm text-center">{t.errorMsg}</p>
                 )}
 
-                <p className="text-white/30 text-xs text-center mt-1">{t.privacy}</p>
+                <p className="text-white/30 text-xs text-center mt-1">
+                  {t.privacy}{' '}
+                  <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#792990]">
+                    {t.policyLink}
+                  </Link>
+                </p>
               </motion.form>
             )}
           </AnimatePresence>

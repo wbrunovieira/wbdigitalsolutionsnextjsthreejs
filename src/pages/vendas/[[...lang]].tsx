@@ -29,6 +29,11 @@ const OG_IMG: Record<CVLang, string> = {
   es: '/img/og-vendas-es.jpg',
 };
 const OG_LOCALE: Record<CVLang, string> = { en: 'en_US', 'pt-BR': 'pt_BR', it: 'it_IT', es: 'es_ES' };
+/** Privacy-policy link label per locale (this page bypasses the site Footer,
+    yet still loads analytics — so it needs a reachable privacy notice). */
+const PRIVACY_LABEL: Record<CVLang, string> = {
+  en: 'Privacy Policy', 'pt-BR': 'Política de Privacidade', it: 'Informativa sulla Privacy', es: 'Política de Privacidad',
+};
 
 const SEO: Record<CVLang, { title: string; description: string }> = {
   en: {
@@ -165,6 +170,16 @@ export default function SalesCV({ lang }: Props) {
       <SalesAbout />
       <SalesPhilosophy variant="clarity" id="clareza" />
       <SalesContact />
+      <footer className="py-8 text-center">
+        <a
+          href="https://www.wbdigitalsolutions.com/privacy-policy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-black/40 underline underline-offset-2 transition-colors hover:text-black/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+        >
+          {PRIVACY_LABEL[lang]}
+        </a>
+      </footer>
     </LanguageContext.Provider>
   );
 }

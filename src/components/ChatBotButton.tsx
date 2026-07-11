@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import Link from 'next/link';
 import { FiMessageCircle } from 'react-icons/fi';
 import { useTranslations } from '@/contexts/TranslationContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -477,6 +478,17 @@ const ChatBotButton: React.FC = () => {
               >
                 {t.sendButton}
               </button>
+
+              <p className="mt-3 text-[0.7rem] leading-snug text-gray-500">
+                {t.chatbotPrivacyNote}{' '}
+                <Link
+                  href="/privacy-policy"
+                  className="text-custom-purple underline underline-offset-2 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-custom-purple"
+                >
+                  {t.chatbotPrivacyLink}
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>

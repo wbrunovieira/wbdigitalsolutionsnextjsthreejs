@@ -27,6 +27,7 @@ const SERVICE_NAME_BY_PAGE: Record<string, string> = {
 const BREADCRUMB_LABEL_BY_PAGE: Record<string, string> = {
   contact: 'Contact', websites: 'Websites', automation: 'Automation',
   ai: 'AI', systems: 'Systems', experience: '3D Experience',
+  'privacy-policy': 'Privacy Policy',
 };
 
 interface PageHeadProps {
