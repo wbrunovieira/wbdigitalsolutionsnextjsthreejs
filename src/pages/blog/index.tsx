@@ -5,6 +5,7 @@ import useBlogTranslation from '@/contexts/useBlogTranslation';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageHead from '@/components/PageHead';
+import { SITE_BASE_URL } from '@/lib/seoUrls';
 import type { GetStaticProps } from 'next';
 import { i18nProps } from '@/lib/i18n';
 import type { BlogTranslation } from '@/contexts/useBlogTranslation';
@@ -57,7 +58,17 @@ const BlogIndexPage: React.FC<{ blogIndex: BlogIndexStrings }> = ({ blogIndex })
 
   return (
     <>
-      <PageHead pageKey="blog" />
+      <PageHead
+        pageKey="blog"
+        collection={{
+          name: blogIndex?.title || 'Blog',
+          description: blogIndex?.subtitle,
+          url: `${SITE_BASE_URL}/blog`,
+          // URL-only (post titles load via an async hook, absent at SSR); the
+          // static ids keep the full collection enumerable in server HTML.
+          items: blogList.map(({ id }) => ({ url: `${SITE_BASE_URL}/blog/${id}` })),
+        }}
+      />
       <div className="relative w-full min-h-screen overflow-hidden mt-32">
 
       <div className="text-center mb-8 p-2">

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { makeI18nStaticProps } from '@/lib/i18n';
 import { useTranslations } from '@/contexts/TranslationContext';
 import PageHead from '@/components/PageHead';
+import { SITE_BASE_URL } from '@/lib/seoUrls';
 import ProjectFilters from '@/components/projects/ProjectFilters';
 import FeaturedProject from '@/components/projects/FeaturedProject';
 import ProjectsGrid from '@/components/projects/ProjectsGrid';
@@ -34,6 +35,12 @@ const ProjectsPage: React.FC = () => {
     p.category === filter || (p.categories?.includes(filter as Exclude<ProjectCategory, 'all'>) ?? false);
   const gridProjects = filter === 'all' ? rest : items.filter(matchesFilter);
 
+  // CollectionPage ItemList: only projects with a dedicated page (slug) are
+  // crawlable URLs worth enumerating. Names come from the localized content.
+  const collectionItems = items
+    .filter((p) => p.slug)
+    .map((p) => ({ name: p.title, url: `${SITE_BASE_URL}/projects/${p.slug}` }));
+
   // Projects with a dedicated page navigate to it; the rest open the modal.
   const handleSelect = (project: Project) => {
     // void: fire-and-forget navigation; Next.js surfaces routing errors itself.
@@ -43,7 +50,15 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <>
-      <PageHead pageKey="projects" />
+      <PageHead
+        pageKey="projects"
+        collection={{
+          name: content.title,
+          description: content.subtitle,
+          url: `${SITE_BASE_URL}/projects`,
+          items: collectionItems,
+        }}
+      />
 
       <main className="min-h-screen bg-gradient-to-b from-primary via-primary/95 to-primary">
         {/* 3D hero — floating, clickable project cards */}

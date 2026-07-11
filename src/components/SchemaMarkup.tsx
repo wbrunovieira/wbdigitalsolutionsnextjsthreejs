@@ -7,12 +7,36 @@ export interface OrganizationSchema {
   logo: string;
   description?: string;
   sameAs?: string[];
+  // Stable @id so other nodes (e.g. Person.worksFor) can reference this
+  // Organization across separate JSON-LD blocks (consumers merge by @id).
+  id?: string;
+  founder?: { id: string; name: string };
   contactPoint?: {
     telephone: string;
     contactType: string;
     areaServed: string[];
     availableLanguage: string[];
   };
+}
+
+export interface PersonSchema {
+  type: 'Person';
+  id: string;
+  name: string;
+  url: string;
+  jobTitle?: string;
+  sameAs?: string[];
+  knowsAbout?: string[];
+  // References the Organization node by @id (entity graph link).
+  worksForId?: string;
+}
+
+export interface CollectionPageSchema {
+  type: 'CollectionPage';
+  name: string;
+  description?: string;
+  url: string;
+  items: Array<{ name?: string; url: string }>;
 }
 
 export interface WebSiteSchema {
@@ -102,12 +126,14 @@ export interface LocalBusinessSchema {
   image?: string[];
 }
 
-type SchemaType = 
-  | OrganizationSchema 
-  | WebSiteSchema 
-  | ServiceSchema 
-  | BlogPostingSchema 
-  | BreadcrumbSchema 
+type SchemaType =
+  | OrganizationSchema
+  | PersonSchema
+  | CollectionPageSchema
+  | WebSiteSchema
+  | ServiceSchema
+  | BlogPostingSchema
+  | BreadcrumbSchema
   | FAQSchema
   | LocalBusinessSchema;
 
@@ -126,11 +152,17 @@ const SchemaMarkup: React.FC<SchemaMarkupProps> = ({ schemas }) => {
         return {
           ...baseSchema,
           '@type': 'Organization',
+          '@id': schema.id,
           name: schema.name,
           url: schema.url,
           logo: schema.logo,
           description: schema.description,
           sameAs: schema.sameAs,
+          founder: schema.founder ? {
+            '@type': 'Person',
+            '@id': schema.founder.id,
+            name: schema.founder.name,
+          } : undefined,
           contactPoint: schema.contactPoint ? {
             '@type': 'ContactPoint',
             telephone: schema.contactPoint.telephone,
@@ -138,6 +170,41 @@ const SchemaMarkup: React.FC<SchemaMarkupProps> = ({ schemas }) => {
             areaServed: schema.contactPoint.areaServed,
             availableLanguage: schema.contactPoint.availableLanguage,
           } : undefined,
+        };
+
+      case 'Person':
+        return {
+          ...baseSchema,
+          '@type': 'Person',
+          '@id': schema.id,
+          name: schema.name,
+          url: schema.url,
+          jobTitle: schema.jobTitle,
+          sameAs: schema.sameAs,
+          knowsAbout: schema.knowsAbout,
+          worksFor: schema.worksForId ? {
+            '@type': 'Organization',
+            '@id': schema.worksForId,
+          } : undefined,
+        };
+
+      case 'CollectionPage':
+        return {
+          ...baseSchema,
+          '@type': 'CollectionPage',
+          name: schema.name,
+          description: schema.description,
+          url: schema.url,
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: schema.items.length,
+            itemListElement: schema.items.map((item, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              url: item.url,
+              name: item.name,
+            })),
+          },
         };
 
       case 'WebSite':

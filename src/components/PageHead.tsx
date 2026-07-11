@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import SchemaMarkup from './SchemaMarkup';
 import {
   getOrganizationSchema,
+  getPersonSchema,
+  getCollectionPageSchema,
   getWebSiteSchema,
   getServiceSchema,
   getBreadcrumbSchema,
@@ -46,6 +48,14 @@ interface PageHeadProps {
     datePublished: string;
     images?: string[];
   };
+  // Index pages (blog, projects) pass their listing so a CollectionPage +
+  // ItemList schema enumerates the collection. URLs must be absolute.
+  collection?: {
+    name: string;
+    description?: string;
+    url: string;
+    items: Array<{ name?: string; url: string }>;
+  };
 }
 
 const PageHead: React.FC<PageHeadProps> = ({
@@ -56,6 +66,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   customImage,
   canonicalPath,
   blogPost,
+  collection,
 }) => {
   const t = useTranslations();
   const { language } = useLanguage();
@@ -117,10 +128,18 @@ const PageHead: React.FC<PageHeadProps> = ({
   // Generate schemas based on page type
   const schemas = [];
   
-  // Add Organization schema on homepage
+  // Add Organization + founder Person + WebSite schema on homepage
   if (!pageKey || pageKey === 'home') {
     schemas.push(getOrganizationSchema(language), getWebSiteSchema(language));
     schemas.push(getLocalBusinessSchema(language));
+    schemas.push(getPersonSchema(language));
+  }
+
+  // Add CollectionPage + ItemList schema for listing pages (blog, projects)
+  if (collection) {
+    schemas.push(getCollectionPageSchema(
+      collection.name, collection.description, collection.url, collection.items,
+    ));
   }
 
   // Add Service schema for service pages

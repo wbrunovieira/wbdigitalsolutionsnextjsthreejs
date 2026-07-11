@@ -1,15 +1,24 @@
-import { 
-  OrganizationSchema, 
-  WebSiteSchema, 
-  ServiceSchema, 
-  BlogPostingSchema, 
+import {
+  OrganizationSchema,
+  PersonSchema,
+  CollectionPageSchema,
+  WebSiteSchema,
+  ServiceSchema,
+  BlogPostingSchema,
   BreadcrumbSchema,
-  LocalBusinessSchema, 
+  LocalBusinessSchema,
 } from '@/components/SchemaMarkup';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
 const LOGO_URL = `${SITE_URL}/svg/logo.svg`;
 const COMPANY_NAME = 'WB Digital Solutions';
+
+// Stable entity-graph anchors: the Organization and its founder are referenced
+// by @id across separate JSON-LD blocks so consumers (Google, LLMs) merge them
+// into one linked entity.
+const ORG_ID = `${SITE_URL}/#organization`;
+const FOUNDER_ID = `${SITE_URL}/#founder`;
+const FOUNDER_NAME = 'Walter Bruno Prado Vieira';
 
 export const getOrganizationSchema = (language: string): OrganizationSchema => ({
   type: 'Organization',
@@ -17,6 +26,8 @@ export const getOrganizationSchema = (language: string): OrganizationSchema => (
   url: SITE_URL,
   logo: LOGO_URL,
   description: getDescription(language, 'organization'),
+  id: ORG_ID,
+  founder: { id: FOUNDER_ID, name: FOUNDER_NAME },
   sameAs: [
     'https://www.linkedin.com/company/wbdigitalsolutions',
     'https://www.facebook.com/wbdigitalsolutions',
@@ -28,6 +39,42 @@ export const getOrganizationSchema = (language: string): OrganizationSchema => (
     areaServed: ['BR', 'US', 'ES', 'IT'],
     availableLanguage: ['Portuguese', 'English', 'Spanish', 'Italian'],
   },
+});
+
+// Founder entity (Bruno). sameAs corroborates authority via his personal
+// profiles and the two CV subdomains; worksFor links back to the Organization.
+export const getPersonSchema = (language: string): PersonSchema => ({
+  type: 'Person',
+  id: FOUNDER_ID,
+  name: FOUNDER_NAME,
+  url: SITE_URL,
+  jobTitle: getFounderJobTitle(language),
+  worksForId: ORG_ID,
+  sameAs: [
+    'https://www.linkedin.com/in/walter-bruno-vieira',
+    'https://github.com/wbrunovieira',
+    'https://brunodev.wbdigitalsolutions.com',
+    'https://brunov.wbdigitalsolutions.com',
+  ],
+  knowsAbout: [
+    'Web Development', 'Artificial Intelligence', 'AI Agents', 'RAG',
+    'TypeScript', 'React', 'Next.js', 'Node.js', 'NestJS', 'Python', 'Go',
+    'Rust', 'Three.js', 'WebGL', 'PostgreSQL', 'AWS', 'Docker', 'Kubernetes',
+    'Automation', 'Software Architecture',
+  ],
+});
+
+export const getCollectionPageSchema = (
+  name: string,
+  description: string | undefined,
+  url: string,
+  items: Array<{ name?: string; url: string }>,
+): CollectionPageSchema => ({
+  type: 'CollectionPage',
+  name,
+  description,
+  url,
+  items,
 });
 
 // `_language` is unused (no localized content here) but kept for signature
@@ -117,6 +164,17 @@ export const getBreadcrumbSchema = (
     item: item.url,
   })),
 });
+
+const getFounderJobTitle = (language: string): string => {
+  const titles: Record<string, string> = {
+    'en': 'Founder & Lead Software Engineer',
+    'es': 'Fundador e Ingeniero de Software Principal',
+    'it': 'Fondatore e Ingegnere del Software Principale',
+    'pt-BR': 'Fundador e Engenheiro de Software Principal',
+  };
+  const langKey = language === 'pt' ? 'pt-BR' : language;
+  return titles[langKey] || titles['en'];
+};
 
 // Helper functions for translations
 const getDescription = (language: string, type: 'organization' | 'business'): string => {
