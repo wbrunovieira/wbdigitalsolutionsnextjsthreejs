@@ -170,8 +170,11 @@ const CookieConsent: React.FC = () => {
 
   const [visible, setVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [analytics, setAnalytics] = useState(true);
-  const [marketing, setMarketing] = useState(true);
+  // Default OFF so the deliberate "Customize → Save" path is opt-in, not a
+  // pre-ticked opt-out (LGPD art. 8 §4). "Accept all" still grants everything;
+  // re-opening via "Manage cookies" seeds these from the stored choice.
+  const [analytics, setAnalytics] = useState(false);
+  const [marketing, setMarketing] = useState(false);
 
   useEffect(() => {
     let stored: Prefs | null = null;
@@ -186,6 +189,28 @@ const CookieConsent: React.FC = () => {
     } else {
       setVisible(true);
     }
+  }, []);
+
+  // Re-open the banner on demand (footer "Manage cookies" link) so consent can
+  // be reviewed and withdrawn as easily as it was given (LGPD art. 8 §5). The
+  // toggles are seeded from the stored choice so they show the live state.
+  useEffect(() => {
+    const open = () => {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const stored = JSON.parse(raw) as Prefs;
+          setAnalytics(!!stored.analytics);
+          setMarketing(!!stored.marketing);
+        }
+      } catch {
+        /* ignore */
+      }
+      setExpanded(true);
+      setVisible(true);
+    };
+    window.addEventListener('wb-open-consent', open);
+    return () => window.removeEventListener('wb-open-consent', open);
   }, []);
 
   const commit = (prefs: Prefs) => {

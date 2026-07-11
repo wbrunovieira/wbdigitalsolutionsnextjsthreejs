@@ -120,7 +120,8 @@ export default function App(props: AppProps) {
     <>
       {/* Google Consent Mode v2 — defaults set BEFORE any tag loads. Everything
           ad/analytics related starts DENIED (no cookies); the consent banner
-          flips it to granted on accept. A prior "granted" choice is restored. */}
+          flips it to granted on accept. A prior choice (wb-consent-v2) is
+          restored granularly before tags load. */}
       <Script
         id="consent-default"
         strategy="beforeInteractive"
@@ -140,12 +141,13 @@ export default function App(props: AppProps) {
             gtag('set', 'url_passthrough', true);
             gtag('set', 'ads_data_redaction', true);
             try {
-              if (localStorage.getItem('wb-consent') === 'granted') {
+              var c = JSON.parse(localStorage.getItem('wb-consent-v2') || 'null');
+              if (c) {
                 gtag('consent', 'update', {
-                  ad_storage: 'granted',
-                  ad_user_data: 'granted',
-                  ad_personalization: 'granted',
-                  analytics_storage: 'granted'
+                  ad_storage: c.marketing ? 'granted' : 'denied',
+                  ad_user_data: c.marketing ? 'granted' : 'denied',
+                  ad_personalization: c.marketing ? 'granted' : 'denied',
+                  analytics_storage: c.analytics ? 'granted' : 'denied'
                 });
               }
             } catch (e) {}

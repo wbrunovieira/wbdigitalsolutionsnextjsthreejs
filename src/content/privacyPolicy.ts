@@ -84,7 +84,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
         heading: '5. Cookies e suas escolhas',
         paragraphs: [
           'Ao acessar o site, um banner permite aceitar, recusar ou personalizar os cookies em três categorias: necessários (sempre ativos), análise e marketing. Os cookies necessários fazem o site funcionar (idioma, segurança, envio de formulários) e não identificam você.',
-          'A jornada de navegação anexada ao formulário só é registrada se você aceitar a categoria de análise. Você pode alterar sua escolha a qualquer momento reabrindo o banner e limpando os dados do site no navegador.',
+          'A jornada de navegação anexada ao formulário só é registrada se você aceitar a categoria de análise. Você pode alterar ou retirar sua escolha a qualquer momento pelo link "Gerenciar cookies" no rodapé do site.',
         ],
       },
       {
@@ -109,7 +109,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       {
         heading: '8. Por quanto tempo guardamos',
         paragraphs: [
-          'Mantemos os dados do contato pelo tempo necessário para responder e dar seguimento à sua solicitação e, depois, pelo prazo exigido por obrigações legais. Os dados de análise seguem os períodos de retenção das ferramentas usadas. Quando não forem mais necessários, os dados são eliminados ou anonimizados.',
+          'Mantemos os dados do contato pelo tempo necessário para responder e dar seguimento à sua solicitação, em geral por até 24 meses após a última interação, e, depois, pelo prazo exigido por obrigações legais. Os dados de análise seguem os períodos de retenção das ferramentas usadas. Quando não forem mais necessários, os dados são eliminados ou anonimizados.',
         ],
       },
       {
@@ -190,7 +190,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
         heading: '5. Cookies and your choices',
         paragraphs: [
           'When you visit the site, a banner lets you accept, decline or customize cookies in three categories: necessary (always on), analytics and marketing. Necessary cookies make the site work (language, security, form submissions) and do not identify you.',
-          'The navigation journey attached to the form is only recorded if you accept the analytics category. You can change your choice at any time by reopening the banner and clearing the site data in your browser.',
+          'The navigation journey attached to the form is only recorded if you accept the analytics category. You can change or withdraw your choice at any time using the "Manage cookies" link in the site footer.',
         ],
       },
       {
@@ -215,7 +215,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       {
         heading: '8. How long we keep it',
         paragraphs: [
-          'We keep contact data for as long as needed to reply to and follow up on your request, and afterwards for the period required by legal obligations. Analytics data follows the retention periods of the tools used. When no longer needed, data is deleted or anonymized.',
+          'We keep contact data for as long as needed to reply to and follow up on your request, generally up to 24 months after the last interaction, and afterwards for the period required by legal obligations. Analytics data follows the retention periods of the tools used. When no longer needed, data is deleted or anonymized.',
         ],
       },
       {
@@ -296,7 +296,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
         heading: '5. Cookies y tus opciones',
         paragraphs: [
           'Al acceder al sitio, un banner te permite aceptar, rechazar o personalizar las cookies en tres categorías: necesarias (siempre activas), análisis y marketing. Las cookies necesarias hacen que el sitio funcione (idioma, seguridad, envío de formularios) y no te identifican.',
-          'La jornada de navegación adjunta al formulario solo se registra si aceptas la categoría de análisis. Puedes cambiar tu elección en cualquier momento reabriendo el banner y borrando los datos del sitio en tu navegador.',
+          'La jornada de navegación adjunta al formulario solo se registra si aceptas la categoría de análisis. Puedes cambiar o retirar tu elección en cualquier momento mediante el enlace "Gestionar cookies" en el pie del sitio.',
         ],
       },
       {
@@ -321,7 +321,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       {
         heading: '8. Cuánto tiempo los guardamos',
         paragraphs: [
-          'Conservamos los datos del contacto durante el tiempo necesario para responder y dar seguimiento a tu solicitud y, después, durante el plazo exigido por obligaciones legales. Los datos de análisis siguen los períodos de retención de las herramientas usadas. Cuando ya no son necesarios, los datos se eliminan o anonimizan.',
+          'Conservamos los datos del contacto durante el tiempo necesario para responder y dar seguimiento a tu solicitud, en general hasta 24 meses después de la última interacción, y, después, durante el plazo exigido por obligaciones legales. Los datos de análisis siguen los períodos de retención de las herramientas usadas. Cuando ya no son necesarios, los datos se eliminan o anonimizan.',
         ],
       },
       {
@@ -402,7 +402,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
         heading: '5. Cookie e le tue scelte',
         paragraphs: [
           'Quando accedi al sito, un banner ti permette di accettare, rifiutare o personalizzare i cookie in tre categorie: necessari (sempre attivi), analisi e marketing. I cookie necessari fanno funzionare il sito (lingua, sicurezza, invio dei moduli) e non ti identificano.',
-          'Il percorso di navigazione allegato al modulo viene registrato solo se accetti la categoria di analisi. Puoi cambiare la tua scelta in qualsiasi momento riaprendo il banner e cancellando i dati del sito nel browser.',
+          'Il percorso di navigazione allegato al modulo viene registrato solo se accetti la categoria di analisi. Puoi modificare o revocare la tua scelta in qualsiasi momento tramite il link "Gestisci i cookie" nel piè di pagina del sito.',
         ],
       },
       {
@@ -427,7 +427,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       {
         heading: '8. Per quanto tempo li conserviamo',
         paragraphs: [
-          'Conserviamo i dati del contatto per il tempo necessario a rispondere e dare seguito alla tua richiesta e, in seguito, per il periodo richiesto da obblighi legali. I dati di analisi seguono i periodi di conservazione degli strumenti usati. Quando non sono più necessari, i dati vengono eliminati o anonimizzati.',
+          'Conserviamo i dati del contatto per il tempo necessario a rispondere e dare seguito alla tua richiesta, in genere fino a 24 mesi dopo l’ultima interazione, e, in seguito, per il periodo richiesto da obblighi legali. I dati di analisi seguono i periodi di conservazione degli strumenti usati. Quando non sono più necessari, i dati vengono eliminati o anonimizzati.',
         ],
       },
       {

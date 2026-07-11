@@ -16,10 +16,19 @@ const PRIVACY_LABEL: Record<string, string> = {
   it: 'Informativa sulla Privacy',
 };
 
+const MANAGE_COOKIES_LABEL: Record<string, string> = {
+  'pt-BR': 'Gerenciar cookies',
+  en: 'Manage cookies',
+  es: 'Gestionar cookies',
+  it: 'Gestisci i cookie',
+};
+
 const Footer: React.FC = () => {
   const currentMessages = useTranslations();
   const { language } = useLanguage();
-  const privacyLabel = PRIVACY_LABEL[language === 'pt' ? 'pt-BR' : language] ?? PRIVACY_LABEL['pt-BR'];
+  const lang = language === 'pt' ? 'pt-BR' : language;
+  const privacyLabel = PRIVACY_LABEL[lang] ?? PRIVACY_LABEL['pt-BR'];
+  const manageCookiesLabel = MANAGE_COOKIES_LABEL[lang] ?? MANAGE_COOKIES_LABEL['pt-BR'];
 
   return (
     <footer className="bg-modern-gradient text-white px-6 py-10 lg:px-10 mt-32">
@@ -133,9 +142,19 @@ const Footer: React.FC = () => {
         <p className="text-secondary text-sm">
           © WBDIGITALSOLUTIONS | {currentMessages.allRightsReserved}
         </p>
-        <Link href="/privacy-policy" className="mt-1 inline-block text-secondary text-xs underline underline-offset-2 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">
-          {privacyLabel}
-        </Link>
+        <div className="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-secondary">
+          <Link href="/privacy-policy" className="underline underline-offset-2 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70">
+            {privacyLabel}
+          </Link>
+          <span aria-hidden="true" className="opacity-40">·</span>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event('wb-open-consent'))}
+            className="underline underline-offset-2 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70"
+          >
+            {manageCookiesLabel}
+          </button>
+        </div>
       </div>
     </footer>
   );
