@@ -25,6 +25,7 @@ const STATIC_PAGES = [
   'websites',
   'systems',
   'newsletter',
+  'privacy-policy',
 ];
 
 // Project detail pages (/projects/[slug]) — kept in sync with projectDetails.ts
@@ -105,8 +106,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // Add static pages
   STATIC_PAGES.slice(1).forEach(page => {
-    const changefreq = page === 'blog' ? 'daily' : page === 'contact' ? 'monthly' : 'weekly';
-    const priority = page === 'blog' ? 0.9 : page === 'projects' ? 0.9 : 0.8;
+    const changefreq =
+      page === 'blog' ? 'daily'
+      : page === 'contact' || page === 'privacy-policy' ? 'monthly'
+      : 'weekly';
+    const priority =
+      page === 'blog' || page === 'projects' ? 0.9
+      : page === 'privacy-policy' ? 0.3
+      : 0.8;
     urls.push(...generateSitemapUrl(`/${page}`, changefreq, priority));
   });
 
