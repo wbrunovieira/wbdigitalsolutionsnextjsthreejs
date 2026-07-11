@@ -133,7 +133,7 @@ const Preloader = () => {
             >
               {ch}
             </span>
-          )
+          ),
         )}
       </div>
     </div>
