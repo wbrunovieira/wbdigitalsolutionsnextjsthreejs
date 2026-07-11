@@ -15,10 +15,33 @@ interface BlogPostProps {
   images: string[];
   category: string[];
   author: string;
+  datePublished?: string;
+  dateModified?: string;
+  language?: string;
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ title, text, images, category, author }) => {
+// URL locale -> Intl tag + localized "Updated on" label for the visible date.
+const PT = { tag: 'pt-BR', updated: 'Atualizado em', published: 'Publicado em' };
+const DATE_LOCALE: Record<string, { tag: string; updated: string; published: string }> = {
+  en: { tag: 'en-US', updated: 'Updated', published: 'Published' },
+  pt: PT,
+  ptbr: PT,
+  'pt-BR': PT,
+  it: { tag: 'it-IT', updated: 'Aggiornato a', published: 'Pubblicato a' },
+  es: { tag: 'es-ES', updated: 'Actualizado en', published: 'Publicado en' },
+};
+
+const BlogPost: React.FC<BlogPostProps> = ({
+  title, text, images, category, author, datePublished, dateModified, language,
+}) => {
   const sectionsWithImages = images.map((_, index) => Math.floor((index / images.length) * text.length));
+
+  const loc = DATE_LOCALE[language ?? 'en'] ?? DATE_LOCALE.en;
+  const fmt = (iso?: string) =>
+    iso ? new Date(iso).toLocaleDateString(loc.tag, { year: 'numeric', month: 'long' }) : '';
+  const dateLine = dateModified
+    ? `${loc.updated} ${fmt(dateModified)}`
+    : datePublished ? `${loc.published} ${fmt(datePublished)}` : '';
 
   return (
     <article className="max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -26,16 +49,17 @@ const BlogPost: React.FC<BlogPostProps> = ({ title, text, images, category, auth
       {/* Cabeçalho do Post */}
       <header className="mb-12 mt-4">
         <h1 className="text-3xl md:text-5xl font-bold text-primary p-4 break-words">{title}</h1>
-        <div className="flex items-center justify-between mt-2 text-sm text-gray-500">
-          <div className="flex gap-2 flex-wrap">
-            {category.map((cat, index) => (
-              <span key={index} className="px-3 py-1 bg-gray-100 rounded-full text-gray-600 font-medium text-xs">
-                {cat}
-              </span>
-            ))}
-          </div>
-          <span className="whitespace-nowrap">Por {author}</span>
+        <div className="flex gap-2 flex-wrap mt-3 px-4">
+          {category.map((cat, index) => (
+            <span key={index} className="px-3 py-1 bg-gray-100 rounded-full text-gray-600 font-medium text-xs">
+              {cat}
+            </span>
+          ))}
         </div>
+        <p className="mt-3 px-4 text-sm text-gray-500">
+          <span className="font-medium text-gray-700">{author}</span>
+          {dateLine && <span className="text-gray-400"> · {dateLine}</span>}
+        </p>
       </header>
 
 
@@ -84,7 +108,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ title, text, images, category, auth
                   width={800}
                   height={400}
                   className="mt-8 w-full rounded shadow-lg"
-                  priority
+                  // Only the first in-content image is eager (LCP candidate);
+                  // the rest lazy-load so below-the-fold images don't inflate LCP.
+                  priority={imageIndex === 0}
+                  loading={imageIndex === 0 ? undefined : 'lazy'}
                 />
               )}
             </div>

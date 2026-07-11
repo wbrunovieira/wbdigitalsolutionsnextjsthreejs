@@ -46,6 +46,7 @@ interface PageHeadProps {
     description: string;
     author: string;
     datePublished: string;
+    dateModified?: string;
     images?: string[];
   };
   // Index pages (blog, projects) pass their listing so a CollectionPage +
@@ -152,7 +153,7 @@ const PageHead: React.FC<PageHeadProps> = ({
   if (blogPost) {
     schemas.push(getBlogPostSchema(
       blogPost.title, blogPost.description, blogPost.author,
-      blogPost.datePublished, canonicalUrl, blogPost.images,
+      blogPost.datePublished, canonicalUrl, blogPost.images, blogPost.dateModified,
     ));
   }
 

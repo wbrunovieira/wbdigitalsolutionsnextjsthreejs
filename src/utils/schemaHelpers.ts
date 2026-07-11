@@ -129,13 +129,16 @@ export const getBlogPostSchema = (
   datePublished: string,
   url: string,
   images?: string[],
+  dateModified?: string,
 ): BlogPostingSchema => ({
   type: 'BlogPosting',
   headline: title,
   description: description,
   image: images || [`${SITE_URL}/img/blog-default.jpg`],
   datePublished: datePublished,
-  dateModified: new Date().toISOString(),
+  // Use the post's real dateModified when provided; fall back to the publish
+  // date. (Previously new Date() made every post look "updated" on each build.)
+  dateModified: dateModified || datePublished,
   author: {
     name: author || 'WB Digital Solutions Team',
     url: SITE_URL,

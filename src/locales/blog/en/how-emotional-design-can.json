@@ -1,6 +1,6 @@
 {
-  "title": "How Emotional Design Can Transform the Customer Experience",
-  "summary": "Discover how Emotional Design can impact the user experience, creating deeper and more engaging connections with your customers.",
+  "title": "Emotional Website Design: Why a Beautiful Site Wins Customers",
+  "summary": "Your website's first impression is emotional, not rational. See why emotional website design builds trust, lifts conversions and wins customers.",
   "category": [
     "Design",
     "UX/UI",
@@ -8,83 +8,99 @@
   ],
   "author": "Bruno Vieira",
   "datePublished": "2024-05-20T10:00:00Z",
+  "dateModified": "2026-07-11T10:00:00Z",
   "thumbnail": "/img/blog/deseginemocionalcapa.jpg",
   "text": [
     {
       "title": "Introduction",
       "content": [
-        "If you are here, it means you understand the importance of a good user experience (UX) and an effective user interface (UI).",
-        "But have you ever thought about the emotional impact that your website, app, or post can have?",
-        "Today, we will explore the world of Emotional Design and discover how it can revolutionize the way users interact with digital platforms."
+        "As a business owner, you have probably asked yourself whether it is really worth investing in a beautiful website, or whether something simple and 'good enough' will do the job.",
+        "Here is the truth, backed by research: people judge your website in about 50 milliseconds, and that first impression is emotional before it is rational. In a blink, visitors decide whether they trust you, usually without knowing why.",
+        "This is where emotional website design comes in. In plain language, this article explains why a beautiful, emotionally designed site matters for your business, and how it turns curious visitors into paying customers."
       ]
     },
     {
-      "title": "What is Emotional Design?",
+      "title": "What is Emotional Website Design?",
       "content": [
-        "Emotional Design is an approach that aims to create an emotional connection between the user and the product or service.",
-        "It’s not just about making a site 'beautiful' but about creating an experience that evokes positive emotions such as trust, joy, or even love.",
-        "Donald Norman, one of the leading scholars on the subject, explains in his book 'Emotional Design: Why We Love (or Hate) Everyday Things' how design can attract or repel a user."
+        "<strong>Emotional website design is the practice of shaping a site's visuals, motion and words to trigger a specific feeling, such as trust, delight or desire, in the first seconds, so visitors stay and convert.</strong>",
+        "A beautiful site is the starting point, but emotional design goes further: it makes the potential customer feel something the moment they land on your page. That feeling is what makes them stay, read, and buy, instead of clicking back to Google.",
+        "Donald Norman, one of the leading scholars on the subject, explains in his book 'Emotional Design: Why We Love (or Hate) Everyday Things' how design can attract or repel a user long before they read a single word. If you are still weighing whether your business even needs a strong site, our guide on <a href=\"/blog/do-i-need-a-website\" class=\"text-[#792990] underline font-medium\">whether you need a website</a> is a good starting point."
       ]
     },
     {
-      "title": "The Three Levels of Emotional Design According to Donald Norman",
+      "title": "Why Emotion Matters for Your Bottom Line",
       "content": [
-        "<strong>Visceral Level:</strong> This level is related to our subconscious and first impressions. It is triggered by sensory elements such as vibrant colors and rounded shapes.",
-        "Example: Imagine a travel website featuring images of paradise beaches and colors reminiscent of the ocean and sunset. This design appeals to the visceral level because it immediately evokes a sense of desire and relaxation.",
-        "<strong>Behavioral Level:</strong> This level is related to the pleasure of using a product from start to finish. It’s not just about ease of use but also about the joy the user feels when interacting with the product.",
-        "Example: Think of a personal finance app that provides a smooth user experience with fluid transitions and instant feedback. This makes users enjoy using the app, even though managing finances might be considered a tedious task.",
-        "<strong>Reflective Level:</strong> This is the deepest level, related to our affective memories, familiarity, and associations. This is where branding and reputation come into play.",
-        "Example: Apple is a master of reflective design. The simple act of unboxing an iPhone is a carefully crafted experience that makes you feel part of something bigger."
+        "Why is emotion so important in web and app design? Because people do not decide with logic alone. Neuroscience shows emotion comes first and reason follows, so the feeling your page creates in the first seconds shapes whether a visitor stays, trusts, and buys.",
+        "The stakes are measurable, and the research is clear:",
+        "<strong>50 milliseconds:</strong> the time it takes users to form a first impression of your site (Lindgaard et al., 2006). You do not get a second chance at it.",
+        "<strong>94%:</strong> the share of first impressions that are design-related rather than content-related (research from Northumbria and Sheffield universities).",
+        "<strong>75%:</strong> of users admit they judge a company's credibility based on its website design alone (Stanford Web Credibility research, B.J. Fogg).",
+        "In plain terms: an emotionally designed website lowers bounce rate, keeps people reading, and builds the trust that turns visitors into customers. Two companies can offer the exact same service, but the one whose site makes people feel confident and cared for is the one that wins the deal. Emotional design is not decoration. It is a business tool that moves conversion, loyalty and word of mouth."
+      ]
+    },
+    {
+      "title": "The Three Levels of Emotional Design, Translated into Business Outcomes",
+      "content": [
+        "Donald Norman describes three levels of emotional response. Here is what each one actually means for your sales.",
+        "<strong>Visceral (the 50-millisecond verdict):</strong> the gut reaction to colors, imagery and shape. This is the split second that decides whether a visitor stays or bounces. A travel site full of paradise beaches wins this level instantly.",
+        "<strong>Behavioral (do they finish the form?):</strong> the pleasure of actually using the site. Smooth transitions, instant feedback and effortless flows are what carry a visitor all the way to your contact form or checkout instead of giving up halfway.",
+        "<strong>Reflective (do they remember and refer you?):</strong> the lasting impression tied to your brand and reputation. This is why people feel proud to unbox an iPhone, and why a memorable site gets recommended long after the visit.",
+        "Win all three and a website stops being a brochure and becomes a salesperson that works while you sleep."
       ],
       "quotes": [
         {
-          "text": "A good behavioral design is one that you don’t notice but feel.",
-          "author": "Unknown Author"
-        },
-        {
-          "text": "Reflective design doesn’t end when the user leaves the site; it continues to live in their memory and emotions.",
-          "author": "Unknown Author"
+          "text": "It is not enough that we build products that function, that are understandable and usable. We also need to build products that bring joy and excitement, pleasure and fun, and yes, beauty to people's lives.",
+          "author": "Don Norman"
         }
       ]
     },
     {
-      "title": "Practical Tips for Applying Emotional Design",
+      "title": "Practical Tips for Emotional Website Design",
       "content": [
-        "<strong>Colors:</strong> Use color palettes that convey the desired emotions. Warm colors like red and orange can transmit excitement, while cool colors like blue and green can convey calmness.",
-        "<strong>Images:</strong> Choose photos and illustrations that create an emotional appeal. Images of smiling people or children playing, for example, can evoke joy.",
-        "<strong>Typography:</strong> Rounded fonts are perceived as friendlier and more relaxing, while serif fonts can convey tradition and trust.",
-        "<strong>Language:</strong> Use positive and encouraging language. Avoid technical terms and write as if you were having a conversation with someone.",
-        "<strong>Layout:</strong> Design the hierarchy and distribution of elements on the screen to guide the user's gaze intentionally.",
-        "<strong>Animations:</strong> Microinteractions with smooth movements can add delicacy and liveliness to the layout.",
-        "<strong>Sounds:</strong> Consider using sound effects or background music that align with the desired emotional state."
+        "<strong>Colors:</strong> Use palettes that carry the emotion you want. Warm colors like red and orange signal energy, while cool colors like blue and green signal calm and trust.",
+        "<strong>Images:</strong> Choose photos and illustrations with real emotional appeal. Genuine human faces almost always outperform generic stock.",
+        "<strong>Typography:</strong> Rounded fonts feel friendlier; serif fonts feel established and trustworthy. Pick the feeling on purpose.",
+        "<strong>Language:</strong> Write like a person, not a brochure. Positive, plain, conversational copy lowers the guard of a busy buyer.",
+        "<strong>Layout:</strong> Guide the eye with clear hierarchy so the visitor always knows where to look and what to do next.",
+        "<strong>Motion:</strong> Subtle microinteractions and smooth animation add life and signal quality, as long as they never get in the way of the content.",
+        "<strong>Sound:</strong> Use it sparingly and never on autoplay. For most business sites, unexpected audio costs you more conversions than it earns."
       ]
     },
     {
-      "title": "Experiences in Businesses and Physical Stores",
+      "title": "Emotional Website Design Examples",
       "content": [
-        "While Emotional Design is often associated with the digital world, its application goes far beyond computer and smartphone screens.",
-        "In fact, businesses and physical stores have used Emotional Design principles to create unforgettable and highly engaging customer experiences. In this section, we’ll explore how Emotional Design manifests in the real world, from store atmospheres to customer service and loyalty programs.",
-        "Get ready to discover how these principles can transform not only digital interfaces but also physical environments and human interactions.",
-        "<strong>Store Atmosphere:</strong> Imagine a clothing store where lighting, music, and even scent have been carefully chosen to create a relaxing atmosphere. This is an example of visceral emotional design, as it aims to provoke an immediate emotional reaction in customers as soon as they enter the store.",
-        "<strong>Customer Service:</strong> Think of a restaurant where waiters are trained to be extremely attentive and helpful, making customers feel valued and well cared for. This is behavioral emotional design, as it creates a positive experience that goes beyond just eating.",
-        "<strong>Loyalty Programs:</strong> Many businesses offer loyalty programs that reward customers for repeat purchases, making them feel valued and encouraged to return. This is reflective emotional design, as it creates a long-term emotional bond between the customer and the brand."
-      ],
-      "quotes": [
-        {
-          "text": "Design is the fundamental soul of a human creation that ends up expressing itself in successive layers of the product or service.",
-          "author": "Steve Jobs"
-        }
+        "Looking for emotional design examples you can learn from? Some of the most successful digital products in the world are, at their core, exercises in emotional website design.",
+        "<strong>Airbnb</strong> uses warm photography, human stories and welcoming language to make you feel you belong before you book anything. Visceral and reflective design working together.",
+        "<strong>Duolingo</strong> turns a tedious task, learning a language, into a playful, rewarding game with characters, streaks and celebratory microinteractions. Behavioral emotional design at its best.",
+        "<strong>Spotify Wrapped</strong> takes your own data and hands it back as a personal, shareable story that makes you feel seen. A masterclass in reflective design.",
+        "<strong>Apple</strong> keeps its product pages spacious, calm and cinematic, so the emotion of premium quality is felt before a single spec is read.",
+        "The lesson from every example is the same: emotion is designed on purpose, never left to chance."
+      ]
+    },
+    {
+      "title": "How We Apply Emotional Design at WB",
+      "content": [
+        "We practice what we preach. Our own site opens with an interactive 3D scene precisely because the visceral level is where trust is won or lost in the first second.",
+        "On real projects the principle carries the whole experience. For Revalida Italia, a medical-exam preparation platform we built, we used interactive 3D anatomy environments and smooth motion to turn dry study material into something students genuinely enjoy coming back to. That is behavioral and reflective design doing the heavy lifting: people stay longer, finish more, and remember the product.",
+        "Emotional design, done right, is not about decoration on top of a finished site. It is a decision made at every layer, from the first color to the last microinteraction."
+      ]
+    },
+    {
+      "title": "Frequently Asked Questions",
+      "content": [
+        "<strong>What is emotional website design?</strong> In short, it means designing every part of a site, from color and imagery to motion and wording, so a visitor feels a deliberate emotion instead of nothing at all. The goal is a page people connect with and act on, not just one that works.",
+        "<strong>Why is emotion important in web and app design?</strong> Because buying decisions are driven by emotion first and justified by logic later. A site that makes people feel confident in the first seconds keeps them from bouncing and moves them toward contacting or buying.",
+        "<strong>Does emotional design actually increase conversions?</strong> Yes. Since users judge credibility largely on design (75%, per Stanford research) and form an impression in about 50 milliseconds, a site that wins that emotional verdict lowers bounce rate and lifts conversion for the same traffic.",
+        "<strong>What is the difference between emotional UI design and emotional website design?</strong> Emotional UI design focuses on the feeling of individual interface elements and interactions (buttons, transitions, feedback), while emotional website design applies the same intent across the whole site, from the hero to the copy to the checkout.",
+        "<strong>What are examples of emotional website design?</strong> Airbnb (belonging), Duolingo (playful reward), Spotify Wrapped (personal story) and Apple (calm premium feel) are all built on emotional design."
       ]
     },
     {
       "title": "Conclusion",
       "content": [
-        "Emotional Design is a powerful tool that can make a difference in the user experience. Applying these principles not only enriches the user experience but also increases conversion and customer loyalty rates.",
-        "In a world increasingly saturated with information and stimuli, emotion plays a crucial role not only in how we interact with products and services but also in how we live our lives.",
-        "Our subconscious is strongly influenced by emotions, which in turn guide our actions and decisions in a meaningful way. Emotional Design is, therefore, a powerful tool for creating experiences that go beyond functionality and aesthetics, touching the hearts and minds of users.",
-        "Remember: a customer may forget what you said or did, but they will never forget how you made them feel. By applying the principles of Emotional Design, you not only create a richer and more memorable experience but also increase your chances of conversion and customer retention.",
-        "Ultimately, the customer may forget the words you used or the specific details of your product, but the emotion they take with them is what really matters. Use Emotional Design tools to ensure that this emotion is positive and memorable, thus solidifying your company’s image in the hearts and minds of your audience.",
-        "I hope this blog is useful for you. If you have any further questions or need more information, feel free to reach out."
+        "Emotional website design is not a nice-to-have. It is the difference between a visitor who bounces in three seconds and one who trusts you enough to buy.",
+        "In a world saturated with information, emotion decides how people interact with your brand and whether they choose you over an identical competitor. A customer may forget what you said, but they will never forget how your site made them feel.",
+        "At <a href=\"/websites\" class=\"text-[#792990] underline font-medium\">WB Digital Solutions</a> we build websites with interactive 3D and motion that turn that first 50-millisecond impression into trust, and trust into leads. Tell us about your project and we will show you what an emotional site could do for yours."
       ]
     }
   ],

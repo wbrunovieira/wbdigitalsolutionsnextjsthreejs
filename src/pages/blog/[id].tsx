@@ -45,6 +45,7 @@ interface BlogTranslation {
   category: string[];
   author?: string;
   datePublished?: string;
+  dateModified?: string;
 }
 
 interface BlogPageProps {
@@ -90,11 +91,13 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, ssrLangKey }) => {
       <PageHead
         pageKey="blog"
         customTitle={`${translation.title} | WB Blog`}
+        customDescription={getDescription()}
         blogPost={{
           title: translation.title,
           description: getDescription(),
           author: translation.author || 'WB Digital Solutions',
           datePublished: translation.datePublished || '2024-01-01T00:00:00Z',
+          dateModified: translation.dateModified,
           images: translation.images || (translation.thumbnail ? [translation.thumbnail] : undefined),
         }}
       />
@@ -115,6 +118,9 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, ssrLangKey }) => {
           images={translation.images || []}
           category={translation.category}
           author={translation.author || 'WB Digital Solutions'}
+          datePublished={translation.datePublished}
+          dateModified={translation.dateModified}
+          language={language}
         />
       </div>
     </>
