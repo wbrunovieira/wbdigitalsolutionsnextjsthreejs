@@ -1,0 +1,164 @@
+/*
+ * WB brand ident loader — a layered intro that "constructs" the real logo.
+ *
+ * Stage viewBox is centred on the logo emblem (52.8, 44.77). Three faint
+ * construction rings sweep in from around the centre, converge onto the
+ * emblem's three overlapping circles, and dissolve exactly as the solid
+ * brand emblem crystallises in with a glow. A slow orbital system (dashed
+ * ring + nodes + a yellow indeterminate arc) turns underneath the whole time,
+ * an ambient aura breathes, and the wordmark reveals letter by letter.
+ *
+ * Reveal beats play once (forwards); the orbital / aura / glow beats loop.
+ * Only transform, opacity and (for the emblem hero) filter animate — all GPU
+ * friendly; every motion is dropped under prefers-reduced-motion.
+ */
+
+.stage {
+  width: 190px;
+  height: 190px;
+  overflow: visible;
+}
+
+/* ---- Ambient aura: a soft radial breath behind everything ---- */
+.aura {
+  transform-box: view-box;
+  transform-origin: 52.8px 44.77px;
+  animation: wb-breathe 3.2s ease-in-out infinite;
+}
+
+@keyframes wb-breathe {
+  0%, 100% { transform: scale(0.9);  opacity: 0.45; }
+  50%      { transform: scale(1.08); opacity: 0.8; }
+}
+
+/* ---- Orbital system: dashed ring + nodes, slow revolve ---- */
+.orbit {
+  transform-box: view-box;
+  transform-origin: 52.8px 44.77px;
+  opacity: 0;
+  animation: wb-fade 0.8s ease-out 0.2s forwards, wb-turn 16s linear infinite;
+}
+
+.track { fill: none; stroke: rgba(170, 166, 195, 0.28); stroke-width: 0.75; stroke-dasharray: 2.5 5; }
+.node  { fill: #aaa6c3; }
+.nodeY { fill: #ffb947; }
+
+/* Inner indeterminate arc, opposite spin, faster — the "loading" tell. */
+.loader {
+  fill: none;
+  stroke: #ffb947;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 52.8px 44.77px;
+  opacity: 0;
+  animation: wb-fade 0.8s ease-out 0.35s forwards, wb-turn-rev 2.6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes wb-turn      { to { transform: rotate(360deg); } }
+@keyframes wb-turn-rev  { to { transform: rotate(-360deg); } }
+@keyframes wb-fade      { to { opacity: 1; } }
+
+/* ---- Construction rings: faint guides that converge, then dissolve ---- */
+.carc {
+  fill: none;
+  stroke: #aaa6c3;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  transform-box: view-box;
+}
+
+.c1 { transform-origin: 37.6px 44.77px; animation: wb-c1 2.3s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.c2 { transform-origin: 52.8px 44.77px; animation: wb-c2 2.3s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards; }
+.c3 { transform-origin: 68.0px 44.77px; animation: wb-c3 2.3s cubic-bezier(0.22, 1, 0.36, 1) 0.16s forwards; }
+
+@keyframes wb-c1 {
+  0%   { opacity: 0;   transform: translate(-24px, -20px) scale(0.7) rotate(-140deg); }
+  22%  { opacity: 0.9; }
+  48%  { opacity: 0.9; transform: translate(0, 0) scale(1) rotate(0deg); }
+  66%  { opacity: 0;   transform: translate(0, 0) scale(1.08) rotate(18deg); }
+  100% { opacity: 0; }
+}
+@keyframes wb-c2 {
+  0%   { opacity: 0;   transform: translate(0, 28px) scale(0.7) rotate(160deg); }
+  22%  { opacity: 0.9; }
+  48%  { opacity: 0.9; transform: translate(0, 0) scale(1) rotate(0deg); }
+  66%  { opacity: 0;   transform: translate(0, 0) scale(1.08) rotate(-18deg); }
+  100% { opacity: 0; }
+}
+@keyframes wb-c3 {
+  0%   { opacity: 0;   transform: translate(24px, -20px) scale(0.7) rotate(140deg); }
+  22%  { opacity: 0.9; }
+  48%  { opacity: 0.9; transform: translate(0, 0) scale(1) rotate(0deg); }
+  66%  { opacity: 0;   transform: translate(0, 0) scale(1.08) rotate(18deg); }
+  100% { opacity: 0; }
+}
+
+/* ---- The hero: real brand emblem crystallises, then breathes with glow ---- */
+.emblemGlow {
+  transform-box: view-box;
+  transform-origin: 52.8px 44.77px;
+  animation: wb-glow 3.2s ease-in-out 1.6s infinite;
+}
+.emblem {
+  fill: #792990;
+  transform-box: view-box;
+  transform-origin: 52.8px 44.77px;
+  opacity: 0;
+  animation: wb-emblem-in 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+}
+
+@keyframes wb-emblem-in {
+  0%   { opacity: 0; transform: scale(0.68) rotate(-10deg); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1.09) rotate(0deg); }
+}
+@keyframes wb-glow {
+  0%, 100% { transform: scale(1);     filter: drop-shadow(0 0 6px rgba(150, 52, 128, 0.5)); }
+  50%      { transform: scale(1.045); filter: drop-shadow(0 0 10px rgba(176, 70, 132, 0.75)) drop-shadow(0 0 22px rgba(121, 41, 144, 0.9)); }
+}
+
+/* ---- Twinkle sparks around the mark ---- */
+.spark { fill: #ffb947; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.s1 { animation: wb-spark 2.4s ease-in-out 1.5s infinite; }
+.s2 { animation: wb-spark 2.4s ease-in-out 1.9s infinite; }
+.s3 { animation: wb-spark 2.4s ease-in-out 2.2s infinite; }
+
+@keyframes wb-spark {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  40%      { opacity: 0.9; transform: scale(1); }
+}
+
+/* ---- Wordmark: letters rise + fade in, staggered (delay set inline) ---- */
+.wordmark {
+  margin-top: 22px;
+  display: flex;
+  gap: 0.42em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  color: #cfc9e0;
+  text-indent: 0.34em;
+}
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(9px);
+  animation: wb-letter 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.space { width: 0.5em; }
+
+@keyframes wb-letter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Reduced motion: no travel, no spin — the mark and wordmark simply
+ * appear, so the brand is legible with zero animation. ---- */
+@media (prefers-reduced-motion: reduce) {
+  .aura, .orbit, .loader, .emblemGlow, .spark { animation: none; }
+  .aura, .orbit, .loader { opacity: 0.5; }
+  .carc { animation: none; opacity: 0; }
+  .emblem { animation: none; opacity: 1; }
+  .letter { animation: none; opacity: 1; transform: none; }
+  .spark { opacity: 0; }
+}
