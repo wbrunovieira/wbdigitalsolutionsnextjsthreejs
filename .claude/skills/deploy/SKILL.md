@@ -13,7 +13,7 @@ description: Ship this site to production and manage its Vercel infrastructure. 
 | Deploy trigger | **Push to `main` auto-deploys** (Git integration). No `vercel deploy` needed. |
 | Vercel project | `wbdigitalsolutionsnextjsthreejs` in scope **`bruno-vieiras-projects`** |
 | projectId / teamId | `prj_7f0DQePgCQqWyR4e9D9eT9BERgqK` / `team_DJXzqoYxGsCcP4abRaobj4DQ` |
-| Domain owner | `wbdigitalsolutions.com` lives in ANOTHER team: **`brunoteam`**, with **Vercel nameservers** (Vercel manages DNS) |
+| Domain owner | `wbdigitalsolutions.com` lives in ANOTHER Vercel team: **`brunoteam`**. **DNS is now on Cloudflare** (migrated 2026-07-11, ns `jeff/leanna.ns.cloudflare.com`); site still hosted on Vercel via A/CNAME records. To edit DNS see the `domain-dns` skill, NOT `vercel dns`. |
 | Production URLs | www.wbdigitalsolutions.com (+ subdomains: brunodev, brunov, card, land3, chatbot on a VPS, ...) |
 | CLI auth token | `~/Library/Application Support/com.vercel.cli/auth.json` (for REST calls; the `vercel api` beta DROPS POST bodies, use curl) |
 
