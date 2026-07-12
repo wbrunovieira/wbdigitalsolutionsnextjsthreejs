@@ -28,6 +28,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 };
 
 const blogList = [
+  { id: 'ai-agents-for-business' },
   { id: 'do-i-need-a-website' },
   { id: 'how-emotional-design-can' },
   { id: 'digital-can-transform-company' },

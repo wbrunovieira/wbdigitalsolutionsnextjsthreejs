@@ -1,0 +1,112 @@
+{
+  "title": "Agenti IA per le Aziende: cosa sono e come aiutano il tuo business",
+  "summary": "Un agente IA è la stessa IA che usi già, addestrata per un solo compito nella tua azienda. Scopri cos'è, esempi reali, sicurezza dei dati e da dove iniziare.",
+  "category": [
+    "Intelligenza Artificiale",
+    "Agenti IA",
+    "Produttività"
+  ],
+  "author": "Bruno Vieira",
+  "datePublished": "2026-07-12T10:00:00Z",
+  "dateModified": "2026-07-12T10:00:00Z",
+  "thumbnail": "/img/blog/og-ai-agents.jpg",
+  "text": [
+    {
+      "title": "Introduzione",
+      "content": [
+        "Mentre leggi questo, un'azienda della tua dimensione sta inviando preventivi in 3 minuti, rispondendo ai lead alle 22 e togliendo il lavoro ripetitivo dalle spalle del team, con qualcosa chiamato agente IA. Non è fantascienza, ed è più semplice (e a minor rischio) di quanto sembri.",
+        "Forse il tuo venditore ha già aperto ChatGPT, passato 20 minuti a spiegare cosa voleva, e pensato: 'se l'avessi fatto da solo, avrei già finito.' Un agente risolve esattamente questo. Alla fine di questo articolo riuscirai a guardare la tua settimana e indicare tre compiti che un agente dovrebbe già fare per te."
+      ]
+    },
+    {
+      "title": "Cos'è un agente IA?",
+      "content": [
+        "<strong>Un agente IA è un'intelligenza artificiale (come ChatGPT o Claude) configurata per svolgere un compito specifico dentro la tua azienda, usando i tuoi dati e il tuo standard. Invece di un assistente generico in attesa di istruzioni, è uno specialista che conosce già il compito, il contesto e il risultato atteso.</strong>",
+        "È la stessa IA che il tuo team usa già. Cambia il focus e il contesto: la differenza tra chiedere qualcosa a uno sconosciuto molto intelligente che non conosce la tua azienda, e avere un dipendente formato che sa cosa ci si aspetta e dove sono i dati.",
+        "È questo tipo di <a href=\"/ai\" class=\"text-[#792990] underline font-medium\">agente IA su misura</a> che costruiamo."
+      ]
+    },
+    {
+      "title": "I 3 problemi dell'IA libera che un agente risolve",
+      "content": [
+        "Quando ogni dipendente apre ChatGPT a modo suo, succedono tre cose, e le hai viste tutte:",
+        "<strong>1. Allucinazione.</strong> L'IA libera, senza focus, a volte inventa con sicurezza. Un agente legato alla sua funzione e ai tuoi dati ha molto meno spazio per inventare. Non elimina del tutto gli errori, nessuna IA lo fa, ed è proprio per questo che manteniamo un umano sulle decisioni che contano.",
+        "<strong>2. Ripartire da zero ogni volta.</strong> Il dipendente apre l'IA, spiega il contesto, dà esempi, corregge, rispiega. A volte esce ottimo. A volte ci mette un'eternità a farsi capire e finisce per pensare 'se l'avessi fatto da solo, avrei già finito.' Ogni compito riparte da zero. Un agente nasce già conoscendo il contesto.",
+        "<strong>3. Ognuno fa a modo suo, senza standard e senza i dati aziendali.</strong> Un venditore fa il preventivo in un modo, un altro in un altro, nessuno usa la base di conoscenza dell'azienda. L'agente garantisce che tutti partano dallo stesso punto, con i dati giusti e lo standard di casa."
+      ]
+    },
+    {
+      "title": "Ma in pratica, come appare nella mia azienda?",
+      "content": [
+        "Qui la maggior parte si blocca, quindi siamo concreti. Non 'programmerai' nulla. In pratica è semplice così: una pagina con un pulsante dove il dipendente compila qualche campo e clicca 'Genera'; un posto dove caricare un documento (un PDF, un foglio di calcolo, un audio) dove l'agente lo legge e restituisce il risultato; oppure un agente che vive già dentro WhatsApp, l'email o il tuo gestionale, che agisce da solo quando succede qualcosa.",
+        "<strong>Preventivo commerciale.</strong> Oggi: il venditore apre un vecchio preventivo, lo copia, cambia i prezzi a mano, dimentica una voce, ci mette 40 minuti, e ognuno fa a modo suo. Con un agente: apre una pagina, inserisce i dati del cliente, clicca 'Genera', e in pochi secondi esce nello standard aziendale, con i prezzi giusti e senza dimenticanze. Rivede e invia. È sempre il venditore al comando, solo senza i 37 minuti di lavoro meccanico.",
+        "<strong>Assistenza su WhatsApp.</strong> Oggi: il cliente chiede prezzo e tempi alle 22, nessuno risponde, e il giorno dopo il lead si è raffreddato. Con un <a href=\"/automation\" class=\"text-[#792990] underline font-medium\">agente di automazione</a>: risponde subito, nel tono del marchio, con dati reali, e quando non è sicuro è progettato per dire 'lascia che chiami un collega' invece di tirare a indovinare. Smetti di perdere vendite per la lentezza, senza rischiare una risposta sbagliata."
+      ]
+    },
+    {
+      "title": "E nel tuo settore? L'IA come braccio destro del tuo team",
+      "content": [
+        "Nota che in ogni esempio qui sotto l'IA non prende il posto di nessuno: diventa il braccio destro della persona, togliendo il lavoro meccanico e lasciando la decisione all'umano.",
+        "<strong>Contabilità:</strong> invece di digitare a mano decine di fatture ed estratti, il contabile carica i PDF e l'agente estrae, organizza e segnala le discrepanze. Smette di fare data entry e torna a essere lo specialista che rivede e decide.",
+        "<strong>Clinica o studio:</strong> qui l'agente assiste la segretaria, non la sostituisce. Gestisce gli appuntamenti e risponde alle domande ripetitive su orari e assicurazioni, e prepara un riassunto del paziente per il professionista. La segretaria è libera di accogliere bene chi arriva, e il professionista entra in visita già preparato.",
+        "<strong>Studio legale:</strong> l'agente supporta l'avvocato, riassumendo il fascicolo di 200 pagine e consegnando una bozza dell'atto nel modello dello studio. L'avvocato smette di perdere ore a leggere e redigere da zero e si concentra su strategia e argomentazione, avendo sempre l'ultima parola.",
+        "<strong>E-commerce:</strong> invece di inserire 500 prodotti uno a uno, il team carica il foglio di calcolo e riceve bozze di descrizione da rivedere; un agente post-vendita risponde subito al 'dov'è il mio ordine', liberando il team per i casi che hanno davvero bisogno di una persona."
+      ]
+    },
+    {
+      "title": "Multi-agenti: solo quando il compito lo richiede",
+      "content": [
+        "Un compito grande può essere diviso in parti: un agente capisce la richiesta, un altro raccoglie i dati, un altro scrive, e un agente revisore controlla qualità, tono e numeri prima della consegna, come una vera squadra con il controllo qualità integrato.",
+        "Ma siamo onesti: nella maggior parte dei casi, un solo agente ben focalizzato è più semplice, più economico e più affidabile di tanti che parlano tra loro. Dividiamo un compito su più agenti solo quando serve davvero, non per esibire la tecnologia."
+      ]
+    },
+    {
+      "title": "Non è magia: cosa serve per funzionare (e i tuoi dati)",
+      "content": [
+        "Per essere onesti, un agente non è un gadget che accendi e dimentichi. Tre cose lo fanno funzionare davvero:",
+        "<strong>Buoni dati in ingresso:</strong> l'agente è buono quanto la base che gli dai. Per questo ti aiutiamo a organizzarla prima.",
+        "<strong>Un umano nei punti che contano:</strong> tutto ciò che parla con il cliente o è ad alto rischio passa da un controllo umano. L'IA accelera, la persona decide.",
+        "<strong>Monitoraggio:</strong> la qualità non è a caso. Impostiamo controlli che valutano gli output rispetto a esempi reali e, ogni settimana, rivediamo gli errori e regoliamo tre cose: gli ordini (i prompt), i dati e il modello di IA. Migliora perché continuiamo a migliorarlo, non per magia.",
+        "<strong>E i miei dati?</strong> Restano tuoi. Non diventano proprietà di WB e non vengono usati per addestrare l'IA di terzi, il trattamento segue la normativa sulla protezione dei dati (GDPR/LGPD), e per i dati sensibili si può eseguire in modo più privato e isolato."
+      ]
+    },
+    {
+      "title": "Non sostituisce il tuo dipendente, e cosa fa per il tuo margine",
+      "content": [
+        "Dobbiamo smettere con la paura della sostituzione. L'agente non prende il posto di nessuno, toglie dalle spalle della persona la parte ripetitiva e noiosa così che possa concentrarsi su ciò che solo un umano fa bene: giudicare, negoziare, prendersi cura del cliente, chiudere. Non stai licenziando nessuno, stai restituendo al tuo team le ore che perde nel lavoro meccanico.",
+        "Fai il conto nella tua azienda: se un venditore recupera 2 ore al giorno, sono circa 40 ore di vendita al mese che non paghi in più. Moltiplicalo per ogni compito ripetitivo, per ogni persona: più consegnato, meno errori, risposte più rapide, stesso costo del personale. Quella differenza, il lavoro che ottieni senza assumere, è il tuo nuovo margine."
+      ]
+    },
+    {
+      "title": "Da dove iniziare: un pilota a basso rischio",
+      "content": [
+        "Non devi 'diventare un'azienda di IA'. Inizia in piccolo e in sicurezza: scegli un compito ad alto volume e risultato chiaro (preventivi, assistenza, smistamento), con un ambito ristretto, e all'inizio approvi ogni output dell'agente. Misura il risultato ed espandi da ciò che ha funzionato.",
+        "È un passo a basso rischio: una funzione, un ambito piccolo, tu al comando. Niente stravolgimenti."
+      ]
+    },
+    {
+      "title": "Domande frequenti",
+      "content": [
+        "<strong>Gli agenti IA sostituiscono i dipendenti?</strong> No. Tolgono la parte ripetitiva del lavoro così che la persona possa concentrarsi su ciò che solo un umano fa bene: giudicare, negoziare e prendersi cura del cliente. È un braccio destro, non una sostituzione.",
+        "<strong>Qual è la differenza tra un agente IA e un chatbot?</strong> Un chatbot parla soltanto. Un agente agisce: legge un documento, scrive un preventivo, smista le email, sempre usando i dati e lo standard della tua azienda.",
+        "<strong>Quanto costa un agente IA?</strong> Si parte in piccolo: un pilota di una singola funzione, con un ambito ristretto e misurato. Espandi da ciò che ha dato risultati, senza un grande progetto in partenza.",
+        "<strong>I miei dati sono al sicuro?</strong> Sì. Restano tuoi, non vengono usati per addestrare l'IA di terzi, il trattamento segue la normativa sulla protezione dei dati (GDPR), e per i dati sensibili si può eseguire in modo più privato e isolato.",
+        "<strong>Da dove comincio?</strong> Da un compito ad alto volume e risultato chiaro, come preventivi, assistenza o smistamento di documenti. È lì che il ritorno arriva più in fretta.",
+        "<strong>Devo capire di tecnologia?</strong> No. Ricevi una pagina con un pulsante, o un agente dentro uno strumento che usi già (WhatsApp, email, il tuo gestionale). Nessun 'imparare a usare l'IA'."
+      ]
+    },
+    {
+      "title": "Ed è esattamente questo che fa WB",
+      "content": [
+        "In WB Digital Solutions progettiamo questi agenti su misura per la tua attività: dalla pagina-con-un-pulsante al sistema multi-agente con revisori, sempre con i tuoi dati, il tuo standard e un umano al comando.",
+        "In fondo, un agente IA è solo la tua IA con un compito che conosce già. È tutta qui l'idea. Ora la domanda è tua: quale compito nella tua azienda sta chiedendo un agente? Raccontaci quello che divora più ore, e in una breve conversazione senza impegno ti mostreremo come un agente lo gestirebbe. <a href=\"/contact\" class=\"text-[#792990] underline font-medium\">Parliamone</a>."
+      ]
+    }
+  ],
+  "images": [
+    "/img/blog/ai-agents.jpg",
+    "/img/blog/ai-agents-2.jpg",
+    "/img/blog/ai-agents-3.jpg"
+  ],
+  "imageSections": [0, 3, 6]
+}

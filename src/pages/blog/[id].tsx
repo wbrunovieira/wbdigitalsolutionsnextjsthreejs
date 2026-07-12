@@ -16,6 +16,7 @@ const blogPostIds = [
   'digital-can-transform-company',
   'chatgpt-for-smes',
   'increase-pme-sales',
+  'ai-agents-for-business',
 ];
 
 // List of supported languages
@@ -41,6 +42,7 @@ interface BlogTranslation {
   summary?: string;
   text: BlogSection[];
   images?: string[];
+  imageSections?: number[];
   thumbnail?: string;
   category: string[];
   author?: string;
@@ -92,6 +94,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, ssrLangKey }) => {
         pageKey="blog"
         customTitle={`${translation.title} | WB Blog`}
         customDescription={getDescription()}
+        customImage={translation.thumbnail || (translation.images && translation.images[0])}
         blogPost={{
           title: translation.title,
           description: getDescription(),
@@ -102,14 +105,15 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, ssrLangKey }) => {
         }}
       />
       <div className="bg-modern-gradient min-h-screen py-12 mt-32">
-        <div className="mt-10 mb-10 text-center">
-          <Link href="/blog">
-            <button className="px-6 py-2 bg-yellowcustom text-primary font-semibold rounded-lg shadow-md hover:bg-yellowcustom/70 transition duration-300">
-              ← {language === 'pt' || language === 'ptbr' ? 'Voltar ao Blog' : 
-                  language === 'es' ? 'Volver al Blog' :
-                  language === 'it' ? 'Torna al Blog' :
-                  'Back to Blog'}
-            </button>
+        <div className="mb-8 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-colors hover:text-yellowcustom focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/60"
+          >
+            ← {router.locale === 'pt' ? 'Voltar ao Blog'
+              : router.locale === 'es' ? 'Volver al Blog'
+              : router.locale === 'it' ? 'Torna al Blog'
+              : 'Back to Blog'}
           </Link>
         </div>
         <BlogPost
@@ -120,7 +124,8 @@ const BlogPage: React.FC<BlogPageProps> = ({ translations, ssrLangKey }) => {
           author={translation.author || 'WB Digital Solutions'}
           datePublished={translation.datePublished}
           dateModified={translation.dateModified}
-          language={language}
+          language={router.locale ?? router.defaultLocale ?? 'en'}
+          imageSections={translation.imageSections}
         />
       </div>
     </>

@@ -1,0 +1,112 @@
+{
+  "title": "AI Agents for Business: what they are and how they help your company",
+  "summary": "An AI agent is the same AI you already use, trained for one job in your company. See what it is, real examples, data safety, and where to start.",
+  "category": [
+    "Artificial Intelligence",
+    "AI Agents",
+    "Productivity"
+  ],
+  "author": "Bruno Vieira",
+  "datePublished": "2026-07-12T10:00:00Z",
+  "dateModified": "2026-07-12T10:00:00Z",
+  "thumbnail": "/img/blog/og-ai-agents.jpg",
+  "text": [
+    {
+      "title": "Introduction",
+      "content": [
+        "While you read this, a company your size is sending proposals in 3 minutes, answering leads at 10pm, and lifting the repetitive work off its team, with something called an AI agent. It is not fiction, and it is simpler (and lower-risk) than it sounds.",
+        "Maybe your salesperson has already opened ChatGPT, spent 20 minutes explaining what they wanted, and thought: 'if I had just done it myself, I would be finished by now.' An agent solves exactly that. By the end of this article, you will be able to look at your week and point to three tasks an agent should already be doing for you."
+      ]
+    },
+    {
+      "title": "What is an AI agent?",
+      "content": [
+        "<strong>An AI agent is an artificial intelligence (like ChatGPT or Claude) set up to do one specific job inside your company, using your data and your standard. Instead of a generic assistant waiting for instructions, it is a specialist that already knows the task, the context, and the expected result.</strong>",
+        "It is the same AI your team already uses. What changes is the focus and the context: the difference between asking a very smart stranger who does not know your company, and having a trained employee who knows what is expected and where the data lives.",
+        "It is this kind of <a href=\"/ai\" class=\"text-[#792990] underline font-medium\">custom AI agent</a> that we build."
+      ]
+    },
+    {
+      "title": "The 3 problems of loose AI that an agent solves",
+      "content": [
+        "When every employee opens ChatGPT their own way, three things happen, and you have seen them all:",
+        "<strong>1. Hallucination.</strong> Loose, unfocused AI sometimes invents things with confidence. An agent tied to its function and your data has far less room to invent. It does not eliminate mistakes entirely, no AI does, which is exactly why we keep a human on the decisions that matter.",
+        "<strong>2. Starting from zero every time.</strong> The employee opens the AI, explains the context, gives examples, corrects, re-explains. Sometimes it turns out great. Sometimes they spend ages trying to make it understand and end up thinking 'if I had just done it myself, I would be finished by now.' Every task restarts from scratch. An agent is born already knowing the context.",
+        "<strong>3. Everyone does it differently, with no standard and no company data.</strong> One salesperson writes the proposal one way, another does it differently, none uses the company's knowledge base. An agent makes sure everyone starts from the same point, with the right data and the house standard."
+      ]
+    },
+    {
+      "title": "But in practice, how does this show up in my company?",
+      "content": [
+        "This is where most people get stuck, so let's be concrete. You will not 'program' anything. In practice it is this simple: a page with a button where the employee fills a few fields and clicks 'Generate'; a place to upload a document (a PDF, a spreadsheet, an audio file) where the agent reads it and returns the result; or an agent that already lives inside WhatsApp, email, or your system, acting on its own when something happens.",
+        "<strong>Sales proposal.</strong> Today: the salesperson opens an old proposal, copies it, changes the prices by hand, forgets an item, takes 40 minutes, and each one does it differently. With an agent: they open a page, fill in the client's data, click 'Generate', and in seconds it comes out in the company standard, with the right prices and nothing forgotten. They review and send. Still the salesperson in charge, just without the 37 minutes of grunt work.",
+        "<strong>WhatsApp support.</strong> Today: the client asks about price and deadline at 10pm, nobody answers, and by the next day the lead has cooled off. With an <a href=\"/automation\" class=\"text-[#792990] underline font-medium\">automation agent</a>: it replies instantly, in the brand's voice, with real data, and when it is not sure it is designed to say 'let me get a colleague' instead of guessing. You stop losing sales to slow replies, without risking a wrong answer."
+      ]
+    },
+    {
+      "title": "And in your industry? AI as your team's right hand",
+      "content": [
+        "Notice that in every example below, the AI does not take anyone's place: it becomes the person's right hand, removing the grunt work and leaving the decision with the human.",
+        "<strong>Accounting:</strong> instead of typing dozens of invoices and statements by hand, the accountant uploads the PDFs and the agent extracts, organizes, and flags discrepancies. They stop being a data-entry clerk and go back to being the expert who reviews and decides.",
+        "<strong>Clinic or practice:</strong> here the agent assists the receptionist, it does not replace them. It handles scheduling and answers the repetitive questions about hours and insurance, and prepares a patient summary for the professional. The receptionist is free to welcome patients well, and the professional walks into the appointment already prepared.",
+        "<strong>Law firm:</strong> the agent supports the lawyer, summarizing the 200-page case file and delivering a draft petition in the firm's template. The lawyer stops losing hours reading and drafting from scratch and focuses on strategy and argument, always having the final say.",
+        "<strong>E-commerce:</strong> instead of registering 500 products one by one, the team uploads the spreadsheet and gets draft descriptions to review; a post-sale agent instantly answers 'where is my order', freeing the team for the cases that really need a person."
+      ]
+    },
+    {
+      "title": "Multi-agents: only when the task needs it",
+      "content": [
+        "A big task can be split into pieces: one agent understands the request, another gathers the data, another writes, and a reviewer agent checks quality, tone, and numbers before delivery, like a real team with quality control built in.",
+        "But let's be honest: in most cases, one well-focused agent is simpler, cheaper, and more reliable than several talking to each other. We only split a task across many agents when it genuinely needs it, not to show off technology."
+      ]
+    },
+    {
+      "title": "It is not magic: what it takes to work (and your data)",
+      "content": [
+        "To be honest, an agent is not a gadget you switch on and forget. Three things make it actually work:",
+        "<strong>Good input data:</strong> the agent is only as good as the knowledge base you give it. That is why we help you organize it first.",
+        "<strong>A human at the points that matter:</strong> anything customer-facing or high-stakes goes through a human check. The AI speeds it up, the person decides.",
+        "<strong>Follow-up:</strong> quality is not guesswork. We set up checks that score the outputs against real examples and, every week, review the misses and tune three things: the orders (the prompts), the data, and the AI model. It gets better because we keep improving it, not by magic.",
+        "<strong>And your data?</strong> It stays yours. It does not become WB's property and is not used to train third-party AI, the handling follows data-protection law (LGPD), and for sensitive data it can run in a more private, isolated way."
+      ]
+    },
+    {
+      "title": "It does not replace your employee, and what that does for your margin",
+      "content": [
+        "We need to stop the fear of replacement. The agent does not take anyone's place, it takes the repetitive, boring part off the person's shoulders so they can focus on what only a human does well: judging, negotiating, caring for the client, closing. You are not firing anyone, you are giving your team back the hours it loses on grunt work.",
+        "Do the math on your own company: if one salesperson gets back 2 hours a day, that is about 40 selling hours a month you are not paying extra for. Multiply that by every repetitive task, across every person: more delivered, fewer errors, faster replies, same payroll. That gap, the work you get without hiring, is your new margin."
+      ]
+    },
+    {
+      "title": "Where to start: a low-risk pilot",
+      "content": [
+        "You do not need to 'become an AI company'. Start small and safe: pick one high-volume, clear-result task (proposals, support, triage), with a tight scope, and at first you approve every output the agent produces. Measure the result and expand from what worked.",
+        "It is a low-risk step: one function, a small scope, you in control. No turning everything upside down."
+      ]
+    },
+    {
+      "title": "Frequently asked questions",
+      "content": [
+        "<strong>Do AI agents replace employees?</strong> No. They take the repetitive part off the work so the person can focus on what only a human does well: judging, negotiating, and caring for the client. It is a right hand, not a replacement.",
+        "<strong>What is the difference between an AI agent and a chatbot?</strong> A chatbot only talks. An agent acts: it reads a document, writes a proposal, triages emails, always using your company's data and standard.",
+        "<strong>How much does an AI agent cost?</strong> It starts small: a pilot of a single function, with a tight, measured scope. You expand from what delivered results, without a big project upfront.",
+        "<strong>Is my data safe?</strong> Yes. It stays yours, it is not used to train third-party AI, the handling follows data-protection law (LGPD), and for sensitive data it can run in a more private, isolated way.",
+        "<strong>Where do I begin?</strong> With a high-volume, clear-result task, like proposals, support, or document triage. That is where the return shows up fastest.",
+        "<strong>Do I need to understand technology?</strong> No. You get a page with a button, or an agent inside a tool you already use (WhatsApp, email, your system). No 'learning to use AI'."
+      ]
+    },
+    {
+      "title": "And this is exactly what WB does",
+      "content": [
+        "At WB Digital Solutions we design these agents tailored to your business: from the page-with-a-button to the multi-agent system with reviewers, always with your data, your standard, and a human in control.",
+        "At its core, an AI agent is just your AI with one job it already understands. That is the whole idea. Now the question is yours: which task in your company is begging for an agent? Tell us the one that eats the most hours, and in a short, no-commitment conversation we will show you how an agent would handle it. <a href=\"/contact\" class=\"text-[#792990] underline font-medium\">Let's talk</a>."
+      ]
+    }
+  ],
+  "images": [
+    "/img/blog/ai-agents.jpg",
+    "/img/blog/ai-agents-2.jpg",
+    "/img/blog/ai-agents-3.jpg"
+  ],
+  "imageSections": [0, 3, 6]
+}

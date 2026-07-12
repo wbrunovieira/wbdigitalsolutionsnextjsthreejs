@@ -33,6 +33,7 @@ const PROJECT_SLUGS = Object.keys(PROJECT_DETAILS);
 
 // Blog posts (you can fetch these dynamically from a database in production)
 const BLOG_POSTS = [
+  'ai-agents-for-business',
   'do-i-need-a-website',
   'how-emotional-design-can',
   'digital-can-transform-company',
