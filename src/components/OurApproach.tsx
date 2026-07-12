@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { FaSearch, FaPencilRuler, FaTools, FaHandHolding } from 'react-icons/fa';
 
 import { useTranslations } from '@/contexts/TranslationContext';
@@ -104,8 +105,20 @@ const OurApproach: React.FC = () => {
           {currentMessages.approachTitle}
         </h2>
         <div className="mt-2 w-96 h-1 bg-gradient-to-r from-yellow-400 to-transparent mx-auto mb-6"></div>
-        <p ref={subtitleRef} className="text-lg lg:text-xl text-gray-600 mb-12">
+        <p ref={subtitleRef} className="text-lg lg:text-xl text-gray-600 mb-4">
           {currentMessages.approachSubtitle}
+        </p>
+        {/* Contextual internal link into the emotional-website-design post
+            (topical authority for that target keyword). */}
+        <p className="text-base text-gray-600 mb-12">
+          {currentMessages.approachEmotionalLead}{' '}
+          <Link
+            href="/blog/how-emotional-design-can"
+            className="font-medium text-[#792990] underline underline-offset-2 transition-colors hover:text-[#350545]"
+          >
+            {currentMessages.approachEmotionalLink}
+          </Link>
+          .
         </p>
       </div>
       <div ref={stepsRef} className="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto relative">

@@ -63,3 +63,36 @@ internal link with better anchor text).
 
 Minor follow-up: the Footer "Recent Blogs" hardcoded dates ("06 de out, 2023")
 are stale/format-fixed; low priority.
+
+---
+
+## Internal linking + /websites baseline (2026-07-12)
+
+Started step 2 (authority / internal links). Added **one contextual internal
+link** from the `/websites` "Our Approach" section into this post, in all 4
+locales (locale keys `approachEmotionalLead` + `approachEmotionalLink`; the
+anchor carries each market's local keyword, e.g. EN "See why a beautiful site
+wins customers", pt-BR "Veja por que um site bonito conquista clientes").
+
+Decision: **a single high-value contextual link, not several.** Google's
+first-link-priority means only the first anchor to a URL on a page counts, the
+site-wide footer "Recent Blogs" link is boilerplate (discounted), and adding a
+header/extra link to the same post would read as over-optimized. Note:
+`OurApproach` is `ssr:false`, so the link is client-rendered (Google renders JS;
+consistent with the rest of the page body). Committed locally, not yet pushed.
+
+### /websites page GSC baseline (zero point for re-measure)
+Window: last 90 days and last 16 months are identical (measured 2026-07-12).
+
+| Page | Impressions | Clicks | Avg position |
+|---|---|---|---|
+| /websites (EN) | 32 | 1 | 7.7 |
+| /pt, /it, /es /websites | 0 | 0 | - |
+
+Only one query drives /websites: **"wbdesign"** (a brand typo), position 45.
+
+**Reading:** the money page ranks well *when shown* (pos 7.7) but is shown for
+almost nothing, and for **zero non-brand / commercial queries**. This confirms
+the keyword-plan gap: `/websites` needs its own target-keyword work (3D /
+Three.js / web-design-agency terms per `keyword-plan-*`), not just inbound links
+from the blog. Re-measure both the post and `/websites` at the next snapshot.

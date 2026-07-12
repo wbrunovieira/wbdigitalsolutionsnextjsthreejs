@@ -327,6 +327,8 @@
   "customSolution": "Solução Personalizada",
   "customDescription": "Sites únicos, rápidos e otimizados, projetados para destacar o seu negócio.<br />- <strong>Velocidade:</strong> Carregamento em milissegundos, garantindo uma experiência fluida.<br />- <strong>Interatividade:</strong> Animações, vídeos e 3D envolventes que encantam os visitantes.<br />- <strong>Segurança:</strong> Tecnologias avançadas como Kubernetes e Rust para máxima proteção.<br />- <strong>Design:</strong> UI/UX exclusivo, focado em resultados e identidade da sua marca.<br />- <strong>Tipos de Projetos:</strong> Landing pages, sites institucionais, lojas online, plataformas de ensino e projetos sob medida.<br />- <strong>Escalabilidade:</strong> Preparado para acompanhar o crescimento do seu negócio sem limitações técnicas.",
   "approachSubtitle": "Combinamos criatividade e tecnologia avançada para oferecer sites que impressionam.",
+  "approachEmotionalLead": "Isso é design emocional de sites na prática.",
+  "approachEmotionalLink": "Veja por que um site bonito conquista clientes",
   "steps": [
     {
       "title": "Descoberta",
