@@ -119,6 +119,10 @@ const BlogPost: React.FC<BlogPostProps> = ({
                   width={1600}
                   height={893}
                   className="mt-10 w-full rounded-2xl shadow-lg ring-1 ring-black/5"
+                  // The article caps at ~768px wide, so cap the served variant to
+                  // that instead of the default 100vw. Shrinks the LCP image's
+                  // preload/download (esp. on desktop) without visible quality loss.
+                  sizes="(max-width: 768px) 100vw, 768px"
                   // Only the first in-content image is eager (LCP candidate);
                   // the rest lazy-load so below-the-fold images don't inflate LCP.
                   priority={imageIndex === 0}
