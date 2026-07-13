@@ -332,7 +332,10 @@ const SchemaMarkup: React.FC<SchemaMarkupProps> = ({ schemas }) => {
           key={`schema-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(generateSchema(schema)),
+            // Escape `<` so a literal "</script>" in any schema string can never
+            // break out of the JSON-LD block (defense-in-depth; content is
+            // author-controlled today, but this is the generic XSS sink).
+            __html: JSON.stringify(generateSchema(schema)).replace(/</g, '\\u003c'),
           }}
         />
       ))}

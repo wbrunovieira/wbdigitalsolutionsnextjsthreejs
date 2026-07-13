@@ -250,6 +250,11 @@ regression in Search Console.
 
 **Rollback:** revert the one line.
 
+**Shipped 2026-07-13:** added `.replace(/</g, '\\u003c')` to the JSON-LD `__html` in
+`SchemaMarkup.tsx`. `<` is valid JSON and decodes to `<`, so Google/parsers are
+unaffected; a literal `</script>` in any schema string can no longer break out.
+tsc + 36 tests + build green.
+
 ---
 
 ## Step 9 — [LOW] `rel="noopener noreferrer"` on `target="_blank"` links
@@ -267,6 +272,11 @@ already have it.)
 
 **Rollback:** trivial revert.
 
+**Verified 2026-07-13 — NO CHANGE NEEDED.** Audited all 34 `target="_blank"` sites
+in `src/`: all already carry `rel="noopener noreferrer"` (the flagged ones had it on
+the adjacent JSX line, which the sweep's same-line grep missed). The finding was a
+false positive; the codebase was already correct.
+
 ---
 
 ## Progress tracker
@@ -280,7 +290,20 @@ already have it.)
 | 5. No SMTP error leak | MED | ✅ | 9d51364 | ✅ no leak string in prod |
 | 6. nodemailer 7→9 | MED | ✅ | 9d51364 | ✅ real send 200 in prod |
 | 7. CSP hardening | LOW | ☐ | — | ☐ |
-| 8. JSON-LD escape | LOW | ☐ | — | ☐ |
-| 9. rel=noopener | LOW | ☐ | — | ☐ |
+| 8. JSON-LD escape | LOW | ✅ | (pending push) | ⏳ after deploy |
+| 9. rel=noopener | LOW | ✅ | n/a | ✅ already present (no change) |
 
 Update this table (Status ✅, commit hash, prod-verified ✅) as each step ships.
+
+## Future note (not scheduled — no action today)
+
+Senior review of Step 8 flagged two adjacent HTML-injection surfaces that are
+**safe today because the content is author-controlled** (locale JSON / blog
+markdown), the same trust level the schema assumes:
+- `src/components/CustomVsGeneric.tsx:123,132` — injects `currentMessages.*Description`.
+- `src/components/BlogPost.tsx:98` — injects blog `paragraph` HTML.
+
+They render into a `<p>` (HTML body), so the Step 8 `<` escape is the wrong
+tool for them. No change needed now. Revisit ONLY if any of that content ever
+becomes user-supplied (e.g. comments, user profiles) — then sanitize with a real
+HTML sanitizer, not a script-breakout escape.
