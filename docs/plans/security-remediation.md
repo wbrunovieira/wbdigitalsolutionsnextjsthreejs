@@ -133,6 +133,10 @@ longer lists the 13 Next advisories.
 
 **Rollback:** revert the version bump + lockfile.
 
+**Shipped 2026-07-13:** bumped to the latest 15.5 patch, **15.5.20** (newer than the
+15.5.18 floor — more fixes, still no major migration). `pnpm audit` dropped from 52
+→ 28 advisories once combined with Step 4. tsc + 36 tests + build all green.
+
 ---
 
 ## Step 4 — [MEDIUM] Remove unused `react-router-dom`
@@ -148,6 +152,11 @@ react-router advisories.
 react-router advisories gone.
 
 **Rollback:** re-add the dependency.
+
+**Shipped 2026-07-13** (batched with Step 3): confirmed zero `react-router` imports
+in `src/`, then `pnpm remove react-router-dom`. Combined with the Next bump, this
+cleared the 24 runtime/react-router advisories (52 → 28); the remaining 28 are
+dev/build-only noise (minimatch/flatted/picomatch/eslint) plus nodemailer (Step 6).
 
 ---
 
@@ -254,8 +263,8 @@ already have it.)
 |---|---|---|---|---|
 | 1. Headers on cached pages | HIGH | ✅ | 9942d6a + 1d485f9 | ✅ headers on HIT + GA4 host added |
 | 2. Rate limiting + email validation | HIGH | ✅ | 36d7138 | ✅ prod: 5x200 then 429 |
-| 3. Next 15.5.18 | MED | ☐ | — | ☐ |
-| 4. Remove react-router-dom | MED | ☐ | — | ☐ |
+| 3. Next 15.5.20 | MED | ✅ | (pending push) | ⏳ after deploy |
+| 4. Remove react-router-dom | MED | ✅ | (pending push) | ⏳ after deploy |
 | 5. No SMTP error leak | MED | ☐ | — | ☐ |
 | 6. nodemailer 7→9 | MED | ☐ | — | ☐ |
 | 7. CSP hardening | LOW | ☐ | — | ☐ |
