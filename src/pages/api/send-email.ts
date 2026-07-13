@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { getContactEmails } from '@/lib/contactEmail';
+import { rateLimit, getClientIp } from '@/lib/rateLimit';
+
+// Matches the validation used in newsletter.ts / card-contact.ts.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Data = {
   success: boolean;
@@ -62,6 +66,13 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
+  // Rate limit per IP (defense-in-depth against spam relay / email amplification).
+  const rl = rateLimit(`send-email:${getClientIp(req)}`);
+  if (!rl.allowed) {
+    res.setHeader('Retry-After', String(rl.retryAfterSeconds));
+    return res.status(429).json({ success: false, message: 'Too many requests. Please try again later.' });
+  }
+
   const { name, email, message, language: rawLang = 'pt-BR', _hp, _t, attribution } = req.body;
   const language = SUPPORTED.includes(rawLang) ? rawLang : 'pt-BR';
 
@@ -78,6 +89,11 @@ export default async function handler(
   // Validate input
   if (!name || !email || !message) {
     return res.status(400).json({ success: false, message: 'Missing required fields' });
+  }
+
+  // Validate email format (mirrors newsletter.ts / card-contact.ts).
+  if (!EMAIL_RE.test(String(email))) {
+    return res.status(400).json({ success: false, message: 'Invalid email format' });
   }
 
   // Reject obviously random/bot-generated content (all uppercase random strings)

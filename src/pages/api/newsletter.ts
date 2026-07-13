@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import { rateLimit, getClientIp } from '@/lib/rateLimit';
 
 type Data = {
   success: boolean;
@@ -215,6 +216,13 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
+  }
+
+  // Rate limit per IP (defense-in-depth against spam relay / email amplification).
+  const rl = rateLimit(`newsletter:${getClientIp(req)}`);
+  if (!rl.allowed) {
+    res.setHeader('Retry-After', String(rl.retryAfterSeconds));
+    return res.status(429).json({ success: false, message: 'Too many requests. Please try again later.' });
   }
 
   const { email, name = '', company = '', language = 'pt-BR' } = req.body;

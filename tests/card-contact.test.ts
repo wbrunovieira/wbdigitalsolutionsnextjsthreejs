@@ -10,6 +10,7 @@ vi.mock('nodemailer', () => ({
 }));
 
 import handler from '../src/pages/api/card-contact';
+import { __resetRateLimitStore } from '../src/lib/rateLimit';
 
 async function call(
   method: RequestMethod,
@@ -26,6 +27,7 @@ const ORIGIN = 'https://card.wbdigitalsolutions.com';
 beforeEach(() => {
   sendMail.mockReset();
   sendMail.mockResolvedValue({ messageId: 'test-id' });
+  __resetRateLimitStore(); // fresh per-IP limiter each test (all calls key to the same mock IP)
   delete process.env.CARD_SHARE_TOKEN;
   delete process.env.CARD_ORIGIN;
   delete process.env.CARD_CONTACT_EMAIL;

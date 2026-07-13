@@ -105,6 +105,16 @@ real form and confirm it still sends (200) and the email arrives. Clean up the t
 
 **Rollback:** revert the routes; the limiter is additive.
 
+**Shipped 2026-07-13:** chose the in-memory Map limiter (5 req / 10 min / IP) in
+`src/lib/rateLimit.ts`, wired into all 3 routes after the method check; added
+EMAIL_RE validation to `send-email.ts`. Senior review verdict SHIP AS-IS — the key
+risk (x-forwarded-for spoofing) is safe because Vercel overwrites XFF with the real
+client IP. Also fixed the test infra (vitest had no `@` alias — added
+`resolve.alias`) and added 15 tests (9 unit for the limiter + 6 integration for
+send-email 429 / email-validation); full suite 36 passing. No user-facing 429 string
+added — clients re-localize non-200 as a generic error (verified in Contact.tsx /
+newsletter form).
+
 ---
 
 ## Step 3 — [MEDIUM] Bump Next.js 15.5.15 → 15.5.18
@@ -243,7 +253,7 @@ already have it.)
 | Step | Severity | Status | Commit | Prod-verified |
 |---|---|---|---|---|
 | 1. Headers on cached pages | HIGH | ✅ | 9942d6a + 1d485f9 | ✅ headers on HIT + GA4 host added |
-| 2. Rate limiting + email validation | HIGH | ☐ | — | ☐ |
+| 2. Rate limiting + email validation | HIGH | ✅ | (pending push) | ⏳ prod probe after deploy |
 | 3. Next 15.5.18 | MED | ☐ | — | ☐ |
 | 4. Remove react-router-dom | MED | ☐ | — | ☐ |
 | 5. No SMTP error leak | MED | ☐ | — | ☐ |
