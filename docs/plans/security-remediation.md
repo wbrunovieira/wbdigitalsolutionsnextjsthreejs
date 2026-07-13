@@ -277,8 +277,8 @@ already have it.)
 | 2. Rate limiting + email validation | HIGH | ✅ | 36d7138 | ✅ prod: 5x200 then 429 |
 | 3. Next 15.5.20 | MED | ✅ | 3baee69 | ✅ pages 200 + CSP intact |
 | 4. Remove react-router-dom | MED | ✅ | 3baee69 | ✅ deploy healthy |
-| 5. No SMTP error leak | MED | ✅ | (pending push) | ⏳ after deploy |
-| 6. nodemailer 7→9 | MED | ✅ | (pending push) | ⏳ after deploy |
+| 5. No SMTP error leak | MED | ✅ | 9d51364 | ✅ no leak string in prod |
+| 6. nodemailer 7→9 | MED | ✅ | 9d51364 | ✅ real send 200 in prod |
 | 7. CSP hardening | LOW | ☐ | — | ☐ |
 | 8. JSON-LD escape | LOW | ☐ | — | ☐ |
 | 9. rel=noopener | LOW | ☐ | — | ☐ |
