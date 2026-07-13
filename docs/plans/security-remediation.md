@@ -290,7 +290,7 @@ false positive; the codebase was already correct.
 | 5. No SMTP error leak | MED | ✅ | 9d51364 | ✅ no leak string in prod |
 | 6. nodemailer 7→9 | MED | ✅ | 9d51364 | ✅ real send 200 in prod |
 | 7. CSP hardening | LOW | ☐ | — | ☐ |
-| 8. JSON-LD escape | LOW | ✅ | (pending push) | ⏳ after deploy |
+| 8. JSON-LD escape | LOW | ✅ | 8174ce9 | ✅ all JSON-LD parses in prod |
 | 9. rel=noopener | LOW | ✅ | n/a | ✅ already present (no change) |
 
 Update this table (Status ✅, commit hash, prod-verified ✅) as each step ships.
