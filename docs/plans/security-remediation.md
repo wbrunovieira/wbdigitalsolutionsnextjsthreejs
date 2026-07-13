@@ -60,6 +60,15 @@ CSP is unchanged, so nothing should break — this just confirms it now applies)
 
 **Rollback:** delete `vercel.json` (reverts to prior behavior instantly).
 
+**Shipped 2026-07-13** (commit `9942d6a` + CSP follow-up): headers now confirmed on
+`/en`, `/blog`, blog post (cache HIT/PRERENDER) and `/api/*` (MISS). Enforcing the
+CSP on previously-uncovered cached pages surfaced a **pre-existing gap**: GA4's
+Google-Signals beacon to `https://analytics.google.com/g/collect` was never in
+`connect-src` (only `www.` and `region1.` were) — it slipped through before because
+cached pages had no CSP. Added `https://analytics.google.com` to `connect-src`.
+Lesson for Step 7: the CSP had latent gaps that only became observable once it was
+actually enforced everywhere — re-check the console on real pages after any CSP edit.
+
 ---
 
 ## Step 2 — [HIGH] Rate limiting + email validation on the 3 email endpoints
@@ -233,7 +242,7 @@ already have it.)
 
 | Step | Severity | Status | Commit | Prod-verified |
 |---|---|---|---|---|
-| 1. Headers on cached pages | HIGH | ☐ | — | ☐ |
+| 1. Headers on cached pages | HIGH | ✅ | 9942d6a (+CSP fix) | ⏳ pushing CSP fix |
 | 2. Rate limiting + email validation | HIGH | ☐ | — | ☐ |
 | 3. Next 15.5.18 | MED | ☐ | — | ☐ |
 | 4. Remove react-router-dom | MED | ☐ | — | ☐ |
