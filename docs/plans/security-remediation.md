@@ -242,7 +242,7 @@ already have it.)
 
 | Step | Severity | Status | Commit | Prod-verified |
 |---|---|---|---|---|
-| 1. Headers on cached pages | HIGH | ✅ | 9942d6a (+CSP fix) | ⏳ pushing CSP fix |
+| 1. Headers on cached pages | HIGH | ✅ | 9942d6a + 1d485f9 | ✅ headers on HIT + GA4 host added |
 | 2. Rate limiting + email validation | HIGH | ☐ | — | ☐ |
 | 3. Next 15.5.18 | MED | ☐ | — | ☐ |
 | 4. Remove react-router-dom | MED | ☐ | — | ☐ |
