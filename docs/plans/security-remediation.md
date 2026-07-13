@@ -263,8 +263,8 @@ already have it.)
 |---|---|---|---|---|
 | 1. Headers on cached pages | HIGH | ✅ | 9942d6a + 1d485f9 | ✅ headers on HIT + GA4 host added |
 | 2. Rate limiting + email validation | HIGH | ✅ | 36d7138 | ✅ prod: 5x200 then 429 |
-| 3. Next 15.5.20 | MED | ✅ | (pending push) | ⏳ after deploy |
-| 4. Remove react-router-dom | MED | ✅ | (pending push) | ⏳ after deploy |
+| 3. Next 15.5.20 | MED | ✅ | 3baee69 | ✅ pages 200 + CSP intact |
+| 4. Remove react-router-dom | MED | ✅ | 3baee69 | ✅ deploy healthy |
 | 5. No SMTP error leak | MED | ☐ | — | ☐ |
 | 6. nodemailer 7→9 | MED | ☐ | — | ☐ |
 | 7. CSP hardening | LOW | ☐ | — | ☐ |
