@@ -11,11 +11,6 @@ type Data = {
   message: string;
 };
 
-// Nodemailer transport errors are Error instances extended with SMTP details.
-type MailTransportError = Error & { code?: string; response?: string };
-
-const isMailTransportError = (e: unknown): e is MailTransportError => e instanceof Error;
-
 const SUPPORTED = ['en', 'pt-BR', 'es', 'it'];
 
 const header = (req: NextApiRequest, name: string): string | undefined => {
@@ -154,17 +149,11 @@ export default async function handler(
 
     return res.status(200).json({ success: true, message: 'Email sent successfully' });
   } catch (error) {
+    // Log the full error (incl. any SMTP response) server-side only; never
+    // surface mail-infrastructure detail to the client.
     console.error('Error sending email:', error);
-    let errorMessage = 'Failed to send email';
-    if (isMailTransportError(error)) {
-      if (error.code === 'EAUTH') {
-        errorMessage = 'Authentication failed. Please check Gmail credentials.';
-      } else if (error.code === 'ECONNECTION') {
-        errorMessage = 'Connection failed. Please check internet connection.';
-      } else if (error.response) {
-        errorMessage = `Gmail error: ${error.response}`;
-      }
-    }
-    return res.status(500).json({ success: false, message: errorMessage });
+    return res
+      .status(500)
+      .json({ success: false, message: 'Failed to send email, please try again later.' });
   }
 }

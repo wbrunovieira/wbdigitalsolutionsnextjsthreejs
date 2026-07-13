@@ -7,11 +7,6 @@ type Data = {
   message: string;
 };
 
-// Nodemailer transport errors are Error instances extended with SMTP details.
-type MailTransportError = Error & { code?: string; response?: string };
-
-const isMailTransportError = (e: unknown): e is MailTransportError => e instanceof Error;
-
 // Email templates by language
 const emailTemplates = {
   'en': {
@@ -346,22 +341,13 @@ export default async function handler(
       message: 'Successfully subscribed to newsletter', 
     });
   } catch (error) {
+    // Log the full error (incl. any SMTP response) server-side only; never
+    // surface mail-infrastructure detail to the client.
     console.error('Error processing newsletter subscription:', error);
 
-    let errorMessage = 'Failed to subscribe to newsletter';
-    if (isMailTransportError(error)) {
-      if (error.code === 'EAUTH') {
-        errorMessage = 'Authentication failed. Please check Gmail credentials.';
-      } else if (error.code === 'ECONNECTION') {
-        errorMessage = 'Connection failed. Please check internet connection.';
-      } else if (error.response) {
-        errorMessage = `Gmail error: ${error.response}`;
-      }
-    }
-
-    return res.status(500).json({ 
-      success: false, 
-      message: errorMessage,
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to subscribe, please try again later.',
     });
   }
 }

@@ -179,6 +179,12 @@ branch is code-verified). Confirm no `error.response` string remains via grep.
 
 **Rollback:** revert the two routes.
 
+**Shipped 2026-07-13** (batched with Step 6): both `send-email.ts` and
+`newsletter.ts` now log the full error server-side and return a single generic
+message; removed the now-unused `isMailTransportError`/`MailTransportError` helpers.
+`card-contact.ts` already returned a generic message (no change). Grep confirms no
+`error.response`/`Gmail error` string reaches any client. tsc + 36 tests + build green.
+
 ---
 
 ## Step 6 — [MEDIUM] Bump `nodemailer` 7 → 9
@@ -196,6 +202,12 @@ major, verify no breaking change in how we call it.
 live form and confirm it arrives and renders correctly (HTML + text). Clean up.
 
 **Rollback:** pin back to `nodemailer@^7`.
+
+**Shipped 2026-07-13:** `nodemailer` 7.0.5 → 9.0.3. The API surface used
+(`createTransport({service,auth})` + `sendMail({...})`) is unchanged across the
+majors, so no route edits were needed. This cleared the last runtime advisories:
+`pnpm audit` 28 → 20, and **all 20 remaining are dev/build-only** (minimatch /
+flatted / picomatch / glob / eslint chains) — zero runtime-reachable left.
 
 ---
 
@@ -265,8 +277,8 @@ already have it.)
 | 2. Rate limiting + email validation | HIGH | ✅ | 36d7138 | ✅ prod: 5x200 then 429 |
 | 3. Next 15.5.20 | MED | ✅ | 3baee69 | ✅ pages 200 + CSP intact |
 | 4. Remove react-router-dom | MED | ✅ | 3baee69 | ✅ deploy healthy |
-| 5. No SMTP error leak | MED | ☐ | — | ☐ |
-| 6. nodemailer 7→9 | MED | ☐ | — | ☐ |
+| 5. No SMTP error leak | MED | ✅ | (pending push) | ⏳ after deploy |
+| 6. nodemailer 7→9 | MED | ✅ | (pending push) | ⏳ after deploy |
 | 7. CSP hardening | LOW | ☐ | — | ☐ |
 | 8. JSON-LD escape | LOW | ☐ | — | ☐ |
 | 9. rel=noopener | LOW | ☐ | — | ☐ |
