@@ -194,77 +194,12 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],
       },
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Content-Security-Policy",
-            value: `
-              default-src 'self';
-              connect-src 'self'
-                http://localhost:8000
-                http://45.90.123.190:8000
-                https://chatbot.wbdigitalsolutions.com
-                https://www.google-analytics.com
-                https://www.google.com
-                https://www.gstatic.com
-                https://fonts.gstatic.com
-                https://fonts.googleapis.com
-                https://region1.google-analytics.com
-                https://www.facebook.com
-                https://cdn.jsdelivr.net
-                https://ad.doubleclick.net
-                https://stats.g.doubleclick.net
-                https://pagead2.googlesyndication.com
-                https://va.vercel-scripts.com
-                data:;
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:
-                https://connect.facebook.net
-                https://www.googletagmanager.com
-                https://www.google-analytics.com
-                https://googleads.g.doubleclick.net
-                https://www.googleadservices.com
-                https://va.vercel-scripts.com
-                https://www.gstatic.com;
-              worker-src 'self' blob:;
-              style-src 'self' 'unsafe-inline';
-              img-src 'self'
-                https://www.facebook.com
-                https://www.google.com
-                https://www.google-analytics.com
-                https://googleads.g.doubleclick.net
-                https://www.googleadservices.com
-                https://pagead2.googlesyndication.com
-                https://www.wbdigitalsolutions.com
-                https://www.google.com.br
-                data:;
-              font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:;
-              frame-src 'self'
-                https://www.youtube.com
-                https://www.googletagmanager.com
-                https://cdn.lightwidget.com
-                https://lightwidget.com
-                https://td.doubleclick.net;
-            `.replace(/\s{2,}/g, ' ').trim()
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
-          },
-        ],
-      },
+      // NOTE: the security headers (CSP, X-Frame-Options, X-Content-Type-Options,
+      // Referrer-Policy, Permissions-Policy) now live in vercel.json as the single
+      // source of truth. next.config headers() were NOT reaching statically
+      // prerendered pages served from Vercel's edge cache (x-vercel-cache: HIT),
+      // so real users loaded pages without them; vercel.json applies at the edge to
+      // every response. Keep only Cache-Control rules here.
     ];
   },
 
