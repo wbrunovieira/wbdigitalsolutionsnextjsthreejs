@@ -22,7 +22,14 @@ async function call(
   return res;
 }
 
-const valid = { name: 'Ana Souza', email: 'ana@example.com', message: 'Quero um orcamento de site.' };
+// A valid submission must clear the bot guard: no honeypot, and a `_t` far enough
+// in the past (> 3s) to look human.
+const valid = {
+  name: 'Ana Souza',
+  email: 'ana@example.com',
+  message: 'Quero um orcamento de site.',
+  _t: Date.now() - 5000,
+};
 
 beforeEach(() => {
   sendMail.mockReset();
@@ -48,9 +55,33 @@ describe('send-email handler', () => {
     expect(sendMail).not.toHaveBeenCalled();
   });
 
-  it('rejects missing required fields with 400', async () => {
-    const res = await call('POST', { email: 'ana@example.com' });
+  it('rejects missing required fields with 400 (after passing the bot guard)', async () => {
+    const res = await call('POST', { email: 'ana@example.com', _t: Date.now() - 5000 });
     expect(res._getStatusCode()).toBe(400);
+  });
+
+  it('silently drops a submission with no _t (bot guard) without sending', async () => {
+    const res = await call('POST', { name: 'x', email: 'a@b.co', message: 'hi' });
+    expect(res._getStatusCode()).toBe(200);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it('silently drops a honeypot-filled submission without sending', async () => {
+    const res = await call('POST', { ...valid, _hp: 'i-am-a-bot' });
+    expect(res._getStatusCode()).toBe(200);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it('rejects a cross-site Origin with 403 and does not send', async () => {
+    const res = await call('POST', valid, { origin: 'https://evil.example.com' });
+    expect(res._getStatusCode()).toBe(403);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it('allows an allow-listed Origin', async () => {
+    const res = await call('POST', valid, { origin: 'https://www.wbdigitalsolutions.com' });
+    expect(res._getStatusCode()).toBe(200);
+    expect(sendMail).toHaveBeenCalled();
   });
 
   it('rate-limits the 6th request from the same IP with 429', async () => {

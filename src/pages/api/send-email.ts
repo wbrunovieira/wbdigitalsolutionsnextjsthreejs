@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { getContactEmails } from '@/lib/contactEmail';
 import { rateLimit, getClientIp } from '@/lib/rateLimit';
+import { isTrustedOrigin } from '@/lib/originCheck';
+import { passesBotGuard } from '@/lib/formGuard';
 
 // Matches the validation used in newsletter.ts / card-contact.ts.
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -61,6 +63,11 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
+  // Reject cross-site (CSRF) POSTs from non-allow-listed origins.
+  if (!isTrustedOrigin(req)) {
+    return res.status(403).json({ success: false, message: 'Forbidden' });
+  }
+
   // Rate limit per IP (defense-in-depth against spam relay / email amplification).
   const rl = rateLimit(`send-email:${getClientIp(req)}`);
   if (!rl.allowed) {
@@ -68,18 +75,13 @@ export default async function handler(
     return res.status(429).json({ success: false, message: 'Too many requests. Please try again later.' });
   }
 
-  const { name, email, message, language: rawLang = 'pt-BR', _hp, _t, attribution } = req.body;
+  // Honeypot + non-omittable timing gate. Fake success so bots learn nothing.
+  if (!passesBotGuard(req.body ?? {})) {
+    return res.status(200).json({ success: true, message: 'Email sent successfully' });
+  }
+
+  const { name, email, message, language: rawLang = 'pt-BR', attribution } = req.body;
   const language = SUPPORTED.includes(rawLang) ? rawLang : 'pt-BR';
-
-  // Honeypot: bots fill this hidden field
-  if (_hp) {
-    return res.status(200).json({ success: true, message: 'Email sent successfully' });
-  }
-
-  // Timing: reject if form was submitted in under 3 seconds (bot behavior)
-  if (_t && typeof _t === 'number' && Date.now() - _t < 3000) {
-    return res.status(200).json({ success: true, message: 'Email sent successfully' });
-  }
 
   // Validate input
   if (!name || !email || !message) {

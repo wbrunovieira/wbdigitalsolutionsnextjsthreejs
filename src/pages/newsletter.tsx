@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -104,6 +104,9 @@ export default function NewsletterPage() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+  // Anti-bot: hidden honeypot field + page-load timestamp (see src/lib/formGuard.ts).
+  const [honeypot, setHoneypot] = useState('');
+  const loadTimeRef = useRef<number>(Date.now());
 
   const validate = () => {
     const newErrors: { name?: string; email?: string } = {};
@@ -122,7 +125,14 @@ export default function NewsletterPage() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, company, email, language: lang }),
+        body: JSON.stringify({
+          name,
+          company,
+          email,
+          language: lang,
+          _hp: honeypot,
+          _t: loadTimeRef.current,
+        }),
       });
       const data = await res.json();
       setStatus(data.success ? 'success' : 'error');
@@ -214,6 +224,18 @@ export default function NewsletterPage() {
                 onSubmit={handleSubmit}
                 className="w-full flex flex-col gap-4"
               >
+                {/* Honeypot — off-screen, hidden from humans; bots fill it */}
+                <input
+                  type="text"
+                  name="_hp_website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                />
+
                 {/* Name */}
                 <div className="flex flex-col gap-1">
                   <input

@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { rateLimit, getClientIp } from '@/lib/rateLimit';
+import { isTrustedOrigin } from '@/lib/originCheck';
+import { passesBotGuard } from '@/lib/formGuard';
 
 type Data = {
   success: boolean;
@@ -213,11 +215,21 @@ export default async function handler(
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
 
+  // Reject cross-site (CSRF) POSTs from non-allow-listed origins.
+  if (!isTrustedOrigin(req)) {
+    return res.status(403).json({ success: false, message: 'Forbidden' });
+  }
+
   // Rate limit per IP (defense-in-depth against spam relay / email amplification).
   const rl = rateLimit(`newsletter:${getClientIp(req)}`);
   if (!rl.allowed) {
     res.setHeader('Retry-After', String(rl.retryAfterSeconds));
     return res.status(429).json({ success: false, message: 'Too many requests. Please try again later.' });
+  }
+
+  // Honeypot + non-omittable timing gate. Fake success so bots learn nothing.
+  if (!passesBotGuard(req.body ?? {})) {
+    return res.status(200).json({ success: true, message: 'Subscribed successfully' });
   }
 
   const { email, name = '', company = '', language = 'pt-BR' } = req.body;
