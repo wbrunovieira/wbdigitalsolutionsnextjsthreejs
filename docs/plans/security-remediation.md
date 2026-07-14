@@ -233,6 +233,15 @@ Verify analytics still fire (GA4/Pixel/Clarity) in a consented session.
 **Rollback:** this is the most likely to break something — keep the diff small and be
 ready to revert the `unsafe-eval` removal independently from the added directives.
 
+**Shipped 2026-07-13** (commit 2ab501c): added `base-uri 'self'`, `form-action 'self'`,
+`object-src 'none'`, `frame-ancestors 'self'`; removed the two `http://` origins from
+`connect-src`. **Kept `unsafe-eval`** — CLAUDE.md documents it as required for
+GTM/Pixel/Clarity, so removal was deliberately skipped (marginal gain, real risk).
+Pre-checked low-risk: only form is Contact.tsx via fetch (self), no `<object>/<embed>`,
+frame-ancestors mirrors the existing X-Frame-Options. Prod-verified: all 4 directives
+live on cache-HIT pages, http origins gone, and Bruno confirmed the real browser
+console is clean (no CSP violations) on production.
+
 ---
 
 ## Step 8 — [LOW] Escape `</script>` in JSON-LD
@@ -289,7 +298,7 @@ false positive; the codebase was already correct.
 | 4. Remove react-router-dom | MED | ✅ | 3baee69 | ✅ deploy healthy |
 | 5. No SMTP error leak | MED | ✅ | 9d51364 | ✅ no leak string in prod |
 | 6. nodemailer 7→9 | MED | ✅ | 9d51364 | ✅ real send 200 in prod |
-| 7. CSP hardening | LOW | ☐ | — | ☐ |
+| 7. CSP hardening | LOW | ✅ | 2ab501c | ✅ directives live, console clean |
 | 8. JSON-LD escape | LOW | ✅ | 8174ce9 | ✅ all JSON-LD parses in prod |
 | 9. rel=noopener | LOW | ✅ | n/a | ✅ already present (no change) |
 
