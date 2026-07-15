@@ -1,3 +1,5 @@
+import { withSentryConfig } from '@sentry/nextjs';
+
 const nextConfig = {
   // Disable the dev "static route indicator". Its HMR `isrManifest` message
   // crashes the Next 15.5 dev client (handleStaticIndicator → "Cannot read
@@ -247,4 +249,12 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+// Only apply Sentry's build instrumentation when a DSN is configured, so the build
+// is completely unaffected until Sentry is turned on (env var set on Vercel).
+export default process.env.NEXT_PUBLIC_SENTRY_DSN
+  ? withSentryConfig(nextConfig, {
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      silent: !process.env.CI,
+    })
+  : nextConfig;

@@ -99,6 +99,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Meta (Facebook): Meta Pixel, carregado apenas com o consentimento de marketing.',
           'Google Workspace / Gmail: entrega das mensagens do formulário de contato à nossa equipe.',
           'Assistente virtual (chatbot): as mensagens enviadas no chat são processadas por um provedor de inteligência artificial (atualmente a DeepSeek) para gerar as respostas. Esse provedor está localizado fora do Brasil, inclusive em país sem decisão de adequação (ver seção 7).',
+          'Sentry: monitoramento de erros para manter o site estável e corrigir falhas (recebe dados técnicos do erro, como navegador e página; configurado para não coletar dados pessoais). Localizado nos Estados Unidos.',
         ],
       },
       {
@@ -207,6 +208,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Meta (Facebook): the Meta Pixel, loaded only with marketing consent.',
           'Google Workspace / Gmail: delivery of contact-form messages to our team.',
           'Virtual assistant (chatbot): the messages sent in the chat are processed by an artificial-intelligence provider (currently DeepSeek) to generate the answers. This provider is located outside Brazil, including in a country without an adequacy decision (see section 7).',
+          'Sentry: error monitoring to keep the site stable and fix issues (receives technical error data such as browser and page; configured not to collect personal data). Located in the United States.',
         ],
       },
       {
@@ -315,6 +317,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Meta (Facebook): el Meta Pixel, cargado solo con el consentimiento de marketing.',
           'Google Workspace / Gmail: entrega de los mensajes del formulario de contacto a nuestro equipo.',
           'Asistente virtual (chatbot): los mensajes enviados en el chat son procesados por un proveedor de inteligencia artificial (actualmente DeepSeek) para generar las respuestas. Ese proveedor está ubicado fuera de Brasil, incluso en un país sin decisión de adecuación (ver sección 7).',
+          'Sentry: monitoreo de errores para mantener el sitio estable y corregir fallos (recibe datos técnicos del error, como navegador y página; configurado para no recopilar datos personales). Ubicado en Estados Unidos.',
         ],
       },
       {
@@ -423,6 +426,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Meta (Facebook): il Meta Pixel, caricato solo con il consenso di marketing.',
           'Google Workspace / Gmail: consegna dei messaggi del modulo di contatto al nostro team.',
           'Assistente virtuale (chatbot): i messaggi inviati nella chat sono elaborati da un fornitore di intelligenza artificiale (attualmente DeepSeek) per generare le risposte. Questo fornitore si trova fuori dal Brasile, anche in un paese senza decisione di adeguatezza (vedi sezione 7).',
+          'Sentry: monitoraggio degli errori per mantenere il sito stabile e correggere i problemi (riceve dati tecnici dell’errore, come browser e pagina; configurato per non raccogliere dati personali). Situato negli Stati Uniti.',
         ],
       },
       {
