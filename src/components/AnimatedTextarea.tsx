@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './AnimatedField.module.css';
 
 interface AnimatedTextareaProps {
   label: string;
@@ -43,7 +44,7 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
           setIsFocused(false);
           setIsTouched(true);
         }}
-        className={`peer bg-transparent border-b-2 w-full py-4 text-lg text-white resize-none focus:outline-none transition-colors duration-300 ${
+        className={`peer ${styles.field} bg-transparent border-b-2 w-full py-4 text-lg text-white resize-none focus:outline-none transition-colors duration-300 ${
           hasError ? 'border-red-500' : 'border-white/40 focus:border-yellowcustom'
         } ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         rows={4}
@@ -62,8 +63,8 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
                   <span
                     key={idx}
                     className={`inline-block transition-transform duration-300 ${
-                      hasError ? 'text-red-500' : 'text-gray-300 peer-focus:text-yellowcustom'
-                    } ${floated ? 'text-sm -translate-y-6' : 'text-lg translate-y-0'}`}
+                      hasError ? 'text-red-500' : 'text-secondary peer-focus:text-yellowcustom'
+                    } ${floated ? 'text-sm -translate-y-7' : 'text-lg translate-y-0'}`}
                     style={{ transitionDelay: `${Math.min(idx, 10) * 35}ms` }}
                   >
                     {char}
@@ -78,7 +79,7 @@ const AnimatedTextarea: React.FC<AnimatedTextareaProps> = ({
             aria-hidden="true"
             className={`inline-block transition-transform duration-300 ${
               hasError ? 'text-red-500' : 'text-yellowcustom'
-            } ${floated ? 'text-sm -translate-y-6' : 'text-lg translate-y-0'}`}
+            } ${floated ? 'text-sm -translate-y-7' : 'text-lg translate-y-0'}`}
           >
             *
           </span>

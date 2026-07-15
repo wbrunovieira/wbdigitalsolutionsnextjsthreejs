@@ -1,0 +1,17 @@
+/* Shared by AnimatedInput + AnimatedTextarea. The fields are transparent
+   underline inputs over the dark frosted contact form; browser autofill would
+   otherwise paint them with a light background (breaking the theme and making
+   white text unreadable). Force a solid dark fill via an inset box-shadow in
+   every autofill state (incl. :focus/:active) and keep the text white — the
+   box-shadow trick is far more reliable than deferring the background transition,
+   which Chrome re-applies on focus. #350545 is the brand primary (matches the
+   form's tint), so the autofilled field reads as an intentional dark field. */
+.field:-webkit-autofill,
+.field:-webkit-autofill:hover,
+.field:-webkit-autofill:focus,
+.field:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff;
+  caret-color: #ffffff;
+  -webkit-box-shadow: 0 0 0 1000px #350545 inset;
+  box-shadow: 0 0 0 1000px #350545 inset;
+}

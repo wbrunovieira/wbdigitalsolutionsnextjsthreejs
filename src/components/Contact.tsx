@@ -11,7 +11,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { getAttribution } from '@/lib/attribution';
 import AnimatedInput from './AnimatedInput';
 import AnimatedTextarea from './AnimatedTextarea';
-import { FiMail, FiPhone, FiCopy, FiCheck, FiCheckCircle } from 'react-icons/fi';
+import { FiMail, FiPhone, FiCopy, FiCheck, FiCheckCircle, FiArrowLeft } from 'react-icons/fi';
 import { SiWhatsapp } from 'react-icons/si';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,11 +37,11 @@ const COPY_UI: Record<string, { copy: string; copied: string }> = {
   it: { copy: 'Copia', copied: 'Copiato!' },
 };
 
-const SUCCESS_UI: Record<string, { title: string; body: string }> = {
-  'pt-BR': { title: 'Mensagem enviada!', body: 'Obrigado pelo contato. Retornaremos para você em breve.' },
-  en: { title: 'Message sent!', body: "Thanks for reaching out. We'll get back to you soon." },
-  es: { title: '¡Mensaje enviado!', body: 'Gracias por contactarnos. Te responderemos muy pronto.' },
-  it: { title: 'Messaggio inviato!', body: 'Grazie per averci contattato. Ti risponderemo a breve.' },
+const SUCCESS_UI: Record<string, { title: string; body: string; backHome: string; sendAnother: string }> = {
+  'pt-BR': { title: 'Mensagem enviada!', body: 'Obrigado pelo contato. Retornaremos para você em breve.', backHome: 'Voltar para a home', sendAnother: 'Enviar outra mensagem' },
+  en: { title: 'Message sent!', body: "Thanks for reaching out. We'll get back to you soon.", backHome: 'Back to home', sendAnother: 'Send another message' },
+  es: { title: '¡Mensaje enviado!', body: 'Gracias por contactarnos. Te responderemos muy pronto.', backHome: 'Volver al inicio', sendAnother: 'Enviar otro mensaje' },
+  it: { title: 'Messaggio inviato!', body: 'Grazie per averci contattato. Ti risponderemo a breve.', backHome: 'Torna alla home', sendAnother: 'Invia un altro messaggio' },
 };
 
 // Consent/transparency note under the submit button: sending the form attaches
@@ -75,6 +75,13 @@ const Contact: React.FC = () => {
   const phoneLabel = PHONE_LABEL[lang] ?? PHONE_LABEL['pt-BR'];
   const successUi = SUCCESS_UI[lang] ?? SUCCESS_UI['pt-BR'];
   const privacyNotice = PRIVACY_NOTICE[lang] ?? PRIVACY_NOTICE['pt-BR'];
+
+  // Reset back to a blank form so the user can send another message.
+  const handleReset = () => {
+    setIsSubmitted(false);
+    setIsSubmitting(false);
+    loadTimeRef.current = Date.now();
+  };
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const handleCopy = async (key: string, text: string) => {
@@ -217,6 +224,21 @@ const Contact: React.FC = () => {
                 </span>
                 <h2 className="mb-2 text-2xl font-bold text-white">{successUi.title}</h2>
                 <p className="max-w-sm text-secondary">{successUi.body}</p>
+                <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
+                  <Link
+                    href="/"
+                    className="inline-flex items-center gap-2 rounded-full bg-yellowcustom px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:bg-yellowcustom/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                  >
+                    <FiArrowLeft aria-hidden="true" /> {successUi.backHome}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="rounded-full px-4 py-2 text-sm font-medium text-secondary underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/60"
+                  >
+                    {successUi.sendAnother}
+                  </button>
+                </div>
               </div>
             ) : (
             <>
