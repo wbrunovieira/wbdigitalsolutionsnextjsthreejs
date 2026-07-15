@@ -128,6 +128,18 @@ regardless of instance spread.
 
 **Rollback:** A = remove the WAF rule; B = revert to in-memory.
 
+**Shipped 2026-07-15 (Option A — Vercel WAF, no code):** Firewall custom rule
+"Rate limit email endpoints" — `Request Path Starts with /api/`, Rate Limit Fixed
+Window 10 req / 60s keyed by **IP Address**, action **Deny (403)**. Runs at the edge
+so it is cross-instance (closes the red-team's Fluid-Compute bypass). Verified in
+prod: a 16-request burst gave `200x5 → 429x5 (app in-memory) → 403x6 (WAF edge)`;
+the 403 body is Vercel's edge deny (`{"error":{"code":"403"...}}`), i.e. it never
+reached the function. NOTE: WAF rate limiting worked on the **Hobby** plan (no Pro
+upgrade needed). Two gotchas hit while configuring: the 3 path conditions must be
+OR not AND (a path can't equal all three — we switched to `Starts with /api/`), and
+the Rate Limit key must be `IP Address`, not the default `API controlled` (SDK-only).
+The in-memory limiter stays as a tighter per-instance first layer.
+
 ---
 
 ## Step 4 — [LOW] Consolidate the 3 endpoints' bot defenses
@@ -209,7 +221,7 @@ project, not a step — scope it on its own when there's appetite.
 |---|---|---|---|---|
 | 1. Kill email amplification + CSRF | HIGH | ✅ | 3871e55 | ✅ Bruno smoke-test: form sent + email received |
 | 2. Escape newsletter email HTML | MED | ✅ | (this push) | ✅ test-covered (server-side) |
-| 3. Cross-instance rate limiting | MED | ☐ (decision) | — | ☐ |
+| 3. Cross-instance rate limiting | MED | ✅ | Vercel WAF (no code) | ✅ 403 at edge after 10/60s |
 | 4. Consolidate bot defenses | LOW | ☐ | — | ☐ |
 | 5. HSTS includeSubDomains/preload | LOW | ☐ | — | ☐ |
 | 6. security.txt | LOW | ☐ | — | ☐ |
