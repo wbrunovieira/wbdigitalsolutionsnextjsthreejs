@@ -61,11 +61,19 @@ Os termos-cabeça de dinheiro ("quanto custa um site", "criar chatbot com IA", "
 | como contratar agência de IA | comercial | **baixa** | não rankeando | nova página/post | **Abertura**: H1 exato dos poucos que rankeiam |
 | desenvolvimento de agentes de IA | comercial | **baixa** | não rankeando | `/pt/ai` | Poucas agências pt-BR ranqueiam; maior upside |
 | agente de IA sob medida / personalizado | comercial | baixa | não rankeando | `/pt/ai` | Long-tail subatendido |
-| implementação de agentes de IA | comercial | baixa | não rankeando | novo post | Forte intenção de compra |
-| agentes de IA para empresas | comercial | média | não rankeando | `/pt/ai` | Head do cluster quente |
-| chatbot com IA para empresas | comercial | média | não rankeando | novo post | Menos saturado que "criar chatbot" |
+| implementação de agentes de IA | comercial | baixa | não rankeando | ✅ post `ai-agents-for-business` (2026-07-12) | Coberto pelo pilar; forte intenção de compra |
+| agentes de IA para empresas | comercial | média | não rankeando | ✅ post `ai-agents-for-business` (2026-07-12) + `/pt/ai` | **Head do cluster quente — pilar topo-de-funil publicado** |
+| chatbot com IA para empresas | comercial | média | não rankeando | novo post | Menos saturado que "criar chatbot" (o pilar já cobre "agente vs chatbot") |
 | o que é RAG | informacional | média | não rankeando | novo post-guia | Topo de funil; alimenta citação em AI Overview |
 | RAG e agentes de IA | informacional | baixa | não rankeando | novo post-guia | Autoridade tópica; caso AI Agents |
+
+> **Passo executado (2026-07-12):** publicado o pilar educacional **"Agentes de IA
+> para Empresas: o que são e como ajudam o seu negócio"** (`/pt/blog/ai-agents-for-business`,
+> 4 locales), atacando o **head do cluster quente** "agentes de IA para empresas" e
+> os siblings "implementação de agentes de IA", "agente vs chatbot", multi-agentes,
+> LGPD/dados. Otimizado para citação em AI Overviews (definição extraível + FAQ).
+> Detalhes e análise SEO/perf em [`2026-07-12-action-ai-agents-post.md`](./2026-07-12-action-ai-agents-post.md).
+> Próximo: linkar de `/pt/ai` e `/pt/automation` para este post (fluxo de autoridade).
 | automação inteligente com IA | comercial | média | não rankeando | post-ponte | Liga Automação + IA |
 
 ---
@@ -74,7 +82,7 @@ Os termos-cabeça de dinheiro ("quanto custa um site", "criar chatbot com IA", "
 
 Sequência sugerida (do mais fácil/quente para o mais estrutural):
 
-1. **Agentes de IA sob medida / "como contratar agência de IA" / "desenvolvimento de agentes de IA"** — demanda em alta, SERP rala, quase sem incumbentes. Maior upside estratégico. → refazer `/pt/ai` + post "como contratar agência de IA".
+1. **Agentes de IA sob medida / "como contratar agência de IA" / "desenvolvimento de agentes de IA"** — demanda em alta, SERP rala, quase sem incumbentes. Maior upside estratégico. → refazer `/pt/ai` + post "como contratar agência de IA". *[🟢 iniciado 2026-07-12: pilar "agentes de IA para empresas" publicado; falta refazer `/pt/ai` + o post comercial "como contratar agência de IA".]*
 2. **Consultoria n8n / automação com n8n para empresas** — janela de land-grab aberta agora. → nova página de serviço n8n.
 3. **Sites em Next.js / site com 3D** — diferencial técnico exclusivo da WB, concorrência baixa. → reforçar `/pt/websites` + post 3D.
 4. **Sistemas sob medida / SaaS sob medida / plataforma sob demanda** — cluster comercial provado e batível. → `/pt/systems` + casos.
@@ -91,6 +99,7 @@ Alvos primários e a posição de partida **hoje (2026-07-11)**. Remedir mensalm
 
 | Keyword-alvo primária | Posição 2026-07-11 | Meta 90d | Página |
 |---|---|---|---|
+| agentes de IA para empresas | não rankeando *(post publicado 2026-07-12)* | top 20 | post `ai-agents-for-business` |
 | desenvolvimento de agentes de IA | não rankeando | top 20 | `/pt/ai` |
 | como contratar agência de IA | não rankeando | top 10 | novo post |
 | consultoria n8n | não rankeando | top 10 | nova página |

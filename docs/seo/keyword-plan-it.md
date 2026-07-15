@@ -66,7 +66,15 @@ Su **Siti Web** e **Sviluppo Software** la testa è affollata da centinaia di we
 | chatbot AI per aziende | commerciale | media | non posizionato | nuovo post | SERP di agenzie, no big brand |
 | sviluppo chatbot personalizzati | commerciale | media | non posizionato | `/it/ai` | "basati su documentazione interna" (RAG) |
 | automazione AI per PMI | commerciale | media | non posizionato | post-ponte | Incrocio AI + automazione |
-| agenti AI per aziende (head) | comm./info | media | non posizionato | `/it/ai` | Head del cluster caldo |
+| agenti AI per aziende (head) | comm./info | media | non posizionato | ✅ post `ai-agents-for-business` (2026-07-12) + `/it/ai` | **Head del cluster caldo — pilastro TOFU pubblicato** |
+
+> **Passo eseguito (2026-07-12):** pubblicato il pilastro educativo **"Agenti IA
+> per le Aziende: cosa sono e come aiutano il tuo business"** (`/it/blog/ai-agents-for-business`,
+> 4 lingue), che attacca la head del cluster "agenti AI per aziende" e i siblings
+> (agenti AI per PMI, multi-agente, LGPD/dati). Ottimizzato per la citazione negli
+> AI Overviews (definizione estraibile + FAQ). Dettagli e analisi SEO/perf in
+> [`2026-07-12-action-ai-agents-post.md`](./2026-07-12-action-ai-agents-post.md).
+> Prossimo: linkare da `/it/ai` verso il post (flusso di autorità).
 
 ---
 

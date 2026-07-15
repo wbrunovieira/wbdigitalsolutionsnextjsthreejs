@@ -59,11 +59,18 @@
 | Keyword (es) | Intent | Comp. | Posición actual | Página objetivo | Acción |
 |---|---|---|---|---|---|
 | desarrollo de agentes de IA a medida | comercial | **baja** | sin posicionar | `/es/ai` | Nicho poco saturado, H1 literal competidor |
-| agentes IA para empresas España guía | informacional | **baja** | sin posicionar | nuevo post-guía | Oportunidad de autoridad TOFU |
+| agentes IA para empresas España guía | informacional | **baja** | sin posicionar | ✅ post `ai-agents-for-business` (2026-07-12) | Pilar TOFU publicado |
 | cómo implementar RAG desde cero | informacional | **baja** | sin posicionar | nuevo post | Audiencia técnica, poco competido |
 | chatbot con IA para empresa precio | comercial | media | sin posicionar | nuevo post | Intención transaccional máxima |
 | chatbot WhatsApp con IA para empresas | comercial | media | sin posicionar | nuevo post | Canal WhatsApp muy demandado en ES |
-| agentes de IA para empresas | comercial/info | media | sin posicionar | `/es/ai` | Tema explosivo 2026 |
+| agentes de IA para empresas | comercial/info | media | sin posicionar | ✅ post `ai-agents-for-business` (2026-07-12) + `/es/ai` | **Head del cluster caliente — pilar TOFU publicado** |
+
+> **Paso ejecutado (2026-07-12):** publicado el pilar educativo **"Agentes de IA
+> para Empresas: qué son y cómo ayudan a tu negocio"** (`/es/blog/ai-agents-for-business`,
+> 4 idiomas), atacando el head del cluster "agentes de IA para empresas" y sus
+> siblings. Optimizado para citación en AI Overviews (definición extraíble + FAQ).
+> Detalle y análisis SEO/perf en [`2026-07-12-action-ai-agents-post.md`](./2026-07-12-action-ai-agents-post.md).
+> Siguiente: enlazar desde `/es/ai` hacia el post (flujo de autoridad).
 | agente de IA para WhatsApp y llamadas | comercial | baja | sin posicionar | nuevo post | Canal de voz emergente |
 | automatización con IA para empresas | comercial | media | sin posicionar | post-puente | Enlaza automatización + IA |
 | desarrollo de chatbots con IA a medida | comercial | media | sin posicionar | `/es/ai` | Chatbots a medida (RAG) |

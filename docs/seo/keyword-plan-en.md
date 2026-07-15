@@ -67,7 +67,17 @@ Broad head terms (**web design agency**, **custom software development company**
 | hire ai agent developer | commercial | med | not ranking | new post | Bottom-funnel talent+agency |
 | ai agent development cost | commercial-info | med | *"pay as you go ai tools for smes" pos 25* | new pricing guide | Calculator, research-stage capture |
 | ai chatbot development company | commercial | high | *"chatgpt small business" pos 8* | new post/case | Maps to WB's existing chatbot; faint signal |
-| build ai agents no code / frameworks | informational | med | not ranking | new post | TOFU capture into services |
+| ai agents for business (what they are) | informational | med | not ranking | ✅ post `ai-agents-for-business` (2026-07-12) | **TOFU pillar published** — demystify + feed AI Overviews |
+| build ai agents no code / frameworks | informational | med | not ranking | ✅ covered by pillar `ai-agents-for-business` | TOFU capture into services (button/upload section) |
+
+> **Step executed (2026-07-12):** published the educational TOFU pillar **"AI Agents
+> for Business: what they are and how they help your company"**
+> (`/blog/ai-agents-for-business`, 4 locales), targeting the "what are AI agents /
+> for business" head + siblings (agent vs chatbot, multi-agent, no-code
+> button/upload, data/LGPD). Optimized for AI Overviews citation (extractable
+> definition + FAQ). Feeds the commercial `/ai` and `/automation` pages. Detail +
+> SEO/perf analysis in [`2026-07-12-action-ai-agents-post.md`](./2026-07-12-action-ai-agents-post.md).
+> Next: link from `/ai` and `/automation` into this post (authority flow).
 
 ---
 

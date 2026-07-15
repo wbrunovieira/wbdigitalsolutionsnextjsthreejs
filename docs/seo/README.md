@@ -13,6 +13,14 @@ Workflow: **research → plan → implement → re-measure → record improvemen
 - **`keyword-plan-it.md`** — Italian / Italy plan.
 - **`keyword-plan-es.md`** — Spanish / Spain plan.
 
+### Action logs (implement steps)
+- **`2026-07-11-action-emotional-design-post.md`** — overhauled the
+  emotional-design post (only non-brand ranker) + first internal link from
+  `/websites`.
+- **`2026-07-12-action-ai-agents-post.md`** — launched the "AI Agents for
+  Business" TOFU pillar (4 locales) targeting the hot **AI-agents-for-business**
+  cluster in every plan; includes the advanced SEO/perf analysis + LCP finding.
+
 Each plan has, per service line (Websites, Automation, Platforms/Systems, AI):
 a target-keyword table with intent, competition, **current GSC position**,
 target page, and content action — plus a Top-8 roadmap and a tracking table.
