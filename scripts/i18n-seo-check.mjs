@@ -56,6 +56,8 @@ function readBlogPostIds() {
  * full-screen 3D pages and API routes are excluded by design.
  */
 const SKIP_DIRS = new Set(['api', 'dev', 'vendas', '3d-showcase', '3d-tunnel']);
+// Error pages are intentionally noindex with no canonical/hreflang — not SEO pages.
+const SKIP_FILES = new Set(['404', '500']);
 
 function discoverStaticPages() {
   const pages = [];
@@ -66,6 +68,7 @@ function discoverStaticPages() {
         walk(path.join(dir, e.name), `${route}/${e.name}`);
       } else if (e.name.endsWith('.tsx') && !e.name.startsWith('_') && !e.name.includes('[')) {
         const base = e.name.replace(/\.tsx$/, '');
+        if (SKIP_FILES.has(base)) continue;
         pages.push(base === 'index' ? route : `${route}/${base}`);
       }
     }
