@@ -72,6 +72,16 @@ emails during testing (use honeypot / invalid-email paths).
 
 **Rollback:** additive — revert the two lib files + endpoint wiring.
 
+**Shipped 2026-07-14** (commit 3871e55): originCheck + formGuard libs, wired into
+send-email + newsletter; newsletter.tsx now sends `_hp`+`_t`; card-contact untouched.
+54 tests pass. **Prod curl-verification was BLOCKED**: Vercel's Attack Challenge Mode
+(`x-vercel-mitigated: challenge`) was challenging ALL traffic (GET+POST) — almost
+certainly auto-triggered by the red-team + verification traffic volume. Real browsers
+pass the challenge transparently; the logic is covered by the test suite. Outstanding:
+(a) Bruno browser smoke-test of the real contact + newsletter forms, (b) confirm the
+challenge subsided and real Googlebot still crawls 200 (Search Console), (c) if it
+persists, check Vercel → Firewall → Attack Challenge Mode.
+
 ---
 
 ## Step 2 — [MED] Escape HTML in the newsletter notification email
@@ -197,7 +207,7 @@ project, not a step — scope it on its own when there's appetite.
 
 | Step | Sev | Status | Commit | Prod-verified |
 |---|---|---|---|---|
-| 1. Kill email amplification + CSRF | HIGH | ☐ | — | ☐ |
+| 1. Kill email amplification + CSRF | HIGH | ✅ deployed | 3871e55 | ⚠️ tests only — see note |
 | 2. Escape newsletter email HTML | MED | ☐ | — | ☐ |
 | 3. Cross-instance rate limiting | MED | ☐ (decision) | — | ☐ |
 | 4. Consolidate bot defenses | LOW | ☐ | — | ☐ |
