@@ -223,8 +223,8 @@ project, not a step — scope it on its own when there's appetite.
 | 2. Escape newsletter email HTML | MED | ✅ | (this push) | ✅ test-covered (server-side) |
 | 3. Cross-instance rate limiting | MED | ✅ | Vercel WAF (no code) | ✅ 403 at edge after 10/60s |
 | 4. Consolidate bot defenses | LOW | ☐ | — | ☐ |
-| 5. HSTS includeSubDomains/preload | LOW | ✅ | (this push) | ⏳ verify header after deploy |
-| 6. security.txt | LOW | ✅ | (this push) | ⏳ verify 200 after deploy |
+| 5. HSTS includeSubDomains/preload | LOW | ✅ | f2e3330 | ✅ www/brunodev/brunov (card = separate project) |
+| 6. security.txt | LOW | ✅ | f2e3330 | ✅ /.well-known/security.txt → 200 |
 | 7. CSP nonce migration | ROADMAP | ☐ | — | ☐ |
 
 ---
