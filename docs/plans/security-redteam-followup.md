@@ -208,7 +208,7 @@ project, not a step — scope it on its own when there's appetite.
 | Step | Sev | Status | Commit | Prod-verified |
 |---|---|---|---|---|
 | 1. Kill email amplification + CSRF | HIGH | ✅ | 3871e55 | ✅ Bruno smoke-test: form sent + email received |
-| 2. Escape newsletter email HTML | MED | ☐ | — | ☐ |
+| 2. Escape newsletter email HTML | MED | ✅ | (this push) | ✅ test-covered (server-side) |
 | 3. Cross-instance rate limiting | MED | ☐ (decision) | — | ☐ |
 | 4. Consolidate bot defenses | LOW | ☐ | — | ☐ |
 | 5. HSTS includeSubDomains/preload | LOW | ☐ | — | ☐ |

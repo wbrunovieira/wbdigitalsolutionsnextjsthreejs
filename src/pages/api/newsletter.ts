@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import { rateLimit, getClientIp } from '@/lib/rateLimit';
 import { isTrustedOrigin } from '@/lib/originCheck';
 import { passesBotGuard } from '@/lib/formGuard';
+import { escapeHtml } from '@/lib/escapeHtml';
 
 type Data = {
   success: boolean;
@@ -272,7 +273,9 @@ export default async function handler(
       from: `"Newsletter Subscription" <${process.env.GMAIL_USER}>`,
       to: process.env.CONTACT_EMAIL || process.env.GMAIL_USER,
       subject: templates.subject,
-      html: templates.mainEmailHtml(email, name, company),
+      // Escape user input before it enters the notification HTML (name/company/email
+      // are otherwise interpolated raw — the one endpoint that did not escape).
+      html: templates.mainEmailHtml(escapeHtml(email), escapeHtml(name), escapeHtml(company)),
       text: `
         ${langKey === 'en' ? 'New Newsletter Subscription' : 
           langKey === 'es' ? 'Nueva Suscripción al Boletín' :
