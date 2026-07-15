@@ -38,7 +38,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       'Como a WB Digital Solutions coleta, usa, compartilha e protege seus dados pessoais, em conformidade com a LGPD (Lei 13.709/2018).',
     title: 'Política de Privacidade',
     lastUpdatedLabel: 'Última atualização',
-    lastUpdatedDate: '11 de julho de 2026',
+    lastUpdatedDate: '15 de julho de 2026',
     intro:
       'Esta Política explica como a WB Digital Solutions trata seus dados pessoais quando você usa este site ou entra em contato conosco, de acordo com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).',
     backHome: '← Voltar para o site',
@@ -78,6 +78,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Procedimentos preliminares e execução de contrato (art. 7, V): para responder ao contato que você mesmo iniciou.',
           'Legítimo interesse (art. 7, IX): para os dados de origem e navegação anexados ao contato, e para a segurança contra spam, sempre respeitando suas expectativas e direitos.',
           'Consentimento (art. 7, I): para os cookies de análise e marketing e para o registro da jornada de navegação, que só ocorrem se você aceitar no banner de cookies. Você pode retirar o consentimento a qualquer momento.',
+          'Consentimento específico para o chatbot (art. 7, I e art. 33, VIII): para processar as mensagens que você envia no assistente virtual e transferi-las ao provedor de IA fora do Brasil, com base no consentimento que você fornece ao iniciar o chat.',
         ],
       },
       {
@@ -97,19 +98,20 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Google: Google Analytics (análise) e, quando aplicável, Google Ads (marketing).',
           'Meta (Facebook): Meta Pixel, carregado apenas com o consentimento de marketing.',
           'Google Workspace / Gmail: entrega das mensagens do formulário de contato à nossa equipe.',
-          'Assistente virtual (chatbot): nosso serviço de chat e seu provedor de inteligência artificial processam as mensagens enviadas no chat para gerar as respostas.',
+          'Assistente virtual (chatbot): as mensagens enviadas no chat são processadas por um provedor de inteligência artificial (atualmente a DeepSeek) para gerar as respostas. Esse provedor está localizado fora do Brasil, inclusive em país sem decisão de adequação (ver seção 7).',
         ],
       },
       {
         heading: '7. Transferência internacional',
         paragraphs: [
           'Alguns desses prestadores estão localizados fora do Brasil (por exemplo, nos Estados Unidos). Nesses casos, a transferência ocorre com as garantias exigidas pela LGPD (art. 33), por meio de cláusulas contratuais e padrões de segurança adequados.',
+          'O provedor de inteligência artificial do assistente virtual (DeepSeek) está localizado na China, país que não possui decisão de adequação da ANPD. Por isso, o conteúdo que você envia no chat só é transferido a esse provedor com base no seu consentimento específico e destacado (art. 33, VIII), solicitado antes de você usar o chat, e limitado ao necessário para gerar a resposta. Se preferir não usar o chat, fale conosco pelo formulário de contato ou pelos canais diretos.',
         ],
       },
       {
         heading: '8. Por quanto tempo guardamos',
         paragraphs: [
-          'Mantemos os dados do contato pelo tempo necessário para responder e dar seguimento à sua solicitação, em geral por até 24 meses após a última interação, e, depois, pelo prazo exigido por obrigações legais. Os dados de análise seguem os períodos de retenção das ferramentas usadas. Quando não forem mais necessários, os dados são eliminados ou anonimizados.',
+          'Mantemos os dados do contato pelo tempo necessário para responder e dar seguimento à sua solicitação, em geral por até 24 meses após a última interação, e, depois, pelo prazo exigido por obrigações legais. Os dados de análise seguem os períodos de retenção das ferramentas usadas. Quando não forem mais necessários, os dados são eliminados ou anonimizados. As mensagens trocadas com o assistente virtual são mantidas por até 12 meses e depois eliminadas.',
         ],
       },
       {
@@ -144,7 +146,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       'How WB Digital Solutions collects, uses, shares and protects your personal data, in line with Brazil’s LGPD (Law 13.709/2018).',
     title: 'Privacy Policy',
     lastUpdatedLabel: 'Last updated',
-    lastUpdatedDate: 'July 11, 2026',
+    lastUpdatedDate: 'July 15, 2026',
     intro:
       'This Policy explains how WB Digital Solutions handles your personal data when you use this site or get in touch with us, in accordance with the Brazilian General Data Protection Law (LGPD, Law No. 13.709/2018).',
     backHome: '← Back to website',
@@ -184,6 +186,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Pre-contract steps and contract performance (art. 7, V): to answer the contact you initiated.',
           'Legitimate interest (art. 7, IX): for the source and navigation data attached to your contact and for anti-spam security, always respecting your expectations and rights.',
           'Consent (art. 7, I): for analytics and marketing cookies and for recording your navigation journey, which only happen if you accept in the cookie banner. You can withdraw consent at any time.',
+          'Specific consent for the chatbot (art. 7, I and art. 33, VIII): to process the messages you send in the virtual assistant and transfer them to the AI provider outside Brazil, based on the consent you give when you start the chat.',
         ],
       },
       {
@@ -203,19 +206,20 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Google: Google Analytics (analytics) and, where applicable, Google Ads (marketing).',
           'Meta (Facebook): the Meta Pixel, loaded only with marketing consent.',
           'Google Workspace / Gmail: delivery of contact-form messages to our team.',
-          'Virtual assistant (chatbot): our chat service and its artificial-intelligence provider process the messages sent in the chat to generate the answers.',
+          'Virtual assistant (chatbot): the messages sent in the chat are processed by an artificial-intelligence provider (currently DeepSeek) to generate the answers. This provider is located outside Brazil, including in a country without an adequacy decision (see section 7).',
         ],
       },
       {
         heading: '7. International transfer',
         paragraphs: [
           'Some of these providers are located outside Brazil (for example, in the United States). In those cases, the transfer takes place with the safeguards required by the LGPD (art. 33), through contractual clauses and adequate security standards.',
+          'The virtual assistant’s artificial-intelligence provider (DeepSeek) is located in China, a country without an adequacy decision from the ANPD. For that reason, the content you send in the chat is only transferred to this provider based on your specific, highlighted consent (art. 33, VIII), requested before you use the chat, and limited to what is needed to generate the answer. If you prefer not to use the chat, reach us through the contact form or our direct channels.',
         ],
       },
       {
         heading: '8. How long we keep it',
         paragraphs: [
-          'We keep contact data for as long as needed to reply to and follow up on your request, generally up to 24 months after the last interaction, and afterwards for the period required by legal obligations. Analytics data follows the retention periods of the tools used. When no longer needed, data is deleted or anonymized.',
+          'We keep contact data for as long as needed to reply to and follow up on your request, generally up to 24 months after the last interaction, and afterwards for the period required by legal obligations. Analytics data follows the retention periods of the tools used. When no longer needed, data is deleted or anonymized. Messages exchanged with the virtual assistant are kept for up to 12 months and then deleted.',
         ],
       },
       {
@@ -250,7 +254,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       'Cómo WB Digital Solutions recopila, usa, comparte y protege tus datos personales, conforme a la LGPD brasileña (Ley 13.709/2018).',
     title: 'Política de Privacidad',
     lastUpdatedLabel: 'Última actualización',
-    lastUpdatedDate: '11 de julio de 2026',
+    lastUpdatedDate: '15 de julio de 2026',
     intro:
       'Esta Política explica cómo WB Digital Solutions trata tus datos personales cuando usas este sitio o te pones en contacto con nosotros, conforme a la Ley General de Protección de Datos brasileña (LGPD, Ley n.º 13.709/2018).',
     backHome: '← Volver al sitio',
@@ -290,6 +294,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Procedimientos preliminares y ejecución de contrato (art. 7, V): para responder al contacto que iniciaste.',
           'Interés legítimo (art. 7, IX): para los datos de origen y navegación adjuntos al contacto y para la seguridad contra spam, siempre respetando tus expectativas y derechos.',
           'Consentimiento (art. 7, I): para las cookies de análisis y marketing y para el registro de la jornada de navegación, que solo ocurren si aceptas en el banner de cookies. Puedes retirar el consentimiento en cualquier momento.',
+          'Consentimiento específico para el chatbot (art. 7, I y art. 33, VIII): para procesar los mensajes que envías en el asistente virtual y transferirlos al proveedor de IA fuera de Brasil, con base en el consentimiento que otorgas al iniciar el chat.',
         ],
       },
       {
@@ -309,19 +314,20 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Google: Google Analytics (análisis) y, cuando corresponda, Google Ads (marketing).',
           'Meta (Facebook): el Meta Pixel, cargado solo con el consentimiento de marketing.',
           'Google Workspace / Gmail: entrega de los mensajes del formulario de contacto a nuestro equipo.',
-          'Asistente virtual (chatbot): nuestro servicio de chat y su proveedor de inteligencia artificial procesan los mensajes enviados en el chat para generar las respuestas.',
+          'Asistente virtual (chatbot): los mensajes enviados en el chat son procesados por un proveedor de inteligencia artificial (actualmente DeepSeek) para generar las respuestas. Ese proveedor está ubicado fuera de Brasil, incluso en un país sin decisión de adecuación (ver sección 7).',
         ],
       },
       {
         heading: '7. Transferencia internacional',
         paragraphs: [
           'Algunos de estos proveedores están ubicados fuera de Brasil (por ejemplo, en Estados Unidos). En esos casos, la transferencia se realiza con las garantías exigidas por la LGPD (art. 33), mediante cláusulas contractuales y estándares de seguridad adecuados.',
+          'El proveedor de inteligencia artificial del asistente virtual (DeepSeek) está ubicado en China, un país sin decisión de adecuación de la ANPD. Por eso, el contenido que envías en el chat solo se transfiere a ese proveedor con base en tu consentimiento específico y destacado (art. 33, VIII), solicitado antes de usar el chat, y limitado a lo necesario para generar la respuesta. Si prefieres no usar el chat, contáctanos por el formulario de contacto o por nuestros canales directos.',
         ],
       },
       {
         heading: '8. Cuánto tiempo los guardamos',
         paragraphs: [
-          'Conservamos los datos del contacto durante el tiempo necesario para responder y dar seguimiento a tu solicitud, en general hasta 24 meses después de la última interacción, y, después, durante el plazo exigido por obligaciones legales. Los datos de análisis siguen los períodos de retención de las herramientas usadas. Cuando ya no son necesarios, los datos se eliminan o anonimizan.',
+          'Conservamos los datos del contacto durante el tiempo necesario para responder y dar seguimiento a tu solicitud, en general hasta 24 meses después de la última interacción, y, después, durante el plazo exigido por obligaciones legales. Los datos de análisis siguen los períodos de retención de las herramientas usadas. Cuando ya no son necesarios, los datos se eliminan o anonimizan. Los mensajes intercambiados con el asistente virtual se conservan hasta 12 meses y luego se eliminan.',
         ],
       },
       {
@@ -356,7 +362,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
       'Come WB Digital Solutions raccoglie, usa, condivide e protegge i tuoi dati personali, in conformità alla LGPD brasiliana (Legge 13.709/2018).',
     title: 'Informativa sulla Privacy',
     lastUpdatedLabel: 'Ultimo aggiornamento',
-    lastUpdatedDate: '11 luglio 2026',
+    lastUpdatedDate: '15 luglio 2026',
     intro:
       'Questa Informativa spiega come WB Digital Solutions tratta i tuoi dati personali quando usi questo sito o ci contatti, in conformità alla Legge Generale sulla Protezione dei Dati brasiliana (LGPD, Legge n. 13.709/2018).',
     backHome: '← Torna al sito',
@@ -396,6 +402,7 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Procedure preliminari ed esecuzione del contratto (art. 7, V): per rispondere al contatto che hai avviato tu.',
           'Legittimo interesse (art. 7, IX): per i dati di origine e navigazione allegati al contatto e per la sicurezza anti-spam, sempre nel rispetto delle tue aspettative e dei tuoi diritti.',
           'Consenso (art. 7, I): per i cookie di analisi e marketing e per la registrazione del percorso di navigazione, che avvengono solo se accetti nel banner dei cookie. Puoi revocare il consenso in qualsiasi momento.',
+          'Consenso specifico per il chatbot (art. 7, I e art. 33, VIII): per elaborare i messaggi che invii nell’assistente virtuale e trasferirli al fornitore di IA fuori dal Brasile, in base al consenso che fornisci quando avvii la chat.',
         ],
       },
       {
@@ -415,19 +422,20 @@ export const PRIVACY_CONTENT: Record<'pt-BR' | 'en' | 'es' | 'it', PolicyContent
           'Google: Google Analytics (analisi) e, ove applicabile, Google Ads (marketing).',
           'Meta (Facebook): il Meta Pixel, caricato solo con il consenso di marketing.',
           'Google Workspace / Gmail: consegna dei messaggi del modulo di contatto al nostro team.',
-          'Assistente virtuale (chatbot): il nostro servizio di chat e il suo fornitore di intelligenza artificiale elaborano i messaggi inviati nella chat per generare le risposte.',
+          'Assistente virtuale (chatbot): i messaggi inviati nella chat sono elaborati da un fornitore di intelligenza artificiale (attualmente DeepSeek) per generare le risposte. Questo fornitore si trova fuori dal Brasile, anche in un paese senza decisione di adeguatezza (vedi sezione 7).',
         ],
       },
       {
         heading: '7. Trasferimento internazionale',
         paragraphs: [
           'Alcuni di questi fornitori si trovano fuori dal Brasile (ad esempio, negli Stati Uniti). In tali casi, il trasferimento avviene con le garanzie richieste dalla LGPD (art. 33), tramite clausole contrattuali e standard di sicurezza adeguati.',
+          'Il fornitore di intelligenza artificiale dell’assistente virtuale (DeepSeek) si trova in Cina, un paese senza decisione di adeguatezza dell’ANPD. Per questo, il contenuto che invii nella chat viene trasferito a questo fornitore solo in base al tuo consenso specifico ed evidenziato (art. 33, VIII), richiesto prima di usare la chat, e limitato a quanto necessario per generare la risposta. Se preferisci non usare la chat, contattaci tramite il modulo di contatto o i nostri canali diretti.',
         ],
       },
       {
         heading: '8. Per quanto tempo li conserviamo',
         paragraphs: [
-          'Conserviamo i dati del contatto per il tempo necessario a rispondere e dare seguito alla tua richiesta, in genere fino a 24 mesi dopo l’ultima interazione, e, in seguito, per il periodo richiesto da obblighi legali. I dati di analisi seguono i periodi di conservazione degli strumenti usati. Quando non sono più necessari, i dati vengono eliminati o anonimizzati.',
+          'Conserviamo i dati del contatto per il tempo necessario a rispondere e dare seguito alla tua richiesta, in genere fino a 24 mesi dopo l’ultima interazione, e, in seguito, per il periodo richiesto da obblighi legali. I dati di analisi seguono i periodi di conservazione degli strumenti usati. Quando non sono più necessari, i dati vengono eliminati o anonimizzati. I messaggi scambiati con l’assistente virtuale sono conservati fino a 12 mesi e poi eliminati.',
         ],
       },
       {

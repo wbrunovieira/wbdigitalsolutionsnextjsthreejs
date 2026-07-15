@@ -12,6 +12,31 @@ interface Message {
   isUser: boolean;
 }
 
+// LGPD Art. 33, VIII: specific, highlighted consent before chat content is sent to
+// the third-party AI provider (DeepSeek), which may be outside Brazil (incl. China).
+const CHAT_CONSENT: Record<string, { title: string; body: string; accept: string }> = {
+  'pt-BR': {
+    title: 'Antes de começar',
+    body: 'Suas mensagens são processadas por uma IA de terceiro (DeepSeek), que pode estar fora do Brasil, inclusive na China. Ao continuar, você concorda com esse tratamento.',
+    accept: 'Concordar e conversar',
+  },
+  en: {
+    title: 'Before we start',
+    body: 'Your messages are processed by a third-party AI (DeepSeek), which may be outside Brazil, including in China. By continuing, you agree to this processing.',
+    accept: 'Agree and chat',
+  },
+  es: {
+    title: 'Antes de empezar',
+    body: 'Tus mensajes son procesados por una IA de terceros (DeepSeek), que puede estar fuera de Brasil, incluso en China. Al continuar, aceptas este tratamiento.',
+    accept: 'Aceptar y chatear',
+  },
+  it: {
+    title: 'Prima di iniziare',
+    body: "I tuoi messaggi sono elaborati da un'IA di terze parti (DeepSeek), che può trovarsi fuori dal Brasile, anche in Cina. Continuando, acconsenti a questo trattamento.",
+    accept: 'Accetta e chatta',
+  },
+};
+
 const ChatBotButton: React.FC = () => {
   const t = useTranslations();
   const { language } = useLanguage();
@@ -25,6 +50,23 @@ const ChatBotButton: React.FC = () => {
   const [typingText, setTypingText] = useState(typingMessages[0]);
   const [newMessageBadge, setNewMessageBadge] = useState(false);
   const [responseTime, setResponseTime] = useState<number | null>(null);
+  // Specific consent to send chat content to the third-party AI (see CHAT_CONSENT).
+  const [chatConsent, setChatConsent] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem('wb-chat-consent-v1') === 'true') {
+      setChatConsent(true);
+    }
+  }, []);
+  const acceptChatConsent = () => {
+    try {
+      localStorage.setItem('wb-chat-consent-v1', 'true');
+    } catch {
+      /* storage blocked — consent still applies for this session */
+    }
+    setChatConsent(true);
+  };
+  const consentCopy =
+    CHAT_CONSENT[(language === 'pt' ? 'pt-BR' : language) as keyof typeof CHAT_CONSENT] ?? CHAT_CONSENT['pt-BR'];
 
   const containerRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -449,35 +491,51 @@ const ChatBotButton: React.FC = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              <textarea
-                placeholder={t.placeholder}
-                value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
-                onKeyDown={handleKeyPress}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-custom-purple focus:ring-2 focus:ring-custom-purple transition-all duration-200 resize-none"
-                rows={3}
-              />
+              {chatConsent ? (
+                <>
+                  <textarea
+                    placeholder={t.placeholder}
+                    value={inputValue}
+                    onChange={e => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-custom-purple focus:ring-2 focus:ring-custom-purple transition-all duration-200 resize-none"
+                    rows={3}
+                  />
 
-              <div className="flex flex-wrap gap-2 mb-2">
-                <button onClick={() => sendMessage(t.specialist)} className="bg-secondary text-black py-1 px-2 text-[0.7rem] rounded-lg shadow-sm hover:bg-gray-300 whitespace-nowrap disabled:opacity-50" disabled={isTyping}>
-                  {t.specialist}
-                </button>
-                <button onClick={() => sendMessage(t.quote)} className="bg-secondary text-black py-1 px-4 text-[0.7rem] rounded-lg shadow-sm hover:bg-gray-300 whitespace-nowrap disabled:opacity-50" disabled={isTyping}>
-                  {t.quote}
-                </button>
-                <button onClick={() => sendMessage(t.services)} className="bg-secondary text-black py-1 px-4 text-[0.7rem] rounded-lg shadow-sm hover:bg-gray-300 whitespace-nowrap disabled:opacity-50" disabled={isTyping}>
-                  {t.services}
-                </button>
-              </div>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    <button onClick={() => sendMessage(t.specialist)} className="bg-secondary text-black py-1 px-2 text-[0.7rem] rounded-lg shadow-sm hover:bg-gray-300 whitespace-nowrap disabled:opacity-50" disabled={isTyping}>
+                      {t.specialist}
+                    </button>
+                    <button onClick={() => sendMessage(t.quote)} className="bg-secondary text-black py-1 px-4 text-[0.7rem] rounded-lg shadow-sm hover:bg-gray-300 whitespace-nowrap disabled:opacity-50" disabled={isTyping}>
+                      {t.quote}
+                    </button>
+                    <button onClick={() => sendMessage(t.services)} className="bg-secondary text-black py-1 px-4 text-[0.7rem] rounded-lg shadow-sm hover:bg-gray-300 whitespace-nowrap disabled:opacity-50" disabled={isTyping}>
+                      {t.services}
+                    </button>
+                  </div>
 
-              <button
-                onClick={() => sendMessage()}
-                disabled={!inputValue.trim() || isTyping}
-                className={`mt-4 w-full py-2 px-4 rounded-lg shadow-md transition-all ${inputValue.trim() ? 'bg-custom-purple text-white hover:bg-primary' : 'bg-gray-400 text-gray-200 cursor-not-allowed'}`}
-                aria-label="Enviar mensagem"
-              >
-                {t.sendButton}
-              </button>
+                  <button
+                    onClick={() => sendMessage()}
+                    disabled={!inputValue.trim() || isTyping}
+                    className={`mt-4 w-full py-2 px-4 rounded-lg shadow-md transition-all ${inputValue.trim() ? 'bg-custom-purple text-white hover:bg-primary' : 'bg-gray-400 text-gray-200 cursor-not-allowed'}`}
+                    aria-label="Enviar mensagem"
+                  >
+                    {t.sendButton}
+                  </button>
+                </>
+              ) : (
+                <div className="rounded-lg border border-custom-purple/25 bg-custom-purple/5 p-4">
+                  <p className="text-sm font-semibold text-primary">{consentCopy.title}</p>
+                  <p className="mt-1.5 text-[0.8rem] leading-relaxed text-gray-600">{consentCopy.body}</p>
+                  <button
+                    type="button"
+                    onClick={acceptChatConsent}
+                    className="mt-3 w-full rounded-lg bg-custom-purple py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-custom-purple focus-visible:ring-offset-2"
+                  >
+                    {consentCopy.accept}
+                  </button>
+                </div>
+              )}
 
               <p className="mt-3 text-[0.7rem] leading-snug text-gray-500">
                 {t.chatbotPrivacyNote}{' '}
