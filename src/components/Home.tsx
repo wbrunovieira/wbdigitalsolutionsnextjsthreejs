@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import HeroSection from './HeroSection';
 import InfiniteScrollHash from './InfiniteScrollHash';
+import NewsletterSection from './home/NewsletterSection';
 import { ToolBoxSkeleton, CarouselSkeleton } from './LoadingSkeletons';
 
 // Lazy load heavy components
@@ -67,6 +68,7 @@ const Home: React.FC = () => {
                 <div data-cpu-stop="2"><InfiniteScrollHash /></div>
                 <div data-cpu-stop="3"><ToolBox /></div>
                 <div data-cpu-stop="4"><AppleCardsCarouselDemo /></div>
+                <div data-cpu-stop="5"><NewsletterSection /></div>
 
         </main>
     );

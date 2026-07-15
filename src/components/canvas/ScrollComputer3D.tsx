@@ -35,7 +35,8 @@ const KEYFRAMES: Keyframe[] = [
   { pos: [-12.0, 0.4, 1], rot: [0.05, -0.35, 0], scale: 0.9 }, // portal: far left (edge) + facing front, half size
   { pos: [0, 0, 0], rot: [0.05, -0.35, 0], scale: 1.2 },       // after portal: centered behind text, a bit bigger
   { pos: [5.0, 1.0, -2], rot: [0.25, 1.0, 0.1], scale: 1.6 },  // right-up, angled
-  { pos: [0, -4, 0], rot: [0.05, -0.35, 0], scale: 1.0 }, // after apple cards: in the gap between cards and footer
+  { pos: [0, -4, 0], rot: [0.05, -0.35, 0], scale: 1.0 }, // apple cards: parked low in the gap
+  { pos: [0, -9, 0], rot: [0.05, -0.35, 0], scale: 0.85 }, // newsletter: sink further down so it clears the card
 ];
 
 // Mobile (≤lg) pose table — narrow viewport, so keep x≈0 and use z (dolly) + scale.
@@ -44,7 +45,8 @@ const KEYFRAMES_MOBILE: Keyframe[] = [
   { pos: [-1.2, 0.2, -3.0], rot: [0.05, -0.45, 0], scale: 1.05 },    // portal: slight left, back
   { pos: [0, 0.0, -1.5], rot: [0.05, -0.30, 0], scale: 1.2 },        // tags: centered behind text
   { pos: [1.0, 0.8, -2.5], rot: [0.22, 0.85, 0.08], scale: 1.15 },   // toolbox: nudged right, angled
-  { pos: [0, -3.5, -2.0], rot: [0.05, -0.30, 0], scale: 0.7 },       // final: small, low
+  { pos: [0, -3.5, -2.0], rot: [0.05, -0.30, 0], scale: 0.7 },       // apple cards: small, low
+  { pos: [0, -7.5, -2.0], rot: [0.05, -0.30, 0], scale: 0.55 },      // newsletter: sink further down
 ];
 
 // World units the model rises per scroll pixel while a section is on screen.

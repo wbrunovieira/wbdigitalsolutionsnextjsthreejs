@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import PageHead from '@/components/PageHead';
+import NewsletterInvite from '@/components/NewsletterInvite';
 import { makeI18nStaticProps } from '@/lib/i18n';
 import logo from '/public/svg/logo-white.svg';
 
@@ -13,7 +14,7 @@ const content = {
     headline: 'Tecnologia e estratégia',
     headlineSub: 'a serviço do seu negócio.',
     description:
-      'Toda semana: insights sobre tecnologia, IA, automação e estratégia comercial para quem quer crescer sem complicar.',
+      'Toda semana, notícias e uma ideia prática de tecnologia, IA, automação e vendas para aplicar no mesmo dia. Menos jargão, mais resultado.',
     namePlaceholder: 'Seu nome',
     companyPlaceholder: 'Nome da empresa',
     emailPlaceholder: 'Seu melhor e-mail',
@@ -33,7 +34,7 @@ const content = {
     headline: 'Technology and strategy',
     headlineSub: 'at the service of your business.',
     description:
-      'Every week: insights on technology, AI, automation and commercial strategy for those who want to grow without the complexity.',
+      'Every week, news and one practical idea on technology, AI, automation and sales to apply the same day. Less jargon, more results.',
     namePlaceholder: 'Your name',
     companyPlaceholder: 'Company name',
     emailPlaceholder: 'Your best email',
@@ -53,7 +54,7 @@ const content = {
     headline: 'Tecnología y estrategia',
     headlineSub: 'al servicio de tu negocio.',
     description:
-      'Cada semana: insights sobre tecnología, IA, automatización y estrategia comercial para quienes quieren crecer sin complicaciones.',
+      'Cada semana, noticias y una idea práctica de tecnología, IA, automatización y ventas para aplicar el mismo día. Menos jerga, más resultados.',
     namePlaceholder: 'Tu nombre',
     companyPlaceholder: 'Nombre de la empresa',
     emailPlaceholder: 'Tu mejor correo',
@@ -73,7 +74,7 @@ const content = {
     headline: 'Tecnologia e strategia',
     headlineSub: 'al servizio del tuo business.',
     description:
-      'Ogni settimana: insight su tecnologia, IA, automazione e strategia commerciale per chi vuole crescere senza complicazioni.',
+      "Ogni settimana, notizie e un'idea pratica su tecnologia, IA, automazione e vendite da applicare lo stesso giorno. Meno tecnicismi, più risultati.",
     namePlaceholder: 'Il tuo nome',
     companyPlaceholder: "Nome dell'azienda",
     emailPlaceholder: 'La tua migliore email',
@@ -213,6 +214,7 @@ export default function NewsletterPage() {
                 <div className="text-5xl mb-4">🎉</div>
                 <h2 className="text-2xl font-bold text-white mb-2">{t.successTitle}</h2>
                 <p className="text-white/60">{t.successMsg}</p>
+                <NewsletterInvite />
               </motion.div>
             ) : (
               <motion.form
@@ -293,6 +295,9 @@ export default function NewsletterPage() {
               </motion.form>
             )}
           </AnimatePresence>
+
+          {/* Quiet invite row while the form is still up; the success card shows the full block */}
+          {status !== 'success' && <NewsletterInvite subtle />}
         </div>
       </div>
     </>
