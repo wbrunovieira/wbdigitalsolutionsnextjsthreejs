@@ -17,7 +17,13 @@ async function call(
   body: Record<string, unknown> = {},
   headers: Record<string, string> = {}
 ) {
-  const { req, res } = createMocks({ method, body, headers });
+  // POST bodies that don't set their own anti-bot fields get a passing _t so the
+  // shared bot guard (non-omittable timing) doesn't drop legitimate test cases.
+  const b =
+    method === 'POST' && body._t === undefined && body._hp === undefined
+      ? { _t: Date.now() - 5000, ...body }
+      : body;
+  const { req, res } = createMocks({ method, body: b, headers });
   await handler(req as unknown as NextApiRequest, res as unknown as NextApiResponse);
   return res;
 }
@@ -55,6 +61,13 @@ describe('card-contact webhook', () => {
 
   it('silently accepts (200) but does not send when submitted too fast (timing)', async () => {
     const res = await call('POST', { name: 'Maria', email: 'a@b.com', _t: Date.now() });
+    expect(res._getStatusCode()).toBe(200);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it('silently accepts (200) but does not send when _t is missing (non-omittable)', async () => {
+    // _hp:'' keeps the helper from injecting a default _t, so _t is truly absent.
+    const res = await call('POST', { name: 'Maria', email: 'a@b.com', _hp: '' });
     expect(res._getStatusCode()).toBe(200);
     expect(sendMail).not.toHaveBeenCalled();
   });

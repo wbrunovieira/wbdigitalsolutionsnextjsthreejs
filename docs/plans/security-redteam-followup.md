@@ -158,6 +158,14 @@ kept separate here for tracking.
 
 **Rollback:** revert.
 
+**Shipped 2026-07-15:** migrated `card-contact` to the shared `passesBotGuard`
+(non-omittable timing), replacing its omittable inline honeypot/timing. Verified the
+external card client (`cartao-virtual-wb/ExchangeContact.tsx`) sends `_hp` + a numeric
+`_t` (`openedAt` set in `openModal()`), so requiring `_t` is safe. All three email
+endpoints now share `rateLimit` + `passesBotGuard`; card-contact keeps its own
+stricter CORS allowlist + optional token (its correct gate, so `isTrustedOrigin` was
+not added there). Tests updated + a missing-`_t` case added; suite 64 pass.
+
 ---
 
 ## Step 5 — [LOW] HSTS `includeSubDomains` + `preload`
@@ -222,7 +230,7 @@ project, not a step — scope it on its own when there's appetite.
 | 1. Kill email amplification + CSRF | HIGH | ✅ | 3871e55 | ✅ Bruno smoke-test: form sent + email received |
 | 2. Escape newsletter email HTML | MED | ✅ | (this push) | ✅ test-covered (server-side) |
 | 3. Cross-instance rate limiting | MED | ✅ | Vercel WAF (no code) | ✅ 403 at edge after 10/60s |
-| 4. Consolidate bot defenses | LOW | ☐ | — | ☐ |
+| 4. Consolidate bot defenses | LOW | ✅ | (this push) | ✅ test-covered (64 pass) |
 | 5. HSTS includeSubDomains/preload | LOW | ✅ | f2e3330 | ✅ www/brunodev/brunov (card = separate project) |
 | 6. security.txt | LOW | ✅ | f2e3330 | ✅ /.well-known/security.txt → 200 |
 | 7. CSP nonce migration | ROADMAP | ☐ | — | ☐ |

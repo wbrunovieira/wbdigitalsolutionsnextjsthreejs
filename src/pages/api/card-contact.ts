@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 import { rateLimit, getClientIp } from '@/lib/rateLimit';
+import { passesBotGuard } from '@/lib/formGuard';
 
 /**
  * Contact-exchange webhook for the digital business card (card.wbdigitalsolutions.com).
@@ -193,16 +194,14 @@ export default async function handler(
     return res.status(401).json({ success: false, message: 'Unauthorized' });
   }
 
-  const { name, phone, email, company, note, language, _hp, _t } = req.body ?? {};
-  const lang = resolveLang(language, req.headers['accept-language']);
-
-  // Honeypot — bots fill the hidden field. Pretend success.
-  if (_hp) return res.status(200).json({ success: true, message: 'OK' });
-
-  // Timing — submitted in under 3s = bot. Pretend success.
-  if (_t && typeof _t === 'number' && Date.now() - _t < 3000) {
+  // Honeypot + non-omittable timing gate (shared with send-email/newsletter).
+  // Fake success so bots learn nothing. The card client sends _hp + a numeric _t.
+  if (!passesBotGuard(req.body ?? {})) {
     return res.status(200).json({ success: true, message: 'OK' });
   }
+
+  const { name, phone, email, company, note, language } = req.body ?? {};
+  const lang = resolveLang(language, req.headers['accept-language']);
 
   if (!name || (!email && !phone)) {
     return res
