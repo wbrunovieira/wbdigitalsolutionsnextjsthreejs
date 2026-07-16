@@ -1,0 +1,5 @@
+# Approve build scripts for these deps (pnpm 11 blocks postinstall scripts by
+# default). @sentry/cli downloads the sentry-cli binary used for optional
+# source-map upload at build time.
+allowBuilds:
+  '@sentry/cli': true
