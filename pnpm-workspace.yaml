@@ -1,5 +1,8 @@
-# Approve build scripts for these deps (pnpm 11 blocks postinstall scripts by
-# default). @sentry/cli downloads the sentry-cli binary used for optional
-# source-map upload at build time.
+# pnpm 11 settings home. `packages` MUST be present (even for this single-package
+# repo): CI's setup-node runs `pnpm store path`, which errors "packages field
+# missing or empty" without it. `allowBuilds` approves the @sentry/cli postinstall
+# (blocked by default in pnpm 11); without it `pnpm dev`'s deps pre-check fails.
+packages:
+  - '.'
 allowBuilds:
   '@sentry/cli': true
