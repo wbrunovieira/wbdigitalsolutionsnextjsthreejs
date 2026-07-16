@@ -8,7 +8,7 @@
   ],
   "author": "Bruno Vieira",
   "datePublished": "2026-07-12T10:00:00Z",
-  "dateModified": "2026-07-12T10:00:00Z",
+  "dateModified": "2026-07-16T10:00:00Z",
   "thumbnail": "/img/blog/og-ai-agents.jpg",
   "text": [
     {
@@ -30,7 +30,7 @@
       "title": "I 3 problemi dell'IA libera che un agente risolve",
       "content": [
         "Quando ogni dipendente apre ChatGPT a modo suo, succedono tre cose, e le hai viste tutte:",
-        "<strong>1. Allucinazione.</strong> L'IA libera, senza focus, a volte inventa con sicurezza. Un agente legato alla sua funzione e ai tuoi dati ha molto meno spazio per inventare. Non elimina del tutto gli errori, nessuna IA lo fa, ed è proprio per questo che manteniamo un umano sulle decisioni che contano.",
+        "<strong>1. Allucinazione.</strong> L'IA libera, senza focus, a volte inventa con sicurezza. Un agente legato alla sua funzione e ai tuoi dati ha molto meno spazio per inventare. E, se ben costruito, controlla anche il proprio risultato in un loop prima di consegnare: lo confronta con quello che ci si aspettava e, se non torna, lo rifà. Anche così non elimina del tutto gli errori, nessuna IA lo fa, ed è proprio per questo che manteniamo un umano sulle decisioni che contano.",
         "<strong>2. Ripartire da zero ogni volta.</strong> Il dipendente apre l'IA, spiega il contesto, dà esempi, corregge, rispiega. A volte esce ottimo. A volte ci mette un'eternità a farsi capire e finisce per pensare 'se l'avessi fatto da solo, avrei già finito.' Ogni compito riparte da zero. Un agente nasce già conoscendo il contesto.",
         "<strong>3. Ognuno fa a modo suo, senza standard e senza i dati aziendali.</strong> Un venditore fa il preventivo in un modo, un altro in un altro, nessuno usa la base di conoscenza dell'azienda. L'agente garantisce che tutti partano dallo stesso punto, con i dati giusti e lo standard di casa."
       ]
@@ -88,6 +88,7 @@
       "title": "Domande frequenti",
       "content": [
         "<strong>Gli agenti IA sostituiscono i dipendenti?</strong> No. Tolgono la parte ripetitiva del lavoro così che la persona possa concentrarsi su ciò che solo un umano fa bene: giudicare, negoziare e prendersi cura del cliente. È un braccio destro, non una sostituzione.",
+        "<strong>E se l'agente sbaglia?</strong> Può capitare a volte, come con qualsiasi strumento. Solo che dimentichiamo che anche l'essere umano sbaglia: ha giornate con meno concentrazione, stanchezza, fretta. L'agente non ha giornate no: è costante e, se ben costruito, controlla il proprio lavoro in un loop prima di consegnare. E nelle decisioni che contano c'è sempre un umano che rivede. L'obiettivo non è zero errori, è sbagliare meno di oggi, con più costanza.",
         "<strong>Qual è la differenza tra un agente IA e un chatbot?</strong> Un chatbot parla soltanto. Un agente agisce: legge un documento, scrive un preventivo, smista le email, sempre usando i dati e lo standard della tua azienda.",
         "<strong>Quanto costa un agente IA?</strong> Si parte in piccolo: un pilota di una singola funzione, con un ambito ristretto e misurato. Espandi da ciò che ha dato risultati, senza un grande progetto in partenza.",
         "<strong>I miei dati sono al sicuro?</strong> Sì. Restano tuoi, non vengono usati per addestrare l'IA di terzi, il trattamento segue la normativa sulla protezione dei dati (GDPR), e per i dati sensibili si può eseguire in modo più privato e isolato.",

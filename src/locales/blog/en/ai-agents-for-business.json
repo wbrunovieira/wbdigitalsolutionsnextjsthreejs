@@ -8,7 +8,7 @@
   ],
   "author": "Bruno Vieira",
   "datePublished": "2026-07-12T10:00:00Z",
-  "dateModified": "2026-07-12T10:00:00Z",
+  "dateModified": "2026-07-16T10:00:00Z",
   "thumbnail": "/img/blog/og-ai-agents.jpg",
   "text": [
     {
@@ -30,7 +30,7 @@
       "title": "The 3 problems of loose AI that an agent solves",
       "content": [
         "When every employee opens ChatGPT their own way, three things happen, and you have seen them all:",
-        "<strong>1. Hallucination.</strong> Loose, unfocused AI sometimes invents things with confidence. An agent tied to its function and your data has far less room to invent. It does not eliminate mistakes entirely, no AI does, which is exactly why we keep a human on the decisions that matter.",
+        "<strong>1. Hallucination.</strong> Loose, unfocused AI sometimes invents things with confidence. An agent tied to its function and your data has far less room to invent. And, when built well, it also checks its own result in a loop before delivering: it compares against what was expected and, if it does not match, redoes it. Even so it does not eliminate mistakes entirely, no AI does, which is exactly why we keep a human on the decisions that matter.",
         "<strong>2. Starting from zero every time.</strong> The employee opens the AI, explains the context, gives examples, corrects, re-explains. Sometimes it turns out great. Sometimes they spend ages trying to make it understand and end up thinking 'if I had just done it myself, I would be finished by now.' Every task restarts from scratch. An agent is born already knowing the context.",
         "<strong>3. Everyone does it differently, with no standard and no company data.</strong> One salesperson writes the proposal one way, another does it differently, none uses the company's knowledge base. An agent makes sure everyone starts from the same point, with the right data and the house standard."
       ]
@@ -88,6 +88,7 @@
       "title": "Frequently asked questions",
       "content": [
         "<strong>Do AI agents replace employees?</strong> No. They take the repetitive part off the work so the person can focus on what only a human does well: judging, negotiating, and caring for the client. It is a right hand, not a replacement.",
+        "<strong>What if the agent makes a mistake?</strong> It can, sometimes, like any tool. But we forget that humans err too: we have off days, tiredness, rush. The agent has no bad days: it is consistent and, when built well, checks its own work in a loop before delivering. And on the decisions that matter there is always a human reviewing. The goal is not zero errors, it is fewer errors than today, with more consistency.",
         "<strong>What is the difference between an AI agent and a chatbot?</strong> A chatbot only talks. An agent acts: it reads a document, writes a proposal, triages emails, always using your company's data and standard.",
         "<strong>How much does an AI agent cost?</strong> It starts small: a pilot of a single function, with a tight, measured scope. You expand from what delivered results, without a big project upfront.",
         "<strong>Is my data safe?</strong> Yes. It stays yours, it is not used to train third-party AI, the handling follows data-protection law (LGPD), and for sensitive data it can run in a more private, isolated way.",
