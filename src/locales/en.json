@@ -589,6 +589,10 @@
   ],
   "agentTitle": "AI Agent Orchestration",
   "agentSubtitle": "Imagine intelligent agents working in teams: one initiates a task, another reviews and refines it, while a third synthesizes the results. This autonomous, scalable collaboration takes your project to new heights of efficiency and quality.",
+  "agentBlogLinkLead": "New to the idea? Read our practical guide on",
+  "agentBlogLinkAnchor": "AI agents for business",
+  "automationBlogLinkLead": "See how AI agents supercharge automation in our guide on",
+  "automationBlogLinkAnchor": "AI agents for business",
   "agentFlowItems": [
     {
       "title": "Task Coordination",

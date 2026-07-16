@@ -9,7 +9,9 @@ const ScrollAutomationHero3D = dynamic(() => import('@/components/canvas/ScrollA
 
 import CallToActionAutomation from '@/components/AutomationCTA';
 import { AutomationHeader } from '@/components/AutomationHeader';
+import InlineBlogLink from '@/components/InlineBlogLink';
 import PageHead from '@/components/PageHead';
+import { useTranslations } from '@/contexts/TranslationContext';
 import { makeI18nStaticProps } from '@/lib/i18n';
 
 // ssr:false sections get a height-reserving placeholder (avoids cold-load CLS).
@@ -18,6 +20,7 @@ const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { 
 const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const ai: React.FC = () => {
+  const currentMessages = useTranslations();
   // Defer the 3D hero to the first user gesture (perf).
   const [show3D, setShow3D] = useState(false);
   useEffect(() => {
@@ -60,6 +63,13 @@ const ai: React.FC = () => {
         {/* Transparent spacers between sections reveal the gear passing behind. */}
         <div aria-hidden className="h-[55vh] lg:h-52" />
         <AnimatedBenefits />
+        {/* SSR/SSG internal link into the AI-agents blog pillar (must live here in the
+            page body, not inside the ssr:false section above, to be crawlable). */}
+        <InlineBlogLink
+          lead={currentMessages.automationBlogLinkLead}
+          anchor={currentMessages.automationBlogLinkAnchor}
+          href="/blog/ai-agents-for-business"
+        />
         <div aria-hidden className="h-[55vh] lg:h-52" />
         <AutomationCases />
         <div aria-hidden className="h-[55vh] lg:h-52" />

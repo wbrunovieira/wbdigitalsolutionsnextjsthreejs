@@ -5,7 +5,9 @@ import dynamic from 'next/dynamic';
 
 import CTAInvitation from '@/components/AICTA';
 import { AIHeader } from '@/components/AIHeader';
+import InlineBlogLink from '@/components/InlineBlogLink';
 import PageHead from '@/components/PageHead';
+import { useTranslations } from '@/contexts/TranslationContext';
 import { makeI18nStaticProps } from '@/lib/i18n';
 
 // Persistent scroll-driven 3D hero (now desktop AND mobile), mounted on the first
@@ -19,6 +21,7 @@ const VisionComputationalSection = dynamic(() => import('@/components/IAVision')
 const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const ai: React.FC = () => {
+  const currentMessages = useTranslations();
   // Defer the 3D hero to the first user gesture (perf).
   const [show3D, setShow3D] = useState(false);
   useEffect(() => {
@@ -74,6 +77,13 @@ const ai: React.FC = () => {
       <div className="relative z-10">
         <AIAgentFlowSection />
       </div>
+      {/* SSR/SSG internal link into the AI-agents blog pillar (must live here in the
+          page body, not inside the ssr:false section above, to be crawlable). */}
+      <InlineBlogLink
+        lead={currentMessages.agentBlogLinkLead}
+        anchor={currentMessages.agentBlogLinkAnchor}
+        href="/blog/ai-agents-for-business"
+      />
       <div aria-hidden className="h-[55vh] lg:h-52" />
       <div className="relative z-10">
         <CTAInvitation />

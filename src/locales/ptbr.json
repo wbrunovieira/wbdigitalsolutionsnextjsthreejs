@@ -592,6 +592,10 @@
   ],
   "agentTitle": "Orquestração de Agentes de IA",
   "agentSubtitle": "Imagine agentes inteligentes trabalhando em equipe: um inicia a tarefa, outro revisa e aperfeiçoa, enquanto um terceiro sintetiza resultados. Essa colaboração autônoma e escalável leva seu projeto a novos patamares de eficiência e qualidade.",
+  "agentBlogLinkLead": "Novo no assunto? Leia nosso guia prático sobre",
+  "agentBlogLinkAnchor": "agentes de IA para empresas",
+  "automationBlogLinkLead": "Veja como os agentes de IA turbinam a automação no nosso guia sobre",
+  "automationBlogLinkAnchor": "agentes de IA para empresas",
   "agentFlowItems": [
     {
       "title": "Coordenação de Tarefas",

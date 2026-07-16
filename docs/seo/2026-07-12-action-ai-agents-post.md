@@ -76,6 +76,13 @@ this one page.
 2. **Internal links INTO this post** (authority flow, same lesson as the
    emotional-design post): link from `/ai` and `/automation` service pages with
    keyword-rich anchors, not just out of the post. First-link-priority applies.
+   **SHIPPED 2026-07-16**: exact-match anchors ("AI agents for business" /
+   "agentes de IA para empresas" / "agenti di IA per le aziende") from both
+   service pages via the shared `InlineBlogLink` callout. Critical detail caught in
+   senior review: the link MUST render in the SSR/SSG page body, NOT inside the
+   `ssr:false` 3D sections (else the `<a>` is absent from prerendered HTML and
+   invisible to LLM/GEO crawlers) — so it lives in `pages/ai/index.tsx` and
+   `pages/automation/index.tsx`, not in the section components.
 3. **Site-wide LCP/JS** (separate project, affects every page): reduce the 217 KB
    shared First-Load bundle / ~109 KiB unused JS to lift LCP under 2.5s across the
    whole site. Out of scope for a single post.
