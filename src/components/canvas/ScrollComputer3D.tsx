@@ -22,6 +22,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Preload, useGLTF } from '@react-three/drei';
 import CanvasLoader from '../Loader';
 import CanvasErrorBoundary from '../CanvasErrorBoundary';
+import DragTutorial from '@/components/DragTutorial';
 
 type Keyframe = {
   pos: [number, number, number];
@@ -346,6 +347,19 @@ const ScrollComputer3D: React.FC = () => {
           }}
           aria-hidden="true"
         />
+      )}
+
+      {/* Desktop drag hint over the hero model. The scroll-hero migration dropped
+          the old ComputersCanvas DragTutorial on desktop; restore it here (the model
+          stays drag-rotatable via the hit-zone above). Desktop + hero only, and
+          pointer-events-none so it never blocks the drag zone; auto-hides after 15s. */}
+      {inHero && (
+        <div
+          className="fixed z-[16] hidden lg:block pointer-events-none"
+          style={{ top: 150, right: 72, width: '46%', height: 540 }}
+        >
+          <DragTutorial />
+        </div>
       )}
     </>
   );
