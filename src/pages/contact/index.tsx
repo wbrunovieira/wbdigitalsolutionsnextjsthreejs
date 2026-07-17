@@ -3,7 +3,7 @@ import PageHead from '@/components/PageHead';
 import { makeI18nStaticProps } from '@/lib/i18n';
 
 
-const systems: React.FC = () => (
+const ContactPage: React.FC = () => (
     <>
       <PageHead pageKey="contact" />
       <Contact />
@@ -14,4 +14,4 @@ const systems: React.FC = () => (
 // the right messages available during SSR.
 export const getStaticProps = makeI18nStaticProps();
 
-export default systems;
+export default ContactPage;

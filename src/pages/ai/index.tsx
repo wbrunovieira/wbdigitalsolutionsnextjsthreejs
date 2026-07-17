@@ -20,7 +20,7 @@ const MachineLearningServices = dynamic(() => import('@/components/AIMLServices'
 const VisionComputationalSection = dynamic(() => import('@/components/IAVision'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 
-const ai: React.FC = () => {
+const AIPage: React.FC = () => {
   const currentMessages = useTranslations();
   // Defer the 3D hero to the first user gesture (perf).
   const [show3D, setShow3D] = useState(false);
@@ -96,4 +96,4 @@ const ai: React.FC = () => {
 // the right messages available during SSR.
 export const getStaticProps = makeI18nStaticProps();
 
-export default ai;
+export default AIPage;

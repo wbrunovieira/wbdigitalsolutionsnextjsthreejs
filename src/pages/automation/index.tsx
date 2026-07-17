@@ -19,7 +19,7 @@ const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits')
 const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
 
-const ai: React.FC = () => {
+const AutomationPage: React.FC = () => {
   const currentMessages = useTranslations();
   // Defer the 3D hero to the first user gesture (perf).
   const [show3D, setShow3D] = useState(false);
@@ -86,4 +86,4 @@ const ai: React.FC = () => {
 // the right messages available during SSR.
 export const getStaticProps = makeI18nStaticProps();
 
-export default ai;
+export default AutomationPage;
