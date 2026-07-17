@@ -36,6 +36,11 @@ const ThreeDShowcase: React.FC = () => {
           click: 'Clique nos botões nas mesas',
           watch: 'Observe a bola quicar!',
           loading: 'Carregando Ambiente 3D...',
+          touchDrag: 'Toque e arraste para girar',
+          pinchZoom: 'Pinça para zoom',
+          navWebsites: 'Sites',
+          navAutomation: 'Automação',
+          navAi: 'I.A.',
         };
       case 'es':
         return {
@@ -46,6 +51,11 @@ const ThreeDShowcase: React.FC = () => {
           click: 'Haz clic en los botones de los escritorios',
           watch: '¡Mira la pelota rebotar!',
           loading: 'Cargando Entorno 3D...',
+          touchDrag: 'Toca y arrastra para girar',
+          pinchZoom: 'Pellizca para zoom',
+          navWebsites: 'Sitios',
+          navAutomation: 'Automatización',
+          navAi: 'I.A.',
         };
       case 'it':
         return {
@@ -56,6 +66,11 @@ const ThreeDShowcase: React.FC = () => {
           click: 'Clicca sui pulsanti sulle scrivanie',
           watch: 'Guarda la palla rimbalzare!',
           loading: 'Caricamento Ambiente 3D...',
+          touchDrag: 'Tocca e trascina per ruotare',
+          pinchZoom: 'Pizzica per lo zoom',
+          navWebsites: 'Siti',
+          navAutomation: 'Automazione',
+          navAi: 'I.A.',
         };
       default: // 'en'
         return {
@@ -66,6 +81,11 @@ const ThreeDShowcase: React.FC = () => {
           click: 'Click buttons on desks',
           watch: 'Watch the ball bounce!',
           loading: 'Loading 3D Environment...',
+          touchDrag: 'Touch and drag to rotate',
+          pinchZoom: 'Pinch to zoom',
+          navWebsites: 'Websites',
+          navAutomation: 'Automation',
+          navAi: 'A.I.',
         };
     }
   };
@@ -169,11 +189,11 @@ const ThreeDShowcase: React.FC = () => {
                 <ul className="text-sm space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-purple-400">👆</span>
-                    <span>Toque e arraste para girar</span>
+                    <span>{texts.touchDrag}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-purple-400">🤏</span>
-                    <span>Pinça para zoom</span>
+                    <span>{texts.pinchZoom}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-purple-400">👈</span>
@@ -211,7 +231,7 @@ const ThreeDShowcase: React.FC = () => {
             }}
             className="bg-gradient-to-b from-purple-600 to-purple-700 text-white px-5 py-3 rounded-xl text-sm font-bold shadow-xl border border-purple-400/30 active:scale-95 transition-transform"
           >
-            Sites
+            {texts.navWebsites}
           </button>
           <button
             onClick={() => {
@@ -220,7 +240,7 @@ const ThreeDShowcase: React.FC = () => {
             }}
             className="bg-gradient-to-b from-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-xl text-sm font-bold shadow-xl border border-yellow-400/30 active:scale-95 transition-transform"
           >
-            Automação
+            {texts.navAutomation}
           </button>
           <button
             onClick={() => {
@@ -229,7 +249,7 @@ const ThreeDShowcase: React.FC = () => {
             }}
             className="bg-gradient-to-b from-blue-500 to-blue-600 text-white px-5 py-3 rounded-xl text-sm font-bold shadow-xl border border-blue-400/30 active:scale-95 transition-transform"
           >
-            I.A.
+            {texts.navAi}
           </button>
         </div>
       )}
