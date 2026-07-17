@@ -19,6 +19,19 @@ pnpm lint             # Run ESLint with auto-fix
 
 No test suite exists in this project.
 
+## Project Management (WB Project Manager)
+
+Pending work for this repo is tracked as **issues** in the WB Project Manager app
+(project "Site Wb Digital Solutions"), not in scattered docs. Use the
+**`wb-project-manager` skill** (`.claude/skills/wb-project-manager/SKILL.md`) for all
+API access: it holds the base URL, auth (key at `~/.wb_pm_key`), every workspace/
+project/status ID, and all issue/milestone routes.
+
+**Standing rule: always keep the issue status in sync with the actual work.** Move an
+issue to **In Progress** when you start it and to **Done** when it ships and is verified
+(the server auto-computes SLA on each status change). Never leave finished work sitting
+in Todo/In Progress.
+
 ## Architecture
 
 ### Key Technologies
