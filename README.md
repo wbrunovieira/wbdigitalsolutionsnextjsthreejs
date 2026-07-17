@@ -19,7 +19,7 @@ An **interactive 3D marketing site** built with Next.js and React Three Fiber �
 |:--:|:--:|:--:|
 | ![Home 3D hero](docs/media/hero-3d.gif) | ![Hyperspace tunnel](docs/media/tunnel-3d.gif) | ![Virtual 3D office](docs/media/office-3d.gif) |
 
-> Live: **[wbdigitalsolutions.com](https://www.wbdigitalsolutions.com)** · immersive routes `/3d-tunnel` and `/3d-showcase`
+> Live: **[wbdigitalsolutions.com](https://www.wbdigitalsolutions.com)** · immersive routes `/3d-tunnel` and `/sala-3d`
 
 ## Highlights
 
@@ -35,7 +35,7 @@ An **interactive 3D marketing site** built with Next.js and React Three Fiber �
 - **Next.js 15 (Pages Router)** · React 18 · TypeScript (strict mode).
 - **3D** via React Three Fiber + Three.js + Drei, hand-written GLSL and a GPU simulation pass; post-processing and Rapier physics.
 - **i18n** — 4 locales (`en`, `pt-BR`, `it`, `es`) with URL-per-locale routing and **SSR-correct, per-page localized metadata**: title, description, canonical, full hreflang matrix and Open Graph cards.
-- **Layout** — `Layout.tsx` wraps every page with Nav + Footer + ChatBot; full-screen 3D routes (`/3d-tunnel`, `/3d-showcase`) opt out.
+- **Layout** — `Layout.tsx` wraps every page with Nav + Footer + ChatBot; full-screen 3D routes (`/3d-tunnel`, `/sala-3d`) opt out.
 - **Source map** — `src/pages` (routes + `api/`), `src/components` (incl. `canvas/` for 3D), `src/contexts` (i18n), `src/locales` (translations), `src/hooks`, `src/lib`, `public/models` (`.glb`/`.gltf`).
 
 ## Performance

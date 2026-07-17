@@ -78,7 +78,7 @@ const ThreeDShowcase: React.FC = () => {
         <title>WB - 3D Office Showcase | WB Digital Solutions</title>
         <meta name="description" content="Interactive 3D office experience by WB Digital Solutions." />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href="https://www.wbdigitalsolutions.com/3d-showcase" />
+        <link rel="canonical" href="https://www.wbdigitalsolutions.com/sala-3d" />
       </Head>
       {/* Language Selector */}
       <div className={`absolute z-50 flex gap-1 ${isMobile ? 'top-2 right-2' : 'top-4 left-1/2 transform -translate-x-1/2'}`}>

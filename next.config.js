@@ -80,6 +80,8 @@ const nextConfig = {
       // Old static files from the previous site.
       { source: '/en/index.html', locale: false, destination: '/', permanent: true },
       { source: '/en/site.html', locale: false, destination: '/', permanent: true },
+      // The 3D room route was renamed /3d-showcase -> /sala-3d; keep the old URL alive.
+      { source: '/3d-showcase', destination: '/sala-3d', permanent: true },
     ];
   },
 

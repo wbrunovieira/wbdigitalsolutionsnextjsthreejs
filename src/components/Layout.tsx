@@ -13,7 +13,7 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const router = useRouter();
-    const is3DShowcase = router.pathname === '/3d-showcase';
+    const is3DShowcase = router.pathname === '/sala-3d';
     const is3DTunnel = router.pathname === '/3d-tunnel';
     // Standalone personal CV pages — brunodev.* → /dev, brunov.* → /vendas — no Nav/Footer/ChatBot.
     // startsWith covers the per-locale routes (/dev/[[...lang]], /vendas/[[...lang]]).

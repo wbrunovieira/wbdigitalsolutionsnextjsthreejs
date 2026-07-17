@@ -55,7 +55,7 @@ function readBlogPostIds() {
  * day it is born; nothing is silently out of coverage. CV subdomain routes,
  * full-screen 3D pages and API routes are excluded by design.
  */
-const SKIP_DIRS = new Set(['api', 'dev', 'vendas', '3d-showcase', '3d-tunnel']);
+const SKIP_DIRS = new Set(['api', 'dev', 'vendas', 'sala-3d', '3d-tunnel']);
 // Error pages are intentionally noindex with no canonical/hreflang — not SEO pages.
 const SKIP_FILES = new Set(['404', '500']);
 

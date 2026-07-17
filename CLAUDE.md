@@ -65,7 +65,7 @@ in Todo/In Progress.
 
 `Layout.tsx` wraps all pages with Nav + Footer + ChatBot (max-width: 1400px).
 
-**Exceptions**: `/3d-showcase` and `/3d-tunnel` bypass layout entirely for full-screen 3D experiences. The personal CV routes (`/dev`, `/vendas` and their locale subpaths) also bypass Layout AND the main site's Preloader/CookieConsent (`pathname.startsWith` checks in `Layout.tsx` and `_app.tsx`). To add new exceptions, modify those checks.
+**Exceptions**: `/sala-3d` (the 3D room; route renamed from `/3d-showcase`) and `/3d-tunnel` bypass layout entirely for full-screen 3D experiences. The personal CV routes (`/dev`, `/vendas` and their locale subpaths) also bypass Layout AND the main site's Preloader/CookieConsent (`pathname.startsWith` checks in `Layout.tsx` and `_app.tsx`). To add new exceptions, modify those checks.
 
 ### Personal CV Subdomains (brunodev / brunov)
 

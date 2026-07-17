@@ -609,7 +609,7 @@ const Portal3DSectionGSAP: React.FC = () => {
         {/* Portal Cards */}
         <div ref={cardsRef} className="grid md:grid-cols-2 gap-8 max-w-5xl w-full" style={{ perspective: '1000px' }}>
           {/* 3D Showcase Card */}
-          <Link href="/3d-showcase">
+          <Link href="/sala-3d">
             <div className="portal-card group relative bg-gradient-to-br from-purple-900/20 to-purple-600/10 backdrop-blur-md rounded-3xl p-8 border border-purple-500/20 hover:border-purple-400/50 transition-all duration-500 cursor-pointer transform-gpu hover:shadow-[0_0_50px_rgba(147,51,234,0.5)]">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-600/5 via-transparent to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               

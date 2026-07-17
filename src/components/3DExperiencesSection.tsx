@@ -96,7 +96,7 @@ const ThreeDExperiencesSection: React.FC = () => {
             <p className="text-gray-300 mb-6">
               {content.office.description}
             </p>
-            <Link href="/3d-showcase">
+            <Link href="/sala-3d">
               <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2">
                 <span>🚀</span>
                 <span>{content.buttonOffice}</span>

@@ -275,7 +275,7 @@ const Portal3DSection: React.FC = () => {
         {/* Portal Buttons */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
           {/* 3D Showcase Button */}
-          <Link href="/3d-showcase">
+          <Link href="/sala-3d">
             <div className="group relative bg-gradient-to-br from-purple-900/50 to-purple-600/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/30 hover:border-purple-400/60 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 cursor-pointer">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
