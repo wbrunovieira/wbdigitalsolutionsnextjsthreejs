@@ -50,6 +50,13 @@ const ChatBotButton: React.FC = () => {
   const [typingText, setTypingText] = useState(typingMessages[0]);
   const [newMessageBadge, setNewMessageBadge] = useState(false);
   const [responseTime, setResponseTime] = useState<number | null>(null);
+  // Raw response time is a dev/analytics affordance, not user value; only surface it
+  // with ?debug=1. Users get the typing indicator instead (exposing latency reads as
+  // beta and creates an implicit SLA the product never promised).
+  const [isDebug, setIsDebug] = useState(false);
+  useEffect(() => {
+    setIsDebug(new URLSearchParams(window.location.search).get('debug') === '1');
+  }, []);
   // Specific consent to send chat content to the third-party AI (see CHAT_CONSENT).
   const [chatConsent, setChatConsent] = useState(false);
   useEffect(() => {
@@ -482,7 +489,7 @@ const ChatBotButton: React.FC = () => {
                   </div>
                 )}
 
-                {responseTime && (
+                {responseTime && isDebug && (
                   <div className="text-xs text-gray-500 text-center">
                     {t.responseTime}: {responseTime < 1000 ? `${responseTime}ms` : `${(responseTime / 1000).toFixed(2)}s`}
                   </div>
