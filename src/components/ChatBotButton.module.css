@@ -1,0 +1,140 @@
+/* Chat launcher — amber (#ffb947) pops against the dark-purple site (#350545);
+   idle motion draws the eye in the dark periphery so visitors notice it.
+   Only transform/opacity animate (project a11y rule); everything is gated by
+   prefers-reduced-motion below with an information-preserving fallback. */
+.launcher {
+  background-color: #ffb947;
+  color: #350545; /* RiRobot2Fill uses currentColor -> dark-purple icon */
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease;
+  animation: launcher-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+/* launcher-in ends at identity (no `forwards`) so hover transform stays free */
+.launcher:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 34px -6px rgba(255, 185, 71, 0.65);
+}
+.launcher:active {
+  transform: scale(0.94);
+}
+.launcher:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px #350545, 0 0 0 6px #ffb947;
+}
+
+.iconWrap {
+  position: relative;
+  z-index: 2;
+  display: inline-grid;
+  place-items: center;
+  animation: launcher-breath 3.4s ease-in-out infinite;
+}
+
+/* Radiating "ping" rings, offset by half the cycle so they read as a steady
+   pulse rather than a single blink. */
+.ring,
+.ring2 {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 9999px;
+  background-color: #ffb947;
+  pointer-events: none;
+  animation: launcher-ping 3.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.ring2 {
+  animation-delay: 1.7s;
+}
+
+/* Label pill sits to the LEFT of the round button; reveals via transform +
+   opacity only (never layout props). Shown on hover/focus and, on the first
+   visit, auto-nudged open for a few seconds (.nudge, toggled from JS). */
+.label {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-right: 0.6rem;
+  transform: translateY(-50%) translateX(8px);
+  white-space: nowrap;
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  background-color: #350545;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.launcher:hover .label,
+.launcher:focus-visible .label,
+.nudge .label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@keyframes launcher-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.4);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes launcher-breath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+@keyframes launcher-ping {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* Reduced motion: kill every keyframe and the hover/press scale. Amber fill +
+   dark icon + the label still convey a highly visible, understandable chat
+   entry, so no information is lost. */
+@media (prefers-reduced-motion: reduce) {
+  .launcher,
+  .iconWrap {
+    animation: none;
+  }
+  .ring,
+  .ring2 {
+    display: none;
+  }
+  .launcher:hover,
+  .launcher:active {
+    transform: none;
+  }
+  .label {
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+  }
+  .launcher:hover .label,
+  .launcher:focus-visible .label,
+  .nudge .label {
+    transform: translateY(-50%);
+  }
+}

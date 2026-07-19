@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
-import { FiMessageCircle } from 'react-icons/fi';
+import { RiRobot2Fill } from 'react-icons/ri';
 import { useTranslations } from '@/contexts/TranslationContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/router';
+import styles from './ChatBotButton.module.css';
 
 interface Message {
   text: string;
@@ -35,6 +36,15 @@ const CHAT_CONSENT: Record<string, { title: string; body: string; accept: string
     body: "I tuoi messaggi sono elaborati da un'IA di terze parti (DeepSeek), che può trovarsi fuori dal Brasile, anche in Cina. Continuando, acconsenti a questo trattamento.",
     accept: 'Accetta e chatta',
   },
+};
+
+// Launcher affordance: robot icon + copy make clear this is an AI assistant
+// (not a WhatsApp/phone chat). High-contrast amber pill (see the CSS module).
+const LAUNCHER_COPY: Record<string, { aria: string; label: string }> = {
+  'pt-BR': { aria: 'Abrir a assistente de IA da WB', label: 'Dúvidas? Fale com a IA' },
+  en: { aria: "Open WB's AI assistant", label: 'Questions? Chat with our AI' },
+  es: { aria: 'Abrir el asistente de IA de WB', label: '¿Dudas? Habla con la IA' },
+  it: { aria: "Apri l'assistente IA di WB", label: "Domande? Chatta con l'IA" },
 };
 
 const ChatBotButton: React.FC = () => {
@@ -74,6 +84,29 @@ const ChatBotButton: React.FC = () => {
   };
   const consentCopy =
     CHAT_CONSENT[(language === 'pt' ? 'pt-BR' : language) as keyof typeof CHAT_CONSENT] ?? CHAT_CONSENT['pt-BR'];
+  const launcherCopy =
+    LAUNCHER_COPY[(language === 'pt' ? 'pt-BR' : language) as keyof typeof LAUNCHER_COPY] ?? LAUNCHER_COPY['pt-BR'];
+
+  // First-visit nudge: auto-reveal the label pill for a few seconds, then
+  // collapse and remember (so it only ever happens once per visitor).
+  const [showNudge, setShowNudge] = useState(false);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (localStorage.getItem('wb-chat-nudge-v1') === 'seen') return;
+    const showTimer = setTimeout(() => setShowNudge(true), 1200);
+    const hideTimer = setTimeout(() => {
+      setShowNudge(false);
+      try {
+        localStorage.setItem('wb-chat-nudge-v1', 'seen');
+      } catch {
+        /* storage blocked — nudge simply won't persist */
+      }
+    }, 5200);
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -447,10 +480,15 @@ const ChatBotButton: React.FC = () => {
             });
           }
         }}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-custom-purple text-white p-3.5 sm:p-5 rounded-full shadow-xl hover:scale-110 transition-all"
-        aria-label="Abrir Chatbot"
+        className={`${styles.launcher} ${showNudge && !isOpen ? styles.nudge : ''} fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center justify-center p-3.5 sm:p-5 rounded-full shadow-lg`}
+        aria-label={launcherCopy.aria}
       >
-        <FiMessageCircle className="h-6 w-6 sm:h-7 sm:w-7" />
+        <span className={styles.ring} aria-hidden="true" />
+        <span className={styles.ring2} aria-hidden="true" />
+        <span className={styles.iconWrap}>
+          <RiRobot2Fill className="h-6 w-6 sm:h-7 sm:w-7" />
+        </span>
+        <span className={styles.label}>{launcherCopy.label}</span>
         {newMessageBadge && <span className="absolute top-0 right-0 h-3 w-3 bg-red-500 rounded-full"></span>}
       </button>
 
