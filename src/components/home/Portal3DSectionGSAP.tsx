@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Box, Sphere, Torus } from '@react-three/drei';
@@ -264,7 +265,7 @@ const ConvergingParticles: React.FC = () => {
 
 // Main Portal Section with GSAP
 const Portal3DSectionGSAP: React.FC = () => {
-  const [language, setLanguage] = useState('en');
+  const { language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -273,36 +274,6 @@ const Portal3DSectionGSAP: React.FC = () => {
   const topGlowRef = useRef<HTMLDivElement>(null);
   const bottomGlowRef = useRef<HTMLDivElement>(null);
   
-  // Try to get language from localStorage and listen for changes
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // The key is "language" not "preferredLanguage"
-      const storedLang = localStorage.getItem('language') || 'en';
-      setLanguage(storedLang);
-      
-      // Listen for storage changes (when language changes in other components)
-      const handleStorageChange = (e: StorageEvent) => {
-        if (e.key === 'language' && e.newValue) {
-          setLanguage(e.newValue);
-        }
-      };
-      
-      window.addEventListener('storage', handleStorageChange);
-      
-      // Also check periodically for changes (for same-tab updates)
-      const interval = setInterval(() => {
-        const currentLang = localStorage.getItem('language') || 'en';
-        if (currentLang !== language) {
-          setLanguage(currentLang);
-        }
-      }, 1000);
-      
-      return () => {
-        window.removeEventListener('storage', handleStorageChange);
-        clearInterval(interval);
-      };
-    }
-  }, [language]);
   
   // GSAP Animations with useGSAP hook
   useGSAP(() => {

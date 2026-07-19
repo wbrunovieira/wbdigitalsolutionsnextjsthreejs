@@ -34,7 +34,7 @@ export const getOrganizationSchema = (language: string): OrganizationSchema => (
     'https://www.instagram.com/wbdigitalsolutions',
   ],
   contactPoint: {
-    telephone: '+55-11-99999-9999',
+    telephone: '+55-11-5026-4203',
     contactType: 'customer service',
     areaServed: ['BR', 'US', 'ES', 'IT'],
     availableLanguage: ['Portuguese', 'English', 'Spanish', 'Italian'],
@@ -94,8 +94,8 @@ export const getLocalBusinessSchema = (language: string): LocalBusinessSchema =>
   name: COMPANY_NAME,
   description: getDescription(language, 'business'),
   url: SITE_URL,
-  telephone: '+55-11-99999-9999',
-  email: 'contact@wbdigitalsolutions.com',
+  telephone: '+55-11-5026-4203',
+  email: 'bruno@wbdigitalsolutions.com',
   address: {
     addressCountry: 'BR',
     addressRegion: 'SP',
