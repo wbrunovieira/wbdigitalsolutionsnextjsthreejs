@@ -138,3 +138,137 @@
     transform: translateY(-50%);
   }
 }
+
+/* ============================================================
+   Open modal — same amber-robot identity as the launcher.
+   ============================================================ */
+
+/* Header + message robot avatar chips (mirror the launcher fill). */
+.avatar,
+.msgAvatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-color: #ffb947;
+  color: #350545; /* RiRobot2Fill via currentColor */
+}
+.avatar {
+  height: 2.25rem;
+  width: 2.25rem;
+  box-shadow: 0 2px 8px -2px rgba(255, 185, 71, 0.6);
+}
+.msgAvatar {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+/* Status dot: brand amber (honest — no "online human" green claim). */
+.statusDot {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background-color: #ffb947;
+  box-shadow: 0 0 0 0 rgba(255, 185, 71, 0.7);
+  animation: wb-status-pulse 2.4s ease-out infinite;
+}
+@keyframes wb-status-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 185, 71, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 185, 71, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 185, 71, 0);
+  }
+}
+
+/* Typing indicator: three bouncing dots. */
+.typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+}
+.typing i {
+  height: 0.42rem;
+  width: 0.42rem;
+  border-radius: 9999px;
+  background-color: #792990;
+  opacity: 0.55;
+  animation: wb-typing 1.2s ease-in-out infinite;
+}
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes wb-typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  30% {
+    transform: translateY(-0.28rem);
+    opacity: 0.9;
+  }
+}
+
+/* Composer bar: input + send fused into one control. The BAR owns the tinted
+   fill, border and focus state (via :focus-within), so the amber send button
+   reads as part of the field instead of a detached floating circle. Only
+   colors/border/shadow transition (no layout/transform) — a11y-safe. */
+.composerBar {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.375rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.85rem;
+  border: 1.5px solid #e2ddeb;
+  border-radius: 1.25rem;
+  background-color: #faf9fc;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.composerBar:hover {
+  border-color: #cfc6dc;
+}
+.composerBar:focus-within {
+  background-color: #fff;
+  border-color: #792990;
+  box-shadow: 0 0 0 3px rgba(121, 41, 144, 0.18);
+}
+
+/* Bare auto-grow textarea living inside .composerBar (the bar draws the border
+   and focus ring now, so the field itself is transparent and borderless). */
+.composerField {
+  flex: 1 1 auto;
+  min-height: 2.5rem;
+  max-height: 8rem;
+  padding: 0.6rem 0;
+  border: 0;
+  background: transparent;
+  resize: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #350545;
+  field-sizing: content;
+}
+.composerField::placeholder {
+  color: #6b6577;
+}
+.composerField:focus,
+.composerField:focus-visible {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .statusDot {
+    animation: none;
+  }
+  .typing i {
+    animation: none;
+    opacity: 0.7;
+  }
+}
