@@ -46,13 +46,16 @@ const ChatPanel: React.FC<ChatPanelProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   useFocusTrap(panelRef, true);
 
-  // Auto-scroll only when the user is already near the bottom, so reading
-  // earlier messages isn't interrupted by incoming reply parts. Honors
-  // reduced-motion (every other animation here does).
+  // Auto-scroll rules: the user's own just-sent message ALWAYS scrolls into
+  // view (they just acted and expect to see it + the typing indicator). Incoming
+  // assistant parts only scroll when the user is already near the bottom, so
+  // reading earlier messages isn't interrupted. Honors reduced-motion.
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    if (el.scrollHeight - el.scrollTop - el.clientHeight >= 80) return;
+    const sentByUser = messages[messages.length - 1]?.isUser === true;
+    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+    if (!sentByUser && !nearBottom) return;
     const reduce =
       typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     messagesEndRef.current?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
