@@ -12,6 +12,7 @@ import DevPhilosophy from '@/components/cv/DevPhilosophy';
 import DevTimeline from '@/components/cv/DevTimeline';
 import DevStack from '@/components/cv/DevStack';
 import DevProjects from '@/components/cv/DevProjects';
+import DevBuilding from '@/components/cv/DevBuilding';
 import DevLanguages from '@/components/cv/DevLanguages';
 import DevAbout from '@/components/cv/DevAbout';
 import DevContact from '@/components/cv/DevContact';
@@ -172,6 +173,7 @@ export default function DevCV({ lang, projectsPage }: Props) {
         <DevTimeline />
         <DevStack />
         <DevProjects />
+        <DevBuilding />
         <DevLanguages />
         <DevAbout />
         <DevPhilosophy variant="people" id="oficio" />

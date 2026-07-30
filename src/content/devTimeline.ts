@@ -147,6 +147,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         'A formalização do caminho que já pratico em produção: IA no workflow diário e agentes em sistemas reais.',
       ],
     },
+    {
+      year: '2026–2027',
+      age: '52 anos',
+      title: 'Pós-Graduação em Go Expert (Golang)',
+      subtitle: 'Full Cycle · Lato Sensu · em andamento',
+      bullets: [
+        'Pós-graduação lato sensu de 360 horas focada em Go de nível avançado, dos internals à produção.',
+        'Internals e concorrência: runtime, goroutines, scheduler e garbage collector; channels, workers, mutex e race conditions.',
+        'APIs REST, gRPC e GraphQL com Clean Architecture e SOLID; testes de verdade (unitário, e2e, benchmarking e fuzzing).',
+        'Mensageria com RabbitMQ e deploy com Docker/Kubernetes; módulo especial com Robert C. Martin (Uncle Bob).',
+      ],
+    },
   ],
   en: [
     {
@@ -265,6 +277,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         'Architecture in the AI era: agents vs microservices, MCP and A2A protocols, RAG and vector databases.',
         'AI-driven development workflow, agent development (LangGraph, CrewAI), prompt engineering and DevOps/SRE with AI.',
         'The formalization of a path I already practice in production: AI in the daily workflow and agents in real systems.',
+      ],
+    },
+    {
+      year: '2026–2027',
+      age: 'age 52',
+      title: 'Postgraduate in Go Expert (Golang)',
+      subtitle: 'Full Cycle · Lato Sensu · in progress',
+      bullets: [
+        '360-hour lato sensu postgrad focused on advanced Go, from internals to production.',
+        'Internals and concurrency: runtime, goroutines, scheduler and garbage collector; channels, workers, mutex and race conditions.',
+        'REST, gRPC and GraphQL APIs with Clean Architecture and SOLID; real testing (unit, e2e, benchmarking and fuzzing).',
+        'Messaging with RabbitMQ and deploy with Docker/Kubernetes; special module with Robert C. Martin (Uncle Bob).',
       ],
     },
   ],
@@ -387,6 +411,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         'La formalizzazione di un percorso che già pratico in produzione: IA nel workflow quotidiano e agenti in sistemi reali.',
       ],
     },
+    {
+      year: '2026–2027',
+      age: '52 anni',
+      title: 'Post-laurea in Go Expert (Golang)',
+      subtitle: 'Full Cycle · Lato Sensu · in corso',
+      bullets: [
+        'Post-laurea lato sensu di 360 ore focalizzato su Go avanzato, dagli internals alla produzione.',
+        'Internals e concorrenza: runtime, goroutine, scheduler e garbage collector; channel, worker, mutex e race condition.',
+        'API REST, gRPC e GraphQL con Clean Architecture e SOLID; test veri (unitari, e2e, benchmarking e fuzzing).',
+        'Messaggistica con RabbitMQ e deploy con Docker/Kubernetes; modulo speciale con Robert C. Martin (Uncle Bob).',
+      ],
+    },
   ],
   es: [
     {
@@ -505,6 +541,18 @@ export const devTimeline: Record<CVLang, DevTimelineEntry[]> = {
         'Arquitectura en la era de la IA: agentes vs microservicios, protocolos MCP y A2A, RAG y vector databases.',
         'Desarrollo orientado por IA (AI-driven workflow), desarrollo de agentes (LangGraph, CrewAI), prompt engineering y DevOps/SRE con IA.',
         'La formalización de un camino que ya practico en producción: IA en el workflow diario y agentes en sistemas reales.',
+      ],
+    },
+    {
+      year: '2026–2027',
+      age: '52 años',
+      title: 'Posgrado en Go Expert (Golang)',
+      subtitle: 'Full Cycle · Lato Sensu · en curso',
+      bullets: [
+        'Posgrado lato sensu de 360 horas centrado en Go avanzado, de los internals a producción.',
+        'Internals y concurrencia: runtime, goroutines, scheduler y garbage collector; channels, workers, mutex y race conditions.',
+        'APIs REST, gRPC y GraphQL con Clean Architecture y SOLID; testing de verdad (unitario, e2e, benchmarking y fuzzing).',
+        'Mensajería con RabbitMQ y despliegue con Docker/Kubernetes; módulo especial con Robert C. Martin (Uncle Bob).',
       ],
     },
   ],
