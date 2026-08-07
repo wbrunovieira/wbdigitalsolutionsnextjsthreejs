@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { BaseCanvasProps, useIsVisible } from './BaseCanvas';
+import CanvasErrorBoundary from './CanvasErrorBoundary';
 
 // Browsers typically support 8-16 concurrent WebGL contexts.
 // Cap at 8 to prevent THREE.WebGLRenderer: Context Lost errors.
@@ -58,16 +59,21 @@ export const PauseableCanvas: React.FC<BaseCanvasProps> = ({
   return (
     <div ref={containerRef} className={className}>
       {hasSlot && (
-        <Canvas
-          {...canvasProps}
-          frameloop={frameloop}
-          style={{
-            visibility: 'visible',
-            ...canvasProps.style,
-          }}
-        >
-          {children}
-        </Canvas>
+        // Last-resort net: this queue mounts/unmounts many Canvases as slots
+        // free up, so a stray R3F internal race (null addEventListener on
+        // teardown) degrades to `fallback` instead of an unhandled crash.
+        <CanvasErrorBoundary>
+          <Canvas
+            {...canvasProps}
+            frameloop={frameloop}
+            style={{
+              visibility: 'visible',
+              ...canvasProps.style,
+            }}
+          >
+            {children}
+          </Canvas>
+        </CanvasErrorBoundary>
       )}
     </div>
   );
