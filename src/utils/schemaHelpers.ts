@@ -11,7 +11,8 @@ import {
 } from '@/types/schema';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
-const LOGO_URL = `${SITE_URL}/svg/logo.svg`;
+// Raster on purpose: Google rejects SVG for Organization/publisher logo.
+const LOGO_URL = `${SITE_URL}/img/logo.png`;
 const COMPANY_NAME = 'WB Digital Solutions';
 
 // Stable entity-graph anchors: the Organization and its founder are referenced
@@ -21,6 +22,9 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const FOUNDER_ID = `${SITE_URL}/#founder`;
 const FOUNDER_NAME = 'Walter Bruno Prado Vieira';
 
+/** Schema.org requires absolute URLs; post JSONs store site-relative paths. */
+const toAbsoluteUrl = (url: string) => (url.startsWith('http') ? url : `${SITE_URL}${url}`);
+
 export const getOrganizationSchema = (language: string): OrganizationSchema => ({
   type: 'Organization',
   name: COMPANY_NAME,
@@ -29,10 +33,15 @@ export const getOrganizationSchema = (language: string): OrganizationSchema => (
   description: getDescription(language, 'organization'),
   id: ORG_ID,
   founder: { id: FOUNDER_ID, name: FOUNDER_NAME },
+  // Must match the profiles the site itself links to (see Footer.tsx): these
+  // are what Google uses to tie the entity to its social accounts. The old
+  // dot-less handles pointed at accounts that do not exist.
   sameAs: [
-    'https://www.linkedin.com/company/wbdigitalsolutions',
-    'https://www.facebook.com/wbdigitalsolutions',
-    'https://www.instagram.com/wbdigitalsolutions',
+    'https://www.linkedin.com/company/wb-digital-solutions',
+    'https://www.instagram.com/wb.digitalsolutions/',
+    'https://www.facebook.com/wb.digitalsolutions',
+    'https://www.youtube.com/@wbdigitalsolutions',
+    'https://www.tiktok.com/@wb.digitalsolutions',
   ],
   contactPoint: {
     telephone: '+55-11-5026-4203',
@@ -103,7 +112,7 @@ export const getLocalBusinessSchema = (language: string): LocalBusinessSchema =>
     addressLocality: 'São Paulo',
   },
   priceRange: '$$',
-  image: [`${SITE_URL}/img/og-home.jpg`, `${SITE_URL}/svg/logo.svg`],
+  image: [`${SITE_URL}/img/og-home.jpg`, LOGO_URL],
 });
 
 export const getServiceSchema = (
@@ -135,7 +144,7 @@ export const getBlogPostSchema = (
   type: 'BlogPosting',
   headline: title,
   description: description,
-  image: images || [`${SITE_URL}/img/blog-default.jpg`],
+  image: images?.length ? images.map(toAbsoluteUrl) : [`${SITE_URL}/img/blog-default.jpg`],
   datePublished: datePublished,
   // Use the post's real dateModified when provided; fall back to the publish
   // date. (Previously new Date() made every post look "updated" on each build.)

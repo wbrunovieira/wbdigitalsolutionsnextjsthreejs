@@ -1,6 +1,5 @@
 import React from 'react';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { i18nProps } from '@/lib/i18n';
 import { PROJECT_DETAILS } from '@/data/projectDetails';
@@ -15,9 +14,10 @@ import type { ProjectsPageContent } from '@/components/projects/types';
 // the default og image); getStaticProps can't serialize `undefined`.
 type ProjectSeo = { title: string; description: string; image: string | null; path: string };
 
-const ProjectDetailPage: React.FC<{ seo: ProjectSeo | null }> = ({ seo }) => {
-  const router = useRouter();
-  const { slug } = router.query;
+// The slug comes from getStaticProps, NOT from router.query: on a prerendered
+// page the router is not ready during the build, so gating the body on
+// router.isReady shipped "Loading…" as the entire HTML of all 14 project pages.
+const ProjectDetailPage: React.FC<{ seo: ProjectSeo | null; slug: string }> = ({ seo, slug }) => {
   const content = useTranslations().projectsPage as ProjectsPageContent;
   const project = content?.items?.find((p) => p.slug === slug);
 
@@ -32,11 +32,7 @@ const ProjectDetailPage: React.FC<{ seo: ProjectSeo | null }> = ({ seo }) => {
           canonicalPath={seo.path}
         />
       )}
-      {!router.isReady ? (
-        <main className="flex min-h-screen items-center justify-center bg-primary text-secondary">
-          <span>Loading…</span>
-        </main>
-      ) : !project ? (
+      {!project ? (
         <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-primary px-6 text-center text-white">
           <p className="text-xl text-secondary">404</p>
           <Link href="/projects" className="text-yellowcustom hover:underline">
@@ -59,8 +55,8 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => ({
   fallback: false,
 });
 
-// Resolve the project's localized SEO fields server-side so PageHead renders
-// them into the prerendered HTML; the body still resolves the slug client-side.
+// Resolve the project's localized SEO fields AND the slug server-side, so both
+// the head and the body are in the prerendered HTML.
 export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   const base = await i18nProps(locale);
   const slug = String(params?.slug ?? '');
@@ -72,7 +68,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }) => {
   const seo: ProjectSeo | null = match
     ? { title: match.title, description: match.description, image: match.imageUrl ?? null, path: `/projects/${slug}` }
     : null;
-  return { props: { ...base, seo } };
+  return { props: { ...base, seo, slug } };
 };
 
 export default ProjectDetailPage;
