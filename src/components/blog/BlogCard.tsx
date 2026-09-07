@@ -4,9 +4,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { BlogTranslation } from '@/contexts/useBlogTranslation';
 
+/** The card only reads these four fields, so the index can prerender them. */
+export type BlogCardTranslation = Pick<BlogTranslation, 'title' | 'category' | 'thumbnail' | 'summary'>;
+
 interface BlogCardProps {
   id: string;
-  translation: BlogTranslation | null;
+  translation: BlogCardTranslation | null;
   index: number;
   loadingLabel: string;
 }

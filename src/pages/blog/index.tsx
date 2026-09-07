@@ -18,13 +18,31 @@ type BlogIndexStrings = Pick<
   'title' | 'subtitle' | 'filterLabel' | 'allCategories' | 'loading' | 'noPosts'
 >;
 
+// What a card needs, prerendered per locale (see getStaticProps).
+type BlogCardData = Pick<BlogTranslation, 'title' | 'category' | 'thumbnail' | 'summary'>;
+
 // The blog-index UI strings must be server-rendered: useBlogTranslation loads
 // them async on the client, so SSR otherwise fell back to a single language
 // for every locale (the EN page even shipped pt-BR copy).
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const folder = BLOG_FOLDER[locale ?? 'en'] ?? 'en';
   const blogIndex = (await import(`@/locales/blog/${folder}/blog-index.json`)).default;
-  return { props: { ...(await i18nProps(locale)), blogIndex } };
+
+  // Card data server-side too: useBlogTranslation only resolves in the browser,
+  // so without this the prerendered HTML said "no posts found" to every crawler
+  // and link preview. Only the fields the card renders are shipped.
+  const cards: Record<string, BlogCardData> = {};
+  for (const { id } of blogList) {
+    const post = (await import(`@/locales/blog/${folder}/${id}.json`)).default as BlogTranslation;
+    cards[id] = {
+      title: post.title,
+      category: post.category,
+      thumbnail: post.thumbnail,
+      summary: post.summary ?? '',
+    };
+  }
+
+  return { props: { ...(await i18nProps(locale)), blogIndex, cards } };
 };
 
 const blogList = [
@@ -36,12 +54,19 @@ const blogList = [
   { id: 'increase-pme-sales' },
 ];
 
-const BlogIndexPage: React.FC<{ blogIndex: BlogIndexStrings }> = ({ blogIndex }) => {
+interface BlogIndexPageProps {
+  blogIndex: BlogIndexStrings;
+  cards: Record<string, BlogCardData>;
+}
+
+const BlogIndexPage: React.FC<BlogIndexPageProps> = ({ blogIndex, cards }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  // The prerendered card is what renders on the server and on first paint; the
+  // client hook takes over once it resolves (it also follows a language change).
   const blogTranslations = blogList.map(({ id }) => ({
     id,
-    translation: useBlogTranslation(id),
+    translation: useBlogTranslation(id) ?? cards[id] ?? null,
   }));
 
   const allCategories = new Set<string>();
