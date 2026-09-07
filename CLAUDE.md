@@ -141,9 +141,11 @@ Frontend sends enriched context to backend API:
 
 8. **Validation**: `npx tsc --noEmit` after every change. NEVER run `pnpm build` while a dev server may be running (corrupts `.next`).
 
-9. **Typography of copy**: no em-dashes (—) in any user-facing text; use commas, colons or periods.
+9. **External links always open in a new tab**: any `<a>`/`<Link>` pointing off-site (social, WhatsApp, client sites, LinkedIn/GitHub) needs `target="_blank" rel="noopener noreferrer"` so the visitor keeps our page open behind it. Use a plain `<a>`, not `next/link` (client routing/prefetch buy nothing off-site). Exceptions that must NOT get `_blank`: `mailto:`, `tel:` and in-page anchors.
 
-10. **English for engineering artifacts**: code comments, commit messages and skills (`.claude/skills/*/SKILL.md`) are ALWAYS written in English. User-facing copy follows the 4-locale i18n rule instead.
+10. **Typography of copy**: no em-dashes (—) in any user-facing text; use commas, colons or periods.
+
+11. **English for engineering artifacts**: code comments, commit messages and skills (`.claude/skills/*/SKILL.md`) are ALWAYS written in English. User-facing copy follows the 4-locale i18n rule instead.
 
 ## Development Notes
 

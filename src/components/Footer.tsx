@@ -64,14 +64,18 @@ const Footer: React.FC = () => {
               { href: 'https://www.youtube.com/@wbdigitalsolutions', label: 'YouTube', icon: <FaYoutube aria-hidden="true" /> },
               { href: 'https://www.tiktok.com/@wb.digitalsolutions', label: 'TikTok', icon: <FaTiktok aria-hidden="true" /> },
             ].map((s) => (
-              <Link
+              // Plain <a> + _blank: these leave the site, so they open in a new
+              // tab and keep our page behind them (rel guards the opener).
+              <a
                 key={s.label}
                 href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={s.label}
                 className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:border-yellowcustom/40 hover:bg-yellowcustom hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellowcustom/60"
               >
                 {s.icon}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
