@@ -1,9 +1,4 @@
 {
-  "src/components/ui/apple-cards-carousel.tsx": 340,
-  "src/pages/newsletter.tsx": 306,
-  "src/components/CookieConsent.tsx": 297,
-  "src/pages/api/card-contact.ts": 292,
-  "src/pages/sala-3d/index.tsx": 269,
   "src/components/projects/ProjectDetail.tsx": 257,
   "src/components/3d-showcase/OfficeScene.tsx": 254,
   "src/utils/schemaHelpers.ts": 237,

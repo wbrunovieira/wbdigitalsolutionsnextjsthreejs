@@ -19,8 +19,9 @@ const ROOT = process.cwd();
 const SRC = join(ROOT, 'src');
 const BASELINE_FILE = join(ROOT, 'scripts', 'legacy-file-lengths.json');
 
-// Pure data/content files are Records, not complexity (CLAUDE.md rule 1).
-const EXEMPT = [/^src\/data\//, /^src\/locales\//, /^src\/content\//, /\.d\.ts$/];
+// Pure data/content files are Records, not complexity (CLAUDE.md rule 1), and
+// src/components/ui holds vendored ShadCN/Aceternity code we re-pull upstream.
+const EXEMPT = [/^src\/data\//, /^src\/locales\//, /^src\/content\//, /^src\/components\/ui\//, /\.d\.ts$/];
 
 const walk = (dir, files = []) => {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
