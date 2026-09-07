@@ -7,6 +7,8 @@ export interface OrganizationSchema {
   logo: string;
   description?: string;
   sameAs?: string[];
+  /** ISO 8601 year. Matches the CV timeline ("2023 - hoje | WB Digital Solutions"). */
+  foundingDate?: string;
   // Stable @id so other nodes (e.g. Person.worksFor) can reference this
   // Organization across separate JSON-LD blocks (consumers merge by @id).
   id?: string;

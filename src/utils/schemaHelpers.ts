@@ -31,6 +31,9 @@ export const getOrganizationSchema = (language: string): OrganizationSchema => (
   url: SITE_URL,
   logo: LOGO_URL,
   description: getDescription(language, 'organization'),
+  // The year the company itself started, as the sales CV timeline states in all
+  // four locales. NOT Bruno's career start (1987) - that belongs to the Person.
+  foundingDate: '2023',
   id: ORG_ID,
   founder: { id: FOUNDER_ID, name: FOUNDER_NAME },
   // Must match the profiles the site itself links to (see Footer.tsx): these

@@ -17,6 +17,7 @@ export const generateSchema = (schema: SchemaType) => {
         logo: schema.logo,
         description: schema.description,
         sameAs: schema.sameAs,
+        foundingDate: schema.foundingDate,
         founder: schema.founder ? {
           '@type': 'Person',
           '@id': schema.founder.id,
