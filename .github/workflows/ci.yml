@@ -35,6 +35,9 @@ jobs:
       - name: Typecheck
         run: npx tsc --noEmit
 
+      - name: File length (max 200 lines, ratcheted)
+        run: pnpm lint:size
+
       - name: Test
         run: pnpm test
 

@@ -50,9 +50,10 @@ export default [
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-floating-promises": "error",
       "react/react-in-jsx-scope": "off",
+      // `jsx`/`global` are styled-jsx (a first-class Next feature), not typos.
       "react/no-unknown-property": [
         "error",
-        { ignore: ["css"] },
+        { ignore: ["css", "jsx", "global"] },
       ],
     },
     settings: {
@@ -79,9 +80,10 @@ export default [
       "src/components/3d-showcase/components/Lighting.tsx",
       "src/components/3d-showcase/components/Monitor.tsx",
       "src/components/3d-showcase/components/PointerHand.tsx",
-      "src/components/3d-showcase/components/Room.tsx",
+      "src/components/3d-showcase/components/room/*.tsx",
       "src/components/3d-tunnel/TunnelScene.tsx",
       "src/components/3d-tunnel/TunnelSceneEnhanced.tsx",
+      "src/components/3d-tunnel/enhanced/*.tsx",
       "src/components/AnimatedBackgorundAutomation.tsx",
       "src/components/AnimatedBackgoundAIComponent.tsx",
       "src/components/AnimatedBackgroundWebsite.tsx",
@@ -100,8 +102,10 @@ export default [
       "src/components/canvas/ScrollSystems3D.tsx",
       "src/components/canvas/ScrollWebsiteHero3D.tsx",
       "src/components/home/Portal3DSection.tsx",
-      "src/components/home/Portal3DSectionGSAP.tsx",
-      "src/components/projects/ProjectsHero3D.tsx"
+      "src/components/home/portal/PortalScene.tsx",
+      "src/components/home/portal/scene/*.tsx",
+      "src/components/projects/ProjectsHero3D.tsx",
+      "src/components/projects/hero3d/*.tsx"
     ],
     rules: {
       "react/no-unknown-property": "off",

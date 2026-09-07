@@ -8,6 +8,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint --fix",
+        "lint:size": "node scripts/file-length-check.mjs",
         "test": "vitest run",
         "test:watch": "vitest"
     },
