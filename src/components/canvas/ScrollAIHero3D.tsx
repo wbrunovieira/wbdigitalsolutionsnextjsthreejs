@@ -13,7 +13,7 @@
  *   recede), spinning throughout, and a SUBSET of balls ("companions") orbit it
  *   while the rest fade out.
  *
- * Mobile keeps the original boxed AnimatedBackgoundAIComponent (handled in page).
+ * Renders on every size; the pose table is picked by viewport width.
  */
 
 import React, { useEffect, useRef } from 'react';

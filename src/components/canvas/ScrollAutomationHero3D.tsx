@@ -12,7 +12,7 @@
  * ON SCROLL: the gear follows KEYFRAMES (descend -> recede) and a SUBSET of balls
  *   ("companions") leave the swarm to orbit the gear, while the rest fade out.
  *
- * Mobile keeps the original boxed AnimatedBackgorundAutomation (handled in page).
+ * Renders on every size; the pose table is picked by viewport width.
  */
 
 import React, { useEffect, useRef } from 'react';

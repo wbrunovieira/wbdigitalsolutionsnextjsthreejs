@@ -13,7 +13,7 @@
  *   a SUBSET of balls ("companions") leave the swarm to orbit the laptop,
  *   rotating and closing in, while the rest fade out. Reversible on scroll-up.
  *
- * Mobile keeps the original boxed AnimatedBackgroundWebsite (handled in the page).
+ * Renders on every size; the pose table is picked by viewport width.
  */
 
 import React, { useEffect, useRef } from 'react';

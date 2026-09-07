@@ -7,7 +7,7 @@ import {
   BlogPostingSchema,
   BreadcrumbSchema,
   LocalBusinessSchema,
-} from '@/components/SchemaMarkup';
+} from '@/types/schema';
 
 const SITE_URL = 'https://www.wbdigitalsolutions.com';
 const LOGO_URL = `${SITE_URL}/svg/logo.svg`;

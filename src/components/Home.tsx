@@ -29,8 +29,7 @@ const Portal3DSectionGSAP = dynamic(() => import('./home/Portal3DSectionGSAP'), 
     loading: () => <div className="min-h-screen w-full mt-32" aria-hidden="true" />,
 });
 
-// PROTOTYPE: persistent scroll-driven 3D computer (desktop only). Self-nullifies
-// on mobile, where the hero keeps its own ComputersCanvas.
+// Persistent scroll-driven 3D computer, mounted on the first user gesture.
 const ScrollComputer3D = dynamic(() => import('./canvas/ScrollComputer3D'), {
     ssr: false,
 });

@@ -12,7 +12,7 @@
  *   auto only there). It adds a free rotation offset on top of the pose, and a
  *   gentle idle auto-spin when not dragging — like the original hero.
  *
- * Mobile keeps the original boxed hero canvas (handled in HeroSection).
+ * Renders on every size; the camera and pose table are picked by viewport width.
  */
 
 import React, { Suspense, useRef } from 'react';
