@@ -13,11 +13,15 @@ export const getStaticProps = makeI18nStaticProps();
 // first user gesture so it never blocks initial load / the lab perf trace.
 const ScrollSystems3D = dynamic(() => import('@/components/canvas/ScrollSystems3D'), { ssr: false });
 
-// ssr:false sections get a height-reserving placeholder (avoids cold-load CLS).
-const SystemsCapabilities = dynamic(() => import('@/components/systems/SystemsCapabilities'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const SystemsTechStack = dynamic(() => import('@/components/systems/SystemsTechStack'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const SystemsProcess = dynamic(() => import('@/components/systems/SystemsProcess'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const SystemsCTA = dynamic(() => import('@/components/systems/SystemsCTA'), { ssr: false, loading: () => <div className="min-h-[60vh] w-full" /> });
+// Text sections stay code-split (dynamic) but MUST be server-rendered: with
+// ssr:false the crawler got a page that was only nav + footer. The WebGL
+// canvases they contain keep their own ssr:false, so no GL context is created
+// on the server. The height-reserving placeholder still covers client-side
+// navigations.
+const SystemsCapabilities = dynamic(() => import('@/components/systems/SystemsCapabilities'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const SystemsTechStack = dynamic(() => import('@/components/systems/SystemsTechStack'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const SystemsProcess = dynamic(() => import('@/components/systems/SystemsProcess'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const SystemsCTA = dynamic(() => import('@/components/systems/SystemsCTA'), { loading: () => <div className="min-h-[60vh] w-full" /> });
 
 const Systems: React.FC = () => {
   // Defer the 3D hero to the first user gesture (perf).

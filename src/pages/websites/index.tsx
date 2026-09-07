@@ -18,10 +18,14 @@ export const getStaticProps = makeI18nStaticProps();
 
 // ssr:false sections get a height-reserving placeholder so they don't grow from
 // 0 on cold load (that growth is a large CLS — see skill perf-seo-audit).
-const OurApproach = dynamic(() => import('../../components/OurApproach'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const Differentiators = dynamic(() => import('../../components/Differentiators'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const Comparison = dynamic(() => import('../../components/Comparison'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const ThreeDExperiencesSection = dynamic(() => import('../../components/3DExperiencesSection'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+// Text sections stay code-split (dynamic) but MUST be server-rendered: with
+// ssr:false the crawler got a page that was only nav + footer. The 3D hero
+// above keeps its ssr:false (it creates a WebGL context). The placeholder
+// still reserves height for client-side navigations.
+const OurApproach = dynamic(() => import('../../components/OurApproach'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const Differentiators = dynamic(() => import('../../components/Differentiators'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const Comparison = dynamic(() => import('../../components/Comparison'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const ThreeDExperiencesSection = dynamic(() => import('../../components/3DExperiencesSection'), { loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const Websites: React.FC = () => {
     // Defer the 3D hero to the first user gesture (perf: keeps it out of the load

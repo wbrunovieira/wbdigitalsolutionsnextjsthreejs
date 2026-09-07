@@ -14,10 +14,13 @@ import PageHead from '@/components/PageHead';
 import { useTranslations } from '@/contexts/TranslationContext';
 import { makeI18nStaticProps } from '@/lib/i18n';
 
-// ssr:false sections get a height-reserving placeholder (avoids cold-load CLS).
-const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const Technologies = dynamic(() => import('@/components/AutomationTecs'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+// Text sections stay code-split (dynamic) but MUST be server-rendered: with
+// ssr:false the crawler got a page that was only nav + footer. The 3D hero
+// above keeps its ssr:false (it creates a WebGL context). The placeholder
+// still reserves height for client-side navigations.
+const AnimatedBenefits = dynamic(() => import('@/components/AutomationBenefits'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const AutomationCases = dynamic(() => import('@/components/AutomationCases'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const Technologies = dynamic(() => import('@/components/AutomationTecs'), { loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const AutomationPage: React.FC = () => {
   const currentMessages = useTranslations();

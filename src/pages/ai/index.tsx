@@ -14,11 +14,14 @@ import { makeI18nStaticProps } from '@/lib/i18n';
 // user gesture so it never blocks initial load / the lab perf trace.
 const ScrollAIHero3D = dynamic(() => import('@/components/canvas/ScrollAIHero3D'), { ssr: false });
 
-// ssr:false sections get a height-reserving placeholder (avoids cold-load CLS).
-const LLMSection = dynamic(() => import('@/components/AILLMSection'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const MachineLearningServices = dynamic(() => import('@/components/AIMLServices'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const VisionComputationalSection = dynamic(() => import('@/components/IAVision'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
-const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), { ssr: false, loading: () => <div className="min-h-[80vh] w-full" /> });
+// Text sections stay code-split (dynamic) but MUST be server-rendered: with
+// ssr:false the crawler got a page that was only nav + footer. The 3D hero
+// above keeps its ssr:false (it creates a WebGL context). The placeholder
+// still reserves height for client-side navigations.
+const LLMSection = dynamic(() => import('@/components/AILLMSection'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const MachineLearningServices = dynamic(() => import('@/components/AIMLServices'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const VisionComputationalSection = dynamic(() => import('@/components/IAVision'), { loading: () => <div className="min-h-[80vh] w-full" /> });
+const AIAgentFlowSection = dynamic(() => import('@/components/AIAgentSection'), { loading: () => <div className="min-h-[80vh] w-full" /> });
 
 const AIPage: React.FC = () => {
   const currentMessages = useTranslations();
