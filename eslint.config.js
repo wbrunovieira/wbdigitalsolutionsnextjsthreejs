@@ -87,6 +87,7 @@ export default [
       "src/components/Lighting.tsx",
       "src/components/WebSiteCTA.tsx",
       "src/components/canvas/Ball.tsx",
+      "src/components/canvas/ball/*.tsx",
       "src/components/canvas/Earth.tsx",
       "src/components/canvas/ScrollAIHero3D.tsx",
       "src/components/canvas/ScrollAutomationHero3D.tsx",

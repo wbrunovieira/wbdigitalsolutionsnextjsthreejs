@@ -1,7 +1,8 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useIsMobileViewport } from '@/hooks/useIsMobileViewport';
 import { getShowcaseTexts } from '@/components/3d-showcase/data/showcaseTexts';
 import ControlsHelp from '@/components/3d-showcase/hud/ControlsHelp';
 import DeskShortcuts from '@/components/3d-showcase/hud/DeskShortcuts';
@@ -12,20 +13,9 @@ const OfficeScene = dynamic(() => import('@/components/3d-showcase/OfficeScene')
   ssr: false,
 });
 
-const MOBILE_BREAKPOINT = 768;
-
 const ThreeDShowcase: React.FC = () => {
   const { language, setLanguage } = useLanguage();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobile = useIsMobileViewport();
 
   const texts = getShowcaseTexts(language);
 

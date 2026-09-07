@@ -1,21 +1,12 @@
-import { Suspense, useState, useEffect, useRef, useMemo } from 'react';
-import {
-    Decal,
-    OrbitControls,
-    Preload,
-    useTexture,
-} from '@react-three/drei';
+import { Suspense, useMemo, useRef, useState } from 'react';
+import { Preload } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import { Texture, Mesh } from 'three';
+import { useMediaQuery } from 'react-responsive';
 import CanvasLoader from '../Loader';
 import { PauseableCanvas } from '../PauseableCanvas';
-import { useMediaQuery } from 'react-responsive';
-
-type BallProps = {
-    imgUrl: string;
-    fallbackUrl?: string;
-    onError?: (errorInfo: string) => void;
-};
+import Ball from './ball/Ball';
+import { CanvasControls, CanvasLights } from './ball/canvasParts';
+import { useLazyInView } from './ball/useLazyInView';
 
 type BallCanvasProps = {
     icon: string;
@@ -24,118 +15,6 @@ type BallCanvasProps = {
     width?: number;
     height?: number;
 };
-
-const Ball = ({ imgUrl, fallbackUrl, onError }: BallProps) => {
-    const [error, setError] = useState(false);
-    const [retryCount, setRetryCount] = useState(0);
-    const [currentUrl, setCurrentUrl] = useState(imgUrl);
-    const meshRef = useRef<Mesh>(null);
-    const isMobile = useMediaQuery({ maxWidth: 768 });
-
-    useEffect(() => {
-        setError(false);
-        setRetryCount(0);
-        setCurrentUrl(imgUrl);
-    }, [imgUrl]);
-
-    const applyRetryOrFallback = () => {
-        if (retryCount === 0) {
-            setRetryCount(1);
-            setTimeout(() => setCurrentUrl((url) => url + '?retry=1'), 500);
-        } else if (fallbackUrl && currentUrl !== fallbackUrl) {
-            setCurrentUrl(fallbackUrl);
-        } else {
-            setError(true);
-            onError?.(
-                `Erro ao carregar textura de ${imgUrl} com fallback ${fallbackUrl}`,
-            );
-        }
-    };
-
-    const [decal] = useTexture([currentUrl], (textures: Texture[]) => {
-        if (textures[0]?.image) {
-            setError(false);
-        } else {
-            applyRetryOrFallback();
-        }
-    });
-
-    useEffect(() => {
-        if (decal) {
-            const checkTexture = () => {
-                if (!decal.image || decal.image.width === 0) {
-                    applyRetryOrFallback();
-                }
-            };
-
-            checkTexture();
-            const timeoutId = setTimeout(checkTexture, 100);
-            return () => clearTimeout(timeoutId);
-        }
-    }, [decal]);
-
-    useEffect(() => () => {
-            if (meshRef.current) {
-                meshRef.current.geometry?.dispose();
-                if (meshRef.current.material) {
-                    if (Array.isArray(meshRef.current.material)) {
-                        meshRef.current.material.forEach(mat => mat.dispose());
-                    } else {
-                        meshRef.current.material.dispose();
-                    }
-                }
-            }
-            decal?.dispose();
-        }, [decal]);
-
-    if ((error && !fallbackUrl) || !decal?.image) {
-        return null;
-    }
-
-    return (
-        <>
-            <ambientLight intensity={isMobile ? 0.5 : 0.75} />
-            <directionalLight position={[0, 0, 0.1]} intensity={isMobile ? 0.5 : 1} />
-            <mesh
-                ref={meshRef}
-                castShadow={!isMobile}
-                receiveShadow={!isMobile}
-                scale={2.75}
-            >
-                <icosahedronGeometry args={[1, 1]} />
-                <meshStandardMaterial
-                    color="#DECBEF"
-                    polygonOffsetFactor={-1}
-                    flatShading
-                />
-                {decal.image && (
-                    <Decal
-                        position={[0, 0, 1]}
-                        rotation={[0, 0, 0]}
-                        scale={1}
-                        map={decal}
-                    />
-                )}
-            </mesh>
-        </>
-    );
-};
-
-const CanvasLights = () => (
-    <>
-        <ambientLight intensity={0.75} />
-        <directionalLight position={[0, 0, 0.1]} />
-    </>
-);
-
-const CanvasControls = () => (
-    <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 2}
-    />
-);
 
 const BallCanvas = ({
     icon,
@@ -146,32 +25,13 @@ const BallCanvas = ({
 }: BallCanvasProps) => {
     const [hasError, setHasError] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
-    const [inView, setInView] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const floatDuration = useMemo(() => 2.2 + Math.random() * 1.2, []);
+    const inView = useLazyInView(containerRef);
 
     const adjustedWidth = isMobile ? width / 2 : width;
     const adjustedHeight = isMobile ? height / 2 : height;
-
-    // Lazy-mount the WebGL canvas only when the ball is near the viewport. Keeps
-    // the full drag-to-rotate interaction but avoids creating ~10 GL contexts at
-    // page load (huge TBT/LCP win). A static icon stands in until then.
-    useEffect(() => {
-        const el = containerRef.current;
-        if (!el || inView) return;
-        const io = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setInView(true);
-                    io.disconnect();
-                }
-            },
-            { rootMargin: '300px' },
-        );
-        io.observe(el);
-        return () => io.disconnect();
-    }, [inView]);
 
     if (hasError && skipIfError) {
         return null;

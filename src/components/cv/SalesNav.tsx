@@ -13,19 +13,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { cvContent, cvLinks, type CVLang } from '@/content/cv';
-import { AMBER, INK, NAV_SECTIONS, ink, toCVLang } from './salesTheme';
+import { cvContent } from '@/content/cv';
+import { AMBER, NAV_SECTIONS, ink, toCVLang } from './salesTheme';
 import { useSalesScrollSpy } from './useSalesScrollSpy';
-import SalesNavMobile, { BurgerLines, MENU_ARIA, Monogram } from './SalesNavMobile';
-
-const LANGS: { code: CVLang; label: string }[] = [
-  { code: 'en', label: 'EN' },
-  { code: 'pt-BR', label: 'PT' },
-  { code: 'it', label: 'IT' },
-  { code: 'es', label: 'ES' },
-];
+import SalesNavMobile, { MENU_ARIA } from './SalesNavMobile';
+import SalesNavActions from './SalesNavActions';
+import SalesNavBrand from './SalesNavBrand';
+import SalesNavTabs from './SalesNavTabs';
 
 const SalesNav: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -68,111 +63,17 @@ const SalesNav: React.FC = () => {
         }
       >
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-4">
-          {/* aria-label: on mobile the name span is display:none and the
-              monogram is aria-hidden, so the link needs its own name */}
-          <a href="#inicio" onClick={navigateTo('inicio')} aria-label={t.name} className="flex items-center gap-3">
-            {/* Monogram mark, makes it read as Bruno's personal page */}
-            <Monogram />
-            <span className="hidden shrink-0 flex-col whitespace-nowrap leading-tight sm:flex">
-              <span className="text-[15px] font-black tracking-[-0.01em] sm:text-base" style={{ color: INK }}>{t.name}</span>
-              {/* Full name hides in the tight xl→2xl window: the capsule +
-                  WhatsApp CTA need the width there (es labels are the widest). */}
-              <span className="font-mono text-[10px] uppercase tracking-[0.16em] xl:hidden 2xl:block" style={{ color: ink(0.5) }}>
-                {t.fullName}
-              </span>
-            </span>
-          </a>
+          <SalesNavBrand name={t.name} fullName={t.fullName} onNavigate={navigateTo('inicio')} />
 
-          {/* Desktop nav: translucent capsule with a sliding amber pill (animated
-              tab-bar style) + a small downward notch that follows the active item. */}
-          <nav className="hidden xl:block">
-            <div
-              className="relative flex items-center gap-0.5 rounded-full border bg-white/70 p-1.5 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm"
-              style={{ borderColor: ink(0.12) }}
-            >
-              {navItems.map((item) => {
-                const isActive = active === item.id;
-                return (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    onClick={navigateTo(item.id)}
-                    aria-current={isActive ? 'true' : undefined}
-                    className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50 ${
-                      isActive ? 'text-[#1c1c1e]' : 'text-[#1c1c1e]/55 hover:text-[#1c1c1e]/90'
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="cv-nav-pill"
-                        className="absolute inset-0 rounded-full"
-                        style={{ background: AMBER }}
-                        transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-                      >
-                        <span
-                          className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 rotate-45 rounded-[3px]"
-                          style={{ background: AMBER, marginTop: '1px' }}
-                          aria-hidden="true"
-                        />
-                      </motion.span>
-                    )}
-                    <span className="relative z-10">{item.label}</span>
-                  </a>
-                );
-              })}
-            </div>
-          </nav>
+          <SalesNavTabs items={navItems} active={active} navigateTo={navigateTo} />
 
-          <div className="flex items-center gap-3">
-            {/* Header CTA goes straight to WhatsApp: inverted pill (graphite
-                on the light theme) + the green lives only in the icon. */}
-            <a
-              href={cvLinks.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden items-center gap-1.5 rounded-full px-4 py-2 text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/60 sm:inline-flex"
-              style={{ background: INK, color: '#f7f7f8', boxShadow: '0 6px 16px rgba(28,28,30,0.28)' }}
-            >
-              <MessageCircle aria-hidden="true" className="h-4 w-4" style={{ color: '#25D366' }} />
-              WhatsApp
-            </a>
-            <div
-              className="flex items-center gap-1 rounded-full border bg-white/70 p-1 shadow-[0_2px_20px_rgba(28,28,30,0.06)] backdrop-blur-sm"
-              style={{ borderColor: ink(0.12) }}
-            >
-              {LANGS.map((l) => {
-                const isActive = lang === l.code;
-                return (
-                  <button
-                    key={l.code}
-                    onClick={() => setLanguage(l.code)}
-                    aria-pressed={isActive}
-                    className="relative rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e0912f]/50"
-                  >
-                    {isActive && (
-                      <motion.span
-                        layoutId="cv-lang-pill"
-                        className="absolute inset-0 rounded-full"
-                        style={{ background: INK }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                      />
-                    )}
-                    <span className="relative z-10" style={{ color: isActive ? '#ffffff' : ink(0.6) }}>{l.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-            {/* Custom burger: asymmetric lines that swap widths on hover */}
-            <button
-              onClick={() => setMenuOpen(true)}
-              aria-label={aria.open}
-              aria-expanded={menuOpen}
-              className="group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-colors xl:hidden"
-              style={{ borderColor: ink(0.14), background: 'rgba(255,255,255,0.7)' }}
-            >
-              <BurgerLines color={INK} />
-            </button>
-          </div>
+          <SalesNavActions
+            lang={lang}
+            setLanguage={setLanguage}
+            menuOpen={menuOpen}
+            openLabel={aria.open}
+            onOpenMenu={() => setMenuOpen(true)}
+          />
         </div>
         {/* Reading progress: information (how far along), so it stays in RM
             (direct mapping, no spring) instead of being removed. */}

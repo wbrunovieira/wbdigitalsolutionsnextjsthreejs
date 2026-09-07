@@ -125,7 +125,7 @@ Frontend sends enriched context to backend API:
 ## Code Quality (Clean Code)
 
 1. **Max 200 lines per file** for pages, components and logic (hooks, utils). When a file grows past that, split by responsibility: extract subcomponents (`*Backdrop`, `*Item`, `*Card`, `*Intro`, `*Mobile`), hooks (`use*`) or local pieces — pixel-identical, no behavior change. **Exempt: pure data/content files** (`src/content/*.ts`, `src/data/*.ts`, locale JSONs) — they are Records, not complexity — and `src/components/ui/` (vendored ShadCN/Aceternity, re-pulled upstream).
-   Enforced in CI by `pnpm lint:size` (`scripts/file-length-check.mjs`): a **ratchet**, not a big-bang gate. Files already over the limit are pinned in `scripts/legacy-file-lengths.json` and may only shrink; any NEW file over 200 lines fails the build. After shrinking a legacy file, run `node scripts/file-length-check.mjs --update` to tighten the baseline.
+   Enforced in CI by `pnpm lint:size` (`scripts/file-length-check.mjs`). The baseline in `scripts/legacy-file-lengths.json` is now **empty**: no file in `src/` is over the limit, so the gate is absolute — any file over 200 lines fails the build. (The ratchet mechanism stays: if a deliberate exception is ever needed, `node scripts/file-length-check.mjs --update` pins it, and pinned files may then only shrink.)
 
 2. **Single responsibility per file/component.** A nav shouldn't also own its mobile overlay and scroll-spy logic; a hero shouldn't own its decorative background. Name extractions after what they are.
 

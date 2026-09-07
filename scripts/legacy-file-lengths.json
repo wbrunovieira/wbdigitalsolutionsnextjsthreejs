@@ -1,14 +1,1 @@
-{
-  "src/components/projects/ProjectDetail.tsx": 257,
-  "src/components/3d-showcase/OfficeScene.tsx": 254,
-  "src/utils/schemaHelpers.ts": 237,
-  "src/components/Nav.tsx": 231,
-  "src/components/PageHead.tsx": 231,
-  "src/components/canvas/Ball.tsx": 231,
-  "src/pages/blog/index.tsx": 229,
-  "src/components/AILLMSection.tsx": 213,
-  "src/pages/dev/[[...lang]].tsx": 210,
-  "src/components/cv/DevNav.tsx": 209,
-  "src/pages/404.tsx": 205,
-  "src/components/cv/SalesNav.tsx": 202
-}
+{}

@@ -3,18 +3,20 @@ import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTranslations } from '@/contexts/TranslationContext';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import logo from '/public/svg/logo.svg';
-import styles from './Nav.module.css';
 
 const ParticlesContainer = dynamic(() => import('./ParticlesContainer'), { ssr: false });
 const MobileMenu = dynamic(() => import('./MobileMenu'), { ssr: false });
 import SideSocial from './SideSocial';
 import HamburgerMenu from './MenuAnimatedBuguer';
+import LanguageRadio from './nav/LanguageRadio';
+import NavLinks from './nav/NavLinks';
+import { useNavData } from './nav/useNavData';
+
+const SCROLL_THRESHOLD_PX = 80;
 
 const Nav: React.FC = () => {
     const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -23,42 +25,14 @@ const Nav: React.FC = () => {
     const router = useRouter();
     const pathname = router.pathname;
     const { language, setLanguage, isLoaded } = useLanguage();
+    const currentMessages = useTranslations();
+    const navData = useNavData();
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 80);
+        const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD_PX);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
-    
-
-    const currentMessages = useTranslations();
-
-    const navData = [
-        {
-            name: currentMessages.home,
-            path: '/',
-          
-        },
-
-
-
-        {
-            name: currentMessages.websites,
-            path: '/websites',
-
-        },
-
-        { name: currentMessages.systems || 'Plataformas e Sistemas', path: '/systems', subItems: [] },
-
-        { name: currentMessages.automation, path: '/automation', subItems: [] },
-
-        { name: currentMessages.ai, path: '/ai', subItems: [] },
-
-        { name: currentMessages.projects || 'Projects', path: '/projects', subItems: [] },
-
-        { name: currentMessages.blog, path: '/blog', subItems: [] },
-        { name: currentMessages.contact, path: '/contact', subItems: [] },
-    ];
 
     return (
         <nav className={`fixed left-0 right-0 top-0 z-20 transition-all duration-500 ${
@@ -97,57 +71,10 @@ const Nav: React.FC = () => {
                                 {currentMessages.technology}
                             </span>
                 </div>
-        
-         
+
           <div className="ml-auto lg:ml-0 lg:flex flex-col text text-xs justify-end items-end">
                 <div className="hidden lg:flex items-center z-50">
-                {!isLoaded && (
-                    <div className={`${styles.radioInput} opacity-50`}>
-                        <span className="text-white text-xs">...</span>
-                    </div>
-                )}
-                {isLoaded && (() => {
-                    const langs = ['en', 'pt-BR', 'it', 'es'] as const;
-                    const selectedIdx = langs.indexOf(language as typeof langs[number]);
-                    const ballPos = (i: number) => {
-                        if (i === selectedIdx) return '0 0';
-                        if (i < selectedIdx) return '0 24px';
-                        return '0 -24px';
-                    };
-                    const labels = [
-                        { id: 'en', display: 'en', tooltip: currentMessages.english },
-                        { id: 'pt-BR', display: 'pt', tooltip: currentMessages.portuguese },
-                        { id: 'it', display: 'it', tooltip: currentMessages.italian },
-                        { id: 'es', display: 'es', tooltip: currentMessages.spanish },
-                    ];
-                    return (
-                        <div className={styles.radioInput}>
-                            {labels.map((lang, i) => (
-                                <React.Fragment key={lang.id}>
-                                    <input
-                                        className={`${styles.input} ${styles.radioCustom}`}
-                                        type="radio"
-                                        name="radio"
-                                        id={lang.id}
-                                        onChange={() => setLanguage(lang.id)}
-                                        checked={language === lang.id}
-                                        style={{ backgroundPosition: ballPos(i) }}
-                                        readOnly={false}
-                                    />
-                                    <label
-                                        htmlFor={lang.id}
-                                        className={`${styles.radioCustomLabel} ${lang.id} btn hover:text-gray-300`}
-                                    >{lang.display}
-                                        <span className={styles.tooltipText}>{lang.tooltip}</span>
-                                    </label>
-                                    {i < labels.length - 1 && (
-                                        <span className="w-px h-3 bg-white/20 mx-3 self-center" />
-                                    )}
-                                </React.Fragment>
-                            ))}
-                        </div>
-                    );
-                })()}
+                    <LanguageRadio language={language} setLanguage={setLanguage} isLoaded={isLoaded} />
                 </div>
 
                 <MobileMenu
@@ -162,61 +89,17 @@ const Nav: React.FC = () => {
                 />
 
             <div className="flex ml-auto lg:hidden mb-2">
-
-
-                <HamburgerMenu 
-                    isOpen={isMobileMenuOpen} 
-                    toggleMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                <HamburgerMenu
+                    isOpen={isMobileMenuOpen}
+                    toggleMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 />
-
             </div>
 
-                <div className="hidden lg:flex flex-1 justify-center w-full mt-4">
-                    {navData.map((link, index) => {
-
-                        const isActive =
-                            pathname === link.path ||
-                            (link.path !== '/' && pathname.startsWith(link.path + '/'));
-
-                        return (
-                            <div
-                                className={`hidden lg:flex relative ${styles.link}`}
-                                onMouseEnter={() => setActiveMenu(link.name)}
-                                onMouseLeave={() => setActiveMenu(null)}
-                                key={index}
-                                >
-                                <Link
-                                    href={link.path}
-                                    className={`relative flex p-3 text-xs mt-2 tracking-widest no-underline font-light lowercase whitespace-nowrap cursor-pointer transition-colors duration-300 ${
-                                        isActive ? 'text-white' : 'text-slate-300/90 hover:text-white'
-                                    }`}
-                                >
-                                    <span className="relative z-10">{link.name}</span>
-                                    {isActive && (
-                                        // Single shared indicator: Framer animates it
-                                        // sliding from the previously-active item to this
-                                        // one (shared layout transition via layoutId).
-                                        <motion.span
-                                            layoutId="nav-active-indicator"
-                                            className="pointer-events-none absolute inset-x-2 -bottom-0.5 h-[3px] rounded-full bg-yellowcustom"
-                                            style={{ boxShadow: '0 0 10px 1px rgba(255,185,71,0.7)' }}
-                                            transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                                        />
-                                    )}
-                                </Link>
-
-                            </div>
-                        );
-                    })}
-            </div>
-
-
+                <NavLinks navData={navData} pathname={pathname} setActiveMenu={setActiveMenu} />
 
           </div>
 
             </div>
-
-
 
             <div className="bg-white/5 absolute right-[2%] top-[120%] hidden md:block">
                 <SideSocial />
