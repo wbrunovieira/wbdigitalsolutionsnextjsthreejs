@@ -154,6 +154,18 @@ export const salesTimeline: Record<CVLang, TimelineEntry[]> = {
       ],
     },
     {
+      year: '2008–2009',
+      age: '34 anos',
+      company: 'CLARUS Technology do Brasil',
+      role: 'Vendedor externo → Coordenador de Vendas',
+      location: 'Americana, São Paulo',
+      bullets: [
+        'Entrei como vendedor externo visitando indústrias na Grande São Paulo: químicos ecológicos, lubrificantes e graxas grau alimentício, desengraxantes biodegradáveis, solventes e fluidos de usinagem.',
+        'Me destaquei em campo e fui promovido a Coordenador de Vendas: 20 vendedores e 3 supervisores sob minha coordenação, respondendo à gerência de vendas.',
+        'Saí por divergência de estilo: a presidência queria que eu liderasse pelo medo. Não era o meu jeito de gerir, e não fiz.',
+      ],
+    },
+    {
       year: '2009–2017',
       age: '35 – 43 anos',
       company: 'Retrak Empilhadeiras',
@@ -333,6 +345,18 @@ export const salesTimeline: Record<CVLang, TimelineEntry[]> = {
       bullets: [
         'Technical sales of digital whiteboards (interactive boards) for offices, industries and schools.',
         'I ran the needs assessment, the demonstration and the closing.',
+      ],
+    },
+    {
+      year: '2008–2009',
+      age: 'age 34',
+      company: 'CLARUS Technology do Brasil',
+      role: 'Field sales → Sales Coordinator',
+      location: 'Americana, São Paulo',
+      bullets: [
+        'Joined as a field sales rep visiting industrial plants across Greater São Paulo: ecological chemicals, food-grade lubricants and greases, biodegradable degreasers, solvents and machining fluids.',
+        'Stood out in the field and was promoted to Sales Coordinator: 20 sales reps and 3 supervisors under my coordination, reporting to the sales manager.',
+        'Left over a management-style disagreement: the president wanted me to lead through fear. That is not how I manage, and I did not do it.',
       ],
     },
     {
@@ -518,6 +542,18 @@ export const salesTimeline: Record<CVLang, TimelineEntry[]> = {
       ],
     },
     {
+      year: '2008–2009',
+      age: '34 anni',
+      company: 'CLARUS Technology do Brasil',
+      role: 'Venditore esterno → Coordinatore Vendite',
+      location: 'Americana, São Paulo',
+      bullets: [
+        'Sono entrato come venditore esterno visitando industrie nella Grande São Paulo: prodotti chimici ecologici, lubrificanti e grassi per uso alimentare, sgrassanti biodegradabili, solventi e fluidi da taglio.',
+        'Mi sono distinto sul campo e sono stato promosso a Coordinatore Vendite: 20 venditori e 3 supervisori sotto il mio coordinamento, riportando alla direzione vendite.',
+        'Me ne sono andato per divergenze sullo stile di gestione: la presidenza voleva che guidassi con la paura. Non e il mio modo di gestire, e non l ho fatto.',
+      ],
+    },
+    {
       year: '2009–2017',
       age: '35 – 43 anni',
       company: 'Retrak Empilhadeiras',
@@ -697,6 +733,18 @@ export const salesTimeline: Record<CVLang, TimelineEntry[]> = {
       bullets: [
         'Venta técnica de pizarras digitales (pizarras interactivas) para oficinas, industrias y escuelas.',
         'Hacía el relevamiento de necesidades, la demostración y el cierre.',
+      ],
+    },
+    {
+      year: '2008–2009',
+      age: '34 años',
+      company: 'CLARUS Technology do Brasil',
+      role: 'Vendedor externo → Coordinador de Ventas',
+      location: 'Americana, São Paulo',
+      bullets: [
+        'Entré como vendedor externo visitando industrias en el Gran São Paulo: químicos ecológicos, lubricantes y grasas de grado alimentario, desengrasantes biodegradables, solventes y fluidos de mecanizado.',
+        'Me destaqué en campo y fui promovido a Coordinador de Ventas: 20 vendedores y 3 supervisores bajo mi coordinación, reportando a la gerencia de ventas.',
+        'Salí por divergencia de estilo de gestión: la presidencia quería que liderara por el miedo. No es mi forma de gestionar, y no lo hice.',
       ],
     },
     {
