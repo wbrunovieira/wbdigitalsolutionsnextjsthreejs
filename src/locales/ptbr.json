@@ -716,7 +716,7 @@
       "items": [
         {
           "value": "Full-stack",
-          "label": "Web, mobile, sistemas e IA — do design ao deploy"
+          "label": "Web, mobile, sistemas e IA, do design ao deploy"
         },
         {
           "value": "Sob medida",
@@ -724,7 +724,7 @@
         },
         {
           "value": "Tecnologia de ponta",
-          "label": "Next.js, Go, Rust, 3D e IA — a stack certa pra cada desafio"
+          "label": "Next.js, Go, Rust, 3D e IA, a stack certa pra cada desafio"
         },
         {
           "value": "Sem fronteiras",
@@ -743,7 +743,7 @@
         "slug": "revalida-italia",
         "title": "Revalida Itália",
         "subtitle": "Plataforma de Ensino",
-        "description": "Plataforma de ensino online completa e sob medida — cursos, aulas em vídeo, simulados, flashcards inteligentes com acompanhamento de desempenho, comunidade interativa e emissão automática de certificados — construída sobre uma arquitetura enterprise (NestJS, PostgreSQL, Redis e filas assíncronas) com milhares de testes automatizados e infraestrutura AWS provisionada via Terraform e Ansible.",
+        "description": "Uma escola online para médicos que vão prestar o exame de habilitação na Itália. A aula ao vivo no Zoom vira aula publicada minutos depois, sozinha, a prova é corrigida pelo sistema ou por um tutor, e o aluno estuda num corpo humano em 3D.",
         "category": "education",
         "imageUrl": "/img/projects/revalida1.png",
         "technologies": [
@@ -778,7 +778,7 @@
           {
             "type": "mixed",
             "title": "Comunidade Interativa",
-            "description": "Além do aprendizado formal, a plataforma conta com um espaço exclusivo de comunidade — um ambiente dinâmico que conecta alunos, professores e administradores em tempo real.\n\nFunciona como uma rede social acadêmica, onde os participantes podem interagir em tópicos de interesse comum.\n\nEsse espaço promove colaboração, troca de conhecimento e engajamento contínuo entre todos os envolvidos no processo de ensino.",
+            "description": "Além do aprendizado formal, a plataforma tem um espaço de comunidade exclusivo, um ambiente dinâmico que conecta alunos, professores e administradores em tempo real.\n\nFunciona como uma rede social acadêmica, onde os participantes interagem sobre temas de interesse comum.\n\nEsse espaço favorece a colaboração, a troca de conhecimento e o engajamento contínuo de todos os envolvidos no processo de ensino.",
             "imageUrl": "/img/projects/revalida3.png",
             "features": [
               "Criar posts e compartilhar dúvidas, resumos e experiências",
@@ -789,21 +789,18 @@
           {
             "type": "video",
             "title": "Flashcards Interativos e Dinâmicos",
-            "description": "Criamos um recurso de flashcards com animações modernas para tornar a memorização mais envolvente e eficaz.\n\nCada aluno possui um painel completo que permite acompanhar seu desempenho em tempo real.\n\nEsse acompanhamento inteligente ajuda o estudante a identificar pontos fortes, revisar conteúdos mais difíceis e manter constância no aprendizado.",
+            "description": "Criamos os flashcards com animações modernas para que memorizar fique mais fácil de manter e mais eficaz.\n\nOs cartões são organizados por etiquetas e podem ser importados em lote, então um baralho inteiro não precisa ser digitado um cartão por vez.\n\nCada aluno tem um painel de progresso que mostra como a revisão está indo, o que ajuda a identificar o que ainda precisa de trabalho.",
             "videoUrl": "/img/projects/revalidaFlashcard.mp4",
             "features": [
-              "Evolução da taxa de acerto",
-              "Número de interações e sequência de estudo",
-              "Distribuição por dificuldade",
-              "Histórico de atividades recentes",
-              "Calendário personalizado de estudos",
-              "Insights de horários mais produtivos"
+              "Etiquetas para organizar o baralho",
+              "Importação de cartões em lote",
+              "Painel de progresso por aluno"
             ]
           },
           {
             "type": "mixed",
             "title": "Infraestrutura em Nuvem com AWS",
-            "description": "A plataforma foi projetada para operar com máxima performance e confiabilidade, utilizando a AWS (Amazon Web Services) — líder mundial em serviços de nuvem.\n\nToda a infraestrutura é automatizada e otimizada com as melhores ferramentas do mercado: Terraform e Ansible.\n\nEssa base sólida permite que a solução entregue desempenho de nível global, acompanhando as necessidades do cliente em qualquer escala.",
+            "description": "A plataforma foi desenhada para operar com o máximo de desempenho e confiabilidade na AWS, líder global em serviços de nuvem.\n\nToda a infraestrutura é automatizada e otimizada com as melhores ferramentas do mercado: Terraform e Ansible.\n\nEssa base sólida permite que a solução entregue desempenho de nível global, atendendo à necessidade do cliente em qualquer escala.",
             "imageUrl": "/img/projects/aws.svg",
             "features": [
               "Escalabilidade sob demanda para acompanhar o crescimento da plataforma",
@@ -816,7 +813,7 @@
           {
             "type": "mixed",
             "title": "Qualidade, Confiabilidade e Integrações Inteligentes",
-            "description": "Este projeto foi desenvolvido seguindo as melhores práticas de código, com mais de 5.000 testes automatizados garantindo estabilidade e segurança em cada atualização.\n\nO sistema também conta com integrações estratégicas que ampliam o valor da plataforma.\n\nUma solução robusta e escalável, unindo tecnologia avançada, automação e praticidade para alunos, professores e administradores.",
+            "description": "O que importa aqui é que uma atualização não quebre a aula que o aluno está assistindo. O backend tem 630 testes automatizados, e o pipeline de gravação não tem passo manual que alguém possa esquecer.\n\nA plataforma também carrega as integrações de que uma escola que vende online realmente precisa: a aula ao vivo é conduzida de dentro da plataforma, e a compra vira acesso sozinha.",
             "imageUrl": "/images/quality-shield.svg",
             "features": [
               "Zoom – gestão completa das aulas ao vivo diretamente pela plataforma",
@@ -835,7 +832,7 @@
         "slug": "manon-ruivo",
         "title": "Manon Ruivo",
         "subtitle": "Site de Consultoria",
-        "description": "Plataforma digital trilíngue para consultora internacional, com blog gerenciável via Sanity CMS, hero animado e seções segmentadas por público — experiência imersiva com GSAP e partículas.",
+        "description": "Site trilíngue para uma consultora internacional: três idiomas com endereço próprio, um caminho para cada público e um blog que ela publica sozinha, sem chamar programador.",
         "category": "website",
         "imageUrl": "/img/projects/manon1.png",
         "technologies": [
@@ -866,14 +863,14 @@
           {
             "type": "mixed",
             "title": "Gestão de Conteúdo com Sanity CMS",
-            "description": "Implementamos o Sanity como CMS headless, permitindo que o cliente gerencie o conteúdo da página de blog de forma autônoma.\n\nO sistema de blog integrado possibilita a criação de artigos, categorias e autores, fortalecendo a estratégia de marketing de conteúdo.\n\nInterface administrativa intuitiva com preview em tempo real das alterações antes da publicação.",
+            "description": "Implementamos o Sanity como CMS headless para a consultora cuidar do blog sozinha.\n\nO estúdio fica dentro do site, e ela cria artigos com categorias e autores sem pedir para ninguém.\n\nCada artigo ganha endereço próprio por idioma, e o mapa do site inclui o artigo novo sozinho, então um post publicado hoje pode ser encontrado amanhã.",
             "imageUrl": "/img/projects/manon2.png",
             "features": [
-              "Painel administrativo personalizado no /studio",
-              "Sistema de blog com categorias e tags",
-              "Upload e gestão de imagens otimizadas",
-              "Preview em tempo real das alterações",
-              "Versionamento automático de conteúdo"
+              "Estúdio dentro do site, em /studio",
+              "Artigos com categorias e autores",
+              "Endereço próprio por idioma",
+              "Upload e gestão de imagens",
+              "Mapa do site atualizado a partir do CMS"
             ]
           }
         ]
@@ -883,7 +880,7 @@
         "slug": "flavia-guedes",
         "title": "Flávia Guedes",
         "subtitle": "Site & Gift Cards",
-        "description": "Site institucional com e-commerce de gift cards e Beauty Bank (crédito pré-pago com bônus por faixa): pagamento via Square e Stripe, painel administrativo onde a Flávia debita serviços do crédito e acompanha o saldo de cada cliente e o geral, galeria de fotos e QR codes — multilíngue e com analytics.",
+        "description": "Site de salão que vende cartão-presente digital e crédito pré-pago com bônus. O saldo é sempre o crédito menos o que já foi usado, então não desanda, e a dona dá baixa nos serviços e desfaz erros pelo próprio painel.",
         "category": "website",
         "imageUrl": "/img/projects/flavia1.png",
         "technologies": [
@@ -891,9 +888,7 @@
           "TypeScript",
           "Tailwind CSS",
           "Square",
-          "Stripe",
           "Firebase",
-          "NextAuth",
           "Resend",
           "GSAP"
         ],
@@ -902,14 +897,15 @@
           {
             "type": "mixed",
             "title": "Landing Page de Salão de Beleza",
-            "description": "Desenvolvemos uma landing page elegante e funcional para um salão de beleza de alto padrão.\n\nA plataforma apresenta seções interativas que destacam os serviços oferecidos e um portfólio visual impressionante dos trabalhos realizados.\n\nO grande diferencial é o sistema de venda de gift cards online, totalmente integrado com o Square para processamento seguro de pagamentos.\n\nInclui também um painel administrativo exclusivo onde o proprietário pode acompanhar as vendas em tempo real, gerenciar pedidos e visualizar relatórios detalhados.",
+            "description": "Desenvolvemos um site elegante e funcional para um salão de beleza de alto padrão.\n\nEle apresenta os serviços e um portfólio visual dos trabalhos realizados.\n\nA diferença de verdade está na parte do dinheiro: cartão-presente digital e crédito pré-pago com bônus, pagos no cartão pelo Square, com o preço reconferido no servidor antes de qualquer cobrança.\n\nE um painel próprio, onde a dona resgata um cartão, dá baixa de um serviço no crédito da cliente, desfaz uma baixa feita por engano e vê quanto foi vendido, quanto ainda está em aberto e quanto já foi usado.",
             "imageUrl": "/img/projects/flavia1.png",
             "features": [
-              "Seções interativas de serviços",
-              "Portfólio visual de trabalhos",
-              "Sistema de venda de gift cards",
-              "Integração com Square para pagamentos",
-              "Painel administrativo em tempo real"
+              "Serviços apresentados por seção",
+              "Portfólio visual dos trabalhos",
+              "Venda de cartão-presente digital",
+              "Crédito pré-pago com bônus, como razão de verdade",
+              "Pagamento no cartão pelo Square",
+              "Painel com resgate e desfazimento"
             ]
           }
         ]
@@ -919,7 +915,7 @@
         "slug": "kundalini-activation",
         "title": "Kundalini Activation",
         "subtitle": "Site + Painel da Cliente (CMS)",
-        "description": "Site de conversão para especialista em ativação Kundalini — galeria, vídeos, depoimentos, FAQ e eventos. Inclui um painel (CMS) próprio onde a própria cliente atualiza fotos, vídeos, depoimentos, sessões, locais e textos do site, sem depender de programador. Animações com GSAP e design responsivo.",
+        "description": "Site de conversão para uma especialista em ativação Kundalini, com painel que ela mesma usa: galeria, depoimentos em vídeo, sessões e locais mudam sem programador, e foto tirada no iPhone é convertida no envio.",
         "category": "website",
         "imageUrl": "/img/projects/kundalini-cover.jpg",
         "technologies": [
@@ -930,7 +926,6 @@
           "GSAP",
           "Framer Motion",
           "react-photo-album",
-          "react-player",
           "Vercel Blob",
           "Mux",
           "dnd-kit",
@@ -942,15 +937,15 @@
           {
             "type": "mixed",
             "title": "Kundalini Activation by Elaine Vieira",
-            "description": "Desenvolvemos uma plataforma completa para Elaine Vieira, especialista em ativação de Kundalini e harmonização energética.\n\nO site oferece uma jornada transformadora onde energia, cura e conexão se fundem. As sessões presenciais de Ativação Kundalini são projetadas para despertar o poder interior, liberar bloqueios emocionais e reconectar com o eu superior.\n\nA plataforma inclui galeria de fotos inspiradoras, depoimentos em vídeo e texto, e seção de FAQ completa.\n\nInterface otimizada para conversão com múltiplas CTAs estratégicas, informações sobre locais dos eventos (Fort Lauderdale e Orlando), e diferentes opções de experiência Kundalini.\n\nUm diferencial é o painel administrativo (CMS) sob medida: a cliente faz login e atualiza sozinha galeria, vídeos, depoimentos, sessões, locais e textos — com upload de imagens otimizado (compressão e conversão de HEIC) e vídeos via Mux.",
+            "description": "Desenvolvemos um site completo para Elaine Vieira, especialista em ativação Kundalini e harmonização energética.\n\nO site traz uma galeria de fotos inspiradora, depoimentos em vídeo e em texto e uma seção completa de perguntas frequentes, com informações de sessões e locais em Fort Lauderdale e Orlando e chamadas para ação distribuídas pela página.\n\nO destaque é o painel sob medida: ela entra e atualiza sozinha a galeria, os vídeos, os depoimentos, as sessões e os locais, com as fotos reduzidas e o HEIC convertido no navegador e o vídeo hospedado no Mux.\n\nO texto fixo da página, como a abertura e as respostas das perguntas frequentes, continua no código.",
             "imageUrl": "/img/projects/elaine1.png",
             "features": [
-              "Galeria de fotos de alta resolução",
-              "Depoimentos em vídeo e texto",
-              "Seção de perguntas frequentes",
-              "Informações de locais e eventos",
-              "Design responsivo e espiritual",
-              "Painel próprio (CMS) para a cliente atualizar fotos, vídeos e textos"
+              "Galeria de fotos em alta resolução",
+              "Depoimentos em vídeo e em texto",
+              "Perguntas frequentes",
+              "Informações de sessões e locais",
+              "Design responsivo",
+              "Painel que ela usa para atualizar galeria, vídeos, depoimentos, sessões e locais"
             ]
           }
         ]
@@ -960,7 +955,7 @@
         "slug": "wb-crm",
         "title": "WB CRM",
         "subtitle": "Plataforma de CRM & Vendas",
-        "description": "CRM completo de vendas: gestão de leads, contatos e negócios em pipeline kanban, cadências e atividades, campanhas de e-mail (com aquecimento) e WhatsApp, telefonia GoTo com transcrição, análise de ligações e reuniões por agentes de IA, automações e propostas — tudo sobre arquitetura enterprise.",
+        "description": "Um sistema de vendas que leva a empresa do achei no Google Maps ao contrato recorrente assinado: funil, cadências de follow-up, página pública de agendamento, ligações com gravação e transcrição e campanhas em quatro idiomas.",
         "category": "sistemas",
         "icon": "📊",
         "technologies": [
@@ -973,7 +968,8 @@
           "AWS S3",
           "dnd-kit",
           "React Flow",
-          "Recharts"
+          "Recharts",
+          "React Native"
         ],
         "categories": [
           "sistemas",
@@ -986,7 +982,7 @@
         "slug": "ai-agents",
         "title": "Agentes de IA",
         "subtitle": "Sistema Multi-agente",
-        "description": "Sistema multi-agente de IA com orquestração via LangGraph: um roteador classifica a intenção e direciona para agentes especializados (CRM e finanças), que executam ações conectando-se aos serviços da plataforma. Usa modelos da OpenAI e Anthropic, exposto como serviço FastAPI.",
+        "description": "Um serviço com nove assistentes especializados, atendendo o CRM e o sistema financeiro: uma frase no WhatsApp vira um gasto categorizado, a ligação de vendas volta avaliada e a proposta é redigida e revisada.",
         "category": "ai",
         "icon": "🤖",
         "technologies": [
@@ -1004,7 +1000,7 @@
         "slug": "konnen",
         "title": "Konnen",
         "subtitle": "App de Avaliação Física",
-        "description": "App de avaliação física para a KONNEN: cadastro de alunos com foto, testes de performance (Cooper), zonas cardíacas, VO₂máx, IMC, histórico de evolução com gráficos e geração/compartilhamento de relatórios em PDF por WhatsApp e e-mail — com acesso protegido por senha.",
+        "description": "App que o personal usa para fazer avaliação física e entregar ao aluno um relatório em PDF com a marca dele pelo WhatsApp: teste de Cooper, VO₂ máximo por dois caminhos, IMC, zonas cardíacas e gráficos de evolução.",
         "category": "sistemas",
         "icon": "💪",
         "technologies": [
@@ -1024,7 +1020,7 @@
         "slug": "calendar",
         "title": "Calendar",
         "subtitle": "Agenda & Hábitos",
-        "description": "App de produtividade: agenda com eventos recorrentes, categorias e etiquetas, acompanhamento de hábitos e metas semanais/mensais, lembretes e dashboard — com sincronização ao Google Calendar. Backend NestJS (Prisma/PostgreSQL) e frontend Next.js.",
+        "description": "Um app pequeno de propósito, que prova que um sistema nosso lê e escreve na agenda que o cliente já usa: sincronização nos dois sentidos com o Google Calendar, eventos recorrentes com exceção por ocorrência e acompanhamento de hábitos.",
         "category": "sistemas",
         "icon": "📆",
         "technologies": [
@@ -1043,7 +1039,7 @@
         "slug": "salto",
         "title": "Salto",
         "subtitle": "Site & Propostas",
-        "description": "Site multilíngue da Salto com decks de vendas protegidos (automação, websites, Google Business e OS), formulários de briefing e ordens de serviço que geram PDFs e disparam e-mails automáticos — animações com GSAP, scroll suave (Lenis) e rastreamento de eventos.",
+        "description": "Site em quatro idiomas para uma consultoria de vendas, mais uma área com senha com cinco decks de venda e ordens de serviço assinadas na tela, que viram PDF e saem por e-mail, com aviso se o e-mail não chegar.",
         "category": "website",
         "icon": "🚀",
         "technologies": [
@@ -1065,7 +1061,7 @@
         "slug": "wb-project-manager",
         "title": "WB Project Manager",
         "subtitle": "Gestão de Projetos",
-        "description": "Ferramenta de gestão de projetos no estilo Linear/Jira: workspaces, projetos, issues, milestones, labels e features, com quadros kanban arrastáveis, controle de tempo (time tracking), dashboard, command palette e autenticação.",
+        "description": "A ferramenta interna em que a WB roda a própria entrega: todo pedido vira uma issue com tipo e prioridade, cronômetro ao vivo e prazo contado só em hora útil, mais uma API com chave para outros sistemas abrirem issue sozinhos.",
         "category": "sistemas",
         "icon": "🗂️",
         "technologies": [
@@ -1086,7 +1082,7 @@
         "slug": "stylos",
         "title": "Stylos",
         "subtitle": "Loja Online",
-        "description": "Loja virtual completa: catálogo com variantes (cores, tamanhos, marcas e categorias), carrinho persistente, checkout integrado ao MercadoPago, cálculo de frete, gestão de pedidos, painel administrativo e contas com verificação de e-mail.",
+        "description": "Uma loja de roupas completa: filtro por cor, tamanho, marca e preço, frete real até o endereço, pagamento no cartão e no Pix, e carrinho guardado no servidor, que acompanha o cliente entre celular e computador.",
         "category": "ecommerce",
         "icon": "🛍️",
         "technologies": [
@@ -1120,7 +1116,7 @@
         "slug": "vetor",
         "title": "Vetor",
         "subtitle": "Conferência de IRPF (Desktop)",
-        "description": "Aplicativo desktop (Tauri + Rust + React) para conferência de declarações de IRPF: importa e interpreta arquivos .DEC da Receita Federal, extrai os dados por CPF e exercício (rendimentos tributáveis, isentos e de tributação exclusiva) e os organiza localmente em SQLite — com licenciamento por dispositivo (JWT) e backend de licenças em NestJS.",
+        "description": "App de desktop para escritórios de contabilidade que lê o arquivo bruto da declaração do imposto de renda, um formato de largura fixa sem documentação, e lista os valores principais por cliente. Publicado como um núcleo que funciona, não como produto pronto.",
         "category": "sistemas",
         "icon": "🖥️",
         "technologies": [
@@ -1139,14 +1135,14 @@
           {
             "type": "image",
             "imageUrl": "/img/projects/vetor-login.jpg",
-            "title": "Login seguro",
-            "description": "Acesso por e-mail/senha ou Google, com licença vinculada ao dispositivo."
+            "title": "Entrada no sistema",
+            "description": "Entrada por e-mail e senha, com a licença presa à máquina."
           },
           {
             "type": "image",
             "imageUrl": "/img/projects/vetor-home.jpg",
             "title": "Busca por contribuinte",
-            "description": "Lista de contribuintes com filtros por ano, nome e CPF — com grupo e status financeiro."
+            "description": "Lista de contribuintes filtrada por exercício, nome e CPF."
           },
           {
             "type": "image",
@@ -1161,7 +1157,7 @@
         "slug": "salao-loha",
         "title": "Salão Loha",
         "subtitle": "Site de Salão de Beleza",
-        "description": "Site single-page de marketing para o Salão Loha (estética e beleza em Osasco-SP): seções de serviços, portfólio com lightbox, calendário animado, localização e contato — animações em Lottie/AOS e deploy contínuo na Vercel.",
+        "description": "Site de uma página para um salão de bairro em Osasco, feito para ser encontrado e puxar conversa no WhatsApp: serviços, portfólio de 8 fotos, mapa e redes sociais, em HTML puro e sem etapa de build.",
         "category": "website",
         "icon": "💇",
         "technologies": [
@@ -1170,8 +1166,9 @@
           "Bootstrap",
           "JavaScript",
           "Lottie",
-          "AOS",
-          "Vercel"
+          "Vercel",
+          "FancyBox",
+          "Animate.css"
         ],
         "liveUrl": "https://www.salaoloha.com.br/",
         "imageUrl": "/img/projects/salao-loha-cover.jpg"
@@ -1181,7 +1178,7 @@
         "slug": "financas",
         "title": "Finanças",
         "subtitle": "Finanças & Investimentos",
-        "description": "Sistema completo de finanças pessoais e investimentos: contas, transações, categorias, centros de custo, orçamentos e metas, recorrências e faturas, aportes, carteira de cripto e dados de mercado (B3, Yahoo Finance, Binance) — inclui o screener de ações Magic Formula. Backend em Go (DDD) com frontend Next.js.",
+        "description": "Um sistema para o dinheiro pessoal e o da empresa no mesmo lugar: contas com fechamento de mês, faturas de cartão por ciclo, lançamentos com estorno, importação e conciliação de extrato, e uma autoverificação que aponta inconsistência.",
         "category": "sistemas",
         "icon": "💰",
         "technologies": [
@@ -1189,10 +1186,10 @@
           "Next.js",
           "TypeScript",
           "PostgreSQL",
-          "Python",
           "Docker",
           "Binance API",
-          "Yahoo Finance"
+          "Yahoo Finance",
+          "brapi"
         ]
       }
     ]

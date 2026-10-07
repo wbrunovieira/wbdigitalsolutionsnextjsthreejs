@@ -712,7 +712,7 @@
       "items": [
         {
           "value": "Full-stack",
-          "label": "Web, mobile, systems and AI — from design to deploy"
+          "label": "Web, mobile, systems and AI, from design to deploy"
         },
         {
           "value": "Tailor-made",
@@ -720,7 +720,7 @@
         },
         {
           "value": "Cutting-edge tech",
-          "label": "Next.js, Go, Rust, 3D and AI — the right stack for each challenge"
+          "label": "Next.js, Go, Rust, 3D and AI, the right stack for each challenge"
         },
         {
           "value": "No borders",
@@ -739,7 +739,7 @@
         "slug": "revalida-italia",
         "title": "Revalida Italia",
         "subtitle": "Learning Platform",
-        "description": "A complete, tailor-made online learning platform — courses, video lessons, mock exams, smart flashcards with performance tracking, an interactive community and automatic certificate issuance — built on an enterprise architecture (NestJS, PostgreSQL, Redis and async queues) with thousands of automated tests and AWS infrastructure provisioned via Terraform and Ansible.",
+        "description": "An online school for doctors preparing for the Italian medical licence exam. A live Zoom class becomes a published lesson minutes later on its own, exams are marked by the system or by a tutor, and students study on an interactive 3D body.",
         "category": "education",
         "imageUrl": "/img/projects/revalida1.png",
         "technologies": [
@@ -774,7 +774,7 @@
           {
             "type": "mixed",
             "title": "Interactive Community",
-            "description": "In addition to formal learning, the platform features an exclusive community space — a dynamic environment that connects students, teachers and administrators in real time.\n\nIt works as an academic social network, where participants can interact on topics of common interest.\n\nThis space promotes collaboration, knowledge exchange and continuous engagement among all those involved in the teaching process.",
+            "description": "In addition to formal learning, the platform features an exclusive community space, a dynamic environment that connects students, teachers and administrators in real time.\n\nIt works as an academic social network, where participants can interact on topics of common interest.\n\nThis space promotes collaboration, knowledge exchange and continuous engagement among all those involved in the teaching process.",
             "imageUrl": "/img/projects/revalida3.png",
             "features": [
               "Create posts and share questions, summaries and experiences",
@@ -785,21 +785,18 @@
           {
             "type": "video",
             "title": "Interactive and Dynamic Flashcards",
-            "description": "We created a flashcard feature with modern animations to make memorization more engaging and effective.\n\nEach student has a complete panel that allows them to track their performance in real time.\n\nThis intelligent tracking helps students identify strengths, review more difficult content and maintain consistency in learning.",
+            "description": "We built the flashcards with modern animations to make memorising both easier to stick with and more effective.\n\nCards are organised with tags and can be imported in bulk, so a whole deck does not have to be typed in one card at a time.\n\nEach student has a progress dashboard that shows how the revision is going, which helps them spot what still needs work.",
             "videoUrl": "/img/projects/revalidaFlashcard.mp4",
             "features": [
-              "Hit rate evolution",
-              "Number of interactions and study sequence",
-              "Distribution by difficulty",
-              "Recent activity history",
-              "Personalized study calendar",
-              "Most productive hours insights"
+              "Tags to organise a deck",
+              "Bulk import of cards",
+              "A progress dashboard per student"
             ]
           },
           {
             "type": "mixed",
             "title": "Cloud Infrastructure with AWS",
-            "description": "The platform was designed to operate with maximum performance and reliability, using AWS (Amazon Web Services) — the global leader in cloud services.\n\nAll infrastructure is automated and optimized with the best tools on the market: Terraform and Ansible.\n\nThis solid foundation allows the solution to deliver global-level performance, meeting client needs at any scale.",
+            "description": "The platform was designed to run with maximum performance and reliability on AWS, the global leader in cloud services.\n\nAll the infrastructure is automated and optimised with the best tools on the market: Terraform and Ansible.\n\nThat solid foundation lets the solution deliver performance at a global level, meeting the client's needs at any scale.",
             "imageUrl": "/img/projects/aws.svg",
             "features": [
               "On-demand scalability to keep up with platform growth",
@@ -812,7 +809,7 @@
           {
             "type": "mixed",
             "title": "Quality, Reliability and Smart Integrations",
-            "description": "This project was developed following code best practices, with over 5,000 automated tests ensuring stability and security with every update.\n\nThe system also features strategic integrations that extend the platform's value.\n\nA robust and scalable solution, combining advanced technology, automation and practicality for students, teachers and administrators.",
+            "description": "What matters here is that an update does not break the class a student is in the middle of. The backend is covered by 630 automated tests, and the recording pipeline has no manual step anyone can forget.\n\nThe platform also carries the integrations a school selling online actually needs: live classes are run from inside the platform, and a purchase turns into access on its own.",
             "imageUrl": "/images/quality-shield.svg",
             "features": [
               "Zoom – complete management of live classes directly from the platform",
@@ -831,7 +828,7 @@
         "slug": "manon-ruivo",
         "title": "Manon Ruivo",
         "subtitle": "Consulting Website",
-        "description": "Trilingual digital platform for an international consultant, with a Sanity CMS–managed blog, animated hero and audience-segmented sections — an immersive experience with GSAP and particles.",
+        "description": "A trilingual site for an international consultant: three languages with their own addresses, a separate path per audience, and a blog she publishes herself without calling a developer.",
         "category": "website",
         "imageUrl": "/img/projects/manon1.png",
         "technologies": [
@@ -862,14 +859,14 @@
           {
             "type": "mixed",
             "title": "Content Management with Sanity CMS",
-            "description": "We implemented Sanity as a headless CMS, allowing the client to manage blog page content autonomously.\n\nThe integrated blog system enables the creation of articles, categories and authors, strengthening the content marketing strategy.\n\nIntuitive administrative interface with real-time preview of changes before publication.",
+            "description": "We set Sanity up as a headless CMS so the consultant manages the blog on her own.\n\nThe studio lives inside the site, and she creates articles with categories and authors without asking anyone.\n\nEach article gets its own address per language, and the site map picks up the new article by itself, so a post published today can be found tomorrow.",
             "imageUrl": "/img/projects/manon2.png",
             "features": [
-              "Custom admin panel at /studio",
-              "Blog system with categories and tags",
-              "Upload and management of optimized images",
-              "Real-time preview of changes",
-              "Automatic content versioning"
+              "Studio inside the site, at /studio",
+              "Articles with categories and authors",
+              "Its own address per language",
+              "Image upload and management",
+              "Site map updated from the CMS"
             ]
           }
         ]
@@ -879,7 +876,7 @@
         "slug": "flavia-guedes",
         "title": "Flávia Guedes",
         "subtitle": "Website & Gift Cards",
-        "description": "Brand website with gift-card e-commerce and a Beauty Bank (prepaid credit with tiered bonuses): Square and Stripe payments, an admin panel where the owner deducts services from the credit and tracks each client's balance and the overall total, photo gallery and QR codes — multilingual, with analytics.",
+        "description": "A salon site that sells digital gift cards and prepaid credit with a bonus. The balance is always the credit minus what was used, so it cannot drift, and the owner deducts services and undoes mistakes from her own panel.",
         "category": "website",
         "imageUrl": "/img/projects/flavia1.png",
         "technologies": [
@@ -887,9 +884,7 @@
           "TypeScript",
           "Tailwind CSS",
           "Square",
-          "Stripe",
           "Firebase",
-          "NextAuth",
           "Resend",
           "GSAP"
         ],
@@ -898,14 +893,15 @@
           {
             "type": "mixed",
             "title": "Beauty Salon Landing Page",
-            "description": "We developed an elegant and functional landing page for a high-end beauty salon.\n\nThe platform features interactive sections that highlight the services offered and an impressive visual portfolio of completed work.\n\nThe major differentiator is the online gift card sales system, fully integrated with Square for secure payment processing.\n\nIt also includes an exclusive admin panel where the owner can track sales in real-time, manage orders and view detailed reports.",
+            "description": "We built an elegant, working site for a high-end beauty salon.\n\nIt presents the services and a visual portfolio of finished work.\n\nThe real difference is the money side: digital gift cards and prepaid credit with a bonus, paid by card through Square, with the price re-checked on the server before any charge.\n\nAnd an admin panel of her own, where the owner redeems a card, deducts a service from a client's credit, undoes a deduction made by mistake, and sees how much was sold, how much is still outstanding and how much has been used.",
             "imageUrl": "/img/projects/flavia1.png",
             "features": [
-              "Interactive service sections",
-              "Visual portfolio of work",
-              "Gift card sales system",
-              "Square payment integration",
-              "Real-time admin panel"
+              "Services presented section by section",
+              "Visual portfolio of the work",
+              "Digital gift card sales",
+              "Prepaid credit with a bonus, as a real ledger",
+              "Card payment through Square",
+              "Admin panel with redemption and undo"
             ]
           }
         ]
@@ -915,7 +911,7 @@
         "slug": "kundalini-activation",
         "title": "Kundalini Activation",
         "subtitle": "Site + Client CMS",
-        "description": "Conversion site for a Kundalini activation specialist — gallery, videos, testimonials, FAQ and events. It ships with a custom CMS panel where the client updates photos, videos, testimonials, sessions, locations and text herself, with no developer needed. GSAP animations and responsive design.",
+        "description": "A conversion site for a Kundalini activation practitioner, with a panel she uses herself: gallery, video testimonials, sessions and venues all change without a developer, and photos taken on an iPhone are converted on upload.",
         "category": "website",
         "imageUrl": "/img/projects/kundalini-cover.jpg",
         "technologies": [
@@ -926,7 +922,6 @@
           "GSAP",
           "Framer Motion",
           "react-photo-album",
-          "react-player",
           "Vercel Blob",
           "Mux",
           "dnd-kit",
@@ -938,15 +933,15 @@
           {
             "type": "mixed",
             "title": "Kundalini Activation by Elaine Vieira",
-            "description": "We developed a complete platform for Elaine Vieira, a specialist in Kundalini activation and energy harmonization.\n\nThe site offers a transformative journey where energy, healing, and connection merge. The in-person Kundalini Activation sessions are designed to awaken inner power, release emotional blockages, and reconnect with the higher self.\n\nThe platform includes an inspiring photo gallery, video and text testimonials, and a comprehensive FAQ section.\n\nConversion-optimized interface with multiple strategic CTAs, event location information (Fort Lauderdale and Orlando), and different Kundalini experience options.\n\nA standout is the tailor-made admin panel (CMS): the client logs in and updates the gallery, videos, testimonials, sessions, locations and text on her own — with optimized image upload (compression and HEIC conversion) and video via Mux.",
+            "description": "We built a complete site for Elaine Vieira, a specialist in Kundalini activation and energy harmonisation.\n\nThe site carries an inspiring photo gallery, video and written testimonials, and a full FAQ section, with session and venue details for Fort Lauderdale and Orlando and calls to action spread through the page.\n\nThe standout is the bespoke admin panel: she signs in and updates the gallery, the videos, the testimonials, the sessions and the venues on her own, with photos shrunk and HEIC converted in the browser and video hosted on Mux.\n\nThe fixed page copy, such as the opening and the FAQ answers, stays in the code.",
             "imageUrl": "/img/projects/elaine1.png",
             "features": [
               "High-resolution photo gallery",
-              "Video and text testimonials",
-              "Frequently asked questions section",
-              "Location and event information",
-              "Responsive and spiritual design",
-              "Custom CMS for the client to update photos, videos and text"
+              "Video and written testimonials",
+              "Frequently asked questions",
+              "Session and venue details",
+              "Responsive design",
+              "A panel she uses to update the gallery, videos, testimonials, sessions and venues"
             ]
           }
         ]
@@ -956,7 +951,7 @@
         "slug": "wb-crm",
         "title": "WB CRM",
         "subtitle": "CRM & Sales Platform",
-        "description": "A complete sales CRM: lead, contact and deal management on a kanban pipeline, cadences and activities, email (with warming) and WhatsApp campaigns, GoTo telephony with transcription, AI-agent call and meeting analysis, automations and proposals — on an enterprise architecture.",
+        "description": "A sales system that takes a company from found on Google Maps to a signed recurring contract: pipeline, follow-up cadences, a self-service booking page, calls with recording and transcript, and campaigns in four languages.",
         "category": "sistemas",
         "icon": "📊",
         "technologies": [
@@ -969,7 +964,8 @@
           "AWS S3",
           "dnd-kit",
           "React Flow",
-          "Recharts"
+          "Recharts",
+          "React Native"
         ],
         "categories": [
           "sistemas",
@@ -982,7 +978,7 @@
         "slug": "ai-agents",
         "title": "AI Agents",
         "subtitle": "Multi-agent System",
-        "description": "A multi-agent AI system orchestrated with LangGraph: a router classifies intent and dispatches to specialized agents (CRM and finances) that act by connecting to the platform services. Powered by OpenAI and Anthropic models, exposed as a FastAPI service.",
+        "description": "One service running nine specialised assistants for the CRM and the finance system: a sentence on WhatsApp becomes a categorised expense, a sales call comes back reviewed, and a proposal is drafted and revised.",
         "category": "ai",
         "icon": "🤖",
         "technologies": [
@@ -1000,7 +996,7 @@
         "slug": "konnen",
         "title": "Konnen",
         "subtitle": "Fitness Assessment App",
-        "description": "Fitness assessment app for KONNEN: student registration with photo, performance tests (Cooper), heart-rate zones, VO₂max, BMI, evolution history with charts, and PDF report generation/sharing via WhatsApp and email — with password-protected access.",
+        "description": "An app a personal trainer uses to run fitness assessments and hand each client a branded PDF report on WhatsApp: Cooper test, VO₂ max two ways, BMI, heart-rate zones and progress charts.",
         "category": "sistemas",
         "icon": "💪",
         "technologies": [
@@ -1020,7 +1016,7 @@
         "slug": "calendar",
         "title": "Calendar",
         "subtitle": "Calendar & Habits",
-        "description": "A productivity app: calendar with recurring events, categories and labels, habit and weekly/monthly goal tracking, reminders and a dashboard — with Google Calendar sync. NestJS backend (Prisma/PostgreSQL) and Next.js frontend.",
+        "description": "A deliberately small app that proves a system we build reads and writes the calendar a client already uses: two-way Google Calendar sync, recurring events with per-occurrence exceptions, and habit tracking.",
         "category": "sistemas",
         "icon": "📆",
         "technologies": [
@@ -1039,7 +1035,7 @@
         "slug": "salto",
         "title": "Salto",
         "subtitle": "Website & Proposals",
-        "description": "Salto's multilingual website with protected sales decks (automation, websites, Google Business and service orders), briefing and service-order forms that generate PDFs and trigger automatic emails — GSAP animations, smooth scroll (Lenis) and event tracking.",
+        "description": "A four-language site for a sales consultancy, plus a password-protected area with five sales decks and service orders signed on screen, turned into a PDF and emailed, with an alert if the email does not arrive.",
         "category": "website",
         "icon": "🚀",
         "technologies": [
@@ -1061,7 +1057,7 @@
         "slug": "wb-project-manager",
         "title": "WB Project Manager",
         "subtitle": "Project Management",
-        "description": "A Linear/Jira-style project management tool: workspaces, projects, issues, milestones, labels and features, with draggable kanban boards, time tracking, a dashboard, a command palette and authentication.",
+        "description": "The internal tool WB runs its own delivery on: every request becomes a typed issue with a priority, a live timer and a deadline counted only in working hours, plus a key-based API so other systems file issues themselves.",
         "category": "sistemas",
         "icon": "🗂️",
         "technologies": [
@@ -1082,7 +1078,7 @@
         "slug": "stylos",
         "title": "Stylos",
         "subtitle": "Online Store",
-        "description": "A complete online store: catalog with variants (colors, sizes, brands and categories), persistent cart, MercadoPago-integrated checkout, shipping calculation, order management, an admin panel and accounts with email verification.",
+        "description": "A full online clothing store: filter by colour, size, brand and price, real freight quotes to the address, card and Pix payment, and a cart kept on the server so it follows the shopper between devices.",
         "category": "ecommerce",
         "icon": "🛍️",
         "technologies": [
@@ -1116,7 +1112,7 @@
         "slug": "vetor",
         "title": "Vetor",
         "subtitle": "Income-Tax Review (Desktop)",
-        "description": "A desktop app (Tauri + Rust + React) for reviewing IRPF (Brazilian income-tax) returns: it imports and parses .DEC declaration files from Receita Federal, extracts data per taxpayer (CPF) and tax year (taxable, exempt and exclusively-taxed income) and organizes it locally in SQLite — with device-bound licensing (JWT) and a NestJS licensing backend.",
+        "description": "A desktop app for accounting offices that reads the raw income-tax declaration file, an undocumented fixed-width format, and lists the key figures per client. Published as a working core, not a finished product.",
         "category": "sistemas",
         "icon": "🖥️",
         "technologies": [
@@ -1135,14 +1131,14 @@
           {
             "type": "image",
             "imageUrl": "/img/projects/vetor-login.jpg",
-            "title": "Secure login",
-            "description": "Email/password or Google sign-in, with a device-bound license."
+            "title": "Sign in",
+            "description": "Email and password sign-in, with the licence tied to the machine."
           },
           {
             "type": "image",
             "imageUrl": "/img/projects/vetor-home.jpg",
             "title": "Taxpayer search",
-            "description": "Taxpayer list filtered by year, name and CPF — with group and financial status."
+            "description": "Taxpayer list filtered by tax year, name and taxpayer number."
           },
           {
             "type": "image",
@@ -1157,7 +1153,7 @@
         "slug": "salao-loha",
         "title": "Salão Loha",
         "subtitle": "Beauty Salon Website",
-        "description": "Single-page marketing website for Salão Loha (beauty & aesthetics in Osasco, Brazil): services, portfolio with lightbox, animated calendar, location and contact — Lottie/AOS animations and continuous deploy on Vercel.",
+        "description": "A one-page site for a neighbourhood salon in Osasco, built to be found and to start a WhatsApp conversation: services, an 8-photo portfolio, map and social links, in plain HTML with no build step.",
         "category": "website",
         "icon": "💇",
         "technologies": [
@@ -1166,8 +1162,9 @@
           "Bootstrap",
           "JavaScript",
           "Lottie",
-          "AOS",
-          "Vercel"
+          "Vercel",
+          "FancyBox",
+          "Animate.css"
         ],
         "liveUrl": "https://www.salaoloha.com.br/",
         "imageUrl": "/img/projects/salao-loha-cover.jpg"
@@ -1177,7 +1174,7 @@
         "slug": "financas",
         "title": "Finances",
         "subtitle": "Finance & Investments",
-        "description": "A complete personal finance and investments system: accounts, transactions, categories, cost centers, budgets and goals, recurring entries and invoices, contributions, a crypto portfolio and market data (B3, Yahoo Finance, Binance) — including the Magic Formula stock screener. Go backend (DDD) with a Next.js frontend.",
+        "description": "A system for personal and company money in one place: accounts with a month close, card invoice cycles, entries you can reverse, bank statement import with reconciliation, and a self-check that reports inconsistent state.",
         "category": "sistemas",
         "icon": "💰",
         "technologies": [
@@ -1185,10 +1182,10 @@
           "Next.js",
           "TypeScript",
           "PostgreSQL",
-          "Python",
           "Docker",
           "Binance API",
-          "Yahoo Finance"
+          "Yahoo Finance",
+          "brapi"
         ]
       }
     ]
