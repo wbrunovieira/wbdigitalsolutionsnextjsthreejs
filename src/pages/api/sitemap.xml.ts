@@ -26,6 +26,10 @@ const STATIC_PAGES = [
   'systems',
   'newsletter',
   'privacy-policy',
+  // Legal documents for the rclone OAuth client; Google's consent-screen
+  // review requires them on the same domain as the homepage.
+  'privacidade',
+  'termos',
 ];
 
 // Project detail pages (/projects/[slug]) — kept in sync with projectDetails.ts
@@ -109,11 +113,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   STATIC_PAGES.slice(1).forEach(page => {
     const changefreq =
       page === 'blog' ? 'daily'
-      : page === 'contact' || page === 'privacy-policy' ? 'monthly'
+      : page === 'contact' || page === 'privacy-policy' || page === 'privacidade' || page === 'termos' ? 'monthly'
       : 'weekly';
     const priority =
       page === 'blog' || page === 'projects' ? 0.9
-      : page === 'privacy-policy' ? 0.3
+      : page === 'privacy-policy' || page === 'privacidade' || page === 'termos' ? 0.3
       : 0.8;
     urls.push(...generateSitemapUrl(`/${page}`, changefreq, priority));
   });
